@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>myHistory 仕様 v2.1 Freeze（静的UI / F必須1）</title>
+<style>
+:root { --fg:#111; --muted:#666; --line:#ddd; --bg:#fff; --code:#f6f6f6; }
+body { font-family: system-ui, -apple-system, Segoe UI, Roboto, "Hiragino Sans", "Noto Sans JP", sans-serif;
+  background:var(--bg); color:var(--fg); line-height:1.75; }
+main { max-width: 980px; margin: 32px auto; padding: 0 18px 60px; }
+h1 { font-size: 22px; margin: 10px 0 6px; }
+h2 { font-size: 18px; margin-top: 28px; border-bottom: 2px solid var(--fg); padding-bottom: 6px; }
+h3 { font-size: 15px; margin-top: 18px; }
+p, li { font-size: 14px; }
+code { background:var(--code); padding: 2px 6px; border-radius: 6px; }
+pre { background:var(--code); padding: 12px; border-radius: 10px; overflow:auto; border:1px solid var(--line); }
+table { border-collapse: collapse; width:100%; margin: 10px 0; }
+th, td { border:1px solid var(--line); padding: 8px 10px; font-size: 13px; vertical-align: top; }
+th { background:#fafafa; text-align:left; }
+.note { border-left: 4px solid var(--line); padding: 8px 12px; margin: 10px 0; color: var(--muted); }
+.badge { display:inline-block; border:1px solid var(--line); border-radius: 999px; padding: 2px 10px; font-size: 12px; color: var(--muted); }
+</style>
+</head>
+<body>
+<main>
+<h1>myHistory 仕様 v2.1 Freeze（静的UI / 揺らぎF必須1）</h1>
+<p class="badge">作り手に渡す確定版（Phase1）</p>
+
+<h2>1. このFreezeの狙い</h2>
+<ul>
+  <li>「確定した部分だけ」をFreezeし、作り手と表示側の共通認識を揃える。</li>
+  <li>未確定（今回対象外）：グローバルレーン、6軸円環、動的演出（ホバー線/アニメ等）、対応リンクの描画ルール。</li>
+</ul>
+
+<h2>2. データモデル（FrameworkView）</h2>
+
+<h3>2.1 1イベント = 1 FrameworkView</h3>
+<ul>
+  <li>各イベント <code>eventId</code> に対し、<code>frameworkViews</code> は必ず1つ存在する。</li>
+</ul>
+
+<h3>2.2 レイヤー（layer）</h3>
+<p>既存のレイヤー体系（C/P/R）を維持しつつ、揺らぎ専用レイヤー <code>F</code> を追加する。</p>
+<table>
+  <tr><th>layer</th><th>意味（Freeze時の扱い）</th></tr>
+  <tr><td><code>C</code></td><td>Background（背景）。既存taxonomyのContext群（C-*）をそのまま継承する。</td></tr>
+  <tr><td><code>F</code></td><td>Fluctuation（揺らぎ）。必須1（Primary Fluctuation）。</td></tr>
+  <tr><td><code>R</code></td><td>Result（結果）。既存taxonomyのResult群（R-*）をそのまま継承する。</td></tr>
+  <tr><td><code>P</code></td><td>Path（経路）。データとして存在してよいが、Freeze静的UIの必須対象にはしない（表示してもしなくてもよい）。</td></tr>
+</table>
+
+<h3>2.3 必須制約（Freeze）</h3>
+<table>
+  <tr><th>レイヤー</th><th>必須数</th><th>備考</th></tr>
+  <tr><td>C（背景）</td><td>1以上</td><td>既存資産を維持</td></tr>
+  <tr><td>F（揺らぎ）</td><td><b>ちょうど1</b></td><td>Primary Fluctuation。複数Fは将来拡張（未決定）</td></tr>
+  <tr><td>R（結果）</td><td>1以上</td><td>既存資産を維持</td></tr>
+</table>
+
+<h2>3. taxonomy（カテゴリ体系）</h2>
+<ul>
+  <li><code>taxonomy_v2_1_freeze.json</code> は、既存の <code>C/P/R/L</code> を切り落とさず維持した上で、<code>F</code> を追加する。</li>
+  <li>揺らぎは旧 <code>C-UNC</code> から切り出し、<code>F-UNC</code> として移動する（サブカテゴリも移植）。</li>
+</ul>
+
+<h2>4. 理論注記：吸収能力 A(t)</h2>
+<div class="note">
+<p>吸収能力 A(t) は「背景（C）の状態変数」として仮定しうる。</p>
+<p>ただし Phase1 Freeze では A(t) を独立要素としてデータ化・可視化しない（注意書きとして保持）。</p>
+<p>将来、背景に変化を与えるフレームワーク（背景変化FW）として表現する可能性がある。</p>
+</div>
+
+<h2>5. 対応リンク（correspondences）</h2>
+<ul>
+  <li>リンクカテゴリ（L）は既存taxonomyを維持する。</li>
+  <li>Freeze静的UIでは「イベント↔要素を結ぶ線」の描画を行わない（表示しない）。</li>
+  <li>理由：特に長期揺らぎ等は、直線的リンクだけで意味を確定させるのに無理が出やすいため。</li>
+</ul>
+
+<h2>6. UI仕様（静的Freeze）</h2>
+<ul>
+  <li>左：イベント行（年号/タイトル）</li>
+  <li>右：当該イベントの要素バッジを横並びで表示</li>
+  <li>表示順序：<code>C → F → P（任意） → R</code></li>
+  <li>動的演出：なし（ホバー線/アニメーションなし）</li>
+  <li>リンク線：描画しない</li>
+</ul>
+
+<h2>7. 配布物</h2>
+<ul>
+  <li><code>spec_v2_1_freeze_static.html</code></li>
+  <li><code>taxonomy_v2_1_freeze.json</code></li>
+  <li><code>framework_output_v2_1_freeze.json</code></li>
+  <li><code>default_correspondences.json</code>（既存のまま）</li>
+</ul>
+
+</main>
+</body>
+</html>

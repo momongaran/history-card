@@ -1,0 +1,409 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>myHistory UI仕様 v2.0</title>
+  <style>
+    :root {
+      --font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Hiragino Kaku Gothic ProN", "Noto Sans JP", sans-serif;
+      --c-text: #111111;
+      --c-muted: #666666;
+      --c-border: #d9d9d9;
+    }
+    html, body { height: 100%; }
+    body {
+      margin: 0;
+      font-family: var(--font-family);
+      font-size: 13px;
+      color: var(--c-text);
+      background: #fff;
+      overflow: auto;
+      line-height: 1.7;
+    }
+    .wrap {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 24px 32px 60px;
+    }
+    h1 { font-size: 20px; margin: 0 0 4px; }
+    h2 { font-size: 16px; margin: 32px 0 12px; border-bottom: 2px solid #222; padding-bottom: 4px; }
+    h3 { font-size: 14px; margin: 20px 0 8px; }
+    p, li { line-height: 1.7; }
+    ul, ol { padding-left: 24px; }
+    li { margin-bottom: 4px; }
+    code {
+      font-family: "SF Mono", Menlo, Consolas, monospace;
+      font-size: 12px;
+      background: #f4f4f4;
+      padding: 1px 5px;
+      border-radius: 4px;
+    }
+    pre {
+      background: #f8f8f8;
+      border: 1px solid #e0e0e0;
+      border-radius: 8px;
+      padding: 12px 16px;
+      overflow-x: auto;
+      font-size: 12px;
+      line-height: 1.5;
+    }
+    pre code { background: none; padding: 0; }
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      font-size: 12px;
+      margin: 8px 0;
+    }
+    th, td {
+      border: 1px solid #ddd;
+      padding: 6px 10px;
+      text-align: left;
+      vertical-align: top;
+    }
+    th { background: #f8f8f8; font-weight: 600; }
+    .meta { color: var(--c-muted); font-size: 12px; margin-bottom: 20px; }
+    .changed { background: #fffbe6; }
+    .new { background: #eef6ee; }
+  </style>
+</head>
+<body>
+<div class="wrap">
+
+<h1>myHistory UI仕様 v2.0</h1>
+<p class="meta">
+  更新日: 2026-02-19 / 前版: v1.1 Freeze (2026-02-14)<br>
+  本版は R05 実装（横並びバッジ版）に合わせた仕様更新。変更箇所は <span class="changed">黄色背景</span>、新規は <span class="new">緑色背景</span> で示す。
+</p>
+
+<!-- ============================================================ -->
+<h2>1. 目的</h2>
+<p>本仕様書は、歴史イベントを並べたタイムライン上で「Framework View（FW）」の因果要素を表示・編集するための、データ構造およびUI表示の共通ルール（正本）を定義する。</p>
+
+<!-- ============================================================ -->
+<h2>2. 用語</h2>
+<ul>
+  <li><b>Event</b>: 歴史イベント。イベントレーンに縦方向に並ぶ。</li>
+  <li><b>FrameworkView（FW）</b>: 1イベントに対応する因果の枠組み。1イベント = 1FW。</li>
+  <li><b>Element</b>: FWを構成する要素。<b>layer</b>（C/P/R）と分類コード（category/subCategory）を持つ。</li>
+  <li><b>taxonomy.json</b>: 分類コード→表示名の辞書。カテゴリ/サブカテゴリ表示名称の唯一の正本。</li>
+  <li class="changed"><b>バッジ（Badge）</b>: 要素をコンパクトに表示する横長チップ。レイヤー色で色分けされる。</li>
+  <li><b>対応リンク（Correspondence）</b>: ある要素を別のイベントに紐付ける関係。Lコードで性質を分類する。</li>
+</ul>
+
+<!-- ============================================================ -->
+<h2>3. スコープ（Phase 1.0）</h2>
+<h3>3.1 含む</h3>
+<ul>
+  <li>taxonomy.json に基づくカテゴリ/サブカテゴリ表示</li>
+  <li>FrameworkView（1イベント = 1FW）の表示</li>
+  <li class="changed">FW要素の横並びバッジ表示（イベント行ごとにフラット展開）</li>
+  <li>対応リンクの作成・編集・削除（Lコード分類）</li>
+  <li>Undo/Redo（Ctrl+Z / Ctrl+Shift+Z）</li>
+  <li>保存・読込（JSON）</li>
+  <li>統計分析パネル</li>
+</ul>
+<h3>3.2 含まない（後続フェーズ）</h3>
+<ul>
+  <li>transition（順序・分岐）の定義/描画</li>
+  <li>ドラッグ＆ドロップ配置、スナップ接続</li>
+  <li>複合FW、FW同士の対応リンクによるメタ構造</li>
+  <li>反実仮想/最適化/シミュレーション</li>
+</ul>
+
+<!-- ============================================================ -->
+<h2>4. データ仕様（FrameworkView JSON v2.0 Freeze）</h2>
+
+<h3>4.1 ルート構造</h3>
+<pre><code>{
+  "events": [ { "eventId", "title", "sortKey", "endKey", "era", "trails", "note" } ],
+  "frameworkViews": [ { "frameworkViewId", "eventId", "lanes", "elements", "meta", "version" } ]
+}</code></pre>
+
+<h3>4.2 events（イベント）</h3>
+<table>
+  <tr><th>フィールド</th><th>型</th><th>説明</th></tr>
+  <tr><td><code>eventId</code></td><td>string</td><td>一意識別子（"EV_..."）</td></tr>
+  <tr><td><code>title</code></td><td>string</td><td>イベント名称</td></tr>
+  <tr><td><code>sortKey</code></td><td>number</td><td>年代（西暦。BC は負数）</td></tr>
+  <tr><td><code>endKey</code></td><td>number | null</td><td>終了年（範囲がある場合）</td></tr>
+  <tr><td><code>era</code></td><td>string | null</td><td>時代名称</td></tr>
+  <tr><td><code>trails</code></td><td>string[]</td><td>トレイルタグ</td></tr>
+  <tr><td><code>note</code></td><td>string | null</td><td>注記</td></tr>
+</table>
+
+<h3>4.3 lanes（因果レーン）</h3>
+<pre><code>{
+  "laneId": "LN_1",
+  "laneIndex": 1,
+  "label": "因果レーン #1",
+  "elements": ["EL_1", "EL_2", "EL_3"]
+}</code></pre>
+<ul>
+  <li><b>elements</b>: このレーンに属する elementId の配列。表示順序を決定する。</li>
+</ul>
+
+<h3>4.4 elements（要素）</h3>
+<pre><code>{
+  "elementId": "EL_1",
+  "layer": "C",
+  "category": "C-LEG",
+  "subCategory": "C-LEG-02",
+  "label": "武烈天皇の死で王統が不安定化"
+}</code></pre>
+<table>
+  <tr><th>フィールド</th><th>説明</th></tr>
+  <tr><td><code>layer</code></td><td>"C"（Context） / "P"（Path） / "R"（Result）</td></tr>
+  <tr><td><code>category</code></td><td>taxonomy.json のカテゴリコード（例: C-LEG）</td></tr>
+  <tr><td><code>subCategory</code></td><td>taxonomy.json のサブカテゴリコード（例: C-LEG-02）</td></tr>
+  <tr><td><code>label</code></td><td>UIに表示する短文</td></tr>
+</table>
+
+<h3>4.5 correspondences（対応リンク — UIステート）</h3>
+<p class="new">対応リンクはデータファイルではなく、UIの状態として管理される。保存/読込でJSON化。</p>
+<pre><code>{
+  "[fwViewId]": {
+    "[elementId]": {
+      "eventId": "EV_...",
+      "category": "L-CAU",    // Lコード
+      "subCategory": null
+    }
+  }
+}</code></pre>
+
+<h3>4.6 taxonomy.json（共通辞書）</h3>
+<ul>
+  <li>taxonomy.json はカテゴリ/サブカテゴリ表示名称の唯一の正本</li>
+  <li>Element側には名称を持たせず、UIで参照して補完表示する</li>
+  <li>Lコードも <code>layers.L</code> に定義される</li>
+</ul>
+
+<!-- ============================================================ -->
+<h2>5. UI仕様（正本）</h2>
+
+<h3 class="changed">5.1 レイアウト（2カラム）</h3>
+<p class="changed">v1.1では3カラム（イベント / ガター / 因果レーン）だったが、v2.0ではガターを廃止し2カラムに変更。</p>
+<ul>
+  <li><b>左カラム</b>: イベントレーン（固定幅 380px、縦スクロール）</li>
+  <li><b>右カラム</b>: 因果要素エリア（残り幅、縦スクロール同期）</li>
+</ul>
+<pre><code>.top {
+  display: grid;
+  grid-template-columns: 380px 1fr;
+  gap: 8px;
+}</code></pre>
+
+<h3 class="changed">5.2 因果要素の表示方式（横並びバッジ）</h3>
+<p class="changed">v1.1ではFWを因果レーン内に縦配置していたが、v2.0ではイベント行ごとにFWの全要素を横並びバッジとしてフラット展開する。</p>
+<ul>
+  <li>各イベント行に、そのイベントのFW要素がバッジとして横に並ぶ</li>
+  <li>バッジの順序は lanes[0].elements の配列順（C → P → R）</li>
+  <li>連番はFW単位で1から振られる</li>
+  <li>因果レーンの概念は表示上は使用しない（データ上は保持）</li>
+</ul>
+
+<h3 class="changed">5.3 バッジ表示</h3>
+<p class="changed">要素はコンパクトなバッジとして表示する。v1.1の2行FWボックスに替わるもの。</p>
+<ul>
+  <li>表示テキスト: subCategoryコードからレイヤープレフィクスとハイフンを除去（例: <code>C-PWR-02</code> → <code>PWR02</code>）</li>
+  <li>バッジ色はレイヤーで決定:
+    <ul>
+      <li><b>C層</b>: 青系（#f0f4fa / border #c7d4e8 / 文字 #3d5a8a）</li>
+      <li><b>P層</b>: 茶系（#faf5ed / border #ddd0b5 / 文字 #7a6840）</li>
+      <li><b>R層</b>: 緑系（#eff6f0 / border #bad4bc / 文字 #3a6b3e）</li>
+    </ul>
+  </li>
+  <li>未リンク要素: ゴースト表示（破線ボーダー、薄い文字色）</li>
+  <li>リンク済み要素: 左ボーダー 3px アクセントカラー</li>
+  <li>フォント: モノスペース（SF Mono / Menlo / Consolas）10.5px</li>
+</ul>
+
+<h3>5.4 ホバーツールチップ</h3>
+<p>バッジにマウスホバーすると詳細ツールチップを表示する:</p>
+<ol>
+  <li>連番（01〜）+ subCategoryコード + サブカテゴリ名称（taxonomy参照）</li>
+  <li>label本文</li>
+  <li>Lコード（リンク済みの場合）</li>
+  <li>リンク先イベント名 + 距離（行差）</li>
+</ol>
+<p>ホバー中、リンク先イベント行までSVGベジエ曲線を描画する。</p>
+
+<h3 class="changed">5.5 年代表示</h3>
+<ul>
+  <li>単一年: 数値のみ（例: <code>593</code>）</li>
+  <li>範囲年: <code>開始 – 終了</code>（例: <code>1603 – 1868</code>）</li>
+  <li>BC: <code>BC</code> プレフィクス（例: <code>BC660</code>）</li>
+  <li class="changed">年代がアバウト（概数）であることを示す場合のみドット（<code>.</code>）を付加する。確定年にはドットを付けない</li>
+  <li class="changed">現状のデータには概数フラグがないため、ドットは一切表示しない</li>
+</ul>
+
+<h3>5.6 イベント行</h3>
+<table>
+  <tr><th>項目</th><th>値</th></tr>
+  <tr><td>行高</td><td><code>--row-height: 64px</code>（3行表示可能）</td></tr>
+  <tr><td>グリッド</td><td><code>88px 1fr 20px</code>（年 / タイトル / expander）</td></tr>
+  <tr><td>タイトル</td><td>最大3行（<code>-webkit-line-clamp: 3</code>）</td></tr>
+  <tr><td>区切り</td><td><code>border-bottom: 1px solid #f0f1f3</code></td></tr>
+</table>
+
+<h3>5.7 行高の同期</h3>
+<p>イベントレーンと因果要素エリアの行高は動的に同期する。バッジが折り返した場合、両側の行高が自動調整される（<code>syncGridRows</code>）。</p>
+
+<h3>5.8 スクロール同期</h3>
+<p>左右パネルの縦スクロールは <code>requestAnimationFrame</code> で同期する。</p>
+
+<!-- ============================================================ -->
+<h2>6. 対応リンク仕様</h2>
+
+<h3>6.1 Lコード（対応リンクカテゴリ）</h3>
+<p>対応リンクのカテゴリは、要素自身の分類コード（C/P/Rコード）ではなく、リンクの性質を表すLコードを使用する。</p>
+<table>
+  <tr><th>コード</th><th>名称</th><th>意味</th></tr>
+  <tr><td><code>L-CAU</code></td><td>直接因果</td><td>AがBを直接引き起こした</td></tr>
+  <tr><td><code>L-ICU</code></td><td>間接因果</td><td>AがBに間接的に影響した</td></tr>
+  <tr><td><code>L-PRQ</code></td><td>前提条件</td><td>AがBの前提となった</td></tr>
+  <tr><td><code>L-RPL</code></td><td>波及</td><td>Aの影響がBに波及した</td></tr>
+  <tr><td><code>L-TRG</code></td><td>誘発</td><td>AがBを誘発した</td></tr>
+  <tr><td><code>L-SIM</code></td><td>類似構造</td><td>AとBは構造的に類似する</td></tr>
+  <tr><td><code>L-CNT</code></td><td>対比</td><td>AとBは対比関係にある</td></tr>
+  <tr><td><code>L-TRN</code></td><td>転用</td><td>Aの仕組みがBに転用された</td></tr>
+  <tr><td><code>L-SUP</code></td><td>上位包含</td><td>AはBの上位概念である</td></tr>
+  <tr><td><code>L-SUB</code></td><td>下位展開</td><td>AはBの下位展開である</td></tr>
+</table>
+
+<h3>6.2 リンク操作フロー</h3>
+<ol>
+  <li><b>リンク作成</b>: 未リンクバッジをクリック → イベント行をクリック → リンク成立</li>
+  <li><b>Lコード変更</b>: リンク済みバッジをクリック → ドロップダウンでLコード選択</li>
+  <li><b>イベント再選択</b>: ドロップダウン内「↻ イベント再選択」</li>
+  <li><b>リンク削除</b>: リンク済みバッジを右クリック → 確認ダイアログ</li>
+  <li><b>キャンセル</b>: Esc / 関係ない場所をクリック</li>
+</ol>
+
+<h3>6.3 Undo/Redo</h3>
+<ul>
+  <li>Ctrl+Z: Undo（最大50回）</li>
+  <li>Ctrl+Shift+Z: Redo</li>
+  <li>新しい操作でRedo履歴はクリアされる</li>
+</ul>
+
+<!-- ============================================================ -->
+<h2>7. 統計パネル</h2>
+<p class="new">「統計」ボタンでモーダルオーバーレイを表示。以下の4セクション:</p>
+<ol>
+  <li><b>サマリーカード</b>: イベント数 / FW数 / 要素数 / リンク済み数</li>
+  <li><b>レイヤー構成</b>: C/P/R の割合バー</li>
+  <li><b>リンクカテゴリ分布</b>: Lコード別の件数バー</li>
+  <li><b>因果パターン分析</b>: FW内要素パターンの出現頻度（2回以上のもの）</li>
+</ol>
+
+<!-- ============================================================ -->
+<h2>8. IO仕様</h2>
+<h3>8.1 保存</h3>
+<pre><code>{
+  "version": "1.0",
+  "exportedAt": "2026-02-19T...",
+  "correspondences": { ... }
+}</code></pre>
+<p>ファイル名: <code>myhistory_save_{timestamp}.json</code></p>
+
+<h3>8.2 読込</h3>
+<p>JSONファイルを選択 → <code>correspondences</code> を上書き → 再描画。バリデーション付き。</p>
+
+<!-- ============================================================ -->
+<h2>9. デザイントークン（確定値）</h2>
+<table>
+  <tr><th>トークン</th><th>値</th><th>用途</th></tr>
+  <tr><td><code>--row-height</code></td><td>64px</td><td>イベント行高</td></tr>
+  <tr><td><code>--lane-events-width</code></td><td>380px</td><td>イベントレーン幅</td></tr>
+  <tr><td><code>--content-padding</code></td><td>12px</td><td>画面余白</td></tr>
+  <tr><td><code>--panel-height</code></td><td>56px</td><td>下部パネル高</td></tr>
+  <tr><td><code>--font-size-base</code></td><td>13px</td><td>基本フォントサイズ</td></tr>
+  <tr><td><code>--font-size-fw</code></td><td>12px</td><td>FW要素フォントサイズ</td></tr>
+  <tr><td><code>--c-fw-bg</code></td><td>#fafafa</td><td>FWボックス背景</td></tr>
+  <tr><td><code>--c-fw-border</code></td><td>#cfcfcf</td><td>FWボックスボーダー</td></tr>
+  <tr><td><code>--fw-radius</code></td><td>10px</td><td>FWボックス角丸</td></tr>
+  <tr><td><code>--ctrl-size</code></td><td>20px</td><td>expanderサイズ</td></tr>
+</table>
+
+<!-- ============================================================ -->
+<h2>10. ファイル構成（R05）</h2>
+<table>
+  <tr><th>ファイル</th><th>役割</th></tr>
+  <tr><td><code>index.html</code></td><td>エントリポイントHTML</td></tr>
+  <tr><td><code>app.js</code></td><td>初期化・データ読込・スクロール同期・IOバインド</td></tr>
+  <tr><td><code>state.js</code></td><td>中央ステート管理 + Undo/Redo</td></tr>
+  <tr><td><code>taxonomy.js</code></td><td>taxonomy.json 参照ヘルパー</td></tr>
+  <tr><td><code>layout.js</code></td><td>レイアウト計算（イベント行ごとにFW要素を集約）</td></tr>
+  <tr><td><code>render.js</code></td><td>DOM生成（イベント行 + バッジ + SVGオーバーレイ + ツールチップ）</td></tr>
+  <tr><td><code>interact.js</code></td><td>ユーザ操作（リンク作成/編集/削除、ドロップダウン、キーボード）</td></tr>
+  <tr><td><code>io.js</code></td><td>JSON保存/読込</td></tr>
+  <tr><td><code>stats.js</code></td><td>統計分析オーバーレイ</td></tr>
+  <tr><td><code>styles.css</code></td><td>全スタイル</td></tr>
+</table>
+
+<!-- ============================================================ -->
+<h2>11. v1.1 → v2.0 変更履歴</h2>
+<table>
+  <tr><th>項目</th><th>v1.1</th><th>v2.0</th><th>理由</th></tr>
+  <tr class="changed">
+    <td>レイアウト</td>
+    <td>3カラム（イベント / ガター / 因果レーン群）</td>
+    <td>2カラム（イベント / 因果要素バッジ）</td>
+    <td>要素を横並びにすることで一覧性を向上</td>
+  </tr>
+  <tr class="changed">
+    <td>要素表示</td>
+    <td>因果レーン内に縦配置、2行FWボックス</td>
+    <td>イベント行ごとに横並びバッジ</td>
+    <td>コンパクトで直感的な表示</td>
+  </tr>
+  <tr class="changed">
+    <td>ガター</td>
+    <td>独立カラム（72px固定幅）にリンク情報表示</td>
+    <td>廃止（バッジの色・スタイルでリンク状態を表現）</td>
+    <td>バッジがリンク状態を直接表現するためガター不要</td>
+  </tr>
+  <tr class="changed">
+    <td>因果レーン</td>
+    <td>FWをレーン単位で縦に配置、横スクロール</td>
+    <td>レーン概念を表示上は使用しない</td>
+    <td>1イベント=1FWのため、レーン分離のメリットが薄い</td>
+  </tr>
+  <tr class="changed">
+    <td>年代ドット</td>
+    <td>（未定義）</td>
+    <td>確定年にはドット不要。概数の場合のみドット付与（現データでは一律なし）</td>
+    <td>通常の年表表記に準拠</td>
+  </tr>
+  <tr class="new">
+    <td>統計パネル</td>
+    <td>（なし）</td>
+    <td>パターン分析・レイヤー構成・Lコード分布</td>
+    <td>分析機能の追加</td>
+  </tr>
+  <tr class="new">
+    <td>ホバーツールチップ</td>
+    <td>（なし）</td>
+    <td>バッジホバーで詳細表示 + SVGリンク線</td>
+    <td>コンパクト表示の詳細補完</td>
+  </tr>
+  <tr class="new">
+    <td>保存/読込</td>
+    <td>（なし）</td>
+    <td>対応リンクのJSON保存/読込</td>
+    <td>作業の永続化</td>
+  </tr>
+</table>
+
+<!-- ============================================================ -->
+<h2>12. バージョン運用</h2>
+<ul>
+  <li>仕様変更が発生した場合は、仕様書・taxonomy.json・実装参照先を同じ版数で更新する</li>
+  <li>「後でまとめる」は禁止し、合意した瞬間に仕様へ反映する</li>
+  <li>本仕様書は <code>R05/spec/spec_v2_0.html</code> に格納する</li>
+</ul>
+
+</div>
+</body>
+</html>

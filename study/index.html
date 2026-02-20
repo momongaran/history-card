@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>myHistory v2.0 Triple Ring Toggle</title>
+<style>
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
+    background: #ffffff;
+    margin: 40px;
+}
+h2 { font-weight: 500; }
+.container { display: flex; gap: 80px; align-items: flex-start; }
+.event { text-align: center; }
+canvas { display: block; margin: 0 auto 10px auto; }
+.controls { margin-bottom: 20px; }
+button {
+    padding: 6px 12px;
+    margin-right: 8px;
+    background: #f5f5f5;
+    border: 1px solid #ddd;
+    cursor: pointer;
+}
+button.active { background: #eaeaea; }
+.label { font-size: 13px; color: #666; }
+</style>
+</head>
+<body>
+
+<h2>myHistory v2.0 Triple Ring (C ⇄ R)</h2>
+
+<div class="controls">
+  <button id="btnC" class="active">C（背景）</button>
+  <button id="btnR">R（結果）</button>
+</div>
+
+<div class="container" id="container"></div>
+
+<script>
+
+let mode = "C";
+
+const events = [
+  {
+    title: "継体天皇",
+    C: {
+      tensions: {
+        internal: [0.55,0.50,0.40,0.60,0.65,0.45],
+        core:     [0.80,0.70,0.50,0.60,0.75,0.55],
+        external: [0.40,0.45,0.50,0.40,0.45,0.35]
+      },
+      capacity: { internal: 0.60, core: 0.50, external: 0.80 }
+    },
+    R: {
+      tensions: {
+        internal: [0.50,0.55,0.45,0.55,0.70,0.50],
+        core:     [0.50,0.55,0.50,0.55,0.60,0.50],
+        external: [0.40,0.45,0.50,0.40,0.45,0.35]
+      },
+      capacity: { internal: 0.62, core: 0.65, external: 0.80 }
+    }
+  }
+];
+
+function drawAll() {
+    const container = document.getElementById("container");
+    container.innerHTML = "";
+
+    events.forEach(event => drawEvent(event, container));
+}
+
+function drawEvent(event, container) {
+    const div = document.createElement("div");
+    div.className = "event";
+
+    const canvas = document.createElement("canvas");
+    canvas.width = 260;
+    canvas.height = 260;
+    const ctx = canvas.getContext("2d");
+
+    const center = 130;
+
+    const ringConfig = [
+        { name: "internal", radius: 55 },
+        { name: "core", radius: 90 },
+        { name: "external", radius: 125 }
+    ];
+
+    const data = event[mode];
+
+    ringConfig.forEach(ring => {
+
+        const tensions = data.tensions[ring.name];
+        const capacity = data.capacity[ring.name];
+
+        // T（歪み）
+        for (let i = 0; i < 6; i++) {
+            const angle = (Math.PI * 2 / 6) * i;
+            const x = center + ring.radius * Math.cos(angle);
+            const y = center + ring.radius * Math.sin(angle);
+
+            const darkness = tensions[i];
+            ctx.beginPath();
+            ctx.arc(x, y, 7, 0, Math.PI * 2);
+            ctx.fillStyle = `rgba(0,0,0,${darkness})`;
+            ctx.fill();
+        }
+
+        // A（吸収能力）内縁太さ
+        const thickness = 1 + 2 * (1 - capacity);
+        ctx.beginPath();
+        ctx.arc(center, center, ring.radius - 18, 0, Math.PI * 2);
+        ctx.lineWidth = thickness;
+        ctx.strokeStyle = "rgba(0,0,0,0.5)";
+        ctx.stroke();
+    });
+
+    div.appendChild(canvas);
+
+    const label = document.createElement("div");
+    label.textContent = event.title;
+    div.appendChild(label);
+
+    container.appendChild(div);
+}
+
+// ボタン
+document.getElementById("btnC").onclick = () => {
+    mode = "C";
+    document.getElementById("btnC").classList.add("active");
+    document.getElementById("btnR").classList.remove("active");
+    drawAll();
+};
+
+document.getElementById("btnR").onclick = () => {
+    mode = "R";
+    document.getElementById("btnR").classList.add("active");
+    document.getElementById("btnC").classList.remove("active");
+    drawAll();
+};
+
+drawAll();
+
+</script>
+
+</body>
+</html>
