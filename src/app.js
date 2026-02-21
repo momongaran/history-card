@@ -12,8 +12,8 @@ import { showStats } from './stats.js';
   // ── Data loading ──
   const cacheBust = `?t=${Date.now()}`;
   const [fwData, taxonomy, defaultCorrs] = await Promise.all([
-    fetch(`../data/framework_output_v2_0_freeze.json${cacheBust}`).then(r => r.json()),
-    fetch(`../data/taxonomy.json${cacheBust}`).then(r => r.json()),
+    fetch(`../data/framework_output_v2_1_freeze.json${cacheBust}`).then(r => r.json()),
+    fetch(`../data/taxonomy_v2_1_freeze.json${cacheBust}`).then(r => r.json()),
     fetch(`../data/default_correspondences.json${cacheBust}`).then(r => r.json()).catch(() => ({})),
   ]);
 

@@ -1,9 +1,8 @@
-// render.js — Horizontal badge layout with hover SVG lines
+// render.js — Horizontal badge layout (static mode, v2.1)
 
 import { getState } from './state.js';
 import { subCatName, linkCatName } from './taxonomy.js';
 
-let svgOverlay = null;
 let tooltip = null;
 
 /**
@@ -13,7 +12,7 @@ export function render(layout) {
   renderEventLane(layout);
   renderCausalRows(layout);
   syncGridRows(layout);
-  ensureOverlay();
+  ensureTooltip();
 }
 
 // ── Event Lane ──
@@ -78,37 +77,54 @@ function renderCausalRows(layout) {
     row.className = 'causal-row';
     row.dataset.rowIndex = String(i);
 
+    let prevLayer = null;
     for (const entry of rowData.elements) {
-      const badge = document.createElement('span');
-      badge.className = 'el-badge';
-      badge.classList.add(`layer-${entry.element.layer.toLowerCase()}`);
-      badge.dataset.fwViewId = entry.fwView.frameworkViewId;
-      badge.dataset.elementId = entry.element.elementId;
-      badge.dataset.rowIndex = String(i);
+      const el = entry.element;
+      const sc = el.subCategory || el.layer;
+      const layer = el.layer;
+      const isNewBlock = prevLayer && prevLayer !== layer;
 
-      const sc = entry.element.subCategory || entry.element.layer;
-      // C-PWR-02 → PWR02
-      badge.textContent = sc.replace(/^[CPR]-/, '').replace(/-/g, '');
+      const span = document.createElement('span');
+      span.className = 'el-code';
+      span.classList.add(`layer-${layer.toLowerCase()}`);
 
-      if (entry.corr && entry.corr.eventId) {
-        badge.classList.add('has-link');
-        badge.dataset.linkedEventIdx = String(entry.linkedEventIdx ?? '');
-        badge.dataset.lcode = entry.corr.category || '';
-      } else {
-        badge.classList.add('no-link');
+      // Layer boundary → margin-left for breathing room
+      if (isNewBlock) {
+        span.classList.add('block-start');
       }
 
-      // Store data for tooltip
-      badge.dataset.seqNo = String(entry.seqNo);
-      badge.dataset.label = entry.element.label || '';
-      badge.dataset.layer = entry.element.layer;
-      badge.dataset.fullCode = sc;
+      // F-UNC-00 = subdued
+      if (sc === 'F-UNC-00') {
+        span.classList.add('is-unc00');
+      }
+
+      span.dataset.fwViewId = entry.fwView.frameworkViewId;
+      span.dataset.elementId = el.elementId;
+      span.dataset.rowIndex = String(i);
+
+      // C-PWR-02 → PWR02, F-UNC-01 → UNC01
+      span.textContent = sc.replace(/^[CFPR]-/, '').replace(/-/g, '');
+
+      if (entry.corr && entry.corr.eventId) {
+        span.classList.add('has-link');
+        span.dataset.linkedEventIdx = String(entry.linkedEventIdx ?? '');
+        span.dataset.lcode = entry.corr.category || '';
+      } else {
+        span.classList.add('no-link');
+      }
+
+      // Data for tooltip
+      span.dataset.seqNo = String(entry.seqNo);
+      span.dataset.label = el.label || '';
+      span.dataset.layer = layer;
+      span.dataset.fullCode = sc;
 
       // Hover handlers
-      badge.addEventListener('mouseenter', handleBadgeEnter);
-      badge.addEventListener('mouseleave', handleBadgeLeave);
+      span.addEventListener('mouseenter', handleBadgeEnter);
+      span.addEventListener('mouseleave', handleBadgeLeave);
 
-      row.appendChild(badge);
+      row.appendChild(span);
+      prevLayer = layer;
     }
 
     body.appendChild(row);
@@ -117,14 +133,8 @@ function renderCausalRows(layout) {
   container.appendChild(body);
 }
 
-// ── SVG Overlay + Tooltip ──
-function ensureOverlay() {
-  if (!svgOverlay) {
-    svgOverlay = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-    svgOverlay.id = 'svgOverlay';
-    svgOverlay.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100vh;pointer-events:none;z-index:1000;';
-    document.body.appendChild(svgOverlay);
-  }
+// ── Tooltip (no SVG overlay in static mode) ──
+function ensureTooltip() {
   if (!tooltip) {
     tooltip = document.createElement('div');
     tooltip.id = 'hoverTooltip';
@@ -165,7 +175,7 @@ function handleBadgeEnter(e) {
   }
 
   // Show tooltip
-  ensureOverlay();
+  ensureTooltip();
   tooltip.innerHTML = html;
   tooltip.style.display = 'block';
 
@@ -184,88 +194,10 @@ function handleBadgeEnter(e) {
     }
   });
 
-  // Draw SVG line to linked event (if different row)
-  if (linkedIdx !== '' && linkedIdx !== undefined) {
-    const li = parseInt(linkedIdx);
-    if (li !== ownIdx) {
-      drawLinkLine(badge, li);
-    }
-  }
 }
 
 function handleBadgeLeave() {
   if (tooltip) tooltip.style.display = 'none';
-  clearSvg();
-  // Remove any highlight
-  document.querySelectorAll('.event-row.is-link-target').forEach(el => {
-    el.classList.remove('is-link-target');
-  });
-}
-
-function drawLinkLine(badge, targetRowIdx) {
-  if (!svgOverlay) return;
-  clearSvg();
-
-  const badgeRect = badge.getBoundingClientRect();
-
-  // Find target event row
-  const eventRows = document.getElementById('eventRows');
-  const targetRow = eventRows.children[targetRowIdx];
-  if (!targetRow) return;
-
-  targetRow.classList.add('is-link-target');
-
-  const targetRect = targetRow.getBoundingClientRect();
-
-  // Badge center-left → target row center-right
-  const x1 = badgeRect.left;
-  const y1 = badgeRect.top + badgeRect.height / 2;
-  const x2 = targetRect.right;
-  const y2 = targetRect.top + targetRect.height / 2;
-
-  // Smooth bezier curve
-  const dx = Math.abs(x1 - x2) * 0.4;
-  const dy = Math.abs(y1 - y2) * 0.15;
-
-  const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
-  path.setAttribute('d', `M${x1},${y1} C${x1 - dx},${y1 - dy} ${x2 + dx},${y2 + dy} ${x2},${y2}`);
-  path.setAttribute('stroke', '#5b82c2');
-  path.setAttribute('stroke-width', '1.5');
-  path.setAttribute('fill', 'none');
-  path.setAttribute('opacity', '0.5');
-
-  // Glow effect
-  const glow = document.createElementNS('http://www.w3.org/2000/svg', 'path');
-  glow.setAttribute('d', path.getAttribute('d'));
-  glow.setAttribute('stroke', '#5b82c2');
-  glow.setAttribute('stroke-width', '6');
-  glow.setAttribute('fill', 'none');
-  glow.setAttribute('opacity', '0.08');
-
-  // Target dot
-  const circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
-  circle.setAttribute('cx', String(x2));
-  circle.setAttribute('cy', String(y2));
-  circle.setAttribute('r', '4');
-  circle.setAttribute('fill', '#5b82c2');
-  circle.setAttribute('opacity', '0.6');
-
-  // Source dot
-  const srcCircle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
-  srcCircle.setAttribute('cx', String(x1));
-  srcCircle.setAttribute('cy', String(y1));
-  srcCircle.setAttribute('r', '3');
-  srcCircle.setAttribute('fill', '#5b82c2');
-  srcCircle.setAttribute('opacity', '0.4');
-
-  svgOverlay.appendChild(glow);
-  svgOverlay.appendChild(path);
-  svgOverlay.appendChild(circle);
-  svgOverlay.appendChild(srcCircle);
-}
-
-function clearSvg() {
-  if (svgOverlay) svgOverlay.innerHTML = '';
 }
 
 // ── Sync grid row heights ──

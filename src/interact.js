@@ -31,7 +31,7 @@ function rerender() {
 
 // ── Badge click ──
 function handleBadgeClick(e) {
-  const badge = e.target.closest('.el-badge');
+  const badge = e.target.closest('.el-code');
   if (!badge) return;
 
   e.stopPropagation();
@@ -50,7 +50,7 @@ function handleBadgeClick(e) {
 
 // ── Context menu (right-click) on badge ──
 function handleContextMenu(e) {
-  const badge = e.target.closest('.el-badge.has-link');
+  const badge = e.target.closest('.el-code.has-link');
   if (badge) {
     e.preventDefault();
     const fwViewId = badge.dataset.fwViewId;

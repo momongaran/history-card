@@ -14,18 +14,15 @@ export function showStats() {
   // ── Compute patterns ──
   const patternMap = new Map();
 
+  const LAYER_ORDER = { C: 0, F: 1, P: 2, R: 3 };
   for (const fv of frameworkViews) {
-    const laneElements = [];
-    if (fv.lanes && fv.lanes[0]) {
-      const elementMap = new Map();
-      for (const el of fv.elements) elementMap.set(el.elementId, el);
-      for (const elId of fv.lanes[0].elements) {
-        const el = elementMap.get(elId);
-        if (el) laneElements.push(el);
-      }
-    }
+    const sorted = [...fv.elements].sort((a, b) => {
+      const oa = LAYER_ORDER[a.layer] ?? 99;
+      const ob = LAYER_ORDER[b.layer] ?? 99;
+      return oa - ob;
+    });
 
-    const codes = laneElements.map(el => el.subCategory || el.layer);
+    const codes = sorted.map(el => el.subCategory || el.layer);
     const pattern = codes.join(' → ');
     const ev = events.find(e => e.eventId === fv.eventId);
 
@@ -57,7 +54,7 @@ export function showStats() {
   }
 
   // ── Layer distribution ──
-  const layerCount = { C: 0, P: 0, R: 0 };
+  const layerCount = { C: 0, F: 0, P: 0, R: 0 };
   for (const fv of frameworkViews) {
     for (const el of fv.elements) {
       if (layerCount[el.layer] !== undefined) layerCount[el.layer]++;
@@ -112,7 +109,7 @@ export function showStats() {
   layerSec.innerHTML = `<div class="stats-section-title">レイヤー構成</div>`;
   const layerBar = document.createElement('div');
   layerBar.className = 'stats-bar';
-  const total = layerCount.C + layerCount.P + layerCount.R;
+  const total = layerCount.C + layerCount.F + layerCount.P + layerCount.R;
   for (const [layer, count] of Object.entries(layerCount)) {
     const seg = document.createElement('div');
     seg.className = `stats-bar-seg layer-${layer.toLowerCase()}`;
@@ -184,8 +181,8 @@ export function showStats() {
     for (const code of codes) {
       const badge = document.createElement('span');
       const layer = code.charAt(0).toLowerCase();
-      badge.className = `el-badge layer-${layer} has-link stats-badge-tip`;
-      badge.textContent = code.replace(/^[CPR]-/, '').replace(/-/g, '');
+      badge.className = `el-code layer-${layer} stats-badge-tip`;
+      badge.textContent = code.replace(/^[CFPR]-/, '').replace(/-/g, '');
       badge.dataset.tip = `${code}  ${subCatName(code)}`;
       badgeRow.appendChild(badge);
     }
