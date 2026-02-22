@@ -1,0 +1,399 @@
+{
+  "version": "2.2",
+  "sourceSpecification": "myHistory Framework Specification v1.0",
+  "notes": [
+    "taxonomy.json はカテゴリ/サブカテゴリ表示名称の唯一の正本。",
+    "サブカテゴリ数は原則3〜5、必要な場合は最大8まで拡張可。",
+    "transition（順序・分岐）は本バージョンでは扱わない。",
+    "Freeze v2.1: 揺らぎ(F)を独立レイヤーとして新設。C-UNCはF-UNCとして移動。Fは各イベントで必須1（Primary Fluctuation）。",
+    "v2.2: Freeze互換維持。レイヤー構造変更なし。"
+  ],
+  "layers": {
+    "C": {
+      "displayName": "Context",
+      "categories": {
+        "C-PWR": {
+          "shortCode": "PWR",
+          "name": "権力配置",
+          "subCategories": {
+            "C-PWR-01": "中央集権構造",
+            "C-PWR-02": "豪族間均衡",
+            "C-PWR-03": "分権的配置",
+            "C-PWR-04": "実権と名目の分離"
+          }
+        },
+        "C-LEG": {
+          "shortCode": "LEG",
+          "name": "正統性基盤",
+          "subCategories": {
+            "C-LEG-01": "血統的正統性",
+            "C-LEG-02": "王統継承安定性",
+            "C-LEG-03": "宗教的正統化",
+            "C-LEG-04": "制度的正当化"
+          }
+        },
+        "C-INS": {
+          "shortCode": "INS",
+          "name": "制度枠組み",
+          "subCategories": {
+            "C-INS-01": "官制構造",
+            "C-INS-02": "税制財政制度",
+            "C-INS-03": "法制度枠組み",
+            "C-INS-04": "行政運用基盤",
+            "C-INS-05": "軍事制度体系"
+          }
+        },
+        "C-SOC": {
+          "shortCode": "SOC",
+          "name": "社会構造",
+          "subCategories": {
+            "C-SOC-01": "身分階層構造",
+            "C-SOC-02": "地域社会構造",
+            "C-SOC-03": "経済階層分化",
+            "C-SOC-04": "共同体結束構造"
+          }
+        },
+        "C-RES": {
+          "shortCode": "RES",
+          "name": "資源基盤",
+          "subCategories": {
+            "C-RES-01": "財政資源",
+            "C-RES-02": "軍事資源",
+            "C-RES-03": "人的資源",
+            "C-RES-04": "物流供給基盤"
+          }
+        },
+        "C-EXT": {
+          "shortCode": "EXT",
+          "name": "対外環境",
+          "subCategories": {
+            "C-EXT-01": "外交圧力",
+            "C-EXT-02": "軍事脅威",
+            "C-EXT-03": "文化流入",
+            "C-EXT-04": "経済交易圏"
+          }
+        },
+        "C-MIL": {
+          "shortCode": "MIL",
+          "name": "軍事基盤",
+          "subCategories": {
+            "C-MIL-01": "軍事組織構造",
+            "C-MIL-02": "軍事技術水準",
+            "C-MIL-03": "動員体制",
+            "C-MIL-04": "防衛拠点配置"
+          }
+        },
+        "C-NRM": {
+          "shortCode": "NRM",
+          "name": "価値体系",
+          "subCategories": {
+            "C-NRM-01": "宗教思想体系",
+            "C-NRM-02": "倫理規範",
+            "C-NRM-03": "統治理念",
+            "C-NRM-04": "文化的象徴体系"
+          }
+        },
+        "C-INF": {
+          "shortCode": "INF",
+          "name": "情報基盤",
+          "subCategories": {
+            "C-INF-01": "文書記録体系",
+            "C-INF-02": "通信伝達網",
+            "C-INF-03": "教育知識体系",
+            "C-INF-04": "情報統制構造"
+          }
+        },
+        "C-GEO": {
+          "shortCode": "GEO",
+          "name": "地理人口条件",
+          "subCategories": {
+            "C-GEO-01": "地理的障壁",
+            "C-GEO-02": "人口集中度",
+            "C-GEO-03": "農業生産条件",
+            "C-GEO-04": "交通経路条件"
+          }
+        },
+        "C-RIV": {
+          "shortCode": "RIV",
+          "name": "利害対立",
+          "subCategories": {
+            "C-RIV-01": "政治的利害対立"
+          }
+        }
+      }
+    },
+    "P": {
+      "displayName": "Path",
+      "categories": {
+        "P-SUC": {
+          "shortCode": "SUC",
+          "name": "継承・交代",
+          "subCategories": {
+            "P-SUC-01": "正常継承",
+            "P-SUC-02": "合意的推戴",
+            "P-SUC-03": "強制交代",
+            "P-SUC-04": "内部簒奪",
+            "P-SUC-05": "外部介入交代"
+          }
+        },
+        "P-CON": {
+          "shortCode": "CON",
+          "name": "合意形成",
+          "subCategories": {
+            "P-CON-01": "豪族間合意",
+            "P-CON-02": "宗教的合意",
+            "P-CON-03": "外交的合意",
+            "P-CON-04": "制度内協議"
+          }
+        },
+        "P-DIS": {
+          "shortCode": "DIS",
+          "name": "権力再配分",
+          "subCategories": {
+            "P-DIS-01": "権限集中",
+            "P-DIS-02": "権限分散",
+            "P-DIS-03": "実権移動",
+            "P-DIS-04": "役割再定義"
+          }
+        },
+        "P-RIV": {
+          "shortCode": "RIV",
+          "name": "対立・闘争",
+          "subCategories": {
+            "P-RIV-01": "派閥対立",
+            "P-RIV-02": "宗教対立",
+            "P-RIV-03": "権力闘争",
+            "P-RIV-04": "地域対立"
+          }
+        },
+        "P-FRC": {
+          "shortCode": "FRC",
+          "name": "武力行使",
+          "subCategories": {
+            "P-FRC-01": "内戦",
+            "P-FRC-02": "対外軍事行動",
+            "P-FRC-03": "武力鎮圧",
+            "P-FRC-04": "軍事威圧"
+          }
+        },
+        "P-DES": {
+          "shortCode": "DES",
+          "name": "制度設計",
+          "subCategories": {
+            "P-DES-01": "新制度創設",
+            "P-DES-02": "制度改編",
+            "P-DES-03": "法典制定",
+            "P-DES-04": "組織再設計"
+          }
+        },
+        "P-IMP": {
+          "shortCode": "IMP",
+          "name": "政策実行",
+          "subCategories": {
+            "P-IMP-01": "政策施行",
+            "P-IMP-02": "行政強化",
+            "P-IMP-03": "経済改革",
+            "P-IMP-04": "社会改革"
+          }
+        },
+        "P-DIP": {
+          "shortCode": "DIP",
+          "name": "外交交渉",
+          "subCategories": {
+            "P-DIP-01": "同盟締結",
+            "P-DIP-02": "条約締結",
+            "P-DIP-03": "朝貢関係",
+            "P-DIP-04": "外交断絶"
+          }
+        },
+        "P-LEG": {
+          "shortCode": "LEG",
+          "name": "正統化",
+          "subCategories": {
+            "P-LEG-01": "儀礼正統化",
+            "P-LEG-02": "宗教的承認",
+            "P-LEG-03": "法制度承認",
+            "P-LEG-04": "外交的承認"
+          }
+        },
+        "P-ESC": {
+          "shortCode": "ESC",
+          "name": "連鎖拡大",
+          "subCategories": {
+            "P-ESC-01": "対立拡大",
+            "P-ESC-02": "反乱拡大",
+            "P-ESC-03": "戦争拡大",
+            "P-ESC-04": "改革波及"
+          }
+        },
+        "P-REV": {
+          "shortCode": "REV",
+          "name": "反動・修復",
+          "subCategories": {
+            "P-REV-01": "政策撤回",
+            "P-REV-02": "権力復帰",
+            "P-REV-03": "制度修復",
+            "P-REV-04": "体制回帰"
+          }
+        },
+        "P-INT": {
+          "shortCode": "INT",
+          "name": "統合運用",
+          "subCategories": {
+            "P-INT-01": "権力統合",
+            "P-INT-02": "制度統合",
+            "P-INT-03": "地域統合",
+            "P-INT-04": "組織統合"
+          }
+        }
+      }
+    },
+    "R": {
+      "displayName": "Result",
+      "categories": {
+        "R-POW": {
+          "shortCode": "POW",
+          "name": "権力再編型",
+          "subCategories": {
+            "R-POW-01": "支配主体交代",
+            "R-POW-02": "権力集中化",
+            "R-POW-03": "権力分散化",
+            "R-POW-04": "実権移動"
+          }
+        },
+        "R-REG": {
+          "shortCode": "REG",
+          "name": "体制転換型",
+          "subCategories": {
+            "R-REG-01": "王朝交代",
+            "R-REG-02": "政体転換",
+            "R-REG-03": "統治原理転換",
+            "R-REG-04": "支配構造再定義"
+          }
+        },
+        "R-SYS": {
+          "shortCode": "SYS",
+          "name": "制度成立型",
+          "subCategories": {
+            "R-SYS-01": "新制度創設",
+            "R-SYS-02": "法体系確立",
+            "R-SYS-03": "官制確立",
+            "R-SYS-04": "統治体系整備"
+          }
+        },
+        "R-WAR": {
+          "shortCode": "WAR",
+          "name": "武力衝突型",
+          "subCategories": {
+            "R-WAR-01": "内戦勃発",
+            "R-WAR-02": "対外戦争",
+            "R-WAR-03": "長期紛争化",
+            "R-WAR-04": "武力均衡状態"
+          }
+        },
+        "R-ECO": {
+          "shortCode": "ECO",
+          "name": "経済構造転換型",
+          "subCategories": {
+            "R-ECO-01": "経済集中化",
+            "R-ECO-02": "市場拡大",
+            "R-ECO-03": "生産構造転換",
+            "R-ECO-04": "財政基盤再編"
+          }
+        },
+        "R-CUL": {
+          "shortCode": "CUL",
+          "name": "文化秩序変容型",
+          "subCategories": {
+            "R-CUL-01": "宗教秩序変化",
+            "R-CUL-02": "価値体系転換",
+            "R-CUL-03": "文化的統合",
+            "R-CUL-04": "文化的分断"
+          }
+        },
+        "R-ADP": {
+          "shortCode": "ADP",
+          "name": "外圧適応型",
+          "subCategories": {
+            "R-ADP-01": "外圧受容",
+            "R-ADP-02": "制度的適応",
+            "R-ADP-03": "外交均衡化",
+            "R-ADP-04": "技術受容"
+          }
+        },
+        "R-COL": {
+          "shortCode": "COL",
+          "name": "崩壊型",
+          "subCategories": {
+            "R-COL-01": "政体崩壊",
+            "R-COL-02": "制度瓦解",
+            "R-COL-03": "権力空白化",
+            "R-COL-04": "社会秩序崩壊"
+          }
+        }
+      }
+    },
+    "L": {
+      "displayName": "Link",
+      "categories": {
+        "L-CAU": {
+          "shortCode": "CAU",
+          "name": "直接因果"
+        },
+        "L-ICU": {
+          "shortCode": "ICU",
+          "name": "間接因果"
+        },
+        "L-PRQ": {
+          "shortCode": "PRQ",
+          "name": "前提条件"
+        },
+        "L-RPL": {
+          "shortCode": "RPL",
+          "name": "波及"
+        },
+        "L-TRG": {
+          "shortCode": "TRG",
+          "name": "誘発"
+        },
+        "L-SIM": {
+          "shortCode": "SIM",
+          "name": "類似構造"
+        },
+        "L-CNT": {
+          "shortCode": "CNT",
+          "name": "対比"
+        },
+        "L-TRN": {
+          "shortCode": "TRN",
+          "name": "転用"
+        },
+        "L-SUP": {
+          "shortCode": "SUP",
+          "name": "上位包含"
+        },
+        "L-SUB": {
+          "shortCode": "SUB",
+          "name": "下位展開"
+        }
+      }
+    },
+    "F": {
+      "displayName": "Fluctuation",
+      "categories": {
+        "F-UNC": {
+          "shortCode": "UNC",
+          "name": "揺らぎ（危機・不確実性）",
+          "subCategories": {
+            "F-UNC-00": "（揺らぎ未設定）",
+            "F-UNC-01": "王位空位",
+            "F-UNC-02": "災害発生",
+            "F-UNC-03": "外圧急変",
+            "F-UNC-04": "経済不安",
+            "F-UNC-05": "権力空白"
+          }
+        }
+      }
+    }
+  }
+}

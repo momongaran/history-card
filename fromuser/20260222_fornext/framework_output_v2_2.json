@@ -1,0 +1,7 @@
+{
+  "version": "2.2",
+  "meta": {
+    "note": "Freeze互換維持。meta.backgroundInheritance / backgroundDerivation を許容"
+  },
+  "frameworkViews": []
+}

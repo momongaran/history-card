@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8" />
+<title>myHistory 仕様 v2.2（Freeze継続 / 継承リンク対応）</title>
+<style>
+body{font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Noto Sans JP",sans-serif;max-width:980px;margin:40px auto;line-height:1.7}
+h1{font-size:22px}
+h2{margin-top:28px}
+code,pre{background:#f5f5f5;padding:8px;border-radius:6px}
+</style>
+</head>
+<body>
+<h1>myHistory 仕様 v2.2</h1>
+<p>更新日: 2026-02-22</p>
+
+<h2>1. Freeze方針</h2>
+<ul>
+<li>UI機能追加なし（静的描画維持）</li>
+<li>レイヤ: C / F / P / R 維持</li>
+<li>F（揺らぎ）は必須1</li>
+</ul>
+
+<h2>2. v2.2追加事項</h2>
+<ul>
+<li>frameworkView.meta.backgroundInheritance を許容</li>
+<li>frameworkView.meta.backgroundDerivation を許容</li>
+<li>背景辞書は作らない（核と具体を分離）</li>
+</ul>
+
+<h2>3. 継承リンク形式</h2>
+<pre>
+{
+  "backgroundInheritance": [
+    {
+      "fromEventId": "EV_prev",
+      "backgroundRefs": ["EL_prev_C_01"],
+      "reason": "任意メモ"
+    }
+  ]
+}
+</pre>
+
+<h2>4. 原則</h2>
+<ul>
+<li>事後評価をカテゴリ基準に使わない</li>
+<li>背景同一性は操作的に柔軟</li>
+<li>UI互換を壊さない</li>
+</ul>
+
+</body>
+</html>

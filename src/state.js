@@ -7,6 +7,8 @@ const state = {
   taxonomy: null,
   // correspondences: { [fwViewId]: { [elementId]: { eventId, category, subCategory } } }
   correspondences: {},
+  // v2.2: inheritance links (internal hold only, not rendered)
+  inheritanceLinks: [],
   layout: null,
   ui: {
     linking: null,       // { fwViewId, elementId } when in link-creation mode
@@ -28,8 +30,14 @@ export function initState(events, frameworkViews, taxonomy) {
   state.frameworkViews = frameworkViews;
   state.taxonomy = taxonomy;
   state.correspondences = {};
+  state.inheritanceLinks = [];
   undoStack.length = 0;
   redoStack.length = 0;
+}
+
+// v2.2: Store inheritance links (internal only)
+export function setInheritanceLinks(links) {
+  state.inheritanceLinks = links || [];
 }
 
 export function pushUndo() {
