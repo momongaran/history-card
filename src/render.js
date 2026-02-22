@@ -103,7 +103,7 @@ function renderCausalRows(layout) {
       span.dataset.rowIndex = String(i);
 
       // C-PWR-02 → PWR02, F-UNC-01 → UNC01
-      span.textContent = sc.replace(/^[CFPR]-/, '').replace(/-/g, '');
+      span.textContent = sc.replace(/^[BFE]-/, '').replace(/-/g, '');
 
       if (entry.corr && entry.corr.eventId) {
         span.classList.add('has-link');

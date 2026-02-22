@@ -2,8 +2,8 @@
 // Each event row contains its FW's elements as horizontal badges.
 // No lane assignment needed (1 event = 1 FW).
 
-// Display order: C → F → P → R
-const LAYER_ORDER = { C: 0, F: 1, P: 2, R: 3 };
+// Display order: B → F → E
+const LAYER_ORDER = { B: 0, F: 1, E: 2 };
 
 /**
  * computeLayout(events, frameworkViews, correspondences)
@@ -13,7 +13,7 @@ const LAYER_ORDER = { C: 0, F: 1, P: 2, R: 3 };
  *   rows: [
  *     {
  *       event,                    // event object
- *       elements: [               // sorted: C → F → P → R
+ *       elements: [               // sorted: B → F → E
  *         { element, fwView, seqNo, corr, linkedEventIdx }
  *       ]
  *     }
@@ -36,7 +36,7 @@ export function computeLayout(events, frameworkViews, correspondences) {
     const evIdx = eventIndex.get(fwView.eventId);
     if (evIdx === undefined) continue;
 
-    // Collect all elements, sorted by C → F → P → R
+    // Collect all elements, sorted by B → F → E
     const sorted = [...fwView.elements].sort((a, b) => {
       const oa = LAYER_ORDER[a.layer] ?? 99;
       const ob = LAYER_ORDER[b.layer] ?? 99;

@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>myHistory 仕様 v3.0（B/F/E 全面移行）</title>
+<style>
+:root { --fg:#111; --muted:#666; --line:#ddd; --bg:#fff; --code:#f6f6f6; }
+body { font-family: system-ui, -apple-system, Segoe UI, Roboto, "Hiragino Sans", "Noto Sans JP", sans-serif;
+  background:var(--bg); color:var(--fg); line-height:1.75; }
+main { max-width: 980px; margin: 32px auto; padding: 0 18px 60px; }
+h1 { font-size: 22px; margin: 10px 0 6px; }
+h2 { font-size: 18px; margin-top: 28px; border-bottom: 2px solid var(--fg); padding-bottom: 6px; }
+h3 { font-size: 15px; margin-top: 18px; }
+p, li { font-size: 14px; }
+code { background:var(--code); padding: 2px 6px; border-radius: 6px; }
+pre { background:var(--code); padding: 12px; border-radius: 10px; overflow:auto; border:1px solid var(--line); }
+table { border-collapse: collapse; width:100%; margin: 10px 0; }
+th, td { border:1px solid var(--line); padding: 8px 10px; font-size: 13px; vertical-align: top; }
+th { background:#fafafa; text-align:left; }
+.note { border-left: 4px solid var(--line); padding: 8px 12px; margin: 10px 0; color: var(--muted); }
+.ver { display:inline-block; border:1px solid var(--line); padding: 2px 10px; font-size: 12px; color: var(--muted); }
+</style>
+</head>
+<body>
+<main>
+<h1>myHistory 仕様 v3.0（B/F/E 全面移行）</h1>
+<p class="ver">実装確定版 — 2026-02-23</p>
+
+<h2>1. 概要</h2>
+<p>v2.2 の C(Context)/F(Fluctuation)/P(Path)/R(Result) 4レイヤー構造を、B(Background)/F(Fluctuation)/E(Emancipation) 3レイヤーに全面移行する。</p>
+<ul>
+  <li><strong>C → B</strong>（Background）: レイヤー名リネーム。カテゴリプレフィックス <code>C-</code> → <code>B-</code>。</li>
+  <li><strong>F → F</strong>（Fluctuation）: 変更なし。各イベントで必須1。</li>
+  <li><strong>P → 廃止</strong>: Path レイヤーを削除。各FWの <code>notes.legacyPath</code> に旧P要素情報を保存。</li>
+  <li><strong>R → E</strong>（Emancipation）: レイヤー名リネーム。カテゴリプレフィックス <code>R-</code> → <code>E-</code>。各イベントで1つ。</li>
+</ul>
+
+<h2>2. レイヤー構造</h2>
+<table>
+  <tr><th>レイヤー</th><th>コード</th><th>表示名</th><th>数量制約</th><th>説明</th></tr>
+  <tr><td>Background</td><td>B</td><td>Background</td><td>1以上</td><td>構造的背景条件（旧Context）</td></tr>
+  <tr><td>Fluctuation</td><td>F</td><td>Fluctuation</td><td>必須1</td><td>揺らぎ（危機・不確実性）</td></tr>
+  <tr><td>Emancipation</td><td>E</td><td>Emancipation</td><td>必須1</td><td>帰結・解放（旧Result）</td></tr>
+</table>
+<p>表示順序: <code>B → F → E</code></p>
+
+<h2>3. カテゴリ体系</h2>
+
+<h3>3.1 B（Background）カテゴリ — 11種</h3>
+<table>
+  <tr><th>コード</th><th>名称</th></tr>
+  <tr><td><code>B-PWR</code></td><td>権力配置</td></tr>
+  <tr><td><code>B-LEG</code></td><td>正統性基盤</td></tr>
+  <tr><td><code>B-INS</code></td><td>制度枠組み</td></tr>
+  <tr><td><code>B-SOC</code></td><td>社会構造</td></tr>
+  <tr><td><code>B-RES</code></td><td>資源基盤</td></tr>
+  <tr><td><code>B-EXT</code></td><td>対外環境</td></tr>
+  <tr><td><code>B-MIL</code></td><td>軍事基盤</td></tr>
+  <tr><td><code>B-NRM</code></td><td>価値体系</td></tr>
+  <tr><td><code>B-INF</code></td><td>情報基盤</td></tr>
+  <tr><td><code>B-GEO</code></td><td>地理人口条件</td></tr>
+  <tr><td><code>B-RIV</code></td><td>利害対立</td></tr>
+</table>
+
+<h3>3.2 F（Fluctuation）カテゴリ — 1種</h3>
+<table>
+  <tr><th>コード</th><th>名称</th></tr>
+  <tr><td><code>F-UNC</code></td><td>揺らぎ（危機・不確実性）</td></tr>
+</table>
+
+<h3>3.3 E（Emancipation）カテゴリ — 8種</h3>
+<table>
+  <tr><th>コード</th><th>名称</th></tr>
+  <tr><td><code>E-POW</code></td><td>権力再編型</td></tr>
+  <tr><td><code>E-REG</code></td><td>体制転換型</td></tr>
+  <tr><td><code>E-SYS</code></td><td>制度成立型</td></tr>
+  <tr><td><code>E-WAR</code></td><td>武力衝突型</td></tr>
+  <tr><td><code>E-ECO</code></td><td>経済構造転換型</td></tr>
+  <tr><td><code>E-CUL</code></td><td>文化秩序変容型</td></tr>
+  <tr><td><code>E-ADP</code></td><td>外圧適応型</td></tr>
+  <tr><td><code>E-COL</code></td><td>崩壊型</td></tr>
+</table>
+
+<h3>3.4 L（Link）カテゴリ — 10種（変更なし）</h3>
+<p>L-CAU, L-ICU, L-PRQ, L-RPL, L-TRG, L-SIM, L-CNT, L-TRN, L-SUP, L-SUB</p>
+
+<h2>4. v2.2 からの変換ルール</h2>
+<table>
+  <tr><th>v2.2</th><th>v3.0</th><th>処理</th></tr>
+  <tr><td><code>layer: "C"</code></td><td><code>layer: "B"</code></td><td>プレフィックス <code>C-</code> → <code>B-</code></td></tr>
+  <tr><td><code>layer: "F"</code></td><td><code>layer: "F"</code></td><td>変更なし</td></tr>
+  <tr><td><code>layer: "P"</code></td><td>（削除）</td><td><code>notes.legacyPath</code> に保存</td></tr>
+  <tr><td><code>layer: "R"</code></td><td><code>layer: "E"</code></td><td>プレフィックス <code>R-</code> → <code>E-</code></td></tr>
+</table>
+<p>変換スクリプト: <code>scripts/convert_v22_to_v30.py</code></p>
+
+<h2>5. ファイル構成</h2>
+<table>
+  <tr><th>ファイル</th><th>配置先</th><th>説明</th></tr>
+  <tr><td><code>framework_output_v3_0_bfe.json</code></td><td><code>data/</code></td><td>B/F/E 3レイヤー構造データ</td></tr>
+  <tr><td><code>taxonomy_v3_0_bfe.json</code></td><td><code>data/</code></td><td>B/F/E/L カテゴリ定義</td></tr>
+  <tr><td><code>inheritance_links_v3_0_bfe.json</code></td><td><code>data/</code></td><td>継承リンク（空配列）</td></tr>
+  <tr><td><code>default_correspondences_v3_0_bfe.json</code></td><td><code>data/</code></td><td>対応リンク（P要素参照を除去済み）</td></tr>
+</table>
+
+<h2>6. ソースコード変更箇所</h2>
+<table>
+  <tr><th>ファイル</th><th>変更内容</th></tr>
+  <tr><td><code>src/layout.js</code></td><td><code>LAYER_ORDER</code> を <code>{ B:0, F:1, E:2 }</code> に変更</td></tr>
+  <tr><td><code>src/render.js</code></td><td>正規表現 <code>/^[CFPR]-/</code> → <code>/^[BFE]-/</code></td></tr>
+  <tr><td><code>src/stats.js</code></td><td><code>LAYER_ORDER</code>、<code>layerCount</code>、正規表現を B/F/E に変更</td></tr>
+  <tr><td><code>src/styles.css</code></td><td><code>.layer-c</code> → <code>.layer-b</code>、<code>.layer-p/.layer-r</code> → <code>.layer-e</code> に統合</td></tr>
+  <tr><td><code>src/app.js</code></td><td>データファイル名を <code>v3_0_bfe</code> に変更</td></tr>
+</table>
+
+<h2>7. v2.2 からの差分まとめ</h2>
+<table>
+  <tr><th>項目</th><th>v2.2</th><th>v3.0</th></tr>
+  <tr><td>レイヤー構造</td><td>C / F / P / R（4層）</td><td>B / F / E（3層）</td></tr>
+  <tr><td>表示順序</td><td>C → F → P → R</td><td>B → F → E</td></tr>
+  <tr><td>Path レイヤー</td><td>あり（各FW必須1）</td><td>廃止（legacyPath保存）</td></tr>
+  <tr><td>Context</td><td><code>C-*</code></td><td><code>B-*</code>（Background）</td></tr>
+  <tr><td>Result</td><td><code>R-*</code></td><td><code>E-*</code>（Emancipation）</td></tr>
+  <tr><td>データファイル名</td><td><code>*_v2_2.*</code></td><td><code>*_v3_0_bfe.*</code></td></tr>
+  <tr><td>イベント数</td><td>221</td><td>221（変更なし）</td></tr>
+  <tr><td>要素数</td><td>1264（C:601 + F:221 + P:221 + R:221）</td><td>1043（B:601 + F:221 + E:221）</td></tr>
+</table>
+
+<h2>8. 検証方法</h2>
+<ul>
+  <li>ブラウザで <code>localhost:8080/src/index.html</code> を開き表示確認。</li>
+  <li>221イベントすべて表示されること。</li>
+  <li>各行: B要素（複数）→ F要素（1つ）→ E要素（1つ）の順。</li>
+  <li>P / R / C のコードが画面に出ていないこと。</li>
+  <li>統計パネルでレイヤー B / F / E が正しく集計されること。</li>
+  <li>コンソールエラーなし。</li>
+</ul>
+
+</main>
+</body>
+</html>

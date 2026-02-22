@@ -175,7 +175,7 @@ body{
   cursor: pointer;
   user-select: none;
   line-height: var(--row-height);
-  /* default: B / R standard */
+  /* default: B / E standard */
   color: #444;
 }
 
@@ -478,10 +478,9 @@ body{
   font-weight: 600;
   white-space: nowrap;
 }
-.stats-bar-seg.layer-c{ background: #f0f2f5; color: #555; }
+.stats-bar-seg.layer-b{ background: #f0f2f5; color: #555; }
 .stats-bar-seg.layer-f{ background: #f5f0f0; color: #444; }
-.stats-bar-seg.layer-p{ background: #f3f2ee; color: #555; }
-.stats-bar-seg.layer-r{ background: #f0f3f0; color: #555; }
+.stats-bar-seg.layer-e{ background: #f0f3f0; color: #555; }
 
 /* L-code distribution */
 .stats-lcode-list{ display: flex; flex-direction: column; gap: 6px; }

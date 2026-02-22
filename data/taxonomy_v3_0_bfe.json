@@ -1,0 +1,270 @@
+{
+  "version": "3.0",
+  "sourceSpecification": "myHistory Framework Specification v1.0",
+  "notes": [
+    "v3.0 BFE移行: C→B, P削除, R→E。",
+    "taxonomy.json はカテゴリ/サブカテゴリ表示名称の唯一の正本。"
+  ],
+  "layers": {
+    "B": {
+      "displayName": "Background",
+      "categories": {
+        "B-PWR": {
+          "shortCode": "PWR",
+          "name": "権力配置",
+          "subCategories": {
+            "B-PWR-01": "中央集権構造",
+            "B-PWR-02": "豪族間均衡",
+            "B-PWR-03": "分権的配置",
+            "B-PWR-04": "実権と名目の分離"
+          }
+        },
+        "B-LEG": {
+          "shortCode": "LEG",
+          "name": "正統性基盤",
+          "subCategories": {
+            "B-LEG-01": "血統的正統性",
+            "B-LEG-02": "王統継承安定性",
+            "B-LEG-03": "宗教的正統化",
+            "B-LEG-04": "制度的正当化"
+          }
+        },
+        "B-INS": {
+          "shortCode": "INS",
+          "name": "制度枠組み",
+          "subCategories": {
+            "B-INS-01": "官制構造",
+            "B-INS-02": "税制財政制度",
+            "B-INS-03": "法制度枠組み",
+            "B-INS-04": "行政運用基盤",
+            "B-INS-05": "軍事制度体系"
+          }
+        },
+        "B-SOC": {
+          "shortCode": "SOC",
+          "name": "社会構造",
+          "subCategories": {
+            "B-SOC-01": "身分階層構造",
+            "B-SOC-02": "地域社会構造",
+            "B-SOC-03": "経済階層分化",
+            "B-SOC-04": "共同体結束構造"
+          }
+        },
+        "B-RES": {
+          "shortCode": "RES",
+          "name": "資源基盤",
+          "subCategories": {
+            "B-RES-01": "財政資源",
+            "B-RES-02": "軍事資源",
+            "B-RES-03": "人的資源",
+            "B-RES-04": "物流供給基盤"
+          }
+        },
+        "B-EXT": {
+          "shortCode": "EXT",
+          "name": "対外環境",
+          "subCategories": {
+            "B-EXT-01": "外交圧力",
+            "B-EXT-02": "軍事脅威",
+            "B-EXT-03": "文化流入",
+            "B-EXT-04": "経済交易圏"
+          }
+        },
+        "B-MIL": {
+          "shortCode": "MIL",
+          "name": "軍事基盤",
+          "subCategories": {
+            "B-MIL-01": "軍事組織構造",
+            "B-MIL-02": "軍事技術水準",
+            "B-MIL-03": "動員体制",
+            "B-MIL-04": "防衛拠点配置"
+          }
+        },
+        "B-NRM": {
+          "shortCode": "NRM",
+          "name": "価値体系",
+          "subCategories": {
+            "B-NRM-01": "宗教思想体系",
+            "B-NRM-02": "倫理規範",
+            "B-NRM-03": "統治理念",
+            "B-NRM-04": "文化的象徴体系"
+          }
+        },
+        "B-INF": {
+          "shortCode": "INF",
+          "name": "情報基盤",
+          "subCategories": {
+            "B-INF-01": "文書記録体系",
+            "B-INF-02": "通信伝達網",
+            "B-INF-03": "教育知識体系",
+            "B-INF-04": "情報統制構造"
+          }
+        },
+        "B-GEO": {
+          "shortCode": "GEO",
+          "name": "地理人口条件",
+          "subCategories": {
+            "B-GEO-01": "地理的障壁",
+            "B-GEO-02": "人口集中度",
+            "B-GEO-03": "農業生産条件",
+            "B-GEO-04": "交通経路条件"
+          }
+        },
+        "B-RIV": {
+          "shortCode": "RIV",
+          "name": "利害対立",
+          "subCategories": {
+            "B-RIV-01": "政治的利害対立"
+          }
+        }
+      }
+    },
+    "F": {
+      "displayName": "Fluctuation",
+      "categories": {
+        "F-UNC": {
+          "shortCode": "UNC",
+          "name": "揺らぎ（危機・不確実性）",
+          "subCategories": {
+            "F-UNC-00": "（揺らぎ未設定）",
+            "F-UNC-01": "王位空位",
+            "F-UNC-02": "災害発生",
+            "F-UNC-03": "外圧急変",
+            "F-UNC-04": "経済不安",
+            "F-UNC-05": "権力空白"
+          }
+        }
+      }
+    },
+    "E": {
+      "displayName": "Emancipation",
+      "categories": {
+        "E-POW": {
+          "shortCode": "POW",
+          "name": "権力再編型",
+          "subCategories": {
+            "E-POW-01": "支配主体交代",
+            "E-POW-02": "権力集中化",
+            "E-POW-03": "権力分散化",
+            "E-POW-04": "実権移動"
+          }
+        },
+        "E-REG": {
+          "shortCode": "REG",
+          "name": "体制転換型",
+          "subCategories": {
+            "E-REG-01": "王朝交代",
+            "E-REG-02": "政体転換",
+            "E-REG-03": "統治原理転換",
+            "E-REG-04": "支配構造再定義"
+          }
+        },
+        "E-SYS": {
+          "shortCode": "SYS",
+          "name": "制度成立型",
+          "subCategories": {
+            "E-SYS-01": "新制度創設",
+            "E-SYS-02": "法体系確立",
+            "E-SYS-03": "官制確立",
+            "E-SYS-04": "統治体系整備"
+          }
+        },
+        "E-WAR": {
+          "shortCode": "WAR",
+          "name": "武力衝突型",
+          "subCategories": {
+            "E-WAR-01": "内戦勃発",
+            "E-WAR-02": "対外戦争",
+            "E-WAR-03": "長期紛争化",
+            "E-WAR-04": "武力均衡状態"
+          }
+        },
+        "E-ECO": {
+          "shortCode": "ECO",
+          "name": "経済構造転換型",
+          "subCategories": {
+            "E-ECO-01": "経済集中化",
+            "E-ECO-02": "市場拡大",
+            "E-ECO-03": "生産構造転換",
+            "E-ECO-04": "財政基盤再編"
+          }
+        },
+        "E-CUL": {
+          "shortCode": "CUL",
+          "name": "文化秩序変容型",
+          "subCategories": {
+            "E-CUL-01": "宗教秩序変化",
+            "E-CUL-02": "価値体系転換",
+            "E-CUL-03": "文化的統合",
+            "E-CUL-04": "文化的分断"
+          }
+        },
+        "E-ADP": {
+          "shortCode": "ADP",
+          "name": "外圧適応型",
+          "subCategories": {
+            "E-ADP-01": "外圧受容",
+            "E-ADP-02": "制度的適応",
+            "E-ADP-03": "外交均衡化",
+            "E-ADP-04": "技術受容"
+          }
+        },
+        "E-COL": {
+          "shortCode": "COL",
+          "name": "崩壊型",
+          "subCategories": {
+            "E-COL-01": "政体崩壊",
+            "E-COL-02": "制度瓦解",
+            "E-COL-03": "権力空白化",
+            "E-COL-04": "社会秩序崩壊"
+          }
+        }
+      }
+    },
+    "L": {
+      "displayName": "Link",
+      "categories": {
+        "L-CAU": {
+          "shortCode": "CAU",
+          "name": "直接因果"
+        },
+        "L-ICU": {
+          "shortCode": "ICU",
+          "name": "間接因果"
+        },
+        "L-PRQ": {
+          "shortCode": "PRQ",
+          "name": "前提条件"
+        },
+        "L-RPL": {
+          "shortCode": "RPL",
+          "name": "波及"
+        },
+        "L-TRG": {
+          "shortCode": "TRG",
+          "name": "誘発"
+        },
+        "L-SIM": {
+          "shortCode": "SIM",
+          "name": "類似構造"
+        },
+        "L-CNT": {
+          "shortCode": "CNT",
+          "name": "対比"
+        },
+        "L-TRN": {
+          "shortCode": "TRN",
+          "name": "転用"
+        },
+        "L-SUP": {
+          "shortCode": "SUP",
+          "name": "上位包含"
+        },
+        "L-SUB": {
+          "shortCode": "SUB",
+          "name": "下位展開"
+        }
+      }
+    }
+  }
+}

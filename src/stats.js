@@ -14,7 +14,7 @@ export function showStats() {
   // ── Compute patterns ──
   const patternMap = new Map();
 
-  const LAYER_ORDER = { C: 0, F: 1, P: 2, R: 3 };
+  const LAYER_ORDER = { B: 0, F: 1, E: 2 };
   for (const fv of frameworkViews) {
     const sorted = [...fv.elements].sort((a, b) => {
       const oa = LAYER_ORDER[a.layer] ?? 99;
@@ -54,7 +54,7 @@ export function showStats() {
   }
 
   // ── Layer distribution ──
-  const layerCount = { C: 0, F: 0, P: 0, R: 0 };
+  const layerCount = { B: 0, F: 0, E: 0 };
   for (const fv of frameworkViews) {
     for (const el of fv.elements) {
       if (layerCount[el.layer] !== undefined) layerCount[el.layer]++;
@@ -109,7 +109,7 @@ export function showStats() {
   layerSec.innerHTML = `<div class="stats-section-title">レイヤー構成</div>`;
   const layerBar = document.createElement('div');
   layerBar.className = 'stats-bar';
-  const total = layerCount.C + layerCount.F + layerCount.P + layerCount.R;
+  const total = layerCount.B + layerCount.F + layerCount.E;
   for (const [layer, count] of Object.entries(layerCount)) {
     const seg = document.createElement('div');
     seg.className = `stats-bar-seg layer-${layer.toLowerCase()}`;
@@ -182,7 +182,7 @@ export function showStats() {
       const badge = document.createElement('span');
       const layer = code.charAt(0).toLowerCase();
       badge.className = `el-code layer-${layer} stats-badge-tip`;
-      badge.textContent = code.replace(/^[CFPR]-/, '').replace(/-/g, '');
+      badge.textContent = code.replace(/^[BFE]-/, '').replace(/-/g, '');
       badge.dataset.tip = `${code}  ${subCatName(code)}`;
       badgeRow.appendChild(badge);
     }
