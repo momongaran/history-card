@@ -1,0 +1,318 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>myHistory 仕様 v3.1（accumulation 追加）</title>
+<style>
+:root { --fg:#111; --muted:#666; --line:#ddd; --bg:#fff; --code:#f6f6f6; }
+body { font-family: system-ui, -apple-system, Segoe UI, Roboto, "Hiragino Sans", "Noto Sans JP", sans-serif;
+  background:var(--bg); color:var(--fg); line-height:1.75; }
+main { max-width: 980px; margin: 32px auto; padding: 0 18px 60px; }
+h1 { font-size: 22px; margin: 10px 0 6px; }
+h2 { font-size: 18px; margin-top: 28px; border-bottom: 2px solid var(--fg); padding-bottom: 6px; }
+h3 { font-size: 15px; margin-top: 18px; }
+p, li { font-size: 14px; }
+code { background:var(--code); padding: 2px 6px; border-radius: 6px; }
+pre { background:var(--code); padding: 12px; border-radius: 10px; overflow:auto; border:1px solid var(--line); font-size: 13px; }
+table { border-collapse: collapse; width:100%; margin: 10px 0; }
+th, td { border:1px solid var(--line); padding: 8px 10px; font-size: 13px; vertical-align: top; }
+th { background:#fafafa; text-align:left; }
+.note { border-left: 4px solid var(--line); padding: 8px 12px; margin: 10px 0; color: var(--muted); }
+.ver { display:inline-block; border:1px solid var(--line); padding: 2px 10px; font-size: 12px; color: var(--muted); }
+</style>
+</head>
+<body>
+<main>
+<h1>myHistory 仕様 v3.1（accumulation 追加）</h1>
+<p class="ver">実装確定版 — 2026-02-23</p>
+
+<h2>1. 概要</h2>
+<p>v3.0 の B/F/E 3レイヤー構造を維持したまま、B要素間の<strong>蓄積関係（accumulation）</strong>を各 frameworkView に追加する。
+B要素は v3.0 では平坦なリストとして並んでいたが、v3.1 では「どの条件とどの条件が組み合わさってエネルギー蓄積になるか」を明示する。</p>
+<p>同時に、B要素ラベルの質的改訂（行為記述 → 条件記述）とカテゴリ誤分類の修正も実施した。</p>
+
+<h2>2. カテゴリ体系（全分類コード）</h2>
+<p>taxonomy の正本は <code>data/taxonomy_v3_0_bfe.json</code>。v3.1 でカテゴリ体系自体の追加・削除はないが、51件のB要素で誤分類を修正した。</p>
+
+<h3>2.1 B（Background）— 11カテゴリ・45サブカテゴリ</h3>
+<table>
+  <tr><th>カテゴリ</th><th>名称</th><th>サブカテゴリ</th></tr>
+  <tr><td rowspan="4"><code>B-PWR</code></td><td rowspan="4">権力配置</td><td><code>B-PWR-01</code> 中央集権構造</td></tr>
+  <tr><td><code>B-PWR-02</code> 豪族間均衡</td></tr>
+  <tr><td><code>B-PWR-03</code> 分権的配置</td></tr>
+  <tr><td><code>B-PWR-04</code> 実権と名目の分離</td></tr>
+  <tr><td rowspan="4"><code>B-LEG</code></td><td rowspan="4">正統性基盤</td><td><code>B-LEG-01</code> 血統的正統性</td></tr>
+  <tr><td><code>B-LEG-02</code> 王統継承安定性</td></tr>
+  <tr><td><code>B-LEG-03</code> 宗教的正統化</td></tr>
+  <tr><td><code>B-LEG-04</code> 制度的正当化</td></tr>
+  <tr><td rowspan="5"><code>B-INS</code></td><td rowspan="5">制度枠組み</td><td><code>B-INS-01</code> 官制構造</td></tr>
+  <tr><td><code>B-INS-02</code> 税制財政制度</td></tr>
+  <tr><td><code>B-INS-03</code> 法制度枠組み</td></tr>
+  <tr><td><code>B-INS-04</code> 行政運用基盤</td></tr>
+  <tr><td><code>B-INS-05</code> 軍事制度体系</td></tr>
+  <tr><td rowspan="4"><code>B-SOC</code></td><td rowspan="4">社会構造</td><td><code>B-SOC-01</code> 身分階層構造</td></tr>
+  <tr><td><code>B-SOC-02</code> 地域社会構造</td></tr>
+  <tr><td><code>B-SOC-03</code> 経済階層分化</td></tr>
+  <tr><td><code>B-SOC-04</code> 共同体結束構造</td></tr>
+  <tr><td rowspan="4"><code>B-RES</code></td><td rowspan="4">資源基盤</td><td><code>B-RES-01</code> 財政資源</td></tr>
+  <tr><td><code>B-RES-02</code> 軍事資源</td></tr>
+  <tr><td><code>B-RES-03</code> 人的資源</td></tr>
+  <tr><td><code>B-RES-04</code> 物流供給基盤</td></tr>
+  <tr><td rowspan="4"><code>B-EXT</code></td><td rowspan="4">対外環境</td><td><code>B-EXT-01</code> 外交圧力</td></tr>
+  <tr><td><code>B-EXT-02</code> 軍事脅威</td></tr>
+  <tr><td><code>B-EXT-03</code> 文化流入</td></tr>
+  <tr><td><code>B-EXT-04</code> 経済交易圏</td></tr>
+  <tr><td rowspan="4"><code>B-MIL</code></td><td rowspan="4">軍事基盤</td><td><code>B-MIL-01</code> 軍事組織構造</td></tr>
+  <tr><td><code>B-MIL-02</code> 軍事技術水準</td></tr>
+  <tr><td><code>B-MIL-03</code> 動員体制</td></tr>
+  <tr><td><code>B-MIL-04</code> 防衛拠点配置</td></tr>
+  <tr><td rowspan="4"><code>B-NRM</code></td><td rowspan="4">価値体系</td><td><code>B-NRM-01</code> 宗教思想体系</td></tr>
+  <tr><td><code>B-NRM-02</code> 倫理規範</td></tr>
+  <tr><td><code>B-NRM-03</code> 統治理念</td></tr>
+  <tr><td><code>B-NRM-04</code> 文化的象徴体系</td></tr>
+  <tr><td rowspan="4"><code>B-INF</code></td><td rowspan="4">情報基盤</td><td><code>B-INF-01</code> 文書記録体系</td></tr>
+  <tr><td><code>B-INF-02</code> 通信伝達網</td></tr>
+  <tr><td><code>B-INF-03</code> 教育知識体系</td></tr>
+  <tr><td><code>B-INF-04</code> 情報統制構造</td></tr>
+  <tr><td rowspan="4"><code>B-GEO</code></td><td rowspan="4">地理人口条件</td><td><code>B-GEO-01</code> 地理的障壁</td></tr>
+  <tr><td><code>B-GEO-02</code> 人口集中度</td></tr>
+  <tr><td><code>B-GEO-03</code> 農業生産条件</td></tr>
+  <tr><td><code>B-GEO-04</code> 交通経路条件</td></tr>
+  <tr><td><code>B-RIV</code></td><td>利害対立</td><td><code>B-RIV-01</code> 政治的利害対立</td></tr>
+</table>
+
+<h3>2.2 F（Fluctuation）— 1カテゴリ・6サブカテゴリ</h3>
+<table>
+  <tr><th>カテゴリ</th><th>名称</th><th>サブカテゴリ</th></tr>
+  <tr><td rowspan="6"><code>F-UNC</code></td><td rowspan="6">揺らぎ（危機・不確実性）</td><td><code>F-UNC-00</code> （揺らぎ未設定）</td></tr>
+  <tr><td><code>F-UNC-01</code> 王位空位</td></tr>
+  <tr><td><code>F-UNC-02</code> 災害発生</td></tr>
+  <tr><td><code>F-UNC-03</code> 外圧急変</td></tr>
+  <tr><td><code>F-UNC-04</code> 経済不安</td></tr>
+  <tr><td><code>F-UNC-05</code> 権力空白</td></tr>
+</table>
+
+<h3>2.3 E（Emancipation）— 8カテゴリ・32サブカテゴリ</h3>
+<table>
+  <tr><th>カテゴリ</th><th>名称</th><th>サブカテゴリ</th></tr>
+  <tr><td rowspan="4"><code>E-POW</code></td><td rowspan="4">権力再編型</td><td><code>E-POW-01</code> 支配主体交代</td></tr>
+  <tr><td><code>E-POW-02</code> 権力集中化</td></tr>
+  <tr><td><code>E-POW-03</code> 権力分散化</td></tr>
+  <tr><td><code>E-POW-04</code> 実権移動</td></tr>
+  <tr><td rowspan="4"><code>E-REG</code></td><td rowspan="4">体制転換型</td><td><code>E-REG-01</code> 王朝交代</td></tr>
+  <tr><td><code>E-REG-02</code> 政体転換</td></tr>
+  <tr><td><code>E-REG-03</code> 統治原理転換</td></tr>
+  <tr><td><code>E-REG-04</code> 支配構造再定義</td></tr>
+  <tr><td rowspan="4"><code>E-SYS</code></td><td rowspan="4">制度成立型</td><td><code>E-SYS-01</code> 新制度創設</td></tr>
+  <tr><td><code>E-SYS-02</code> 法体系確立</td></tr>
+  <tr><td><code>E-SYS-03</code> 官制確立</td></tr>
+  <tr><td><code>E-SYS-04</code> 統治体系整備</td></tr>
+  <tr><td rowspan="4"><code>E-WAR</code></td><td rowspan="4">武力衝突型</td><td><code>E-WAR-01</code> 内戦勃発</td></tr>
+  <tr><td><code>E-WAR-02</code> 対外戦争</td></tr>
+  <tr><td><code>E-WAR-03</code> 長期紛争化</td></tr>
+  <tr><td><code>E-WAR-04</code> 武力均衡状態</td></tr>
+  <tr><td rowspan="4"><code>E-ECO</code></td><td rowspan="4">経済構造転換型</td><td><code>E-ECO-01</code> 経済集中化</td></tr>
+  <tr><td><code>E-ECO-02</code> 市場拡大</td></tr>
+  <tr><td><code>E-ECO-03</code> 生産構造転換</td></tr>
+  <tr><td><code>E-ECO-04</code> 財政基盤再編</td></tr>
+  <tr><td rowspan="4"><code>E-CUL</code></td><td rowspan="4">文化秩序変容型</td><td><code>E-CUL-01</code> 宗教秩序変化</td></tr>
+  <tr><td><code>E-CUL-02</code> 価値体系転換</td></tr>
+  <tr><td><code>E-CUL-03</code> 文化的統合</td></tr>
+  <tr><td><code>E-CUL-04</code> 文化的分断</td></tr>
+  <tr><td rowspan="4"><code>E-ADP</code></td><td rowspan="4">外圧適応型</td><td><code>E-ADP-01</code> 外圧受容</td></tr>
+  <tr><td><code>E-ADP-02</code> 制度的適応</td></tr>
+  <tr><td><code>E-ADP-03</code> 外交均衡化</td></tr>
+  <tr><td><code>E-ADP-04</code> 技術受容</td></tr>
+  <tr><td rowspan="4"><code>E-COL</code></td><td rowspan="4">崩壊型</td><td><code>E-COL-01</code> 政体崩壊</td></tr>
+  <tr><td><code>E-COL-02</code> 制度瓦解</td></tr>
+  <tr><td><code>E-COL-03</code> 権力空白化</td></tr>
+  <tr><td><code>E-COL-04</code> 社会秩序崩壊</td></tr>
+</table>
+
+<h3>2.4 L（Link）— 10カテゴリ</h3>
+<table>
+  <tr><th>コード</th><th>名称</th></tr>
+  <tr><td><code>L-CAU</code></td><td>直接因果</td></tr>
+  <tr><td><code>L-ICU</code></td><td>間接因果</td></tr>
+  <tr><td><code>L-PRQ</code></td><td>前提条件</td></tr>
+  <tr><td><code>L-RPL</code></td><td>波及</td></tr>
+  <tr><td><code>L-TRG</code></td><td>誘発</td></tr>
+  <tr><td><code>L-SIM</code></td><td>類似構造</td></tr>
+  <tr><td><code>L-CNT</code></td><td>対比</td></tr>
+  <tr><td><code>L-TRN</code></td><td>転用</td></tr>
+  <tr><td><code>L-SUP</code></td><td>上位包含</td></tr>
+  <tr><td><code>L-SUB</code></td><td>下位展開</td></tr>
+</table>
+
+<h2>3. accumulation スキーマ</h2>
+<p>各 frameworkView に <code>accumulation</code> フィールドを追加。</p>
+<pre>{
+  "accumulation": {
+    "relations": [
+      {
+        "from": "EL_EV_p0527_01_1",
+        "to": "EL_EV_p0527_01_2",
+        "mechanism": "tension",
+        "description": "資源基盤と社会構造が逆方向に作用し構造的緊張が蓄積された"
+      }
+    ],
+    "summary": "権力配置と資源と社会構造の緊張が蓄積し事象に至った"
+  }
+}</pre>
+
+<h3>3.1 フィールド定義</h3>
+<table>
+  <tr><th>フィールド</th><th>型</th><th>説明</th></tr>
+  <tr><td><code>accumulation</code></td><td>object | null</td><td>B要素間の蓄積関係。B&le;1 のFWでは <code>null</code>。</td></tr>
+  <tr><td><code>accumulation.relations</code></td><td>array</td><td>B要素ペア間の関係。</td></tr>
+  <tr><td><code>relations[].from</code></td><td>string</td><td>起点B要素の elementId。当該FW内に存在すること。</td></tr>
+  <tr><td><code>relations[].to</code></td><td>string</td><td>終点B要素の elementId。from と異なること。</td></tr>
+  <tr><td><code>relations[].mechanism</code></td><td>string</td><td>蓄積メカニズム（5種のいずれか。2.2節参照）。</td></tr>
+  <tr><td><code>relations[].description</code></td><td>string</td><td>蓄積メカニズムの説明（日本語、20〜100文字目安）。</td></tr>
+  <tr><td><code>accumulation.summary</code></td><td>string</td><td>全体の蓄積構造の要約（日本語、1文）。</td></tr>
+</table>
+
+<h3>3.2 mechanism 語彙（5種）</h3>
+<table>
+  <tr><th>コード</th><th>日本語</th><th>定義</th></tr>
+  <tr><td><code>tension</code></td><td>緊張</td><td>二条件が逆方向に作用し構造的ストレスを生む</td></tr>
+  <tr><td><code>amplification</code></td><td>増幅</td><td>一条件が他を強化・激化させる</td></tr>
+  <tr><td><code>constraint</code></td><td>制約</td><td>一条件が選択肢を狭め危機に向かわせる</td></tr>
+  <tr><td><code>enabling</code></td><td>促進</td><td>一条件が他の作動前提を作る</td></tr>
+  <tr><td><code>convergence</code></td><td>収斂</td><td>独立した条件が同一の圧力点に集中する</td></tr>
+</table>
+
+<h3>3.3 数量ルール</h3>
+<table>
+  <tr><th>B要素数</th><th>FW数</th><th>accumulation</th><th>relations件数</th></tr>
+  <tr><td>0</td><td>2</td><td><code>null</code></td><td>—</td></tr>
+  <tr><td>1</td><td>4</td><td><code>null</code></td><td>—</td></tr>
+  <tr><td>2</td><td>48</td><td>あり</td><td>1</td></tr>
+  <tr><td>3</td><td>167</td><td>あり</td><td>1〜3（意味のあるペアのみ）</td></tr>
+</table>
+
+<h2>4. B要素ラベル・カテゴリ改訂</h2>
+
+<h3>4.1 ラベル改訂</h3>
+<p>行為記述（〜した、〜された）を条件記述（〜していた、〜であった、〜されていた）に修正。事象発生「前」の背景条件として読める文体に統一した。</p>
+<table>
+  <tr><th>修正前（例）</th><th>修正後（例）</th></tr>
+  <tr><td>大伴金村が大連として政務を掌握した</td><td>大伴金村が大連として政務を掌握していた</td></tr>
+  <tr><td>百済の聖明王が軍事同盟強化を図った</td><td>百済の聖明王が軍事同盟強化を図っていた</td></tr>
+</table>
+<p>既に条件記述（〜していた等）であったラベルは変更なし。</p>
+
+<h3>4.2 カテゴリ改訂</h3>
+<p>明らかな誤分類を修正。主な修正パターン:</p>
+<ul>
+  <li>軍事関連ラベルが <code>B-SOC</code> に入っていたものを <code>B-MIL</code> に修正</li>
+  <li>対外環境ラベルが <code>B-NRM</code> に入っていたものを <code>B-EXT</code> に修正</li>
+  <li>権力掌握ラベルが <code>B-INS</code> に入っていたものを <code>B-PWR</code> に修正</li>
+</ul>
+
+<h3>4.3 改訂統計</h3>
+<table>
+  <tr><th>項目</th><th>件数</th></tr>
+  <tr><td>ラベル修正</td><td>244件</td></tr>
+  <tr><td>カテゴリ修正</td><td>51件</td></tr>
+  <tr><td>修正なし（変更不要）</td><td>306件</td></tr>
+</table>
+
+<h2>5. mechanism 分布</h2>
+<table>
+  <tr><th>mechanism</th><th>件数</th><th>比率</th></tr>
+  <tr><td><code>enabling</code></td><td>168</td><td>30.6%</td></tr>
+  <tr><td><code>tension</code></td><td>128</td><td>23.3%</td></tr>
+  <tr><td><code>convergence</code></td><td>98</td><td>17.9%</td></tr>
+  <tr><td><code>amplification</code></td><td>84</td><td>15.3%</td></tr>
+  <tr><td><code>constraint</code></td><td>71</td><td>12.9%</td></tr>
+  <tr><td><strong>合計</strong></td><td><strong>549</strong></td><td>—</td></tr>
+</table>
+<p class="note">いずれの mechanism も 60% を超えておらず、極端な偏りはない。</p>
+
+<h2>6. 中間データ形式</h2>
+<p>生成スクリプトは中間ファイル <code>accumulation_v3_1.json</code> を出力し、マージスクリプトで本体に統合する。</p>
+<pre>{
+  "version": "3.1",
+  "generatedBy": "generate_accumulation_local.py",
+  "model": "rule-based",
+  "timestamp": "2026-02-23T12:34:00",
+  "items": {
+    "FW_EV_pXXXX_XX": {
+      "accumulation": { "relations": [...], "summary": "..." },
+      "revisions": [
+        {
+          "elementId": "EL_...",
+          "labelRevised": "条件記述ラベル",
+          "categoryRevised": "B-XXX",
+          "subCategoryRevised": "B-XXX-NN"
+        }
+      ]
+    }
+  }
+}</pre>
+
+<h2>7. バリデーションルール</h2>
+<ul>
+  <li><code>from</code> / <code>to</code> が当該FWのB要素 elementId に存在すること</li>
+  <li><code>mechanism</code> が5種の語彙に含まれること</li>
+  <li>self-reference がないこと（<code>from != to</code>）</li>
+  <li>B&ge;2 のFW全てに accumulation があること</li>
+  <li>B&le;1 のFWでは <code>accumulation: null</code></li>
+  <li>description 長: 20〜100文字（目安。多少の逸脱は警告扱い）</li>
+  <li>mechanism 分布が極端に偏っていないこと（単一種 &gt; 60% なら要確認）</li>
+</ul>
+
+<h2>8. ファイル構成</h2>
+<table>
+  <tr><th>ファイル</th><th>配置先</th><th>説明</th></tr>
+  <tr><td><code>framework_output_v3_1_accum.json</code></td><td><code>data/</code></td><td>accumulation 統合済み v3.1 データ</td></tr>
+  <tr><td><code>accumulation_v3_1.json</code></td><td><code>data/</code></td><td>中間ファイル（accumulation + revisions）</td></tr>
+  <tr><td><code>taxonomy_v3_0_bfe.json</code></td><td><code>data/</code></td><td>カテゴリ定義（v3.0 から変更なし）</td></tr>
+  <tr><td><code>inheritance_links_v3_0_bfe.json</code></td><td><code>data/</code></td><td>継承リンク（変更なし）</td></tr>
+  <tr><td><code>default_correspondences_v3_0_bfe.json</code></td><td><code>data/</code></td><td>対応リンク（変更なし）</td></tr>
+</table>
+
+<h2>9. スクリプト</h2>
+<table>
+  <tr><th>ファイル</th><th>説明</th></tr>
+  <tr><td><code>scripts/generate_accumulation.py</code></td><td>Claude API 版生成スクリプト（要 ANTHROPIC_API_KEY）</td></tr>
+  <tr><td><code>scripts/generate_accumulation_local.py</code></td><td>ルールベース版生成スクリプト（API不要）</td></tr>
+  <tr><td><code>scripts/merge_accumulation.py</code></td><td>中間データ → 本体統合 + バリデーション</td></tr>
+</table>
+
+<h2>10. ソースコード変更箇所</h2>
+<table>
+  <tr><th>ファイル</th><th>変更内容</th></tr>
+  <tr><td><code>src/app.js</code></td><td>データファイル参照を <code>framework_output_v3_1_accum.json</code> に変更</td></tr>
+</table>
+<p>UI変更なし。accumulation はデータとして保持のみ（将来のUI拡張で可視化予定）。</p>
+
+<h2>11. v3.0 からの差分まとめ</h2>
+<table>
+  <tr><th>項目</th><th>v3.0</th><th>v3.1</th></tr>
+  <tr><td>レイヤー構造</td><td>B / F / E（3層）</td><td>B / F / E（3層、変更なし）</td></tr>
+  <tr><td>accumulation</td><td>なし</td><td>各FWに追加（B&ge;2: 215件、null: 6件）</td></tr>
+  <tr><td>relations 総数</td><td>—</td><td>549</td></tr>
+  <tr><td>mechanism 語彙</td><td>—</td><td>5種（tension / amplification / constraint / enabling / convergence）</td></tr>
+  <tr><td>B要素ラベル</td><td>行為記述混在</td><td>条件記述に統一（244件修正）</td></tr>
+  <tr><td>B要素カテゴリ</td><td>一部誤分類あり</td><td>51件修正</td></tr>
+  <tr><td>データファイル</td><td><code>framework_output_v3_0_bfe.json</code></td><td><code>framework_output_v3_1_accum.json</code></td></tr>
+  <tr><td>イベント数</td><td>221</td><td>221（変更なし）</td></tr>
+  <tr><td>B要素数</td><td>601</td><td>601（変更なし）</td></tr>
+</table>
+
+<h2>12. 検証方法</h2>
+<ul>
+  <li>ブラウザで <code>src/index.html</code> を開き、既存表示が壊れていないこと。</li>
+  <li>221イベントすべて表示されること。</li>
+  <li>各行: B要素（複数）→ F要素（1つ）→ E要素（1つ）の順。</li>
+  <li>B要素ラベルが条件記述（〜していた等）になっていること。</li>
+  <li>コンソールエラーなし。</li>
+  <li><code>merge_accumulation.py</code> のバリデーションがエラー0件で通ること。</li>
+</ul>
+
+</main>
+</body>
+</html>
