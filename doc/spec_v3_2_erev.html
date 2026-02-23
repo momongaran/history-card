@@ -1,0 +1,313 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>myHistory 仕様 v3.2（E要素ラベル書き換え + legacyResult臨時保管）</title>
+<style>
+:root { --fg:#111; --muted:#666; --line:#ddd; --bg:#fff; --code:#f6f6f6; }
+body { font-family: system-ui, -apple-system, Segoe UI, Roboto, "Hiragino Sans", "Noto Sans JP", sans-serif;
+  background:var(--bg); color:var(--fg); line-height:1.75; }
+main { max-width: 980px; margin: 32px auto; padding: 0 18px 60px; }
+h1 { font-size: 22px; margin: 10px 0 6px; }
+h2 { font-size: 18px; margin-top: 28px; border-bottom: 2px solid var(--fg); padding-bottom: 6px; }
+h3 { font-size: 15px; margin-top: 18px; }
+p, li { font-size: 14px; }
+code { background:var(--code); padding: 2px 6px; border-radius: 6px; }
+pre { background:var(--code); padding: 12px; border-radius: 10px; overflow:auto; border:1px solid var(--line); font-size: 13px; }
+table { border-collapse: collapse; width:100%; margin: 10px 0; }
+th, td { border:1px solid var(--line); padding: 8px 10px; font-size: 13px; vertical-align: top; }
+th { background:#fafafa; text-align:left; }
+.note { border-left: 4px solid var(--line); padding: 8px 12px; margin: 10px 0; color: var(--muted); }
+.ver { display:inline-block; border:1px solid var(--line); padding: 2px 10px; font-size: 12px; color: var(--muted); }
+</style>
+</head>
+<body>
+<main>
+<h1>myHistory 仕様 v3.2（E要素ラベル書き換え + legacyResult臨時保管）</h1>
+<p class="ver">実装確定版 — 2026-02-23</p>
+
+<h2>1. 概要</h2>
+<p>v3.1 の accumulation 追加後、E要素（Emancipation）のラベルは旧R（Result）データのまま「帰結・結果」を記述していた。
+v3.2 では E-label を<strong>「eventタイトルを一段抽象化した記述」（解放の瞬間）</strong>に書き換え、旧ラベル（帰結記述）を <code>notes.legacyResult</code> に臨時保管する。</p>
+
+<h3>1.1 目的</h3>
+<ul>
+  <li>E要素の意味を「帰結・結果」から「解放の瞬間＝蓄積されたエネルギーが発現する瞬間」に転換する</li>
+  <li>固有名詞を除去し、構造的・類型的な表現にすることで、パターン比較・継承リンクの材料にする</li>
+  <li>旧ラベルは将来の継承リンク・上位FW等の材料として臨時保管する</li>
+</ul>
+
+<h2>2. E-label書き換えルール</h2>
+
+<h3>2.1 抽象化の原則</h3>
+<ol>
+  <li>固有名詞（人名・地名・年号）を除去し、構造的・類型的な表現にする</li>
+  <li>eventタイトルの主語・動詞・対象から、E-categoryに応じた抽象的表現を生成する</li>
+  <li>「解放の瞬間」＝蓄積されたエネルギーが発現する瞬間として読める表現にする</li>
+  <li>15〜25文字程度の簡潔な記述にする</li>
+</ol>
+
+<h3>2.2 カテゴリ別抽象化パターン</h3>
+<table>
+  <tr><th>E-category</th><th>名称</th><th>抽象化の方向</th><th>変換例</th></tr>
+  <tr><td><code>E-POW</code></td><td>権力再編型</td><td>権力構造の変動を表す語</td><td>「継体天皇が即位した」→「王統断絶からの新王擁立」</td></tr>
+  <tr><td><code>E-WAR</code></td><td>武力衝突型</td><td>軍事的事態を表す語</td><td>「磐井の乱が起こった」→「地方有力者の武力蜂起」</td></tr>
+  <tr><td><code>E-SYS</code></td><td>制度成立型</td><td>制度的変革を表す語</td><td>「冠位十二階を制定した」→「個人評価に基づく官位制度の創設」</td></tr>
+  <tr><td><code>E-REG</code></td><td>体制転換型</td><td>体制変動を表す語</td><td>「白河上皇が院政を開始した」→「退位君主による統治形態の確立」</td></tr>
+  <tr><td><code>E-CUL</code></td><td>文化秩序変容型</td><td>文化的変容を表す語</td><td>「百済から仏教が伝来した」→「外来宗教体系の到来」</td></tr>
+  <tr><td><code>E-ADP</code></td><td>外圧適応型</td><td>対外適応を表す語</td><td>「ペリーが来航した」→「外圧による対外対応の迫り」</td></tr>
+  <tr><td><code>E-ECO</code></td><td>経済構造転換型</td><td>経済変動を表す語</td><td>「和同開珎が鋳造された」→「貨幣制度の導入」</td></tr>
+  <tr><td><code>E-COL</code></td><td>崩壊型</td><td>崩壊・瓦解を表す語</td><td>「関東大震災が起きた」→「大規模自然災害による社会危機」</td></tr>
+</table>
+
+<h3>2.3 動詞パターンマッチング</h3>
+<p>eventタイトルの末尾動詞パターンにより、E-categoryと組み合わせて抽象表現を選択する。主要パターン:</p>
+<table>
+  <tr><th>パターン</th><th>E-SYS での変換例</th><th>E-WAR での変換例</th></tr>
+  <tr><td>〜を制定した</td><td>新制度の創設</td><td>—</td></tr>
+  <tr><td>〜が起きた</td><td>制度的変革の開始</td><td>軍事的衝突の発生</td></tr>
+  <tr><td>〜が出された</td><td>統治方針の制度化</td><td>—</td></tr>
+  <tr><td>〜が成立した</td><td>新制度体系の成立</td><td>—</td></tr>
+  <tr><td>〜の乱が起きた</td><td>—</td><td>武力蜂起による秩序の動揺</td></tr>
+  <tr><td>〜の変が起きた</td><td>—</td><td>政変による権力構造の転換</td></tr>
+  <tr><td>〜が滅亡した</td><td>—</td><td>武力による政権の壊滅</td></tr>
+</table>
+
+<h2>3. legacyResult臨時保管</h2>
+<p>旧E-label（帰結記述）は <code>notes.legacyResult</code> に保存する。<code>legacyPath</code> と同じパターン。</p>
+<pre>{
+  "notes": {
+    "legacyPath": [
+      {
+        "elementId": "EL_EV_p0507_01_3",
+        "category": "P-SUC",
+        "subCategory": "P-SUC-01",
+        "label": "継体天皇として即位し大和入りに約20年を要した"
+      }
+    ],
+    "legacyResult": "応神天皇五世孫として王統の正統性が主張された"
+  }
+}</pre>
+
+<h3>3.1 notes フィールド</h3>
+<table>
+  <tr><th>フィールド</th><th>型</th><th>説明</th></tr>
+  <tr><td><code>notes.legacyPath</code></td><td>array</td><td>v3.0 で退避した旧P要素（v3.0以降存在）</td></tr>
+  <tr><td><code>notes.legacyResult</code></td><td>string</td><td>v3.2 で退避した旧E-label（帰結記述）。将来の継承リンク・上位FW等の材料。</td></tr>
+</table>
+
+<h2>4. レイヤー・カテゴリ体系</h2>
+<p>myHistoryは B / F / E の3層構造をとる。各レイヤーのカテゴリ・サブカテゴリ体系を以下に示す。</p>
+
+<h3>4.1 B（Background）— 11カテゴリ・45サブカテゴリ</h3>
+<p>イベントの前提条件・構造的背景を記述するレイヤー。各FWに複数のB要素が存在する。</p>
+<table>
+  <tr><th>カテゴリ</th><th>コード</th><th>サブカテゴリ名</th><th>説明</th></tr>
+  <tr><td rowspan="4"><code>B-PWR</code><br/>権力配置</td><td><code>B-PWR-01</code></td><td>中央集権構造</td><td>権力が中央に集約された配置</td></tr>
+  <tr><td><code>B-PWR-02</code></td><td>豪族間均衡</td><td>複数の有力者間の勢力均衡</td></tr>
+  <tr><td><code>B-PWR-03</code></td><td>分権的配置</td><td>権力が地方・複数主体に分散</td></tr>
+  <tr><td><code>B-PWR-04</code></td><td>実権と名目の分離</td><td>名目上の権力者と実権者の乖離</td></tr>
+  <tr><td rowspan="4"><code>B-LEG</code><br/>正統性基盤</td><td><code>B-LEG-01</code></td><td>血統的正統性</td><td>血統・系譜に基づく正統性</td></tr>
+  <tr><td><code>B-LEG-02</code></td><td>王統継承安定性</td><td>王位継承の安定度</td></tr>
+  <tr><td><code>B-LEG-03</code></td><td>宗教的正統化</td><td>宗教的権威による正統化</td></tr>
+  <tr><td><code>B-LEG-04</code></td><td>制度的正当化</td><td>制度・法に基づく正当化</td></tr>
+  <tr><td rowspan="5"><code>B-INS</code><br/>制度枠組み</td><td><code>B-INS-01</code></td><td>官制構造</td><td>官僚制度・統治機構の構造</td></tr>
+  <tr><td><code>B-INS-02</code></td><td>税制財政制度</td><td>徴税・財政運営の制度</td></tr>
+  <tr><td><code>B-INS-03</code></td><td>法制度枠組み</td><td>法令・裁判の枠組み</td></tr>
+  <tr><td><code>B-INS-04</code></td><td>行政運用基盤</td><td>行政実務の運用基盤</td></tr>
+  <tr><td><code>B-INS-05</code></td><td>軍事制度体系</td><td>軍事に関する制度体系</td></tr>
+  <tr><td rowspan="4"><code>B-SOC</code><br/>社会構造</td><td><code>B-SOC-01</code></td><td>身分階層構造</td><td>身分制度・階層の構造</td></tr>
+  <tr><td><code>B-SOC-02</code></td><td>地域社会構造</td><td>地域共同体の構造</td></tr>
+  <tr><td><code>B-SOC-03</code></td><td>経済階層分化</td><td>経済的な階層の分化</td></tr>
+  <tr><td><code>B-SOC-04</code></td><td>共同体結束構造</td><td>共同体の結束・連帯の構造</td></tr>
+  <tr><td rowspan="4"><code>B-RES</code><br/>資源基盤</td><td><code>B-RES-01</code></td><td>財政資源</td><td>財政的な資源・蓄積</td></tr>
+  <tr><td><code>B-RES-02</code></td><td>軍事資源</td><td>軍事力の源泉となる資源</td></tr>
+  <tr><td><code>B-RES-03</code></td><td>人的資源</td><td>人材・労働力の基盤</td></tr>
+  <tr><td><code>B-RES-04</code></td><td>物流供給基盤</td><td>物資の流通・供給の基盤</td></tr>
+  <tr><td rowspan="4"><code>B-EXT</code><br/>対外環境</td><td><code>B-EXT-01</code></td><td>外交圧力</td><td>外交上の圧力・要求</td></tr>
+  <tr><td><code>B-EXT-02</code></td><td>軍事脅威</td><td>外部からの軍事的脅威</td></tr>
+  <tr><td><code>B-EXT-03</code></td><td>文化流入</td><td>外来文化・思想の流入</td></tr>
+  <tr><td><code>B-EXT-04</code></td><td>経済交易圏</td><td>対外的な経済・交易の環境</td></tr>
+  <tr><td rowspan="4"><code>B-MIL</code><br/>軍事基盤</td><td><code>B-MIL-01</code></td><td>軍事組織構造</td><td>軍事組織の編成・構造</td></tr>
+  <tr><td><code>B-MIL-02</code></td><td>軍事技術水準</td><td>兵器・戦術の技術水準</td></tr>
+  <tr><td><code>B-MIL-03</code></td><td>動員体制</td><td>兵力動員の仕組み</td></tr>
+  <tr><td><code>B-MIL-04</code></td><td>防衛拠点配置</td><td>防衛拠点・城柵の配置</td></tr>
+  <tr><td rowspan="4"><code>B-NRM</code><br/>価値体系</td><td><code>B-NRM-01</code></td><td>宗教思想体系</td><td>宗教・思想の体系</td></tr>
+  <tr><td><code>B-NRM-02</code></td><td>倫理規範</td><td>倫理・道徳の規範</td></tr>
+  <tr><td><code>B-NRM-03</code></td><td>統治理念</td><td>統治の正統性を支える理念</td></tr>
+  <tr><td><code>B-NRM-04</code></td><td>文化的象徴体系</td><td>文化的シンボル・象徴の体系</td></tr>
+  <tr><td rowspan="4"><code>B-INF</code><br/>情報基盤</td><td><code>B-INF-01</code></td><td>文書記録体系</td><td>文書・記録の保存体系</td></tr>
+  <tr><td><code>B-INF-02</code></td><td>通信伝達網</td><td>情報伝達・通信の網</td></tr>
+  <tr><td><code>B-INF-03</code></td><td>教育知識体系</td><td>教育・知識伝承の体系</td></tr>
+  <tr><td><code>B-INF-04</code></td><td>情報統制構造</td><td>情報の統制・管理の構造</td></tr>
+  <tr><td rowspan="4"><code>B-GEO</code><br/>地理人口条件</td><td><code>B-GEO-01</code></td><td>地理的障壁</td><td>山脈・海峡等の地理的障壁</td></tr>
+  <tr><td><code>B-GEO-02</code></td><td>人口集中度</td><td>人口の集中・分散の状況</td></tr>
+  <tr><td><code>B-GEO-03</code></td><td>農業生産条件</td><td>農業生産の自然条件</td></tr>
+  <tr><td><code>B-GEO-04</code></td><td>交通経路条件</td><td>交通・輸送の経路条件</td></tr>
+  <tr><td><code>B-RIV</code><br/>利害対立</td><td><code>B-RIV-01</code></td><td>政治的利害対立</td><td>政治的な利害関係の対立</td></tr>
+</table>
+
+<h3>4.2 F（Fluctuation）— 1カテゴリ・6サブカテゴリ</h3>
+<p>蓄積されたエネルギーが発現するきっかけとなる「揺らぎ」（危機・不確実性）を記述するレイヤー。各FWにF要素は1つ。</p>
+<table>
+  <tr><th>カテゴリ</th><th>コード</th><th>サブカテゴリ名</th><th>説明</th></tr>
+  <tr><td rowspan="6"><code>F-UNC</code><br/>揺らぎ（危機・不確実性）</td><td><code>F-UNC-00</code></td><td>（揺らぎ未設定）</td><td>揺らぎカテゴリが未分類</td></tr>
+  <tr><td><code>F-UNC-01</code></td><td>王位空位</td><td>王位・政権の空位状態</td></tr>
+  <tr><td><code>F-UNC-02</code></td><td>災害発生</td><td>自然災害・疫病等の発生</td></tr>
+  <tr><td><code>F-UNC-03</code></td><td>外圧急変</td><td>外部からの圧力の急激な変化</td></tr>
+  <tr><td><code>F-UNC-04</code></td><td>経済不安</td><td>経済的な不安定・危機</td></tr>
+  <tr><td><code>F-UNC-05</code></td><td>権力空白</td><td>権力の空白・統治不在</td></tr>
+</table>
+
+<h3>4.3 E（Emancipation）— 8カテゴリ・32サブカテゴリ</h3>
+<p>蓄積されたエネルギーが発現する「解放の瞬間」を記述するレイヤー。各FWにE要素は1つ。v3.2で抽象化ラベルに書き換え済み。</p>
+
+<h4>E-category件数分布</h4>
+<table>
+  <tr><th>E-category</th><th>名称</th><th>件数</th></tr>
+  <tr><td><code>E-SYS</code></td><td>制度成立型</td><td>91</td></tr>
+  <tr><td><code>E-WAR</code></td><td>武力衝突型</td><td>60</td></tr>
+  <tr><td><code>E-POW</code></td><td>権力再編型</td><td>30</td></tr>
+  <tr><td><code>E-CUL</code></td><td>文化秩序変容型</td><td>11</td></tr>
+  <tr><td><code>E-COL</code></td><td>崩壊型</td><td>10</td></tr>
+  <tr><td><code>E-REG</code></td><td>体制転換型</td><td>9</td></tr>
+  <tr><td><code>E-ADP</code></td><td>外圧適応型</td><td>8</td></tr>
+  <tr><td><code>E-ECO</code></td><td>経済構造転換型</td><td>2</td></tr>
+  <tr><td><strong>合計</strong></td><td></td><td><strong>221</strong></td></tr>
+</table>
+
+<h4>E-categoryサブカテゴリ一覧</h4>
+<p>各E-categoryは4つのサブカテゴリに細分化される。サブカテゴリは抽象化E-labelの粒度と対応しており、将来のグルーピング基盤となりうる。</p>
+<table>
+  <tr><th>カテゴリ</th><th>コード</th><th>サブカテゴリ名</th><th>説明</th></tr>
+  <tr><td rowspan="4"><code>E-POW</code><br/>権力再編型</td><td><code>E-POW-01</code></td><td>支配主体交代</td><td>支配する主体が入れ替わる</td></tr>
+  <tr><td><code>E-POW-02</code></td><td>権力集中化</td><td>権力が特定主体に集約される</td></tr>
+  <tr><td><code>E-POW-03</code></td><td>権力分散化</td><td>権力が分散・多極化する</td></tr>
+  <tr><td><code>E-POW-04</code></td><td>実権移動</td><td>名目上の権力と実権が乖離する</td></tr>
+  <tr><td rowspan="4"><code>E-REG</code><br/>体制転換型</td><td><code>E-REG-01</code></td><td>王朝交代</td><td>王朝・政権の根本的交代</td></tr>
+  <tr><td><code>E-REG-02</code></td><td>政体転換</td><td>統治形態の根本的変更</td></tr>
+  <tr><td><code>E-REG-03</code></td><td>統治原理転換</td><td>統治の正統性原理の転換</td></tr>
+  <tr><td><code>E-REG-04</code></td><td>支配構造再定義</td><td>支配の枠組み自体の再構築</td></tr>
+  <tr><td rowspan="4"><code>E-SYS</code><br/>制度成立型</td><td><code>E-SYS-01</code></td><td>新制度創設</td><td>新たな制度・法令の制定</td></tr>
+  <tr><td><code>E-SYS-02</code></td><td>法体系確立</td><td>法体系の整備・成文化</td></tr>
+  <tr><td><code>E-SYS-03</code></td><td>官制確立</td><td>官僚制度・統治機構の整備</td></tr>
+  <tr><td><code>E-SYS-04</code></td><td>統治体系整備</td><td>統治の仕組み全体の体系化</td></tr>
+  <tr><td rowspan="4"><code>E-WAR</code><br/>武力衝突型</td><td><code>E-WAR-01</code></td><td>内戦勃発</td><td>内部対立の武力化</td></tr>
+  <tr><td><code>E-WAR-02</code></td><td>対外戦争</td><td>外部勢力との軍事衝突</td></tr>
+  <tr><td><code>E-WAR-03</code></td><td>長期紛争化</td><td>武力紛争の長期化・常態化</td></tr>
+  <tr><td><code>E-WAR-04</code></td><td>武力均衡状態</td><td>武力による均衡・膠着</td></tr>
+  <tr><td rowspan="4"><code>E-ECO</code><br/>経済構造転換型</td><td><code>E-ECO-01</code></td><td>経済集中化</td><td>経済権益の集中</td></tr>
+  <tr><td><code>E-ECO-02</code></td><td>市場拡大</td><td>市場・流通の拡張</td></tr>
+  <tr><td><code>E-ECO-03</code></td><td>生産構造転換</td><td>生産方式・産業構造の変革</td></tr>
+  <tr><td><code>E-ECO-04</code></td><td>財政基盤再編</td><td>財政制度・税制の再構築</td></tr>
+  <tr><td rowspan="4"><code>E-CUL</code><br/>文化秩序変容型</td><td><code>E-CUL-01</code></td><td>宗教秩序変化</td><td>宗教的権威・秩序の変動</td></tr>
+  <tr><td><code>E-CUL-02</code></td><td>価値体系転換</td><td>社会的価値観・思想の転換</td></tr>
+  <tr><td><code>E-CUL-03</code></td><td>文化的統合</td><td>文化の統合・一体化</td></tr>
+  <tr><td><code>E-CUL-04</code></td><td>文化的分断</td><td>文化的な分裂・対立</td></tr>
+  <tr><td rowspan="4"><code>E-ADP</code><br/>外圧適応型</td><td><code>E-ADP-01</code></td><td>外圧受容</td><td>外部からの圧力への受容的対応</td></tr>
+  <tr><td><code>E-ADP-02</code></td><td>制度的適応</td><td>外圧に対する制度的な適応</td></tr>
+  <tr><td><code>E-ADP-03</code></td><td>外交均衡化</td><td>外交関係の均衡化・再調整</td></tr>
+  <tr><td><code>E-ADP-04</code></td><td>技術受容</td><td>外来技術・知識の受容</td></tr>
+  <tr><td rowspan="4"><code>E-COL</code><br/>崩壊型</td><td><code>E-COL-01</code></td><td>政体崩壊</td><td>政権・統治体制の崩壊</td></tr>
+  <tr><td><code>E-COL-02</code></td><td>制度瓦解</td><td>制度・法体系の機能停止</td></tr>
+  <tr><td><code>E-COL-03</code></td><td>権力空白化</td><td>統治主体の不在・空白</td></tr>
+  <tr><td><code>E-COL-04</code></td><td>社会秩序崩壊</td><td>社会秩序全体の瓦解</td></tr>
+</table>
+<div class="note">
+  将来の課題: サブカテゴリによるE-labelのグルーピング、またはサブカテゴリコード自体の見直しの可能性がある（→(5)結果のグルーピング粒度の課題）。
+</div>
+
+<h2>5. 中間データ形式</h2>
+<p>生成スクリプトは中間ファイル <code>emancipation_revisions_v3_2.json</code> を出力し、マージスクリプトで本体に統合する。</p>
+<pre>{
+  "version": "3.2",
+  "generatedBy": "revise_emancipation.py",
+  "model": "rule-based",
+  "timestamp": "2026-02-23T12:34:00",
+  "items": {
+    "FW_EV_pXXXX_XX": {
+      "elementId": "EL_...",
+      "originalLabel": "旧E-label（帰結記述）",
+      "revisedLabel": "新E-label（抽象化記述）",
+      "categoryRevised": "E-POW",
+      "subCategoryRevised": "E-POW-01"
+    }
+  }
+}</pre>
+
+<h2>6. バリデーションルール</h2>
+<ul>
+  <li>全221件のE要素に <code>label</code> が存在すること</li>
+  <li>E-category が有効な値（8種）であること</li>
+  <li><code>notes.legacyResult</code> に旧ラベルが保管されていること（221件全て）</li>
+  <li>新E-label が eventタイトルの抽象化として妥当であること（目視サンプル確認）</li>
+  <li>新E-label の長さが 5〜25文字程度であること</li>
+  <li>ブラウザ表示が壊れないこと</li>
+</ul>
+
+<h2>7. ファイル構成</h2>
+<table>
+  <tr><th>ファイル</th><th>配置先</th><th>説明</th></tr>
+  <tr><td><code>framework_output_v3_2_erev.json</code></td><td><code>data/</code></td><td>E-label書き換え済み v3.2 データ</td></tr>
+  <tr><td><code>emancipation_revisions_v3_2.json</code></td><td><code>data/</code></td><td>中間ファイル（E-label書き換え情報）</td></tr>
+  <tr><td><code>framework_output_v3_1_accum.json</code></td><td><code>data/</code></td><td>ベースデータ（v3.1）</td></tr>
+  <tr><td><code>taxonomy_v3_0_bfe.json</code></td><td><code>data/</code></td><td>カテゴリ定義（変更なし）</td></tr>
+  <tr><td><code>inheritance_links_v3_0_bfe.json</code></td><td><code>data/</code></td><td>継承リンク（変更なし）</td></tr>
+  <tr><td><code>default_correspondences_v3_0_bfe.json</code></td><td><code>data/</code></td><td>対応リンク（変更なし）</td></tr>
+</table>
+
+<h2>8. スクリプト</h2>
+<table>
+  <tr><th>ファイル</th><th>説明</th></tr>
+  <tr><td><code>scripts/revise_emancipation.py</code></td><td>E-label抽象化生成スクリプト（ルールベース + 特殊ケース辞書）</td></tr>
+  <tr><td><code>scripts/merge_emancipation.py</code></td><td>中間データ → 本体統合 + legacyResult保管 + バリデーション</td></tr>
+</table>
+
+<h2>9. ソースコード変更箇所</h2>
+<table>
+  <tr><th>ファイル</th><th>変更内容</th></tr>
+  <tr><td><code>src/app.js</code></td><td>データファイル参照を <code>framework_output_v3_2_erev.json</code> に変更</td></tr>
+</table>
+<p>UI変更なし。E-label の表示テキストが変わるのみ。</p>
+
+<h2>10. v3.1 からの差分まとめ</h2>
+<table>
+  <tr><th>項目</th><th>v3.1</th><th>v3.2</th></tr>
+  <tr><td>レイヤー構造</td><td>B / F / E（3層）</td><td>B / F / E（3層、変更なし）</td></tr>
+  <tr><td>accumulation</td><td>各FWに追加済み</td><td>変更なし</td></tr>
+  <tr><td>E-label</td><td>旧R（Result）由来の帰結記述</td><td>eventタイトルの一段抽象化記述（221件全て書き換え）</td></tr>
+  <tr><td>notes.legacyResult</td><td>なし</td><td>旧E-label を臨時保管（221件）</td></tr>
+  <tr><td>E-category</td><td>8種</td><td>8種（変更なし）</td></tr>
+  <tr><td>データファイル</td><td><code>framework_output_v3_1_accum.json</code></td><td><code>framework_output_v3_2_erev.json</code></td></tr>
+  <tr><td>イベント数</td><td>221</td><td>221（変更なし）</td></tr>
+</table>
+
+<h2>11. 変換サンプル（先頭10件）</h2>
+<table>
+  <tr><th>eventTitle</th><th>E-cat</th><th>旧E-label（→legacyResult）</th><th>新E-label</th></tr>
+  <tr><td>継体天皇が即位した</td><td>E-POW</td><td>応神天皇五世孫として王統の正統性が主張された</td><td>王統断絶からの新王擁立</td></tr>
+  <tr><td>大伴金村が政権を主導した</td><td>E-POW</td><td>大伴氏が大王家の実権を掌握した</td><td>特定氏族による実権掌握</td></tr>
+  <tr><td>磐井の乱が起こった</td><td>E-WAR</td><td>磐井が鎮圧され九州に直轄支配体制が再構築された</td><td>地方有力者の武力蜂起</td></tr>
+  <tr><td>百済から仏教が伝来した</td><td>E-CUL</td><td>大陸文化の本格的な流入が始まり国家体制に影響を与えた</td><td>外来宗教体系の到来</td></tr>
+  <tr><td>丁未の乱で蘇我氏が物部氏に勝利した</td><td>E-WAR</td><td>蘇我氏が朝廷の最有力豪族として政権を掌握した</td><td>武力による勢力争いの決着</td></tr>
+  <tr><td>崇峻天皇が蘇我馬子の意向で暗殺された</td><td>E-POW</td><td>天皇暗殺という前例が生まれ蘇我氏の専横が頂点に達した</td><td>権力者の暴力的排除</td></tr>
+  <tr><td>推古天皇が即位した</td><td>E-POW</td><td>蘇我氏と皇室の協調体制のもとで新たな王権が成立した</td><td>協調型王権の成立</td></tr>
+  <tr><td>厩戸王が摂政に就任した</td><td>E-POW</td><td>天皇・摂政・大臣の三者による協調統治体制が確立した</td><td>補佐統治体制の確立</td></tr>
+  <tr><td>冠位十二階を制定した</td><td>E-SYS</td><td>氏族単位でなく個人に冠位を授ける原則が確立された</td><td>個人評価に基づく官位制度の創設</td></tr>
+  <tr><td>憲法十七条を制定した</td><td>E-SYS</td><td>天皇中心の統治理念が成文化され律令国家の思想的基盤となった</td><td>統治理念の成文化</td></tr>
+</table>
+
+<h2>12. 検証方法</h2>
+<ul>
+  <li>ブラウザで <code>src/index.html</code> を開き、既存表示が壊れていないこと。</li>
+  <li>221イベントすべて表示されること。</li>
+  <li>各行: B要素（複数）→ F要素（1つ）→ E要素（1つ）の順。</li>
+  <li>E要素ラベルが一段抽象化された表現になっていること（固有名詞なし）。</li>
+  <li>コンソールエラーなし。</li>
+  <li><code>merge_emancipation.py</code> の事後バリデーションが全件パスすること。</li>
+</ul>
+
+</main>
+</body>
+</html>
