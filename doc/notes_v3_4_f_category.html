@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>myHistory v3.4 課題: F体系カテゴリ再設計</title>
+<style>
+:root { --fg:#111; --muted:#666; --line:#ddd; --bg:#fff; --code:#f6f6f6; }
+body { font-family: system-ui, -apple-system, Segoe UI, Roboto, "Hiragino Sans", "Noto Sans JP", sans-serif;
+  background:var(--bg); color:var(--fg); line-height:1.75; }
+main { max-width: 980px; margin: 32px auto; padding: 0 18px 60px; }
+h1 { font-size: 22px; margin: 10px 0 6px; }
+h2 { font-size: 18px; margin-top: 28px; border-bottom: 2px solid var(--fg); padding-bottom: 6px; }
+h3 { font-size: 15px; margin-top: 18px; }
+p, li { font-size: 14px; }
+code { background:var(--code); padding: 2px 6px; border-radius: 6px; }
+pre { background:var(--code); padding: 12px; border-radius: 10px; overflow:auto; border:1px solid var(--line); font-size: 13px; }
+table { border-collapse: collapse; width:100%; margin: 10px 0; }
+th, td { border:1px solid var(--line); padding: 8px 10px; font-size: 13px; vertical-align: top; }
+th { background:#fafafa; text-align:left; }
+.note { border-left: 4px solid var(--line); padding: 8px 12px; margin: 10px 0; color: var(--muted); }
+.ver { display:inline-block; border:1px solid var(--line); padding: 2px 10px; font-size: 12px; color: var(--muted); }
+.warn { display:inline-block; border:1px solid #e0a040; background:#fff8e0; padding: 2px 10px; font-size: 12px; color: #a07020; margin-left: 8px; }
+</style>
+</head>
+<body>
+<main>
+<h1>myHistory v3.4 課題: F体系カテゴリ再設計</h1>
+<p class="ver">課題記録 — 2026-02-24</p>
+<p class="warn">未着手</p>
+
+<h2>1. 問題の所在</h2>
+
+<p>v3.3時点でF層（起動因）のカテゴリ分布は以下の通り:</p>
+
+<table>
+<tr><th>カテゴリ</th><th>件数</th><th>割合</th></tr>
+<tr><td>F-UNC-00（未設定）</td><td>208</td><td>94.1%</td></tr>
+<tr><td>F-UNC-01（王位空位・継承不安定）</td><td>5</td><td>2.3%</td></tr>
+<tr><td>F-UNC-02（自然災害・疫病）</td><td>3</td><td>1.4%</td></tr>
+<tr><td>F-UNC-03（外圧・対外関係変動）</td><td>2</td><td>0.9%</td></tr>
+<tr><td>F-UNC-04（経済的不安定）</td><td>1</td><td>0.5%</td></tr>
+<tr><td>F-UNC-05（権力空白）</td><td>1</td><td>0.5%</td></tr>
+<tr><td>F-PRG（上位プログラム実行）</td><td>1</td><td>0.5%</td></tr>
+</table>
+
+<p><strong>221件中208件（94%）がF-UNC-00</strong>に分類されている。
+v3.3ではラベルの補充（causeTextやB要素からの導出）は完了したが、カテゴリ自体は未設定のまま。</p>
+
+<h2>2. 原因分析</h2>
+
+<p>全221件のFラベル内容を分析した結果、<strong>「揺らぎを無理にあてはめている」のではなく、カテゴリ不足が主原因</strong>であることが判明した。</p>
+
+<p>現行の5種のサブカテゴリ（UNC-01〜05）がカバーできるのは約30件のみ。
+最大の自然類型である「利害対立・権力闘争」（59件）と「制度的矛盾・限界」（45件）に対応するカテゴリが存在しない。</p>
+
+<h2>3. 実データから見えた起動因の自然な類型</h2>
+
+<p>221件のFラベルを内容ベースでクラスタリングした結果:</p>
+
+<table>
+<tr><th>類型</th><th>件数</th><th>説明</th><th>例</th></tr>
+<tr>
+  <td><strong>利害対立・権力闘争</strong></td>
+  <td>59</td>
+  <td>複数勢力間の利害衝突、権力争い、対立の激化</td>
+  <td>蘇我氏と物部氏の対立が先鋭化、幕府内の権力闘争</td>
+</tr>
+<tr>
+  <td><strong>制度的矛盾・限界</strong></td>
+  <td>45</td>
+  <td>既存制度の機能不全、矛盾の顕在化</td>
+  <td>律令制の形骸化、荘園制の矛盾が深刻化</td>
+</tr>
+<tr>
+  <td><strong>具体的事件・行動</strong></td>
+  <td>16</td>
+  <td>特定人物の決断・行動がトリガー</td>
+  <td>後鳥羽上皇の挙兵決意、織田信長の上洛</td>
+</tr>
+<tr>
+  <td><strong>外圧・対外関係</strong></td>
+  <td>14</td>
+  <td>外部からの圧力・影響（既存UNC-03と重複）</td>
+  <td>ペリー来航、元寇の脅威</td>
+</tr>
+<tr>
+  <td><strong>権力空白・継承問題</strong></td>
+  <td>8</td>
+  <td>指導者不在・後継争い（既存UNC-01, 05と重複）</td>
+  <td>天皇幼少、将軍後継不在</td>
+</tr>
+<tr>
+  <td><strong>危機・災害</strong></td>
+  <td>3</td>
+  <td>天災・飢饉・疫病（既存UNC-02と重複）</td>
+  <td>天明の大飢饉、安政の大地震</td>
+</tr>
+<tr>
+  <td><strong>上位プログラム実行</strong></td>
+  <td>1</td>
+  <td>上位FWのEが下位FWのFとして作用（v3.3で新設のF-PRG）</td>
+  <td>大化改新の成功→律令編纂の条件成立</td>
+</tr>
+<tr>
+  <td><strong>分類困難</strong></td>
+  <td>73</td>
+  <td>複合要因、または上記類型に収まりにくいもの</td>
+  <td>—</td>
+</tr>
+</table>
+
+<h2>4. 提案: 新カテゴリ体系</h2>
+
+<p>上記分析に基づく新カテゴリ案（検討未着手）:</p>
+
+<table>
+<tr><th>カテゴリID</th><th>名称</th><th>想定件数</th><th>備考</th></tr>
+<tr><td>F-CNF</td><td>利害対立・権力闘争</td><td>~59</td><td><strong>新設</strong>（最大類型）</td></tr>
+<tr><td>F-CTD</td><td>制度的矛盾・限界</td><td>~45</td><td><strong>新設</strong>（2番目に大きい類型）</td></tr>
+<tr><td>F-ACT</td><td>具体的事件・行動</td><td>~16</td><td><strong>新設</strong></td></tr>
+<tr><td>F-EXT</td><td>外圧・対外関係</td><td>~14</td><td>既存UNC-03を独立</td></tr>
+<tr><td>F-VAC</td><td>権力空白・継承</td><td>~8</td><td>既存UNC-01+05を統合</td></tr>
+<tr><td>F-DIS</td><td>危機・災害</td><td>~3</td><td>既存UNC-02を改称</td></tr>
+<tr><td>F-ECO</td><td>経済的不安定</td><td>~1+</td><td>既存UNC-04を独立</td></tr>
+<tr><td>F-PRG</td><td>上位プログラム実行</td><td>~1+</td><td>v3.3で新設済み</td></tr>
+<tr><td>F-UNC-00</td><td>未分類</td><td>~73</td><td>分類困難なもの（段階的に削減）</td></tr>
+</table>
+
+<div class="note">
+  カテゴリID・名称は仮。「分類困難」73件の内訳をさらに分析し、
+  追加カテゴリの必要性やF-UNC-00の許容残存数を検討する必要がある。
+</div>
+
+<h2>5. 実装時の作業項目</h2>
+
+<ol>
+  <li><code>data/taxonomy_v3_0_bfe.json</code> のF層カテゴリ定義を更新</li>
+  <li>221件のFW全件について、Fラベル内容に基づきカテゴリを再分類</li>
+  <li>再分類スクリプトの作成（ルールベース＋手動確認）</li>
+  <li>仕様書の更新（カテゴリ定義・分類基準の明文化）</li>
+  <li>UIでのF-category表示対応（現在はE-categoryのみ表示）</li>
+</ol>
+
+<h2>6. 関連するmomentum品質改善</h2>
+
+<p>v3.3のmomentum生成（<code>scripts/generate_momentum_local.py</code>）では、
+E-categoryベースのパターンマッチで221件を生成したが、
+123件がデフォルトテンプレート（汎用表現）になっている。</p>
+
+<p>F体系のカテゴリ再設計と合わせて、momentumの品質改善も検討対象:</p>
+<ul>
+  <li>デフォルト123件のうち、E-label個別のパターンを追加して削減</li>
+  <li>Claude API利用が可能になった場合、API生成への切替</li>
+  <li>ユニーク数の改善（現在59種 → 目標100種以上）</li>
+</ul>
+
+</main>
+</body>
+</html>

@@ -1,0 +1,281 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>myHistory 仕様 v3.3（momentum導入・B補充・F-PRG新設・視点ルール）</title>
+<style>
+:root { --fg:#111; --muted:#666; --line:#ddd; --bg:#fff; --code:#f6f6f6; }
+body { font-family: system-ui, -apple-system, Segoe UI, Roboto, "Hiragino Sans", "Noto Sans JP", sans-serif;
+  background:var(--bg); color:var(--fg); line-height:1.75; }
+main { max-width: 980px; margin: 32px auto; padding: 0 18px 60px; }
+h1 { font-size: 22px; margin: 10px 0 6px; }
+h2 { font-size: 18px; margin-top: 28px; border-bottom: 2px solid var(--fg); padding-bottom: 6px; }
+h3 { font-size: 15px; margin-top: 18px; }
+h4 { font-size: 14px; margin-top: 14px; }
+p, li { font-size: 14px; }
+code { background:var(--code); padding: 2px 6px; border-radius: 6px; }
+pre { background:var(--code); padding: 12px; border-radius: 10px; overflow:auto; border:1px solid var(--line); font-size: 13px; }
+table { border-collapse: collapse; width:100%; margin: 10px 0; }
+th, td { border:1px solid var(--line); padding: 8px 10px; font-size: 13px; vertical-align: top; }
+th { background:#fafafa; text-align:left; }
+.note { border-left: 4px solid var(--line); padding: 8px 12px; margin: 10px 0; color: var(--muted); }
+.ver { display:inline-block; border:1px solid var(--line); padding: 2px 10px; font-size: 12px; color: var(--muted); }
+</style>
+</head>
+<body>
+<main>
+<h1>myHistory 仕様 v3.3（momentum導入・B補充・F-PRG新設・視点ルール）</h1>
+<p class="ver">実装確定版 — 2026-02-24</p>
+
+<h2>1. 概要</h2>
+<p>v3.2完了後の設計検討（<code>doc/notes_v3_3_design.html</code>）で確定した以下の変更をデータ・アプリに反映する。</p>
+<ol>
+  <li><strong>momentum</strong>（Eの解放の方向）をframeworkViewに導入</li>
+  <li><strong>F体系の拡張</strong>: 「揺らぎ」→「起動因」に意味を拡張、F-PRGカテゴリ新設</li>
+  <li><strong>視点ルール</strong>: B=客観記述、F/E=実行者視点（案2）</li>
+  <li><strong>B不足6件の補充</strong>: 既存カテゴリで対応</li>
+  <li>B体系は既存カテゴリで十分、追加不要</li>
+</ol>
+
+<h2>2. momentum フィールド</h2>
+
+<h3>2.1 定義</h3>
+<ul>
+  <li>Eの解放のエネルギーがどの方向に放出されているかを記述する</li>
+  <li>accumulationの対概念: accumulation=過去方向、momentum=未来方向</li>
+  <li>Eの「結果」や「帰結」ではなく、解放の瞬間に内在する方向性</li>
+  <li>意図的か構造的帰結かを問わない</li>
+  <li>1イベントに1つのmomentum</li>
+</ul>
+
+<h3>2.2 データ形式</h3>
+<pre>{
+  "frameworkViewId": "FW_EV_p0593_01",
+  "accumulation": { "relations": [...], "summary": "..." },
+  "momentum": "王権を中心とした安定的統治が求められる方向へ"
+}</pre>
+<ul>
+  <li>frameworkViewの直下、accumulationと同レベルに配置</li>
+  <li>型: <code>string | null</code></li>
+  <li>null = 未生成（初回マイグレーション時）</li>
+  <li>記述形式: 「〜の方向へ」で終わる15〜40文字程度の文</li>
+</ul>
+
+<h3>2.3 生成手段</h3>
+<p><code>scripts/generate_momentum.py</code> により Claude API で全221件を生成。
+<code>scripts/merge_momentum.py</code> で本体に統合。</p>
+
+<h3>2.4 逓増パターンとの関係</h3>
+<p>momentumの連鎖を時系列で追うことで、逓増（increasing returns）パターンが浮かび上がる。</p>
+<table>
+  <tr><th>類型</th><th>特徴</th><th>例</th></tr>
+  <tr><td>単線型</td><td>方向が一貫、各イベントが同一方向のmomentumを持つ</td><td>律令国家建設（593→701、約100年）</td></tr>
+  <tr><td>漸進型</td><td>方向は一貫だが、当事者にその自覚がない</td><td>中央統治→地方自律（939→1192、約250年）</td></tr>
+  <tr><td>収斂型</td><td>複数の独立したmomentumが合流して1つの帰結に至る</td><td>元禄文化（1590→1688、約100年）</td></tr>
+</table>
+
+<h2>3. F体系の拡張</h2>
+
+<h3>3.1 Fの再定義</h3>
+<table>
+  <tr><th>旧定義</th><th>新定義</th></tr>
+  <tr><td>Fluctuation（揺らぎ）= 不確実性・危機</td><td>F（起動因）= このイベントがこのタイミングで起きた理由</td></tr>
+</table>
+<div class="note">
+  Fの頭文字の由来（Fluctuation）と実際のカテゴリ範囲にずれが生じるが、B/F/Eという記号体系として「第2層」の位置づけで機能させる。
+</div>
+
+<h3>3.2 F-PRGカテゴリの新設</h3>
+<table>
+  <tr><th>カテゴリ</th><th>性質</th><th>例</th></tr>
+  <tr><td><code>F-UNC</code>（既存）</td><td>不確実性・危機型</td><td>王位空位、災害発生、外圧急変</td></tr>
+  <tr><td><code>F-PRG</code>（新規）</td><td>上位プログラムの実行条件成立</td><td>大化改新の税制が全国施行</td></tr>
+</table>
+<p>F-PRGは「上位のイベントのEが下位のイベントのFとして作用する」構造を記述する。</p>
+
+<h3>3.3 v3.3での適用</h3>
+<p>sortKey 647（租庸調により農民負担が急増した）のF要素を <code>F-UNC-00</code>（未設定）から <code>F-PRG-01</code> に変更。</p>
+<div class="note">
+  taxonomy_v3_0_bfe.json にはF-PRGを今回追加しない（データ内のcategory文字列のみ変更）。taxonomyの更新は次回以降のF体系全体再設計時に行う。
+</div>
+
+<h2>4. 視点ルール</h2>
+
+<h3>4.1 基本方針（案2）</h3>
+<table>
+  <tr><th>層</th><th>視点</th><th>理由</th></tr>
+  <tr><td><code>B</code>（背景）</td><td>客観記述</td><td>構造的背景は特定の誰かの視点に依存しない。Bのパターンマッチングを維持する</td></tr>
+  <tr><td><code>F</code>（起動因）</td><td>実行者視点</td><td>「この人がこのタイミングで動いた理由」は実行者視点が自然</td></tr>
+  <tr><td><code>E</code>（解放）</td><td>実行者視点</td><td>「この人が放出したエネルギーの方向」は実行者視点が自然</td></tr>
+</table>
+
+<h3>4.2 v3.3での適用</h3>
+<p>B不足6件の書き直しで案2を適用。該当イベントのF/Eラベルを実行者視点に更新。</p>
+
+<h2>5. B要素の補充（6件）</h2>
+
+<h3>5.1 変更一覧</h3>
+<table>
+  <tr><th>sortKey</th><th>eventTitle</th><th>実行者</th><th>旧B数</th><th>新B数</th></tr>
+  <tr><td>507</td><td>継体天皇が即位した</td><td>大伴金村ら有力豪族</td><td>1</td><td>3</td></tr>
+  <tr><td>592</td><td>崇峻天皇が暗殺された</td><td>蘇我馬子</td><td>1</td><td>3</td></tr>
+  <tr><td>593</td><td>推古天皇が即位した</td><td>蘇我馬子</td><td>0</td><td>3</td></tr>
+  <tr><td>645</td><td>乙巳の変が起き大化改新が始まった</td><td>中大兄皇子・中臣鎌足</td><td>0</td><td>3</td></tr>
+  <tr><td>647</td><td>租庸調により農民負担が急増した</td><td>律令国家（制度的帰結）</td><td>1</td><td>3</td></tr>
+  <tr><td>1069</td><td>延久の荘園整理令を出した</td><td>後三条天皇</td><td>1</td><td>3</td></tr>
+</table>
+
+<h3>5.2 追加B要素の詳細</h3>
+
+<h4>507: 継体天皇が即位した</h4>
+<table>
+  <tr><th>elementId</th><th>カテゴリ</th><th>label</th></tr>
+  <tr><td>EL_EV_p0507_01_7</td><td>B-LEG-02</td><td>武烈天皇が後嗣なく崩御し王統が断絶状態にある</td></tr>
+  <tr><td>EL_EV_p0507_01_2</td><td>B-PWR-02</td><td>大伴金村・物部麁鹿火ら有力豪族が擁立の主導権を握っている（既存、更新）</td></tr>
+  <tr><td>EL_EV_p0507_01_8</td><td>B-LEG-01</td><td>応神天皇五世孫という血統的根拠と、越前・近江・尾張の豪族基盤を持つ候補が存在する</td></tr>
+</table>
+
+<h4>592: 崇峻天皇が暗殺された</h4>
+<table>
+  <tr><th>elementId</th><th>カテゴリ</th><th>label</th></tr>
+  <tr><td>EL_EV_p0592_01_7</td><td>B-PWR-04</td><td>蘇我馬子が大臣として実権を掌握し天皇は名目的地位にある</td></tr>
+  <tr><td>EL_EV_p0592_01_1</td><td>B-PWR-02</td><td>崇峻天皇が馬子から距離を置き独自の軍事行動を進めている（既存、更新）</td></tr>
+  <tr><td>EL_EV_p0592_01_8</td><td>B-RIV-01</td><td>后妃問題で蘇我氏が外戚の地位を確保できず、天皇との利害が対立している</td></tr>
+</table>
+
+<h4>593: 推古天皇が即位した</h4>
+<table>
+  <tr><th>elementId</th><th>カテゴリ</th><th>label</th></tr>
+  <tr><td>EL_EV_p0593_01_7</td><td>B-PWR-04</td><td>蘇我馬子が大臣として朝廷の実権を握っている</td></tr>
+  <tr><td>EL_EV_p0593_01_8</td><td>B-LEG-02</td><td>崇峻暗殺後、有力な男性皇位候補が不在または馬子にとって不都合である</td></tr>
+  <tr><td>EL_EV_p0593_01_9</td><td>B-LEG-01</td><td>推古は欽明天皇の皇女かつ蘇我氏を母系に持ち、馬子との協調が可能な血統にある</td></tr>
+</table>
+
+<h4>645: 乙巳の変が起き大化改新が始まった</h4>
+<table>
+  <tr><th>elementId</th><th>カテゴリ</th><th>label</th></tr>
+  <tr><td>EL_EV_p0645_01_7</td><td>B-PWR-04</td><td>蘇我蝦夷・入鹿が大臣として専権し、天皇の統治権が形骸化している</td></tr>
+  <tr><td>EL_EV_p0645_01_8</td><td>B-EXT-03</td><td>唐の律令体制が東アジアに影響を拡大し、中央集権モデルが認知されている</td></tr>
+  <tr><td>EL_EV_p0645_01_9</td><td>B-RIV-01</td><td>中大兄皇子と中臣鎌足が蘇我氏排除の連携を形成している</td></tr>
+</table>
+
+<h4>647: 租庸調により農民負担が急増した</h4>
+<table>
+  <tr><th>elementId</th><th>カテゴリ</th><th>label</th></tr>
+  <tr><td>EL_EV_p0647_01_7</td><td>B-INS-02</td><td>大化改新により租庸調・班田収授が制度化され全国一律の徴税が始まっている</td></tr>
+  <tr><td>EL_EV_p0647_01_8</td><td>B-GEO-04</td><td>庸調の都への運搬（運脚）は自費・徒歩で、遠国ほど負担が大きい</td></tr>
+  <tr><td>EL_EV_p0647_01_9</td><td>B-MIL-03</td><td>防人制度により成年男子が長期間動員され、農村の労働力が奪われている</td></tr>
+</table>
+<div class="note">旧B要素（EL_EV_p0647_01_1）は除去し、上記3件で置換。F要素もF-UNC-00→F-PRG-01に変更。</div>
+
+<h4>1069: 延久の荘園整理令を出した</h4>
+<table>
+  <tr><th>elementId</th><th>カテゴリ</th><th>label</th></tr>
+  <tr><td>EL_EV_p1069_01_7</td><td>B-INS-02</td><td>荘園の乱立が公田を侵食し、国家の租税基盤が縮小している</td></tr>
+  <tr><td>EL_EV_p1069_01_8</td><td>B-PWR-04</td><td>後三条天皇は藤原氏の外戚関係を持たず、摂関家の意向に制約されない</td></tr>
+  <tr><td>EL_EV_p1069_01_9</td><td>B-INS-04</td><td>従来の荘園整理は国司主体だったが、国司と有力貴族の癒着で実効性がなかった</td></tr>
+</table>
+<div class="note">旧B要素（EL_EV_p1069_01_1）は除去し、上記3件で置換。</div>
+
+<h2>6. F/Eラベルの更新（実行者視点）</h2>
+<table>
+  <tr><th>elementId</th><th>旧label</th><th>新label</th></tr>
+  <tr><td>EL_EV_p0592_01_2 (F)</td><td>天皇が馬子への殺意を周囲に漏らし緊張が高まった</td><td>馬子が天皇の「猪の首」発言から自身への殺意を察知した</td></tr>
+  <tr><td>EL_EV_p0592_01_5 (E)</td><td>権力者の暴力的排除</td><td>先制的な権力者排除（東漢駒に命じて天皇を暗殺）</td></tr>
+  <tr><td>EL_EV_p0645_01_1 (F)</td><td>蘇我蝦夷・入鹿父子が大臣として専横し天皇の統治権が形骸化していた</td><td>蘇我入鹿が山背大兄王一族を滅ぼし、専横が皇位継承にまで及んだ</td></tr>
+  <tr><td>EL_EV_p1069_01_2 (F)</td><td>後三条天皇が記録荘園券契所を設置し審査体制を整えた</td><td>摂関家領が口頭の主張で違法荘園を諸国に出現させ国務が滞っているとの報告を受けた</td></tr>
+</table>
+
+<h2>7. バリデーションルール</h2>
+<ul>
+  <li>全221件のFWにB/F/Eが各1件以上存在すること</li>
+  <li>全221件にmomentumフィールドが存在すること（nullは許容）</li>
+  <li>B不足6件のB要素数が2件以上であること</li>
+  <li>sortKey 647のF要素カテゴリがF-PRGであること</li>
+  <li>elementIdはFW内で一意であること</li>
+  <li>lanes内の全elementIdがelements配列に存在すること</li>
+</ul>
+
+<h2>8. データファイル</h2>
+<table>
+  <tr><th>ファイル</th><th>用途</th></tr>
+  <tr><td><code>data/framework_output_v3_3.json</code></td><td>v3.3メインデータ（221件）</td></tr>
+  <tr><td><code>data/momentum_v3_3.json</code></td><td>momentum中間ファイル（generate_momentum.py出力）</td></tr>
+</table>
+
+<h2>9. スクリプト</h2>
+<table>
+  <tr><th>スクリプト</th><th>用途</th></tr>
+  <tr><td><code>scripts/migrate_v3_3.py</code></td><td>v3.2→v3.3マイグレーション（B追加、F/E更新、momentum:null追加）</td></tr>
+  <tr><td><code>scripts/generate_momentum.py</code></td><td>Claude APIで全221件のmomentumを生成</td></tr>
+  <tr><td><code>scripts/merge_momentum.py</code></td><td>momentum中間ファイルをメインデータに統合</td></tr>
+</table>
+
+<h2>10. アプリ変更</h2>
+<ul>
+  <li><code>src/app.js</code>: データファイル参照を <code>framework_output_v3_2_erev.json</code> → <code>framework_output_v3_3.json</code> に変更</li>
+  <li>UIへのmomentum表示は今回見送り（データ構造の確認が目的）</li>
+</ul>
+
+<h2>11. version履歴</h2>
+<table>
+  <tr><th>version</th><th>変更内容</th><th>スクリプト</th></tr>
+  <tr><td>3.0</td><td>C/P/R→B/F/E構造変換</td><td>convert_v22_to_v30.py</td></tr>
+  <tr><td>3.1</td><td>accumulation（B要素間蓄積関係）追加</td><td>generate_accumulation.py + merge_accumulation.py</td></tr>
+  <tr><td>3.2</td><td>E要素ラベル抽象化 + legacyResult保管</td><td>revise_emancipation.py + merge_emancipation.py</td></tr>
+  <tr><td>3.3</td><td>momentum導入、B補充6件、F-PRG新設、視点ルール</td><td>migrate_v3_3.py + generate_momentum.py + merge_momentum.py</td></tr>
+  <tr><td>3.4</td><td>F体系カテゴリ再設計（F-CNF/F-CTD/F-ACT/F-EXT/F-PRG/F-VAC追加、181件再分類+7件VAC統合）</td><td>classify_f_categories.py</td></tr>
+</table>
+
+<h2>12. v3.4 差分: F体系カテゴリ再設計</h2>
+<p class="ver">実装確定版 — 2026-02-25</p>
+
+<h3>12.1 背景</h3>
+<p>v3.3でFラベルは補充済みだが、221件中208件がF-UNC-00（未分類）のまま残っていた。
+分析の結果、<strong>カテゴリ不足が主原因</strong>と判明（<code>doc/notes_v3_4_f_category.html</code>に記録）。</p>
+
+<h3>12.2 taxonomyへの追加カテゴリ</h3>
+<table>
+  <tr><th>コード</th><th>名称</th><th>サブカテゴリ</th></tr>
+  <tr><td>F-CNF</td><td>利害対立（Conflict）</td><td>F-CNF-01: 勢力間対立 / F-CNF-02: 武力衝突化</td></tr>
+  <tr><td>F-CTD</td><td>制度的矛盾（Contradiction）</td><td>F-CTD-01: 制度機能不全 / F-CTD-02: 財政・治安問題</td></tr>
+  <tr><td>F-ACT</td><td>具体的行動（Action）</td><td>F-ACT-01: 人物の決断・行動 / F-ACT-02: 死去・崩御</td></tr>
+  <tr><td>F-EXT</td><td>外圧（External）</td><td>F-EXT-01: 対外圧力</td></tr>
+  <tr><td>F-PRG</td><td>上位プログラム（Programme）</td><td>F-PRG-01: 上位FW条件成立（v3.3で導入済み、taxonomyに未登録だったものを登録）</td></tr>
+  <tr><td>F-VAC</td><td>権力空位（Vacancy）</td><td>F-VAC-01: 王位空位・権力空白（旧F-UNC-01/F-UNC-05を統合、7件）</td></tr>
+</table>
+<p>F-UNC（揺らぎ）は F-UNC-00（未設定）/ F-UNC-02（災害発生）/ F-UNC-04（経済不安）を維持。旧F-UNC-01・F-UNC-05はF-VAC-01へ移行、旧F-UNC-03（使用0件）は削除。</p>
+
+<h3>12.3 再分類結果</h3>
+<table>
+  <tr><th>分類先</th><th>件数</th></tr>
+  <tr><td>F-ACT-01（人物の決断・行動）</td><td>50</td></tr>
+  <tr><td>F-CNF-01（勢力間対立）</td><td>39</td></tr>
+  <tr><td>F-CTD-01（制度機能不全）</td><td>27</td></tr>
+  <tr><td>F-CTD-02（財政・治安問題）</td><td>25</td></tr>
+  <tr><td>F-CNF-02（武力衝突化）</td><td>18</td></tr>
+  <tr><td>F-EXT-01（対外圧力）</td><td>15</td></tr>
+  <tr><td>F-ACT-02（死去・崩御）</td><td>7</td></tr>
+  <tr><td>F-UNC-00（未分類のまま）</td><td>27</td></tr>
+</table>
+<p>加えて旧F-UNC-01（4件）・F-UNC-05（3件）はF-VAC-01へ移行（計7件）。F-PRG-01（1件）は変更なし。</p>
+
+<h3>12.4 設計判断</h3>
+<ul>
+  <li>分類困難な27件はF-UNC-00のまま残す（段階的に改善）。</li>
+  <li>F-UNC-01（王位空位）+ F-UNC-05（権力空白）→ F-VAC-01に統合。</li>
+  <li>F-UNC-03（外圧急変）は使用0件のため taxonomy から削除。</li>
+  <li>taxonomyファイル名は <code>taxonomy_v3_0_bfe.json</code> のまま据え置き（version文字列のみ "3.4" に更新）。</li>
+</ul>
+
+<h3>12.5 UI対応</h3>
+<ul>
+  <li><code>src/render.js</code>: 変更不要。F-UNC-00以外のF要素は既存ロジックで黒字(#222)表示。</li>
+  <li><code>src/taxonomy.js</code>: <code>subCatName()</code>がtaxonomyから動的に名称解決するため、新カテゴリも自動対応。</li>
+  <li><code>src/styles.css</code>: 変更不要。<code>.is-unc00</code>クラスのグレー表示(#bbb)は分類済み要素には付与されない。</li>
+</ul>
+
+</main>
+</body>
+</html>

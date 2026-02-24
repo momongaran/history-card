@@ -1,8 +1,9 @@
 {
-  "version": "3.0",
+  "version": "3.4",
   "sourceSpecification": "myHistory Framework Specification v1.0",
   "notes": [
     "v3.0 BFE移行: C→B, P削除, R→E。",
+    "v3.4 F層カテゴリ再設計: F-CNF/F-CTD/F-ACT/F-EXT/F-PRG追加。",
     "taxonomy.json はカテゴリ/サブカテゴリ表示名称の唯一の正本。"
   ],
   "layers": {
@@ -122,16 +123,58 @@
     "F": {
       "displayName": "Fluctuation",
       "categories": {
+        "F-CNF": {
+          "shortCode": "CNF",
+          "name": "利害対立",
+          "subCategories": {
+            "F-CNF-01": "勢力間対立",
+            "F-CNF-02": "武力衝突化"
+          }
+        },
+        "F-CTD": {
+          "shortCode": "CTD",
+          "name": "制度的矛盾",
+          "subCategories": {
+            "F-CTD-01": "制度機能不全",
+            "F-CTD-02": "財政・治安問題"
+          }
+        },
+        "F-ACT": {
+          "shortCode": "ACT",
+          "name": "具体的行動",
+          "subCategories": {
+            "F-ACT-01": "人物の決断・行動",
+            "F-ACT-02": "死去・崩御"
+          }
+        },
+        "F-EXT": {
+          "shortCode": "EXT",
+          "name": "外圧",
+          "subCategories": {
+            "F-EXT-01": "対外圧力"
+          }
+        },
+        "F-PRG": {
+          "shortCode": "PRG",
+          "name": "上位プログラム",
+          "subCategories": {
+            "F-PRG-01": "上位FW条件成立"
+          }
+        },
+        "F-VAC": {
+          "shortCode": "VAC",
+          "name": "権力空位",
+          "subCategories": {
+            "F-VAC-01": "王位空位・権力空白"
+          }
+        },
         "F-UNC": {
           "shortCode": "UNC",
           "name": "揺らぎ（危機・不確実性）",
           "subCategories": {
             "F-UNC-00": "（揺らぎ未設定）",
-            "F-UNC-01": "王位空位",
             "F-UNC-02": "災害発生",
-            "F-UNC-03": "外圧急変",
-            "F-UNC-04": "経済不安",
-            "F-UNC-05": "権力空白"
+            "F-UNC-04": "経済不安"
           }
         }
       }
