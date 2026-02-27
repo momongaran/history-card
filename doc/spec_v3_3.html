@@ -226,6 +226,7 @@ th { background:#fafafa; text-align:left; }
   <tr><td>3.2</td><td>E要素ラベル抽象化 + legacyResult保管</td><td>revise_emancipation.py + merge_emancipation.py</td></tr>
   <tr><td>3.3</td><td>momentum導入、B補充6件、F-PRG新設、視点ルール</td><td>migrate_v3_3.py + generate_momentum.py + merge_momentum.py</td></tr>
   <tr><td>3.4</td><td>F体系カテゴリ再設計（F-CNF/F-CTD/F-ACT/F-EXT/F-PRG/F-VAC追加、181件再分類+7件VAC統合）</td><td>classify_f_categories.py</td></tr>
+  <tr><td>3.5</td><td>F定義厳密化・parentFramework導入・origin導入・F-PRG廃止</td><td>—</td></tr>
 </table>
 
 <h2>12. v3.4 差分: F体系カテゴリ再設計</h2>
@@ -274,6 +275,153 @@ th { background:#fafafa; text-align:left; }
   <li><code>src/render.js</code>: 変更不要。F-UNC-00以外のF要素は既存ロジックで黒字(#222)表示。</li>
   <li><code>src/taxonomy.js</code>: <code>subCatName()</code>がtaxonomyから動的に名称解決するため、新カテゴリも自動対応。</li>
   <li><code>src/styles.css</code>: 変更不要。<code>.is-unc00</code>クラスのグレー表示(#bbb)は分類済み要素には付与されない。</li>
+</ul>
+
+<h2>13. v3.5 差分: F定義厳密化・parentFramework・origin・F-PRG廃止</h2>
+<p class="ver">実装確定版 — 2026-02-26</p>
+
+<h3>13.1 背景と理論的根拠</h3>
+<p>v3.4でF要素のカテゴリ体系は整備されたが、以下の問題が残っていた：</p>
+<ol>
+  <li><strong>F定義の曖昧さ</strong>: Fラベルの約54%がテンプレート文・B重複・E記述であり、「揺らぎ」の理論的定義が不明確だった。</li>
+  <li><strong>プログラム実行型イベントの扱い</strong>: 一部のイベント（~11件）はBに構造的エネルギーがなく、上位プログラムの実行段階に過ぎなかった。</li>
+  <li><strong>帰属的進化の未表現</strong>: E（解放）が後続イベントのB（背景）になる再帰的構造を表現する手段がなかった。</li>
+</ol>
+
+<h3>13.2 F（Fluctuation / 揺らぎ）の厳密な定義</h3>
+<div class="note">
+<p><strong>定義</strong>: Fとは、Bに内在する構造的勾配を顕在化させ、系を分岐状態へと押し込む具体的事象である。</p>
+<p><strong>3条件</strong>:</p>
+<ol>
+  <li><strong>具体的事象</strong>である（抽象的傾向ではない）</li>
+  <li><strong>分岐を引き起こす</strong>（Fなしには即座に同じ帰結に至らない）</li>
+  <li><strong>単独では構造を説明できない</strong>（Bなしには事象は吸収される）</li>
+</ol>
+<p>Fは原因ではない。結果でもない。背景でもない。Fは、分岐を現実化させる<strong>選択圧</strong>である。</p>
+</div>
+
+<h4>相転移モデルとの対応</h4>
+<table>
+  <tr><th>層</th><th>物理的対応</th><th>役割</th></tr>
+  <tr><td>B（Background）</td><td>潜在的秩序勾配（過冷却状態）</td><td>エネルギーを蓄積する構造的条件</td></tr>
+  <tr><td>F（Fluctuation）</td><td>分岐刺激（振動・核）</td><td>勾配を顕在化させる選択圧</td></tr>
+  <tr><td>E（Emancipation）</td><td>勾配解放（相転移）</td><td>構造変化の方向（momentum）</td></tr>
+</table>
+<p>重要: Fは「臨界点に押し上げる」のではない。臨界性を<strong>作る</strong>のはBである。Fは既に存在していた勾配を<strong>選択状態にする</strong>刺激である。</p>
+
+<h4>Bのエネルギー要件</h4>
+<p>Bは単なる条件の列挙ではなく、<strong>構造的勾配（潜在エネルギー）</strong>を含むべきである。
+エネルギー源の類型：</p>
+<ul>
+  <li><strong>構造的矛盾</strong>: 制度と実態の乖離、支配構造の不整合</li>
+  <li><strong>恐怖・危機感</strong>: 外圧への恐怖、植民地化の不安、体制崩壊の予感</li>
+  <li><strong>利害対立</strong>: 勢力間の緊張、資源配分の不均衡</li>
+  <li><strong>蓄積された圧力</strong>: 財政逼迫、社会不安の蓄積</li>
+</ul>
+<p>逆算的記述（結果を知った上で後付けした圧力表現）は避ける。
+当時の人間が実際に認識・体感していた構造的圧力を記述する。</p>
+
+<h3>13.3 parentFramework フィールド</h3>
+<p>221件中約11件は独立した相転移ではなく、上位フレームワークのEの展開過程（実行ユニット）である。
+これらはBに固有の構造的エネルギーを持たず、上位FWからエネルギーを継承する。</p>
+
+<h4>データ構造</h4>
+<pre>{
+  "parentFramework": {
+    "eventId": "EV_p0701_01",
+    "relationship": "execution_unit"
+  }
+}</pre>
+
+<p><code>parentFramework</code>はframeworkViewの直下に配置する。独立した構造型イベントでは省略（null）。</p>
+
+<h4>relationship の値</h4>
+<table>
+  <tr><th>値</th><th>意味</th></tr>
+  <tr><td><code>execution_unit</code></td><td>上位FWのEの実行段階。Bのエネルギーは親から継承。</td></tr>
+</table>
+
+<h4>階層性</h4>
+<p>parentFrameworkは再帰的である。子が孫の親になれる。チェーンを辿ることで任意深度の階層が復元できる。</p>
+<pre>
+天武・持統朝整備 (672)
+  ├→ 大宝律令 (701)     parentFramework → 672
+  │   ├→ 和同開珎 (708)  parentFramework → 701
+  │   ├→ 平城京 (710)    parentFramework → 701
+  │   ├→ 古事記 (712)    parentFramework → 701
+  │   └→ 日本書紀 (720)  parentFramework → 701
+</pre>
+
+<h4>実行ユニット候補（v3.5時点）</h4>
+<table>
+  <tr><th>eventId</th><th>sortKey</th><th>タイトル</th><th>親eventId</th></tr>
+  <tr><td>EV_p0694_01</td><td>694</td><td>藤原京へ遷都した</td><td>EV_p0672_01</td></tr>
+  <tr><td>EV_p0708_01</td><td>708</td><td>和同開珎が鋳造された</td><td>EV_p0701_01</td></tr>
+  <tr><td>EV_p0710_01</td><td>710</td><td>平城京へ遷都した</td><td>EV_p0701_01</td></tr>
+  <tr><td>EV_p0712_01</td><td>712</td><td>『古事記』が成立した</td><td>EV_p0701_01</td></tr>
+  <tr><td>EV_p0720_01</td><td>720</td><td>『日本書紀』が成立した</td><td>EV_p0701_01</td></tr>
+  <tr><td>EV_p0752_01</td><td>752</td><td>東大寺大仏の開眼供養</td><td>EV_p0741_01</td></tr>
+  <tr><td>EV_p0967_01</td><td>967</td><td>延喜式が施行された</td><td>—（親が221件に不在）</td></tr>
+  <tr><td>EV_p1685_01</td><td>1685</td><td>生類憐みの令が強化された</td><td>—（親が221件に不在）</td></tr>
+  <tr><td>EV_p1720_01</td><td>1720</td><td>洋書輸入の禁を緩和した</td><td>EV_p1716_01</td></tr>
+  <tr><td>EV_p1889_01</td><td>1889</td><td>大日本帝国憲法が発布された</td><td>EV_p1881_01</td></tr>
+  <tr><td>EV_p0647_01</td><td>647</td><td>租庸調により農民負担急増</td><td>EV_p0645_01</td></tr>
+</table>
+<p>親が221件中に存在しない場合（延喜式、生類憐みの令）、parentFrameworkはnullのままとし、将来のイベント追加で対応する。</p>
+
+<h3>13.4 origin フィールド（帰属的進化）</h3>
+<p>B要素が先行イベントのEから再帰的に生成された場合、その出自を追跡する。
+これは「帰属的進化」（E→Bの再帰的構造）の最小表現である。</p>
+
+<h4>データ構造</h4>
+<pre>{
+  "elementId": "EL_EV_p0647_01_1",
+  "layer": "B",
+  "category": "B-INS",
+  "subCategory": "B-INS-02",
+  "label": "大化改新により租庸調・班田収授が制度化され全国一律の徴税が始まっている",
+  "origin": {
+    "sourceEventId": "EV_p0645_01",
+    "sourceLayer": "E"
+  }
+}</pre>
+
+<p><code>origin</code>はB要素のオプショナルフィールド。
+存在しない場合は省略（従来互換）。全B要素に必須ではなく、E→B帰属が明確な場合にのみ記述する。</p>
+
+<h3>13.5 F-PRG カテゴリの廃止</h3>
+<p>v3.4で導入したF-PRG（上位プログラム）は廃止する。</p>
+<h4>理由</h4>
+<ol>
+  <li>適用1件のみ（EV_p0647_01）</li>
+  <li>parentFrameworkフィールドの導入により、「上位プログラムの実行」はデータ構造で表現可能になった</li>
+  <li>F-PRGの1件はF-ACT-01（具体的行動: 全国施行の開始）に再分類可能</li>
+  <li>F定義の純粋性が保たれる: Fは常に「選択圧」であり、プログラムへの従属物ではない</li>
+</ol>
+<h4>taxonomy変更</h4>
+<p>F-PRGカテゴリおよびF-PRG-01サブカテゴリをtaxonomyから削除する。</p>
+<h4>データ移行</h4>
+<p>EV_p0647_01のF要素: F-PRG/F-PRG-01 → F-ACT/F-ACT-01 に変更。</p>
+
+<h3>13.6 重複イベントの識別</h3>
+<p>データ分析で6組の重複ペアが検出された。v3.5では識別のみ行い、統合は将来バージョンで対応する。</p>
+<table>
+  <tr><th>sortKey</th><th>eventId A</th><th>eventId B</th><th>内容</th></tr>
+  <tr><td>743</td><td>EV_p0743_01</td><td>EV_p0743_02</td><td>墾田永年私財法</td></tr>
+  <tr><td>1639</td><td>EV_p1639_01</td><td>EV_p1639_02</td><td>鎖国体制確立</td></tr>
+  <tr><td>1716</td><td>EV_p1716_01</td><td>EV_p1716_02</td><td>享保の改革</td></tr>
+  <tr><td>1787</td><td>EV_p1787_01</td><td>EV_p1787_02</td><td>寛政の改革</td></tr>
+  <tr><td>1841</td><td>EV_p1841_01</td><td>EV_p1841_02</td><td>天保の改革</td></tr>
+  <tr><td>1951</td><td>EV_p1951_01</td><td>EV_p1951_02</td><td>SF条約</td></tr>
+</table>
+
+<h3>13.7 設計原則のまとめ</h3>
+<ul>
+  <li><strong>Bはエネルギーを持つ</strong>: 構造的勾配（矛盾・恐怖・対立・圧力）を含む。単なる条件の列挙ではない。</li>
+  <li><strong>Fは選択圧</strong>: 原因でも結果でも背景でもない。分岐を現実化させる刺激。</li>
+  <li><strong>実行ユニットは親から継承</strong>: Bに固有のエネルギーがないイベントは parentFramework で親を参照。</li>
+  <li><strong>帰属的進化はoriginで追跡</strong>: E→Bの再帰的構造を最小限のフィールドで表現。</li>
+  <li><strong>逆算的記述の禁止</strong>: Bの圧力は当時の人間が認識していた構造的条件として記述する。</li>
 </ul>
 
 </main>

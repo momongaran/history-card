@@ -1,9 +1,11 @@
 {
-  "version": "3.4",
+  "version": "3.7",
   "sourceSpecification": "myHistory Framework Specification v1.0",
   "notes": [
     "v3.0 BFE移行: C→B, P削除, R→E。",
     "v3.4 F層カテゴリ再設計: F-CNF/F-CTD/F-ACT/F-EXT/F-PRG追加。",
+    "v3.5 F-PRG廃止（parentFrameworkで代替）。F定義厳密化。",
+    "v3.7 E層サブカテゴリ再設計: E-WAR 6分類、E-POW 5分類。フレーム指紋化。",
     "taxonomy.json はカテゴリ/サブカテゴリ表示名称の唯一の正本。"
   ],
   "layers": {
@@ -154,13 +156,6 @@
             "F-EXT-01": "対外圧力"
           }
         },
-        "F-PRG": {
-          "shortCode": "PRG",
-          "name": "上位プログラム",
-          "subCategories": {
-            "F-PRG-01": "上位FW条件成立"
-          }
-        },
         "F-VAC": {
           "shortCode": "VAC",
           "name": "権力空位",
@@ -186,10 +181,11 @@
           "shortCode": "POW",
           "name": "権力再編型",
           "subCategories": {
-            "E-POW-01": "支配主体交代",
+            "E-POW-01": "皇位継承・即位",
             "E-POW-02": "権力集中化",
-            "E-POW-03": "権力分散化",
-            "E-POW-04": "実権移動"
+            "E-POW-03": "権力者排除・失脚",
+            "E-POW-04": "実権掌握・就任",
+            "E-POW-05": "権力空白・動揺"
           }
         },
         "E-REG": {
@@ -216,10 +212,12 @@
           "shortCode": "WAR",
           "name": "武力衝突型",
           "subCategories": {
-            "E-WAR-01": "内戦勃発",
-            "E-WAR-02": "対外戦争",
-            "E-WAR-03": "長期紛争化",
-            "E-WAR-04": "武力均衡状態"
+            "E-WAR-01": "内戦・全国規模戦役",
+            "E-WAR-02": "地方反乱・武力蜂起",
+            "E-WAR-03": "決戦・会戦",
+            "E-WAR-04": "対外軍事衝突",
+            "E-WAR-05": "宗教・思想弾圧",
+            "E-WAR-06": "宮廷政変・クーデター"
           }
         },
         "E-ECO": {
