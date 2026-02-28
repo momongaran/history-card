@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>myHistory 仕様 v3.3（momentum導入・B補充・F-PRG新設・視点ルール）</title>
+<title>myHistory 仕様 v3.8（統合版）</title>
 <style>
 :root { --fg:#111; --muted:#666; --line:#ddd; --bg:#fff; --code:#f6f6f6; }
 body { font-family: system-ui, -apple-system, Segoe UI, Roboto, "Hiragino Sans", "Noto Sans JP", sans-serif;
@@ -25,7 +25,7 @@ th { background:#fafafa; text-align:left; }
 </head>
 <body>
 <main>
-<h1>myHistory 仕様 v3.3（momentum導入・B補充・F-PRG新設・視点ルール）</h1>
+<h1>myHistory 仕様 v3.8（統合版）</h1>
 <p class="ver">実装確定版 — 2026-02-24</p>
 
 <h2>1. 概要</h2>
@@ -227,6 +227,7 @@ th { background:#fafafa; text-align:left; }
   <tr><td>3.3</td><td>momentum導入、B補充6件、F-PRG新設、視点ルール</td><td>migrate_v3_3.py + generate_momentum.py + merge_momentum.py</td></tr>
   <tr><td>3.4</td><td>F体系カテゴリ再設計（F-CNF/F-CTD/F-ACT/F-EXT/F-PRG/F-VAC追加、181件再分類+7件VAC統合）</td><td>classify_f_categories.py</td></tr>
   <tr><td>3.5</td><td>F定義厳密化・parentFramework導入・origin導入・F-PRG廃止</td><td>—</td></tr>
+  <tr><td>3.6</td><td>F偶発事象型OR追加・B土台型OR追加・B/F/Eラベル文体基準</td><td>—</td></tr>
 </table>
 
 <h2>12. v3.4 差分: F体系カテゴリ再設計</h2>
@@ -422,6 +423,210 @@ th { background:#fafafa; text-align:left; }
   <li><strong>実行ユニットは親から継承</strong>: Bに固有のエネルギーがないイベントは parentFramework で親を参照。</li>
   <li><strong>帰属的進化はoriginで追跡</strong>: E→Bの再帰的構造を最小限のフィールドで表現。</li>
   <li><strong>逆算的記述の禁止</strong>: Bの圧力は当時の人間が認識していた構造的条件として記述する。</li>
+</ul>
+
+<h2>14. v3.6 差分: B/F定義拡張・文体基準</h2>
+<p class="ver">実装確定版 — 2026-02-28</p>
+
+<h3>14.1 背景</h3>
+<p>v3.5でB/F/Eの定義・視点ルールは確立されたが、以下が未規定だった：</p>
+<ol>
+  <li><strong>F定義の偶発事象型</strong>: 災害・崩御など意図的主体を持たない事象の視点ルールが未定義。</li>
+  <li><strong>B定義の土台型</strong>: エネルギーを持たない構造的前提（土台型B）の位置づけが未定義。</li>
+  <li><strong>ラベル文体基準</strong>: B/F/Eの <code>label</code> フィールドにどの文体を使うかが暗黙的な慣行に留まり、明文化されていなかった。</li>
+</ol>
+<p>本差分でこれら3点を仕様として確定する。詳細なリファレンスは <code>doc/bfe_reference.md</code> を参照。</p>
+
+<h3>14.2 F定義の拡張: 偶発事象型（OR条件追加）</h3>
+<p>v3.5のF定義（13.2）を以下のように拡張する。3条件は変更なし。</p>
+<div class="note">
+<p><strong>定義（拡張版）</strong>: Fとは、以下のいずれか（OR）に該当する具体的事象である：</p>
+<ul>
+  <li><strong>A) 意図的行動型</strong>: ある主体が意図を持って行った行動。<strong>実行者視点</strong>で記述する。</li>
+  <li><strong>B) 偶発事象型</strong>: 意図的な主体を持たない事象（災害・崩御・外的衝撃など）。<strong>影響を受ける側の視点</strong>で記述する。</li>
+</ul>
+</div>
+<h4>偶発事象型に該当するカテゴリ</h4>
+<table>
+  <tr><th>カテゴリ</th><th>該当サブカテゴリ</th><th>例</th></tr>
+  <tr><td>F-UNC</td><td>F-UNC-02（災害発生）、F-UNC-04（経済不安）</td><td>浅間山大噴火、ウンカ大発生、大地震</td></tr>
+  <tr><td>F-VAC</td><td>F-VAC-01（権力空白）</td><td>崇峻暗殺後の政治的空白</td></tr>
+  <tr><td>F-ACT</td><td>F-ACT-02（死去・崩御）</td><td>武烈天皇崩御</td></tr>
+  <tr><td>F-EXT</td><td>F-EXT-01の一部</td><td>外的衝撃（黒船来航等は文脈による）</td></tr>
+</table>
+<div class="note">型の分類はカテゴリで一意に決まるのではなく、個別の事象内容で判断する。</div>
+
+<h3>14.3 B定義の拡張: 土台型（OR条件追加）</h3>
+<p>v3.5のBのエネルギー要件（13.2）を以下のように拡張する。</p>
+<div class="note">
+<p><strong>定義（拡張版）</strong>: Bとは、イベント発生時に存在していた構造的条件であり、以下のいずれか（OR）：</p>
+<ul>
+  <li><strong>エネルギー型</strong>（基本形）: 矛盾・恐怖・対立・圧力といった構造的勾配を持つ条件。</li>
+  <li><strong>土台型</strong>: それ自体はエネルギーを持たないが、エネルギー型Bが生じる前提となる構造的事実。<code>origin</code> フィールドを持つ場合にのみ使用する。</li>
+</ul>
+</div>
+<h4>土台型の使用条件</h4>
+<ul>
+  <li>土台型Bは、対応するエネルギー型Bが同一イベント内に存在する場合にのみ許容される。</li>
+  <li>土台型Bは <code>origin</code> フィールド（先行イベントのEからの帰属）を持つことが想定される。</li>
+  <li>すべてのBが土台型であるイベントは許容されない（最低1つはエネルギー型が必要）。</li>
+</ul>
+
+<h3>14.4 ラベル文体基準</h3>
+<p>B/F/E各層の <code>label</code> フィールドに使用する文体を以下のとおり規定する。</p>
+<table>
+  <tr><th>層</th><th>文体</th><th>文末パターン</th><th>理由</th></tr>
+  <tr><td><code>B</code></td><td>状態文</td><td>「〜している」「〜にある」「〜が進んでいる」</td><td>イベント発生時に既に存在していた持続的条件であることを示す。<strong>現在形を正とし、過去形（「〜していた」「〜にあった」等）は不可。</strong></td></tr>
+  <tr><td><code>F</code></td><td>事象文</td><td>「〜した」「〜が発生した」「〜を察知した」</td><td>ある時点で起きた具体的な出来事（分岐点）であることを示す</td></tr>
+  <tr><td><code>E</code></td><td>抽象名詞句（体言止め）</td><td>「〜の成立」「〜の排除」「〜の転換」</td><td>時代・人物を剥がした構造変化のパターン名として機能させる</td></tr>
+</table>
+<h4>不可パターン</h4>
+<table>
+  <tr><th>層</th><th>不可</th><th>例（誤）</th><th>修正例（正）</th></tr>
+  <tr><td>B</td><td>完了形の事象記述</td><td>「蘇我馬子が実権を掌握した」</td><td>「蘇我馬子が大臣として実権を掌握している」</td></tr>
+  <tr><td>B</td><td>過去形の状態記述</td><td>「〜していた」「〜にあった」「〜されていた」</td><td>「〜している」「〜にある」「〜されている」</td></tr>
+  <tr><td>F</td><td>状態・進行形の記述</td><td>「対立が深まっていた」</td><td>「馬子が天皇の殺意を察知した」</td></tr>
+  <tr><td>E</td><td>動詞終止の文</td><td>「権力者を排除した」</td><td>「先制的な権力者排除」</td></tr>
+</table>
+
+<h3>14.5 version履歴更新</h3>
+<table>
+  <tr><th>version</th><th>変更内容</th></tr>
+  <tr><td>3.6</td><td>F偶発事象型OR追加、B土台型OR追加、B/F/Eラベル文体基準</td></tr>
+</table>
+
+<h2>15. v3.8 差分: F/E分離原則・Fカテゴリ体系見直し</h2>
+<p class="ver">実装確定版 — 2026-02-28</p>
+
+<h3>15.1 背景</h3>
+<p>v3.5〜v3.6でF定義は厳密化されたが、FがEの内容（イベントのアウトカム）と重複するケースが多数発見された。
+分析の結果、確信度高34件・グレー13件の計47件でF/E重複が確認され、うちF-ACT-01（人物の決断・行動）に集中していた。</p>
+<p>原因は2つある：</p>
+<ol>
+  <li><strong>F/E分離の原則</strong>が明文化されておらず、Fにイベントのアウトカムを記述できてしまった。</li>
+  <li><strong>F-ACT-01の定義</strong>が広すぎ、トリガー（正しいF）もアウトカム（誤ったF）も同じコードに入る構造的問題があった。</li>
+</ol>
+<p>本差分でこれら2点を仕様として確定する。問題の詳細は <code>data/f_e_overlap_issues.json</code> を参照。</p>
+
+<h3>15.2 F/E分離原則</h3>
+<div class="note">
+<p><strong>原則</strong>: FはEの具体版であってはならない。Fが記述するのは「分岐を引き起こした刺激」であり、「分岐の結果」ではない。</p>
+</div>
+
+<h4>禁止パターン</h4>
+<table>
+  <tr><th>#</th><th>パターン</th><th>説明</th><th>例（誤）</th></tr>
+  <tr><td>1</td><td>アウトカム記述</td><td>Fがイベントのアウトカムそのものを記述</td><td>F:「小野妹子が派遣された」 / E:「対外対等関係の模索」<br>→ 派遣行為＝アウトカムそのもの</td></tr>
+  <tr><td>2</td><td>具体/抽象の重複</td><td>FとEが同じ事象の詳細版と要約版</td><td>F:「オランダ商館を平戸から強制移転させた」 / E:「対外窓口の限定」<br>→ 移転行為＝限定の実行そのもの</td></tr>
+  <tr><td>3</td><td>実行プロセス記述</td><td>FがEの実行プロセスを記述</td><td>F:「譲位し院庁を設けた」 / E:「退位君主による統治形態の確立」<br>→ 院庁設置＝院政開始の実行手順</td></tr>
+</table>
+
+<h4>判定基準</h4>
+<div class="note">
+<p><strong>テスト</strong>: 「Fを削除しても、Eが同じ内容を言っているか？」→ Yesなら重複。</p>
+<p>正しいFは、Eとは独立した情報を持つ。Fがなければ「なぜこの構造変化が起きたのか」が分からなくなる。</p>
+</div>
+
+<h4>正しいF/Eの関係</h4>
+<table>
+  <tr><th>関係</th><th>説明</th><th>例</th></tr>
+  <tr><td>トリガー→帰結</td><td>Fは引き金、Eは構造変化</td><td>F:「蘇我馬子が崇峻天皇の殺意を察知した」→ E:「先制的な権力者排除」</td></tr>
+  <tr><td>決断→波及</td><td>Fは主体の決断、Eはその構造的帰結</td><td>F:「桓武天皇が遷都を決断した」→ E:「統治拠点の移転」</td></tr>
+  <tr><td>外的刺激→適応</td><td>Fは外部からの衝撃、Eは体制の構造的応答</td><td>F:「黒船が来航した」→ E:「開国と体制動揺」</td></tr>
+</table>
+
+<h3>15.3 Fカテゴリ体系見直し: F-ACTの分割</h3>
+<p>F-ACT-01（人物の決断・行動）の定義が広すぎ、F/E重複の温床となっていたため、以下のように分割する。</p>
+
+<h4>変更前</h4>
+<table>
+  <tr><th>コード</th><th>名称</th></tr>
+  <tr><td>F-ACT-01</td><td>人物の決断・行動</td></tr>
+  <tr><td>F-ACT-02</td><td>死去・崩御</td></tr>
+</table>
+
+<h4>変更後</h4>
+<table>
+  <tr><th>コード</th><th>名称</th><th>説明</th></tr>
+  <tr><td>F-ACT-01</td><td>先行決断</td><td>イベントに先行する権力者・主体の決断。イベントの分岐点を作り出すトリガー行為。</td></tr>
+  <tr><td>F-ACT-02</td><td>死去・崩御</td><td>変更なし。</td></tr>
+</table>
+
+<div class="note">
+<p><strong>F-ACT-03（制度的着手）について</strong>: 既存の制度・計画に基づく具体的着手行為を表すコードとして検討されたが、F/E分離原則との整合性の検証が不十分なため<strong>保留</strong>とする。現時点ではtaxonomyに登録せず、Fテキスト修正の実績を踏まえて将来バージョンで再検討する。</p>
+</div>
+
+<div class="note">
+<p><strong>移行方針</strong>: 既存のF-ACT-01イベント（69件）は、F内容自体の書き換え（アウトカム→トリガーへの修正）と併せて再分類する。
+F/E重複が確認された件（<code>data/f_e_overlap_issues.json</code> 参照）は、Fテキストの修正が先行し、修正後のFの性質に応じてsubCategoryを再付与する。</p>
+</div>
+
+<div class="note">
+<p><strong>非F-ACTカテゴリの重複</strong>: F/E分離原則はF-ACTに限らず全Fカテゴリに適用される。F-CNF、F-CTD、F-EXT等でもF/E重複が確認されている（計6件）。これらは個別のFテキスト修正で対応する。</p>
+</div>
+
+<h3>15.4 version履歴更新</h3>
+<table>
+  <tr><th>version</th><th>変更内容</th></tr>
+  <tr><td>3.8</td><td>F/E分離原則の明文化、F-ACT-01→先行決断に改名、F-ACT-03保留、issueType追加、ファイル名v3.8統合、旧バージョンアーカイブ</td></tr>
+</table>
+
+<h3>15.5 移行ワークフロー</h3>
+<ol>
+  <li><code>data/f_e_overlap_issues.json</code> のhigh件（34件）を優先し、Fテキストをアウトカム記述→トリガー記述に修正する。</li>
+  <li>修正後のFの性質に応じて <code>subCategory</code> を再付与する（F-ACT-01: 先行決断、F-ACT-02: 死去・崩御、その他カテゴリ）。</li>
+  <li>gray件（13件）は個別判断。F定義の3条件（具体的事象・分岐を引き起こす・単独では構造を説明できない）に照らして修正要否を決定する。</li>
+  <li>必要に応じて F-ACT-03（制度的着手）等の新コードの導入を検討する。</li>
+</ol>
+
+<h2>16. 検討メモ: Bのエネルギー出自分類とEの粒度展開</h2>
+<p class="ver">未確定 — 2026-02-28 記録</p>
+<p>以下は仕様化の要否を含め未確定の検討事項である。将来の設計判断のために記録する。</p>
+
+<h3>16.1 Bのエネルギー出自による分類（命令形・プログラム形）</h3>
+<p>現行のBは「構造的勾配がある」と規定するのみで、その勾配がどのような力学で実行を迫るかを区別していない。
+少なくとも以下の3型が観察される：</p>
+<table>
+  <tr><th>型</th><th>力学</th><th>例</th></tr>
+  <tr><td><strong>蓄積型</strong>（現行の典型）</td><td>矛盾・圧力が臨界に達する</td><td>荘園制の矛盾、外圧への危機感</td></tr>
+  <tr><td><strong>命令型</strong></td><td>明示的ルール・権威・制度的義務・強制力が実行を迫る</td><td>律令の施行、幕府の法度、暗黙のルールや文化的規範</td></tr>
+  <tr><td><strong>プログラム型</strong></td><td>上位の計画・意思決定が下位の実行を駆動する</td><td>大化改新→租庸調、明治政府→廃藩置県</td></tr>
+</table>
+<p>命令型とプログラム型は重なる。プログラム型は「上位Eが命令型Bを生み出す」構造であり、
+プログラム型は命令型の特殊ケースと見なせる可能性がある。</p>
+
+<h4>現行仕様との関係</h4>
+<ul>
+  <li><strong>プログラム型</strong>: parentFramework（<code>execution_unit</code>）で構造的に表現済み。</li>
+  <li><strong>命令型</strong>: 未表現。<code>origin</code>フィールドの拡張（「このBの実行圧力はどこから来ているか」の記述）が候補。</li>
+  <li><strong>蓄積型</strong>: 現行のBエネルギー要件そのもの。originなし（自律的に蓄積された勾配）。</li>
+</ul>
+<p>14.3の土台型B（エネルギーを持たない構造的前提）の議論とも関連する。
+仕様化する場合は土台型との整合性を考慮する必要がある。</p>
+
+<h3>16.2 Eの粒度展開（展開形）</h3>
+<p>1つのEが粒度的に大きすぎる場合（例: 明治維新のE「近代国家体制への転換」は、
+廃藩置県・地租改正・徴兵令・学制など複数のサブ構造変化から構成される）、
+タスクの階層化のようにEをツリー状に展開する必要が生じうる。</p>
+
+<h4>現行仕様での対応状況</h4>
+<p>parentFrameworkの<code>execution_unit</code>は、実質的にこの展開を表現している：
+上位FWのEを複数の子FWに分割し、各子FWが独立したB/F/E構造を持つ。</p>
+<pre>
+明治維新 (1868)  ← 上位FW: E = 近代国家体制への転換
+  ├→ 廃藩置県 (1871)    parentFramework → 1868
+  ├→ 地租改正 (1873)    parentFramework → 1868
+  ├→ 徴兵令 (1873)      parentFramework → 1868
+  └→ 学制 (1872)        parentFramework → 1868
+</pre>
+<p>新しいrelationshipタイプ（例: <code>decomposition</code>）を追加する案もあるが、
+<code>execution_unit</code>との境界が曖昧になるリスクがある。
+現時点では既存のparentFrameworkで対応し、データの充実（子FWの追加）で解決する方針を維持する。</p>
+
+<h4>未解決の論点</h4>
+<ul>
+  <li>兄弟FW間の順序制約（「廃藩置県の後に地租改正が来る必然性」）はparentFrameworkだけでは表現できない。momentumの連鎖で部分的にカバーされるが、明示的な順序関係の表現が将来必要になる可能性がある。</li>
+  <li>E内部をFWを増やさずにサブステップ分解する需要があるかは、現行205件の運用を通じて観察を続ける。</li>
 </ul>
 
 </main>

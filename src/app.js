@@ -12,10 +12,10 @@ import { showStats } from './stats.js';
   // ── Data loading ──
   const cacheBust = `?t=${Date.now()}`;
   const [fwData, taxonomy, defaultCorrs, inheritData] = await Promise.all([
-    fetch(`../data/framework_output_v3_3.json${cacheBust}`).then(r => r.json()),
-    fetch(`../data/taxonomy_v3_0_bfe.json${cacheBust}`).then(r => r.json()),
-    fetch(`../data/default_correspondences_v3_0_bfe.json${cacheBust}`).then(r => r.json()).catch(() => ({})),
-    fetch(`../data/inheritance_links_v3_0_bfe.json${cacheBust}`).then(r => r.json()).catch(() => ({ inheritanceLinks: [] })),
+    fetch(`../data/framework_output_v3_8.json${cacheBust}`).then(r => r.json()),
+    fetch(`../data/taxonomy_v3_8.json${cacheBust}`).then(r => r.json()),
+    fetch(`../data/default_correspondences_v3_8.json${cacheBust}`).then(r => r.json()).catch(() => ({})),
+    fetch(`../data/inheritance_links_v3_8.json${cacheBust}`).then(r => r.json()).catch(() => ({ inheritanceLinks: [] })),
   ]);
 
   const events = fwData.events;

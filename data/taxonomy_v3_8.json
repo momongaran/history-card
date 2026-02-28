@@ -1,11 +1,12 @@
 {
-  "version": "3.7",
+  "version": "3.8",
   "sourceSpecification": "myHistory Framework Specification v1.0",
   "notes": [
     "v3.0 BFE移行: C→B, P削除, R→E。",
     "v3.4 F層カテゴリ再設計: F-CNF/F-CTD/F-ACT/F-EXT/F-PRG追加。",
     "v3.5 F-PRG廃止（parentFrameworkで代替）。F定義厳密化。",
     "v3.7 E層サブカテゴリ再設計: E-WAR 6分類、E-POW 5分類。フレーム指紋化。",
+    "v3.8 F-ACT-01→先行決断に改名。F-ACT-03は保留（taxonomyに未登録）。F/E分離原則。",
     "taxonomy.json はカテゴリ/サブカテゴリ表示名称の唯一の正本。"
   ],
   "layers": {
@@ -145,7 +146,7 @@
           "shortCode": "ACT",
           "name": "具体的行動",
           "subCategories": {
-            "F-ACT-01": "人物の決断・行動",
+            "F-ACT-01": "先行決断",
             "F-ACT-02": "死去・崩御"
           }
         },

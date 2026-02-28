@@ -2720,7 +2720,7 @@
           "layer": "B",
           "category": "B-PWR",
           "subCategory": "B-PWR-02",
-          "label": "大伴金村・物部麁鹿火ら大連・大臣が大王家の政務を実質的に主導していた",
+          "label": "大伴金村・物部麁鹿火ら大連・大臣が大王家の政務を実質的に主導している",
           "normalizedLabel": "有力豪族が擁立主導権を保持",
           "notes": []
         },
@@ -2738,7 +2738,7 @@
           "layer": "B",
           "category": "B-LEG",
           "subCategory": "B-LEG-02",
-          "label": "武烈天皇に子がなく、大王家の直系の男子が極めて少なかった",
+          "label": "武烈天皇に子がなく、大王家の直系の男子が極めて少ない",
           "normalizedLabel": "王統断絶状態",
           "notes": []
         },
@@ -2887,7 +2887,7 @@
           "layer": "B",
           "category": "B-PWR",
           "subCategory": "B-PWR-01",
-          "label": "継体天皇擁立の功績により大伴金村が大連として政務を掌握していた",
+          "label": "継体天皇擁立の功績により大伴金村が大連として政務を掌握している",
           "normalizedLabel": "継体擁立後の実務運営",
           "notes": []
         },
@@ -2896,7 +2896,7 @@
           "layer": "B",
           "category": "B-EXT",
           "subCategory": "B-EXT-02",
-          "label": "朝鮮半島の百済・新羅・伽耶間の緊張に対応が求められていた",
+          "label": "朝鮮半島の百済・新羅・伽耶間の緊張に対応が求められている",
           "normalizedLabel": "半島情勢への対応",
           "notes": []
         },
@@ -2905,7 +2905,7 @@
           "layer": "B",
           "category": "B-RES",
           "subCategory": "B-RES-02",
-          "label": "大伴氏が軍事的基盤と朝廷内の人脈を保持していた",
+          "label": "大伴氏が軍事的基盤と朝廷内の人脈を保持している",
           "normalizedLabel": "軍事動員",
           "notes": []
         },
@@ -3096,7 +3096,7 @@
           "layer": "B",
           "category": "B-RES",
           "subCategory": "B-RES-02",
-          "label": "ヤマト政権の伽耶支援のための軍事動員に筑紫が反発していた",
+          "label": "ヤマト政権の伽耶支援のための軍事動員に筑紫が反発している",
           "normalizedLabel": "中央の軍事動員方針や半島政策への不満",
           "notes": []
         },
@@ -3105,7 +3105,7 @@
           "layer": "B",
           "category": "B-MIL",
           "subCategory": "B-MIL-01",
-          "label": "筑紫国が大陸交易の拠点として独自の経済力と軍事力を保持していた",
+          "label": "筑紫国が大陸交易の拠点として独自の経済力と軍事力を保持している",
           "normalizedLabel": "九州の地域利害を背景",
           "notes": []
         },
@@ -3114,7 +3114,7 @@
           "layer": "B",
           "category": "B-PWR",
           "subCategory": "B-PWR-02",
-          "label": "磐井が新羅と通じヤマト政権の半島政策に対抗する姿勢をとっていた",
+          "label": "磐井が新羅と通じヤマト政権の半島政策に対抗する姿勢をとっている",
           "normalizedLabel": "筑紫の有力豪族",
           "notes": []
         },
@@ -3305,7 +3305,7 @@
           "layer": "B",
           "category": "B-EXT",
           "subCategory": "B-EXT-02",
-          "label": "百済が新羅・高句麗の圧迫で存亡の危機にあり、倭との軍事同盟を維持するため最も価値ある文化的贈与（仏教）を差し出さざるを得ない構造にあった",
+          "label": "百済が新羅・高句麗の圧迫で存亡の危機にあり、倭との軍事同盟を維持するため最も価値ある文化的贈与（仏教）を差し出さざるを得ない構造にある",
           "normalizedLabel": "百済が国際関係の中で倭との関係拡大を図り",
           "notes": []
         },
@@ -3314,7 +3314,7 @@
           "layer": "B",
           "category": "B-NRM",
           "subCategory": "B-NRM-01",
-          "label": "倭の支配層に大陸の先進的な文物への関心が広がっていた",
+          "label": "倭の支配層に大陸の先進的な文物への関心が広がっている",
           "normalizedLabel": "先進文化",
           "notes": []
         },
@@ -3323,7 +3323,7 @@
           "layer": "B",
           "category": "B-EXT",
           "subCategory": "B-EXT-03",
-          "label": "ヤマト政権内の氏族間序列は血統と軍事力に基づいており、各氏族がそれぞれの氏神を祀って独自の権威を主張していた",
+          "label": "ヤマト政権内の氏族間序列は血統と軍事力に基づいており、各氏族がそれぞれの氏神を祀って独自の権威を主張している",
           "normalizedLabel": "宗教として仏教を献上",
           "notes": []
         },
@@ -3514,7 +3514,7 @@
           "layer": "B",
           "category": "B-MIL",
           "subCategory": "B-MIL-01",
-          "label": "仏教受容をめぐる蘇我馬子と物部守屋の対立が武力衝突に至っていた",
+          "label": "仏教受容をめぐる蘇我馬子と物部守屋の対立が武力衝突に至っている",
           "normalizedLabel": "仏教受容と政権補佐をめぐる豪族対立が調整",
           "notes": []
         },
@@ -3523,7 +3523,7 @@
           "layer": "B",
           "category": "B-MIL",
           "subCategory": "B-MIL-01",
-          "label": "蘇我氏が皇子たちを味方につけ軍事的優位を確保していた",
+          "label": "蘇我氏が皇子たちを味方につけ軍事的優位を確保している",
           "normalizedLabel": "武力衝突に転化",
           "notes": []
         },
@@ -3924,7 +3924,7 @@
           "layer": "B",
           "category": "B-LEG",
           "subCategory": "B-LEG-02",
-          "label": "崇峻暗殺後、皇位継承の有力候補は限られ、蘇我馬子と血縁のある皇族が選択肢となった",
+          "label": "崇峻暗殺後、皇位継承の有力候補は限られ、蘇我馬子と血縁のある皇族が選択肢となっている",
           "normalizedLabel": "有力男性候補の不在",
           "notes": []
         },
@@ -4073,7 +4073,7 @@
           "layer": "B",
           "category": "B-RES",
           "subCategory": "B-RES-03",
-          "label": "推古天皇は即位時三十九歳で、蘇我氏の血を引く皇女として馬子との協調が求められていた",
+          "label": "推古天皇は即位時三十九歳で、蘇我氏の血を引く皇女として馬子との協調が求められている",
           "normalizedLabel": "推古天皇に統治経験",
           "notes": []
         },
@@ -4082,7 +4082,7 @@
           "layer": "B",
           "category": "B-RES",
           "subCategory": "B-RES-03",
-          "label": "推古天皇即位時、蘇我馬子は大臣として朝廷内で最大の軍事・経済基盤を有していた",
+          "label": "推古天皇即位時、蘇我馬子は大臣として朝廷内で最大の軍事・経済基盤を有している",
           "normalizedLabel": "基盤が乏しく",
           "notes": []
         },
@@ -4091,7 +4091,7 @@
           "layer": "B",
           "category": "B-RES",
           "subCategory": "B-RES-03",
-          "label": "厩戸王（聖徳太子）が用明天皇の皇子として適任と目されていた",
+          "label": "厩戸王（聖徳太子）が用明天皇の皇子として適任と目されている",
           "normalizedLabel": "実務を担う補佐役",
           "notes": []
         },
@@ -4280,7 +4280,7 @@
           "layer": "B",
           "category": "B-INS",
           "subCategory": "B-INS-04",
-          "label": "氏姓制度では個人の才能に基づく人材登用が困難であった",
+          "label": "氏姓制度では個人の才能に基づく人材登用が困難である",
           "normalizedLabel": "既存運用の矛盾や危機対応の必要",
           "notes": []
         },
@@ -4289,7 +4289,7 @@
           "layer": "B",
           "category": "B-INS",
           "subCategory": "B-INS-03",
-          "label": "隋の官僚制を参考に個人の能力と功績に基づく序列が構想されていた",
+          "label": "隋の官僚制を参考に個人の能力と功績に基づく序列が構想されている",
           "normalizedLabel": "統一的な規則",
           "notes": []
         },
@@ -4298,7 +4298,7 @@
           "layer": "B",
           "category": "B-INS",
           "subCategory": "B-INS-03",
-          "label": "豪族の世襲的地位に代わる天皇中心の秩序が必要とされていた",
+          "label": "豪族の世襲的地位に代わる天皇中心の秩序が必要とされている",
           "normalizedLabel": "手続",
           "notes": []
         },
@@ -4489,7 +4489,7 @@
           "layer": "B",
           "category": "B-INS",
           "subCategory": "B-INS-04",
-          "label": "豪族間の私的利害が国政を左右し統一的な行動規範がなかっていた",
+          "label": "豪族間の私的利害が国政を左右し統一的な行動規範がない",
           "normalizedLabel": "既存運用の矛盾や危機対応の必要",
           "notes": []
         },
@@ -4498,7 +4498,7 @@
           "layer": "B",
           "category": "B-INS",
           "subCategory": "B-INS-03",
-          "label": "仏教と儒教の思想を基盤とした官僚の行動規範が構想されていた",
+          "label": "仏教と儒教の思想を基盤とした官僚の行動規範が構想されている",
           "normalizedLabel": "統一的な規則",
           "notes": []
         },
@@ -4507,7 +4507,7 @@
           "layer": "B",
           "category": "B-INS",
           "subCategory": "B-INS-03",
-          "label": "天皇を頂点とする和の精神に基づく統治理念が必要とされていた",
+          "label": "天皇を頂点とする和の精神に基づく統治理念が必要とされている",
           "normalizedLabel": "手続",
           "notes": []
         },
@@ -4698,7 +4698,7 @@
           "layer": "B",
           "category": "B-EXT",
           "subCategory": "B-EXT-01",
-          "label": "隋の中国統一により東アジアに圧倒的な軍事・文化大国が出現し、周辺諸国が冊封秩序への編入か対抗かの選択を迫られていた",
+          "label": "隋の中国統一により東アジアに圧倒的な軍事・文化大国が出現し、周辺諸国が冊封秩序への編入か対抗かの選択を迫られている",
           "normalizedLabel": "『遣隋使を派遣し対等外交を志向",
           "notes": []
         },
@@ -4707,7 +4707,7 @@
           "layer": "B",
           "category": "B-INS",
           "subCategory": "B-INS-04",
-          "label": "倭国では冠位十二階・十七条憲法など国内制度の整備が進められており、隋は南北朝を統一した大陸最大の統一王朝として存在していた",
+          "label": "倭国では冠位十二階・十七条憲法など国内制度の整備が進められており、隋は南北朝を統一した大陸最大の統一王朝として存在している",
           "normalizedLabel": "制度運用の矛盾や利害対立",
           "notes": []
         },
@@ -4716,7 +4716,7 @@
           "layer": "B",
           "category": "B-EXT",
           "subCategory": "B-EXT-03",
-          "label": "倭が隋の冊封体制に従属すれば朝鮮半島諸国と同列の属国になるが、拒否すれば軍事的脅威に直面するという外交的二律背反が存在していた",
+          "label": "倭が隋の冊封体制に従属すれば朝鮮半島諸国と同列の属国になるが、拒否すれば軍事的脅威に直面するという外交的二律背反が存在している",
           "normalizedLabel": "外交",
           "notes": []
         },
@@ -4907,7 +4907,7 @@
           "layer": "B",
           "category": "B-EXT",
           "subCategory": "B-EXT-03",
-          "label": "唐が中国を統一し律令制に基づく先進的統治体制を確立していた",
+          "label": "唐が中国を統一し律令制に基づく先進的統治体制を確立している",
           "normalizedLabel": "『遣唐使を派遣し大陸制度の学習を本格化",
           "notes": []
         },
@@ -4916,7 +4916,7 @@
           "layer": "B",
           "category": "B-INS",
           "subCategory": "B-INS-04",
-          "label": "国内の政治改革に唐の制度を参照する必要性が高まっていた",
+          "label": "国内の政治改革に唐の制度を参照する必要性が高まっている",
           "normalizedLabel": "制度運用の矛盾や利害対立",
           "notes": []
         },
@@ -4925,7 +4925,7 @@
           "layer": "B",
           "category": "B-EXT",
           "subCategory": "B-EXT-03",
-          "label": "大化改新後の律令制度導入にあたり、唐の官制・法制を直接学んだ人材が朝廷内にごく少数であった",
+          "label": "大化改新後の律令制度導入にあたり、唐の官制・法制を直接学んだ人材が朝廷内にごく少数である",
           "normalizedLabel": "外交",
           "notes": []
         },
@@ -5283,7 +5283,7 @@
           "layer": "B",
           "category": "B-RES",
           "subCategory": "B-RES-01",
-          "label": "豪族による私地私民の支配が国家的統治の障害となっていた",
+          "label": "豪族による私地私民の支配が国家的統治の障害となっている",
           "normalizedLabel": "経済",
           "notes": []
         },
@@ -5292,7 +5292,7 @@
           "layer": "B",
           "category": "B-RES",
           "subCategory": "B-RES-01",
-          "label": "唐の律令制という統一的な統治モデルが存在していた",
+          "label": "唐の律令制という統一的な統治モデルが存在している",
           "normalizedLabel": "治安",
           "notes": []
         },
@@ -5301,7 +5301,7 @@
           "layer": "B",
           "category": "B-RES",
           "subCategory": "B-RES-01",
-          "label": "乙巳の変で蘇我氏が排除され改革推進の政治基盤が整っていた",
+          "label": "乙巳の変で蘇我氏が排除され改革推進の政治基盤が整っている",
           "normalizedLabel": "土地統治などの問題が顕在化し",
           "notes": []
         },
@@ -5492,7 +5492,7 @@
           "layer": "B",
           "category": "B-RES",
           "subCategory": "B-RES-01",
-          "label": "豪族の私地私民が残存し中央集権的統治を阻害していた",
+          "label": "豪族の私地私民が残存し中央集権的統治を阻害している",
           "normalizedLabel": "経済",
           "notes": []
         },
@@ -5501,7 +5501,7 @@
           "layer": "B",
           "category": "B-RES",
           "subCategory": "B-RES-01",
-          "label": "地方行政が豪族支配に依存し統一的な徴税制度がなかっていた",
+          "label": "地方行政が豪族支配に依存し統一的な徴税制度がない",
           "normalizedLabel": "治安",
           "notes": []
         },
@@ -5510,7 +5510,7 @@
           "layer": "B",
           "category": "B-RES",
           "subCategory": "B-RES-01",
-          "label": "戸籍制度が未整備で人民の把握が不十分であった",
+          "label": "戸籍制度が未整備で人民の把握が不十分である",
           "normalizedLabel": "土地統治などの問題が顕在化し",
           "notes": []
         },
@@ -5875,7 +5875,7 @@
           "layer": "B",
           "category": "B-INS",
           "subCategory": "B-INS-05",
-          "label": "国防のため成年男子に兵役義務が課され防人として九州に配置されていた",
+          "label": "国防のため成年男子に兵役義務が課され防人として九州に配置されている",
           "normalizedLabel": "国家防衛を目的として兵役と防人制度が恒常",
           "notes": [],
           "origin": {
@@ -5888,7 +5888,7 @@
           "layer": "B",
           "category": "B-MIL",
           "subCategory": "B-MIL-03",
-          "label": "長期の軍役により農村の労働力が奪われ家族が困窮していた",
+          "label": "長期の軍役により農村の労働力が奪われ家族が困窮している",
           "normalizedLabel": "成人男性が長期にわたり動員",
           "notes": []
         },
@@ -6057,7 +6057,7 @@
           "layer": "B",
           "category": "B-EXT",
           "subCategory": "B-EXT-01",
-          "label": "白村江の敗戦後、唐が高句麗征服に向かう過程で次の標的が倭となる可能性があり、百済旧地が海上侵攻の拠点として利用可能になったことで軍事的脅威が具体化していた",
+          "label": "白村江の敗戦後、唐が高句麗征服に向かう過程で次の標的が倭となる可能性があり、百済旧地が海上侵攻の拠点として利用可能になったことで軍事的脅威が具体化している",
           "normalizedLabel": "白村江の敗戦争により唐",
           "notes": []
         },
@@ -6066,7 +6066,7 @@
           "layer": "B",
           "category": "B-MIL",
           "subCategory": "B-MIL-04",
-          "label": "大宰府を防衛するための軍事施設の整備が急務であった",
+          "label": "大宰府を防衛するための軍事施設の整備が急務である",
           "normalizedLabel": "新羅からの侵攻が現実的脅威として認識",
           "notes": []
         },
@@ -6235,7 +6235,7 @@
           "layer": "B",
           "category": "B-EXT",
           "subCategory": "B-EXT-01",
-          "label": "白村江の敗戦後に唐・新羅の本土侵攻が現実的脅威となり、飛鳥盆地は難波からの海上侵攻に対して地理的に無防備であるという首都の脆弱性が露呈していた",
+          "label": "白村江の敗戦後に唐・新羅の本土侵攻が現実的脅威となり、飛鳥盆地は難波からの海上侵攻に対して地理的に無防備であるという首都の脆弱性が露呈している",
           "normalizedLabel": "白村江の戦争いでの敗北以降",
           "notes": []
         },
@@ -6244,7 +6244,7 @@
           "layer": "B",
           "category": "B-MIL",
           "subCategory": "B-MIL-04",
-          "label": "飛鳥は内陸だが防衛上の再配置と政治的刷新が求められていた",
+          "label": "飛鳥は内陸だが防衛上の再配置と政治的刷新が求められている",
           "normalizedLabel": "原因",
           "notes": []
         },
@@ -6253,7 +6253,7 @@
           "layer": "B",
           "category": "B-EXT",
           "subCategory": "B-EXT-02",
-          "label": "琵琶湖の水運と山城に囲まれた大津の地理的優位が評価されていた",
+          "label": "琵琶湖の水運と山城に囲まれた大津の地理的優位が評価されている",
           "normalizedLabel": "新羅からの侵攻リスクが現実的脅威として認",
           "notes": []
         },
@@ -6453,7 +6453,7 @@
           "layer": "B",
           "category": "B-MIL",
           "subCategory": "B-MIL-03",
-          "label": "大海人皇子が東国の豪族・農民を動員し軍事力で圧倒していた",
+          "label": "大海人皇子が東国の豪族・農民を動員し軍事力で圧倒している",
           "normalizedLabel": "支持基盤の動員と武力決着へ発展",
           "notes": []
         },
@@ -6622,7 +6622,7 @@
           "layer": "B",
           "category": "B-INS",
           "subCategory": "B-INS-04",
-          "label": "壬申の乱で功績を立てた豪族と、旧来の氏姓による序列が食い違っていた",
+          "label": "壬申の乱で功績を立てた豪族と、旧来の氏姓による序列が食い違っている",
           "normalizedLabel": "既存運用の矛盾や危機対応の必要",
           "notes": []
         },
@@ -6631,7 +6631,7 @@
           "layer": "B",
           "category": "B-INS",
           "subCategory": "B-INS-03",
-          "label": "壬申の乱の功臣と旧来の豪族の序列を再整理する必要があった",
+          "label": "壬申の乱の功臣と旧来の豪族の序列を再整理する必要がある",
           "normalizedLabel": "統一的な規則",
           "notes": [],
           "origin": {
@@ -6644,7 +6644,7 @@
           "layer": "B",
           "category": "B-INS",
           "subCategory": "B-INS-03",
-          "label": "天皇を頂点とする新たな身分秩序を法制化する方針が固まっていた",
+          "label": "天皇を頂点とする新たな身分秩序を法制化する方針が固まっている",
           "normalizedLabel": "手続",
           "notes": []
         },
@@ -6835,7 +6835,7 @@
           "layer": "B",
           "category": "B-INS",
           "subCategory": "B-INS-04",
-          "label": "天武天皇が着手した律令編纂を持統天皇が継承していた",
+          "label": "天武天皇が着手した律令編纂を持統天皇が継承している",
           "normalizedLabel": "既存運用の矛盾や危機対応の必要",
           "notes": [],
           "origin": {
@@ -6848,7 +6848,7 @@
           "layer": "B",
           "category": "B-INS",
           "subCategory": "B-INS-03",
-          "label": "唐の律令を参照しつつ日本の実情に合わせた法典が求められていた",
+          "label": "唐の律令を参照しつつ日本の実情に合わせた法典が求められている",
           "normalizedLabel": "統一的な規則",
           "notes": []
         },
@@ -7048,7 +7048,7 @@
           "layer": "B",
           "category": "B-GEO",
           "subCategory": "B-GEO-02",
-          "label": "中国の都城制を模した本格的な計画都市の建設が構想されていた",
+          "label": "中国の都城制を模した本格的な計画都市の建設が構想されている",
           "normalizedLabel": "『藤原京へ遷都",
           "notes": []
         },
@@ -7057,7 +7057,7 @@
           "layer": "B",
           "category": "B-INS",
           "subCategory": "B-INS-04",
-          "label": "律令国家にふさわしい恒久的な都の必要性が高まっていた",
+          "label": "律令国家にふさわしい恒久的な都の必要性が高まっている",
           "normalizedLabel": "制度運用の矛盾や利害対立",
           "notes": []
         },
@@ -7251,7 +7251,7 @@
           "layer": "B",
           "category": "B-INS",
           "subCategory": "B-INS-04",
-          "label": "飛鳥浄御原令（689年）は令のみで構成され、律（刑罰規定）に相当する法典は別途存在していなかった",
+          "label": "飛鳥浄御原令（689年）は令のみで構成され、律（刑罰規定）に相当する法典は別途存在していない",
           "normalizedLabel": "既存運用の矛盾や危機対応の必要",
           "notes": [],
           "origin": {
@@ -7464,7 +7464,7 @@
           "layer": "B",
           "category": "B-RES",
           "subCategory": "B-RES-01",
-          "label": "律令の位禄や庸調の制度は銭貨での計算を前提としていたが、国内の交換は稲・布・鉄による物々交換が主流であった",
+          "label": "律令の位禄や庸調の制度は銭貨での計算を前提としていたが、国内の交換は稲・布・鉄による物々交換が主流である",
           "normalizedLabel": "『和同開珎が鋳造",
           "notes": []
         },
@@ -7473,7 +7473,7 @@
           "layer": "B",
           "category": "B-INS",
           "subCategory": "B-INS-04",
-          "label": "武蔵国から銅が献上され貨幣鋳造の原料が確保されていた",
+          "label": "武蔵国から銅が献上され貨幣鋳造の原料が確保されている",
           "normalizedLabel": "制度運用の矛盾や利害対立",
           "notes": []
         },
@@ -7667,7 +7667,7 @@
           "layer": "B",
           "category": "B-GEO",
           "subCategory": "B-GEO-02",
-          "label": "藤原京が手狭になり大規模な都城への移転が求められていた",
+          "label": "藤原京が手狭になり大規模な都城への移転が求められている",
           "normalizedLabel": "『平城京へ遷都",
           "notes": [],
           "origin": {
@@ -7680,7 +7680,7 @@
           "layer": "B",
           "category": "B-INS",
           "subCategory": "B-INS-04",
-          "label": "唐の長安城を模範とした壮大な都城計画が立案されていた",
+          "label": "唐の長安城を模範とした壮大な都城計画が立案されている",
           "normalizedLabel": "制度運用の矛盾や利害対立",
           "notes": []
         },
@@ -7689,7 +7689,7 @@
           "layer": "B",
           "category": "B-EXT",
           "subCategory": "B-EXT-03",
-          "label": "律令国家の首都として中国的都城制を採用することが国際的体面と国内統治の正統性の双方に不可欠であった",
+          "label": "律令国家の首都として中国的都城制を採用することが国際的体面と国内統治の正統性の双方に不可欠である",
           "normalizedLabel": "外交",
           "notes": []
         },
@@ -7883,7 +7883,7 @@
           "layer": "B",
           "category": "B-INF",
           "subCategory": "B-INF-01",
-          "label": "天武天皇が帝紀・旧辞の誤りを正すため稗田阿礼に誦習させていた",
+          "label": "天武天皇が帝紀・旧辞の誤りを正すため稗田阿礼に誦習させている",
           "normalizedLabel": "『『古事記』が成立",
           "notes": []
         },
@@ -7892,7 +7892,7 @@
           "layer": "B",
           "category": "B-INS",
           "subCategory": "B-INS-04",
-          "label": "皇室の正統性と国家の起源を記録する必要があった",
+          "label": "皇室の正統性と国家の起源を記録する必要がある",
           "normalizedLabel": "制度運用の矛盾や利害対立",
           "notes": []
         },
@@ -7901,7 +7901,7 @@
           "layer": "B",
           "category": "B-EXT",
           "subCategory": "B-EXT-03",
-          "label": "壬申の乱以降の王統の正統性を物語として確定する必要があり、天皇家の系譜と神話の統一的記録がなければ支配の根拠が口承に依存する不安定な状態であった",
+          "label": "壬申の乱以降の王統の正統性を物語として確定する必要があり、天皇家の系譜と神話の統一的記録がなければ支配の根拠が口承に依存する不安定な状態である",
           "normalizedLabel": "外交",
           "notes": []
         },
@@ -8104,7 +8104,7 @@
           "layer": "B",
           "category": "B-INS",
           "subCategory": "B-INS-04",
-          "label": "対外的に日本の国家としての正統性を示す必要があった",
+          "label": "対外的に日本の国家としての正統性を示す必要がある",
           "normalizedLabel": "制度運用の矛盾や利害対立",
           "notes": []
         },
@@ -8113,7 +8113,7 @@
           "layer": "B",
           "category": "B-EXT",
           "subCategory": "B-EXT-03",
-          "label": "唐・新羅は自国の正史を編纂済みであり、倭国は外交の場で漢文による国家の歴史書を提示する慣行に直面していた",
+          "label": "唐・新羅は自国の正史を編纂済みであり、倭国は外交の場で漢文による国家の歴史書を提示する慣行に直面している",
           "normalizedLabel": "外交",
           "notes": []
         },
@@ -8307,7 +8307,7 @@
           "layer": "B",
           "category": "B-RES",
           "subCategory": "B-RES-01",
-          "label": "班田収授制のもとで口分田の不足が深刻化していた",
+          "label": "班田収授制のもとで口分田の不足が深刻化している",
           "normalizedLabel": "経済",
           "notes": []
         },
@@ -8316,7 +8316,7 @@
           "layer": "B",
           "category": "B-INS",
           "subCategory": "B-INS-04",
-          "label": "人口増加に対して耕地面積の拡大が追いつかなかっていた",
+          "label": "人口増加に対して耕地面積の拡大が追いつかない",
           "normalizedLabel": "治安",
           "notes": []
         },
@@ -8325,7 +8325,7 @@
           "layer": "B",
           "category": "B-INS",
           "subCategory": "B-INS-04",
-          "label": "新規開墾地の三世代私有を認める三世一身法が制定されていた",
+          "label": "新規開墾地の三世代私有を認める三世一身法が制定されている",
           "normalizedLabel": "土地統治などの問題が顕在化し",
           "notes": []
         },
@@ -8516,7 +8516,7 @@
           "layer": "B",
           "category": "B-RIV",
           "subCategory": "B-RIV-01",
-          "label": "皇親勢力の長屋王と外戚の藤原四兄弟が政治的主導権を争っていた",
+          "label": "皇親勢力の長屋王と外戚の藤原四兄弟が政治的主導権を争っている",
           "normalizedLabel": "長屋王をめぐる利害対立が蓄積し",
           "notes": []
         },
@@ -8525,7 +8525,7 @@
           "layer": "B",
           "category": "B-MIL",
           "subCategory": "B-MIL-01",
-          "label": "長屋王が呪詛の嫌疑をかけられ藤原氏による排斥が画策されていた",
+          "label": "長屋王が呪詛の嫌疑をかけられ藤原氏による排斥が画策されている",
           "normalizedLabel": "統治の調整が追いつかず武力衝突に発展",
           "notes": []
         },
@@ -8694,7 +8694,7 @@
           "layer": "B",
           "category": "B-RIV",
           "subCategory": "B-RIV-01",
-          "label": "吉備真備・玄昉の重用に藤原広嗣が政治的不満を抱いていた",
+          "label": "吉備真備・玄昉の重用に藤原広嗣が政治的不満を抱いている",
           "normalizedLabel": "藤原広嗣をめぐる利害対立が蓄積し",
           "notes": []
         },
@@ -8703,7 +8703,7 @@
           "layer": "B",
           "category": "B-MIL",
           "subCategory": "B-MIL-01",
-          "label": "大宰府という中央監視の及びにくい軍事・外交拠点に左遷された藤原広嗣が、地方軍事力へのアクセスを持ちながら中央政権への不満を蓄積させていた",
+          "label": "大宰府という中央監視の及びにくい軍事・外交拠点に左遷された藤原広嗣が、地方軍事力へのアクセスを持ちながら中央政権への不満を蓄積させている",
           "normalizedLabel": "統治の調整が追いつかず武力衝突に発展",
           "notes": []
         },
@@ -8872,7 +8872,7 @@
           "layer": "B",
           "category": "B-RES",
           "subCategory": "B-RES-01",
-          "label": "疫病・飢饉・反乱が相次ぎ国家の安寧が脅かされていた",
+          "label": "疫病・飢饉・反乱が相次ぎ国家の安寧が脅かされている",
           "normalizedLabel": "経済",
           "notes": []
         },
@@ -8881,7 +8881,7 @@
           "layer": "B",
           "category": "B-NRM",
           "subCategory": "B-NRM-01",
-          "label": "聖武天皇が仏教の護国思想に基づく国土鎮護を志向していた",
+          "label": "聖武天皇が仏教の護国思想に基づく国土鎮護を志向している",
           "normalizedLabel": "治安",
           "notes": []
         },
@@ -8890,7 +8890,7 @@
           "layer": "B",
           "category": "B-NRM",
           "subCategory": "B-NRM-01",
-          "label": "華厳経の教えにより仏法で国家を守護できると信じられていた",
+          "label": "華厳経の教えにより仏法で国家を守護できると信じられている",
           "normalizedLabel": "土地統治などの問題が顕在化し",
           "notes": []
         },
@@ -9081,7 +9081,7 @@
           "layer": "B",
           "category": "B-RES",
           "subCategory": "B-RES-01",
-          "label": "三世一身法では開墾意欲の喚起に不十分であった",
+          "label": "三世一身法では開墾意欲の喚起に不十分である",
           "normalizedLabel": "経済",
           "notes": [],
           "origin": {
@@ -9094,7 +9094,7 @@
           "layer": "B",
           "category": "B-INS",
           "subCategory": "B-INS-04",
-          "label": "口分田の不足が深刻化し耕地拡大が国家的課題となっていた",
+          "label": "口分田の不足が深刻化し耕地拡大が国家的課題となっている",
           "normalizedLabel": "治安",
           "notes": []
         },
@@ -9103,7 +9103,7 @@
           "layer": "B",
           "category": "B-INS",
           "subCategory": "B-INS-04",
-          "label": "三世一身法（723年）では開墾田は三世または一身の後に国へ返還されることが定められていた",
+          "label": "三世一身法（723年）では開墾田は三世または一身の後に国へ返還されることが定められている",
           "normalizedLabel": "土地統治などの問題が顕在化し",
           "notes": []
         },
@@ -9294,7 +9294,7 @@
           "layer": "B",
           "category": "B-NRM",
           "subCategory": "B-NRM-04",
-          "label": "天平文化が成熟し国家的造営事業を実現する技術力があった",
+          "label": "天平文化が成熟し国家的造営事業を実現する技術力がある",
           "normalizedLabel": "『東大寺大仏の開眼供養が行われた』に至る",
           "notes": []
         },
@@ -9303,7 +9303,7 @@
           "layer": "B",
           "category": "B-INS",
           "subCategory": "B-INS-04",
-          "label": "聖武天皇が仏教による国家鎮護の象徴として大仏建立を発願していた",
+          "label": "聖武天皇が仏教による国家鎮護の象徴として大仏建立を発願している",
           "normalizedLabel": "制度運用の矛盾や利害対立",
           "notes": []
         },
@@ -9497,7 +9497,7 @@
           "layer": "B",
           "category": "B-RIV",
           "subCategory": "B-RIV-01",
-          "label": "藤原仲麻呂の専権に対し橘奈良麻呂ら反対勢力が結集していた",
+          "label": "藤原仲麻呂の専権に対し橘奈良麻呂ら反対勢力が結集している",
           "normalizedLabel": "橘奈良麻呂をめぐる利害対立が蓄積し",
           "notes": []
         },
@@ -9506,7 +9506,7 @@
           "layer": "B",
           "category": "B-MIL",
           "subCategory": "B-MIL-01",
-          "label": "藤原仲麻呂の排除とクーデターが計画されていた",
+          "label": "藤原仲麻呂の排除とクーデターが計画されている",
           "normalizedLabel": "統治の調整が追いつかず武力衝突に発展",
           "notes": []
         },
@@ -9675,7 +9675,7 @@
           "layer": "B",
           "category": "B-NRM",
           "subCategory": "B-NRM-04",
-          "label": "飛鳥時代以来の和歌の伝統が宮廷文化として成熟していた",
+          "label": "飛鳥時代以来の和歌の伝統が宮廷文化として成熟している",
           "normalizedLabel": "『万葉集が成立",
           "notes": []
         },
@@ -9684,7 +9684,7 @@
           "layer": "B",
           "category": "B-INS",
           "subCategory": "B-INS-04",
-          "label": "大伴家持を中心に約四千五百首の和歌が収集・編纂されていた",
+          "label": "大伴家持を中心に約四千五百首の和歌が収集・編纂されている",
           "normalizedLabel": "制度運用の矛盾や利害対立",
           "notes": []
         },
@@ -9693,7 +9693,7 @@
           "layer": "B",
           "category": "B-EXT",
           "subCategory": "B-EXT-03",
-          "label": "和歌が天皇から防人まで広い階層で詠まれていたが、体系的に集成されなければ散逸する構造にあり、文化的統合の象徴としての歌の記録が失われつつあった",
+          "label": "和歌が天皇から防人まで広い階層で詠まれていたが、体系的に集成されなければ散逸する構造にあり、文化的統合の象徴としての歌の記録が失われつつある",
           "normalizedLabel": "外交",
           "notes": []
         },
@@ -9893,7 +9893,7 @@
           "layer": "B",
           "category": "B-MIL",
           "subCategory": "B-MIL-01",
-          "label": "恵美押勝が淳仁天皇即位の最大功労者として北陸の軍事拠点に権限を持つ一方、孝謙上皇との関係悪化が不可逆的となり政治的生存が脅かされていた",
+          "label": "恵美押勝が淳仁天皇即位の最大功労者として北陸の軍事拠点に権限を持つ一方、孝謙上皇との関係悪化が不可逆的となり政治的生存が脅かされている",
           "normalizedLabel": "統治の調整が追いつかず武力衝突に発展",
           "notes": []
         },
@@ -10062,7 +10062,7 @@
           "layer": "B",
           "category": "B-LEG",
           "subCategory": "B-LEG-03",
-          "label": "称徳天皇が道鏡を重用し皇位譲渡の意向が取り沙汰されていた",
+          "label": "称徳天皇が道鏡を重用し皇位譲渡の意向が取り沙汰されている",
           "normalizedLabel": "『宇佐八幡神託事件が起きた』に至るまで",
           "notes": []
         },
@@ -10080,7 +10080,7 @@
           "layer": "B",
           "category": "B-EXT",
           "subCategory": "B-EXT-03",
-          "label": "称徳天皇に後継者がなく道鏡への皇位禅譲の可能性が浮上しており、「臣下は天皇位に就けない」という律令体制の根本原則が崩壊する危機にあった",
+          "label": "称徳天皇に後継者がなく道鏡への皇位禅譲の可能性が浮上しており、「臣下は天皇位に就けない」という律令体制の根本原則が崩壊する危機にある",
           "normalizedLabel": "外交",
           "notes": []
         },
@@ -10271,7 +10271,7 @@
           "layer": "B",
           "category": "B-GEO",
           "subCategory": "B-GEO-02",
-          "label": "奈良の仏教勢力の政治介入から脱却する必要があった",
+          "label": "奈良の仏教勢力の政治介入から脱却する必要がある",
           "normalizedLabel": "『長岡京へ遷都",
           "notes": []
         },
@@ -10280,7 +10280,7 @@
           "layer": "B",
           "category": "B-INS",
           "subCategory": "B-INS-04",
-          "label": "桓武天皇が新王朝の権威を示すため新都建設を決断していた",
+          "label": "桓武天皇が新王朝の権威を示すため新都建設を決断している",
           "normalizedLabel": "制度運用の矛盾や利害対立",
           "notes": []
         },
@@ -10289,7 +10289,7 @@
           "layer": "B",
           "category": "B-EXT",
           "subCategory": "B-EXT-03",
-          "label": "淀川水系の水運に恵まれた長岡の地が選定されていた",
+          "label": "淀川水系の水運に恵まれた長岡の地が選定されている",
           "normalizedLabel": "外交",
           "notes": []
         },
@@ -10480,7 +10480,7 @@
           "layer": "B",
           "category": "B-INS",
           "subCategory": "B-INS-04",
-          "label": "軍団制による徴兵が農民の負担となり兵士の質も低下していた",
+          "label": "軍団制による徴兵が農民の負担となり兵士の質も低下している",
           "normalizedLabel": "『健児の制が始まった』に至るまで",
           "notes": []
         },
@@ -10489,7 +10489,7 @@
           "layer": "B",
           "category": "B-INS",
           "subCategory": "B-INS-04",
-          "label": "蝦夷征討以外では大規模な軍事力の必要性が低下していた",
+          "label": "蝦夷征討以外では大規模な軍事力の必要性が低下している",
           "normalizedLabel": "制度運用の矛盾や利害対立",
           "notes": []
         },
@@ -10498,7 +10498,7 @@
           "layer": "B",
           "category": "B-MIL",
           "subCategory": "B-MIL-01",
-          "label": "徴兵農民兵の戦闘能力が蝦夷征討で郡司子弟の志願兵に劣ることが判明し、軍団制は農業生産を阻害しつつ実戦では機能しないという費用対効果の逆転に陥っていた",
+          "label": "徴兵農民兵の戦闘能力が蝦夷征討で郡司子弟の志願兵に劣ることが判明し、軍団制は農業生産を阻害しつつ実戦では機能しないという費用対効果の逆転に陥っている",
           "normalizedLabel": "外交",
           "notes": []
         },
@@ -10689,7 +10689,7 @@
           "layer": "B",
           "category": "B-GEO",
           "subCategory": "B-GEO-02",
-          "label": "長岡京が怨霊騒ぎと水害で不吉とされ再遷都が決断されていた",
+          "label": "長岡京が怨霊騒ぎと水害で不吉とされ再遷都が決断されている",
           "normalizedLabel": "『平安京に遷都",
           "notes": []
         },
@@ -10698,7 +10698,7 @@
           "layer": "B",
           "category": "B-INS",
           "subCategory": "B-INS-04",
-          "label": "桓武天皇が奈良仏教勢力と旧貴族の影響から完全に脱却を図っていた",
+          "label": "桓武天皇が奈良仏教勢力と旧貴族の影響から完全に脱却を図っている",
           "normalizedLabel": "制度運用の矛盾や利害対立",
           "notes": []
         },
@@ -10707,7 +10707,7 @@
           "layer": "B",
           "category": "B-EXT",
           "subCategory": "B-EXT-03",
-          "label": "山背国葛野の地が四神相応の吉地として選定されていた",
+          "label": "山背国葛野の地が四神相応の吉地として選定されている",
           "normalizedLabel": "外交",
           "notes": []
         },
@@ -10898,7 +10898,7 @@
           "layer": "B",
           "category": "B-NRM",
           "subCategory": "B-NRM-01",
-          "label": "奈良仏教が学問的・形式的になり民衆救済の新たな教えが求められていた",
+          "label": "奈良仏教が学問的・形式的になり民衆救済の新たな教えが求められている",
           "normalizedLabel": "『最澄が天台宗を開いた』に至るまで",
           "notes": []
         },
@@ -10907,7 +10907,7 @@
           "layer": "B",
           "category": "B-INS",
           "subCategory": "B-INS-04",
-          "label": "桓武天皇が奈良仏教の政治介入を排し新宗派を支援する方針をとっていた",
+          "label": "桓武天皇が奈良仏教の政治介入を排し新宗派を支援する方針をとっている",
           "normalizedLabel": "制度運用の矛盾や利害対立",
           "notes": []
         },
@@ -11098,7 +11098,7 @@
           "layer": "B",
           "category": "B-NRM",
           "subCategory": "B-NRM-01",
-          "label": "密教の実践的な加持祈祷が貴族社会の現世利益の要求に合致していた",
+          "label": "密教の実践的な加持祈祷が貴族社会の現世利益の要求に合致している",
           "normalizedLabel": "『空海が真言宗を開いた』に至るまで",
           "notes": []
         },
@@ -11107,7 +11107,7 @@
           "layer": "B",
           "category": "B-INS",
           "subCategory": "B-INS-04",
-          "label": "空海が唐で恵果から密教の正統を受け継ぎ帰国していた",
+          "label": "空海が唐で恵果から密教の正統を受け継ぎ帰国している",
           "normalizedLabel": "制度運用の矛盾や利害対立",
           "notes": []
         },
@@ -11298,7 +11298,7 @@
           "layer": "B",
           "category": "B-RIV",
           "subCategory": "B-RIV-01",
-          "label": "平城上皇が旧都平城京への還都を図り嵯峨天皇と対立していた",
+          "label": "平城上皇が旧都平城京への還都を図り嵯峨天皇と対立している",
           "normalizedLabel": "平城太上天皇をめぐる利害対立が蓄積し",
           "notes": []
         },
@@ -11307,7 +11307,7 @@
           "layer": "B",
           "category": "B-MIL",
           "subCategory": "B-MIL-01",
-          "label": "藤原薬子・仲成兄妹が平城上皇を擁して権力奪還を画策していた",
+          "label": "藤原薬子・仲成兄妹が平城上皇を擁して権力奪還を画策している",
           "normalizedLabel": "統治の調整が追いつかず武力衝突に発展",
           "notes": []
         },
@@ -11476,7 +11476,7 @@
           "layer": "B",
           "category": "B-RIV",
           "subCategory": "B-RIV-01",
-          "label": "仁明天皇の皇太子をめぐり藤原良房と伴氏・橘氏が対立していた",
+          "label": "仁明天皇の皇太子をめぐり藤原良房と伴氏・橘氏が対立している",
           "normalizedLabel": "承和をめぐる利害対立が蓄積し",
           "notes": []
         },
@@ -11485,7 +11485,7 @@
           "layer": "B",
           "category": "B-MIL",
           "subCategory": "B-MIL-01",
-          "label": "伴健岑・橘逸勢が謀反の嫌疑で排斥されていた",
+          "label": "伴健岑・橘逸勢が謀反の嫌疑で排斥されている",
           "normalizedLabel": "統治の調整が追いつかず武力衝突に発展",
           "notes": []
         },
@@ -11654,7 +11654,7 @@
           "layer": "B",
           "category": "B-PWR",
           "subCategory": "B-PWR-04",
-          "label": "幼帝清和天皇の即位により外祖父の補佐が不可欠であった",
+          "label": "幼帝清和天皇の即位により外祖父の補佐が不可欠である",
           "normalizedLabel": "『藤原良房が摂政に就任し摂関政治が始まっ",
           "notes": []
         },
@@ -11663,7 +11663,7 @@
           "layer": "B",
           "category": "B-INS",
           "subCategory": "B-INS-04",
-          "label": "藤原良房が他氏排斥と外戚戦略で朝廷内の優位を確立していた",
+          "label": "藤原良房が他氏排斥と外戚戦略で朝廷内の優位を確立している",
           "normalizedLabel": "制度運用の矛盾や利害対立",
           "notes": []
         },
@@ -11863,7 +11863,7 @@
           "layer": "B",
           "category": "B-MIL",
           "subCategory": "B-MIL-01",
-          "label": "藤原良房が事件を利用して伴氏・紀氏を排斥していた",
+          "label": "藤原良房が事件を利用して伴氏・紀氏を排斥している",
           "normalizedLabel": "統治の調整が追いつかず武力衝突に発展",
           "notes": []
         },
@@ -12032,7 +12032,7 @@
           "layer": "B",
           "category": "B-EXT",
           "subCategory": "B-EXT-01",
-          "label": "唐が黄巣の乱以降衰退し渡航の危険と実益が釣り合わなくなっていた",
+          "label": "唐が黄巣の乱以降衰退し渡航の危険と実益が釣り合わなくなっている",
           "normalizedLabel": "唐末の内乱と航海リスク増大の中",
           "notes": []
         },
@@ -12041,7 +12041,7 @@
           "layer": "B",
           "category": "B-EXT",
           "subCategory": "B-EXT-03",
-          "label": "国風文化の発展により大陸文化への依存度が低下していた",
+          "label": "国風文化の発展により大陸文化への依存度が低下している",
           "normalizedLabel": "従来型の外交学習より国内統治と文化の独立",
           "notes": []
         },
@@ -12210,7 +12210,7 @@
           "layer": "B",
           "category": "B-PWR",
           "subCategory": "B-PWR-02",
-          "label": "宇多天皇に重用された道真の急速な昇進に藤原時平が警戒していた",
+          "label": "宇多天皇に重用された道真の急速な昇進に藤原時平が警戒している",
           "normalizedLabel": "『菅原道真が大宰府へ左遷",
           "notes": []
         },
@@ -12410,7 +12410,7 @@
           "layer": "B",
           "category": "B-NRM",
           "subCategory": "B-NRM-04",
-          "label": "国風文化の興隆により和歌が宮廷文化の中核となっていた",
+          "label": "国風文化の興隆により和歌が宮廷文化の中核となっている",
           "normalizedLabel": "『古今和歌集が成立",
           "notes": []
         },
@@ -12419,7 +12419,7 @@
           "layer": "B",
           "category": "B-EXT",
           "subCategory": "B-EXT-03",
-          "label": "仮名序で和歌の本質を論じた日本初の歌論が示されていた",
+          "label": "仮名序で和歌の本質を論じた日本初の歌論が示されている",
           "normalizedLabel": "外交",
           "notes": []
         },
@@ -12610,7 +12610,7 @@
           "layer": "B",
           "category": "B-SOC",
           "subCategory": "B-SOC-02",
-          "label": "関東の在地武士団が国司の収奪に不満を抱いていた",
+          "label": "関東の在地武士団が国司の収奪に不満を抱いている",
           "normalizedLabel": "関東での私闘",
           "notes": []
         },
@@ -12628,7 +12628,7 @@
           "layer": "B",
           "category": "B-MIL",
           "subCategory": "B-MIL-01",
-          "label": "将門が「新皇」を自称し関東独立政権の樹立を宣言していた",
+          "label": "将門が「新皇」を自称し関東独立政権の樹立を宣言している",
           "normalizedLabel": "将門が武力で地域秩序を握ろうとして朝廷権",
           "notes": []
         },
@@ -12795,7 +12795,7 @@
           "layer": "B",
           "category": "B-RIV",
           "subCategory": "B-RIV-01",
-          "label": "瀬戸内海の海賊が横行し朝廷の海上統制が弱体化していた",
+          "label": "瀬戸内海の海賊が横行し朝廷の海上統制が弱体化している",
           "normalizedLabel": "藤原純友をめぐる利害対立が蓄積し",
           "notes": []
         },
@@ -12804,7 +12804,7 @@
           "layer": "B",
           "category": "B-MIL",
           "subCategory": "B-MIL-01",
-          "label": "伊予の国司だった藤原純友が海賊を率いて反乱を起こしていた",
+          "label": "伊予の国司だった藤原純友が海賊を率いて反乱を起こしている",
           "normalizedLabel": "統治の調整が追いつかず武力衝突に発展",
           "notes": []
         },
@@ -12973,7 +12973,7 @@
           "layer": "B",
           "category": "B-INS",
           "subCategory": "B-INS-04",
-          "label": "律令の施行細則が弘仁式・貞観式など複数に散在し、国ごとに運用の差が大きかった",
+          "label": "律令の施行細則が弘仁式・貞観式など複数に散在し、国ごとに運用の差が大きい",
           "normalizedLabel": "既存運用の矛盾や危機対応の必要",
           "notes": []
         },
@@ -12982,7 +12982,7 @@
           "layer": "B",
           "category": "B-INS",
           "subCategory": "B-INS-03",
-          "label": "国司の交代のたびに行政の細則が変わり、地方の実務担当者が混乱していた",
+          "label": "国司の交代のたびに行政の細則が変わり、地方の実務担当者が混乱している",
           "normalizedLabel": "統一的な規則",
           "notes": []
         },
@@ -13173,7 +13173,7 @@
           "layer": "B",
           "category": "B-RIV",
           "subCategory": "B-RIV-01",
-          "label": "源高明が左大臣として藤原氏の摂関独占に脅威を与えていた",
+          "label": "源高明が左大臣として藤原氏の摂関独占に脅威を与えている",
           "normalizedLabel": "安和をめぐる利害対立が蓄積し",
           "notes": []
         },
@@ -13182,7 +13182,7 @@
           "layer": "B",
           "category": "B-MIL",
           "subCategory": "B-MIL-01",
-          "label": "源高明が醍醐源氏の中心として皇位継承に影響力を持っていた",
+          "label": "源高明が醍醐源氏の中心として皇位継承に影響力を持っている",
           "normalizedLabel": "統治の調整が追いつかず武力衝突に発展",
           "notes": []
         },
@@ -13351,7 +13351,7 @@
           "layer": "B",
           "category": "B-INF",
           "subCategory": "B-INF-01",
-          "label": "受領（国司）の地方行政権限が拡大し不正が横行していた",
+          "label": "受領（国司）の地方行政権限が拡大し不正が横行している",
           "normalizedLabel": "『尾張国郡司百姓等解文が出",
           "notes": []
         },
@@ -13360,7 +13360,7 @@
           "layer": "B",
           "category": "B-INS",
           "subCategory": "B-INS-04",
-          "label": "尾張国司藤原元命の悪政に対し郡司・百姓が三十一ヶ条の訴状を作成していた",
+          "label": "尾張国司藤原元命の悪政に対し郡司・百姓が三十一ヶ条の訴状を作成している",
           "normalizedLabel": "制度運用の矛盾や利害対立",
           "notes": []
         },
@@ -13560,7 +13560,7 @@
           "layer": "B",
           "category": "B-PWR",
           "subCategory": "B-PWR-04",
-          "label": "天皇の外祖父として朝廷の人事と政策決定を掌握していた",
+          "label": "天皇の外祖父として朝廷の人事と政策決定を掌握している",
           "normalizedLabel": "『藤原道長が摂政に就任",
           "notes": []
         },
@@ -13569,7 +13569,7 @@
           "layer": "B",
           "category": "B-INS",
           "subCategory": "B-INS-04",
-          "label": "藤原氏以外の有力貴族が相次いで政界から退き、朝廷の要職を藤原氏一族が独占していた",
+          "label": "藤原氏以外の有力貴族が相次いで政界から退き、朝廷の要職を藤原氏一族が独占している",
           "normalizedLabel": "制度運用の矛盾や利害対立",
           "notes": []
         },
@@ -13760,7 +13760,7 @@
           "layer": "B",
           "category": "B-EXT",
           "subCategory": "B-EXT-03",
-          "label": "奥州の俘囚長・安倍氏が朝廷の統制に従わず勢力を拡大していた",
+          "label": "奥州の俘囚長・安倍氏が朝廷の統制に従わず勢力を拡大している",
           "normalizedLabel": "前九年をめぐる外交",
           "notes": []
         },
@@ -13769,7 +13769,7 @@
           "layer": "B",
           "category": "B-MIL",
           "subCategory": "B-MIL-01",
-          "label": "源頼義は1051年に陸奥守として現地に赴任しており、安倍氏は奥六郡を支配して朝廷への貢納を滞らせていた",
+          "label": "源頼義は1051年に陸奥守として現地に赴任しており、安倍氏は奥六郡を支配して朝廷への貢納を滞らせている",
           "normalizedLabel": "対内の軍事衝突が臨界に達し",
           "notes": []
         },
@@ -13778,7 +13778,7 @@
           "layer": "B",
           "category": "B-EXT",
           "subCategory": "B-EXT-01",
-          "label": "出羽の清原氏が源頼義に加勢し安倍氏を挟撃していた",
+          "label": "出羽の清原氏が源頼義に加勢し安倍氏を挟撃している",
           "normalizedLabel": "同盟",
           "notes": []
         },
@@ -13969,7 +13969,7 @@
           "layer": "B",
           "category": "B-RES",
           "subCategory": "B-RES-01",
-          "label": "天災・疫病・戦乱が相次ぎ社会不安が広がっていた",
+          "label": "天災・疫病・戦乱が相次ぎ社会不安が広がっている",
           "normalizedLabel": "経済",
           "notes": []
         },
@@ -13978,7 +13978,7 @@
           "layer": "B",
           "category": "B-INS",
           "subCategory": "B-INS-04",
-          "label": "仏教の教えによる末法の世の到来が信じられていた",
+          "label": "仏教の教えによる末法の世の到来が信じられている",
           "normalizedLabel": "治安",
           "notes": []
         },
@@ -13987,7 +13987,7 @@
           "layer": "B",
           "category": "B-INS",
           "subCategory": "B-INS-04",
-          "label": "釈迦入滅から二千年が経過し末法の世に入ったとされていた",
+          "label": "釈迦入滅から二千年が経過し末法の世に入ったとされている",
           "normalizedLabel": "土地統治などの問題が顕在化し",
           "notes": []
         },
@@ -14187,7 +14187,7 @@
           "layer": "B",
           "category": "B-INS",
           "subCategory": "B-INS-04",
-          "label": "荘園の拡大が国家財政を圧迫し整理が急務であった",
+          "label": "荘園の拡大が国家財政を圧迫し整理が急務である",
           "normalizedLabel": "退位などで継承が発生し",
           "notes": []
         },
@@ -14196,7 +14196,7 @@
           "layer": "B",
           "category": "B-INS",
           "subCategory": "B-INS-04",
-          "label": "後三条天皇が藤原氏に依存せず自ら政務を執る親政を開始していた",
+          "label": "後三条天皇が藤原氏に依存せず自ら政務を執る親政を開始している",
           "normalizedLabel": "朝廷内の合意の取りまとめ",
           "notes": []
         },
@@ -14399,7 +14399,7 @@
           "layer": "B",
           "category": "B-INS",
           "subCategory": "B-INS-04",
-          "label": "従来の荘園整理は国司主体だったが、国司と有力貴族の癒着で実効性がなかった",
+          "label": "従来の荘園整理は国司主体だが、国司と有力貴族の癒着で実効性がない",
           "normalizedLabel": "従来整理の実効性欠如",
           "notes": []
         }
@@ -14548,7 +14548,7 @@
           "layer": "B",
           "category": "B-MIL",
           "subCategory": "B-MIL-01",
-          "label": "源義家が清原清衡を支援し清原家衡・武衡と戦っていた",
+          "label": "源義家が清原清衡を支援し清原家衡・武衡と戦っている",
           "normalizedLabel": "対内の軍事衝突が臨界に達し",
           "notes": []
         },
@@ -14748,7 +14748,7 @@
           "layer": "B",
           "category": "B-PWR",
           "subCategory": "B-PWR-04",
-          "label": "天皇在位中は摂関家の制約を受けるが上皇には制約がなかっていた",
+          "label": "天皇在位中は摂関家の制約を受けるが上皇には制約がない",
           "normalizedLabel": "『白河上皇が院政を開始",
           "notes": []
         },
@@ -14757,7 +14757,7 @@
           "layer": "B",
           "category": "B-PWR",
           "subCategory": "B-PWR-04",
-          "label": "白河天皇が幼い堀河天皇に譲位し上皇として実権を握っていた",
+          "label": "白河天皇が幼い堀河天皇に譲位し上皇として実権を握っている",
           "normalizedLabel": "制度運用の矛盾や利害対立",
           "notes": []
         },
@@ -14948,7 +14948,7 @@
           "layer": "B",
           "category": "B-INF",
           "subCategory": "B-INF-01",
-          "label": "11世紀後半を通じて荘園の増加が続き、国衙が把握する公領の田地面積と実際の耕地との間に乖離が生じていた",
+          "label": "11世紀後半を通じて荘園の増加が続き、国衙が把握する公領の田地面積と実際の耕地との間に乖離が生じている",
           "normalizedLabel": "『永長の大田文が作成",
           "notes": []
         },
@@ -14957,7 +14957,7 @@
           "layer": "B",
           "category": "B-INS",
           "subCategory": "B-INS-04",
-          "label": "国衙領と荘園の境界が曖昧で租税徴収に支障が生じていた",
+          "label": "国衙領と荘園の境界が曖昧で租税徴収に支障が生じている",
           "normalizedLabel": "制度運用の矛盾や利害対立",
           "notes": []
         },
@@ -15166,7 +15166,7 @@
           "layer": "B",
           "category": "B-INS",
           "subCategory": "B-INS-04",
-          "label": "白河法皇が幼い鳥羽天皇を即位させ院政を継続していた",
+          "label": "白河法皇が幼い鳥羽天皇を即位させ院政を継続している",
           "normalizedLabel": "退位などで継承が発生し",
           "notes": []
         },
@@ -15175,7 +15175,7 @@
           "layer": "B",
           "category": "B-INS",
           "subCategory": "B-INS-04",
-          "label": "白河法皇の意向により鳥羽天皇が五歳で即位していた",
+          "label": "白河法皇の意向により鳥羽天皇が五歳で即位している",
           "normalizedLabel": "朝廷内の合意の取りまとめ",
           "notes": []
         },
@@ -15342,7 +15342,7 @@
           "layer": "B",
           "category": "B-RES",
           "subCategory": "B-RES-03",
-          "label": "白河法皇が43年にわたり院政を行い高齢となっていた",
+          "label": "白河法皇が43年にわたり院政を行い高齢となっている",
           "normalizedLabel": "高齢",
           "notes": []
         },
@@ -15351,7 +15351,7 @@
           "layer": "B",
           "category": "B-RES",
           "subCategory": "B-RES-03",
-          "label": "長期の権力保持により政治的蓄積と矛盾が生じていた",
+          "label": "長期の権力保持により政治的蓄積と矛盾が生じている",
           "normalizedLabel": "疾病",
           "notes": []
         },
@@ -15551,7 +15551,7 @@
           "layer": "B",
           "category": "B-RIV",
           "subCategory": "B-RIV-01",
-          "label": "崇徳上皇と後白河天皇の対立に摂関家・武士の対立が重なっていた",
+          "label": "崇徳上皇と後白河天皇の対立に摂関家・武士の対立が重なっている",
           "normalizedLabel": "保元をめぐる利害対立が蓄積し",
           "notes": []
         },
@@ -15560,7 +15560,7 @@
           "layer": "B",
           "category": "B-MIL",
           "subCategory": "B-MIL-01",
-          "label": "平清盛・源義朝ら武士が後白河方として参戦していた",
+          "label": "平清盛・源義朝ら武士が後白河方として参戦している",
           "normalizedLabel": "統治の調整が追いつかず武力衝突に発展",
           "notes": []
         },
@@ -15729,7 +15729,7 @@
           "layer": "B",
           "category": "B-RIV",
           "subCategory": "B-RIV-01",
-          "label": "保元の乱後の恩賞配分をめぐり平清盛と源義朝が対立していた",
+          "label": "保元の乱後の恩賞配分をめぐり平清盛と源義朝が対立している",
           "normalizedLabel": "平治をめぐる利害対立が蓄積し",
           "notes": [],
           "origin": {
@@ -15902,7 +15902,7 @@
           "layer": "B",
           "category": "B-PWR",
           "subCategory": "B-PWR-02",
-          "label": "保元・平治の乱で武功を立てた平清盛が急速に昇進していた",
+          "label": "保元・平治の乱で武功を立てた平清盛が急速に昇進している",
           "normalizedLabel": "『平清盛が太政大臣に就任",
           "notes": [],
           "origin": {
@@ -15915,7 +15915,7 @@
           "layer": "B",
           "category": "B-INS",
           "subCategory": "B-INS-04",
-          "label": "娘の徳子を高倉天皇に入内させ外戚化を進めていた",
+          "label": "娘の徳子を高倉天皇に入内させ外戚化を進めている",
           "normalizedLabel": "制度運用の矛盾や利害対立",
           "notes": []
         },
@@ -15924,7 +15924,7 @@
           "layer": "B",
           "category": "B-EXT",
           "subCategory": "B-EXT-03",
-          "label": "日宋貿易で経済力を蓄え摂関家に匹敵する財力を持っていた",
+          "label": "日宋貿易で経済力を蓄え摂関家に匹敵する財力を持っている",
           "normalizedLabel": "外交",
           "notes": []
         },
@@ -16115,7 +16115,7 @@
           "layer": "B",
           "category": "B-INS",
           "subCategory": "B-INS-04",
-          "label": "平氏の専横に対し後白河法皇の近臣が不満を募らせていた",
+          "label": "平氏の専横に対し後白河法皇の近臣が不満を募らせている",
           "normalizedLabel": "『鹿ケ谷の陰謀が起きた』に至るまで",
           "notes": []
         },
@@ -16124,7 +16124,7 @@
           "layer": "B",
           "category": "B-INS",
           "subCategory": "B-INS-04",
-          "label": "藤原成親・俊寛らが鹿ケ谷で平氏打倒の密議を行っていた",
+          "label": "藤原成親・俊寛らが鹿ケ谷で平氏打倒の密議を行っている",
           "normalizedLabel": "制度運用の矛盾や利害対立",
           "notes": []
         },
@@ -16324,7 +16324,7 @@
           "layer": "B",
           "category": "B-MIL",
           "subCategory": "B-MIL-01",
-          "label": "源頼朝が伊豆で挙兵し関東の武士団が結集していた",
+          "label": "源頼朝が伊豆で挙兵し関東の武士団が結集している",
           "normalizedLabel": "対内の軍事衝突が臨界に達し",
           "notes": []
         },
@@ -16333,7 +16333,7 @@
           "layer": "B",
           "category": "B-MIL",
           "subCategory": "B-MIL-01",
-          "label": "木曽義仲も信濃で挙兵し各地で反平氏の動きが広がっていた",
+          "label": "木曽義仲も信濃で挙兵し各地で反平氏の動きが広がっている",
           "normalizedLabel": "同盟",
           "notes": []
         },
@@ -16524,7 +16524,7 @@
           "layer": "B",
           "category": "B-MIL",
           "subCategory": "B-MIL-01",
-          "label": "木曽義仲が倶利伽羅峠の戦いで平氏の大軍を破っていた",
+          "label": "木曽義仲が倶利伽羅峠の戦いで平氏の大軍を破っている",
           "normalizedLabel": "『木曽義仲が入京",
           "notes": []
         },
@@ -16533,7 +16533,7 @@
           "layer": "B",
           "category": "B-INS",
           "subCategory": "B-INS-04",
-          "label": "平氏が安徳天皇を奉じて都落ちし京都が空白状態となっていた",
+          "label": "平氏が安徳天皇を奉じて都落ちし京都が空白状態となっている",
           "normalizedLabel": "制度運用の矛盾や利害対立",
           "notes": []
         },
@@ -16724,7 +16724,7 @@
           "layer": "B",
           "category": "B-PWR",
           "subCategory": "B-PWR-04",
-          "label": "院政により天皇・上皇・摂関家の権力関係が流動化していた",
+          "label": "院政により天皇・上皇・摂関家の権力関係が流動化している",
           "normalizedLabel": "『院政の定着と武士台頭",
           "notes": []
         },
@@ -16733,7 +16733,7 @@
           "layer": "B",
           "category": "B-INS",
           "subCategory": "B-INS-04",
-          "label": "武士が政治的決定に軍事力で介入する構造が常態化していた",
+          "label": "武士が政治的決定に軍事力で介入する構造が常態化している",
           "normalizedLabel": "政権構造の揺らぎ』に至るまで",
           "notes": []
         },
@@ -16924,7 +16924,7 @@
           "layer": "B",
           "category": "B-EXT",
           "subCategory": "B-EXT-03",
-          "label": "一ノ谷・屋島と連敗した平氏が壇ノ浦に追い詰められていた",
+          "label": "一ノ谷・屋島と連敗した平氏が壇ノ浦に追い詰められている",
           "normalizedLabel": "壇ノ浦のをめぐる外交",
           "notes": []
         },
@@ -16933,7 +16933,7 @@
           "layer": "B",
           "category": "B-MIL",
           "subCategory": "B-MIL-01",
-          "label": "源義経が水軍を率いて壇ノ浦で平氏を攻撃していた",
+          "label": "源義経が水軍を率いて壇ノ浦で平氏を攻撃している",
           "normalizedLabel": "対内の軍事衝突が臨界に達し",
           "notes": []
         },
@@ -16942,7 +16942,7 @@
           "layer": "B",
           "category": "B-MIL",
           "subCategory": "B-MIL-01",
-          "label": "潮流の変化を利用した源氏水軍が平氏を圧倒していた",
+          "label": "潮流の変化を利用した源氏水軍が平氏を圧倒している",
           "normalizedLabel": "同盟",
           "notes": []
         },
@@ -17133,7 +17133,7 @@
           "layer": "B",
           "category": "B-INS",
           "subCategory": "B-INS-01",
-          "label": "壇ノ浦で平氏を滅ぼし頼朝の軍事的優位が確定していた",
+          "label": "壇ノ浦で平氏を滅ぼし頼朝の軍事的優位が確定している",
           "normalizedLabel": "『源頼朝が守護",
           "notes": []
         },
@@ -17142,7 +17142,7 @@
           "layer": "B",
           "category": "B-INS",
           "subCategory": "B-INS-01",
-          "label": "源義経は頼朝から追討を命じられたのち奥州へ向けて逃亡しており、鎌倉の人的ネットワークは東国に限定されていた",
+          "label": "源義経は頼朝から追討を命じられたのち奥州へ向けて逃亡しており、鎌倉の人的ネットワークは東国に限定されている",
           "normalizedLabel": "地頭を設置",
           "notes": []
         },
@@ -17333,7 +17333,7 @@
           "layer": "B",
           "category": "B-PWR",
           "subCategory": "B-PWR-02",
-          "label": "頼朝が鎌倉を拠点に御家人制度と守護・地頭を通じて全国を統制していた",
+          "label": "頼朝が鎌倉を拠点に御家人制度と守護・地頭を通じて全国を統制している",
           "normalizedLabel": "『源頼朝が征夷大将軍に任じられた』に至る",
           "notes": []
         },
@@ -17342,7 +17342,7 @@
           "layer": "B",
           "category": "B-INS",
           "subCategory": "B-INS-04",
-          "label": "武家の棟梁としての地位を朝廷から公式に認められる必要があった",
+          "label": "武家の棟梁としての地位を朝廷から公式に認められる必要がある",
           "normalizedLabel": "制度運用の矛盾や利害対立",
           "notes": []
         },
@@ -17351,7 +17351,7 @@
           "layer": "B",
           "category": "B-MIL",
           "subCategory": "B-MIL-01",
-          "label": "後白河法皇の死後に障害が除かれ将軍任命が実現していた",
+          "label": "後白河法皇の死後に障害が除かれ将軍任命が実現している",
           "normalizedLabel": "外交",
           "notes": []
         },
@@ -17542,7 +17542,7 @@
           "layer": "B",
           "category": "B-RES",
           "subCategory": "B-RES-03",
-          "label": "頼朝の独裁的指導力に依存した幕府運営が続いていた",
+          "label": "頼朝の独裁的指導力に依存した幕府運営が続いている",
           "normalizedLabel": "高齢",
           "notes": []
         },
@@ -17551,7 +17551,7 @@
           "layer": "B",
           "category": "B-RES",
           "subCategory": "B-RES-03",
-          "label": "御家人間の勢力争いが頼朝の存命中は抑えられていた",
+          "label": "御家人間の勢力争いが頼朝の存命中は抑えられている",
           "normalizedLabel": "疾病",
           "notes": []
         },
@@ -17560,7 +17560,7 @@
           "layer": "B",
           "category": "B-RES",
           "subCategory": "B-RES-03",
-          "label": "源頼朝が落馬を契機に急死していた",
+          "label": "源頼朝が落馬を契機に急死している",
           "normalizedLabel": "政務負担などが重なり崩御",
           "notes": []
         },
@@ -17751,7 +17751,7 @@
           "layer": "B",
           "category": "B-PWR",
           "subCategory": "B-PWR-04",
-          "label": "源頼家の独断的政治に御家人の不満が高まっていた",
+          "label": "源頼家の独断的政治に御家人の不満が高まっている",
           "normalizedLabel": "『北条時政が初代執権となった』に至るまで",
           "notes": []
         },
@@ -17760,7 +17760,7 @@
           "layer": "B",
           "category": "B-PWR",
           "subCategory": "B-PWR-01",
-          "label": "比企氏が頼家の外戚として権力を握ろうとし北条氏と対立していた",
+          "label": "比企氏が頼家の外戚として権力を握ろうとし北条氏と対立している",
           "normalizedLabel": "制度運用の矛盾や利害対立",
           "notes": []
         },
@@ -17769,7 +17769,7 @@
           "layer": "B",
           "category": "B-MIL",
           "subCategory": "B-MIL-01",
-          "label": "頼朝死後の将軍家が御家人を統率する個人的カリスマを欠く幼年相続に陥っており、将軍後見役（外戚）による制度的支配が不可避な権力空白が生じていた",
+          "label": "頼朝死後の将軍家が御家人を統率する個人的カリスマを欠く幼年相続に陥っており、将軍後見役（外戚）による制度的支配が不可避な権力空白が生じている",
           "normalizedLabel": "外交",
           "notes": []
         },
@@ -17969,7 +17969,7 @@
           "layer": "B",
           "category": "B-INS",
           "subCategory": "B-INS-04",
-          "label": "嫡子・北条義時と政子が父時政の暴走を阻止する立場をとっていた",
+          "label": "嫡子・北条義時と政子が父時政の暴走を阻止する立場をとっている",
           "normalizedLabel": "制度運用の矛盾や利害対立",
           "notes": []
         },
@@ -18160,7 +18160,7 @@
           "layer": "B",
           "category": "B-EXT",
           "subCategory": "B-EXT-03",
-          "label": "侍所別当の和田義盛が北条義時の権力集中に反発していた",
+          "label": "侍所別当の和田義盛が北条義時の権力集中に反発している",
           "normalizedLabel": "和田をめぐる外交",
           "notes": []
         },
@@ -18169,7 +18169,7 @@
           "layer": "B",
           "category": "B-MIL",
           "subCategory": "B-MIL-01",
-          "label": "和田一族の挑発と北条氏の挑発が相互に激化していた",
+          "label": "和田一族の挑発と北条氏の挑発が相互に激化している",
           "normalizedLabel": "対内の軍事衝突が臨界に達し",
           "notes": []
         },
@@ -18178,7 +18178,7 @@
           "layer": "B",
           "category": "B-MIL",
           "subCategory": "B-MIL-01",
-          "label": "北条氏による御家人統制が強化される中、有力御家人の和田義盛が侍所別当の地位と独立的武力を保持しており、北条氏の一元支配と並立不可能な二重権力構造が存在していた",
+          "label": "北条氏による御家人統制が強化される中、有力御家人の和田義盛が侍所別当の地位と独立的武力を保持しており、北条氏の一元支配と並立不可能な二重権力構造が存在している",
           "normalizedLabel": "同盟",
           "notes": []
         },
@@ -18369,7 +18369,7 @@
           "layer": "B",
           "category": "B-MIL",
           "subCategory": "B-MIL-01",
-          "label": "朝廷が幕府に軍事的に挑戦したが兵力で劣勢であった",
+          "label": "朝廷が幕府に軍事的に挑戦したが兵力で劣勢である",
           "normalizedLabel": "承久をめぐる利害対立が蓄積し",
           "notes": []
         },
@@ -18378,7 +18378,7 @@
           "layer": "B",
           "category": "B-MIL",
           "subCategory": "B-MIL-01",
-          "label": "幕府が十九万の大軍で京都に進撃していた",
+          "label": "幕府が十九万の大軍で京都に進撃している",
           "normalizedLabel": "統治の調整が追いつかず武力衝突に発展",
           "notes": []
         },
@@ -18547,7 +18547,7 @@
           "layer": "B",
           "category": "B-PWR",
           "subCategory": "B-PWR-04",
-          "label": "執権の独断的権力に歯止めをかける合議体制が求められていた",
+          "label": "執権の独断的権力に歯止めをかける合議体制が求められている",
           "normalizedLabel": "『北条泰時が執権となり評定衆を整備",
           "notes": []
         },
@@ -18556,7 +18556,7 @@
           "layer": "B",
           "category": "B-INS",
           "subCategory": "B-INS-04",
-          "label": "承久の乱（1221年）の後、幕府は没収した京方武士の所領を御家人に再分配し、西国にも新たに地頭を補任していた",
+          "label": "承久の乱（1221年）の後、幕府は没収した京方武士の所領を御家人に再分配し、西国にも新たに地頭を補任している",
           "normalizedLabel": "制度運用の矛盾や利害対立",
           "notes": [],
           "origin": {
@@ -18569,7 +18569,7 @@
           "layer": "B",
           "category": "B-EXT",
           "subCategory": "B-EXT-03",
-          "label": "承久の乱後に西国を含む全国統治の課題が一気に拡大し、執権一人の判断では訴訟・行政が処理しきれない制度的過負荷が生じていた",
+          "label": "承久の乱後に西国を含む全国統治の課題が一気に拡大し、執権一人の判断では訴訟・行政が処理しきれない制度的過負荷が生じている",
           "normalizedLabel": "外交",
           "notes": []
         },
@@ -18760,7 +18760,7 @@
           "layer": "B",
           "category": "B-INS",
           "subCategory": "B-INS-04",
-          "label": "武家社会の慣習法が成文化されておらず裁判基準が不明確であった",
+          "label": "武家社会の慣習法が成文化されておらず裁判基準が不明確である",
           "normalizedLabel": "既存運用の矛盾や危機対応の必要",
           "notes": []
         },
@@ -18769,7 +18769,7 @@
           "layer": "B",
           "category": "B-INS",
           "subCategory": "B-INS-03",
-          "label": "承久の乱後に西国の所領争いが増加し統一的な法典が求められていた",
+          "label": "承久の乱後に西国の所領争いが増加し統一的な法典が求められている",
           "normalizedLabel": "統一的な規則",
           "notes": [],
           "origin": {
@@ -18782,7 +18782,7 @@
           "layer": "B",
           "category": "B-INS",
           "subCategory": "B-INS-03",
-          "label": "公家法（律令）とは別に武家独自の法体系が必要とされていた",
+          "label": "公家法（律令）とは別に武家独自の法体系が必要とされている",
           "normalizedLabel": "手続",
           "notes": []
         },
@@ -18973,7 +18973,7 @@
           "layer": "B",
           "category": "B-EXT",
           "subCategory": "B-EXT-03",
-          "label": "有力御家人の三浦泰村と北条得宗家の安達氏が対立していた",
+          "label": "有力御家人の三浦泰村と北条得宗家の安達氏が対立している",
           "normalizedLabel": "宝治をめぐる外交",
           "notes": []
         },
@@ -18982,7 +18982,7 @@
           "layer": "B",
           "category": "B-MIL",
           "subCategory": "B-MIL-01",
-          "label": "得宗（北条氏嫡流）による権力集中が進む中、有力御家人の三浦氏が独自の軍事力と人脈を維持しており、幕府内の二大勢力の共存が構造的限界に達していた",
+          "label": "得宗（北条氏嫡流）による権力集中が進む中、有力御家人の三浦氏が独自の軍事力と人脈を維持しており、幕府内の二大勢力の共存が構造的限界に達している",
           "normalizedLabel": "対内の軍事衝突が臨界に達し",
           "notes": []
         },
@@ -19173,7 +19173,7 @@
           "layer": "B",
           "category": "B-EXT",
           "subCategory": "B-EXT-03",
-          "label": "モンゴル帝国（元）のフビライが日本に朝貢を要求していた",
+          "label": "モンゴル帝国（元）のフビライが日本に朝貢を要求している",
           "normalizedLabel": "元寇文永をめぐる外交",
           "notes": []
         },
@@ -19182,7 +19182,7 @@
           "layer": "B",
           "category": "B-MIL",
           "subCategory": "B-MIL-01",
-          "label": "幕府がフビライの国書を無視し続けたため武力行使が決定されていた",
+          "label": "幕府がフビライの国書を無視し続けたため武力行使が決定されている",
           "normalizedLabel": "対内の軍事衝突が臨界に達し",
           "notes": []
         },
@@ -19373,7 +19373,7 @@
           "layer": "B",
           "category": "B-MIL",
           "subCategory": "B-MIL-01",
-          "label": "フビライが再度の日本征服を決意し大規模な遠征軍を編成していた",
+          "label": "フビライが再度の日本征服を決意し大規模な遠征軍を編成している",
           "normalizedLabel": "文永の役後も元の再侵攻が避けられず",
           "notes": []
         },
@@ -19542,7 +19542,7 @@
           "layer": "B",
           "category": "B-PWR",
           "subCategory": "B-PWR-01",
-          "label": "安達泰盛と内管領・平頼綱が幕政の主導権を争っていた",
+          "label": "安達泰盛と内管領・平頼綱が幕政の主導権を争っている",
           "normalizedLabel": "『霜月騒動が起きた』に至るまで",
           "notes": []
         },
@@ -19551,7 +19551,7 @@
           "layer": "B",
           "category": "B-INS",
           "subCategory": "B-INS-04",
-          "label": "安達泰盛が御家人制度の改革を進め得宗被官の反発を招いていた",
+          "label": "安達泰盛が御家人制度の改革を進め得宗被官の反発を招いている",
           "normalizedLabel": "制度運用の矛盾や利害対立",
           "notes": []
         },
@@ -19560,7 +19560,7 @@
           "layer": "B",
           "category": "B-EXT",
           "subCategory": "B-EXT-03",
-          "label": "元寇後に非常体制が解かれた結果、安達泰盛の御家人重視路線と得宗被官の既得権が根本的に対立し、外圧消滅後に内部矛盾の抑制機能が失われていた",
+          "label": "元寇後に非常体制が解かれた結果、安達泰盛の御家人重視路線と得宗被官の既得権が根本的に対立し、外圧消滅後に内部矛盾の抑制機能が失われている",
           "normalizedLabel": "外交",
           "notes": []
         },
@@ -19751,7 +19751,7 @@
           "layer": "B",
           "category": "B-RES",
           "subCategory": "B-RES-01",
-          "label": "元寇後の恩賞不足と貨幣経済の浸透で御家人が困窮していた",
+          "label": "元寇後の恩賞不足と貨幣経済の浸透で御家人が困窮している",
           "normalizedLabel": "経済",
           "notes": [],
           "origin": {
@@ -19773,7 +19773,7 @@
           "layer": "B",
           "category": "B-RES",
           "subCategory": "B-RES-01",
-          "label": "元寇後に「恩賞なき奉公」を強いられた御家人が所領を手放さざるを得なくなり、御家人制度＝幕府の軍事基盤そのものが経済的に空洞化しつつあった",
+          "label": "元寇後に「恩賞なき奉公」を強いられた御家人が所領を手放さざるを得なくなり、御家人制度＝幕府の軍事基盤そのものが経済的に空洞化しつつある",
           "normalizedLabel": "土地統治などの問題が顕在化し",
           "notes": []
         },
@@ -19964,7 +19964,7 @@
           "layer": "B",
           "category": "B-RIV",
           "subCategory": "B-RIV-01",
-          "label": "後醍醐天皇が天皇親政の回復と幕府打倒を企図していた",
+          "label": "後醍醐天皇が天皇親政の回復と幕府打倒を企図している",
           "normalizedLabel": "元弘をめぐる利害対立が蓄積し",
           "notes": []
         },
@@ -19973,7 +19973,7 @@
           "layer": "B",
           "category": "B-MIL",
           "subCategory": "B-MIL-01",
-          "label": "正中の変に続く二度目の討幕計画が発覚していた",
+          "label": "正中の変に続く二度目の討幕計画が発覚している",
           "normalizedLabel": "統治の調整が追いつかず武力衝突に発展",
           "notes": []
         },
@@ -20142,7 +20142,7 @@
           "layer": "B",
           "category": "B-GEO",
           "subCategory": "B-GEO-02",
-          "label": "得宗専制への御家人の不満と元弘の変以降の討幕運動が拡大していた",
+          "label": "得宗専制への御家人の不満と元弘の変以降の討幕運動が拡大している",
           "normalizedLabel": "『鎌倉幕府が崩壊",
           "notes": []
         },
@@ -20151,7 +20151,7 @@
           "layer": "B",
           "category": "B-INS",
           "subCategory": "B-INS-04",
-          "label": "足利高氏（尊氏）が幕府を裏切り六波羅探題を攻略していた",
+          "label": "足利高氏（尊氏）が幕府を裏切り六波羅探題を攻略している",
           "normalizedLabel": "制度運用の矛盾や利害対立",
           "notes": []
         },
@@ -20160,7 +20160,7 @@
           "layer": "B",
           "category": "B-EXT",
           "subCategory": "B-EXT-03",
-          "label": "全国の御家人が相次いで幕府から離反しており、鎌倉という地理的孤立した政治拠点を防衛する軍事力そのものが敵に転換していた",
+          "label": "全国の御家人が相次いで幕府から離反しており、鎌倉という地理的孤立した政治拠点を防衛する軍事力そのものが敵に転換している",
           "normalizedLabel": "外交",
           "notes": []
         },
@@ -20351,7 +20351,7 @@
           "layer": "B",
           "category": "B-INS",
           "subCategory": "B-INS-04",
-          "label": "鎌倉幕府の滅亡により天皇親政を実現する機会が到来していた",
+          "label": "鎌倉幕府の滅亡により天皇親政を実現する機会が到来している",
           "normalizedLabel": "『建武の新政が始まった』に至るまで",
           "notes": []
         },
@@ -20360,7 +20360,7 @@
           "layer": "B",
           "category": "B-INS",
           "subCategory": "B-INS-04",
-          "label": "後醍醐天皇が延喜・天暦の治を理想とする復古的政治を志向していた",
+          "label": "後醍醐天皇が延喜・天暦の治を理想とする復古的政治を志向している",
           "normalizedLabel": "制度運用の矛盾や利害対立",
           "notes": []
         },
@@ -20369,7 +20369,7 @@
           "layer": "B",
           "category": "B-EXT",
           "subCategory": "B-EXT-03",
-          "label": "後醍醐天皇は即位後、天皇親政の回復を志向し、倒幕運動を二度試みていた",
+          "label": "後醍醐天皇は即位後、天皇親政の回復を志向し、倒幕運動を二度試みている",
           "normalizedLabel": "外交",
           "notes": []
         },
@@ -20560,7 +20560,7 @@
           "layer": "B",
           "category": "B-INS",
           "subCategory": "B-INS-04",
-          "label": "建武の新政への武士の不満が広がり足利尊氏が離反していた",
+          "label": "建武の新政への武士の不満が広がり足利尊氏が離反している",
           "normalizedLabel": "『南北朝の対立が始まった』に至るまで",
           "notes": []
         },
@@ -20760,7 +20760,7 @@
           "layer": "B",
           "category": "B-PWR",
           "subCategory": "B-PWR-02",
-          "label": "建武の新政が崩壊し武家による新たな統治体制が求められていた",
+          "label": "建武の新政が崩壊し武家による新たな統治体制が求められている",
           "normalizedLabel": "『足利尊氏が室町幕府を開いた』に至るまで",
           "notes": [],
           "origin": {
@@ -20773,7 +20773,7 @@
           "layer": "B",
           "category": "B-INS",
           "subCategory": "B-INS-04",
-          "label": "足利尊氏が北朝の光明天皇から征夷大将軍を目指す立場にあった",
+          "label": "足利尊氏が北朝の光明天皇から征夷大将軍を目指す立場にある",
           "normalizedLabel": "制度運用の矛盾や利害対立",
           "notes": []
         },
@@ -20964,7 +20964,7 @@
           "layer": "B",
           "category": "B-PWR",
           "subCategory": "B-PWR-02",
-          "label": "建武の新政の恩賞配分が公家偏重で武士の不満が高まっていた",
+          "label": "建武の新政の恩賞配分が公家偏重で武士の不満が高まっている",
           "normalizedLabel": "『足利尊氏が新政から離反",
           "notes": [],
           "origin": {
@@ -20977,7 +20977,7 @@
           "layer": "B",
           "category": "B-INS",
           "subCategory": "B-INS-04",
-          "label": "足利尊氏と弟直義の間でも政治路線の違いが生じていた",
+          "label": "足利尊氏と弟直義の間でも政治路線の違いが生じている",
           "normalizedLabel": "制度運用の矛盾や利害対立",
           "notes": []
         },
@@ -20986,7 +20986,7 @@
           "layer": "B",
           "category": "B-EXT",
           "subCategory": "B-EXT-03",
-          "label": "中先代の乱鎮圧を機に尊氏が後醍醐天皇から独立して行動していた",
+          "label": "中先代の乱鎮圧を機に尊氏が後醍醐天皇から独立して行動している",
           "normalizedLabel": "外交",
           "notes": []
         },
@@ -21177,7 +21177,7 @@
           "layer": "B",
           "category": "B-PWR",
           "subCategory": "B-PWR-02",
-          "label": "尊氏が北朝の光明天皇を擁立し武家政権の正統性を確保していた",
+          "label": "尊氏が北朝の光明天皇を擁立し武家政権の正統性を確保している",
           "normalizedLabel": "『足利尊氏が征夷大将軍に任じられた』に至",
           "notes": []
         },
@@ -21186,7 +21186,7 @@
           "layer": "B",
           "category": "B-INS",
           "subCategory": "B-INS-04",
-          "label": "京都を制圧し朝廷との協力関係を築いていた",
+          "label": "京都を制圧し朝廷との協力関係を築いている",
           "normalizedLabel": "制度運用の矛盾や利害対立",
           "notes": []
         },
@@ -21377,7 +21377,7 @@
           "layer": "B",
           "category": "B-INS",
           "subCategory": "B-INS-04",
-          "label": "将軍足利尊氏と弟の直義が幕政の運営方針をめぐり対立していた",
+          "label": "将軍足利尊氏と弟の直義が幕政の運営方針をめぐり対立している",
           "normalizedLabel": "『観応の擾乱が起きた』に至るまで",
           "notes": []
         },
@@ -21386,7 +21386,7 @@
           "layer": "B",
           "category": "B-INS",
           "subCategory": "B-INS-04",
-          "label": "尊氏の執事・高師直と直義派が武力衝突に至っていた",
+          "label": "尊氏の執事・高師直と直義派が武力衝突に至っている",
           "normalizedLabel": "制度運用の矛盾や利害対立",
           "notes": []
         },
@@ -21395,7 +21395,7 @@
           "layer": "B",
           "category": "B-EXT",
           "subCategory": "B-EXT-03",
-          "label": "直義が一時南朝に降るなど情勢が複雑に展開していた",
+          "label": "直義が一時南朝に降るなど情勢が複雑に展開している",
           "normalizedLabel": "外交",
           "notes": []
         },
@@ -21586,7 +21586,7 @@
           "layer": "B",
           "category": "B-MIL",
           "subCategory": "B-MIL-01",
-          "label": "三代将軍義満が南北朝の統一と幕府権威の確立を推進していた",
+          "label": "三代将軍義満が南北朝の統一と幕府権威の確立を推進している",
           "normalizedLabel": "『足利義満が花の御所を造営",
           "notes": []
         },
@@ -21595,7 +21595,7 @@
           "layer": "B",
           "category": "B-INS",
           "subCategory": "B-INS-04",
-          "label": "室町（北小路）の地に壮麗な将軍邸宅が計画されていた",
+          "label": "室町（北小路）の地に壮麗な将軍邸宅が計画されている",
           "normalizedLabel": "制度運用の矛盾や利害対立",
           "notes": []
         },
@@ -21604,7 +21604,7 @@
           "layer": "B",
           "category": "B-EXT",
           "subCategory": "B-EXT-03",
-          "label": "室町幕府は発足以来、将軍の御所が転々と移り、政庁としての拠点が京都内で数度変遷していた",
+          "label": "室町幕府は発足以来、将軍の御所が転々と移り、政庁としての拠点が京都内で数度変遷している",
           "normalizedLabel": "外交",
           "notes": []
         },
@@ -21795,7 +21795,7 @@
           "layer": "B",
           "category": "B-PWR",
           "subCategory": "B-PWR-02",
-          "label": "南朝の勢力が衰退し和平交渉の機が熟していた",
+          "label": "南朝の勢力が衰退し和平交渉の機が熟している",
           "normalizedLabel": "『南北朝が統一",
           "notes": []
         },
@@ -21804,7 +21804,7 @@
           "layer": "B",
           "category": "B-INS",
           "subCategory": "B-INS-04",
-          "label": "義満が両統迭立（交互に皇位を継承）の条件を提示していた",
+          "label": "義満が両統迭立（交互に皇位を継承）の条件を提示している",
           "normalizedLabel": "制度運用の矛盾や利害対立",
           "notes": []
         },
@@ -21813,7 +21813,7 @@
           "layer": "B",
           "category": "B-EXT",
           "subCategory": "B-EXT-03",
-          "label": "南朝の後亀山天皇が三種の神器を北朝の後小松天皇に渡していた",
+          "label": "南朝の後亀山天皇が三種の神器を北朝の後小松天皇に渡している",
           "normalizedLabel": "外交",
           "notes": []
         },
@@ -22004,7 +22004,7 @@
           "layer": "B",
           "category": "B-EXT",
           "subCategory": "B-EXT-04",
-          "label": "足利義満が明との国交樹立と貿易の利益を求めていた",
+          "label": "足利義満が明との国交樹立と貿易の利益を求めている",
           "normalizedLabel": "『日明貿易が始まった』に至るまで",
           "notes": []
         },
@@ -22204,7 +22204,7 @@
           "layer": "B",
           "category": "B-RIV",
           "subCategory": "B-RIV-01",
-          "label": "農民・馬借ら民衆の間に徳政（債務免除）への期待が高まっていた",
+          "label": "農民・馬借ら民衆の間に徳政（債務免除）への期待が高まっている",
           "normalizedLabel": "正長の土をめぐる利害対立が蓄積し",
           "notes": []
         },
@@ -22213,7 +22213,7 @@
           "layer": "B",
           "category": "B-MIL",
           "subCategory": "B-MIL-01",
-          "label": "称光天皇の崩御に伴う代替わりを機に一揆が発生していた",
+          "label": "称光天皇の崩御に伴う代替わりを機に一揆が発生している",
           "normalizedLabel": "統治の調整が追いつかず武力衝突に発展",
           "notes": []
         },
@@ -22382,7 +22382,7 @@
           "layer": "B",
           "category": "B-RIV",
           "subCategory": "B-RIV-01",
-          "label": "鎌倉公方足利持氏が幕府の関東支配方針に反発していた",
+          "label": "鎌倉公方足利持氏が幕府の関東支配方針に反発している",
           "normalizedLabel": "永享をめぐる利害対立が蓄積し",
           "notes": []
         },
@@ -22391,7 +22391,7 @@
           "layer": "B",
           "category": "B-MIL",
           "subCategory": "B-MIL-01",
-          "label": "将軍義教と持氏の対立が皇位継承問題を契機に決定的となっていた",
+          "label": "将軍義教と持氏の対立が皇位継承問題を契機に決定的となっている",
           "normalizedLabel": "統治の調整が追いつかず武力衝突に発展",
           "notes": []
         },
@@ -22560,7 +22560,7 @@
           "layer": "B",
           "category": "B-MIL",
           "subCategory": "B-MIL-01",
-          "label": "将軍義教が恐怖政治で有力守護を次々に弾圧していた",
+          "label": "将軍義教が恐怖政治で有力守護を次々に弾圧している",
           "normalizedLabel": "嘉吉をめぐる利害対立が蓄積し",
           "notes": []
         },
@@ -22569,7 +22569,7 @@
           "layer": "B",
           "category": "B-MIL",
           "subCategory": "B-MIL-01",
-          "label": "播磨の守護赤松満祐が次の弾圧対象と恐れ暗殺を決行していた",
+          "label": "播磨の守護赤松満祐が次の弾圧対象と恐れ暗殺を決行している",
           "normalizedLabel": "統治の調整が追いつかず武力衝突に発展",
           "notes": []
         },
@@ -22738,7 +22738,7 @@
           "layer": "B",
           "category": "B-RIV",
           "subCategory": "B-RIV-01",
-          "label": "鎌倉公方足利成氏と関東管領上杉氏の対立が激化していた",
+          "label": "鎌倉公方足利成氏と関東管領上杉氏の対立が激化している",
           "normalizedLabel": "享徳をめぐる利害対立が蓄積し",
           "notes": []
         },
@@ -22747,7 +22747,7 @@
           "layer": "B",
           "category": "B-MIL",
           "subCategory": "B-MIL-01",
-          "label": "成氏が関東管領上杉憲忠を暗殺し武力衝突が始まっていた",
+          "label": "成氏が関東管領上杉憲忠を暗殺し武力衝突が始まっている",
           "normalizedLabel": "統治の調整が追いつかず武力衝突に発展",
           "notes": []
         },
@@ -22916,7 +22916,7 @@
           "layer": "B",
           "category": "B-MIL",
           "subCategory": "B-MIL-01",
-          "label": "将軍後継問題で細川勝元と山名宗全が対立していた",
+          "label": "将軍後継問題で細川勝元と山名宗全が対立している",
           "normalizedLabel": "応仁をめぐる利害対立が蓄積し",
           "notes": []
         },
@@ -22925,7 +22925,7 @@
           "layer": "B",
           "category": "B-MIL",
           "subCategory": "B-MIL-01",
-          "label": "畠山氏・斯波氏の家督争いが両陣営の対立に重なっていた",
+          "label": "畠山氏・斯波氏の家督争いが両陣営の対立に重なっている",
           "normalizedLabel": "統治の調整が追いつかず武力衝突に発展",
           "notes": []
         },
@@ -23094,7 +23094,7 @@
           "layer": "B",
           "category": "B-RIV",
           "subCategory": "B-RIV-01",
-          "label": "長期の戦闘で両陣営とも疲弊し戦意が低下していた",
+          "label": "長期の戦闘で両陣営とも疲弊し戦意が低下している",
           "normalizedLabel": "応仁をめぐる利害対立が蓄積し",
           "notes": []
         },
@@ -23103,7 +23103,7 @@
           "layer": "B",
           "category": "B-MIL",
           "subCategory": "B-MIL-01",
-          "label": "細川勝元・山名宗全の両総帥が相次いで死去していた",
+          "label": "細川勝元・山名宗全の両総帥が相次いで死去している",
           "normalizedLabel": "統治の調整が追いつかず武力衝突に発展",
           "notes": []
         },
@@ -23272,7 +23272,7 @@
           "layer": "B",
           "category": "B-RIV",
           "subCategory": "B-RIV-01",
-          "label": "畠山氏の内紛で山城国が戦場となり住民が疲弊していた",
+          "label": "畠山氏の内紛で山城国が戦場となり住民が疲弊している",
           "normalizedLabel": "山城国をめぐる利害対立が蓄積し",
           "notes": []
         },
@@ -23281,7 +23281,7 @@
           "layer": "B",
           "category": "B-MIL",
           "subCategory": "B-MIL-01",
-          "label": "国人・土民が団結して畠山両軍の撤退を要求していた",
+          "label": "国人・土民が団結して畠山両軍の撤退を要求している",
           "normalizedLabel": "統治の調整が追いつかず武力衝突に発展",
           "notes": []
         },
@@ -23450,7 +23450,7 @@
           "layer": "B",
           "category": "B-RIV",
           "subCategory": "B-RIV-01",
-          "label": "本願寺門徒が加賀で強大な勢力を形成していた",
+          "label": "本願寺門徒が加賀で強大な勢力を形成している",
           "normalizedLabel": "加賀の一向をめぐる利害対立が蓄積し",
           "notes": []
         },
@@ -23459,7 +23459,7 @@
           "layer": "B",
           "category": "B-MIL",
           "subCategory": "B-MIL-01",
-          "label": "守護・富樫政親と一向宗門徒の対立が激化していた",
+          "label": "守護・富樫政親と一向宗門徒の対立が激化している",
           "normalizedLabel": "統治の調整が追いつかず武力衝突に発展",
           "notes": []
         },
@@ -23628,7 +23628,7 @@
           "layer": "B",
           "category": "B-INS",
           "subCategory": "B-INS-04",
-          "label": "管領細川政元が将軍足利義材の政策に不満を抱いていた",
+          "label": "管領細川政元が将軍足利義材の政策に不満を抱いている",
           "normalizedLabel": "『明応の政変が起きた』に至るまで",
           "notes": []
         },
@@ -23637,7 +23637,7 @@
           "layer": "B",
           "category": "B-INS",
           "subCategory": "B-INS-04",
-          "label": "義材の河内遠征中に細川政元がクーデターを決行していた",
+          "label": "義材の河内遠征中に細川政元がクーデターを決行している",
           "normalizedLabel": "制度運用の矛盾や利害対立",
           "notes": []
         },
@@ -23828,7 +23828,7 @@
           "layer": "B",
           "category": "B-MIL",
           "subCategory": "B-MIL-02",
-          "label": "ポルトガル人が東アジア海域に進出し交易路を拡大していた",
+          "label": "ポルトガル人が東アジア海域に進出し交易路を拡大している",
           "normalizedLabel": "『鉄砲が伝来",
           "notes": []
         },
@@ -23837,7 +23837,7 @@
           "layer": "B",
           "category": "B-INS",
           "subCategory": "B-INS-04",
-          "label": "倭寇の活動を通じて東シナ海の交易ネットワークが形成されていた",
+          "label": "倭寇の活動を通じて東シナ海の交易ネットワークが形成されている",
           "normalizedLabel": "制度運用の矛盾や利害対立",
           "notes": []
         },
@@ -24028,7 +24028,7 @@
           "layer": "B",
           "category": "B-PWR",
           "subCategory": "B-PWR-02",
-          "label": "大航海時代の中でポルトガル・スペインがアジアに進出していた",
+          "label": "大航海時代の中でポルトガル・スペインがアジアに進出している",
           "normalizedLabel": "『フランシスコ",
           "notes": []
         },
@@ -24037,7 +24037,7 @@
           "layer": "B",
           "category": "B-PWR",
           "subCategory": "B-PWR-02",
-          "label": "ザビエルがマラッカで日本人ヤジロウと出会い日本布教を決意していた",
+          "label": "ザビエルがマラッカで日本人ヤジロウと出会い日本布教を決意している",
           "normalizedLabel": "ザビエルが来日しキリスト教が伝来",
           "notes": []
         },
@@ -24046,7 +24046,7 @@
           "layer": "B",
           "category": "B-INS",
           "subCategory": "B-INS-04",
-          "label": "イエズス会はアジアにおいて布教と貿易を組み合わせた活動を展開しており、ポルトガル商船が東南アジア各地に寄港していた",
+          "label": "イエズス会はアジアにおいて布教と貿易を組み合わせた活動を展開しており、ポルトガル商船が東南アジア各地に寄港している",
           "normalizedLabel": "制度運用の矛盾や利害対立",
           "notes": []
         },
@@ -24237,7 +24237,7 @@
           "layer": "B",
           "category": "B-EXT",
           "subCategory": "B-EXT-03",
-          "label": "毛利元就が安芸を統一し陶晴賢の大内氏簒奪政権と対立していた",
+          "label": "毛利元就が安芸を統一し陶晴賢の大内氏簒奪政権と対立している",
           "normalizedLabel": "厳島のをめぐる外交",
           "notes": []
         },
@@ -24246,7 +24246,7 @@
           "layer": "B",
           "category": "B-MIL",
           "subCategory": "B-MIL-01",
-          "label": "毛利元就は陶晴賢への対抗上、石見銀山の確保や能島水軍など周辺勢力への工作を続けていた",
+          "label": "毛利元就は陶晴賢への対抗上、石見銀山の確保や能島水軍など周辺勢力への工作を続けている",
           "normalizedLabel": "対内の軍事衝突が臨界に達し",
           "notes": []
         },
@@ -24255,7 +24255,7 @@
           "layer": "B",
           "category": "B-MIL",
           "subCategory": "B-MIL-01",
-          "label": "村上水軍の協力を得て暴風雨の夜に奇襲攻撃を敢行していた",
+          "label": "村上水軍の協力を得て暴風雨の夜に奇襲攻撃を敢行している",
           "normalizedLabel": "同盟",
           "notes": []
         },
@@ -24446,7 +24446,7 @@
           "layer": "B",
           "category": "B-MIL",
           "subCategory": "B-MIL-01",
-          "label": "今川義元が約二万五千の大軍で京を目指し上洛の途についていた",
+          "label": "今川義元が約二万五千の大軍で京を目指し上洛の途についている",
           "normalizedLabel": "桶狭間のをめぐる外交",
           "notes": []
         },
@@ -24455,7 +24455,7 @@
           "layer": "B",
           "category": "B-MIL",
           "subCategory": "B-MIL-01",
-          "label": "織田信長は約三千の寡兵で今川軍に対峙する劣勢にあった",
+          "label": "織田信長は約三千の寡兵で今川軍に対峙する劣勢にある",
           "normalizedLabel": "対内の軍事衝突が臨界に達し",
           "notes": []
         },
@@ -24646,7 +24646,7 @@
           "layer": "B",
           "category": "B-MIL",
           "subCategory": "B-MIL-01",
-          "label": "足利義昭が各地の大名に将軍就任への支援を求めていた",
+          "label": "足利義昭が各地の大名に将軍就任への支援を求めている",
           "normalizedLabel": "『織田信長が足利義昭を奉じて入京",
           "notes": []
         },
@@ -24655,7 +24655,7 @@
           "layer": "B",
           "category": "B-INS",
           "subCategory": "B-INS-04",
-          "label": "織田信長が美濃を制圧し畿内進出の軍事力を備えていた",
+          "label": "織田信長が美濃を制圧し畿内進出の軍事力を備えている",
           "normalizedLabel": "制度運用の矛盾や利害対立",
           "notes": []
         },
@@ -24846,7 +24846,7 @@
           "layer": "B",
           "category": "B-EXT",
           "subCategory": "B-EXT-03",
-          "label": "浅井長政が信長の朝倉攻めに反発し同盟を破棄していた",
+          "label": "浅井長政が信長の朝倉攻めに反発し同盟を破棄している",
           "normalizedLabel": "姉川のをめぐる外交",
           "notes": []
         },
@@ -24855,7 +24855,7 @@
           "layer": "B",
           "category": "B-MIL",
           "subCategory": "B-MIL-01",
-          "label": "浅井・朝倉連合軍と織田・徳川連合軍が近江姉川で激突していた",
+          "label": "浅井・朝倉連合軍と織田・徳川連合軍が近江姉川で激突している",
           "normalizedLabel": "対内の軍事衝突が臨界に達し",
           "notes": []
         },
@@ -24864,7 +24864,7 @@
           "layer": "B",
           "category": "B-EXT",
           "subCategory": "B-EXT-01",
-          "label": "徳川家康の奮戦が戦局を決し織田・徳川連合が勝利していた",
+          "label": "徳川家康の奮戦が戦局を決し織田・徳川連合が勝利している",
           "normalizedLabel": "同盟",
           "notes": []
         },
@@ -25055,7 +25055,7 @@
           "layer": "B",
           "category": "B-PWR",
           "subCategory": "B-PWR-02",
-          "label": "延暦寺が浅井・朝倉に味方し信長の敵対勢力を匿っていた",
+          "label": "延暦寺が浅井・朝倉に味方し信長の敵対勢力を匿っている",
           "normalizedLabel": "『比叡山延暦寺が焼き討ち",
           "notes": []
         },
@@ -25064,7 +25064,7 @@
           "layer": "B",
           "category": "B-INS",
           "subCategory": "B-INS-04",
-          "label": "信長が再三の警告にもかかわらず延暦寺が従わなかっていた",
+          "label": "信長が再三の警告にもかかわらず延暦寺が従わない",
           "normalizedLabel": "制度運用の矛盾や利害対立",
           "notes": []
         },
@@ -25264,7 +25264,7 @@
           "layer": "B",
           "category": "B-INS",
           "subCategory": "B-INS-04",
-          "label": "武田信玄の死去により包囲網が瓦解していた",
+          "label": "武田信玄の死去により包囲網が瓦解している",
           "normalizedLabel": "制度運用の矛盾や利害対立",
           "notes": []
         },
@@ -25455,7 +25455,7 @@
           "layer": "B",
           "category": "B-MIL",
           "subCategory": "B-MIL-01",
-          "label": "織田・徳川連合軍と武田勝頼が三河長篠で対峙していた",
+          "label": "織田・徳川連合軍と武田勝頼が三河長篠で対峙している",
           "normalizedLabel": "長篠のをめぐる外交",
           "notes": []
         },
@@ -25464,7 +25464,7 @@
           "layer": "B",
           "category": "B-MIL",
           "subCategory": "B-MIL-01",
-          "label": "武田騎馬軍団の威力が東海地方を脅かしていた",
+          "label": "武田騎馬軍団の威力が東海地方を脅かしている",
           "normalizedLabel": "対内の軍事衝突が臨界に達し",
           "notes": []
         },
@@ -25473,7 +25473,7 @@
           "layer": "B",
           "category": "B-EXT",
           "subCategory": "B-EXT-01",
-          "label": "織田信長が大量の鉄砲を用意し新戦術を構想していた",
+          "label": "織田信長が大量の鉄砲を用意し新戦術を構想している",
           "normalizedLabel": "同盟",
           "notes": []
         },
@@ -25664,7 +25664,7 @@
           "layer": "B",
           "category": "B-INS",
           "subCategory": "B-INS-04",
-          "label": "織田信長は畿内平定後も各地に敵対勢力を抱えており、京と東国を結ぶ交通・兵站の要衝として近江が重要な位置にあった",
+          "label": "織田信長は畿内平定後も各地に敵対勢力を抱えており、京と東国を結ぶ交通・兵站の要衝として近江が重要な位置にある",
           "normalizedLabel": "『安土城の築城が始まった』に至るまで",
           "notes": []
         },
@@ -25673,7 +25673,7 @@
           "layer": "B",
           "category": "B-INS",
           "subCategory": "B-INS-04",
-          "label": "従来の山城では政治・経済の中枢機能が不十分であった",
+          "label": "従来の山城では政治・経済の中枢機能が不十分である",
           "normalizedLabel": "制度運用の矛盾や利害対立",
           "notes": []
         },
@@ -25682,7 +25682,7 @@
           "layer": "B",
           "category": "B-EXT",
           "subCategory": "B-EXT-03",
-          "label": "近江は交通の要衝であり京都への進出に有利であった",
+          "label": "近江は交通の要衝であり京都への進出に有利である",
           "normalizedLabel": "外交",
           "notes": []
         },
@@ -25886,7 +25886,7 @@
           "layer": "B",
           "category": "B-MIL",
           "subCategory": "B-MIL-01",
-          "label": "羽柴秀吉が中国大返しで迅速に畿内へ帰還していた",
+          "label": "羽柴秀吉が中国大返しで迅速に畿内へ帰還している",
           "normalizedLabel": "対内の軍事衝突が臨界に達し",
           "notes": []
         },
@@ -25895,7 +25895,7 @@
           "layer": "B",
           "category": "B-EXT",
           "subCategory": "B-EXT-01",
-          "label": "明智光秀が味方の確保に失敗し孤立していた",
+          "label": "明智光秀が味方の確保に失敗し孤立している",
           "normalizedLabel": "同盟",
           "notes": []
         },
@@ -26086,7 +26086,7 @@
           "layer": "B",
           "category": "B-RIV",
           "subCategory": "B-RIV-01",
-          "label": "明智光秀が織田信長への不満を募らせていた",
+          "label": "明智光秀が織田信長への不満を募らせている",
           "normalizedLabel": "本能寺をめぐる利害対立が蓄積し",
           "notes": []
         },
@@ -26095,7 +26095,7 @@
           "layer": "B",
           "category": "B-MIL",
           "subCategory": "B-MIL-01",
-          "label": "信長が少数の供回りで京都本能寺に宿泊していた",
+          "label": "信長が少数の供回りで京都本能寺に宿泊している",
           "normalizedLabel": "統治の調整が追いつかず武力衝突に発展",
           "notes": []
         },
@@ -26264,7 +26264,7 @@
           "layer": "B",
           "category": "B-EXT",
           "subCategory": "B-EXT-03",
-          "label": "信長の後継をめぐり羽柴秀吉と柴田勝家が対立していた",
+          "label": "信長の後継をめぐり羽柴秀吉と柴田勝家が対立している",
           "normalizedLabel": "賤ヶ岳のをめぐる外交",
           "notes": []
         },
@@ -26273,7 +26273,7 @@
           "layer": "B",
           "category": "B-MIL",
           "subCategory": "B-MIL-01",
-          "label": "清洲会議後の権力配分に不満が高まっていた",
+          "label": "清洲会議後の権力配分に不満が高まっている",
           "normalizedLabel": "対内の軍事衝突が臨界に達し",
           "notes": []
         },
@@ -26282,7 +26282,7 @@
           "layer": "B",
           "category": "B-EXT",
           "subCategory": "B-EXT-01",
-          "label": "北陸と近畿の勢力圏が衝突する構図となっていた",
+          "label": "北陸と近畿の勢力圏が衝突する構図となっている",
           "normalizedLabel": "同盟",
           "notes": []
         },
@@ -26482,7 +26482,7 @@
           "layer": "B",
           "category": "B-MIL",
           "subCategory": "B-MIL-01",
-          "label": "秀吉軍が尾張方面に進出し軍事的緊張が高まっていた",
+          "label": "秀吉軍が尾張方面に進出し軍事的緊張が高まっている",
           "normalizedLabel": "長久手のをめぐる外交",
           "notes": []
         },
@@ -26491,7 +26491,7 @@
           "layer": "B",
           "category": "B-MIL",
           "subCategory": "B-MIL-01",
-          "label": "家康が小牧山に布陣し持久戦の構えをとっていた",
+          "label": "家康が小牧山に布陣し持久戦の構えをとっている",
           "normalizedLabel": "対内の軍事衝突が臨界に達し",
           "notes": []
         },
@@ -26682,7 +26682,7 @@
           "layer": "B",
           "category": "B-MIL",
           "subCategory": "B-MIL-01",
-          "label": "武家出身の秀吉には征夷大将軍就任の先例がなかっていた",
+          "label": "武家出身の秀吉には征夷大将軍就任の先例がない",
           "normalizedLabel": "『豊臣秀吉が関白に就任",
           "notes": []
         },
@@ -26691,7 +26691,7 @@
           "layer": "B",
           "category": "B-INS",
           "subCategory": "B-INS-04",
-          "label": "天下統一に向け朝廷の権威を利用する必要があった",
+          "label": "天下統一に向け朝廷の権威を利用する必要がある",
           "normalizedLabel": "制度運用の矛盾や利害対立",
           "notes": []
         },
@@ -26882,7 +26882,7 @@
           "layer": "B",
           "category": "B-PWR",
           "subCategory": "B-PWR-02",
-          "label": "関白就任後さらに朝廷内での最高位を目指していた",
+          "label": "関白就任後さらに朝廷内での最高位を目指している",
           "normalizedLabel": "『豊臣秀吉が太政大臣に就任",
           "notes": []
         },
@@ -26891,7 +26891,7 @@
           "layer": "B",
           "category": "B-INS",
           "subCategory": "B-INS-04",
-          "label": "豊臣姓を賜り公家社会での格式を高めていた",
+          "label": "豊臣姓を賜り公家社会での格式を高めている",
           "normalizedLabel": "制度運用の矛盾や利害対立",
           "notes": []
         },
@@ -26900,7 +26900,7 @@
           "layer": "B",
           "category": "B-EXT",
           "subCategory": "B-EXT-03",
-          "label": "諸大名の服属が進み名実ともに天下人となりつつあった",
+          "label": "諸大名の服属が進み名実ともに天下人となりつつある",
           "normalizedLabel": "外交",
           "notes": []
         },
@@ -27091,7 +27091,7 @@
           "layer": "B",
           "category": "B-RES",
           "subCategory": "B-RES-01",
-          "label": "キリスト教の布教が九州を中心に急速に拡大していた",
+          "label": "キリスト教の布教が九州を中心に急速に拡大している",
           "normalizedLabel": "経済",
           "notes": []
         },
@@ -27100,7 +27100,7 @@
           "layer": "B",
           "category": "B-RES",
           "subCategory": "B-RES-01",
-          "label": "キリシタン大名による神社仏閣の破壊が問題化していた",
+          "label": "キリシタン大名による神社仏閣の破壊が問題化している",
           "normalizedLabel": "治安",
           "notes": []
         },
@@ -27109,7 +27109,7 @@
           "layer": "B",
           "category": "B-RES",
           "subCategory": "B-RES-01",
-          "label": "ポルトガル人による日本人奴隷売買が発覚していた",
+          "label": "ポルトガル人による日本人奴隷売買が発覚している",
           "normalizedLabel": "土地統治などの問題が顕在化し",
           "notes": []
         },
@@ -27300,7 +27300,7 @@
           "layer": "B",
           "category": "B-INS",
           "subCategory": "B-INS-04",
-          "label": "九州征伐の成功により秀吉の権威がさらに高まっていた",
+          "label": "九州征伐の成功により秀吉の権威がさらに高まっている",
           "normalizedLabel": "『豊臣秀吉が太政大臣となった』に至るまで",
           "notes": []
         },
@@ -27309,7 +27309,7 @@
           "layer": "B",
           "category": "B-INS",
           "subCategory": "B-INS-04",
-          "label": "朝廷との関係強化が統治の正統性に不可欠であった",
+          "label": "朝廷との関係強化が統治の正統性に不可欠である",
           "normalizedLabel": "制度運用の矛盾や利害対立",
           "notes": []
         },
@@ -27500,7 +27500,7 @@
           "layer": "B",
           "category": "B-RES",
           "subCategory": "B-RES-01",
-          "label": "一揆の頻発が統一政権の安定を脅かしていた",
+          "label": "一揆の頻発が統一政権の安定を脅かしている",
           "normalizedLabel": "経済",
           "notes": []
         },
@@ -27509,7 +27509,7 @@
           "layer": "B",
           "category": "B-RES",
           "subCategory": "B-RES-01",
-          "label": "農民が武器を保持し武装蜂起する余地が残っていた",
+          "label": "農民が武器を保持し武装蜂起する余地が残っている",
           "normalizedLabel": "治安",
           "notes": []
         },
@@ -27518,7 +27518,7 @@
           "layer": "B",
           "category": "B-RES",
           "subCategory": "B-RES-01",
-          "label": "兵農分離による身分秩序の確立が政策課題であった",
+          "label": "兵農分離による身分秩序の確立が政策課題である",
           "normalizedLabel": "土地統治などの問題が顕在化し",
           "notes": []
         },
@@ -27709,7 +27709,7 @@
           "layer": "B",
           "category": "B-PWR",
           "subCategory": "B-PWR-03",
-          "label": "戦国大名が割拠する分権的な政治状況が続いていた",
+          "label": "戦国大名が割拠する分権的な政治状況が続いている",
           "normalizedLabel": "『戦争国の分裂から統一へ向かう権力再編』に",
           "notes": []
         },
@@ -27718,7 +27718,7 @@
           "layer": "B",
           "category": "B-INS",
           "subCategory": "B-INS-04",
-          "label": "秀吉による検地・刀狩などの統一政策が進展していた",
+          "label": "秀吉による検地・刀狩などの統一政策が進展している",
           "normalizedLabel": "制度運用の矛盾や利害対立",
           "notes": []
         },
@@ -27727,7 +27727,7 @@
           "layer": "B",
           "category": "B-EXT",
           "subCategory": "B-EXT-03",
-          "label": "北条氏など東国の大名がなお独立を保っていた",
+          "label": "北条氏など東国の大名がなお独立を保っている",
           "normalizedLabel": "外交",
           "notes": []
         },
@@ -27918,7 +27918,7 @@
           "layer": "B",
           "category": "B-PWR",
           "subCategory": "B-PWR-02",
-          "label": "九州・四国の平定が完了し残る抵抗勢力は関東の北条氏のみとなっていた",
+          "label": "九州・四国の平定が完了し残る抵抗勢力は関東の北条氏のみとなっている",
           "normalizedLabel": "『豊臣秀吉が全国を統一",
           "notes": []
         },
@@ -27927,7 +27927,7 @@
           "layer": "B",
           "category": "B-INS",
           "subCategory": "B-INS-04",
-          "label": "秀吉が惣無事令を発し大名間の私戦を禁じていた",
+          "label": "秀吉が惣無事令を発し大名間の私戦を禁じている",
           "normalizedLabel": "制度運用の矛盾や利害対立",
           "notes": []
         },
@@ -28118,7 +28118,7 @@
           "layer": "B",
           "category": "B-RES",
           "subCategory": "B-RES-01",
-          "label": "武士・農民・商人の境界が曖昧で社会秩序が不安定であった",
+          "label": "武士・農民・商人の境界が曖昧で社会秩序が不安定である",
           "normalizedLabel": "経済",
           "notes": []
         },
@@ -28127,7 +28127,7 @@
           "layer": "B",
           "category": "B-RES",
           "subCategory": "B-RES-01",
-          "label": "検地と刀狩により身分固定の基盤が整いつつあった",
+          "label": "検地と刀狩により身分固定の基盤が整いつつある",
           "normalizedLabel": "土地統治などの問題が顕在化し",
           "notes": []
         },
@@ -28318,7 +28318,7 @@
           "layer": "B",
           "category": "B-EXT",
           "subCategory": "B-EXT-03",
-          "label": "秀吉が明の征服を構想し朝鮮に道案内を求めたが拒否されていた",
+          "label": "秀吉が明の征服を構想し朝鮮に道案内を求めたが拒否されている",
           "normalizedLabel": "文禄をめぐる外交",
           "notes": []
         },
@@ -28327,7 +28327,7 @@
           "layer": "B",
           "category": "B-MIL",
           "subCategory": "B-MIL-01",
-          "label": "全国統一後の軍事力の向け先として海外遠征が企図されていた",
+          "label": "全国統一後の軍事力の向け先として海外遠征が企図されている",
           "normalizedLabel": "対内の軍事衝突が臨界に達し",
           "notes": []
         },
@@ -28336,7 +28336,7 @@
           "layer": "B",
           "category": "B-EXT",
           "subCategory": "B-EXT-01",
-          "label": "対馬の宗氏を通じた外交交渉が決裂していた",
+          "label": "対馬の宗氏を通じた外交交渉が決裂している",
           "normalizedLabel": "同盟",
           "notes": []
         },
@@ -28527,7 +28527,7 @@
           "layer": "B",
           "category": "B-EXT",
           "subCategory": "B-EXT-03",
-          "label": "文禄の役後の明との講和交渉が決裂していた",
+          "label": "文禄の役後の明との講和交渉が決裂している",
           "normalizedLabel": "慶長をめぐる外交",
           "notes": []
         },
@@ -28536,7 +28536,7 @@
           "layer": "B",
           "category": "B-MIL",
           "subCategory": "B-MIL-01",
-          "label": "秀吉が講和条件に不満を持ち再出兵を決断していた",
+          "label": "秀吉が講和条件に不満を持ち再出兵を決断している",
           "normalizedLabel": "対内の軍事衝突が臨界に達し",
           "notes": []
         },
@@ -28545,7 +28545,7 @@
           "layer": "B",
           "category": "B-EXT",
           "subCategory": "B-EXT-01",
-          "label": "前回の苦戦の経験から作戦方針が変更されていた",
+          "label": "前回の苦戦の経験から作戦方針が変更されている",
           "normalizedLabel": "同盟",
           "notes": []
         },
@@ -28736,7 +28736,7 @@
           "layer": "B",
           "category": "B-RES",
           "subCategory": "B-RES-03",
-          "label": "秀吉が晩年に体調を崩し政務遂行が困難になっていた",
+          "label": "秀吉が晩年に体調を崩し政務遂行が困難になっている",
           "normalizedLabel": "高齢",
           "notes": []
         },
@@ -28745,7 +28745,7 @@
           "layer": "B",
           "category": "B-RES",
           "subCategory": "B-RES-03",
-          "label": "後継者秀頼がわずか5歳で政権運営能力がなかっていた",
+          "label": "後継者秀頼がわずか5歳で政権運営能力がない",
           "normalizedLabel": "疾病",
           "notes": []
         },
@@ -28945,7 +28945,7 @@
           "layer": "B",
           "category": "B-EXT",
           "subCategory": "B-EXT-03",
-          "label": "秀吉死後の政権内部で徳川家康と石田三成の対立が激化していた",
+          "label": "秀吉死後の政権内部で徳川家康と石田三成の対立が激化している",
           "normalizedLabel": "関ヶ原のをめぐる外交",
           "notes": []
         },
@@ -28954,7 +28954,7 @@
           "layer": "B",
           "category": "B-MIL",
           "subCategory": "B-MIL-01",
-          "label": "家康が会津征伐を口実に大名の支持を集めていた",
+          "label": "家康が会津征伐を口実に大名の支持を集めている",
           "normalizedLabel": "対内の軍事衝突が臨界に達し",
           "notes": []
         },
@@ -28963,7 +28963,7 @@
           "layer": "B",
           "category": "B-MIL",
           "subCategory": "B-MIL-01",
-          "label": "石田三成が毛利輝元を総大将に西軍を結成していた",
+          "label": "石田三成が毛利輝元を総大将に西軍を結成している",
           "normalizedLabel": "同盟",
           "notes": []
         },
@@ -29154,7 +29154,7 @@
           "layer": "B",
           "category": "B-PWR",
           "subCategory": "B-PWR-02",
-          "label": "関ヶ原の勝利により家康が事実上の天下人となっていた",
+          "label": "関ヶ原の勝利により家康が事実上の天下人となっている",
           "normalizedLabel": "『徳川家康が征夷大将軍に任じられ江戸幕府",
           "notes": [],
           "origin": {
@@ -29167,7 +29167,7 @@
           "layer": "B",
           "category": "B-INS",
           "subCategory": "B-INS-04",
-          "label": "源氏の血統を主張し将軍就任の正統性を整えていた",
+          "label": "源氏の血統を主張し将軍就任の正統性を整えている",
           "normalizedLabel": "制度運用の矛盾や利害対立",
           "notes": []
         },
@@ -29358,7 +29358,7 @@
           "layer": "B",
           "category": "B-MIL",
           "subCategory": "B-MIL-01",
-          "label": "将軍職の世襲を示し徳川氏の政権独占を確立する必要があった",
+          "label": "将軍職の世襲を示し徳川氏の政権独占を確立する必要がある",
           "normalizedLabel": "『徳川秀忠が将軍となり家康は大御所として",
           "notes": []
         },
@@ -29367,7 +29367,7 @@
           "layer": "B",
           "category": "B-PWR",
           "subCategory": "B-PWR-04",
-          "label": "家康が隠居しても実権を保持する体制を構想していた",
+          "label": "家康が隠居しても実権を保持する体制を構想している",
           "normalizedLabel": "制度運用の矛盾や利害対立",
           "notes": []
         },
@@ -29376,7 +29376,7 @@
           "layer": "B",
           "category": "B-EXT",
           "subCategory": "B-EXT-03",
-          "label": "秀忠は関ヶ原に遅参したが嫡子として正統性を持っていた",
+          "label": "秀忠は関ヶ原に遅参したが嫡子として正統性を持っている",
           "normalizedLabel": "外交",
           "notes": []
         },
@@ -29567,7 +29567,7 @@
           "layer": "B",
           "category": "B-INS",
           "subCategory": "B-INS-04",
-          "label": "豊臣家が大坂城に拠り莫大な財力と浪人衆を擁していた",
+          "label": "豊臣家が大坂城に拠り莫大な財力と浪人衆を擁している",
           "normalizedLabel": "『大坂冬の陣が始まった』に至るまで",
           "notes": []
         },
@@ -29576,7 +29576,7 @@
           "layer": "B",
           "category": "B-INS",
           "subCategory": "B-INS-04",
-          "label": "方広寺鐘銘事件を口実に家康が豊臣家との対決を決意していた",
+          "label": "方広寺鐘銘事件を口実に家康が豊臣家との対決を決意している",
           "normalizedLabel": "制度運用の矛盾や利害対立",
           "notes": []
         },
@@ -29767,7 +29767,7 @@
           "layer": "B",
           "category": "B-RES",
           "subCategory": "B-RES-01",
-          "label": "大坂の陣の経験から大名の軍事力制限が急務となっていた",
+          "label": "大坂の陣の経験から大名の軍事力制限が急務となっている",
           "normalizedLabel": "経済",
           "notes": []
         },
@@ -29776,7 +29776,7 @@
           "layer": "B",
           "category": "B-RES",
           "subCategory": "B-RES-01",
-          "label": "各大名が複数の城を保持し独立的な軍事力を維持していた",
+          "label": "各大名が複数の城を保持し独立的な軍事力を維持している",
           "normalizedLabel": "治安",
           "notes": []
         },
@@ -29785,7 +29785,7 @@
           "layer": "B",
           "category": "B-RES",
           "subCategory": "B-RES-01",
-          "label": "幕府が諸大名の統制を強化する法整備を進めていた",
+          "label": "幕府が諸大名の統制を強化する法整備を進めている",
           "normalizedLabel": "土地統治などの問題が顕在化し",
           "notes": []
         },
@@ -29985,7 +29985,7 @@
           "layer": "B",
           "category": "B-INS",
           "subCategory": "B-INS-04",
-          "label": "家康が豊臣家の完全排除を決断し再攻撃を開始していた",
+          "label": "家康が豊臣家の完全排除を決断し再攻撃を開始している",
           "normalizedLabel": "制度運用の矛盾や利害対立",
           "notes": []
         },
@@ -30176,7 +30176,7 @@
           "layer": "B",
           "category": "B-INS",
           "subCategory": "B-INS-04",
-          "label": "大坂の陣終結後に大名統制の法的枠組みが必要となっていた",
+          "label": "大坂の陣終結後に大名統制の法的枠組みが必要となっている",
           "normalizedLabel": "既存運用の矛盾や危機対応の必要",
           "notes": [],
           "origin": {
@@ -30189,7 +30189,7 @@
           "layer": "B",
           "category": "B-INS",
           "subCategory": "B-INS-03",
-          "label": "武家社会の秩序と幕府への服従を明文化する必要があった",
+          "label": "武家社会の秩序と幕府への服従を明文化する必要がある",
           "normalizedLabel": "統一的な規則",
           "notes": []
         },
@@ -30198,7 +30198,7 @@
           "layer": "B",
           "category": "B-INS",
           "subCategory": "B-INS-03",
-          "label": "金地院崇伝が起草にあたり儒学思想に基づく条文が作成されていた",
+          "label": "金地院崇伝が起草にあたり儒学思想に基づく条文が作成されている",
           "normalizedLabel": "手続",
           "notes": []
         },
@@ -30389,7 +30389,7 @@
           "layer": "B",
           "category": "B-INS",
           "subCategory": "B-INS-04",
-          "label": "朝廷が独自に大名と結ぶことを防ぐ必要があった",
+          "label": "朝廷が独自に大名と結ぶことを防ぐ必要がある",
           "normalizedLabel": "既存運用の矛盾や危機対応の必要",
           "notes": []
         },
@@ -30398,7 +30398,7 @@
           "layer": "B",
           "category": "B-INS",
           "subCategory": "B-INS-03",
-          "label": "天皇・公家の活動範囲を明確に規定する要求があった",
+          "label": "天皇・公家の活動範囲を明確に規定する要求がある",
           "normalizedLabel": "統一的な規則",
           "notes": []
         },
@@ -30407,7 +30407,7 @@
           "layer": "B",
           "category": "B-INS",
           "subCategory": "B-INS-03",
-          "label": "幕府が朝廷を統制下に置く法的根拠を求めていた",
+          "label": "幕府が朝廷を統制下に置く法的根拠を求めている",
           "normalizedLabel": "手続",
           "notes": []
         },
@@ -30598,7 +30598,7 @@
           "layer": "B",
           "category": "B-RES",
           "subCategory": "B-RES-01",
-          "label": "九州のキリシタン大名が南蛮貿易の利益を通じて独自の財源と人的つながりを拡大していた",
+          "label": "九州のキリシタン大名が南蛮貿易の利益を通じて独自の財源と人的つながりを拡大している",
           "normalizedLabel": "経済",
           "notes": []
         },
@@ -30607,7 +30607,7 @@
           "layer": "B",
           "category": "B-RES",
           "subCategory": "B-RES-01",
-          "label": "日本人商人が東南アジアの日本町に定住し、現地勢力や宣教師と接触する事例が増えていた",
+          "label": "日本人商人が東南アジアの日本町に定住し、現地勢力や宣教師と接触する事例が増えている",
           "normalizedLabel": "治安",
           "notes": []
         },
@@ -30807,7 +30807,7 @@
           "layer": "B",
           "category": "B-INS",
           "subCategory": "B-INS-04",
-          "label": "大名の在府・在国が慣習的で不定期であったため、幕府が大名の動向を継続的に把握し統制する制度的手段を欠いていた",
+          "label": "大名の在府・在国が慣習的で不定期であり、幕府が大名の動向を継続的に把握し統制する制度的手段を欠いている",
           "normalizedLabel": "交代出府を制度として固定",
           "notes": []
         },
@@ -30976,7 +30976,7 @@
           "layer": "B",
           "category": "B-INS",
           "subCategory": "B-INS-02",
-          "label": "島原・天草の新領主（松倉氏・寺沢氏）による急激な課税強化とキリシタン弾圧が数年にわたり農民の生存限界を超える収奪を続けており、旧領主時代の慣行が完全に破壊されていた",
+          "label": "島原・天草の新領主（松倉氏・寺沢氏）による急激な課税強化とキリシタン弾圧が数年にわたり農民の生存限界を超える収奪を続けており、旧領主時代の慣行が完全に破壊されている",
           "normalizedLabel": "重い年貢とキリスト教弾圧への反発",
           "notes": []
         },
@@ -31152,7 +31152,7 @@
           "layer": "B",
           "category": "B-INS",
           "subCategory": "B-INS-04",
-          "label": "島原の乱で農民3万6千人が宗教的結束のもとに武力蜂起し幕府軍12万が4ヶ月を要した事実が、キリスト教を幕藩体制の根本的代替秩序として認識させていた",
+          "label": "島原の乱で農民3万6千人が宗教的結束のもとに武力蜂起し幕府軍12万が4ヶ月を要した事実が、キリスト教を幕藩体制の根本的代替秩序として認識させている",
           "normalizedLabel": "国際環境の圧力",
           "notes": [],
           "origin": {
@@ -31165,7 +31165,7 @@
           "layer": "B",
           "category": "B-INS",
           "subCategory": "B-INS-04",
-          "label": "ポルトガル船は貿易と布教を同一の船員・船舶で行っており、両者を分離した渡航の実例が存在していなかった",
+          "label": "ポルトガル船は貿易と布教を同一の船員・船舶で行っており、両者を分離した渡航の実例が存在していない",
           "normalizedLabel": "安全保障上の必要",
           "notes": []
         },
@@ -31174,7 +31174,7 @@
           "layer": "B",
           "category": "B-EXT",
           "subCategory": "B-EXT-04",
-          "label": "オランダとの通商でポルトガルの代替が可能であった",
+          "label": "オランダとの通商でポルトガルの代替が可能である",
           "normalizedLabel": "貿易条件の変化が迫り",
           "notes": []
         },
@@ -31365,7 +31365,7 @@
           "layer": "B",
           "category": "B-GEO",
           "subCategory": "B-GEO-01",
-          "label": "平戸のオランダ商館が自由に日本人と接触する状態にあった",
+          "label": "平戸のオランダ商館が自由に日本人と接触する状態にある",
           "normalizedLabel": "『オランダ商館を出島へ移",
           "notes": []
         },
@@ -31374,7 +31374,7 @@
           "layer": "B",
           "category": "B-INS",
           "subCategory": "B-INS-04",
-          "label": "外国人の行動を厳格に管理する必要が認識されていた",
+          "label": "外国人の行動を厳格に管理する必要が認識されている",
           "normalizedLabel": "制度運用の矛盾や利害対立",
           "notes": []
         },
@@ -31383,7 +31383,7 @@
           "layer": "B",
           "category": "B-EXT",
           "subCategory": "B-EXT-03",
-          "label": "長崎出島がポルトガル人退去後に空き地となっていた",
+          "label": "長崎出島がポルトガル人退去後に空き地となっている",
           "normalizedLabel": "外交",
           "notes": []
         },
@@ -31574,7 +31574,7 @@
           "layer": "B",
           "category": "B-RIV",
           "subCategory": "B-RIV-01",
-          "label": "大量の浪人が社会不安の要因となっていた",
+          "label": "大量の浪人が社会不安の要因となっている",
           "normalizedLabel": "慶安をめぐる利害対立が蓄積し",
           "notes": []
         },
@@ -31752,7 +31752,7 @@
           "layer": "B",
           "category": "B-RES",
           "subCategory": "B-RES-01",
-          "label": "将軍綱吉が儒学と仏教に傾倒し慈悲の政治を志向していた",
+          "label": "将軍綱吉が儒学と仏教に傾倒し慈悲の政治を志向している",
           "normalizedLabel": "経済",
           "notes": []
         },
@@ -31761,7 +31761,7 @@
           "layer": "B",
           "category": "B-RES",
           "subCategory": "B-RES-01",
-          "label": "綱吉に世継ぎがなく僧侶の助言で殺生禁断を実行していた",
+          "label": "綱吉に世継ぎがなく僧侶の助言で殺生禁断を実行している",
           "normalizedLabel": "治安",
           "notes": []
         },
@@ -31770,7 +31770,7 @@
           "layer": "B",
           "category": "B-RES",
           "subCategory": "B-RES-01",
-          "label": "野犬の横行が江戸の社会問題となっていた",
+          "label": "野犬の横行が江戸の社会問題となっている",
           "normalizedLabel": "土地統治などの問題が顕在化し",
           "notes": []
         },
@@ -31961,7 +31961,7 @@
           "layer": "B",
           "category": "B-INS",
           "subCategory": "B-INS-04",
-          "label": "長期の平和により町人層の経済力が著しく成長していた",
+          "label": "長期の平和により町人層の経済力が著しく成長している",
           "normalizedLabel": "『元禄文化が栄えた』に至るまで",
           "notes": []
         },
@@ -31970,7 +31970,7 @@
           "layer": "B",
           "category": "B-INS",
           "subCategory": "B-INS-04",
-          "label": "上方（京都・大坂）が経済・文化の中心地として繁栄していた",
+          "label": "上方（京都・大坂）が経済・文化の中心地として繁栄している",
           "normalizedLabel": "制度運用の矛盾や利害対立",
           "notes": []
         },
@@ -31979,7 +31979,7 @@
           "layer": "B",
           "category": "B-EXT",
           "subCategory": "B-EXT-03",
-          "label": "出版文化の発達により文芸作品が広く流通していた",
+          "label": "出版文化の発達により文芸作品が広く流通している",
           "normalizedLabel": "外交",
           "notes": []
         },
@@ -32170,7 +32170,7 @@
           "layer": "B",
           "category": "B-RES",
           "subCategory": "B-RES-01",
-          "label": "綱吉政治の弊害から幕政の立て直しが求められていた",
+          "label": "綱吉政治の弊害から幕政の立て直しが求められている",
           "normalizedLabel": "経済",
           "notes": []
         },
@@ -32179,7 +32179,7 @@
           "layer": "B",
           "category": "B-RES",
           "subCategory": "B-RES-01",
-          "label": "貨幣改鋳による経済混乱が深刻化していた",
+          "label": "貨幣改鋳による経済混乱が深刻化している",
           "normalizedLabel": "治安",
           "notes": []
         },
@@ -32188,7 +32188,7 @@
           "layer": "B",
           "category": "B-RES",
           "subCategory": "B-RES-01",
-          "label": "儒学者新井白石が将軍家宣の信任を得て登用されていた",
+          "label": "儒学者新井白石が将軍家宣の信任を得て登用されている",
           "normalizedLabel": "土地統治などの問題が顕在化し",
           "notes": []
         },
@@ -32379,7 +32379,7 @@
           "layer": "B",
           "category": "B-RES",
           "subCategory": "B-RES-01",
-          "label": "紀州藩主から将軍に就任し幕政刷新の意欲を持っていた",
+          "label": "紀州藩主から将軍に就任し幕政刷新の意欲を持っている",
           "normalizedLabel": "経済",
           "notes": []
         },
@@ -32388,7 +32388,7 @@
           "layer": "B",
           "category": "B-RES",
           "subCategory": "B-RES-01",
-          "label": "側用人政治を廃止し将軍親政の体制を構築していた",
+          "label": "側用人政治を廃止し将軍親政の体制を構築している",
           "normalizedLabel": "治安",
           "notes": []
         },
@@ -32588,7 +32588,7 @@
           "layer": "B",
           "category": "B-PWR",
           "subCategory": "B-PWR-02",
-          "label": "鎖国下でも蘭学への関心が一部知識人の間で高まっていた",
+          "label": "鎖国下でも蘭学への関心が一部知識人の間で高まっている",
           "normalizedLabel": "『洋書輸入の禁を緩和",
           "notes": []
         },
@@ -32597,7 +32597,7 @@
           "layer": "B",
           "category": "B-INS",
           "subCategory": "B-INS-04",
-          "label": "吉宗が実学を重視し西洋の科学技術に関心を持っていた",
+          "label": "吉宗が実学を重視し西洋の科学技術に関心を持っている",
           "normalizedLabel": "制度運用の矛盾や利害対立",
           "notes": []
         },
@@ -32800,7 +32800,7 @@
           "layer": "B",
           "category": "B-INS",
           "subCategory": "B-INS-04",
-          "label": "享保の改革による米本位経済政策が脆弱性を露呈していた",
+          "label": "享保の改革による米本位経済政策が脆弱性を露呈している",
           "normalizedLabel": "制度運用の矛盾や利害対立",
           "notes": []
         },
@@ -32809,7 +32809,7 @@
           "layer": "B",
           "category": "B-EXT",
           "subCategory": "B-EXT-03",
-          "label": "米価高騰と食糧不足が都市部にも波及していた",
+          "label": "米価高騰と食糧不足が都市部にも波及している",
           "normalizedLabel": "外交",
           "notes": []
         },
@@ -32976,7 +32976,7 @@
           "layer": "B",
           "category": "B-PWR",
           "subCategory": "B-PWR-02",
-          "label": "幕府財政の悪化が従来の緊縮策では解決困難であった",
+          "label": "幕府財政の悪化が従来の緊縮策では解決困難である",
           "normalizedLabel": "『田沼意次が老中となり商業政策を推進",
           "notes": []
         },
@@ -32985,7 +32985,7 @@
           "layer": "B",
           "category": "B-INS",
           "subCategory": "B-INS-04",
-          "label": "商業経済の発達により貨幣経済への対応が必要となっていた",
+          "label": "商業経済の発達により貨幣経済への対応が必要となっている",
           "normalizedLabel": "制度運用の矛盾や利害対立",
           "notes": []
         },
@@ -33194,7 +33194,7 @@
           "layer": "B",
           "category": "B-EXT",
           "subCategory": "B-EXT-03",
-          "label": "田沼政権の商業重視政策が農村救済に不十分であった",
+          "label": "田沼政権の商業重視政策が農村救済に不十分である",
           "normalizedLabel": "外交",
           "notes": []
         },
@@ -33361,7 +33361,7 @@
           "layer": "B",
           "category": "B-RES",
           "subCategory": "B-RES-01",
-          "label": "白河藩主として飢饉対策に成功した実績を持っていた",
+          "label": "白河藩主として飢饉対策に成功した実績を持っている",
           "normalizedLabel": "経済",
           "notes": []
         },
@@ -33370,7 +33370,7 @@
           "layer": "B",
           "category": "B-RES",
           "subCategory": "B-RES-01",
-          "label": "吉宗の孫として将軍家の信任を得やすい立場にあった",
+          "label": "吉宗の孫として将軍家の信任を得やすい立場にある",
           "normalizedLabel": "治安",
           "notes": []
         },
@@ -33379,7 +33379,7 @@
           "layer": "B",
           "category": "B-RES",
           "subCategory": "B-RES-01",
-          "label": "田沼意次の失脚後に改革派として老中に登用されていた",
+          "label": "田沼意次の失脚後に改革派として老中に登用されている",
           "normalizedLabel": "土地統治などの問題が顕在化し",
           "notes": [],
           "origin": {
@@ -33574,7 +33574,7 @@
           "layer": "B",
           "category": "B-PWR",
           "subCategory": "B-PWR-02",
-          "label": "ロシアの極東進出が鎖国体制の前提（長崎一港限定の外交）を北方から崩す圧力となり、250年間維持された外交体制の制度的前提が揺らぎ始めていた",
+          "label": "ロシアの極東進出が鎖国体制の前提（長崎一港限定の外交）を北方から崩す圧力となり、250年間維持された外交体制の制度的前提が揺らぎ始めている",
           "normalizedLabel": "『ラクスマンが根室に来航",
           "notes": []
         },
@@ -33583,7 +33583,7 @@
           "layer": "B",
           "category": "B-INS",
           "subCategory": "B-INS-04",
-          "label": "漂流民大黒屋光太夫の送還を名目として来航していた",
+          "label": "漂流民大黒屋光太夫の送還を名目として来航している",
           "normalizedLabel": "制度運用の矛盾や利害対立",
           "notes": []
         },
@@ -33774,7 +33774,7 @@
           "layer": "B",
           "category": "B-PWR",
           "subCategory": "B-PWR-02",
-          "label": "ラクスマンに交付された入港許可証を持参して来航していた",
+          "label": "ラクスマンに交付された入港許可証を持参して来航している",
           "normalizedLabel": "『レザノフが長崎に来航",
           "notes": []
         },
@@ -33783,7 +33783,7 @@
           "layer": "B",
           "category": "B-INS",
           "subCategory": "B-INS-04",
-          "label": "ロシアの極東進出が本格化し通商要求が強まっていた",
+          "label": "ロシアの極東進出が本格化し通商要求が強まっている",
           "normalizedLabel": "制度運用の矛盾や利害対立",
           "notes": []
         },
@@ -33792,7 +33792,7 @@
           "layer": "B",
           "category": "B-EXT",
           "subCategory": "B-EXT-03",
-          "label": "ラクスマン来航以来ロシアの南下圧力が継続しており、鎖国体制の「北方の空白」が制度的脆弱性として露呈しつつあった",
+          "label": "ラクスマン来航以来ロシアの南下圧力が継続しており、鎖国体制の「北方の空白」が制度的脆弱性として露呈しつつある",
           "normalizedLabel": "外交",
           "notes": []
         },
@@ -34001,7 +34001,7 @@
           "layer": "B",
           "category": "B-MIL",
           "subCategory": "B-MIL-01",
-          "label": "水戸藩領の大津浜にイギリス人水兵が上陸していた",
+          "label": "水戸藩領の大津浜にイギリス人水兵が上陸している",
           "normalizedLabel": "水を求めて房総半島に上陸",
           "notes": []
         },
@@ -34192,7 +34192,7 @@
           "layer": "B",
           "category": "B-RES",
           "subCategory": "B-RES-01",
-          "label": "大津浜事件など外国船の来航・上陸が頻発していた",
+          "label": "大津浜事件など外国船の来航・上陸が頻発している",
           "normalizedLabel": "経済",
           "notes": []
         },
@@ -34201,7 +34201,7 @@
           "layer": "B",
           "category": "B-RES",
           "subCategory": "B-RES-01",
-          "label": "イギリスの捕鯨船が日本近海に増加していた",
+          "label": "イギリスの捕鯨船が日本近海に増加している",
           "normalizedLabel": "治安",
           "notes": []
         },
@@ -34210,7 +34210,7 @@
           "layer": "B",
           "category": "B-RES",
           "subCategory": "B-RES-01",
-          "label": "鎖国体制の維持が幕府の最重要政策であった",
+          "label": "鎖国体制の維持が幕府の最重要政策である",
           "normalizedLabel": "土地統治などの問題が顕在化し",
           "notes": []
         },
@@ -34410,7 +34410,7 @@
           "layer": "B",
           "category": "B-MIL",
           "subCategory": "B-MIL-01",
-          "label": "奉行所の役人が飢民救済に消極的で米の買い占めを黙認していた",
+          "label": "奉行所の役人が飢民救済に消極的で米の買い占めを黙認している",
           "normalizedLabel": "統治の調整が追いつかず武力衝突に発展",
           "notes": []
         },
@@ -34579,7 +34579,7 @@
           "layer": "B",
           "category": "B-INS",
           "subCategory": "B-INS-04",
-          "label": "モリソン号事件で異国船打払令の問題点が露呈していた",
+          "label": "モリソン号事件で異国船打払令の問題点が露呈している",
           "normalizedLabel": "『蛮社の獄が起きた』に至るまで",
           "notes": []
         },
@@ -34588,7 +34588,7 @@
           "layer": "B",
           "category": "B-INS",
           "subCategory": "B-INS-04",
-          "label": "渡辺崋山や高野長英が幕府の対外政策を批判していた",
+          "label": "渡辺崋山や高野長英が幕府の対外政策を批判している",
           "normalizedLabel": "制度運用の矛盾や利害対立",
           "notes": []
         },
@@ -34779,7 +34779,7 @@
           "layer": "B",
           "category": "B-RES",
           "subCategory": "B-RES-01",
-          "label": "老中首座に就任し幕政改革の全権を掌握していた",
+          "label": "老中首座に就任し幕政改革の全権を掌握している",
           "normalizedLabel": "経済",
           "notes": []
         },
@@ -34788,7 +34788,7 @@
           "layer": "B",
           "category": "B-RES",
           "subCategory": "B-RES-01",
-          "label": "享保・寛政の改革に倣い緊縮財政を志向していた",
+          "label": "享保・寛政の改革に倣い緊縮財政を志向している",
           "normalizedLabel": "治安",
           "notes": []
         },
@@ -34797,7 +34797,7 @@
           "layer": "B",
           "category": "B-RES",
           "subCategory": "B-RES-01",
-          "label": "人返し令で農村人口の回復を図っていた",
+          "label": "人返し令で農村人口の回復を図っている",
           "normalizedLabel": "土地統治などの問題が顕在化し",
           "notes": []
         },
@@ -34997,7 +34997,7 @@
           "layer": "B",
           "category": "B-INS",
           "subCategory": "B-INS-04",
-          "label": "幕府が諸大名に意見を求め挙国一致の対応を模索していた",
+          "label": "幕府が諸大名に意見を求め挙国一致の対応を模索している",
           "normalizedLabel": "制度運用の矛盾や利害対立",
           "notes": []
         },
@@ -35006,7 +35006,7 @@
           "layer": "B",
           "category": "B-MIL",
           "subCategory": "B-MIL-01",
-          "label": "海防の脆弱性が明白となり軍備増強が急務となっていた",
+          "label": "海防の脆弱性が明白となり軍備増強が急務となっている",
           "normalizedLabel": "外交",
           "notes": []
         },
@@ -35197,7 +35197,7 @@
           "layer": "B",
           "category": "B-INS",
           "subCategory": "B-INS-04",
-          "label": "ペリーが翌年に7隻の艦隊を率いて再来航していた",
+          "label": "ペリーが翌年に7隻の艦隊を率いて再来航している",
           "normalizedLabel": "国際環境の圧力",
           "notes": [],
           "origin": {
@@ -35210,7 +35210,7 @@
           "layer": "B",
           "category": "B-INS",
           "subCategory": "B-INS-04",
-          "label": "幕府内で開国か攘夷かの議論が紛糾していた",
+          "label": "幕府内で開国か攘夷かの議論が紛糾している",
           "normalizedLabel": "安全保障上の必要",
           "notes": []
         },
@@ -35219,7 +35219,7 @@
           "layer": "B",
           "category": "B-MIL",
           "subCategory": "B-MIL-01",
-          "label": "軍事的圧力の前に鎖国維持は不可能と判断されていた",
+          "label": "軍事的圧力の前に鎖国維持は不可能と判断されている",
           "normalizedLabel": "貿易条件の変化が迫り",
           "notes": []
         },
@@ -35410,7 +35410,7 @@
           "layer": "B",
           "category": "B-INS",
           "subCategory": "B-INS-04",
-          "label": "条約勅許問題と将軍継嗣問題で政治対立が激化していた",
+          "label": "条約勅許問題と将軍継嗣問題で政治対立が激化している",
           "normalizedLabel": "『安政の大獄が始まった』に至るまで",
           "notes": []
         },
@@ -35419,7 +35419,7 @@
           "layer": "B",
           "category": "B-INS",
           "subCategory": "B-INS-04",
-          "label": "一橋派と南紀派の抗争が幕府を二分していた",
+          "label": "一橋派と南紀派の抗争が幕府を二分している",
           "normalizedLabel": "制度運用の矛盾や利害対立",
           "notes": []
         },
@@ -35610,7 +35610,7 @@
           "layer": "B",
           "category": "B-INS",
           "subCategory": "B-INS-04",
-          "label": "ハリスが通商条約の締結を強く要求していた",
+          "label": "ハリスが通商条約の締結を強く要求している",
           "normalizedLabel": "国際環境の圧力",
           "notes": []
         },
@@ -35619,7 +35619,7 @@
           "layer": "B",
           "category": "B-INS",
           "subCategory": "B-INS-04",
-          "label": "アロー戦争で英仏が中国を攻撃中であり日本への波及が懸念されていた",
+          "label": "アロー戦争で英仏が中国を攻撃中であり日本への波及が懸念されている",
           "normalizedLabel": "安全保障上の必要",
           "notes": []
         },
@@ -35628,7 +35628,7 @@
           "layer": "B",
           "category": "B-EXT",
           "subCategory": "B-EXT-04",
-          "label": "朝廷の勅許が得られないまま条約締結が迫られた",
+          "label": "朝廷の勅許が得られないまま条約締結が迫られている",
           "normalizedLabel": "貿易条件の変化が迫り",
           "notes": []
         },
@@ -35819,7 +35819,7 @@
           "layer": "B",
           "category": "B-RIV",
           "subCategory": "B-RIV-01",
-          "label": "安政の大獄による弾圧が尊攘派の憎悪を増大させていた",
+          "label": "安政の大獄による弾圧が尊攘派の憎悪を増大させている",
           "normalizedLabel": "桜田門外をめぐる利害対立が蓄積し",
           "notes": [],
           "origin": {
@@ -35832,7 +35832,7 @@
           "layer": "B",
           "category": "B-MIL",
           "subCategory": "B-MIL-01",
-          "label": "水戸藩脱藩浪士が井伊直弼の暗殺を計画していた",
+          "label": "水戸藩脱藩浪士が井伊直弼の暗殺を計画している",
           "normalizedLabel": "統治の調整が追いつかず武力衝突に発展",
           "notes": []
         },
@@ -36001,7 +36001,7 @@
           "layer": "B",
           "category": "B-INS",
           "subCategory": "B-INS-04",
-          "label": "開港により外国人が日本国内を自由に移動するようになっていた",
+          "label": "開港により外国人が日本国内を自由に移動するようになっている",
           "normalizedLabel": "『生麦事件が起きた』に至るまで",
           "notes": []
         },
@@ -36010,7 +36010,7 @@
           "layer": "B",
           "category": "B-INS",
           "subCategory": "B-INS-04",
-          "label": "攘夷思想が高まり外国人への敵意が社会に広がっていた",
+          "label": "攘夷思想が高まり外国人への敵意が社会に広がっている",
           "normalizedLabel": "制度運用の矛盾や利害対立",
           "notes": []
         },
@@ -36019,7 +36019,7 @@
           "layer": "B",
           "category": "B-EXT",
           "subCategory": "B-EXT-03",
-          "label": "薩摩藩の島津久光の行列がイギリス人と遭遇していた",
+          "label": "薩摩藩の島津久光の行列がイギリス人と遭遇している",
           "normalizedLabel": "外交",
           "notes": []
         },
@@ -36210,7 +36210,7 @@
           "layer": "B",
           "category": "B-RIV",
           "subCategory": "B-RIV-01",
-          "label": "生麦事件の賠償をめぐり薩摩藩とイギリスが対立していた",
+          "label": "生麦事件の賠償をめぐり薩摩藩とイギリスが対立している",
           "normalizedLabel": "薩英をめぐる利害対立が蓄積し",
           "notes": [],
           "origin": {
@@ -36392,7 +36392,7 @@
           "layer": "B",
           "category": "B-RIV",
           "subCategory": "B-RIV-01",
-          "label": "八月十八日の政変で長州藩が京都から追放されていた",
+          "label": "八月十八日の政変で長州藩が京都から追放されている",
           "normalizedLabel": "禁門をめぐる利害対立が蓄積し",
           "notes": []
         },
@@ -36570,7 +36570,7 @@
           "layer": "B",
           "category": "B-INS",
           "subCategory": "B-INS-04",
-          "label": "薩摩藩と長州藩がともに幕府への不満を強めていた",
+          "label": "薩摩藩と長州藩がともに幕府への不満を強めている",
           "normalizedLabel": "国際環境の圧力",
           "notes": []
         },
@@ -36579,7 +36579,7 @@
           "layer": "B",
           "category": "B-INS",
           "subCategory": "B-INS-04",
-          "label": "土佐藩の坂本龍馬が両藩の仲介に奔走していた",
+          "label": "土佐藩の坂本龍馬が両藩の仲介に奔走している",
           "normalizedLabel": "安全保障上の必要",
           "notes": []
         },
@@ -36779,7 +36779,7 @@
           "layer": "B",
           "category": "B-INS",
           "subCategory": "B-INS-04",
-          "label": "薩長同盟の成立で武力倒幕の機運が高まっていた",
+          "label": "薩長同盟の成立で武力倒幕の機運が高まっている",
           "normalizedLabel": "『大政奉還が行われた』に至るまで",
           "notes": []
         },
@@ -36788,7 +36788,7 @@
           "layer": "B",
           "category": "B-INS",
           "subCategory": "B-INS-04",
-          "label": "土佐藩の後藤象二郎が将軍慶喜に政権返上を建白していた",
+          "label": "土佐藩の後藤象二郎が将軍慶喜に政権返上を建白している",
           "normalizedLabel": "制度運用の矛盾や利害対立",
           "notes": []
         },
@@ -36797,7 +36797,7 @@
           "layer": "B",
           "category": "B-EXT",
           "subCategory": "B-EXT-03",
-          "label": "慶喜は将軍就任後も朝廷・諸藩との協調路線を模索しており、フランス支援による幕府強化策と並行して政治工作を続けていた",
+          "label": "慶喜は将軍就任後も朝廷・諸藩との協調路線を模索しており、フランス支援による幕府強化策と並行して政治工作を続けている",
           "normalizedLabel": "外交",
           "notes": []
         },
@@ -36988,7 +36988,7 @@
           "layer": "B",
           "category": "B-RES",
           "subCategory": "B-RES-01",
-          "label": "大政奉還後も徳川家の政治的影響力が残存していた",
+          "label": "大政奉還後も徳川家の政治的影響力が残存している",
           "normalizedLabel": "経済",
           "notes": [],
           "origin": {
@@ -37001,7 +37001,7 @@
           "layer": "B",
           "category": "B-RES",
           "subCategory": "B-RES-01",
-          "label": "薩摩の西郷隆盛・大久保利通が徳川排除を画策していた",
+          "label": "薩摩の西郷隆盛・大久保利通が徳川排除を画策している",
           "normalizedLabel": "治安",
           "notes": []
         },
@@ -37010,7 +37010,7 @@
           "layer": "B",
           "category": "B-RES",
           "subCategory": "B-RES-01",
-          "label": "岩倉具視らの公家が朝廷工作を進めていた",
+          "label": "岩倉具視らの公家が朝廷工作を進めている",
           "normalizedLabel": "土地統治などの問題が顕在化し",
           "notes": []
         },
@@ -37201,7 +37201,7 @@
           "layer": "B",
           "category": "B-PWR",
           "subCategory": "B-PWR-04",
-          "label": "版籍奉還後も旧藩主が知藩事として実権を保持していた",
+          "label": "版籍奉還後も旧藩主が知藩事として実権を保持している",
           "normalizedLabel": "『廃藩置県が行われた』に至るまで",
           "notes": []
         },
@@ -37210,7 +37210,7 @@
           "layer": "B",
           "category": "B-INS",
           "subCategory": "B-INS-04",
-          "label": "中央集権国家の建設には藩の廃止が不可欠であった",
+          "label": "中央集権国家の建設には藩の廃止が不可欠である",
           "normalizedLabel": "制度運用の矛盾や利害対立",
           "notes": []
         },
@@ -37401,7 +37401,7 @@
           "layer": "B",
           "category": "B-INS",
           "subCategory": "B-INS-04",
-          "label": "年貢（物納）に依存する財政構造では歳入の「予算化」と国債の信用担保が不可能であり、近代国家に不可欠な財政の計量化・信用化を阻む根本的な体制的不適合があった",
+          "label": "年貢（物納）に依存する財政構造では歳入の「予算化」と国債の信用担保が不可能であり、近代国家に不可欠な財政の計量化・信用化を阻む根本的な体制的不適合がある",
           "normalizedLabel": "既存運用の矛盾や危機対応の必要",
           "notes": []
         },
@@ -37601,7 +37601,7 @@
           "layer": "B",
           "category": "B-INS",
           "subCategory": "B-INS-04",
-          "label": "自由民権運動による国会開設要求と同時に、欧米列強との条約改正交渉で「法治国家でない」と批判される状態が続いており、対内・対外双方から憲法制定を迫る構造的圧力が存在した",
+          "label": "自由民権運動による国会開設要求と同時に、欧米列強との条約改正交渉で「法治国家でない」と批判される状態が続いており、対内・対外双方から憲法制定を迫る構造的圧力が存在する",
           "normalizedLabel": "既存運用の矛盾や危機対応の必要",
           "notes": []
         },
@@ -37610,7 +37610,7 @@
           "layer": "B",
           "category": "B-INS",
           "subCategory": "B-INS-03",
-          "label": "明治十四年の政変で大隈重信が追放されていた",
+          "label": "明治十四年の政変で大隈重信が追放されている",
           "normalizedLabel": "統一的な規則",
           "notes": []
         },
@@ -37619,7 +37619,7 @@
           "layer": "B",
           "category": "B-INS",
           "subCategory": "B-INS-03",
-          "label": "伊藤博文がプロイセン型の欽定憲法を構想していた",
+          "label": "伊藤博文がプロイセン型の欽定憲法を構想している",
           "normalizedLabel": "手続",
           "notes": []
         },
@@ -37810,7 +37810,7 @@
           "layer": "B",
           "category": "B-INS",
           "subCategory": "B-INS-04",
-          "label": "伊藤博文がヨーロッパで憲法調査を行い草案を作成していた",
+          "label": "伊藤博文がヨーロッパで憲法調査を行い草案を作成している",
           "normalizedLabel": "既存運用の矛盾や危機対応の必要",
           "notes": [],
           "origin": {
@@ -37832,7 +37832,7 @@
           "layer": "B",
           "category": "B-INS",
           "subCategory": "B-INS-03",
-          "label": "天皇主権と臣民の権利義務を規定する必要があった",
+          "label": "天皇主権と臣民の権利義務を規定する必要がある",
           "normalizedLabel": "手続",
           "notes": []
         },
@@ -38026,7 +38026,7 @@
           "layer": "B",
           "category": "B-RIV",
           "subCategory": "B-RIV-01",
-          "label": "朝鮮の支配権をめぐり日本と清が対立していた",
+          "label": "朝鮮の支配権をめぐり日本と清が対立している",
           "normalizedLabel": "日清をめぐる利害対立が蓄積し",
           "notes": []
         },
@@ -38035,7 +38035,7 @@
           "layer": "B",
           "category": "B-MIL",
           "subCategory": "B-MIL-01",
-          "label": "甲午農民戦争の鎮圧要請を受け、日清両国がほぼ同時期に朝鮮へ出兵し、双方の軍が朝鮮半島内に対峙していた",
+          "label": "甲午農民戦争の鎮圧要請を受け、日清両国がほぼ同時期に朝鮮へ出兵し、双方の軍が朝鮮半島内に対峙している",
           "normalizedLabel": "統治の調整が追いつかず武力衝突に発展",
           "notes": []
         },
@@ -38204,7 +38204,7 @@
           "layer": "B",
           "category": "B-INS",
           "subCategory": "B-INS-04",
-          "label": "ロシアの満州・朝鮮への南下政策が日英両国の脅威となっていた",
+          "label": "ロシアの満州・朝鮮への南下政策が日英両国の脅威となっている",
           "normalizedLabel": "国際環境の圧力",
           "notes": []
         },
@@ -38213,7 +38213,7 @@
           "layer": "B",
           "category": "B-INS",
           "subCategory": "B-INS-04",
-          "label": "イギリスが「光栄ある孤立」政策を転換する契機を求めていた",
+          "label": "イギリスが「光栄ある孤立」政策を転換する契機を求めている",
           "normalizedLabel": "安全保障上の必要",
           "notes": []
         },
@@ -38222,7 +38222,7 @@
           "layer": "B",
           "category": "B-EXT",
           "subCategory": "B-EXT-04",
-          "label": "日本がロシアに対抗するため列強との同盟を必要としていた",
+          "label": "日本がロシアに対抗するため列強との同盟を必要としている",
           "normalizedLabel": "貿易条件の変化が迫り",
           "notes": []
         },
@@ -38413,7 +38413,7 @@
           "layer": "B",
           "category": "B-RIV",
           "subCategory": "B-RIV-01",
-          "label": "ロシアが満州を占領し朝鮮半島への進出を強めていた",
+          "label": "ロシアが満州を占領し朝鮮半島への進出を強めている",
           "normalizedLabel": "日露をめぐる利害対立が蓄積し",
           "notes": []
         },
@@ -38422,7 +38422,7 @@
           "layer": "B",
           "category": "B-MIL",
           "subCategory": "B-MIL-01",
-          "label": "日英同盟を背景に日本が対露強硬路線をとっていた",
+          "label": "日英同盟を背景に日本が対露強硬路線をとっている",
           "normalizedLabel": "統治の調整が追いつかず武力衝突に発展",
           "notes": []
         },
@@ -38591,7 +38591,7 @@
           "layer": "B",
           "category": "B-INS",
           "subCategory": "B-INS-04",
-          "label": "日露戦争後に日本が韓国の外交権を奪い保護国化していた",
+          "label": "日露戦争後に日本が韓国の外交権を奪い保護国化している",
           "normalizedLabel": "国際環境の圧力",
           "notes": [],
           "origin": {
@@ -38604,7 +38604,7 @@
           "layer": "B",
           "category": "B-INS",
           "subCategory": "B-INS-04",
-          "label": "伊藤博文暗殺を契機に併合推進派が勢力を増していた",
+          "label": "伊藤博文暗殺を契機に併合推進派が勢力を増している",
           "normalizedLabel": "安全保障上の必要",
           "notes": []
         },
@@ -38613,7 +38613,7 @@
           "layer": "B",
           "category": "B-EXT",
           "subCategory": "B-EXT-04",
-          "label": "列強が韓国併合を事実上黙認する国際環境があった",
+          "label": "列強が韓国併合を事実上黙認する国際環境がある",
           "normalizedLabel": "貿易条件の変化が迫り",
           "notes": []
         },
@@ -38804,7 +38804,7 @@
           "layer": "B",
           "category": "B-INS",
           "subCategory": "B-INS-04",
-          "label": "ヨーロッパの帝国主義列強間の対立が極限に達していた",
+          "label": "ヨーロッパの帝国主義列強間の対立が極限に達している",
           "normalizedLabel": "『第一次世界大戦争が始まった』に至るまで",
           "notes": []
         },
@@ -38813,7 +38813,7 @@
           "layer": "B",
           "category": "B-INS",
           "subCategory": "B-INS-04",
-          "label": "日英同盟を根拠に日本がドイツに宣戦布告していた",
+          "label": "日英同盟を根拠に日本がドイツに宣戦布告している",
           "normalizedLabel": "制度運用の矛盾や利害対立",
           "notes": []
         },
@@ -39004,7 +39004,7 @@
           "layer": "B",
           "category": "B-INS",
           "subCategory": "B-INS-04",
-          "label": "シベリア出兵を見込んだ米の投機的買い占めが横行していた",
+          "label": "シベリア出兵を見込んだ米の投機的買い占めが横行している",
           "normalizedLabel": "『米騒動が起きた』に至るまで",
           "notes": []
         },
@@ -39013,7 +39013,7 @@
           "layer": "B",
           "category": "B-INS",
           "subCategory": "B-INS-04",
-          "label": "大戦景気の陰で物価が急騰し庶民の生活が困窮していた",
+          "label": "大戦景気の陰で物価が急騰し庶民の生活が困窮している",
           "normalizedLabel": "制度運用の矛盾や利害対立",
           "notes": []
         },
@@ -39022,7 +39022,7 @@
           "layer": "B",
           "category": "B-EXT",
           "subCategory": "B-EXT-03",
-          "label": "大戦景気による急激な物価上昇（米価は3倍超）が都市・農漁村の生活を直撃し、政府の価格統制機能が資本主義的投機に対して構造的に無力であった",
+          "label": "大戦景気による急激な物価上昇（米価は3倍超）が都市・農漁村の生活を直撃し、政府の価格統制機能が資本主義的投機に対して構造的に無力である",
           "normalizedLabel": "外交",
           "notes": []
         },
@@ -39213,7 +39213,7 @@
           "layer": "B",
           "category": "B-INS",
           "subCategory": "B-INS-04",
-          "label": "関東地方南部で大規模な地殻変動が蓄積していた",
+          "label": "関東地方南部で大規模な地殻変動が蓄積している",
           "normalizedLabel": "『関東大震災が起きた』に至るまで",
           "notes": []
         },
@@ -39222,7 +39222,7 @@
           "layer": "B",
           "category": "B-INS",
           "subCategory": "B-INS-04",
-          "label": "木造家屋密集地域での防災対策が不十分であった",
+          "label": "木造家屋密集地域での防災対策が不十分である",
           "normalizedLabel": "制度運用の矛盾や利害対立",
           "notes": []
         },
@@ -39231,7 +39231,7 @@
           "layer": "B",
           "category": "B-EXT",
           "subCategory": "B-EXT-03",
-          "label": "東京・横浜の急激な都市膨張により木造密集市街地が消防・避難インフラなしに形成され、大規模災害に対する都市の構造的脆弱性が蓄積していた",
+          "label": "東京・横浜の急激な都市膨張により木造密集市街地が消防・避難インフラなしに形成され、大規模災害に対する都市の構造的脆弱性が蓄積している",
           "normalizedLabel": "外交",
           "notes": []
         },
@@ -39422,7 +39422,7 @@
           "layer": "B",
           "category": "B-RES",
           "subCategory": "B-RES-01",
-          "label": "大正デモクラシーの高まりで男子普通選挙を求める声が強まっていた",
+          "label": "大正デモクラシーの高まりで男子普通選挙を求める声が強まっている",
           "normalizedLabel": "経済",
           "notes": []
         },
@@ -39431,7 +39431,7 @@
           "layer": "B",
           "category": "B-INS",
           "subCategory": "B-INS-04",
-          "label": "護憲三派内閣が選挙法改正を公約に掲げていた",
+          "label": "護憲三派内閣が選挙法改正を公約に掲げている",
           "normalizedLabel": "治安",
           "notes": []
         },
@@ -39440,7 +39440,7 @@
           "layer": "B",
           "category": "B-INS",
           "subCategory": "B-INS-04",
-          "label": "納税額による選挙権制限が民意の反映を妨げていた",
+          "label": "納税額による選挙権制限が民意の反映を妨げている",
           "normalizedLabel": "土地統治などの問題が顕在化し",
           "notes": []
         },
@@ -39631,7 +39631,7 @@
           "layer": "B",
           "category": "B-RES",
           "subCategory": "B-RES-01",
-          "label": "普通選挙法の成立で社会主義勢力の議会進出が懸念されていた",
+          "label": "普通選挙法の成立で社会主義勢力の議会進出が懸念されている",
           "normalizedLabel": "経済",
           "notes": [],
           "origin": {
@@ -39644,7 +39644,7 @@
           "layer": "B",
           "category": "B-INS",
           "subCategory": "B-INS-04",
-          "label": "ロシア革命の影響で共産主義運動が活発化していた",
+          "label": "ロシア革命の影響で共産主義運動が活発化している",
           "normalizedLabel": "治安",
           "notes": []
         },
@@ -39653,7 +39653,7 @@
           "layer": "B",
           "category": "B-INS",
           "subCategory": "B-INS-04",
-          "label": "政府が国体変革と私有財産否認を取り締まる法的根拠を求めていた",
+          "label": "政府が国体変革と私有財産否認を取り締まる法的根拠を求めている",
           "normalizedLabel": "土地統治などの問題が顕在化し",
           "notes": []
         },
@@ -39844,7 +39844,7 @@
           "layer": "B",
           "category": "B-INS",
           "subCategory": "B-INS-04",
-          "label": "関東軍が満蒙の権益確保を企図していた",
+          "label": "関東軍が満蒙の権益確保を企図している",
           "normalizedLabel": "『満州事変が起きた』に至るまで",
           "notes": []
         },
@@ -39853,7 +39853,7 @@
           "layer": "B",
           "category": "B-INS",
           "subCategory": "B-INS-04",
-          "label": "世界恐慌の影響で日本経済が深刻な不況に陥っていた",
+          "label": "世界恐慌の影響で日本経済が深刻な不況に陥っている",
           "normalizedLabel": "制度運用の矛盾や利害対立",
           "notes": []
         },
@@ -39862,7 +39862,7 @@
           "layer": "B",
           "category": "B-EXT",
           "subCategory": "B-EXT-03",
-          "label": "1920年代を通じて中国国民政府の権限拡大と鉄道回収運動が進み、満鉄沿線での日本の経済的・行政的優位が段階的に縮小していた",
+          "label": "1920年代を通じて中国国民政府の権限拡大と鉄道回収運動が進み、満鉄沿線での日本の経済的・行政的優位が段階的に縮小している",
           "normalizedLabel": "外交",
           "notes": []
         },
@@ -40053,7 +40053,7 @@
           "layer": "B",
           "category": "B-PWR",
           "subCategory": "B-PWR-02",
-          "label": "リットン調査団が満州国の独立を否定する報告書を提出していた",
+          "label": "リットン調査団が満州国の独立を否定する報告書を提出している",
           "normalizedLabel": "『日本が国際連盟を脱退",
           "notes": []
         },
@@ -40062,7 +40062,7 @@
           "layer": "B",
           "category": "B-INS",
           "subCategory": "B-INS-04",
-          "label": "国際連盟総会で満州国不承認決議が採択されていた",
+          "label": "国際連盟総会で満州国不承認決議が採択されている",
           "normalizedLabel": "制度運用の矛盾や利害対立",
           "notes": []
         },
@@ -40071,7 +40071,7 @@
           "layer": "B",
           "category": "B-EXT",
           "subCategory": "B-EXT-03",
-          "label": "国際連盟は「現状維持」を原則とする英仏主導の規範秩序であり、満州での武力による現状変更とは原理的に両立不可能な構造にあった",
+          "label": "国際連盟は「現状維持」を原則とする英仏主導の規範秩序であり、満州での武力による現状変更とは原理的に両立不可能な構造にある",
           "normalizedLabel": "外交",
           "notes": []
         },
@@ -40262,7 +40262,7 @@
           "layer": "B",
           "category": "B-MIL",
           "subCategory": "B-MIL-01",
-          "label": "華北への日本軍の進出と中国の抗日運動が衝突していた",
+          "label": "華北への日本軍の進出と中国の抗日運動が衝突している",
           "normalizedLabel": "日中をめぐる利害対立が蓄積し",
           "notes": []
         },
@@ -40271,7 +40271,7 @@
           "layer": "B",
           "category": "B-MIL",
           "subCategory": "B-MIL-01",
-          "label": "盧溝橋で日中両軍が偶発的に衝突していた",
+          "label": "盧溝橋で日中両軍が偶発的に衝突している",
           "normalizedLabel": "統治の調整が追いつかず武力衝突に発展",
           "notes": []
         },
@@ -40440,7 +40440,7 @@
           "layer": "B",
           "category": "B-INS",
           "subCategory": "B-INS-04",
-          "label": "日中戦争の長期化でアメリカとの関係が悪化していた",
+          "label": "日中戦争の長期化でアメリカとの関係が悪化している",
           "normalizedLabel": "国際環境の圧力",
           "notes": []
         },
@@ -40449,7 +40449,7 @@
           "layer": "B",
           "category": "B-INS",
           "subCategory": "B-INS-04",
-          "label": "ドイツの欧州制覇に便乗し南方進出を企図していた",
+          "label": "ドイツの欧州制覇に便乗し南方進出を企図している",
           "normalizedLabel": "安全保障上の必要",
           "notes": []
         },
@@ -40458,7 +40458,7 @@
           "layer": "B",
           "category": "B-EXT",
           "subCategory": "B-EXT-04",
-          "label": "松岡洋右外相がドイツ・イタリアとの同盟を推進していた",
+          "label": "松岡洋右外相がドイツ・イタリアとの同盟を推進している",
           "normalizedLabel": "貿易条件の変化が迫り",
           "notes": []
         },
@@ -40658,7 +40658,7 @@
           "layer": "B",
           "category": "B-MIL",
           "subCategory": "B-MIL-01",
-          "label": "石油禁輸措置により日本の戦争遂行能力が限界に達していた",
+          "label": "石油禁輸措置により日本の戦争遂行能力が限界に達している",
           "normalizedLabel": "統治の調整が追いつかず武力衝突に発展",
           "notes": []
         },
@@ -40827,7 +40827,7 @@
           "layer": "B",
           "category": "B-INS",
           "subCategory": "B-INS-04",
-          "label": "ポツダム宣言の受諾により日本は連合国に降伏していた",
+          "label": "ポツダム宣言の受諾により日本は連合国に降伏している",
           "normalizedLabel": "『ghqによる占領が始まった』に至るまで",
           "notes": []
         },
@@ -40836,7 +40836,7 @@
           "layer": "B",
           "category": "B-INS",
           "subCategory": "B-INS-04",
-          "label": "マッカーサーが連合国軍最高司令官として来日していた",
+          "label": "マッカーサーが連合国軍最高司令官として来日している",
           "normalizedLabel": "制度運用の矛盾や利害対立",
           "notes": []
         },
@@ -41027,7 +41027,7 @@
           "layer": "B",
           "category": "B-PWR",
           "subCategory": "B-PWR-02",
-          "label": "広島・長崎への原爆投下とソ連の参戦で敗北が決定的となっていた",
+          "label": "広島・長崎への原爆投下とソ連の参戦で敗北が決定的となっている",
           "normalizedLabel": "『日本がポツダム宣言を受諾し終戦争",
           "notes": []
         },
@@ -41036,7 +41036,7 @@
           "layer": "B",
           "category": "B-INS",
           "subCategory": "B-INS-04",
-          "label": "本土決戦か降伏かで政府・軍部の意見が分裂していた",
+          "label": "本土決戦か降伏かで政府・軍部の意見が分裂している",
           "normalizedLabel": "制度運用の矛盾や利害対立",
           "notes": []
         },
@@ -41045,7 +41045,7 @@
           "layer": "B",
           "category": "B-EXT",
           "subCategory": "B-EXT-03",
-          "label": "陸軍本土決戦派と降伏派が閣議で合意できない構造的膠着状態にあり、政府・軍の通常の意思決定機構では終戦決定が不可能になっていた",
+          "label": "陸軍本土決戦派と降伏派が閣議で合意できない構造的膠着状態にあり、政府・軍の通常の意思決定機構では終戦決定が不可能になっている",
           "normalizedLabel": "外交",
           "notes": []
         },
@@ -41236,7 +41236,7 @@
           "layer": "B",
           "category": "B-INS",
           "subCategory": "B-INS-04",
-          "label": "GHQが大日本帝国憲法の全面改正を指示していた",
+          "label": "GHQが大日本帝国憲法の全面改正を指示している",
           "normalizedLabel": "既存運用の矛盾や危機対応の必要",
           "notes": []
         },
@@ -41245,7 +41245,7 @@
           "layer": "B",
           "category": "B-INS",
           "subCategory": "B-INS-03",
-          "label": "日本政府案が保守的としてGHQが独自の草案を作成していた",
+          "label": "日本政府案が保守的としてGHQが独自の草案を作成している",
           "normalizedLabel": "統一的な規則",
           "notes": []
         },
@@ -41254,7 +41254,7 @@
           "layer": "B",
           "category": "B-INS",
           "subCategory": "B-INS-03",
-          "label": "国民主権・平和主義・基本的人権の尊重が三原則とされていた",
+          "label": "国民主権・平和主義・基本的人権の尊重が三原則とされている",
           "normalizedLabel": "手続",
           "notes": []
         },
@@ -41445,7 +41445,7 @@
           "layer": "B",
           "category": "B-INS",
           "subCategory": "B-INS-04",
-          "label": "前年に公布された新憲法の施行準備が進められていた",
+          "label": "前年に公布された新憲法の施行準備が進められている",
           "normalizedLabel": "既存運用の矛盾や危機対応の必要",
           "notes": [],
           "origin": {
@@ -41467,7 +41467,7 @@
           "layer": "B",
           "category": "B-INS",
           "subCategory": "B-INS-03",
-          "label": "教育基本法・地方自治法など関連法が制定されていた",
+          "label": "教育基本法・地方自治法など関連法が制定されている",
           "normalizedLabel": "手続",
           "notes": []
         },
@@ -41658,7 +41658,7 @@
           "layer": "B",
           "category": "B-INS",
           "subCategory": "B-INS-04",
-          "label": "冷戦の激化で西側諸国が日本の早期独立回復を求めていた",
+          "label": "冷戦の激化で西側諸国が日本の早期独立回復を求めている",
           "normalizedLabel": "国際環境の圧力",
           "notes": []
         },
@@ -41667,7 +41667,7 @@
           "layer": "B",
           "category": "B-INS",
           "subCategory": "B-INS-04",
-          "label": "朝鮮戦争勃発で日本の戦略的重要性が高まっていた",
+          "label": "朝鮮戦争勃発で日本の戦略的重要性が高まっている",
           "normalizedLabel": "安全保障上の必要",
           "notes": []
         },
@@ -41676,7 +41676,7 @@
           "layer": "B",
           "category": "B-EXT",
           "subCategory": "B-EXT-04",
-          "label": "全面講和か単独講和かの論争が国内で展開されていた",
+          "label": "全面講和か単独講和かの論争が国内で展開されている",
           "normalizedLabel": "貿易条件の変化が迫り",
           "notes": []
         },
@@ -41867,7 +41867,7 @@
           "layer": "B",
           "category": "B-INS",
           "subCategory": "B-INS-04",
-          "label": "サンフランシスコ平和条約が1952年4月28日に発効していた",
+          "label": "サンフランシスコ平和条約が1952年4月28日に発効している",
           "normalizedLabel": "サンフランシスコ平和条約の発効により占領",
           "notes": []
         },
@@ -41876,7 +41876,7 @@
           "layer": "B",
           "category": "B-INS",
           "subCategory": "B-INS-04",
-          "label": "GHQが廃止され占領が終了していた",
+          "label": "GHQが廃止され占領が終了している",
           "normalizedLabel": "国際社会への復帰と主権回復が実現",
           "notes": []
         },
@@ -42223,7 +42223,7 @@
           "layer": "B",
           "category": "B-PWR",
           "subCategory": "B-PWR-02",
-          "label": "高度経済成長により日本の国力が飛躍的に向上していた",
+          "label": "高度経済成長により日本の国力が飛躍的に向上している",
           "normalizedLabel": "『東京オリンピックが開催",
           "notes": []
         },
@@ -42232,7 +42232,7 @@
           "layer": "B",
           "category": "B-INS",
           "subCategory": "B-INS-04",
-          "label": "戦後復興の成果を世界に示す機会が求められていた",
+          "label": "戦後復興の成果を世界に示す機会が求められている",
           "normalizedLabel": "制度運用の矛盾や利害対立",
           "notes": []
         },
@@ -42432,7 +42432,7 @@
           "layer": "B",
           "category": "B-PWR",
           "subCategory": "B-PWR-02",
-          "label": "沖縄の住民が長年にわたり日本復帰を求めていた",
+          "label": "沖縄の住民が長年にわたり日本復帰を求めている",
           "normalizedLabel": "『沖縄が日本に返還",
           "notes": []
         },
@@ -42441,7 +42441,7 @@
           "layer": "B",
           "category": "B-INS",
           "subCategory": "B-INS-04",
-          "label": "ベトナム戦争の激化で沖縄の基地負担が増大していた",
+          "label": "ベトナム戦争の激化で沖縄の基地負担が増大している",
           "normalizedLabel": "制度運用の矛盾や利害対立",
           "notes": []
         },
@@ -42632,7 +42632,7 @@
           "layer": "B",
           "category": "B-INS",
           "subCategory": "B-INS-04",
-          "label": "アメリカの貿易赤字が拡大しドル高是正が求められていた",
+          "label": "アメリカの貿易赤字が拡大しドル高是正が求められている",
           "normalizedLabel": "『プラザ合意が結ばれた』に至るまで",
           "notes": []
         },
@@ -42641,7 +42641,7 @@
           "layer": "B",
           "category": "B-INS",
           "subCategory": "B-INS-04",
-          "label": "日米貿易摩擦が深刻化し政治問題となっていた",
+          "label": "日米貿易摩擦が深刻化し政治問題となっている",
           "normalizedLabel": "制度運用の矛盾や利害対立",
           "notes": []
         },
@@ -42650,7 +42650,7 @@
           "layer": "B",
           "category": "B-EXT",
           "subCategory": "B-EXT-03",
-          "label": "レーガン政権の財政赤字拡大によるドル高がアメリカ製造業の競争力を喪失させ、議会に保護主義立法の圧力が高まっており、協調介入なき場合は貿易戦争が不可避であった",
+          "label": "レーガン政権の財政赤字拡大によるドル高がアメリカ製造業の競争力を喪失させ、議会に保護主義立法の圧力が高まっており、協調介入なき場合は貿易戦争が不可避である",
           "normalizedLabel": "外交",
           "notes": []
         },
@@ -42841,7 +42841,7 @@
           "layer": "B",
           "category": "B-RES",
           "subCategory": "B-RES-03",
-          "label": "昭和天皇が長期にわたり闘病生活を送っていた",
+          "label": "昭和天皇が長期にわたり闘病生活を送っている",
           "normalizedLabel": "高齢",
           "notes": []
         },
@@ -42850,7 +42850,7 @@
           "layer": "B",
           "category": "B-RES",
           "subCategory": "B-RES-03",
-          "label": "天皇の病状悪化に伴い自粛ムードが社会に広がっていた",
+          "label": "天皇の病状悪化に伴い自粛ムードが社会に広がっている",
           "normalizedLabel": "疾病",
           "notes": []
         },
@@ -42859,7 +42859,7 @@
           "layer": "B",
           "category": "B-RES",
           "subCategory": "B-RES-03",
-          "label": "元号法に基づく改元の準備が進められていた",
+          "label": "元号法に基づく改元の準備が進められている",
           "normalizedLabel": "政務負担などが重なり崩御",
           "notes": []
         },
@@ -43050,7 +43050,7 @@
           "layer": "B",
           "category": "B-PWR",
           "subCategory": "B-PWR-02",
-          "label": "活断層が都市直下に存在し大規模地震のリスクがあった",
+          "label": "活断層が都市直下に存在し大規模地震のリスクがある",
           "normalizedLabel": "『阪神",
           "notes": []
         },
@@ -43059,7 +43059,7 @@
           "layer": "B",
           "category": "B-INS",
           "subCategory": "B-INS-04",
-          "label": "都市部の耐震対策が不十分な建物が多数存在していた",
+          "label": "都市部の耐震対策が不十分な建物が多数存在している",
           "normalizedLabel": "淡路大震災が起きた』に至るまで",
           "notes": []
         },
@@ -43068,7 +43068,7 @@
           "layer": "B",
           "category": "B-INS",
           "subCategory": "B-INS-04",
-          "label": "初動対応の遅れが被害拡大の要因となっていた",
+          "label": "初動対応の遅れが被害拡大の要因となっている",
           "normalizedLabel": "制度運用の矛盾や利害対立",
           "notes": []
         },
@@ -43259,7 +43259,7 @@
           "layer": "B",
           "category": "B-INS",
           "subCategory": "B-INS-04",
-          "label": "東北沖でプレート境界型の巨大地震が発生するリスクが指摘されていた",
+          "label": "東北沖でプレート境界型の巨大地震が発生するリスクが指摘されている",
           "normalizedLabel": "『東日本大震災が起きた』に至るまで",
           "notes": []
         },
@@ -43268,7 +43268,7 @@
           "layer": "B",
           "category": "B-INS",
           "subCategory": "B-INS-04",
-          "label": "原子力発電所の津波対策が不十分であった",
+          "label": "原子力発電所の津波対策が不十分である",
           "normalizedLabel": "制度運用の矛盾や利害対立",
           "notes": []
         },
@@ -43277,7 +43277,7 @@
           "layer": "B",
           "category": "B-EXT",
           "subCategory": "B-EXT-03",
-          "label": "想定を超える巨大津波が沿岸部を襲っていた",
+          "label": "想定を超える巨大津波が沿岸部を襲っている",
           "normalizedLabel": "外交",
           "notes": []
         },
@@ -43477,7 +43477,7 @@
           "layer": "B",
           "category": "B-INS",
           "subCategory": "B-INS-04",
-          "label": "上皇（明仁天皇）が高齢を理由に退位の意向を示していた",
+          "label": "上皇（明仁天皇）が高齢を理由に退位の意向を示している",
           "normalizedLabel": "退位などで継承が発生し",
           "notes": []
         },
