@@ -1,11 +1,33 @@
 {
-  "version": "3.1",
+  "version": "3.8",
   "generatedBy": "generate_accumulation_local.py",
   "model": "rule-based",
   "timestamp": "2026-02-23T12:34:36",
   "items": {
     "FW_EV_p0507_01": {
-      "accumulation": null,
+      "accumulation": {
+        "relations": [
+          {
+            "from": "EL_EV_p0507_01_7",
+            "to": "EL_EV_p0507_01_8",
+            "mechanism": "enabling",
+            "description": "直系断絶が遠縁候補の浮上を可能にしていた"
+          },
+          {
+            "from": "EL_EV_p0507_01_7",
+            "to": "EL_EV_p0507_01_2",
+            "mechanism": "enabling",
+            "description": "直系断絶が豪族主導の擁立を促進していた"
+          },
+          {
+            "from": "EL_EV_p0507_01_8",
+            "to": "EL_EV_p0507_01_2",
+            "mechanism": "convergence",
+            "description": "候補の存在と豪族の実権が即位の同一圧力点に収斂していた"
+          }
+        ],
+        "summary": "直系断絶と候補浮上と豪族実権の促進・収斂が蓄積し事象に至った"
+      },
       "revisions": []
     },
     "FW_EV_p0512_01": {
@@ -171,11 +193,55 @@
       ]
     },
     "FW_EV_p0592_01": {
-      "accumulation": null,
+      "accumulation": {
+        "relations": [
+          {
+            "from": "EL_EV_p0592_01_7",
+            "to": "EL_EV_p0592_01_1",
+            "mechanism": "tension",
+            "description": "馬子の実権掌握と天皇の自立志向が逆方向に作用し構造的緊張が蓄積された"
+          },
+          {
+            "from": "EL_EV_p0592_01_7",
+            "to": "EL_EV_p0592_01_8",
+            "mechanism": "enabling",
+            "description": "馬子の権力基盤が外戚問題での利害対立を激化させていた"
+          },
+          {
+            "from": "EL_EV_p0592_01_1",
+            "to": "EL_EV_p0592_01_8",
+            "mechanism": "convergence",
+            "description": "天皇の自立行動と后妃問題の利害対立が暗殺の同一圧力点に収斂していた"
+          }
+        ],
+        "summary": "権力緊張と利害対立の緊張・収斂が蓄積し事象に至った"
+      },
       "revisions": []
     },
     "FW_EV_p0593_01": {
-      "accumulation": null,
+      "accumulation": {
+        "relations": [
+          {
+            "from": "EL_EV_p0593_01_7",
+            "to": "EL_EV_p0593_01_8",
+            "mechanism": "enabling",
+            "description": "馬子の実権が蘇我系皇族への継承を促進していた"
+          },
+          {
+            "from": "EL_EV_p0593_01_7",
+            "to": "EL_EV_p0593_01_9",
+            "mechanism": "enabling",
+            "description": "馬子の実権が協調可能な血統の選択を促進していた"
+          },
+          {
+            "from": "EL_EV_p0593_01_8",
+            "to": "EL_EV_p0593_01_9",
+            "mechanism": "convergence",
+            "description": "限られた候補と推古の血統適格性が即位の同一圧力点に収斂していた"
+          }
+        ],
+        "summary": "権力構造と血統条件の促進・収斂が蓄積し事象に至った"
+      },
       "revisions": []
     },
     "FW_EV_p0593_02": {
@@ -404,7 +470,29 @@
       ]
     },
     "FW_EV_p0645_01": {
-      "accumulation": null,
+      "accumulation": {
+        "relations": [
+          {
+            "from": "EL_EV_p0645_01_7",
+            "to": "EL_EV_p0645_01_9",
+            "mechanism": "enabling",
+            "description": "蘇我氏の専権が排除連携の形成を促進していた"
+          },
+          {
+            "from": "EL_EV_p0645_01_8",
+            "to": "EL_EV_p0645_01_7",
+            "mechanism": "tension",
+            "description": "唐の中央集権モデルと蘇我氏の専権が逆方向に作用し構造的緊張が蓄積された"
+          },
+          {
+            "from": "EL_EV_p0645_01_8",
+            "to": "EL_EV_p0645_01_9",
+            "mechanism": "enabling",
+            "description": "唐の体制モデルが改革派の理論的根拠を形成していた"
+          }
+        ],
+        "summary": "専権への緊張と外来モデルと排除連携の促進・緊張が蓄積し事象に至った"
+      },
       "revisions": []
     },
     "FW_EV_p0645_02": {
@@ -498,7 +586,29 @@
       ]
     },
     "FW_EV_p0647_01": {
-      "accumulation": null,
+      "accumulation": {
+        "relations": [
+          {
+            "from": "EL_EV_p0647_01_7",
+            "to": "EL_EV_p0647_01_8",
+            "mechanism": "enabling",
+            "description": "租庸調の制度化が運脚の地理的負担を現実の圧力として作動させていた"
+          },
+          {
+            "from": "EL_EV_p0647_01_7",
+            "to": "EL_EV_p0647_01_9",
+            "mechanism": "enabling",
+            "description": "律令制度の確立が防人動員の法的根拠を提供していた"
+          },
+          {
+            "from": "EL_EV_p0647_01_8",
+            "to": "EL_EV_p0647_01_9",
+            "mechanism": "convergence",
+            "description": "地理的負担と軍事動員が農民の同一の生活基盤を圧迫し収斂していた"
+          }
+        ],
+        "summary": "制度化された徴税・運脚と防人動員が農民生活を多重に圧迫し事象に至った"
+      },
       "revisions": []
     },
     "FW_EV_p0648_01": {
@@ -725,18 +835,6 @@
             "to": "EL_EV_p0694_01_2",
             "mechanism": "enabling",
             "description": "地理条件が制度枠組みの作動前提を形成していた"
-          },
-          {
-            "from": "EL_EV_p0694_01_1",
-            "to": "EL_EV_p0694_01_3",
-            "mechanism": "constraint",
-            "description": "地理条件が対外圧力の選択肢を狭め行動を制約していた"
-          },
-          {
-            "from": "EL_EV_p0694_01_2",
-            "to": "EL_EV_p0694_01_3",
-            "mechanism": "enabling",
-            "description": "制度枠組みが対外圧力の作動前提を形成していた"
           }
         ],
         "summary": "対外環境と地理条件と制度の制約・促進が蓄積し事象に至った"
@@ -753,12 +851,6 @@
           "labelRevised": "律令国家にふさわしい恒久的な都の必要性が高まっていた",
           "categoryRevised": "B-INS",
           "subCategoryRevised": "B-INS-04"
-        },
-        {
-          "elementId": "EL_EV_p0694_01_3",
-          "labelRevised": "大和三山に囲まれた地に条坊制の都城が造営されていた",
-          "categoryRevised": "B-EXT",
-          "subCategoryRevised": "B-EXT-03"
         }
       ]
     },
@@ -815,18 +907,6 @@
             "to": "EL_EV_p0708_01_2",
             "mechanism": "constraint",
             "description": "資源基盤が制度枠組みの選択肢を狭め行動を制約していた"
-          },
-          {
-            "from": "EL_EV_p0708_01_1",
-            "to": "EL_EV_p0708_01_3",
-            "mechanism": "tension",
-            "description": "資源基盤と対外圧力が逆方向に作用し構造的緊張が蓄積された"
-          },
-          {
-            "from": "EL_EV_p0708_01_2",
-            "to": "EL_EV_p0708_01_3",
-            "mechanism": "enabling",
-            "description": "制度枠組みが対外圧力の作動前提を形成していた"
           }
         ],
         "summary": "対外環境と制度と資源の制約・促進・緊張が蓄積し事象に至った"
@@ -843,12 +923,6 @@
           "labelRevised": "武蔵国から銅が献上され貨幣鋳造の原料が確保されていた",
           "categoryRevised": "B-INS",
           "subCategoryRevised": "B-INS-04"
-        },
-        {
-          "elementId": "EL_EV_p0708_01_3",
-          "labelRevised": "唐の開元通宝を模した和同開珎が鋳造されていた",
-          "categoryRevised": "B-EXT",
-          "subCategoryRevised": "B-EXT-03"
         }
       ]
     },
@@ -1184,18 +1258,6 @@
             "to": "EL_EV_p0752_01_2",
             "mechanism": "enabling",
             "description": "価値規範が制度枠組みの作動前提を形成していた"
-          },
-          {
-            "from": "EL_EV_p0752_01_1",
-            "to": "EL_EV_p0752_01_3",
-            "mechanism": "enabling",
-            "description": "価値規範が対外圧力の作動前提を形成していた"
-          },
-          {
-            "from": "EL_EV_p0752_01_2",
-            "to": "EL_EV_p0752_01_3",
-            "mechanism": "enabling",
-            "description": "制度枠組みが対外圧力の作動前提を形成していた"
           }
         ],
         "summary": "対外環境と制度と価値体系の促進が蓄積し事象に至った"
@@ -1212,12 +1274,6 @@
           "labelRevised": "聖武天皇が仏教による国家鎮護の象徴として大仏建立を発願していた",
           "categoryRevised": "B-INS",
           "subCategoryRevised": "B-INS-04"
-        },
-        {
-          "elementId": "EL_EV_p0752_01_3",
-          "labelRevised": "行基の勧進協力により全国から人員と資材が動員されていた",
-          "categoryRevised": "B-MIL",
-          "subCategoryRevised": "B-MIL-03"
         }
       ]
     },
@@ -1508,18 +1564,6 @@
             "to": "EL_EV_p0805_01_2",
             "mechanism": "enabling",
             "description": "価値規範が制度枠組みの作動前提を形成していた"
-          },
-          {
-            "from": "EL_EV_p0805_01_1",
-            "to": "EL_EV_p0805_01_3",
-            "mechanism": "enabling",
-            "description": "価値規範が対外圧力の作動前提を形成していた"
-          },
-          {
-            "from": "EL_EV_p0805_01_2",
-            "to": "EL_EV_p0805_01_3",
-            "mechanism": "enabling",
-            "description": "制度枠組みが対外圧力の作動前提を形成していた"
           }
         ],
         "summary": "対外環境と制度と価値体系の促進が蓄積し事象に至った"
@@ -1536,12 +1580,6 @@
           "labelRevised": "桓武天皇が奈良仏教の政治介入を排し新宗派を支援する方針をとっていた",
           "categoryRevised": "B-INS",
           "subCategoryRevised": "B-INS-04"
-        },
-        {
-          "elementId": "EL_EV_p0805_01_3",
-          "labelRevised": "最澄が唐で天台教学を学び帰国して比叡山に延暦寺を開いた",
-          "categoryRevised": "B-EXT",
-          "subCategoryRevised": "B-EXT-03"
         }
       ]
     },
@@ -1553,18 +1591,6 @@
             "to": "EL_EV_p0806_01_2",
             "mechanism": "enabling",
             "description": "価値規範が制度枠組みの作動前提を形成していた"
-          },
-          {
-            "from": "EL_EV_p0806_01_1",
-            "to": "EL_EV_p0806_01_3",
-            "mechanism": "enabling",
-            "description": "価値規範が対外圧力の作動前提を形成していた"
-          },
-          {
-            "from": "EL_EV_p0806_01_2",
-            "to": "EL_EV_p0806_01_3",
-            "mechanism": "enabling",
-            "description": "制度枠組みが対外圧力の作動前提を形成していた"
           }
         ],
         "summary": "対外環境と制度と価値体系の促進が蓄積し事象に至った"
@@ -1581,12 +1607,6 @@
           "labelRevised": "空海が唐で恵果から密教の正統を受け継ぎ帰国していた",
           "categoryRevised": "B-INS",
           "subCategoryRevised": "B-INS-04"
-        },
-        {
-          "elementId": "EL_EV_p0806_01_3",
-          "labelRevised": "嵯峨天皇の信任を得て高野山に金剛峯寺を開いた",
-          "categoryRevised": "B-EXT",
-          "subCategoryRevised": "B-EXT-03"
         }
       ]
     },
@@ -1652,18 +1672,6 @@
             "to": "EL_EV_p0858_01_2",
             "mechanism": "enabling",
             "description": "権力構造が制度枠組みの作動前提を形成していた"
-          },
-          {
-            "from": "EL_EV_p0858_01_1",
-            "to": "EL_EV_p0858_01_3",
-            "mechanism": "tension",
-            "description": "権力構造と対外圧力が逆方向に作用し構造的緊張が蓄積された"
-          },
-          {
-            "from": "EL_EV_p0858_01_2",
-            "to": "EL_EV_p0858_01_3",
-            "mechanism": "enabling",
-            "description": "制度枠組みが対外圧力の作動前提を形成していた"
           }
         ],
         "summary": "対外環境と制度と権力配置の促進・緊張が蓄積し事象に至った"
@@ -1680,12 +1688,6 @@
           "labelRevised": "藤原良房が他氏排斥と外戚戦略で朝廷内の優位を確立していた",
           "categoryRevised": "B-INS",
           "subCategoryRevised": "B-INS-04"
-        },
-        {
-          "elementId": "EL_EV_p0858_01_3",
-          "labelRevised": "藤原良房が人臣として初めて摂政に就任していた",
-          "categoryRevised": "B-EXT",
-          "subCategoryRevised": "B-EXT-03"
         }
       ]
     },
@@ -1743,6 +1745,32 @@
         }
       ]
     },
+    "FW_EV_p0897_01": {
+      "accumulation": {
+        "relations": [
+          {
+            "from": "EL_EV_p0897_01_1",
+            "to": "EL_EV_p0897_01_2",
+            "mechanism": "enabling",
+            "description": "宇多天皇の譲位意図が藤原氏牽制の作動前提を形成していた"
+          },
+          {
+            "from": "EL_EV_p0897_01_1",
+            "to": "EL_EV_p0897_01_3",
+            "mechanism": "enabling",
+            "description": "権力移行が律令整備への推進力を形成していた"
+          },
+          {
+            "from": "EL_EV_p0897_01_2",
+            "to": "EL_EV_p0897_01_3",
+            "mechanism": "convergence",
+            "description": "藤原氏牽制と律令整備が天皇親政の同一圧力点に収斂していた"
+          }
+        ],
+        "summary": "権力移行と制度整備の促進・収斂が蓄積し事象に至った"
+      },
+      "revisions": []
+    },
     "FW_EV_p0901_01": {
       "accumulation": {
         "relations": [
@@ -1751,18 +1779,6 @@
             "to": "EL_EV_p0901_01_2",
             "mechanism": "constraint",
             "description": "権力構造が制度枠組みの選択肢を狭め行動を制約していた"
-          },
-          {
-            "from": "EL_EV_p0901_01_1",
-            "to": "EL_EV_p0901_01_3",
-            "mechanism": "tension",
-            "description": "権力構造と対外圧力が逆方向に作用し構造的緊張が蓄積された"
-          },
-          {
-            "from": "EL_EV_p0901_01_2",
-            "to": "EL_EV_p0901_01_3",
-            "mechanism": "enabling",
-            "description": "制度枠組みが対外圧力の作動前提を形成していた"
           }
         ],
         "summary": "対外環境と制度と権力配置の制約・促進・緊張が蓄積し事象に至った"
@@ -1779,12 +1795,6 @@
           "labelRevised": "道真が醍醐天皇の廃位を企てたとの讒言が藤原時平により行われた",
           "categoryRevised": "B-INS",
           "subCategoryRevised": "B-INS-04"
-        },
-        {
-          "elementId": "EL_EV_p0901_01_3",
-          "labelRevised": "菅原道真が右大臣から大宰権帥に左遷され配所で没していた",
-          "categoryRevised": "B-EXT",
-          "subCategoryRevised": "B-EXT-03"
         }
       ]
     },
@@ -1793,21 +1803,9 @@
         "relations": [
           {
             "from": "EL_EV_p0905_01_1",
-            "to": "EL_EV_p0905_01_2",
-            "mechanism": "enabling",
-            "description": "価値規範が制度枠組みの作動前提を形成していた"
-          },
-          {
-            "from": "EL_EV_p0905_01_1",
             "to": "EL_EV_p0905_01_3",
             "mechanism": "enabling",
             "description": "価値規範が対外圧力の作動前提を形成していた"
-          },
-          {
-            "from": "EL_EV_p0905_01_2",
-            "to": "EL_EV_p0905_01_3",
-            "mechanism": "enabling",
-            "description": "制度枠組みが対外圧力の作動前提を形成していた"
           }
         ],
         "summary": "対外環境と制度と価値体系の促進が蓄積し事象に至った"
@@ -1818,12 +1816,6 @@
           "labelRevised": "国風文化の興隆により和歌が宮廷文化の中核となっていた",
           "categoryRevised": "B-NRM",
           "subCategoryRevised": "B-NRM-04"
-        },
-        {
-          "elementId": "EL_EV_p0905_01_2",
-          "labelRevised": "醍醐天皇の勅命により紀貫之らが編纂にあたっていた",
-          "categoryRevised": "B-INS",
-          "subCategoryRevised": "B-INS-04"
         },
         {
           "elementId": "EL_EV_p0905_01_3",
@@ -1894,22 +1886,10 @@
             "from": "EL_EV_p0967_01_1",
             "to": "EL_EV_p0967_01_2",
             "mechanism": "convergence",
-            "description": "律令と醍醐天皇が同一の圧力点に収斂していた"
-          },
-          {
-            "from": "EL_EV_p0967_01_1",
-            "to": "EL_EV_p0967_01_3",
-            "mechanism": "enabling",
-            "description": "律令が三代格式の作動前提を形成していた"
-          },
-          {
-            "from": "EL_EV_p0967_01_2",
-            "to": "EL_EV_p0967_01_3",
-            "mechanism": "enabling",
-            "description": "醍醐天皇が三代格式の作動前提を形成していた"
+            "description": "律令の施行細則の散在と国司交代時の運用混乱が同一の圧力点に収斂していた"
           }
         ],
-        "summary": "制度の収斂・促進が蓄積し事象に至った"
+        "summary": "制度運用の矛盾が収斂し事象に至った"
       },
       "revisions": [
         {
@@ -1921,12 +1901,6 @@
         {
           "elementId": "EL_EV_p0967_01_2",
           "labelRevised": "醍醐天皇の命で編纂が始まり約50年をかけて完成していた",
-          "categoryRevised": "B-INS",
-          "subCategoryRevised": "B-INS-03"
-        },
-        {
-          "elementId": "EL_EV_p0967_01_3",
-          "labelRevised": "三代格式の集大成として神祇・太政官以下の細則が整備されていた",
           "categoryRevised": "B-INS",
           "subCategoryRevised": "B-INS-03"
         }
@@ -2012,18 +1986,6 @@
             "to": "EL_EV_p1016_02_2",
             "mechanism": "tension",
             "description": "権力構造と制度枠組みが逆方向に作用し構造的緊張が蓄積された"
-          },
-          {
-            "from": "EL_EV_p1016_02_1",
-            "to": "EL_EV_p1016_02_3",
-            "mechanism": "tension",
-            "description": "権力構造と対外圧力が逆方向に作用し構造的緊張が蓄積された"
-          },
-          {
-            "from": "EL_EV_p1016_02_2",
-            "to": "EL_EV_p1016_02_3",
-            "mechanism": "tension",
-            "description": "制度枠組みと対外圧力が逆方向に作用し構造的緊張が蓄積された"
           }
         ],
         "summary": "対外環境と制度と権力配置の緊張が蓄積し事象に至った"
@@ -2040,12 +2002,6 @@
           "labelRevised": "藤原氏以外の有力貴族が政界から排除され対抗勢力が存在しなかっていた",
           "categoryRevised": "B-INS",
           "subCategoryRevised": "B-INS-04"
-        },
-        {
-          "elementId": "EL_EV_p1016_02_3",
-          "labelRevised": "道長が摂政に就任し名実ともに朝廷の最高権力者となっていた",
-          "categoryRevised": "B-EXT",
-          "subCategoryRevised": "B-EXT-03"
         }
       ]
     },
@@ -2167,7 +2123,29 @@
       ]
     },
     "FW_EV_p1069_01": {
-      "accumulation": null,
+      "accumulation": {
+        "relations": [
+          {
+            "from": "EL_EV_p1069_01_7",
+            "to": "EL_EV_p1069_01_9",
+            "mechanism": "tension",
+            "description": "租税基盤の侵食と従来整理の無効が矛盾を拡大させていた"
+          },
+          {
+            "from": "EL_EV_p1069_01_7",
+            "to": "EL_EV_p1069_01_8",
+            "mechanism": "enabling",
+            "description": "荘園問題の深刻化が摂関家に依存しない天皇の行動余地を広げていた"
+          },
+          {
+            "from": "EL_EV_p1069_01_8",
+            "to": "EL_EV_p1069_01_9",
+            "mechanism": "enabling",
+            "description": "天皇の独立性が従来の国司主体整理を超える直接介入を可能にしていた"
+          }
+        ],
+        "summary": "荘園拡大による財政悪化と天皇の独立性が従来整理の無効を突破する契機となり事象に至った"
+      },
       "revisions": []
     },
     "FW_EV_p1083_01": {
@@ -2223,18 +2201,6 @@
             "to": "EL_EV_p1086_01_2",
             "mechanism": "constraint",
             "description": "権力構造が制度枠組みの選択肢を狭め行動を制約していた"
-          },
-          {
-            "from": "EL_EV_p1086_01_1",
-            "to": "EL_EV_p1086_01_3",
-            "mechanism": "constraint",
-            "description": "権力構造が対外圧力の選択肢を狭め行動を制約していた"
-          },
-          {
-            "from": "EL_EV_p1086_01_2",
-            "to": "EL_EV_p1086_01_3",
-            "mechanism": "enabling",
-            "description": "制度枠組みが対外圧力の作動前提を形成していた"
           }
         ],
         "summary": "対外環境と制度と権力配置の制約・促進が蓄積し事象に至った"
@@ -2251,12 +2217,6 @@
           "labelRevised": "白河天皇が幼い堀河天皇に譲位し上皇として実権を握っていた",
           "categoryRevised": "B-PWR",
           "subCategoryRevised": "B-PWR-04"
-        },
-        {
-          "elementId": "EL_EV_p1086_01_3",
-          "labelRevised": "白河上皇が院庁を拠点に天皇を超える権力を行使し始めた",
-          "categoryRevised": "B-EXT",
-          "subCategoryRevised": "B-EXT-03"
         }
       ]
     },
@@ -2406,14 +2366,7 @@
     },
     "FW_EV_p1159_01": {
       "accumulation": {
-        "relations": [
-          {
-            "from": "EL_EV_p1159_01_1",
-            "to": "EL_EV_p1159_01_2",
-            "mechanism": "tension",
-            "description": "利害対立と軍事基盤が逆方向に作用し構造的緊張が蓄積された"
-          }
-        ],
+        "relations": [],
         "summary": "軍事と利害対立の緊張が蓄積し事象に至った"
       },
       "revisions": [
@@ -2422,12 +2375,6 @@
           "labelRevised": "保元の乱後の恩賞配分をめぐり平清盛と源義朝が対立していた",
           "categoryRevised": "B-RIV",
           "subCategoryRevised": "B-RIV-01"
-        },
-        {
-          "elementId": "EL_EV_p1159_01_2",
-          "labelRevised": "藤原信頼・源義朝が後白河上皇の院御所を襲撃していた",
-          "categoryRevised": "B-MIL",
-          "subCategoryRevised": "B-MIL-01"
         }
       ]
     },
@@ -2484,18 +2431,6 @@
             "to": "EL_EV_p1177_01_2",
             "mechanism": "tension",
             "description": "平氏と藤原成親・俊寛らが逆方向に作用し構造的緊張が蓄積された"
-          },
-          {
-            "from": "EL_EV_p1177_01_1",
-            "to": "EL_EV_p1177_01_3",
-            "mechanism": "tension",
-            "description": "制度枠組みと対外圧力が逆方向に作用し構造的緊張が蓄積された"
-          },
-          {
-            "from": "EL_EV_p1177_01_2",
-            "to": "EL_EV_p1177_01_3",
-            "mechanism": "enabling",
-            "description": "制度枠組みが対外圧力の作動前提を形成していた"
           }
         ],
         "summary": "対外環境と制度の促進・緊張が蓄積し事象に至った"
@@ -2512,12 +2447,6 @@
           "labelRevised": "藤原成親・俊寛らが鹿ケ谷で平氏打倒の密議を行っていた",
           "categoryRevised": "B-INS",
           "subCategoryRevised": "B-INS-04"
-        },
-        {
-          "elementId": "EL_EV_p1177_01_3",
-          "labelRevised": "密告により陰謀が発覚し関係者が処罰されていた",
-          "categoryRevised": "B-EXT",
-          "subCategoryRevised": "B-EXT-03"
         }
       ]
     },
@@ -2574,18 +2503,6 @@
             "to": "EL_EV_p1183_01_2",
             "mechanism": "constraint",
             "description": "権力構造が制度枠組みの選択肢を狭め行動を制約していた"
-          },
-          {
-            "from": "EL_EV_p1183_01_1",
-            "to": "EL_EV_p1183_01_3",
-            "mechanism": "tension",
-            "description": "権力構造と対外圧力が逆方向に作用し構造的緊張が蓄積された"
-          },
-          {
-            "from": "EL_EV_p1183_01_2",
-            "to": "EL_EV_p1183_01_3",
-            "mechanism": "enabling",
-            "description": "制度枠組みが対外圧力の作動前提を形成していた"
           }
         ],
         "summary": "対外環境と制度と権力配置の制約・促進・緊張が蓄積し事象に至った"
@@ -2602,12 +2519,6 @@
           "labelRevised": "平氏が安徳天皇を奉じて都落ちし京都が空白状態となっていた",
           "categoryRevised": "B-INS",
           "subCategoryRevised": "B-INS-04"
-        },
-        {
-          "elementId": "EL_EV_p1183_01_3",
-          "labelRevised": "木曽義仲が入京し後白河法皇から征東大将軍の称号を得た",
-          "categoryRevised": "B-MIL",
-          "subCategoryRevised": "B-MIL-01"
         }
       ]
     },
@@ -2619,18 +2530,6 @@
             "to": "EL_EV_p1184_01_2",
             "mechanism": "constraint",
             "description": "権力構造が制度枠組みの選択肢を狭め行動を制約していた"
-          },
-          {
-            "from": "EL_EV_p1184_01_1",
-            "to": "EL_EV_p1184_01_3",
-            "mechanism": "tension",
-            "description": "権力構造と制度枠組みが逆方向に作用し構造的緊張が蓄積された"
-          },
-          {
-            "from": "EL_EV_p1184_01_2",
-            "to": "EL_EV_p1184_01_3",
-            "mechanism": "tension",
-            "description": "武士と荘園制が逆方向に作用し構造的緊張が蓄積された"
           }
         ],
         "summary": "制度と権力配置の制約・緊張が蓄積し事象に至った"
@@ -2645,12 +2544,6 @@
         {
           "elementId": "EL_EV_p1184_01_2",
           "labelRevised": "武士が政治的決定に軍事力で介入する構造が常態化していた",
-          "categoryRevised": "B-INS",
-          "subCategoryRevised": "B-INS-04"
-        },
-        {
-          "elementId": "EL_EV_p1184_01_3",
-          "labelRevised": "荘園制の矛盾と地方武士の台頭が既存の政権構造を動揺させていた",
           "categoryRevised": "B-INS",
           "subCategoryRevised": "B-INS-04"
         }
@@ -2709,18 +2602,6 @@
             "to": "EL_EV_p1185_03_2",
             "mechanism": "convergence",
             "description": "壇ノ浦で平氏と源義経が同一の圧力点に収斂していた"
-          },
-          {
-            "from": "EL_EV_p1185_03_1",
-            "to": "EL_EV_p1185_03_3",
-            "mechanism": "convergence",
-            "description": "壇ノ浦で平氏と頼朝が同一の圧力点に収斂していた"
-          },
-          {
-            "from": "EL_EV_p1185_03_2",
-            "to": "EL_EV_p1185_03_3",
-            "mechanism": "convergence",
-            "description": "源義経と頼朝が同一の圧力点に収斂していた"
           }
         ],
         "summary": "制度の収斂が蓄積し事象に至った"
@@ -2737,12 +2618,6 @@
           "labelRevised": "源義経の逃亡を追捕するための全国的な権限が必要であった",
           "categoryRevised": "B-INS",
           "subCategoryRevised": "B-INS-01"
-        },
-        {
-          "elementId": "EL_EV_p1185_03_3",
-          "labelRevised": "頼朝が朝廷から守護・地頭任命権を獲得していた",
-          "categoryRevised": "B-INS",
-          "subCategoryRevised": "B-INS-04"
         }
       ]
     },
@@ -2889,18 +2764,6 @@
             "to": "EL_EV_p1205_01_2",
             "mechanism": "constraint",
             "description": "権力構造が制度枠組みの選択肢を狭め行動を制約していた"
-          },
-          {
-            "from": "EL_EV_p1205_01_1",
-            "to": "EL_EV_p1205_01_3",
-            "mechanism": "tension",
-            "description": "権力構造と対外圧力が逆方向に作用し構造的緊張が蓄積された"
-          },
-          {
-            "from": "EL_EV_p1205_01_2",
-            "to": "EL_EV_p1205_01_3",
-            "mechanism": "enabling",
-            "description": "制度枠組みが対外圧力の作動前提を形成していた"
           }
         ],
         "summary": "対外環境と制度と権力配置の制約・促進・緊張が蓄積し事象に至った"
@@ -2917,12 +2780,6 @@
           "labelRevised": "嫡子・北条義時と政子が父時政の暴走を阻止する立場をとっていた",
           "categoryRevised": "B-INS",
           "subCategoryRevised": "B-INS-04"
-        },
-        {
-          "elementId": "EL_EV_p1205_01_3",
-          "labelRevised": "牧氏の変で時政の陰謀が露見し追放されていた",
-          "categoryRevised": "B-EXT",
-          "subCategoryRevised": "B-EXT-03"
         }
       ]
     },
@@ -3096,18 +2953,6 @@
             "to": "EL_EV_p1247_01_2",
             "mechanism": "tension",
             "description": "対外圧力と軍事基盤が逆方向に作用し構造的緊張が蓄積された"
-          },
-          {
-            "from": "EL_EV_p1247_01_1",
-            "to": "EL_EV_p1247_01_3",
-            "mechanism": "tension",
-            "description": "有力御家人と三浦泰村ら五百余人が逆方向に作用し構造的緊張が蓄積された"
-          },
-          {
-            "from": "EL_EV_p1247_01_2",
-            "to": "EL_EV_p1247_01_3",
-            "mechanism": "tension",
-            "description": "軍事基盤と対外圧力が逆方向に作用し構造的緊張が蓄積された"
           }
         ],
         "summary": "対外環境と軍事の緊張が蓄積し事象に至った"
@@ -3124,12 +2969,6 @@
           "labelRevised": "三浦氏が鎌倉で北条方に攻められ一族が滅亡していた",
           "categoryRevised": "B-MIL",
           "subCategoryRevised": "B-MIL-01"
-        },
-        {
-          "elementId": "EL_EV_p1247_01_3",
-          "labelRevised": "三浦泰村ら五百余人が自害し三浦本宗家が断絶していた",
-          "categoryRevised": "B-EXT",
-          "subCategoryRevised": "B-EXT-01"
         }
       ]
     },
@@ -3141,18 +2980,6 @@
             "to": "EL_EV_p1274_01_2",
             "mechanism": "tension",
             "description": "対外圧力と軍事基盤が逆方向に作用し構造的緊張が蓄積された"
-          },
-          {
-            "from": "EL_EV_p1274_01_1",
-            "to": "EL_EV_p1274_01_3",
-            "mechanism": "amplification",
-            "description": "モンゴル帝国（元）が元・高麗連合軍約三万を強化し危機のエネルギーが増幅された"
-          },
-          {
-            "from": "EL_EV_p1274_01_2",
-            "to": "EL_EV_p1274_01_3",
-            "mechanism": "tension",
-            "description": "軍事基盤と対外圧力が逆方向に作用し構造的緊張が蓄積された"
           }
         ],
         "summary": "対外環境と軍事の増幅・緊張が蓄積し事象に至った"
@@ -3169,25 +2996,12 @@
           "labelRevised": "幕府がフビライの国書を無視し続けたため武力行使が決定されていた",
           "categoryRevised": "B-MIL",
           "subCategoryRevised": "B-MIL-01"
-        },
-        {
-          "elementId": "EL_EV_p1274_01_3",
-          "labelRevised": "元・高麗連合軍約三万が対馬・壱岐を経て博多湾に上陸していた",
-          "categoryRevised": "B-MIL",
-          "subCategoryRevised": "B-MIL-01"
         }
       ]
     },
     "FW_EV_p1281_01": {
       "accumulation": {
-        "relations": [
-          {
-            "from": "EL_EV_p1281_01_1",
-            "to": "EL_EV_p1281_01_2",
-            "mechanism": "tension",
-            "description": "対外圧力と軍事基盤が逆方向に作用し構造的緊張が蓄積された"
-          }
-        ],
+        "relations": [],
         "summary": "対外環境と軍事の緊張が蓄積し事象に至った"
       },
       "revisions": [
@@ -3196,12 +3010,6 @@
           "labelRevised": "フビライが再度の日本征服を決意し大規模な遠征軍を編成していた",
           "categoryRevised": "B-MIL",
           "subCategoryRevised": "B-MIL-01"
-        },
-        {
-          "elementId": "EL_EV_p1281_01_2",
-          "labelRevised": "元・高麗・旧南宋軍の約十四万が二方面から侵攻していた",
-          "categoryRevised": "B-MIL",
-          "subCategoryRevised": "B-MIL-04"
         }
       ]
     },
@@ -3420,18 +3228,6 @@
             "to": "EL_EV_p1336_01_2",
             "mechanism": "tension",
             "description": "建武と後醍醐天皇が逆方向に作用し構造的緊張が蓄積された"
-          },
-          {
-            "from": "EL_EV_p1336_01_1",
-            "to": "EL_EV_p1336_01_3",
-            "mechanism": "tension",
-            "description": "制度枠組みと対外圧力が逆方向に作用し構造的緊張が蓄積された"
-          },
-          {
-            "from": "EL_EV_p1336_01_2",
-            "to": "EL_EV_p1336_01_3",
-            "mechanism": "enabling",
-            "description": "制度枠組みが対外圧力の作動前提を形成していた"
           }
         ],
         "summary": "対外環境と制度の促進・緊張が蓄積し事象に至った"
@@ -3448,12 +3244,6 @@
           "labelRevised": "後醍醐天皇が吉野に逃れ南朝を開いた",
           "categoryRevised": "B-INS",
           "subCategoryRevised": "B-INS-04"
-        },
-        {
-          "elementId": "EL_EV_p1336_01_3",
-          "labelRevised": "足利尊氏が光明天皇を擁立し北朝が成立していた",
-          "categoryRevised": "B-EXT",
-          "subCategoryRevised": "B-EXT-03"
         }
       ]
     },
@@ -3465,18 +3255,6 @@
             "to": "EL_EV_p1336_02_2",
             "mechanism": "constraint",
             "description": "権力構造が制度枠組みの選択肢を狭め行動を制約していた"
-          },
-          {
-            "from": "EL_EV_p1336_02_1",
-            "to": "EL_EV_p1336_02_3",
-            "mechanism": "tension",
-            "description": "権力構造と対外圧力が逆方向に作用し構造的緊張が蓄積された"
-          },
-          {
-            "from": "EL_EV_p1336_02_2",
-            "to": "EL_EV_p1336_02_3",
-            "mechanism": "enabling",
-            "description": "制度枠組みが対外圧力の作動前提を形成していた"
           }
         ],
         "summary": "対外環境と制度と権力配置の制約・促進・緊張が蓄積し事象に至った"
@@ -3493,12 +3271,6 @@
           "labelRevised": "足利尊氏が北朝の光明天皇から征夷大将軍を目指す立場にあった",
           "categoryRevised": "B-INS",
           "subCategoryRevised": "B-INS-04"
-        },
-        {
-          "elementId": "EL_EV_p1336_02_3",
-          "labelRevised": "武家政治の基本方針として建武式目十七条が制定されていた",
-          "categoryRevised": "B-EXT",
-          "subCategoryRevised": "B-EXT-03"
         }
       ]
     },
@@ -3555,18 +3327,6 @@
             "to": "EL_EV_p1338_01_2",
             "mechanism": "constraint",
             "description": "権力構造が制度枠組みの選択肢を狭め行動を制約していた"
-          },
-          {
-            "from": "EL_EV_p1338_01_1",
-            "to": "EL_EV_p1338_01_3",
-            "mechanism": "enabling",
-            "description": "権力構造が対外圧力の作動前提を形成していた"
-          },
-          {
-            "from": "EL_EV_p1338_01_2",
-            "to": "EL_EV_p1338_01_3",
-            "mechanism": "enabling",
-            "description": "制度枠組みが対外圧力の作動前提を形成していた"
           }
         ],
         "summary": "対外環境と制度と権力配置の制約・促進が蓄積し事象に至った"
@@ -3583,12 +3343,6 @@
           "labelRevised": "京都を制圧し朝廷との協力関係を築いていた",
           "categoryRevised": "B-INS",
           "subCategoryRevised": "B-INS-04"
-        },
-        {
-          "elementId": "EL_EV_p1338_01_3",
-          "labelRevised": "南朝との戦いが続く中で将軍就任による権威の確立が急がれた",
-          "categoryRevised": "B-MIL",
-          "subCategoryRevised": "B-MIL-01"
         }
       ]
     },
@@ -3735,18 +3489,6 @@
             "to": "EL_EV_p1404_01_2",
             "mechanism": "enabling",
             "description": "対外圧力が制度枠組みの作動前提を形成していた"
-          },
-          {
-            "from": "EL_EV_p1404_01_1",
-            "to": "EL_EV_p1404_01_3",
-            "mechanism": "amplification",
-            "description": "足利義満が義満を強化し危機のエネルギーが増幅された"
-          },
-          {
-            "from": "EL_EV_p1404_01_2",
-            "to": "EL_EV_p1404_01_3",
-            "mechanism": "enabling",
-            "description": "制度枠組みが対外圧力の作動前提を形成していた"
           }
         ],
         "summary": "対外環境と制度の増幅・促進が蓄積し事象に至った"
@@ -3763,12 +3505,6 @@
           "labelRevised": "明が倭寇対策として日本との正式な外交関係を望んでいた",
           "categoryRevised": "B-INS",
           "subCategoryRevised": "B-INS-04"
-        },
-        {
-          "elementId": "EL_EV_p1404_01_3",
-          "labelRevised": "義満が「日本国王」として明の冊封を受けた",
-          "categoryRevised": "B-EXT",
-          "subCategoryRevised": "B-EXT-03"
         }
       ]
     },
@@ -3996,18 +3732,6 @@
             "to": "EL_EV_p1493_01_2",
             "mechanism": "tension",
             "description": "管領細川政元と義材が逆方向に作用し構造的緊張が蓄積された"
-          },
-          {
-            "from": "EL_EV_p1493_01_1",
-            "to": "EL_EV_p1493_01_3",
-            "mechanism": "tension",
-            "description": "制度枠組みと対外圧力が逆方向に作用し構造的緊張が蓄積された"
-          },
-          {
-            "from": "EL_EV_p1493_01_2",
-            "to": "EL_EV_p1493_01_3",
-            "mechanism": "enabling",
-            "description": "制度枠組みが対外圧力の作動前提を形成していた"
           }
         ],
         "summary": "対外環境と制度の促進・緊張が蓄積し事象に至った"
@@ -4024,12 +3748,6 @@
           "labelRevised": "義材の河内遠征中に細川政元がクーデターを決行していた",
           "categoryRevised": "B-INS",
           "subCategoryRevised": "B-INS-04"
-        },
-        {
-          "elementId": "EL_EV_p1493_01_3",
-          "labelRevised": "足利義材が廃され足利義澄が新将軍に擁立されていた",
-          "categoryRevised": "B-MIL",
-          "subCategoryRevised": "B-MIL-01"
         }
       ]
     },
@@ -4041,18 +3759,6 @@
             "to": "EL_EV_p1543_01_2",
             "mechanism": "amplification",
             "description": "軍事基盤が制度枠組みを強化し危機のエネルギーが増幅された"
-          },
-          {
-            "from": "EL_EV_p1543_01_1",
-            "to": "EL_EV_p1543_01_3",
-            "mechanism": "amplification",
-            "description": "軍事基盤が対外圧力を強化し危機のエネルギーが増幅された"
-          },
-          {
-            "from": "EL_EV_p1543_01_2",
-            "to": "EL_EV_p1543_01_3",
-            "mechanism": "enabling",
-            "description": "制度枠組みが対外圧力の作動前提を形成していた"
           }
         ],
         "summary": "対外環境と制度と軍事の増幅・促進が蓄積し事象に至った"
@@ -4069,12 +3775,6 @@
           "labelRevised": "倭寇の活動を通じて東シナ海の交易ネットワークが形成されていた",
           "categoryRevised": "B-INS",
           "subCategoryRevised": "B-INS-04"
-        },
-        {
-          "elementId": "EL_EV_p1543_01_3",
-          "labelRevised": "ポルトガル人が種子島に漂着し鉄砲二挺が伝えられた",
-          "categoryRevised": "B-EXT",
-          "subCategoryRevised": "B-EXT-03"
         }
       ]
     },
@@ -4176,18 +3876,6 @@
             "to": "EL_EV_p1560_01_2",
             "mechanism": "tension",
             "description": "対外圧力と軍事基盤が逆方向に作用し構造的緊張が蓄積された"
-          },
-          {
-            "from": "EL_EV_p1560_01_1",
-            "to": "EL_EV_p1560_01_3",
-            "mechanism": "amplification",
-            "description": "今川義元が信長を強化し危機のエネルギーが増幅された"
-          },
-          {
-            "from": "EL_EV_p1560_01_2",
-            "to": "EL_EV_p1560_01_3",
-            "mechanism": "tension",
-            "description": "軍事基盤と対外圧力が逆方向に作用し構造的緊張が蓄積された"
           }
         ],
         "summary": "対外環境と軍事の増幅・緊張が蓄積し事象に至った"
@@ -4204,12 +3892,6 @@
           "labelRevised": "織田信長は約三千の寡兵で今川軍に対峙する劣勢にあった",
           "categoryRevised": "B-MIL",
           "subCategoryRevised": "B-MIL-01"
-        },
-        {
-          "elementId": "EL_EV_p1560_01_3",
-          "labelRevised": "信長が暴風雨に乗じて今川義元の本陣を奇襲していた",
-          "categoryRevised": "B-EXT",
-          "subCategoryRevised": "B-EXT-01"
         }
       ]
     },
@@ -4221,18 +3903,6 @@
             "to": "EL_EV_p1568_01_2",
             "mechanism": "constraint",
             "description": "権力構造が制度枠組みの選択肢を狭め行動を制約していた"
-          },
-          {
-            "from": "EL_EV_p1568_01_1",
-            "to": "EL_EV_p1568_01_3",
-            "mechanism": "tension",
-            "description": "権力構造と対外圧力が逆方向に作用し構造的緊張が蓄積された"
-          },
-          {
-            "from": "EL_EV_p1568_01_2",
-            "to": "EL_EV_p1568_01_3",
-            "mechanism": "enabling",
-            "description": "制度枠組みが対外圧力の作動前提を形成していた"
           }
         ],
         "summary": "対外環境と制度と権力配置の制約・促進・緊張が蓄積し事象に至った"
@@ -4249,12 +3919,6 @@
           "labelRevised": "織田信長が美濃を制圧し畿内進出の軍事力を備えていた",
           "categoryRevised": "B-INS",
           "subCategoryRevised": "B-INS-04"
-        },
-        {
-          "elementId": "EL_EV_p1568_01_3",
-          "labelRevised": "三好三人衆を排除し義昭を奉じて上洛を果たしていた",
-          "categoryRevised": "B-EXT",
-          "subCategoryRevised": "B-EXT-03"
         }
       ]
     },
@@ -4311,18 +3975,6 @@
             "to": "EL_EV_p1571_01_2",
             "mechanism": "tension",
             "description": "権力構造と制度枠組みが逆方向に作用し構造的緊張が蓄積された"
-          },
-          {
-            "from": "EL_EV_p1571_01_1",
-            "to": "EL_EV_p1571_01_3",
-            "mechanism": "tension",
-            "description": "権力構造と対外圧力が逆方向に作用し構造的緊張が蓄積された"
-          },
-          {
-            "from": "EL_EV_p1571_01_2",
-            "to": "EL_EV_p1571_01_3",
-            "mechanism": "enabling",
-            "description": "制度枠組みが対外圧力の作動前提を形成していた"
           }
         ],
         "summary": "対外環境と制度と権力配置の促進・緊張が蓄積し事象に至った"
@@ -4339,12 +3991,6 @@
           "labelRevised": "信長が再三の警告にもかかわらず延暦寺が従わなかっていた",
           "categoryRevised": "B-INS",
           "subCategoryRevised": "B-INS-04"
-        },
-        {
-          "elementId": "EL_EV_p1571_01_3",
-          "labelRevised": "信長軍が比叡山を包囲し全山を焼き払っていた",
-          "categoryRevised": "B-MIL",
-          "subCategoryRevised": "B-MIL-01"
         }
       ]
     },
@@ -4356,18 +4002,6 @@
             "to": "EL_EV_p1573_01_2",
             "mechanism": "enabling",
             "description": "権力構造が制度枠組みの作動前提を形成していた"
-          },
-          {
-            "from": "EL_EV_p1573_01_1",
-            "to": "EL_EV_p1573_01_3",
-            "mechanism": "enabling",
-            "description": "権力構造が対外圧力の作動前提を形成していた"
-          },
-          {
-            "from": "EL_EV_p1573_01_2",
-            "to": "EL_EV_p1573_01_3",
-            "mechanism": "enabling",
-            "description": "制度枠組みが対外圧力の作動前提を形成していた"
           }
         ],
         "summary": "対外環境と制度と権力配置の促進が蓄積し事象に至った"
@@ -4384,12 +4018,6 @@
           "labelRevised": "武田信玄の死去により包囲網が瓦解していた",
           "categoryRevised": "B-INS",
           "subCategoryRevised": "B-INS-04"
-        },
-        {
-          "elementId": "EL_EV_p1573_01_3",
-          "labelRevised": "信長が義昭を京都から追放していた",
-          "categoryRevised": "B-EXT",
-          "subCategoryRevised": "B-EXT-03"
         }
       ]
     },
@@ -4653,18 +4281,6 @@
             "to": "EL_EV_p1585_01_2",
             "mechanism": "constraint",
             "description": "権力構造が制度枠組みの選択肢を狭め行動を制約していた"
-          },
-          {
-            "from": "EL_EV_p1585_01_1",
-            "to": "EL_EV_p1585_01_3",
-            "mechanism": "tension",
-            "description": "権力構造と対外圧力が逆方向に作用し構造的緊張が蓄積された"
-          },
-          {
-            "from": "EL_EV_p1585_01_2",
-            "to": "EL_EV_p1585_01_3",
-            "mechanism": "enabling",
-            "description": "制度枠組みが対外圧力の作動前提を形成していた"
           }
         ],
         "summary": "対外環境と制度と権力配置の制約・促進・緊張が蓄積し事象に至った"
@@ -4681,12 +4297,6 @@
           "labelRevised": "天下統一に向け朝廷の権威を利用する必要があった",
           "categoryRevised": "B-INS",
           "subCategoryRevised": "B-INS-04"
-        },
-        {
-          "elementId": "EL_EV_p1585_01_3",
-          "labelRevised": "近衛前久の猶子となり公家の資格を得た",
-          "categoryRevised": "B-EXT",
-          "subCategoryRevised": "B-EXT-03"
         }
       ]
     },
@@ -4788,18 +4398,6 @@
             "to": "EL_EV_p1587_02_2",
             "mechanism": "amplification",
             "description": "九州征伐が朝廷とを強化し危機のエネルギーが増幅された"
-          },
-          {
-            "from": "EL_EV_p1587_02_1",
-            "to": "EL_EV_p1587_02_3",
-            "mechanism": "enabling",
-            "description": "制度枠組みが対外圧力の作動前提を形成していた"
-          },
-          {
-            "from": "EL_EV_p1587_02_2",
-            "to": "EL_EV_p1587_02_3",
-            "mechanism": "amplification",
-            "description": "制度枠組みが対外圧力を強化し危機のエネルギーが増幅された"
           }
         ],
         "summary": "対外環境と制度の増幅・促進が蓄積し事象に至った"
@@ -4816,12 +4414,6 @@
           "labelRevised": "朝廷との関係強化が統治の正統性に不可欠であった",
           "categoryRevised": "B-INS",
           "subCategoryRevised": "B-INS-04"
-        },
-        {
-          "elementId": "EL_EV_p1587_02_3",
-          "labelRevised": "島津氏の降伏により西国の平定が完了していた",
-          "categoryRevised": "B-EXT",
-          "subCategoryRevised": "B-EXT-03"
         }
       ]
     },
@@ -4923,18 +4515,6 @@
             "to": "EL_EV_p1590_01_2",
             "mechanism": "tension",
             "description": "権力構造と制度枠組みが逆方向に作用し構造的緊張が蓄積された"
-          },
-          {
-            "from": "EL_EV_p1590_01_1",
-            "to": "EL_EV_p1590_01_3",
-            "mechanism": "tension",
-            "description": "権力構造と対外圧力が逆方向に作用し構造的緊張が蓄積された"
-          },
-          {
-            "from": "EL_EV_p1590_01_2",
-            "to": "EL_EV_p1590_01_3",
-            "mechanism": "enabling",
-            "description": "制度枠組みが対外圧力の作動前提を形成していた"
           }
         ],
         "summary": "対外環境と制度と権力配置の促進・緊張が蓄積し事象に至った"
@@ -4951,12 +4531,6 @@
           "labelRevised": "秀吉が惣無事令を発し大名間の私戦を禁じていた",
           "categoryRevised": "B-INS",
           "subCategoryRevised": "B-INS-04"
-        },
-        {
-          "elementId": "EL_EV_p1590_01_3",
-          "labelRevised": "東北の大名も秀吉への臣従を表明しつつあった",
-          "categoryRevised": "B-EXT",
-          "subCategoryRevised": "B-EXT-03"
         }
       ]
     },
@@ -4965,21 +4539,9 @@
         "relations": [
           {
             "from": "EL_EV_p1591_01_1",
-            "to": "EL_EV_p1591_01_2",
-            "mechanism": "convergence",
-            "description": "武士・農民・商人と朝鮮出兵に向けた兵力が同一の圧力点に収斂していた"
-          },
-          {
-            "from": "EL_EV_p1591_01_1",
             "to": "EL_EV_p1591_01_3",
             "mechanism": "enabling",
             "description": "武士・農民・商人が検地と刀狩により身分固定の作動前提を形成していた"
-          },
-          {
-            "from": "EL_EV_p1591_01_2",
-            "to": "EL_EV_p1591_01_3",
-            "mechanism": "enabling",
-            "description": "朝鮮出兵に向けた兵力が検地と刀狩により身分固定の作動前提を形成していた"
           }
         ],
         "summary": "資源の収斂・促進が蓄積し事象に至った"
@@ -4988,12 +4550,6 @@
         {
           "elementId": "EL_EV_p1591_01_1",
           "labelRevised": "武士・農民・商人の境界が曖昧で社会秩序が不安定であった",
-          "categoryRevised": "B-RES",
-          "subCategoryRevised": "B-RES-01"
-        },
-        {
-          "elementId": "EL_EV_p1591_01_2",
-          "labelRevised": "朝鮮出兵に向けた兵力の確実な把握が必要であった",
           "categoryRevised": "B-RES",
           "subCategoryRevised": "B-RES-01"
         },
@@ -5193,18 +4749,6 @@
             "to": "EL_EV_p1603_01_2",
             "mechanism": "constraint",
             "description": "権力構造が制度枠組みの選択肢を狭め行動を制約していた"
-          },
-          {
-            "from": "EL_EV_p1603_01_1",
-            "to": "EL_EV_p1603_01_3",
-            "mechanism": "tension",
-            "description": "権力構造と対外圧力が逆方向に作用し構造的緊張が蓄積された"
-          },
-          {
-            "from": "EL_EV_p1603_01_2",
-            "to": "EL_EV_p1603_01_3",
-            "mechanism": "enabling",
-            "description": "制度枠組みが対外圧力の作動前提を形成していた"
           }
         ],
         "summary": "対外環境と制度と権力配置の制約・促進・緊張が蓄積し事象に至った"
@@ -5221,12 +4765,6 @@
           "labelRevised": "源氏の血統を主張し将軍就任の正統性を整えていた",
           "categoryRevised": "B-INS",
           "subCategoryRevised": "B-INS-04"
-        },
-        {
-          "elementId": "EL_EV_p1603_01_3",
-          "labelRevised": "豊臣政権の形式的存続のもとで実権移行が進んでいた",
-          "categoryRevised": "B-EXT",
-          "subCategoryRevised": "B-EXT-03"
         }
       ]
     },
@@ -5283,18 +4821,6 @@
             "to": "EL_EV_p1614_01_2",
             "mechanism": "convergence",
             "description": "豊臣家と方広寺鐘銘事件が同一の圧力点に収斂していた"
-          },
-          {
-            "from": "EL_EV_p1614_01_1",
-            "to": "EL_EV_p1614_01_3",
-            "mechanism": "enabling",
-            "description": "制度枠組みが対外圧力の作動前提を形成していた"
-          },
-          {
-            "from": "EL_EV_p1614_01_2",
-            "to": "EL_EV_p1614_01_3",
-            "mechanism": "enabling",
-            "description": "制度枠組みが対外圧力の作動前提を形成していた"
           }
         ],
         "summary": "対外環境と制度の収斂・促進が蓄積し事象に至った"
@@ -5311,12 +4837,6 @@
           "labelRevised": "方広寺鐘銘事件を口実に家康が豊臣家との対決を決意していた",
           "categoryRevised": "B-INS",
           "subCategoryRevised": "B-INS-04"
-        },
-        {
-          "elementId": "EL_EV_p1614_01_3",
-          "labelRevised": "真田幸村ら浪人が大坂城に入城し防備を固めた",
-          "categoryRevised": "B-EXT",
-          "subCategoryRevised": "B-EXT-03"
         }
       ]
     },
@@ -5373,18 +4893,6 @@
             "to": "EL_EV_p1615_02_2",
             "mechanism": "constraint",
             "description": "権力構造が制度枠組みの選択肢を狭め行動を制約していた"
-          },
-          {
-            "from": "EL_EV_p1615_02_1",
-            "to": "EL_EV_p1615_02_3",
-            "mechanism": "tension",
-            "description": "権力構造と対外圧力が逆方向に作用し構造的緊張が蓄積された"
-          },
-          {
-            "from": "EL_EV_p1615_02_2",
-            "to": "EL_EV_p1615_02_3",
-            "mechanism": "enabling",
-            "description": "制度枠組みが対外圧力の作動前提を形成していた"
           }
         ],
         "summary": "対外環境と制度と権力配置の制約・促進・緊張が蓄積し事象に至った"
@@ -5401,12 +4909,6 @@
           "labelRevised": "家康が豊臣家の完全排除を決断し再攻撃を開始していた",
           "categoryRevised": "B-INS",
           "subCategoryRevised": "B-INS-04"
-        },
-        {
-          "elementId": "EL_EV_p1615_02_3",
-          "labelRevised": "真田幸村が家康本陣に迫るも及ばず戦死していた",
-          "categoryRevised": "B-EXT",
-          "subCategoryRevised": "B-EXT-03"
         }
       ]
     },
@@ -5508,18 +5010,6 @@
             "to": "EL_EV_p1633_01_2",
             "mechanism": "amplification",
             "description": "キリスト教が海外渡航者を強化し危機のエネルギーが増幅された"
-          },
-          {
-            "from": "EL_EV_p1633_01_1",
-            "to": "EL_EV_p1633_01_3",
-            "mechanism": "amplification",
-            "description": "キリスト教が奉書船以外を強化し危機のエネルギーが増幅された"
-          },
-          {
-            "from": "EL_EV_p1633_01_2",
-            "to": "EL_EV_p1633_01_3",
-            "mechanism": "convergence",
-            "description": "海外渡航者と奉書船以外が同一の圧力点に収斂していた"
           }
         ],
         "summary": "資源の増幅・収斂が蓄積し事象に至った"
@@ -5534,12 +5024,6 @@
         {
           "elementId": "EL_EV_p1633_01_2",
           "labelRevised": "海外渡航者が外国勢力と結ぶ危険性が懸念されていた",
-          "categoryRevised": "B-RES",
-          "subCategoryRevised": "B-RES-01"
-        },
-        {
-          "elementId": "EL_EV_p1633_01_3",
-          "labelRevised": "奉書船以外の海外渡航を禁止する方針が固まっていた",
           "categoryRevised": "B-RES",
           "subCategoryRevised": "B-RES-01"
         }
@@ -5574,14 +5058,7 @@
     },
     "FW_EV_p1637_01": {
       "accumulation": {
-        "relations": [
-          {
-            "from": "EL_EV_p1637_01_1",
-            "to": "EL_EV_p1637_01_3",
-            "mechanism": "tension",
-            "description": "重い年貢とキリスト教弾圧へと天草四郎が逆方向に作用し構造的緊張が蓄積された"
-          }
-        ],
+        "relations": [],
         "summary": "制度の緊張が蓄積し事象に至った"
       },
       "revisions": [
@@ -5590,12 +5067,6 @@
           "labelRevised": "重い年貢とキリスト教弾圧への反発",
           "categoryRevised": "B-INS",
           "subCategoryRevised": "B-INS-02"
-        },
-        {
-          "elementId": "EL_EV_p1637_01_3",
-          "labelRevised": "天草四郎を指導者としてキリシタン農民が蜂起していた",
-          "categoryRevised": "B-INS",
-          "subCategoryRevised": "B-INS-04"
         }
       ]
     },
@@ -5715,6 +5186,32 @@
           "subCategoryRevised": "B-MIL-01"
         }
       ]
+    },
+    "FW_EV_p1680_01": {
+      "accumulation": {
+        "relations": [
+          {
+            "from": "EL_EV_p1680_01_1",
+            "to": "EL_EV_p1680_01_2",
+            "mechanism": "enabling",
+            "description": "武断政治の限界が儒学振興への転換を促進していた"
+          },
+          {
+            "from": "EL_EV_p1680_01_1",
+            "to": "EL_EV_p1680_01_3",
+            "mechanism": "enabling",
+            "description": "武断政治の限界が家綱期の文治萌芽を後押ししていた"
+          },
+          {
+            "from": "EL_EV_p1680_01_2",
+            "to": "EL_EV_p1680_01_3",
+            "mechanism": "convergence",
+            "description": "儒学振興と家綱期の文治萌芽が綱吉の文治路線の同一圧力点に収斂していた"
+          }
+        ],
+        "summary": "武断政治の限界と儒学振興と文治萌芽の促進・収斂が蓄積し事象に至った"
+      },
+      "revisions": []
     },
     "FW_EV_p1685_01": {
       "accumulation": {
@@ -5904,18 +5401,6 @@
             "to": "EL_EV_p1720_01_2",
             "mechanism": "constraint",
             "description": "権力構造が制度枠組みの選択肢を狭め行動を制約していた"
-          },
-          {
-            "from": "EL_EV_p1720_01_1",
-            "to": "EL_EV_p1720_01_3",
-            "mechanism": "tension",
-            "description": "権力構造と対外圧力が逆方向に作用し構造的緊張が蓄積された"
-          },
-          {
-            "from": "EL_EV_p1720_01_2",
-            "to": "EL_EV_p1720_01_3",
-            "mechanism": "enabling",
-            "description": "制度枠組みが対外圧力の作動前提を形成していた"
           }
         ],
         "summary": "対外環境と制度と権力配置の制約・促進・緊張が蓄積し事象に至った"
@@ -5932,12 +5417,6 @@
           "labelRevised": "吉宗が実学を重視し西洋の科学技術に関心を持っていた",
           "categoryRevised": "B-INS",
           "subCategoryRevised": "B-INS-04"
-        },
-        {
-          "elementId": "EL_EV_p1720_01_3",
-          "labelRevised": "キリスト教に関係しない実学書は有用と判断されていた",
-          "categoryRevised": "B-EXT",
-          "subCategoryRevised": "B-EXT-03"
         }
       ]
     },
@@ -5976,18 +5455,6 @@
             "to": "EL_EV_p1772_01_2",
             "mechanism": "constraint",
             "description": "権力構造が制度枠組みの選択肢を狭め行動を制約していた"
-          },
-          {
-            "from": "EL_EV_p1772_01_1",
-            "to": "EL_EV_p1772_01_3",
-            "mechanism": "constraint",
-            "description": "権力構造が対外圧力の選択肢を狭め行動を制約していた"
-          },
-          {
-            "from": "EL_EV_p1772_01_2",
-            "to": "EL_EV_p1772_01_3",
-            "mechanism": "enabling",
-            "description": "制度枠組みが対外圧力の作動前提を形成していた"
           }
         ],
         "summary": "対外環境と制度と権力配置の制約・促進が蓄積し事象に至った"
@@ -6004,12 +5471,6 @@
           "labelRevised": "商業経済の発達により貨幣経済への対応が必要となっていた",
           "categoryRevised": "B-INS",
           "subCategoryRevised": "B-INS-04"
-        },
-        {
-          "elementId": "EL_EV_p1772_01_3",
-          "labelRevised": "田沼意次が側用人から老中に昇進し政策立案の中心となっていた",
-          "categoryRevised": "B-EXT",
-          "subCategoryRevised": "B-EXT-03"
         }
       ]
     },
@@ -6093,18 +5554,6 @@
             "to": "EL_EV_p1792_01_2",
             "mechanism": "constraint",
             "description": "権力構造が制度枠組みの選択肢を狭め行動を制約していた"
-          },
-          {
-            "from": "EL_EV_p1792_01_1",
-            "to": "EL_EV_p1792_01_3",
-            "mechanism": "tension",
-            "description": "権力構造と対外圧力が逆方向に作用し構造的緊張が蓄積された"
-          },
-          {
-            "from": "EL_EV_p1792_01_2",
-            "to": "EL_EV_p1792_01_3",
-            "mechanism": "enabling",
-            "description": "制度枠組みが対外圧力の作動前提を形成していた"
           }
         ],
         "summary": "対外環境と制度と権力配置の制約・促進・緊張が蓄積し事象に至った"
@@ -6121,12 +5570,6 @@
           "labelRevised": "漂流民大黒屋光太夫の送還を名目として来航していた",
           "categoryRevised": "B-INS",
           "subCategoryRevised": "B-INS-04"
-        },
-        {
-          "elementId": "EL_EV_p1792_01_3",
-          "labelRevised": "鎖国体制下で外国船の来航は重大な外交問題であった",
-          "categoryRevised": "B-EXT",
-          "subCategoryRevised": "B-EXT-03"
         }
       ]
     },
@@ -6300,18 +5743,6 @@
             "to": "EL_EV_p1839_01_2",
             "mechanism": "convergence",
             "description": "モリソン号事件で異国船打払令と渡辺崋山や高野長英が同一の圧力点に収斂していた"
-          },
-          {
-            "from": "EL_EV_p1839_01_1",
-            "to": "EL_EV_p1839_01_3",
-            "mechanism": "enabling",
-            "description": "制度枠組みが対外圧力の作動前提を形成していた"
-          },
-          {
-            "from": "EL_EV_p1839_01_2",
-            "to": "EL_EV_p1839_01_3",
-            "mechanism": "enabling",
-            "description": "制度枠組みが対外圧力の作動前提を形成していた"
           }
         ],
         "summary": "対外環境と制度の収斂・促進が蓄積し事象に至った"
@@ -6328,12 +5759,6 @@
           "labelRevised": "渡辺崋山や高野長英が幕府の対外政策を批判していた",
           "categoryRevised": "B-INS",
           "subCategoryRevised": "B-INS-04"
-        },
-        {
-          "elementId": "EL_EV_p1839_01_3",
-          "labelRevised": "目付鳥居耀蔵が蘭学者を弾圧する意図を持っていた",
-          "categoryRevised": "B-EXT",
-          "subCategoryRevised": "B-EXT-03"
         }
       ]
     },
@@ -6480,18 +5905,6 @@
             "to": "EL_EV_p1858_01_2",
             "mechanism": "tension",
             "description": "条約勅許問題と将軍継嗣問題で政と一橋派と南紀派が逆方向に作用し構造的緊張が蓄積された"
-          },
-          {
-            "from": "EL_EV_p1858_01_1",
-            "to": "EL_EV_p1858_01_3",
-            "mechanism": "tension",
-            "description": "制度枠組みと対外圧力が逆方向に作用し構造的緊張が蓄積された"
-          },
-          {
-            "from": "EL_EV_p1858_01_2",
-            "to": "EL_EV_p1858_01_3",
-            "mechanism": "enabling",
-            "description": "制度枠組みが対外圧力の作動前提を形成していた"
           }
         ],
         "summary": "対外環境と制度の促進・緊張が蓄積し事象に至った"
@@ -6508,12 +5921,6 @@
           "labelRevised": "一橋派と南紀派の抗争が幕府を二分していた",
           "categoryRevised": "B-INS",
           "subCategoryRevised": "B-INS-04"
-        },
-        {
-          "elementId": "EL_EV_p1858_01_3",
-          "labelRevised": "大老井伊直弼が反対派を弾圧する決断を下していた",
-          "categoryRevised": "B-EXT",
-          "subCategoryRevised": "B-EXT-03"
         }
       ]
     },
@@ -6831,18 +6238,6 @@
             "to": "EL_EV_p1871_01_2",
             "mechanism": "convergence",
             "description": "版籍奉還後も旧藩主と中央集権国家が同一の圧力点に収斂していた"
-          },
-          {
-            "from": "EL_EV_p1871_01_1",
-            "to": "EL_EV_p1871_01_3",
-            "mechanism": "enabling",
-            "description": "制度枠組みが対外圧力の作動前提を形成していた"
-          },
-          {
-            "from": "EL_EV_p1871_01_2",
-            "to": "EL_EV_p1871_01_3",
-            "mechanism": "enabling",
-            "description": "制度枠組みが対外圧力の作動前提を形成していた"
           }
         ],
         "summary": "対外環境と制度の収斂・促進が蓄積し事象に至った"
@@ -6859,12 +6254,6 @@
           "labelRevised": "中央集権国家の建設には藩の廃止が不可欠であった",
           "categoryRevised": "B-INS",
           "subCategoryRevised": "B-INS-04"
-        },
-        {
-          "elementId": "EL_EV_p1871_01_3",
-          "labelRevised": "薩長土の軍事力を背景に断行が可能となっていた",
-          "categoryRevised": "B-MIL",
-          "subCategoryRevised": "B-MIL-01"
         }
       ]
     },
@@ -6873,21 +6262,9 @@
         "relations": [
           {
             "from": "EL_EV_p1873_01_1",
-            "to": "EL_EV_p1873_01_2",
-            "mechanism": "enabling",
-            "description": "年貢制では政府が近代的な税制の作動前提を形成していた"
-          },
-          {
-            "from": "EL_EV_p1873_01_1",
             "to": "EL_EV_p1873_01_3",
             "mechanism": "enabling",
             "description": "年貢制では政府が土地の作動前提を形成していた"
-          },
-          {
-            "from": "EL_EV_p1873_01_2",
-            "to": "EL_EV_p1873_01_3",
-            "mechanism": "enabling",
-            "description": "近代的な税制が土地の作動前提を形成していた"
           }
         ],
         "summary": "制度の促進が蓄積し事象に至った"
@@ -6898,12 +6275,6 @@
           "labelRevised": "年貢制では政府の歳入が天候に左右され不安定であった",
           "categoryRevised": "B-INS",
           "subCategoryRevised": "B-INS-04"
-        },
-        {
-          "elementId": "EL_EV_p1873_01_2",
-          "labelRevised": "近代的な税制の確立が財政基盤の安定に必要であった",
-          "categoryRevised": "B-INS",
-          "subCategoryRevised": "B-INS-03"
         },
         {
           "elementId": "EL_EV_p1873_01_3",
@@ -7155,18 +6526,6 @@
             "to": "EL_EV_p1914_01_2",
             "mechanism": "tension",
             "description": "ヨーロッパと日英同盟が逆方向に作用し構造的緊張が蓄積された"
-          },
-          {
-            "from": "EL_EV_p1914_01_1",
-            "to": "EL_EV_p1914_01_3",
-            "mechanism": "tension",
-            "description": "制度枠組みと対外圧力が逆方向に作用し構造的緊張が蓄積された"
-          },
-          {
-            "from": "EL_EV_p1914_01_2",
-            "to": "EL_EV_p1914_01_3",
-            "mechanism": "enabling",
-            "description": "制度枠組みが対外圧力の作動前提を形成していた"
           }
         ],
         "summary": "対外環境と制度の促進・緊張が蓄積し事象に至った"
@@ -7183,12 +6542,6 @@
           "labelRevised": "日英同盟を根拠に日本がドイツに宣戦布告していた",
           "categoryRevised": "B-INS",
           "subCategoryRevised": "B-INS-04"
-        },
-        {
-          "elementId": "EL_EV_p1914_01_3",
-          "labelRevised": "日本は中国のドイツ権益と南洋諸島を占領していた",
-          "categoryRevised": "B-EXT",
-          "subCategoryRevised": "B-EXT-03"
         }
       ]
     },
@@ -7569,18 +6922,6 @@
             "to": "EL_EV_p1945_01_2",
             "mechanism": "convergence",
             "description": "ポツダム宣言とマッカーサーが同一の圧力点に収斂していた"
-          },
-          {
-            "from": "EL_EV_p1945_01_1",
-            "to": "EL_EV_p1945_01_3",
-            "mechanism": "enabling",
-            "description": "制度枠組みが対外圧力の作動前提を形成していた"
-          },
-          {
-            "from": "EL_EV_p1945_01_2",
-            "to": "EL_EV_p1945_01_3",
-            "mechanism": "enabling",
-            "description": "制度枠組みが対外圧力の作動前提を形成していた"
           }
         ],
         "summary": "対外環境と制度の収斂・促進が蓄積し事象に至った"
@@ -7597,12 +6938,6 @@
           "labelRevised": "マッカーサーが連合国軍最高司令官として来日していた",
           "categoryRevised": "B-INS",
           "subCategoryRevised": "B-INS-04"
-        },
-        {
-          "elementId": "EL_EV_p1945_01_3",
-          "labelRevised": "民主化と非軍事化が占領政策の基本方針として示されていた",
-          "categoryRevised": "B-MIL",
-          "subCategoryRevised": "B-MIL-01"
         }
       ]
     },
@@ -7893,18 +7228,6 @@
             "to": "EL_EV_p1972_01_2",
             "mechanism": "amplification",
             "description": "権力構造が制度枠組みを強化し危機のエネルギーが増幅された"
-          },
-          {
-            "from": "EL_EV_p1972_01_1",
-            "to": "EL_EV_p1972_01_3",
-            "mechanism": "tension",
-            "description": "権力構造と対外圧力が逆方向に作用し構造的緊張が蓄積された"
-          },
-          {
-            "from": "EL_EV_p1972_01_2",
-            "to": "EL_EV_p1972_01_3",
-            "mechanism": "amplification",
-            "description": "制度枠組みが対外圧力を強化し危機のエネルギーが増幅された"
           }
         ],
         "summary": "対外環境と制度と権力配置の増幅・緊張が蓄積し事象に至った"
@@ -7921,12 +7244,6 @@
           "labelRevised": "ベトナム戦争の激化で沖縄の基地負担が増大していた",
           "categoryRevised": "B-INS",
           "subCategoryRevised": "B-INS-04"
-        },
-        {
-          "elementId": "EL_EV_p1972_01_3",
-          "labelRevised": "佐藤栄作首相がニクソン大統領と返還交渉を行っていた",
-          "categoryRevised": "B-EXT",
-          "subCategoryRevised": "B-EXT-03"
         }
       ]
     },

@@ -1,5 +1,5 @@
 {
-  "version": "3.3",
+  "version": "3.8",
   "generatedBy": "generate_momentum_local.py",
   "model": "rule-based",
   "timestamp": "2026-02-24T22:14:32",
@@ -147,6 +147,9 @@
     },
     "FW_EV_p0894_01": {
       "momentum": "対外関係の縮小と内向化が進む方向へ"
+    },
+    "FW_EV_p0897_01": {
+      "momentum": "天皇親政による統治が制度的に整備される方向へ"
     },
     "FW_EV_p0901_01": {
       "momentum": "既存権力構造が解体される方向へ"
@@ -440,6 +443,9 @@
       "momentum": "制度的秩序が形成・強化される方向へ"
     },
     "FW_EV_p1651_01": {
+      "momentum": "武断から文治への統治原理転換の方向へ"
+    },
+    "FW_EV_p1680_01": {
       "momentum": "武断から文治への統治原理転換の方向へ"
     },
     "FW_EV_p1685_01": {

@@ -1,8 +1,8 @@
 {
-  "version": "3.5",
+  "version": "3.8",
   "meta": {
-    "note": "v3.5 F定義厳密化・parentFramework導入・origin導入・F-PRG廃止。",
-    "baseVersion": "3.4",
+    "note": "v3.8 F/E分離原則適用・重複イベントマージ(221→205)・parentFramework未設定解決(205→207)・サブデータ整合性修復。",
+    "baseVersion": "3.5",
     "migrationScript": "classify_f_categories.py",
     "accumulationScript": "generate_accumulation.py",
     "emancipationScript": "revise_emancipation.py"
@@ -640,6 +640,20 @@
       "axis": null,
       "trails": [
         "外交"
+      ],
+      "note": null
+    },
+    {
+      "eventId": "EV_p0897_01",
+      "title": "醍醐天皇が親政を開始し延喜の治が始まった",
+      "description": "原因：宇多天皇の譲位により醍醐天皇が即位し、藤原氏の台頭を抑制しつつ律令制の立て直しを図る条件が整った。結果：天皇親政のもとで延喜式・古今和歌集などの文化的・制度的事業が推進され、後世に理想的治世として記憶された。",
+      "sortKey": 897,
+      "endKey": null,
+      "era": null,
+      "axis": null,
+      "trails": [
+        "政治権力",
+        "制度"
       ],
       "note": null
     },
@@ -1932,6 +1946,19 @@
       "note": null
     },
     {
+      "eventId": "EV_p1680_01",
+      "title": "徳川綱吉が将軍に就任し文治政治を推進した",
+      "description": "原因：武断政治の限界が露呈し牢人問題も沈静化するなか、儒学振興の潮流と将軍交代が重なり文治主義への転換条件が整った。結果：文治政治のもとで生類憐みの令・湯島聖堂建設などの政策が推進され、統治原理の転換が進んだ。",
+      "sortKey": 1680,
+      "endKey": null,
+      "era": null,
+      "axis": null,
+      "trails": [
+        "制度"
+      ],
+      "note": null
+    },
+    {
       "eventId": "EV_p1685_01",
       "title": "生類憐みの令が強化された",
       "description": "原因：財政・治安・土地支配などの問題が顕在化し、政策パッケージ（改革）での立て直しが必要になった。結果：重点領域は改善した一方、抵抗や副作用も生み、次の調整（乖離・再改革）へ接続した。",
@@ -2762,7 +2789,6 @@
             "EL_EV_p0507_01_8",
             "EL_EV_p0507_01_2",
             "EL_EV_p0507_01_1",
-            "EL_EV_p0507_01_3",
             "EL_EV_p0507_01_4"
           ],
           "correspondences": []
@@ -2869,7 +2895,29 @@
         ],
         "legacyResult": "応神天皇五世孫として王統の正統性が主張された"
       },
-      "accumulation": null,
+      "accumulation": {
+        "relations": [
+          {
+            "from": "EL_EV_p0507_01_7",
+            "to": "EL_EV_p0507_01_8",
+            "mechanism": "enabling",
+            "description": "直系断絶が遠縁候補の浮上を可能にしていた"
+          },
+          {
+            "from": "EL_EV_p0507_01_7",
+            "to": "EL_EV_p0507_01_2",
+            "mechanism": "enabling",
+            "description": "直系断絶が豪族主導の擁立を促進していた"
+          },
+          {
+            "from": "EL_EV_p0507_01_8",
+            "to": "EL_EV_p0507_01_2",
+            "mechanism": "convergence",
+            "description": "候補の存在と豪族の実権が即位の同一圧力点に収斂していた"
+          }
+        ],
+        "summary": "直系断絶と候補浮上と豪族実権の促進・収斂が蓄積し事象に至った"
+      },
       "momentum": "新たな王権のもとで統治秩序が再編される方向へ",
       "parentFramework": null
     },
@@ -2889,7 +2937,11 @@
           "subCategory": "B-PWR-01",
           "label": "継体天皇擁立の功績により大伴金村が大連として政務を掌握している",
           "normalizedLabel": "継体擁立後の実務運営",
-          "notes": []
+          "notes": [],
+          "origin": {
+            "sourceEventId": "EV_p0507_01",
+            "sourceLayer": "E"
+          }
         },
         {
           "elementId": "EL_EV_p0512_01_2",
@@ -2921,10 +2973,10 @@
         {
           "elementId": "EL_EV_p0512_01_F",
           "layer": "F",
-          "category": "F-ACT",
-          "subCategory": "F-ACT-01",
-          "label": "継体擁立後の実務運営で、半島情勢への対応・軍事動員・人事調整を主導できる調整者が必要となり、大伴金村がその役割を担った",
-          "normalizedLabel": "継体擁立後の実務運営で",
+          "category": "F-CTD",
+          "subCategory": "F-CTD-01",
+          "label": "朝鮮半島情勢の緊迫化により即応可能な軍事・外交の調整者が急務となった",
+          "normalizedLabel": "半島情勢緊迫で調整者急務",
           "notes": {
             "generated": "fill_fluctuation_labels.py (causeTextベース)"
           }
@@ -2940,7 +2992,6 @@
             "EL_EV_p0512_01_2",
             "EL_EV_p0512_01_3",
             "EL_EV_p0512_01_F",
-            "EL_EV_p0512_01_4",
             "EL_EV_p0512_01_5"
           ],
           "correspondences": []
@@ -3149,7 +3200,6 @@
             "EL_EV_p0527_01_2",
             "EL_EV_p0527_01_3",
             "EL_EV_p0527_01_F",
-            "EL_EV_p0527_01_4",
             "EL_EV_p0527_01_5"
           ],
           "correspondences": []
@@ -3341,8 +3391,8 @@
           "layer": "F",
           "category": "F-EXT",
           "subCategory": "F-EXT-01",
-          "label": "百済が国際関係の中で倭との関係強化を図り、先進文化・宗教として仏教を献上した",
-          "normalizedLabel": "百済が国際関係の中で倭との関係強化を図り",
+          "label": "百済が高句麗・新羅の軍事圧迫で追い詰められ、倭との同盟強化のため最大級の文化的贈与を決断した",
+          "normalizedLabel": "百済が軍事圧迫下で仏教献上を決断",
           "notes": {
             "generated": "fill_fluctuation_labels.py (causeTextベース)"
           }
@@ -3358,7 +3408,6 @@
             "EL_EV_p0538_01_2",
             "EL_EV_p0538_01_3",
             "EL_EV_p0538_01_F",
-            "EL_EV_p0538_01_4",
             "EL_EV_p0538_01_5"
           ],
           "correspondences": []
@@ -3540,9 +3589,9 @@
           "elementId": "EL_EV_p0587_01_F",
           "layer": "F",
           "category": "F-CNF",
-          "subCategory": "F-CNF-01",
-          "label": "仏教受容と王権補佐をめぐる豪族対立が調整不能となり、武力衝突に転化した",
-          "normalizedLabel": "仏教受容と王権補佐をめぐる豪族対立が調整不能となり",
+          "subCategory": "F-CNF-02",
+          "label": "物部守屋が天皇擁立に独自に動き、蘇我馬子との権力分担の余地が消滅した",
+          "normalizedLabel": "物部守屋の独自行動で権力分担消滅",
           "notes": {
             "generated": "fill_fluctuation_labels.py (causeTextベース)"
           }
@@ -3557,7 +3606,6 @@
             "EL_EV_p0587_01_1",
             "EL_EV_p0587_01_2",
             "EL_EV_p0587_01_F",
-            "EL_EV_p0587_01_3",
             "EL_EV_p0587_01_4"
           ],
           "correspondences": []
@@ -3708,7 +3756,7 @@
             "secondaryFluctuationCandidates": [
               {
                 "elementId": "EL_EV_p0592_01_3",
-                "subCategory": "F-UNC-05",
+                "subCategory": "F-ACT-01",
                 "label": "蘇我馬子が東漢駒に命じて天皇を暗殺させた",
                 "normalizedLabel": "馬子側が先手を打って排除"
               }
@@ -3731,7 +3779,11 @@
           "subCategory": "B-PWR-04",
           "label": "蘇我馬子が大臣として実権を掌握し天皇は名目的地位にある",
           "normalizedLabel": "馬子が実権を掌握",
-          "notes": []
+          "notes": [],
+          "origin": {
+            "sourceEventId": "EV_p0587_01",
+            "sourceLayer": "E"
+          }
         },
         {
           "elementId": "EL_EV_p0592_01_8",
@@ -3753,7 +3805,6 @@
             "EL_EV_p0592_01_8",
             "EL_EV_p0592_01_1",
             "EL_EV_p0592_01_2",
-            "EL_EV_p0592_01_4",
             "EL_EV_p0592_01_5"
           ],
           "correspondences": []
@@ -3869,7 +3920,29 @@
         ],
         "legacyResult": "天皇暗殺という前例が生まれ蘇我氏の専横が頂点に達した"
       },
-      "accumulation": null,
+      "accumulation": {
+        "relations": [
+          {
+            "from": "EL_EV_p0592_01_7",
+            "to": "EL_EV_p0592_01_1",
+            "mechanism": "tension",
+            "description": "馬子の実権掌握と天皇の自立志向が逆方向に作用し構造的緊張が蓄積された"
+          },
+          {
+            "from": "EL_EV_p0592_01_7",
+            "to": "EL_EV_p0592_01_8",
+            "mechanism": "enabling",
+            "description": "馬子の権力基盤が外戚問題での利害対立を激化させていた"
+          },
+          {
+            "from": "EL_EV_p0592_01_1",
+            "to": "EL_EV_p0592_01_8",
+            "mechanism": "convergence",
+            "description": "天皇の自立行動と后妃問題の利害対立が暗殺の同一圧力点に収斂していた"
+          }
+        ],
+        "summary": "権力緊張と利害対立の緊張・収斂が蓄積し事象に至った"
+      },
       "momentum": "権力構造が暴力的に再編される方向へ",
       "parentFramework": null
     },
@@ -3894,7 +3967,7 @@
             "secondaryFluctuationCandidates": [
               {
                 "elementId": "EL_EV_p0593_01_2",
-                "subCategory": "F-UNC-05",
+                "subCategory": "F-ACT-01",
                 "label": "蘇我馬子が推古天皇を擁立し自らの権力基盤を維持した",
                 "normalizedLabel": "政治的内乱の収拾が急務となった"
               }
@@ -3917,7 +3990,11 @@
           "subCategory": "B-PWR-04",
           "label": "蘇我馬子が大臣として朝廷の実権を握っている",
           "normalizedLabel": "馬子が朝廷の実権を掌握",
-          "notes": []
+          "notes": [],
+          "origin": {
+            "sourceEventId": "EV_p0587_01",
+            "sourceLayer": "E"
+          }
         },
         {
           "elementId": "EL_EV_p0593_01_8",
@@ -3926,7 +4003,11 @@
           "subCategory": "B-LEG-02",
           "label": "崇峻暗殺後、皇位継承の有力候補は限られ、蘇我馬子と血縁のある皇族が選択肢となっている",
           "normalizedLabel": "有力男性候補の不在",
-          "notes": []
+          "notes": [],
+          "origin": {
+            "sourceEventId": "EV_p0592_01",
+            "sourceLayer": "E"
+          }
         },
         {
           "elementId": "EL_EV_p0593_01_9",
@@ -3948,7 +4029,6 @@
             "EL_EV_p0593_01_8",
             "EL_EV_p0593_01_9",
             "EL_EV_p0593_01_1",
-            "EL_EV_p0593_01_3",
             "EL_EV_p0593_01_4"
           ],
           "correspondences": []
@@ -4055,7 +4135,29 @@
         ],
         "legacyResult": "蘇我氏と皇室の協調体制のもとで新たな王権が成立した"
       },
-      "accumulation": null,
+      "accumulation": {
+        "relations": [
+          {
+            "from": "EL_EV_p0593_01_7",
+            "to": "EL_EV_p0593_01_8",
+            "mechanism": "enabling",
+            "description": "馬子の実権が蘇我系皇族への継承を促進していた"
+          },
+          {
+            "from": "EL_EV_p0593_01_7",
+            "to": "EL_EV_p0593_01_9",
+            "mechanism": "enabling",
+            "description": "馬子の実権が協調可能な血統の選択を促進していた"
+          },
+          {
+            "from": "EL_EV_p0593_01_8",
+            "to": "EL_EV_p0593_01_9",
+            "mechanism": "convergence",
+            "description": "限られた候補と推古の血統適格性が即位の同一圧力点に収斂していた"
+          }
+        ],
+        "summary": "権力構造と血統条件の促進・収斂が蓄積し事象に至った"
+      },
       "momentum": "王権を中心とした安定的統治が求められる方向へ",
       "parentFramework": null
     },
@@ -4075,7 +4177,11 @@
           "subCategory": "B-RES-03",
           "label": "推古天皇は即位時三十九歳で、蘇我氏の血を引く皇女として馬子との協調が求められている",
           "normalizedLabel": "推古天皇に統治経験",
-          "notes": []
+          "notes": [],
+          "origin": {
+            "sourceEventId": "EV_p0593_01",
+            "sourceLayer": "E"
+          }
         },
         {
           "elementId": "EL_EV_p0593_02_2",
@@ -4084,7 +4190,11 @@
           "subCategory": "B-RES-03",
           "label": "推古天皇即位時、蘇我馬子は大臣として朝廷内で最大の軍事・経済基盤を有している",
           "normalizedLabel": "基盤が乏しく",
-          "notes": []
+          "notes": [],
+          "origin": {
+            "sourceEventId": "EV_p0587_01",
+            "sourceLayer": "E"
+          }
         },
         {
           "elementId": "EL_EV_p0593_02_3",
@@ -4126,7 +4236,6 @@
             "EL_EV_p0593_02_2",
             "EL_EV_p0593_02_3",
             "EL_EV_p0593_02_F",
-            "EL_EV_p0593_02_4",
             "EL_EV_p0593_02_5"
           ],
           "correspondences": []
@@ -4333,7 +4442,6 @@
             "EL_EV_p0603_01_2",
             "EL_EV_p0603_01_3",
             "EL_EV_p0603_01_F",
-            "EL_EV_p0603_01_4",
             "EL_EV_p0603_01_5"
           ],
           "correspondences": []
@@ -4542,7 +4650,6 @@
             "EL_EV_p0604_01_2",
             "EL_EV_p0604_01_3",
             "EL_EV_p0604_01_F",
-            "EL_EV_p0604_01_4",
             "EL_EV_p0604_01_5"
           ],
           "correspondences": []
@@ -4709,7 +4816,11 @@
           "subCategory": "B-INS-04",
           "label": "倭国では冠位十二階・十七条憲法など国内制度の整備が進められており、隋は南北朝を統一した大陸最大の統一王朝として存在している",
           "normalizedLabel": "制度運用の矛盾や利害対立",
-          "notes": []
+          "notes": [],
+          "origin": {
+            "sourceEventId": "EV_p0603_01",
+            "sourceLayer": "E"
+          }
         },
         {
           "elementId": "EL_EV_p0607_01_3",
@@ -4732,10 +4843,10 @@
         {
           "elementId": "EL_EV_p0607_01_F",
           "layer": "F",
-          "category": "F-ACT",
-          "subCategory": "F-ACT-01",
-          "label": "小野妹子が「日出づる処の天子」の国書を携えて隋に派遣された",
-          "normalizedLabel": "小野妹子が「日出づる処の天子」の国書を携えて隋に派遣された",
+          "category": "F-EXT",
+          "subCategory": "F-EXT-01",
+          "label": "隋が高句麗遠征を準備中で、倭国が冊封体制に組み込まれる前に独自の外交姿勢を示す時間的猶予が限られた",
+          "normalizedLabel": "隋の高句麗遠征準備で外交猶予縮小",
           "notes": {
             "generated": "fill_fluctuation_labels.py (B要素ベース)"
           }
@@ -4751,7 +4862,6 @@
             "EL_EV_p0607_01_2",
             "EL_EV_p0607_01_3",
             "EL_EV_p0607_01_F",
-            "EL_EV_p0607_01_4",
             "EL_EV_p0607_01_5"
           ],
           "correspondences": []
@@ -4941,10 +5051,10 @@
         {
           "elementId": "EL_EV_p0630_01_F",
           "layer": "F",
-          "category": "F-ACT",
-          "subCategory": "F-ACT-01",
-          "label": "犬上御田鍬が第一回遣唐使として派遣された",
-          "normalizedLabel": "犬上御田鍬が第一回遣唐使として派遣された",
+          "category": "F-EXT",
+          "subCategory": "F-EXT-01",
+          "label": "唐が律令制を完成させ東アジアの国際秩序が再編される中、制度導入の遅れが倭国の不利に直結する状況が生じた",
+          "normalizedLabel": "唐の律令完成で制度導入遅れが不利に",
           "notes": {
             "generated": "fill_fluctuation_labels.py (B要素ベース)"
           }
@@ -4960,7 +5070,6 @@
             "EL_EV_p0630_01_2",
             "EL_EV_p0630_01_3",
             "EL_EV_p0630_01_F",
-            "EL_EV_p0630_01_4",
             "EL_EV_p0630_01_5"
           ],
           "correspondences": []
@@ -5167,7 +5276,6 @@
             "EL_EV_p0645_01_8",
             "EL_EV_p0645_01_9",
             "EL_EV_p0645_01_1",
-            "EL_EV_p0645_01_2",
             "EL_EV_p0645_01_3"
           ],
           "correspondences": []
@@ -5265,7 +5373,29 @@
         ],
         "legacyResult": "蘇我本宗家が滅亡し天皇中心の政治改革が可能となった"
       },
-      "accumulation": null,
+      "accumulation": {
+        "relations": [
+          {
+            "from": "EL_EV_p0645_01_7",
+            "to": "EL_EV_p0645_01_9",
+            "mechanism": "enabling",
+            "description": "蘇我氏の専権が排除連携の形成を促進していた"
+          },
+          {
+            "from": "EL_EV_p0645_01_8",
+            "to": "EL_EV_p0645_01_7",
+            "mechanism": "tension",
+            "description": "唐の中央集権モデルと蘇我氏の専権が逆方向に作用し構造的緊張が蓄積された"
+          },
+          {
+            "from": "EL_EV_p0645_01_8",
+            "to": "EL_EV_p0645_01_9",
+            "mechanism": "enabling",
+            "description": "唐の体制モデルが改革派の理論的根拠を形成していた"
+          }
+        ],
+        "summary": "専権への緊張と外来モデルと排除連携の促進・緊張が蓄積し事象に至った"
+      },
       "momentum": "豪族支配を排し天皇中心の統治へ踏み出す方向へ",
       "parentFramework": null
     },
@@ -5303,7 +5433,11 @@
           "subCategory": "B-RES-01",
           "label": "乙巳の変で蘇我氏が排除され改革推進の政治基盤が整っている",
           "normalizedLabel": "土地統治などの問題が顕在化し",
-          "notes": []
+          "notes": [],
+          "origin": {
+            "sourceEventId": "EV_p0645_01",
+            "sourceLayer": "E"
+          }
         },
         {
           "elementId": "EL_EV_p0645_02_5",
@@ -5336,7 +5470,6 @@
             "EL_EV_p0645_02_2",
             "EL_EV_p0645_02_3",
             "EL_EV_p0645_02_F",
-            "EL_EV_p0645_02_4",
             "EL_EV_p0645_02_5"
           ],
           "correspondences": []
@@ -5494,7 +5627,11 @@
           "subCategory": "B-RES-01",
           "label": "豪族の私地私民が残存し中央集権的統治を阻害している",
           "normalizedLabel": "経済",
-          "notes": []
+          "notes": [],
+          "origin": {
+            "sourceEventId": "EV_p0645_02",
+            "sourceLayer": "E"
+          }
         },
         {
           "elementId": "EL_EV_p0646_01_2",
@@ -5545,7 +5682,6 @@
             "EL_EV_p0646_01_2",
             "EL_EV_p0646_01_3",
             "EL_EV_p0646_01_F",
-            "EL_EV_p0646_01_4",
             "EL_EV_p0646_01_5"
           ],
           "correspondences": []
@@ -5710,8 +5846,8 @@
           "layer": "F",
           "category": "F-ACT",
           "subCategory": "F-ACT-01",
-          "label": "大化改新の税制・兵役制度が全国で本格的に施行された",
-          "normalizedLabel": "大化改新の制度が全国施行",
+          "label": "班田収授の実施により個別農民が国家に直接把握され、逃れ得ない徴税対象として確定した",
+          "normalizedLabel": "班田収授で農民が徴税対象に確定",
           "notes": []
         },
         {
@@ -5756,7 +5892,6 @@
             "EL_EV_p0647_01_8",
             "EL_EV_p0647_01_9",
             "EL_EV_p0647_01_F",
-            "EL_EV_p0647_01_2",
             "EL_EV_p0647_01_3"
           ],
           "correspondences": []
@@ -5854,7 +5989,29 @@
         ],
         "legacyResult": "農民の逃亡や偽籍が増加し律令制の根幹が揺らぎ始めた"
       },
-      "accumulation": null,
+      "accumulation": {
+        "relations": [
+          {
+            "from": "EL_EV_p0647_01_7",
+            "to": "EL_EV_p0647_01_8",
+            "mechanism": "enabling",
+            "description": "租庸調の制度化が運脚の地理的負担を現実の圧力として作動させていた"
+          },
+          {
+            "from": "EL_EV_p0647_01_7",
+            "to": "EL_EV_p0647_01_9",
+            "mechanism": "enabling",
+            "description": "律令制度の確立が防人動員の法的根拠を提供していた"
+          },
+          {
+            "from": "EL_EV_p0647_01_8",
+            "to": "EL_EV_p0647_01_9",
+            "mechanism": "convergence",
+            "description": "地理的負担と軍事動員が農民の同一の生活基盤を圧迫し収斂していた"
+          }
+        ],
+        "summary": "制度化された徴税・運脚と防人動員が農民生活を多重に圧迫し事象に至った"
+      },
       "momentum": "経済的負担が社会構造を変容させる方向へ",
       "parentFramework": {
         "eventId": "EV_p0645_01",
@@ -5904,10 +6061,10 @@
         {
           "elementId": "EL_EV_p0648_01_F",
           "layer": "F",
-          "category": "F-CTD",
-          "subCategory": "F-CTD-01",
-          "label": "国家防衛を目的として兵役と防人制度が恒常化され、成人男性が長期にわたり動員された",
-          "normalizedLabel": "国家防衛を目的として兵役と防人制度が恒常化され",
+          "category": "F-EXT",
+          "subCategory": "F-EXT-01",
+          "label": "白村江の敗戦後、唐・新羅の侵攻に備え九州沿岸の防衛体制強化が命じられた",
+          "normalizedLabel": "白村江敗戦後の防衛体制強化命令",
           "notes": {
             "generated": "fill_fluctuation_labels.py (causeTextベース)"
           }
@@ -5922,7 +6079,6 @@
             "EL_EV_p0648_01_1",
             "EL_EV_p0648_01_2",
             "EL_EV_p0648_01_F",
-            "EL_EV_p0648_01_3",
             "EL_EV_p0648_01_4"
           ],
           "correspondences": []
@@ -6100,7 +6256,6 @@
             "EL_EV_p0664_01_1",
             "EL_EV_p0664_01_2",
             "EL_EV_p0664_01_F",
-            "EL_EV_p0664_01_3",
             "EL_EV_p0664_01_4"
           ],
           "correspondences": []
@@ -6288,7 +6443,6 @@
             "EL_EV_p0667_01_2",
             "EL_EV_p0667_01_3",
             "EL_EV_p0667_01_F",
-            "EL_EV_p0667_01_4",
             "EL_EV_p0667_01_5"
           ],
           "correspondences": []
@@ -6487,7 +6641,6 @@
             "EL_EV_p0672_01_1",
             "EL_EV_p0672_01_2",
             "EL_EV_p0672_01_F",
-            "EL_EV_p0672_01_3",
             "EL_EV_p0672_01_4"
           ],
           "correspondences": []
@@ -6624,7 +6777,11 @@
           "subCategory": "B-INS-04",
           "label": "壬申の乱で功績を立てた豪族と、旧来の氏姓による序列が食い違っている",
           "normalizedLabel": "既存運用の矛盾や危機対応の必要",
-          "notes": []
+          "notes": [],
+          "origin": {
+            "sourceEventId": "EV_p0672_01",
+            "sourceLayer": "E"
+          }
         },
         {
           "elementId": "EL_EV_p0684_01_2",
@@ -6679,7 +6836,6 @@
             "EL_EV_p0684_01_2",
             "EL_EV_p0684_01_3",
             "EL_EV_p0684_01_F",
-            "EL_EV_p0684_01_4",
             "EL_EV_p0684_01_5"
           ],
           "correspondences": []
@@ -6850,7 +7006,11 @@
           "subCategory": "B-INS-03",
           "label": "唐の律令を参照しつつ日本の実情に合わせた法典が求められている",
           "normalizedLabel": "統一的な規則",
-          "notes": []
+          "notes": [],
+          "origin": {
+            "sourceEventId": "EV_p0684_01",
+            "sourceLayer": "E"
+          }
         },
         {
           "elementId": "EL_EV_p0689_01_3",
@@ -6892,7 +7052,6 @@
             "EL_EV_p0689_01_2",
             "EL_EV_p0689_01_3",
             "EL_EV_p0689_01_F",
-            "EL_EV_p0689_01_4",
             "EL_EV_p0689_01_5"
           ],
           "correspondences": []
@@ -7059,7 +7218,11 @@
           "subCategory": "B-INS-04",
           "label": "律令国家にふさわしい恒久的な都の必要性が高まっている",
           "normalizedLabel": "制度運用の矛盾や利害対立",
-          "notes": []
+          "notes": [],
+          "origin": {
+            "sourceEventId": "EV_p0689_01",
+            "sourceLayer": "E"
+          }
         },
         {
           "elementId": "EL_EV_p0694_01_5",
@@ -7075,8 +7238,8 @@
           "layer": "F",
           "category": "F-ACT",
           "subCategory": "F-ACT-01",
-          "label": "大和三山に囲まれた地に条坊制の都城が造営された",
-          "normalizedLabel": "大和三山に囲まれた地に条坊制の都城が造営された",
+          "label": "持統天皇が天武天皇の構想を引き継ぎ、律令国家の首都建設を決断した",
+          "normalizedLabel": "持統天皇が首都建設を決断",
           "notes": {
             "generated": "fill_fluctuation_labels.py (B要素ベース)"
           }
@@ -7090,9 +7253,7 @@
           "elements": [
             "EL_EV_p0694_01_1",
             "EL_EV_p0694_01_2",
-            "EL_EV_p0694_01_3",
             "EL_EV_p0694_01_F",
-            "EL_EV_p0694_01_4",
             "EL_EV_p0694_01_5"
           ],
           "correspondences": []
@@ -7215,18 +7376,6 @@
             "to": "EL_EV_p0694_01_2",
             "mechanism": "enabling",
             "description": "地理条件が制度枠組みの作動前提を形成していた"
-          },
-          {
-            "from": "EL_EV_p0694_01_1",
-            "to": "EL_EV_p0694_01_3",
-            "mechanism": "constraint",
-            "description": "地理条件が対外圧力の選択肢を狭め行動を制約していた"
-          },
-          {
-            "from": "EL_EV_p0694_01_2",
-            "to": "EL_EV_p0694_01_3",
-            "mechanism": "enabling",
-            "description": "制度枠組みが対外圧力の作動前提を形成していた"
           }
         ],
         "summary": "対外環境と地理条件と制度の制約・促進が蓄積し事象に至った"
@@ -7266,7 +7415,11 @@
           "subCategory": "B-INS-03",
           "label": "唐の律令を範としつつ日本固有の制度を盛り込む編纂が進められた",
           "normalizedLabel": "統一的な規則",
-          "notes": []
+          "notes": [],
+          "origin": {
+            "sourceEventId": "EV_p0689_01",
+            "sourceLayer": "E"
+          }
         },
         {
           "elementId": "EL_EV_p0701_01_3",
@@ -7308,7 +7461,6 @@
             "EL_EV_p0701_01_2",
             "EL_EV_p0701_01_3",
             "EL_EV_p0701_01_F",
-            "EL_EV_p0701_01_4",
             "EL_EV_p0701_01_5"
           ],
           "correspondences": []
@@ -7506,9 +7658,7 @@
           "elements": [
             "EL_EV_p0708_01_1",
             "EL_EV_p0708_01_2",
-            "EL_EV_p0708_01_3",
             "EL_EV_p0708_01_F",
-            "EL_EV_p0708_01_4",
             "EL_EV_p0708_01_5"
           ],
           "correspondences": []
@@ -7631,18 +7781,6 @@
             "to": "EL_EV_p0708_01_2",
             "mechanism": "constraint",
             "description": "資源基盤が制度枠組みの選択肢を狭め行動を制約していた"
-          },
-          {
-            "from": "EL_EV_p0708_01_1",
-            "to": "EL_EV_p0708_01_3",
-            "mechanism": "tension",
-            "description": "資源基盤と対外圧力が逆方向に作用し構造的緊張が蓄積された"
-          },
-          {
-            "from": "EL_EV_p0708_01_2",
-            "to": "EL_EV_p0708_01_3",
-            "mechanism": "enabling",
-            "description": "制度枠組みが対外圧力の作動前提を形成していた"
           }
         ],
         "summary": "対外環境と制度と資源の制約・促進・緊張が蓄積し事象に至った"
@@ -7682,7 +7820,11 @@
           "subCategory": "B-INS-04",
           "label": "唐の長安城を模範とした壮大な都城計画が立案されている",
           "normalizedLabel": "制度運用の矛盾や利害対立",
-          "notes": []
+          "notes": [],
+          "origin": {
+            "sourceEventId": "EV_p0694_01",
+            "sourceLayer": "E"
+          }
         },
         {
           "elementId": "EL_EV_p0710_01_3",
@@ -7707,8 +7849,8 @@
           "layer": "F",
           "category": "F-ACT",
           "subCategory": "F-ACT-01",
-          "label": "奈良盆地北端に東西約4.3km南北約4.8kmの条坊制都城が造営された",
-          "normalizedLabel": "奈良盆地北端に東西約4.3km南北約4.8kmの条坊制都…",
+          "label": "藤原京の水害と排水問題が深刻化し、元明天皇が新都への移転を決断した",
+          "normalizedLabel": "藤原京の水害で元明天皇が遷都決断",
           "notes": {
             "generated": "fill_fluctuation_labels.py (B要素ベース)"
           }
@@ -7724,7 +7866,6 @@
             "EL_EV_p0710_01_2",
             "EL_EV_p0710_01_3",
             "EL_EV_p0710_01_F",
-            "EL_EV_p0710_01_4",
             "EL_EV_p0710_01_5"
           ],
           "correspondences": []
@@ -7885,7 +8026,11 @@
           "subCategory": "B-INF-01",
           "label": "天武天皇が帝紀・旧辞の誤りを正すため稗田阿礼に誦習させている",
           "normalizedLabel": "『『古事記』が成立",
-          "notes": []
+          "notes": [],
+          "origin": {
+            "sourceEventId": "EV_p0672_01",
+            "sourceLayer": "E"
+          }
         },
         {
           "elementId": "EL_EV_p0712_01_2",
@@ -7919,8 +8064,8 @@
           "layer": "F",
           "category": "F-ACT",
           "subCategory": "F-ACT-01",
-          "label": "太安万侶が稗田阿礼の誦習を筆録し編纂を完成させた",
-          "normalizedLabel": "太安万侶が稗田阿礼の誦習を筆録し編纂を完成させた",
+          "label": "元明天皇が太安万侶に天武朝以来中断していた国史編纂の完成を命じた",
+          "normalizedLabel": "元明天皇が国史編纂完成を命令",
           "notes": {
             "generated": "fill_fluctuation_labels.py (B要素ベース)"
           }
@@ -7936,7 +8081,6 @@
             "EL_EV_p0712_01_2",
             "EL_EV_p0712_01_3",
             "EL_EV_p0712_01_F",
-            "EL_EV_p0712_01_4",
             "EL_EV_p0712_01_5"
           ],
           "correspondences": []
@@ -8097,7 +8241,11 @@
           "subCategory": "B-INF-01",
           "label": "古事記に続き中国の正史に倣った編年体国史の編纂が進められた",
           "normalizedLabel": "『『日本書紀』が成立",
-          "notes": []
+          "notes": [],
+          "origin": {
+            "sourceEventId": "EV_p0712_01",
+            "sourceLayer": "E"
+          }
         },
         {
           "elementId": "EL_EV_p0720_01_2",
@@ -8131,8 +8279,8 @@
           "layer": "F",
           "category": "F-ACT",
           "subCategory": "F-ACT-01",
-          "label": "舎人親王を中心に漢文体で三十巻の編纂が完成された",
-          "normalizedLabel": "舎人親王を中心に漢文体で三十巻の編纂が完成された",
+          "label": "天武天皇が川島皇子・舎人親王らに帝紀・上古諸事の記録を命じた",
+          "normalizedLabel": "天武天皇が帝紀記録を命令",
           "notes": {
             "generated": "fill_fluctuation_labels.py (B要素ベース)"
           }
@@ -8148,7 +8296,6 @@
             "EL_EV_p0720_01_2",
             "EL_EV_p0720_01_3",
             "EL_EV_p0720_01_F",
-            "EL_EV_p0720_01_4",
             "EL_EV_p0720_01_5"
           ],
           "correspondences": []
@@ -8309,7 +8456,11 @@
           "subCategory": "B-RES-01",
           "label": "班田収授制のもとで口分田の不足が深刻化している",
           "normalizedLabel": "経済",
-          "notes": []
+          "notes": [],
+          "origin": {
+            "sourceEventId": "EV_p0646_01",
+            "sourceLayer": "E"
+          }
         },
         {
           "elementId": "EL_EV_p0723_01_2",
@@ -8360,7 +8511,6 @@
             "EL_EV_p0723_01_2",
             "EL_EV_p0723_01_3",
             "EL_EV_p0723_01_F",
-            "EL_EV_p0723_01_4",
             "EL_EV_p0723_01_5"
           ],
           "correspondences": []
@@ -8559,7 +8709,6 @@
             "EL_EV_p0729_01_1",
             "EL_EV_p0729_01_2",
             "EL_EV_p0729_01_F",
-            "EL_EV_p0729_01_3",
             "EL_EV_p0729_01_4"
           ],
           "correspondences": []
@@ -8737,7 +8886,6 @@
             "EL_EV_p0740_01_1",
             "EL_EV_p0740_01_2",
             "EL_EV_p0740_01_F",
-            "EL_EV_p0740_01_3",
             "EL_EV_p0740_01_4"
           ],
           "correspondences": []
@@ -8925,7 +9073,6 @@
             "EL_EV_p0741_01_2",
             "EL_EV_p0741_01_3",
             "EL_EV_p0741_01_F",
-            "EL_EV_p0741_01_4",
             "EL_EV_p0741_01_5"
           ],
           "correspondences": []
@@ -9105,7 +9252,11 @@
           "subCategory": "B-INS-04",
           "label": "三世一身法（723年）では開墾田は三世または一身の後に国へ返還されることが定められている",
           "normalizedLabel": "土地統治などの問題が顕在化し",
-          "notes": []
+          "notes": [],
+          "origin": {
+            "sourceEventId": "EV_p0723_01",
+            "sourceLayer": "E"
+          }
         },
         {
           "elementId": "EL_EV_p0743_01_5",
@@ -9138,7 +9289,6 @@
             "EL_EV_p0743_01_2",
             "EL_EV_p0743_01_3",
             "EL_EV_p0743_01_F",
-            "EL_EV_p0743_01_4",
             "EL_EV_p0743_01_5"
           ],
           "correspondences": []
@@ -9336,9 +9486,7 @@
           "elements": [
             "EL_EV_p0752_01_1",
             "EL_EV_p0752_01_2",
-            "EL_EV_p0752_01_3",
             "EL_EV_p0752_01_F",
-            "EL_EV_p0752_01_4",
             "EL_EV_p0752_01_5"
           ],
           "correspondences": []
@@ -9461,18 +9609,6 @@
             "to": "EL_EV_p0752_01_2",
             "mechanism": "enabling",
             "description": "価値規範が制度枠組みの作動前提を形成していた"
-          },
-          {
-            "from": "EL_EV_p0752_01_1",
-            "to": "EL_EV_p0752_01_3",
-            "mechanism": "enabling",
-            "description": "価値規範が対外圧力の作動前提を形成していた"
-          },
-          {
-            "from": "EL_EV_p0752_01_2",
-            "to": "EL_EV_p0752_01_3",
-            "mechanism": "enabling",
-            "description": "制度枠組みが対外圧力の作動前提を形成していた"
           }
         ],
         "summary": "対外環境と制度と価値体系の促進が蓄積し事象に至った"
@@ -9540,7 +9676,6 @@
             "EL_EV_p0757_01_1",
             "EL_EV_p0757_01_2",
             "EL_EV_p0757_01_F",
-            "EL_EV_p0757_01_3",
             "EL_EV_p0757_01_4"
           ],
           "correspondences": []
@@ -9711,8 +9846,8 @@
           "layer": "F",
           "category": "F-ACT",
           "subCategory": "F-ACT-01",
-          "label": "大伴家持が防人歌や東歌を含む約四千五百首を体系的に編纂した",
-          "normalizedLabel": "天皇から防人まで幅広い階層の歌が二十巻に編まれた",
+          "label": "大伴家持が越中国守として各地の歌を収集する機会を得、散逸する和歌の保存に着手した",
+          "normalizedLabel": "大伴家持が和歌保存に着手",
           "notes": {
             "generated": "fill_fluctuation_labels.py (B要素ベース)"
           }
@@ -9728,7 +9863,6 @@
             "EL_EV_p0759_01_2",
             "EL_EV_p0759_01_3",
             "EL_EV_p0759_01_F",
-            "EL_EV_p0759_01_4",
             "EL_EV_p0759_01_5"
           ],
           "correspondences": []
@@ -9886,7 +10020,11 @@
           "subCategory": "B-RIV-01",
           "label": "孝謙上皇と道鏡の台頭に藤原仲麻呂（恵美押勝）が危機感を抱いた",
           "normalizedLabel": "恵美押勝をめぐる利害対立が蓄積し",
-          "notes": []
+          "notes": [],
+          "origin": {
+            "sourceEventId": "EV_p0757_01",
+            "sourceLayer": "E"
+          }
         },
         {
           "elementId": "EL_EV_p0764_01_2",
@@ -9927,7 +10065,6 @@
             "EL_EV_p0764_01_1",
             "EL_EV_p0764_01_2",
             "EL_EV_p0764_01_F",
-            "EL_EV_p0764_01_3",
             "EL_EV_p0764_01_4"
           ],
           "correspondences": []
@@ -10064,7 +10201,11 @@
           "subCategory": "B-LEG-03",
           "label": "称徳天皇が道鏡を重用し皇位譲渡の意向が取り沙汰されている",
           "normalizedLabel": "『宇佐八幡神託事件が起きた』に至るまで",
-          "notes": []
+          "notes": [],
+          "origin": {
+            "sourceEventId": "EV_p0764_01",
+            "sourceLayer": "E"
+          }
         },
         {
           "elementId": "EL_EV_p0769_01_2",
@@ -10115,7 +10256,6 @@
             "EL_EV_p0769_01_2",
             "EL_EV_p0769_01_3",
             "EL_EV_p0769_01_F",
-            "EL_EV_p0769_01_4",
             "EL_EV_p0769_01_5"
           ],
           "correspondences": []
@@ -10307,8 +10447,8 @@
           "layer": "F",
           "category": "F-ACT",
           "subCategory": "F-ACT-01",
-          "label": "桓武天皇が奈良仏教勢力からの脱却を図り長岡の地への遷都を決断した",
-          "normalizedLabel": "淀川水系の水運に恵まれた長岡の地が選定された",
+          "label": "道鏡事件に象徴される奈良仏教勢力の政治介入が限界に達し、桓武天皇が物理的離脱を決断した",
+          "normalizedLabel": "奈良仏教の政治介入で桓武天皇が離脱決断",
           "notes": {
             "generated": "fill_fluctuation_labels.py (B要素ベース)"
           }
@@ -10324,7 +10464,6 @@
             "EL_EV_p0784_01_2",
             "EL_EV_p0784_01_3",
             "EL_EV_p0784_01_F",
-            "EL_EV_p0784_01_4",
             "EL_EV_p0784_01_5"
           ],
           "correspondences": []
@@ -10514,10 +10653,10 @@
         {
           "elementId": "EL_EV_p0792_01_F",
           "layer": "F",
-          "category": "F-ACT",
-          "subCategory": "F-ACT-01",
-          "label": "桓武天皇が軍団制を廃止し郡司の子弟を健児として採用した",
-          "normalizedLabel": "桓武天皇が軍団制を廃止し郡司の子弟を健児として採用した",
+          "category": "F-CTD",
+          "subCategory": "F-CTD-01",
+          "label": "蝦夷征討で郡司子弟の志願兵が徴兵農民兵より有効と判明し、軍団制の費用対効果の逆転が明白となった",
+          "normalizedLabel": "蝦夷征討で軍団制の費用対効果逆転",
           "notes": {
             "generated": "fill_fluctuation_labels.py (B要素ベース)"
           }
@@ -10533,7 +10672,6 @@
             "EL_EV_p0792_01_2",
             "EL_EV_p0792_01_3",
             "EL_EV_p0792_01_F",
-            "EL_EV_p0792_01_4",
             "EL_EV_p0792_01_5"
           ],
           "correspondences": []
@@ -10691,7 +10829,11 @@
           "subCategory": "B-GEO-02",
           "label": "長岡京が怨霊騒ぎと水害で不吉とされ再遷都が決断されている",
           "normalizedLabel": "『平安京に遷都",
-          "notes": []
+          "notes": [],
+          "origin": {
+            "sourceEventId": "EV_p0784_01",
+            "sourceLayer": "E"
+          }
         },
         {
           "elementId": "EL_EV_p0794_01_2",
@@ -10742,7 +10884,6 @@
             "EL_EV_p0794_01_2",
             "EL_EV_p0794_01_3",
             "EL_EV_p0794_01_F",
-            "EL_EV_p0794_01_4",
             "EL_EV_p0794_01_5"
           ],
           "correspondences": []
@@ -10909,7 +11050,11 @@
           "subCategory": "B-INS-04",
           "label": "桓武天皇が奈良仏教の政治介入を排し新宗派を支援する方針をとっている",
           "normalizedLabel": "制度運用の矛盾や利害対立",
-          "notes": []
+          "notes": [],
+          "origin": {
+            "sourceEventId": "EV_p0794_01",
+            "sourceLayer": "E"
+          }
         },
         {
           "elementId": "EL_EV_p0805_01_5",
@@ -10940,9 +11085,7 @@
           "elements": [
             "EL_EV_p0805_01_1",
             "EL_EV_p0805_01_2",
-            "EL_EV_p0805_01_3",
             "EL_EV_p0805_01_F",
-            "EL_EV_p0805_01_4",
             "EL_EV_p0805_01_5"
           ],
           "correspondences": []
@@ -11065,18 +11208,6 @@
             "to": "EL_EV_p0805_01_2",
             "mechanism": "enabling",
             "description": "価値規範が制度枠組みの作動前提を形成していた"
-          },
-          {
-            "from": "EL_EV_p0805_01_1",
-            "to": "EL_EV_p0805_01_3",
-            "mechanism": "enabling",
-            "description": "価値規範が対外圧力の作動前提を形成していた"
-          },
-          {
-            "from": "EL_EV_p0805_01_2",
-            "to": "EL_EV_p0805_01_3",
-            "mechanism": "enabling",
-            "description": "制度枠組みが対外圧力の作動前提を形成していた"
           }
         ],
         "summary": "対外環境と制度と価値体系の促進が蓄積し事象に至った"
@@ -11125,8 +11256,8 @@
           "layer": "F",
           "category": "F-ACT",
           "subCategory": "F-ACT-01",
-          "label": "嵯峨天皇の信任を得て高野山に金剛峯寺を開いた",
-          "normalizedLabel": "嵯峨天皇の信任を得て高野山に金剛峯寺を開いた",
+          "label": "嵯峨天皇が空海の密教の加持祈祷に強い関心を示し、宮中での活動を許可した",
+          "normalizedLabel": "嵯峨天皇が空海の宮中活動を許可",
           "notes": {
             "generated": "fill_fluctuation_labels.py (B要素ベース)"
           }
@@ -11140,9 +11271,7 @@
           "elements": [
             "EL_EV_p0806_01_1",
             "EL_EV_p0806_01_2",
-            "EL_EV_p0806_01_3",
             "EL_EV_p0806_01_F",
-            "EL_EV_p0806_01_4",
             "EL_EV_p0806_01_5"
           ],
           "correspondences": []
@@ -11265,18 +11394,6 @@
             "to": "EL_EV_p0806_01_2",
             "mechanism": "enabling",
             "description": "価値規範が制度枠組みの作動前提を形成していた"
-          },
-          {
-            "from": "EL_EV_p0806_01_1",
-            "to": "EL_EV_p0806_01_3",
-            "mechanism": "enabling",
-            "description": "価値規範が対外圧力の作動前提を形成していた"
-          },
-          {
-            "from": "EL_EV_p0806_01_2",
-            "to": "EL_EV_p0806_01_3",
-            "mechanism": "enabling",
-            "description": "制度枠組みが対外圧力の作動前提を形成していた"
           }
         ],
         "summary": "対外環境と制度と価値体系の促進が蓄積し事象に至った"
@@ -11341,7 +11458,6 @@
             "EL_EV_p0810_01_1",
             "EL_EV_p0810_01_2",
             "EL_EV_p0810_01_F",
-            "EL_EV_p0810_01_3",
             "EL_EV_p0810_01_4"
           ],
           "correspondences": []
@@ -11519,7 +11635,6 @@
             "EL_EV_p0842_01_1",
             "EL_EV_p0842_01_2",
             "EL_EV_p0842_01_F",
-            "EL_EV_p0842_01_3",
             "EL_EV_p0842_01_4"
           ],
           "correspondences": []
@@ -11665,7 +11780,11 @@
           "subCategory": "B-INS-04",
           "label": "藤原良房が他氏排斥と外戚戦略で朝廷内の優位を確立している",
           "normalizedLabel": "制度運用の矛盾や利害対立",
-          "notes": []
+          "notes": [],
+          "origin": {
+            "sourceEventId": "EV_p0842_01",
+            "sourceLayer": "E"
+          }
         },
         {
           "elementId": "EL_EV_p0858_01_5",
@@ -11696,9 +11815,7 @@
           "elements": [
             "EL_EV_p0858_01_1",
             "EL_EV_p0858_01_2",
-            "EL_EV_p0858_01_3",
             "EL_EV_p0858_01_F",
-            "EL_EV_p0858_01_4",
             "EL_EV_p0858_01_5"
           ],
           "correspondences": []
@@ -11821,18 +11938,6 @@
             "to": "EL_EV_p0858_01_2",
             "mechanism": "enabling",
             "description": "権力構造が制度枠組みの作動前提を形成していた"
-          },
-          {
-            "from": "EL_EV_p0858_01_1",
-            "to": "EL_EV_p0858_01_3",
-            "mechanism": "tension",
-            "description": "権力構造と対外圧力が逆方向に作用し構造的緊張が蓄積された"
-          },
-          {
-            "from": "EL_EV_p0858_01_2",
-            "to": "EL_EV_p0858_01_3",
-            "mechanism": "enabling",
-            "description": "制度枠組みが対外圧力の作動前提を形成していた"
           }
         ],
         "summary": "対外環境と制度と権力配置の促進・緊張が蓄積し事象に至った"
@@ -11865,7 +11970,11 @@
           "subCategory": "B-MIL-01",
           "label": "藤原良房が事件を利用して伴氏・紀氏を排斥している",
           "normalizedLabel": "統治の調整が追いつかず武力衝突に発展",
-          "notes": []
+          "notes": [],
+          "origin": {
+            "sourceEventId": "EV_p0858_01",
+            "sourceLayer": "E"
+          }
         },
         {
           "elementId": "EL_EV_p0866_01_4",
@@ -11897,7 +12006,6 @@
             "EL_EV_p0866_01_1",
             "EL_EV_p0866_01_2",
             "EL_EV_p0866_01_F",
-            "EL_EV_p0866_01_3",
             "EL_EV_p0866_01_4"
           ],
           "correspondences": []
@@ -12075,7 +12183,6 @@
             "EL_EV_p0894_01_1",
             "EL_EV_p0894_01_2",
             "EL_EV_p0894_01_F",
-            "EL_EV_p0894_01_3",
             "EL_EV_p0894_01_4"
           ],
           "correspondences": []
@@ -12252,9 +12359,7 @@
           "elements": [
             "EL_EV_p0901_01_1",
             "EL_EV_p0901_01_2",
-            "EL_EV_p0901_01_3",
             "EL_EV_p0901_01_F",
-            "EL_EV_p0901_01_4",
             "EL_EV_p0901_01_5"
           ],
           "correspondences": []
@@ -12377,23 +12482,216 @@
             "to": "EL_EV_p0901_01_2",
             "mechanism": "constraint",
             "description": "権力構造が制度枠組みの選択肢を狭め行動を制約していた"
-          },
-          {
-            "from": "EL_EV_p0901_01_1",
-            "to": "EL_EV_p0901_01_3",
-            "mechanism": "tension",
-            "description": "権力構造と対外圧力が逆方向に作用し構造的緊張が蓄積された"
-          },
-          {
-            "from": "EL_EV_p0901_01_2",
-            "to": "EL_EV_p0901_01_3",
-            "mechanism": "enabling",
-            "description": "制度枠組みが対外圧力の作動前提を形成していた"
           }
         ],
         "summary": "対外環境と制度と権力配置の制約・促進・緊張が蓄積し事象に至った"
       },
       "momentum": "既存権力構造が解体される方向へ",
+      "parentFramework": null
+    },
+    {
+      "version": "2.0",
+      "frameworkViewId": "FW_EV_p0897_01",
+      "eventId": "EV_p0897_01",
+      "primaryEventId": "EV_p0897_01",
+      "title": "醍醐天皇が親政を開始し延喜の治が始まった",
+      "sortKey": 897,
+      "era": null,
+      "elements": [
+        {
+          "elementId": "EL_EV_p0897_01_1",
+          "layer": "B",
+          "category": "B-PWR",
+          "subCategory": "B-PWR-02",
+          "label": "宇多天皇が醍醐に譲位し藤原氏を牽制しつつ親政を託した",
+          "normalizedLabel": "権力移行",
+          "notes": []
+        },
+        {
+          "elementId": "EL_EV_p0897_01_2",
+          "layer": "B",
+          "category": "B-PWR",
+          "subCategory": "B-PWR-01",
+          "label": "藤原氏の摂関独占に対する天皇側の巻き返し機運が存在する",
+          "normalizedLabel": "権力均衡の崩れ",
+          "notes": []
+        },
+        {
+          "elementId": "EL_EV_p0897_01_3",
+          "layer": "B",
+          "category": "B-INS",
+          "subCategory": "B-INS-04",
+          "label": "律令の施行細則が散在し行政運用に乱れが生じている",
+          "normalizedLabel": "制度運用の矛盾",
+          "notes": []
+        },
+        {
+          "elementId": "EL_EV_p0897_01_5",
+          "layer": "E",
+          "category": "E-POW",
+          "subCategory": "E-POW-01",
+          "label": "天皇親政体制の確立",
+          "normalizedLabel": "醍醐天皇が親政を開始し延喜の治が始まった",
+          "notes": []
+        },
+        {
+          "elementId": "EL_EV_p0897_01_F",
+          "layer": "F",
+          "category": "F-CTD",
+          "subCategory": "F-CTD-01",
+          "label": "宇多天皇が醍醐に譲位し親政を託した",
+          "normalizedLabel": "宇多天皇の譲位により親政条件が整った",
+          "notes": {}
+        }
+      ],
+      "lanes": [
+        {
+          "laneId": "LN_1",
+          "laneIndex": 1,
+          "label": "因果レーン #1",
+          "elements": [
+            "EL_EV_p0897_01_1",
+            "EL_EV_p0897_01_2",
+            "EL_EV_p0897_01_3",
+            "EL_EV_p0897_01_F",
+            "EL_EV_p0897_01_5"
+          ],
+          "correspondences": []
+        }
+      ],
+      "meta": {
+        "causeText": "宇多天皇の譲位により醍醐天皇が即位し、藤原氏の台頭を抑制しつつ律令制の立て直しを図る条件が整った",
+        "resultText": "醍醐天皇が親政を開始し延喜の治が始まった",
+        "causeConfidence": 0.85,
+        "resultConfidence": 0.85,
+        "explicitCause": true,
+        "explicitResult": true,
+        "sortKey": 897,
+        "notes": [
+          "天皇親政のもとで延喜式・古今和歌集などの文化的・制度的事業が推進された",
+          "後世に理想的治世として記憶されたが、実態は藤原氏との協調も含む"
+        ],
+        "conversion": {
+          "from": "manual_v3_9",
+          "method": "parent_framework_creation"
+        }
+      },
+      "_legacy": {
+        "elements_kind": true,
+        "transitions": [
+          {
+            "transitionId": "TR_EV_p0897_01_1",
+            "type": "parallel",
+            "from": [
+              "EL_EV_p0897_01_1",
+              "EL_EV_p0897_01_2",
+              "EL_EV_p0897_01_3"
+            ],
+            "to": [
+              "EL_EV_p0897_01_4"
+            ]
+          },
+          {
+            "transitionId": "TR_EV_p0897_01_2",
+            "type": "parallel",
+            "from": [
+              "EL_EV_p0897_01_4"
+            ],
+            "to": [
+              "EL_EV_p0897_01_5",
+              "EL_EV_p0897_01_6"
+            ]
+          }
+        ],
+        "catchers": [
+          {
+            "catcherId": "EC_EV_p0897_01_main",
+            "eventRef": {
+              "eventId": "EV_p0897_01",
+              "type": "external"
+            }
+          }
+        ],
+        "mappings": [
+          {
+            "mappingId": "MP_EV_p0897_01_1",
+            "catcherId": "EC_EV_p0897_01_main",
+            "elementId": "EL_EV_p0897_01_1",
+            "linkType": "condition",
+            "confidence": 0.85,
+            "rationale": "宇多天皇の譲位が親政開始の直接条件"
+          },
+          {
+            "mappingId": "MP_EV_p0897_01_2",
+            "catcherId": "EC_EV_p0897_01_main",
+            "elementId": "EL_EV_p0897_01_2",
+            "linkType": "condition",
+            "confidence": 0.85,
+            "rationale": "藤原氏への牽制意図が親政体制の背景条件"
+          },
+          {
+            "mappingId": "MP_EV_p0897_01_3",
+            "catcherId": "EC_EV_p0897_01_main",
+            "elementId": "EL_EV_p0897_01_3",
+            "linkType": "condition",
+            "confidence": 0.85,
+            "rationale": "律令運用の乱れが制度整備の動機"
+          },
+          {
+            "mappingId": "MP_EV_p0897_01_4",
+            "catcherId": "EC_EV_p0897_01_main",
+            "elementId": "EL_EV_p0897_01_4",
+            "linkType": "evidence",
+            "confidence": 0.78,
+            "rationale": "親政開始の主イベント"
+          },
+          {
+            "mappingId": "MP_EV_p0897_01_5",
+            "catcherId": "EC_EV_p0897_01_main",
+            "elementId": "EL_EV_p0897_01_5",
+            "linkType": "result",
+            "confidence": 0.85,
+            "rationale": "天皇親政体制の確立が結果"
+          }
+        ],
+        "internalEvents": [],
+        "signature": "order:background-path-result|counts:b3f0p1r1|serial:0|parallel:2|branch:out1in1"
+      },
+      "notes": {
+        "legacyPath": [
+          {
+            "elementId": "EL_EV_p0897_01_4",
+            "category": "P-DES",
+            "subCategory": "P-DES-03",
+            "label": "醍醐天皇が即位し摂関を置かず親政を開始した"
+          }
+        ],
+        "legacyResult": "延喜の治として後世に理想視される統治が実現した"
+      },
+      "accumulation": {
+        "relations": [
+          {
+            "from": "EL_EV_p0897_01_1",
+            "to": "EL_EV_p0897_01_2",
+            "mechanism": "enabling",
+            "description": "宇多天皇の譲位意図が藤原氏牽制の作動前提を形成していた"
+          },
+          {
+            "from": "EL_EV_p0897_01_1",
+            "to": "EL_EV_p0897_01_3",
+            "mechanism": "enabling",
+            "description": "権力移行が律令整備への推進力を形成していた"
+          },
+          {
+            "from": "EL_EV_p0897_01_2",
+            "to": "EL_EV_p0897_01_3",
+            "mechanism": "convergence",
+            "description": "藤原氏牽制と律令整備が天皇親政の同一圧力点に収斂していた"
+          }
+        ],
+        "summary": "権力移行と制度整備の促進・収斂が蓄積し事象に至った"
+      },
+      "momentum": "天皇親政による統治が制度的に整備される方向へ",
       "parentFramework": null
     },
     {
@@ -12412,7 +12710,11 @@
           "subCategory": "B-NRM-04",
           "label": "国風文化の興隆により和歌が宮廷文化の中核となっている",
           "normalizedLabel": "『古今和歌集が成立",
-          "notes": []
+          "notes": [],
+          "origin": {
+            "sourceEventId": "EV_p0894_01",
+            "sourceLayer": "E"
+          }
         },
         {
           "elementId": "EL_EV_p0905_01_3",
@@ -12451,10 +12753,8 @@
           "label": "因果レーン #1",
           "elements": [
             "EL_EV_p0905_01_1",
-            "EL_EV_p0905_01_2",
             "EL_EV_p0905_01_3",
             "EL_EV_p0905_01_F",
-            "EL_EV_p0905_01_4",
             "EL_EV_p0905_01_5"
           ],
           "correspondences": []
@@ -12574,27 +12874,18 @@
         "relations": [
           {
             "from": "EL_EV_p0905_01_1",
-            "to": "EL_EV_p0905_01_2",
-            "mechanism": "enabling",
-            "description": "価値規範が制度枠組みの作動前提を形成していた"
-          },
-          {
-            "from": "EL_EV_p0905_01_1",
             "to": "EL_EV_p0905_01_3",
             "mechanism": "enabling",
             "description": "価値規範が対外圧力の作動前提を形成していた"
-          },
-          {
-            "from": "EL_EV_p0905_01_2",
-            "to": "EL_EV_p0905_01_3",
-            "mechanism": "enabling",
-            "description": "制度枠組みが対外圧力の作動前提を形成していた"
           }
         ],
         "summary": "対外環境と制度と価値体系の促進が蓄積し事象に至った"
       },
       "momentum": "制度的秩序が形成・強化される方向へ",
-      "parentFramework": null
+      "parentFramework": {
+        "eventId": "EV_p0897_01",
+        "relationship": "execution_unit"
+      }
     },
     {
       "version": "2.0",
@@ -12618,7 +12909,7 @@
           "elementId": "EL_EV_p0939_01_2",
           "layer": "F",
           "category": "F-UNC",
-          "subCategory": "F-UNC-04",
+          "subCategory": "F-UNC-02",
           "label": "一族間の私闘を契機に将門が関東諸国の国府を制圧した",
           "normalizedLabel": "収奪と国司統治の矛盾が蓄積し",
           "notes": []
@@ -12651,7 +12942,6 @@
             "EL_EV_p0939_01_1",
             "EL_EV_p0939_01_3",
             "EL_EV_p0939_01_2",
-            "EL_EV_p0939_01_4",
             "EL_EV_p0939_01_5"
           ],
           "correspondences": []
@@ -12838,7 +13128,6 @@
             "EL_EV_p0939_02_1",
             "EL_EV_p0939_02_2",
             "EL_EV_p0939_02_F",
-            "EL_EV_p0939_02_3",
             "EL_EV_p0939_02_4"
           ],
           "correspondences": []
@@ -13015,9 +13304,7 @@
           "elements": [
             "EL_EV_p0967_01_1",
             "EL_EV_p0967_01_2",
-            "EL_EV_p0967_01_3",
             "EL_EV_p0967_01_F",
-            "EL_EV_p0967_01_4",
             "EL_EV_p0967_01_5"
           ],
           "correspondences": []
@@ -13139,25 +13426,16 @@
             "from": "EL_EV_p0967_01_1",
             "to": "EL_EV_p0967_01_2",
             "mechanism": "convergence",
-            "description": "律令と醍醐天皇が同一の圧力点に収斂していた"
-          },
-          {
-            "from": "EL_EV_p0967_01_1",
-            "to": "EL_EV_p0967_01_3",
-            "mechanism": "enabling",
-            "description": "律令が三代格式の作動前提を形成していた"
-          },
-          {
-            "from": "EL_EV_p0967_01_2",
-            "to": "EL_EV_p0967_01_3",
-            "mechanism": "enabling",
-            "description": "醍醐天皇が三代格式の作動前提を形成していた"
+            "description": "律令の施行細則の散在と国司交代時の運用混乱が同一の圧力点に収斂していた"
           }
         ],
-        "summary": "制度の収斂・促進が蓄積し事象に至った"
+        "summary": "制度運用の矛盾が収斂し事象に至った"
       },
       "momentum": "既存制度の実効性が高まる方向へ",
-      "parentFramework": null
+      "parentFramework": {
+        "eventId": "EV_p0897_01",
+        "relationship": "execution_unit"
+      }
     },
     {
       "version": "2.0",
@@ -13216,7 +13494,6 @@
             "EL_EV_p0969_01_1",
             "EL_EV_p0969_01_2",
             "EL_EV_p0969_01_F",
-            "EL_EV_p0969_01_3",
             "EL_EV_p0969_01_4"
           ],
           "correspondences": []
@@ -13404,7 +13681,6 @@
             "EL_EV_p0988_01_2",
             "EL_EV_p0988_01_3",
             "EL_EV_p0988_01_F",
-            "EL_EV_p0988_01_4",
             "EL_EV_p0988_01_5"
           ],
           "correspondences": []
@@ -13602,9 +13878,7 @@
           "elements": [
             "EL_EV_p1016_02_1",
             "EL_EV_p1016_02_2",
-            "EL_EV_p1016_02_3",
             "EL_EV_p1016_02_F",
-            "EL_EV_p1016_02_4",
             "EL_EV_p1016_02_5"
           ],
           "correspondences": []
@@ -13727,18 +14001,6 @@
             "to": "EL_EV_p1016_02_2",
             "mechanism": "tension",
             "description": "権力構造と制度枠組みが逆方向に作用し構造的緊張が蓄積された"
-          },
-          {
-            "from": "EL_EV_p1016_02_1",
-            "to": "EL_EV_p1016_02_3",
-            "mechanism": "tension",
-            "description": "権力構造と対外圧力が逆方向に作用し構造的緊張が蓄積された"
-          },
-          {
-            "from": "EL_EV_p1016_02_2",
-            "to": "EL_EV_p1016_02_3",
-            "mechanism": "tension",
-            "description": "制度枠組みと対外圧力が逆方向に作用し構造的緊張が蓄積された"
           }
         ],
         "summary": "対外環境と制度と権力配置の緊張が蓄積し事象に至った"
@@ -13813,7 +14075,6 @@
             "EL_EV_p1051_01_2",
             "EL_EV_p1051_01_3",
             "EL_EV_p1051_01_F",
-            "EL_EV_p1051_01_4",
             "EL_EV_p1051_01_5"
           ],
           "correspondences": []
@@ -14003,10 +14264,10 @@
         {
           "elementId": "EL_EV_p1052_01_F",
           "layer": "F",
-          "category": "F-CTD",
-          "subCategory": "F-CTD-02",
-          "label": "1052年が末法元年として到来し、仏教的終末観が社会全体に伝播した",
-          "normalizedLabel": "財政・治安・土地支配などの問題が顕在化し",
+          "category": "F-UNC",
+          "subCategory": "F-UNC-01",
+          "label": "暦算により1052年が釈迦入滅後二千年目（末法元年）に当たると算定された",
+          "normalizedLabel": "1052年が末法元年と算定",
           "notes": {
             "generated": "fill_fluctuation_labels.py (causeTextベース)"
           }
@@ -14022,7 +14283,6 @@
             "EL_EV_p1052_01_2",
             "EL_EV_p1052_01_3",
             "EL_EV_p1052_01_F",
-            "EL_EV_p1052_01_4",
             "EL_EV_p1052_01_5"
           ],
           "correspondences": []
@@ -14219,7 +14479,6 @@
             "EL_EV_p1068_01_2",
             "EL_EV_p1068_01_3",
             "EL_EV_p1068_01_1",
-            "EL_EV_p1068_01_4",
             "EL_EV_p1068_01_5"
           ],
           "correspondences": []
@@ -14362,7 +14621,7 @@
           "elementId": "EL_EV_p1069_01_2",
           "layer": "F",
           "category": "F-UNC",
-          "subCategory": "F-UNC-04",
+          "subCategory": "F-UNC-02",
           "label": "摂関家領が口頭の主張で違法荘園を諸国に出現させ国務が滞っているとの報告を受けた",
           "normalizedLabel": "摂関家領の違法荘園が国務を阻害",
           "notes": []
@@ -14414,7 +14673,6 @@
             "EL_EV_p1069_01_8",
             "EL_EV_p1069_01_9",
             "EL_EV_p1069_01_2",
-            "EL_EV_p1069_01_3",
             "EL_EV_p1069_01_4"
           ],
           "correspondences": []
@@ -14521,7 +14779,29 @@
         ],
         "legacyResult": "荘園整理により天皇親政が強化された"
       },
-      "accumulation": null,
+      "accumulation": {
+        "relations": [
+          {
+            "from": "EL_EV_p1069_01_7",
+            "to": "EL_EV_p1069_01_9",
+            "mechanism": "tension",
+            "description": "租税基盤の侵食と従来整理の無効が矛盾を拡大させていた"
+          },
+          {
+            "from": "EL_EV_p1069_01_7",
+            "to": "EL_EV_p1069_01_8",
+            "mechanism": "enabling",
+            "description": "荘園問題の深刻化が摂関家に依存しない天皇の行動余地を広げていた"
+          },
+          {
+            "from": "EL_EV_p1069_01_8",
+            "to": "EL_EV_p1069_01_9",
+            "mechanism": "enabling",
+            "description": "天皇の独立性が従来の国司主体整理を超える直接介入を可能にしていた"
+          }
+        ],
+        "summary": "荘園拡大による財政悪化と天皇の独立性が従来整理の無効を突破する契機となり事象に至った"
+      },
       "momentum": "王権が統制を試みるが荘園の根本構造は温存される方向へ",
       "parentFramework": null
     },
@@ -14592,7 +14872,6 @@
             "EL_EV_p1083_01_2",
             "EL_EV_p1083_01_3",
             "EL_EV_p1083_01_F",
-            "EL_EV_p1083_01_4",
             "EL_EV_p1083_01_5"
           ],
           "correspondences": []
@@ -14759,7 +15038,11 @@
           "subCategory": "B-PWR-04",
           "label": "白河天皇が幼い堀河天皇に譲位し上皇として実権を握っている",
           "normalizedLabel": "制度運用の矛盾や利害対立",
-          "notes": []
+          "notes": [],
+          "origin": {
+            "sourceEventId": "EV_p1068_01",
+            "sourceLayer": "E"
+          }
         },
         {
           "elementId": "EL_EV_p1086_01_5",
@@ -14775,8 +15058,8 @@
           "layer": "F",
           "category": "F-ACT",
           "subCategory": "F-ACT-01",
-          "label": "白河天皇が幼い堀河天皇に譲位し、上皇として院庁を設けた",
-          "normalizedLabel": "白河上皇が院庁を拠点に天皇を超える権力を行使し始めた",
+          "label": "白河天皇が8歳の善仁親王への譲位を決断し、上皇として政務に関与する意思を示した",
+          "normalizedLabel": "白河天皇が善仁親王への譲位を決断",
           "notes": {
             "generated": "fill_fluctuation_labels.py (B要素ベース)"
           }
@@ -14790,9 +15073,7 @@
           "elements": [
             "EL_EV_p1086_01_1",
             "EL_EV_p1086_01_2",
-            "EL_EV_p1086_01_3",
             "EL_EV_p1086_01_F",
-            "EL_EV_p1086_01_4",
             "EL_EV_p1086_01_5"
           ],
           "correspondences": []
@@ -14915,18 +15196,6 @@
             "to": "EL_EV_p1086_01_2",
             "mechanism": "constraint",
             "description": "権力構造が制度枠組みの選択肢を狭め行動を制約していた"
-          },
-          {
-            "from": "EL_EV_p1086_01_1",
-            "to": "EL_EV_p1086_01_3",
-            "mechanism": "constraint",
-            "description": "権力構造が対外圧力の選択肢を狭め行動を制約していた"
-          },
-          {
-            "from": "EL_EV_p1086_01_2",
-            "to": "EL_EV_p1086_01_3",
-            "mechanism": "enabling",
-            "description": "制度枠組みが対外圧力の作動前提を形成していた"
           }
         ],
         "summary": "対外環境と制度と権力配置の制約・促進が蓄積し事象に至った"
@@ -15001,7 +15270,6 @@
             "EL_EV_p1096_01_2",
             "EL_EV_p1096_01_3",
             "EL_EV_p1096_01_F",
-            "EL_EV_p1096_01_4",
             "EL_EV_p1096_01_5"
           ],
           "correspondences": []
@@ -15168,7 +15436,11 @@
           "subCategory": "B-INS-04",
           "label": "白河法皇が幼い鳥羽天皇を即位させ院政を継続している",
           "normalizedLabel": "退位などで継承が発生し",
-          "notes": []
+          "notes": [],
+          "origin": {
+            "sourceEventId": "EV_p1086_01",
+            "sourceLayer": "E"
+          }
         },
         {
           "elementId": "EL_EV_p1108_01_3",
@@ -15177,7 +15449,11 @@
           "subCategory": "B-INS-04",
           "label": "白河法皇の意向により鳥羽天皇が五歳で即位している",
           "normalizedLabel": "朝廷内の合意の取りまとめ",
-          "notes": []
+          "notes": [],
+          "origin": {
+            "sourceEventId": "EV_p1086_01",
+            "sourceLayer": "E"
+          }
         },
         {
           "elementId": "EL_EV_p1108_01_5",
@@ -15198,7 +15474,6 @@
             "EL_EV_p1108_01_2",
             "EL_EV_p1108_01_3",
             "EL_EV_p1108_01_1",
-            "EL_EV_p1108_01_4",
             "EL_EV_p1108_01_5"
           ],
           "correspondences": []
@@ -15395,7 +15670,6 @@
             "EL_EV_p1129_01_2",
             "EL_EV_p1129_01_3",
             "EL_EV_p1129_01_F",
-            "EL_EV_p1129_01_4",
             "EL_EV_p1129_01_5"
           ],
           "correspondences": []
@@ -15594,7 +15868,6 @@
             "EL_EV_p1156_01_1",
             "EL_EV_p1156_01_2",
             "EL_EV_p1156_01_F",
-            "EL_EV_p1156_01_3",
             "EL_EV_p1156_01_4"
           ],
           "correspondences": []
@@ -15765,9 +16038,7 @@
           "label": "因果レーン #1",
           "elements": [
             "EL_EV_p1159_01_1",
-            "EL_EV_p1159_01_2",
             "EL_EV_p1159_01_F",
-            "EL_EV_p1159_01_3",
             "EL_EV_p1159_01_4"
           ],
           "correspondences": []
@@ -15875,14 +16146,7 @@
         "legacyResult": "平清盛が武士として初めて朝廷の実権を掌握した"
       },
       "accumulation": {
-        "relations": [
-          {
-            "from": "EL_EV_p1159_01_1",
-            "to": "EL_EV_p1159_01_2",
-            "mechanism": "tension",
-            "description": "利害対立と軍事基盤が逆方向に作用し構造的緊張が蓄積された"
-          }
-        ],
+        "relations": [],
         "summary": "軍事と利害対立の緊張が蓄積し事象に至った"
       },
       "momentum": "武力による勢力均衡が決定される方向へ",
@@ -15942,8 +16206,8 @@
           "layer": "F",
           "category": "F-ACT",
           "subCategory": "F-ACT-01",
-          "label": "平清盛が日宋貿易の利益を独占し、娘徳子を高倉天皇に入内させ外戚化を果たした",
-          "normalizedLabel": "日宋貿易で経済力を蓄え摂関家に匹敵する財力を持っていた",
+          "label": "後白河法皇との協調関係が成立し、清盛の昇進を阻む政治的障壁が消滅した",
+          "normalizedLabel": "後白河法皇との協調で昇進障壁消滅",
           "notes": {
             "generated": "fill_fluctuation_labels.py (B要素ベース)"
           }
@@ -15959,7 +16223,6 @@
             "EL_EV_p1167_01_2",
             "EL_EV_p1167_01_3",
             "EL_EV_p1167_01_F",
-            "EL_EV_p1167_01_4",
             "EL_EV_p1167_01_5"
           ],
           "correspondences": []
@@ -16157,9 +16420,7 @@
           "elements": [
             "EL_EV_p1177_01_1",
             "EL_EV_p1177_01_2",
-            "EL_EV_p1177_01_3",
             "EL_EV_p1177_01_F",
-            "EL_EV_p1177_01_4",
             "EL_EV_p1177_01_5"
           ],
           "correspondences": []
@@ -16282,18 +16543,6 @@
             "to": "EL_EV_p1177_01_2",
             "mechanism": "tension",
             "description": "平氏と藤原成親・俊寛らが逆方向に作用し構造的緊張が蓄積された"
-          },
-          {
-            "from": "EL_EV_p1177_01_1",
-            "to": "EL_EV_p1177_01_3",
-            "mechanism": "tension",
-            "description": "制度枠組みと対外圧力が逆方向に作用し構造的緊張が蓄積された"
-          },
-          {
-            "from": "EL_EV_p1177_01_2",
-            "to": "EL_EV_p1177_01_3",
-            "mechanism": "enabling",
-            "description": "制度枠組みが対外圧力の作動前提を形成していた"
           }
         ],
         "summary": "対外環境と制度の促進・緊張が蓄積し事象に至った"
@@ -16317,7 +16566,11 @@
           "subCategory": "B-MIL-01",
           "label": "平氏の専横に対し以仁王が諸国の源氏に挙兵を呼びかけた",
           "normalizedLabel": "以仁王の挙兵が起き源平をめぐる外交",
-          "notes": []
+          "notes": [],
+          "origin": {
+            "sourceEventId": "EV_p1167_01",
+            "sourceLayer": "E"
+          }
         },
         {
           "elementId": "EL_EV_p1180_01_2",
@@ -16368,7 +16621,6 @@
             "EL_EV_p1180_01_2",
             "EL_EV_p1180_01_3",
             "EL_EV_p1180_01_F",
-            "EL_EV_p1180_01_4",
             "EL_EV_p1180_01_5"
           ],
           "correspondences": []
@@ -16535,7 +16787,11 @@
           "subCategory": "B-INS-04",
           "label": "平氏が安徳天皇を奉じて都落ちし京都が空白状態となっている",
           "normalizedLabel": "制度運用の矛盾や利害対立",
-          "notes": []
+          "notes": [],
+          "origin": {
+            "sourceEventId": "EV_p1180_01",
+            "sourceLayer": "E"
+          }
         },
         {
           "elementId": "EL_EV_p1183_01_5",
@@ -16566,9 +16822,7 @@
           "elements": [
             "EL_EV_p1183_01_1",
             "EL_EV_p1183_01_2",
-            "EL_EV_p1183_01_3",
             "EL_EV_p1183_01_F",
-            "EL_EV_p1183_01_4",
             "EL_EV_p1183_01_5"
           ],
           "correspondences": []
@@ -16691,18 +16945,6 @@
             "to": "EL_EV_p1183_01_2",
             "mechanism": "constraint",
             "description": "権力構造が制度枠組みの選択肢を狭め行動を制約していた"
-          },
-          {
-            "from": "EL_EV_p1183_01_1",
-            "to": "EL_EV_p1183_01_3",
-            "mechanism": "tension",
-            "description": "権力構造と対外圧力が逆方向に作用し構造的緊張が蓄積された"
-          },
-          {
-            "from": "EL_EV_p1183_01_2",
-            "to": "EL_EV_p1183_01_3",
-            "mechanism": "enabling",
-            "description": "制度枠組みが対外圧力の作動前提を形成していた"
           }
         ],
         "summary": "対外環境と制度と権力配置の制約・促進・緊張が蓄積し事象に至った"
@@ -16735,7 +16977,11 @@
           "subCategory": "B-INS-04",
           "label": "武士が政治的決定に軍事力で介入する構造が常態化している",
           "normalizedLabel": "政権構造の揺らぎ』に至るまで",
-          "notes": []
+          "notes": [],
+          "origin": {
+            "sourceEventId": "EV_p1156_01",
+            "sourceLayer": "E"
+          }
         },
         {
           "elementId": "EL_EV_p1184_01_5",
@@ -16766,9 +17012,7 @@
           "elements": [
             "EL_EV_p1184_01_1",
             "EL_EV_p1184_01_2",
-            "EL_EV_p1184_01_3",
             "EL_EV_p1184_01_F",
-            "EL_EV_p1184_01_4",
             "EL_EV_p1184_01_5"
           ],
           "correspondences": []
@@ -16891,18 +17135,6 @@
             "to": "EL_EV_p1184_01_2",
             "mechanism": "constraint",
             "description": "権力構造が制度枠組みの選択肢を狭め行動を制約していた"
-          },
-          {
-            "from": "EL_EV_p1184_01_1",
-            "to": "EL_EV_p1184_01_3",
-            "mechanism": "tension",
-            "description": "権力構造と制度枠組みが逆方向に作用し構造的緊張が蓄積された"
-          },
-          {
-            "from": "EL_EV_p1184_01_2",
-            "to": "EL_EV_p1184_01_3",
-            "mechanism": "tension",
-            "description": "武士と荘園制が逆方向に作用し構造的緊張が蓄積された"
           }
         ],
         "summary": "制度と権力配置の制約・緊張が蓄積し事象に至った"
@@ -16977,7 +17209,6 @@
             "EL_EV_p1185_01_2",
             "EL_EV_p1185_01_3",
             "EL_EV_p1185_01_F",
-            "EL_EV_p1185_01_4",
             "EL_EV_p1185_01_5"
           ],
           "correspondences": []
@@ -17135,7 +17366,11 @@
           "subCategory": "B-INS-01",
           "label": "壇ノ浦で平氏を滅ぼし頼朝の軍事的優位が確定している",
           "normalizedLabel": "『源頼朝が守護",
-          "notes": []
+          "notes": [],
+          "origin": {
+            "sourceEventId": "EV_p1185_01",
+            "sourceLayer": "E"
+          }
         },
         {
           "elementId": "EL_EV_p1185_03_2",
@@ -17175,9 +17410,7 @@
           "elements": [
             "EL_EV_p1185_03_1",
             "EL_EV_p1185_03_2",
-            "EL_EV_p1185_03_3",
             "EL_EV_p1185_03_F",
-            "EL_EV_p1185_03_4",
             "EL_EV_p1185_03_5"
           ],
           "correspondences": []
@@ -17300,18 +17533,6 @@
             "to": "EL_EV_p1185_03_2",
             "mechanism": "convergence",
             "description": "壇ノ浦で平氏と源義経が同一の圧力点に収斂していた"
-          },
-          {
-            "from": "EL_EV_p1185_03_1",
-            "to": "EL_EV_p1185_03_3",
-            "mechanism": "convergence",
-            "description": "壇ノ浦で平氏と頼朝が同一の圧力点に収斂していた"
-          },
-          {
-            "from": "EL_EV_p1185_03_2",
-            "to": "EL_EV_p1185_03_3",
-            "mechanism": "convergence",
-            "description": "源義経と頼朝が同一の圧力点に収斂していた"
           }
         ],
         "summary": "制度の収斂が蓄積し事象に至った"
@@ -17335,7 +17556,11 @@
           "subCategory": "B-PWR-02",
           "label": "頼朝が鎌倉を拠点に御家人制度と守護・地頭を通じて全国を統制している",
           "normalizedLabel": "『源頼朝が征夷大将軍に任じられた』に至る",
-          "notes": []
+          "notes": [],
+          "origin": {
+            "sourceEventId": "EV_p1185_03",
+            "sourceLayer": "E"
+          }
         },
         {
           "elementId": "EL_EV_p1192_01_2",
@@ -17386,7 +17611,6 @@
             "EL_EV_p1192_01_2",
             "EL_EV_p1192_01_3",
             "EL_EV_p1192_01_F",
-            "EL_EV_p1192_01_4",
             "EL_EV_p1192_01_5"
           ],
           "correspondences": []
@@ -17544,7 +17768,11 @@
           "subCategory": "B-RES-03",
           "label": "頼朝の独裁的指導力に依存した幕府運営が続いている",
           "normalizedLabel": "高齢",
-          "notes": []
+          "notes": [],
+          "origin": {
+            "sourceEventId": "EV_p1192_01",
+            "sourceLayer": "E"
+          }
         },
         {
           "elementId": "EL_EV_p1199_01_2",
@@ -17595,7 +17823,6 @@
             "EL_EV_p1199_01_2",
             "EL_EV_p1199_01_3",
             "EL_EV_p1199_01_F",
-            "EL_EV_p1199_01_4",
             "EL_EV_p1199_01_5"
           ],
           "correspondences": []
@@ -17753,7 +17980,11 @@
           "subCategory": "B-PWR-04",
           "label": "源頼家の独断的政治に御家人の不満が高まっている",
           "normalizedLabel": "『北条時政が初代執権となった』に至るまで",
-          "notes": []
+          "notes": [],
+          "origin": {
+            "sourceEventId": "EV_p1199_01",
+            "sourceLayer": "E"
+          }
         },
         {
           "elementId": "EL_EV_p1203_01_2",
@@ -17785,10 +18016,10 @@
         {
           "elementId": "EL_EV_p1203_01_F",
           "layer": "F",
-          "category": "F-ACT",
-          "subCategory": "F-ACT-01",
-          "label": "北条時政が比企氏を滅ぼし頼家を追放して実朝を将軍に据えた",
-          "normalizedLabel": "北条時政が比企氏を滅ぼし頼家を追放して実朝を将軍に据えた",
+          "category": "F-CNF",
+          "subCategory": "F-CNF-01",
+          "label": "比企能員が頼家の病に乗じて一族の権力独占を図り、北条氏との共存が不可能となった",
+          "normalizedLabel": "比企能員の権力独占で北条氏と共存不可能",
           "notes": {
             "generated": "fill_fluctuation_labels.py (B要素ベース)"
           }
@@ -17804,7 +18035,6 @@
             "EL_EV_p1203_01_2",
             "EL_EV_p1203_01_3",
             "EL_EV_p1203_01_F",
-            "EL_EV_p1203_01_4",
             "EL_EV_p1203_01_5"
           ],
           "correspondences": []
@@ -17962,7 +18192,11 @@
           "subCategory": "B-MIL-01",
           "label": "北条時政が後妻・牧の方と結び将軍実朝の排除を企てた",
           "normalizedLabel": "『北条時政が失脚",
-          "notes": []
+          "notes": [],
+          "origin": {
+            "sourceEventId": "EV_p1203_01",
+            "sourceLayer": "E"
+          }
         },
         {
           "elementId": "EL_EV_p1205_01_2",
@@ -17987,8 +18221,8 @@
           "layer": "F",
           "category": "F-ACT",
           "subCategory": "F-ACT-01",
-          "label": "牧氏の変で時政の陰謀が露見し追放された",
-          "normalizedLabel": "牧氏の変で時政の陰謀が露見し追放された",
+          "label": "時政が後妻・牧の方と共謀し将軍実朝の廃立を画策していることが義時・政子に発覚した",
+          "normalizedLabel": "時政の将軍廃立画策が発覚",
           "notes": {
             "generated": "fill_fluctuation_labels.py (B要素ベース)"
           }
@@ -18002,9 +18236,7 @@
           "elements": [
             "EL_EV_p1205_01_1",
             "EL_EV_p1205_01_2",
-            "EL_EV_p1205_01_3",
             "EL_EV_p1205_01_F",
-            "EL_EV_p1205_01_4",
             "EL_EV_p1205_01_5"
           ],
           "correspondences": []
@@ -18127,18 +18359,6 @@
             "to": "EL_EV_p1205_01_2",
             "mechanism": "constraint",
             "description": "権力構造が制度枠組みの選択肢を狭め行動を制約していた"
-          },
-          {
-            "from": "EL_EV_p1205_01_1",
-            "to": "EL_EV_p1205_01_3",
-            "mechanism": "tension",
-            "description": "権力構造と対外圧力が逆方向に作用し構造的緊張が蓄積された"
-          },
-          {
-            "from": "EL_EV_p1205_01_2",
-            "to": "EL_EV_p1205_01_3",
-            "mechanism": "enabling",
-            "description": "制度枠組みが対外圧力の作動前提を形成していた"
           }
         ],
         "summary": "対外環境と制度と権力配置の制約・促進・緊張が蓄積し事象に至った"
@@ -18213,7 +18433,6 @@
             "EL_EV_p1213_01_2",
             "EL_EV_p1213_01_3",
             "EL_EV_p1213_01_F",
-            "EL_EV_p1213_01_4",
             "EL_EV_p1213_01_5"
           ],
           "correspondences": []
@@ -18412,7 +18631,6 @@
             "EL_EV_p1221_02_1",
             "EL_EV_p1221_02_2",
             "EL_EV_p1221_02_F",
-            "EL_EV_p1221_02_3",
             "EL_EV_p1221_02_4"
           ],
           "correspondences": []
@@ -18560,7 +18778,7 @@
           "normalizedLabel": "制度運用の矛盾や利害対立",
           "notes": [],
           "origin": {
-            "sourceEventId": "EV_p1221_01",
+            "sourceEventId": "EV_p1221_02",
             "sourceLayer": "E"
           }
         },
@@ -18571,7 +18789,11 @@
           "subCategory": "B-EXT-03",
           "label": "承久の乱後に西国を含む全国統治の課題が一気に拡大し、執権一人の判断では訴訟・行政が処理しきれない制度的過負荷が生じている",
           "normalizedLabel": "外交",
-          "notes": []
+          "notes": [],
+          "origin": {
+            "sourceEventId": "EV_p1221_02",
+            "sourceLayer": "E"
+          }
         },
         {
           "elementId": "EL_EV_p1225_01_5",
@@ -18604,7 +18826,6 @@
             "EL_EV_p1225_01_2",
             "EL_EV_p1225_01_3",
             "EL_EV_p1225_01_F",
-            "EL_EV_p1225_01_4",
             "EL_EV_p1225_01_5"
           ],
           "correspondences": []
@@ -18773,7 +18994,7 @@
           "normalizedLabel": "統一的な規則",
           "notes": [],
           "origin": {
-            "sourceEventId": "EV_p1221_01",
+            "sourceEventId": "EV_p1221_02",
             "sourceLayer": "E"
           }
         },
@@ -18817,7 +19038,6 @@
             "EL_EV_p1232_01_2",
             "EL_EV_p1232_01_3",
             "EL_EV_p1232_01_F",
-            "EL_EV_p1232_01_4",
             "EL_EV_p1232_01_5"
           ],
           "correspondences": []
@@ -19015,9 +19235,7 @@
           "elements": [
             "EL_EV_p1247_01_1",
             "EL_EV_p1247_01_2",
-            "EL_EV_p1247_01_3",
             "EL_EV_p1247_01_F",
-            "EL_EV_p1247_01_4",
             "EL_EV_p1247_01_5"
           ],
           "correspondences": []
@@ -19140,18 +19358,6 @@
             "to": "EL_EV_p1247_01_2",
             "mechanism": "tension",
             "description": "対外圧力と軍事基盤が逆方向に作用し構造的緊張が蓄積された"
-          },
-          {
-            "from": "EL_EV_p1247_01_1",
-            "to": "EL_EV_p1247_01_3",
-            "mechanism": "tension",
-            "description": "有力御家人と三浦泰村ら五百余人が逆方向に作用し構造的緊張が蓄積された"
-          },
-          {
-            "from": "EL_EV_p1247_01_2",
-            "to": "EL_EV_p1247_01_3",
-            "mechanism": "tension",
-            "description": "軍事基盤と対外圧力が逆方向に作用し構造的緊張が蓄積された"
           }
         ],
         "summary": "対外環境と軍事の緊張が蓄積し事象に至った"
@@ -19215,9 +19421,7 @@
           "elements": [
             "EL_EV_p1274_01_1",
             "EL_EV_p1274_01_2",
-            "EL_EV_p1274_01_3",
             "EL_EV_p1274_01_F",
-            "EL_EV_p1274_01_4",
             "EL_EV_p1274_01_5"
           ],
           "correspondences": []
@@ -19340,18 +19544,6 @@
             "to": "EL_EV_p1274_01_2",
             "mechanism": "tension",
             "description": "対外圧力と軍事基盤が逆方向に作用し構造的緊張が蓄積された"
-          },
-          {
-            "from": "EL_EV_p1274_01_1",
-            "to": "EL_EV_p1274_01_3",
-            "mechanism": "amplification",
-            "description": "モンゴル帝国（元）が元・高麗連合軍約三万を強化し危機のエネルギーが増幅された"
-          },
-          {
-            "from": "EL_EV_p1274_01_2",
-            "to": "EL_EV_p1274_01_3",
-            "mechanism": "tension",
-            "description": "軍事基盤と対外圧力が逆方向に作用し構造的緊張が蓄積された"
           }
         ],
         "summary": "対外環境と軍事の増幅・緊張が蓄積し事象に至った"
@@ -19405,9 +19597,7 @@
           "label": "因果レーン #1",
           "elements": [
             "EL_EV_p1281_01_1",
-            "EL_EV_p1281_01_2",
             "EL_EV_p1281_01_F",
-            "EL_EV_p1281_01_3",
             "EL_EV_p1281_01_4"
           ],
           "correspondences": []
@@ -19515,14 +19705,7 @@
         "legacyResult": "台風により元軍が壊滅的打撃を受け撤退した（神風）"
       },
       "accumulation": {
-        "relations": [
-          {
-            "from": "EL_EV_p1281_01_1",
-            "to": "EL_EV_p1281_01_2",
-            "mechanism": "tension",
-            "description": "対外圧力と軍事基盤が逆方向に作用し構造的緊張が蓄積された"
-          }
-        ],
+        "relations": [],
         "summary": "対外環境と軍事の緊張が蓄積し事象に至った"
       },
       "momentum": "軍事的対立が統治構造に影響を及ぼす方向へ",
@@ -19562,7 +19745,11 @@
           "subCategory": "B-EXT-03",
           "label": "元寇後に非常体制が解かれた結果、安達泰盛の御家人重視路線と得宗被官の既得権が根本的に対立し、外圧消滅後に内部矛盾の抑制機能が失われている",
           "normalizedLabel": "外交",
-          "notes": []
+          "notes": [],
+          "origin": {
+            "sourceEventId": "EV_p1281_01",
+            "sourceLayer": "E"
+          }
         },
         {
           "elementId": "EL_EV_p1285_01_5",
@@ -19576,10 +19763,10 @@
         {
           "elementId": "EL_EV_p1285_01_F",
           "layer": "F",
-          "category": "F-ACT",
-          "subCategory": "F-ACT-01",
-          "label": "平頼綱が安達泰盛を急襲し安達一族を滅亡させた",
-          "normalizedLabel": "平頼綱が安達泰盛を急襲し安達一族を滅亡させた",
+          "category": "F-CNF",
+          "subCategory": "F-CNF-02",
+          "label": "安達泰盛の御家人重視改革が得宗被官の既得権を直接脅かし、平頼綱が先制攻撃を決断した",
+          "normalizedLabel": "安達改革への反発で平頼綱が先制攻撃",
           "notes": {
             "generated": "fill_fluctuation_labels.py (B要素ベース)"
           }
@@ -19595,7 +19782,6 @@
             "EL_EV_p1285_01_2",
             "EL_EV_p1285_01_3",
             "EL_EV_p1285_01_F",
-            "EL_EV_p1285_01_4",
             "EL_EV_p1285_01_5"
           ],
           "correspondences": []
@@ -19775,7 +19961,11 @@
           "subCategory": "B-RES-01",
           "label": "元寇後に「恩賞なき奉公」を強いられた御家人が所領を手放さざるを得なくなり、御家人制度＝幕府の軍事基盤そのものが経済的に空洞化しつつある",
           "normalizedLabel": "土地統治などの問題が顕在化し",
-          "notes": []
+          "notes": [],
+          "origin": {
+            "sourceEventId": "EV_p1274_01",
+            "sourceLayer": "E"
+          }
         },
         {
           "elementId": "EL_EV_p1297_01_5",
@@ -19808,7 +19998,6 @@
             "EL_EV_p1297_01_2",
             "EL_EV_p1297_01_3",
             "EL_EV_p1297_01_F",
-            "EL_EV_p1297_01_4",
             "EL_EV_p1297_01_5"
           ],
           "correspondences": []
@@ -20007,7 +20196,6 @@
             "EL_EV_p1331_01_1",
             "EL_EV_p1331_01_2",
             "EL_EV_p1331_01_F",
-            "EL_EV_p1331_01_3",
             "EL_EV_p1331_01_4"
           ],
           "correspondences": []
@@ -20144,7 +20332,11 @@
           "subCategory": "B-GEO-02",
           "label": "得宗専制への御家人の不満と元弘の変以降の討幕運動が拡大している",
           "normalizedLabel": "『鎌倉幕府が崩壊",
-          "notes": []
+          "notes": [],
+          "origin": {
+            "sourceEventId": "EV_p1331_01",
+            "sourceLayer": "E"
+          }
         },
         {
           "elementId": "EL_EV_p1333_01_2",
@@ -20153,7 +20345,11 @@
           "subCategory": "B-INS-04",
           "label": "足利高氏（尊氏）が幕府を裏切り六波羅探題を攻略している",
           "normalizedLabel": "制度運用の矛盾や利害対立",
-          "notes": []
+          "notes": [],
+          "origin": {
+            "sourceEventId": "EV_p1331_01",
+            "sourceLayer": "E"
+          }
         },
         {
           "elementId": "EL_EV_p1333_01_3",
@@ -20195,7 +20391,6 @@
             "EL_EV_p1333_01_2",
             "EL_EV_p1333_01_3",
             "EL_EV_p1333_01_F",
-            "EL_EV_p1333_01_4",
             "EL_EV_p1333_01_5"
           ],
           "correspondences": []
@@ -20353,7 +20548,11 @@
           "subCategory": "B-INS-04",
           "label": "鎌倉幕府の滅亡により天皇親政を実現する機会が到来している",
           "normalizedLabel": "『建武の新政が始まった』に至るまで",
-          "notes": []
+          "notes": [],
+          "origin": {
+            "sourceEventId": "EV_p1333_01",
+            "sourceLayer": "E"
+          }
         },
         {
           "elementId": "EL_EV_p1334_01_2",
@@ -20385,10 +20584,10 @@
         {
           "elementId": "EL_EV_p1334_01_F",
           "layer": "F",
-          "category": "F-ACT",
-          "subCategory": "F-ACT-01",
-          "label": "記録所・雑訴決断所などの新機関が設置された",
-          "normalizedLabel": "記録所・雑訴決断所などの新機関が設置された",
+          "category": "F-VAC",
+          "subCategory": "F-VAC-01",
+          "label": "鎌倉幕府滅亡により武家政権が消滅し、後醍醐天皇が親政実現の障害を失った",
+          "normalizedLabel": "幕府滅亡で後醍醐天皇の親政障害消滅",
           "notes": {
             "generated": "fill_fluctuation_labels.py (B要素ベース)"
           }
@@ -20404,7 +20603,6 @@
             "EL_EV_p1334_01_2",
             "EL_EV_p1334_01_3",
             "EL_EV_p1334_01_F",
-            "EL_EV_p1334_01_4",
             "EL_EV_p1334_01_5"
           ],
           "correspondences": []
@@ -20562,7 +20760,11 @@
           "subCategory": "B-INS-04",
           "label": "建武の新政への武士の不満が広がり足利尊氏が離反している",
           "normalizedLabel": "『南北朝の対立が始まった』に至るまで",
-          "notes": []
+          "notes": [],
+          "origin": {
+            "sourceEventId": "EV_p1334_01",
+            "sourceLayer": "E"
+          }
         },
         {
           "elementId": "EL_EV_p1336_01_2",
@@ -20585,10 +20787,10 @@
         {
           "elementId": "EL_EV_p1336_01_F",
           "layer": "F",
-          "category": "F-ACT",
-          "subCategory": "F-ACT-01",
-          "label": "足利尊氏が光明天皇を擁立し北朝が成立した",
-          "normalizedLabel": "足利尊氏が光明天皇を擁立し北朝が成立した",
+          "category": "F-CNF",
+          "subCategory": "F-CNF-01",
+          "label": "建武の新政への武士の不満が噴出し、足利尊氏が後醍醐天皇から離反した",
+          "normalizedLabel": "武士の不満噴出で尊氏が後醍醐から離反",
           "notes": {
             "generated": "fill_fluctuation_labels.py (B要素ベース)"
           }
@@ -20602,9 +20804,7 @@
           "elements": [
             "EL_EV_p1336_01_1",
             "EL_EV_p1336_01_2",
-            "EL_EV_p1336_01_3",
             "EL_EV_p1336_01_F",
-            "EL_EV_p1336_01_4",
             "EL_EV_p1336_01_5"
           ],
           "correspondences": []
@@ -20727,18 +20927,6 @@
             "to": "EL_EV_p1336_01_2",
             "mechanism": "tension",
             "description": "建武と後醍醐天皇が逆方向に作用し構造的緊張が蓄積された"
-          },
-          {
-            "from": "EL_EV_p1336_01_1",
-            "to": "EL_EV_p1336_01_3",
-            "mechanism": "tension",
-            "description": "制度枠組みと対外圧力が逆方向に作用し構造的緊張が蓄積された"
-          },
-          {
-            "from": "EL_EV_p1336_01_2",
-            "to": "EL_EV_p1336_01_3",
-            "mechanism": "enabling",
-            "description": "制度枠組みが対外圧力の作動前提を形成していた"
           }
         ],
         "summary": "対外環境と制度の促進・緊張が蓄積し事象に至った"
@@ -20789,10 +20977,10 @@
         {
           "elementId": "EL_EV_p1336_02_F",
           "layer": "F",
-          "category": "F-ACT",
-          "subCategory": "F-ACT-01",
-          "label": "武家政治の基本方針として建武式目十七条が制定された",
-          "normalizedLabel": "武家政治の基本方針として建武式目十七条が制定された",
+          "category": "F-CTD",
+          "subCategory": "F-CTD-01",
+          "label": "京都制圧後、武家による新統治の正統性を示す法的根拠の整備が急がれた",
+          "normalizedLabel": "京都制圧後に法的根拠整備が急務",
           "notes": {
             "generated": "fill_fluctuation_labels.py (B要素ベース)"
           }
@@ -20806,9 +20994,7 @@
           "elements": [
             "EL_EV_p1336_02_1",
             "EL_EV_p1336_02_2",
-            "EL_EV_p1336_02_3",
             "EL_EV_p1336_02_F",
-            "EL_EV_p1336_02_4",
             "EL_EV_p1336_02_5"
           ],
           "correspondences": []
@@ -20931,18 +21117,6 @@
             "to": "EL_EV_p1336_02_2",
             "mechanism": "constraint",
             "description": "権力構造が制度枠組みの選択肢を狭め行動を制約していた"
-          },
-          {
-            "from": "EL_EV_p1336_02_1",
-            "to": "EL_EV_p1336_02_3",
-            "mechanism": "tension",
-            "description": "権力構造と対外圧力が逆方向に作用し構造的緊張が蓄積された"
-          },
-          {
-            "from": "EL_EV_p1336_02_2",
-            "to": "EL_EV_p1336_02_3",
-            "mechanism": "enabling",
-            "description": "制度枠組みが対外圧力の作動前提を形成していた"
           }
         ],
         "summary": "対外環境と制度と権力配置の制約・促進・緊張が蓄積し事象に至った"
@@ -21021,7 +21195,6 @@
             "EL_EV_p1336_03_2",
             "EL_EV_p1336_03_3",
             "EL_EV_p1336_03_F",
-            "EL_EV_p1336_03_4",
             "EL_EV_p1336_03_5"
           ],
           "correspondences": []
@@ -21179,7 +21352,11 @@
           "subCategory": "B-PWR-02",
           "label": "尊氏が北朝の光明天皇を擁立し武家政権の正統性を確保している",
           "normalizedLabel": "『足利尊氏が征夷大将軍に任じられた』に至",
-          "notes": []
+          "notes": [],
+          "origin": {
+            "sourceEventId": "EV_p1336_01",
+            "sourceLayer": "E"
+          }
         },
         {
           "elementId": "EL_EV_p1338_01_2",
@@ -21204,8 +21381,8 @@
           "layer": "F",
           "category": "F-ACT",
           "subCategory": "F-ACT-01",
-          "label": "南朝との戦いが続く中で将軍就任による権威の確立が急がれた",
-          "normalizedLabel": "南朝との戦いが続く中で将軍就任による権威の確立が急がれた",
+          "label": "北朝の光明天皇が尊氏の軍功に報いて征夷大将軍を任じた",
+          "normalizedLabel": "光明天皇が尊氏に征夷大将軍を任命",
           "notes": {
             "generated": "fill_fluctuation_labels.py (B要素ベース)"
           }
@@ -21219,9 +21396,7 @@
           "elements": [
             "EL_EV_p1338_01_1",
             "EL_EV_p1338_01_2",
-            "EL_EV_p1338_01_3",
             "EL_EV_p1338_01_F",
-            "EL_EV_p1338_01_4",
             "EL_EV_p1338_01_5"
           ],
           "correspondences": []
@@ -21344,18 +21519,6 @@
             "to": "EL_EV_p1338_01_2",
             "mechanism": "constraint",
             "description": "権力構造が制度枠組みの選択肢を狭め行動を制約していた"
-          },
-          {
-            "from": "EL_EV_p1338_01_1",
-            "to": "EL_EV_p1338_01_3",
-            "mechanism": "enabling",
-            "description": "権力構造が対外圧力の作動前提を形成していた"
-          },
-          {
-            "from": "EL_EV_p1338_01_2",
-            "to": "EL_EV_p1338_01_3",
-            "mechanism": "enabling",
-            "description": "制度枠組みが対外圧力の作動前提を形成していた"
           }
         ],
         "summary": "対外環境と制度と権力配置の制約・促進が蓄積し事象に至った"
@@ -21379,7 +21542,11 @@
           "subCategory": "B-INS-04",
           "label": "将軍足利尊氏と弟の直義が幕政の運営方針をめぐり対立している",
           "normalizedLabel": "『観応の擾乱が起きた』に至るまで",
-          "notes": []
+          "notes": [],
+          "origin": {
+            "sourceEventId": "EV_p1338_01",
+            "sourceLayer": "E"
+          }
         },
         {
           "elementId": "EL_EV_p1351_01_2",
@@ -21430,7 +21597,6 @@
             "EL_EV_p1351_01_2",
             "EL_EV_p1351_01_3",
             "EL_EV_p1351_01_F",
-            "EL_EV_p1351_01_4",
             "EL_EV_p1351_01_5"
           ],
           "correspondences": []
@@ -21588,7 +21754,11 @@
           "subCategory": "B-MIL-01",
           "label": "三代将軍義満が南北朝の統一と幕府権威の確立を推進している",
           "normalizedLabel": "『足利義満が花の御所を造営",
-          "notes": []
+          "notes": [],
+          "origin": {
+            "sourceEventId": "EV_p1351_01",
+            "sourceLayer": "E"
+          }
         },
         {
           "elementId": "EL_EV_p1378_01_2",
@@ -21622,8 +21792,8 @@
           "layer": "F",
           "category": "F-ACT",
           "subCategory": "F-ACT-01",
-          "label": "義満が南北朝合一と守護大名統制に見通しを得、京都に公武統合の拠点を構える政治的基盤が整った",
-          "normalizedLabel": "花の御所（室町殿）が造営され幕府の政庁となっていた",
+          "label": "土岐氏の乱鎮圧により守護大名への優位が確立し、義満が恒久的統治拠点の建設を決断した",
+          "normalizedLabel": "土岐氏鎮圧で義満が統治拠点建設を決断",
           "notes": {
             "generated": "fill_fluctuation_labels.py (B要素ベース)"
           }
@@ -21639,7 +21809,6 @@
             "EL_EV_p1378_01_2",
             "EL_EV_p1378_01_3",
             "EL_EV_p1378_01_F",
-            "EL_EV_p1378_01_4",
             "EL_EV_p1378_01_5"
           ],
           "correspondences": []
@@ -21829,10 +21998,10 @@
         {
           "elementId": "EL_EV_p1392_01_F",
           "layer": "F",
-          "category": "F-ACT",
-          "subCategory": "F-ACT-01",
-          "label": "南朝の後亀山天皇が三種の神器を北朝に譲渡し、義満の仲介で和議が成立した",
-          "normalizedLabel": "南朝の後亀山天皇が三種の神器を北朝の後小松天皇に渡した",
+          "category": "F-CNF",
+          "subCategory": "F-CNF-01",
+          "label": "南朝の軍事力が衰退し、後亀山天皇が両統迭立の条件を受け入れる以外の選択肢を失った",
+          "normalizedLabel": "南朝衰退で後亀山天皇の選択肢消滅",
           "notes": {
             "generated": "fill_fluctuation_labels.py (B要素ベース)"
           }
@@ -21848,7 +22017,6 @@
             "EL_EV_p1392_01_2",
             "EL_EV_p1392_01_3",
             "EL_EV_p1392_01_F",
-            "EL_EV_p1392_01_4",
             "EL_EV_p1392_01_5"
           ],
           "correspondences": []
@@ -22029,10 +22197,10 @@
         {
           "elementId": "EL_EV_p1404_01_F",
           "layer": "F",
-          "category": "F-ACT",
-          "subCategory": "F-ACT-01",
-          "label": "義満が「日本国王」として明の冊封を受けた",
-          "normalizedLabel": "義満が「日本国王」として明の冊封を受けた",
+          "category": "F-EXT",
+          "subCategory": "F-EXT-01",
+          "label": "明が倭寇禁圧の条件として日本国王の冊封と朝貢を求め、義満がこれを受諾した",
+          "normalizedLabel": "明の冊封・朝貢要求を義満が受諾",
           "notes": {
             "generated": "fill_fluctuation_labels.py (B要素ベース)"
           }
@@ -22046,9 +22214,7 @@
           "elements": [
             "EL_EV_p1404_01_1",
             "EL_EV_p1404_01_2",
-            "EL_EV_p1404_01_3",
             "EL_EV_p1404_01_F",
-            "EL_EV_p1404_01_4",
             "EL_EV_p1404_01_5"
           ],
           "correspondences": []
@@ -22171,18 +22337,6 @@
             "to": "EL_EV_p1404_01_2",
             "mechanism": "enabling",
             "description": "対外圧力が制度枠組みの作動前提を形成していた"
-          },
-          {
-            "from": "EL_EV_p1404_01_1",
-            "to": "EL_EV_p1404_01_3",
-            "mechanism": "amplification",
-            "description": "足利義満が義満を強化し危機のエネルギーが増幅された"
-          },
-          {
-            "from": "EL_EV_p1404_01_2",
-            "to": "EL_EV_p1404_01_3",
-            "mechanism": "enabling",
-            "description": "制度枠組みが対外圧力の作動前提を形成していた"
           }
         ],
         "summary": "対外環境と制度の増幅・促進が蓄積し事象に至った"
@@ -22247,7 +22401,6 @@
             "EL_EV_p1428_01_1",
             "EL_EV_p1428_01_2",
             "EL_EV_p1428_01_F",
-            "EL_EV_p1428_01_3",
             "EL_EV_p1428_01_4"
           ],
           "correspondences": []
@@ -22425,7 +22578,6 @@
             "EL_EV_p1438_01_1",
             "EL_EV_p1438_01_2",
             "EL_EV_p1438_01_F",
-            "EL_EV_p1438_01_3",
             "EL_EV_p1438_01_4"
           ],
           "correspondences": []
@@ -22603,7 +22755,6 @@
             "EL_EV_p1441_01_1",
             "EL_EV_p1441_01_2",
             "EL_EV_p1441_01_F",
-            "EL_EV_p1441_01_3",
             "EL_EV_p1441_01_4"
           ],
           "correspondences": []
@@ -22781,7 +22932,6 @@
             "EL_EV_p1454_01_1",
             "EL_EV_p1454_01_2",
             "EL_EV_p1454_01_F",
-            "EL_EV_p1454_01_3",
             "EL_EV_p1454_01_4"
           ],
           "correspondences": []
@@ -22927,7 +23077,11 @@
           "subCategory": "B-MIL-01",
           "label": "畠山氏・斯波氏の家督争いが両陣営の対立に重なっている",
           "normalizedLabel": "統治の調整が追いつかず武力衝突に発展",
-          "notes": []
+          "notes": [],
+          "origin": {
+            "sourceEventId": "EV_p1441_01",
+            "sourceLayer": "E"
+          }
         },
         {
           "elementId": "EL_EV_p1467_01_4",
@@ -22959,7 +23113,6 @@
             "EL_EV_p1467_01_1",
             "EL_EV_p1467_01_2",
             "EL_EV_p1467_01_F",
-            "EL_EV_p1467_01_3",
             "EL_EV_p1467_01_4"
           ],
           "correspondences": []
@@ -23096,7 +23249,11 @@
           "subCategory": "B-RIV-01",
           "label": "長期の戦闘で両陣営とも疲弊し戦意が低下している",
           "normalizedLabel": "応仁をめぐる利害対立が蓄積し",
-          "notes": []
+          "notes": [],
+          "origin": {
+            "sourceEventId": "EV_p1467_01",
+            "sourceLayer": "E"
+          }
         },
         {
           "elementId": "EL_EV_p1477_01_2",
@@ -23137,7 +23294,6 @@
             "EL_EV_p1477_01_1",
             "EL_EV_p1477_01_2",
             "EL_EV_p1477_01_F",
-            "EL_EV_p1477_01_3",
             "EL_EV_p1477_01_4"
           ],
           "correspondences": []
@@ -23315,7 +23471,6 @@
             "EL_EV_p1485_02_1",
             "EL_EV_p1485_02_2",
             "EL_EV_p1485_02_F",
-            "EL_EV_p1485_02_3",
             "EL_EV_p1485_02_4"
           ],
           "correspondences": []
@@ -23493,7 +23648,6 @@
             "EL_EV_p1488_01_1",
             "EL_EV_p1488_01_2",
             "EL_EV_p1488_01_F",
-            "EL_EV_p1488_01_3",
             "EL_EV_p1488_01_4"
           ],
           "correspondences": []
@@ -23655,8 +23809,8 @@
           "layer": "F",
           "category": "F-ACT",
           "subCategory": "F-ACT-01",
-          "label": "足利義材が廃され足利義澄が新将軍に擁立された",
-          "normalizedLabel": "足利義材が廃され足利義澄が新将軍に擁立された",
+          "label": "将軍義材が河内遠征で京都を留守にし、細川政元がクーデターの機会を得た",
+          "normalizedLabel": "義材の京都不在で政元がクーデター機会",
           "notes": {
             "generated": "fill_fluctuation_labels.py (B要素ベース)"
           }
@@ -23670,9 +23824,7 @@
           "elements": [
             "EL_EV_p1493_01_1",
             "EL_EV_p1493_01_2",
-            "EL_EV_p1493_01_3",
             "EL_EV_p1493_01_F",
-            "EL_EV_p1493_01_4",
             "EL_EV_p1493_01_5"
           ],
           "correspondences": []
@@ -23795,18 +23947,6 @@
             "to": "EL_EV_p1493_01_2",
             "mechanism": "tension",
             "description": "管領細川政元と義材が逆方向に作用し構造的緊張が蓄積された"
-          },
-          {
-            "from": "EL_EV_p1493_01_1",
-            "to": "EL_EV_p1493_01_3",
-            "mechanism": "tension",
-            "description": "制度枠組みと対外圧力が逆方向に作用し構造的緊張が蓄積された"
-          },
-          {
-            "from": "EL_EV_p1493_01_2",
-            "to": "EL_EV_p1493_01_3",
-            "mechanism": "enabling",
-            "description": "制度枠組みが対外圧力の作動前提を形成していた"
           }
         ],
         "summary": "対外環境と制度の促進・緊張が蓄積し事象に至った"
@@ -23870,9 +24010,7 @@
           "elements": [
             "EL_EV_p1543_01_1",
             "EL_EV_p1543_01_2",
-            "EL_EV_p1543_01_3",
             "EL_EV_p1543_01_F",
-            "EL_EV_p1543_01_4",
             "EL_EV_p1543_01_5"
           ],
           "correspondences": []
@@ -23995,18 +24133,6 @@
             "to": "EL_EV_p1543_01_2",
             "mechanism": "amplification",
             "description": "軍事基盤が制度枠組みを強化し危機のエネルギーが増幅された"
-          },
-          {
-            "from": "EL_EV_p1543_01_1",
-            "to": "EL_EV_p1543_01_3",
-            "mechanism": "amplification",
-            "description": "軍事基盤が対外圧力を強化し危機のエネルギーが増幅された"
-          },
-          {
-            "from": "EL_EV_p1543_01_2",
-            "to": "EL_EV_p1543_01_3",
-            "mechanism": "enabling",
-            "description": "制度枠組みが対外圧力の作動前提を形成していた"
           }
         ],
         "summary": "対外環境と制度と軍事の増幅・促進が蓄積し事象に至った"
@@ -24064,8 +24190,8 @@
           "layer": "F",
           "category": "F-ACT",
           "subCategory": "F-ACT-01",
-          "label": "南蛮貿易と布教活動が一体的に展開された",
-          "normalizedLabel": "南蛮貿易と布教活動が一体的に展開された",
+          "label": "ザビエルがマラッカで日本人ヤジロウと出会い、日本布教の可能性を確信した",
+          "normalizedLabel": "ザビエルがヤジロウと出会い日本布教を確信",
           "notes": {
             "generated": "fill_fluctuation_labels.py (B要素ベース)"
           }
@@ -24081,7 +24207,6 @@
             "EL_EV_p1549_02_2",
             "EL_EV_p1549_02_3",
             "EL_EV_p1549_02_F",
-            "EL_EV_p1549_02_4",
             "EL_EV_p1549_02_5"
           ],
           "correspondences": []
@@ -24290,7 +24415,6 @@
             "EL_EV_p1555_01_2",
             "EL_EV_p1555_01_3",
             "EL_EV_p1555_01_F",
-            "EL_EV_p1555_01_4",
             "EL_EV_p1555_01_5"
           ],
           "correspondences": []
@@ -24488,9 +24612,7 @@
           "elements": [
             "EL_EV_p1560_01_1",
             "EL_EV_p1560_01_2",
-            "EL_EV_p1560_01_3",
             "EL_EV_p1560_01_F",
-            "EL_EV_p1560_01_4",
             "EL_EV_p1560_01_5"
           ],
           "correspondences": []
@@ -24613,18 +24735,6 @@
             "to": "EL_EV_p1560_01_2",
             "mechanism": "tension",
             "description": "対外圧力と軍事基盤が逆方向に作用し構造的緊張が蓄積された"
-          },
-          {
-            "from": "EL_EV_p1560_01_1",
-            "to": "EL_EV_p1560_01_3",
-            "mechanism": "amplification",
-            "description": "今川義元が信長を強化し危機のエネルギーが増幅された"
-          },
-          {
-            "from": "EL_EV_p1560_01_2",
-            "to": "EL_EV_p1560_01_3",
-            "mechanism": "tension",
-            "description": "軍事基盤と対外圧力が逆方向に作用し構造的緊張が蓄積された"
           }
         ],
         "summary": "対外環境と軍事の増幅・緊張が蓄積し事象に至った"
@@ -24657,7 +24767,11 @@
           "subCategory": "B-INS-04",
           "label": "織田信長が美濃を制圧し畿内進出の軍事力を備えている",
           "normalizedLabel": "制度運用の矛盾や利害対立",
-          "notes": []
+          "notes": [],
+          "origin": {
+            "sourceEventId": "EV_p1560_01",
+            "sourceLayer": "E"
+          }
         },
         {
           "elementId": "EL_EV_p1568_01_5",
@@ -24688,9 +24802,7 @@
           "elements": [
             "EL_EV_p1568_01_1",
             "EL_EV_p1568_01_2",
-            "EL_EV_p1568_01_3",
             "EL_EV_p1568_01_F",
-            "EL_EV_p1568_01_4",
             "EL_EV_p1568_01_5"
           ],
           "correspondences": []
@@ -24813,18 +24925,6 @@
             "to": "EL_EV_p1568_01_2",
             "mechanism": "constraint",
             "description": "権力構造が制度枠組みの選択肢を狭め行動を制約していた"
-          },
-          {
-            "from": "EL_EV_p1568_01_1",
-            "to": "EL_EV_p1568_01_3",
-            "mechanism": "tension",
-            "description": "権力構造と対外圧力が逆方向に作用し構造的緊張が蓄積された"
-          },
-          {
-            "from": "EL_EV_p1568_01_2",
-            "to": "EL_EV_p1568_01_3",
-            "mechanism": "enabling",
-            "description": "制度枠組みが対外圧力の作動前提を形成していた"
           }
         ],
         "summary": "対外環境と制度と権力配置の制約・促進・緊張が蓄積し事象に至った"
@@ -24899,7 +24999,6 @@
             "EL_EV_p1570_01_2",
             "EL_EV_p1570_01_3",
             "EL_EV_p1570_01_F",
-            "EL_EV_p1570_01_4",
             "EL_EV_p1570_01_5"
           ],
           "correspondences": []
@@ -25057,7 +25156,11 @@
           "subCategory": "B-PWR-02",
           "label": "延暦寺が浅井・朝倉に味方し信長の敵対勢力を匿っている",
           "normalizedLabel": "『比叡山延暦寺が焼き討ち",
-          "notes": []
+          "notes": [],
+          "origin": {
+            "sourceEventId": "EV_p1568_01",
+            "sourceLayer": "E"
+          }
         },
         {
           "elementId": "EL_EV_p1571_01_2",
@@ -25097,9 +25200,7 @@
           "elements": [
             "EL_EV_p1571_01_1",
             "EL_EV_p1571_01_2",
-            "EL_EV_p1571_01_3",
             "EL_EV_p1571_01_F",
-            "EL_EV_p1571_01_4",
             "EL_EV_p1571_01_5"
           ],
           "correspondences": []
@@ -25222,18 +25323,6 @@
             "to": "EL_EV_p1571_01_2",
             "mechanism": "tension",
             "description": "権力構造と制度枠組みが逆方向に作用し構造的緊張が蓄積された"
-          },
-          {
-            "from": "EL_EV_p1571_01_1",
-            "to": "EL_EV_p1571_01_3",
-            "mechanism": "tension",
-            "description": "権力構造と対外圧力が逆方向に作用し構造的緊張が蓄積された"
-          },
-          {
-            "from": "EL_EV_p1571_01_2",
-            "to": "EL_EV_p1571_01_3",
-            "mechanism": "enabling",
-            "description": "制度枠組みが対外圧力の作動前提を形成していた"
           }
         ],
         "summary": "対外環境と制度と権力配置の促進・緊張が蓄積し事象に至った"
@@ -25281,9 +25370,9 @@
           "elementId": "EL_EV_p1573_01_F",
           "layer": "F",
           "category": "F-ACT",
-          "subCategory": "F-ACT-01",
-          "label": "信長が義昭を京都から追放した",
-          "normalizedLabel": "信長が義昭を京都から追放した",
+          "subCategory": "F-ACT-02",
+          "label": "武田信玄の死去により信長包囲網が瓦解し、義昭を庇護する軍事勢力が消滅した",
+          "normalizedLabel": "信玄死去で信長包囲網瓦解",
           "notes": {
             "generated": "fill_fluctuation_labels.py (B要素ベース)"
           }
@@ -25297,9 +25386,7 @@
           "elements": [
             "EL_EV_p1573_01_1",
             "EL_EV_p1573_01_2",
-            "EL_EV_p1573_01_3",
             "EL_EV_p1573_01_F",
-            "EL_EV_p1573_01_4",
             "EL_EV_p1573_01_5"
           ],
           "correspondences": []
@@ -25422,18 +25509,6 @@
             "to": "EL_EV_p1573_01_2",
             "mechanism": "enabling",
             "description": "権力構造が制度枠組みの作動前提を形成していた"
-          },
-          {
-            "from": "EL_EV_p1573_01_1",
-            "to": "EL_EV_p1573_01_3",
-            "mechanism": "enabling",
-            "description": "権力構造が対外圧力の作動前提を形成していた"
-          },
-          {
-            "from": "EL_EV_p1573_01_2",
-            "to": "EL_EV_p1573_01_3",
-            "mechanism": "enabling",
-            "description": "制度枠組みが対外圧力の作動前提を形成していた"
           }
         ],
         "summary": "対外環境と制度と権力配置の促進が蓄積し事象に至った"
@@ -25508,7 +25583,6 @@
             "EL_EV_p1575_01_2",
             "EL_EV_p1575_01_3",
             "EL_EV_p1575_01_F",
-            "EL_EV_p1575_01_4",
             "EL_EV_p1575_01_5"
           ],
           "correspondences": []
@@ -25717,7 +25791,6 @@
             "EL_EV_p1576_01_2",
             "EL_EV_p1576_01_3",
             "EL_EV_p1576_01_F",
-            "EL_EV_p1576_01_4",
             "EL_EV_p1576_01_5"
           ],
           "correspondences": []
@@ -25930,7 +26003,6 @@
             "EL_EV_p1582_01_2",
             "EL_EV_p1582_01_3",
             "EL_EV_p1582_01_F",
-            "EL_EV_p1582_01_4",
             "EL_EV_p1582_01_5"
           ],
           "correspondences": []
@@ -26129,7 +26201,6 @@
             "EL_EV_p1582_02_1",
             "EL_EV_p1582_02_2",
             "EL_EV_p1582_02_F",
-            "EL_EV_p1582_02_3",
             "EL_EV_p1582_02_4"
           ],
           "correspondences": []
@@ -26266,7 +26337,11 @@
           "subCategory": "B-EXT-03",
           "label": "信長の後継をめぐり羽柴秀吉と柴田勝家が対立している",
           "normalizedLabel": "賤ヶ岳のをめぐる外交",
-          "notes": []
+          "notes": [],
+          "origin": {
+            "sourceEventId": "EV_p1582_02",
+            "sourceLayer": "E"
+          }
         },
         {
           "elementId": "EL_EV_p1583_01_2",
@@ -26317,7 +26392,6 @@
             "EL_EV_p1583_01_2",
             "EL_EV_p1583_01_3",
             "EL_EV_p1583_01_F",
-            "EL_EV_p1583_01_4",
             "EL_EV_p1583_01_5"
           ],
           "correspondences": []
@@ -26526,7 +26600,6 @@
             "EL_EV_p1584_01_2",
             "EL_EV_p1584_01_3",
             "EL_EV_p1584_01_F",
-            "EL_EV_p1584_01_4",
             "EL_EV_p1584_01_5"
           ],
           "correspondences": []
@@ -26684,7 +26757,11 @@
           "subCategory": "B-MIL-01",
           "label": "武家出身の秀吉には征夷大将軍就任の先例がない",
           "normalizedLabel": "『豊臣秀吉が関白に就任",
-          "notes": []
+          "notes": [],
+          "origin": {
+            "sourceEventId": "EV_p1583_01",
+            "sourceLayer": "E"
+          }
         },
         {
           "elementId": "EL_EV_p1585_01_2",
@@ -26724,9 +26801,7 @@
           "elements": [
             "EL_EV_p1585_01_1",
             "EL_EV_p1585_01_2",
-            "EL_EV_p1585_01_3",
             "EL_EV_p1585_01_F",
-            "EL_EV_p1585_01_4",
             "EL_EV_p1585_01_5"
           ],
           "correspondences": []
@@ -26849,18 +26924,6 @@
             "to": "EL_EV_p1585_01_2",
             "mechanism": "constraint",
             "description": "権力構造が制度枠組みの選択肢を狭め行動を制約していた"
-          },
-          {
-            "from": "EL_EV_p1585_01_1",
-            "to": "EL_EV_p1585_01_3",
-            "mechanism": "tension",
-            "description": "権力構造と対外圧力が逆方向に作用し構造的緊張が蓄積された"
-          },
-          {
-            "from": "EL_EV_p1585_01_2",
-            "to": "EL_EV_p1585_01_3",
-            "mechanism": "enabling",
-            "description": "制度枠組みが対外圧力の作動前提を形成していた"
           }
         ],
         "summary": "対外環境と制度と権力配置の制約・促進・緊張が蓄積し事象に至った"
@@ -26884,7 +26947,11 @@
           "subCategory": "B-PWR-02",
           "label": "関白就任後さらに朝廷内での最高位を目指している",
           "normalizedLabel": "『豊臣秀吉が太政大臣に就任",
-          "notes": []
+          "notes": [],
+          "origin": {
+            "sourceEventId": "EV_p1585_01",
+            "sourceLayer": "E"
+          }
         },
         {
           "elementId": "EL_EV_p1586_01_2",
@@ -26935,7 +27002,6 @@
             "EL_EV_p1586_01_2",
             "EL_EV_p1586_01_3",
             "EL_EV_p1586_01_F",
-            "EL_EV_p1586_01_4",
             "EL_EV_p1586_01_5"
           ],
           "correspondences": []
@@ -27144,7 +27210,6 @@
             "EL_EV_p1587_01_2",
             "EL_EV_p1587_01_3",
             "EL_EV_p1587_01_F",
-            "EL_EV_p1587_01_4",
             "EL_EV_p1587_01_5"
           ],
           "correspondences": []
@@ -27342,9 +27407,7 @@
           "elements": [
             "EL_EV_p1587_02_1",
             "EL_EV_p1587_02_2",
-            "EL_EV_p1587_02_3",
             "EL_EV_p1587_02_F",
-            "EL_EV_p1587_02_4",
             "EL_EV_p1587_02_5"
           ],
           "correspondences": []
@@ -27467,18 +27530,6 @@
             "to": "EL_EV_p1587_02_2",
             "mechanism": "amplification",
             "description": "九州征伐が朝廷とを強化し危機のエネルギーが増幅された"
-          },
-          {
-            "from": "EL_EV_p1587_02_1",
-            "to": "EL_EV_p1587_02_3",
-            "mechanism": "enabling",
-            "description": "制度枠組みが対外圧力の作動前提を形成していた"
-          },
-          {
-            "from": "EL_EV_p1587_02_2",
-            "to": "EL_EV_p1587_02_3",
-            "mechanism": "amplification",
-            "description": "制度枠組みが対外圧力を強化し危機のエネルギーが増幅された"
           }
         ],
         "summary": "対外環境と制度の増幅・促進が蓄積し事象に至った"
@@ -27553,7 +27604,6 @@
             "EL_EV_p1588_01_2",
             "EL_EV_p1588_01_3",
             "EL_EV_p1588_01_F",
-            "EL_EV_p1588_01_4",
             "EL_EV_p1588_01_5"
           ],
           "correspondences": []
@@ -27762,7 +27812,6 @@
             "EL_EV_p1589_01_2",
             "EL_EV_p1589_01_3",
             "EL_EV_p1589_01_F",
-            "EL_EV_p1589_01_4",
             "EL_EV_p1589_01_5"
           ],
           "correspondences": []
@@ -27920,7 +27969,11 @@
           "subCategory": "B-PWR-02",
           "label": "九州・四国の平定が完了し残る抵抗勢力は関東の北条氏のみとなっている",
           "normalizedLabel": "『豊臣秀吉が全国を統一",
-          "notes": []
+          "notes": [],
+          "origin": {
+            "sourceEventId": "EV_p1587_02",
+            "sourceLayer": "E"
+          }
         },
         {
           "elementId": "EL_EV_p1590_01_2",
@@ -27945,8 +27998,8 @@
           "layer": "F",
           "category": "F-ACT",
           "subCategory": "F-ACT-01",
-          "label": "小田原征伐で北条氏が滅亡し、残る独立勢力が抵抗の無意味さを認識した",
-          "normalizedLabel": "東北の大名も秀吉への臣従を表明しつつあった",
+          "label": "秀吉が惣無事令違反を名目に20万の大軍を小田原に動員した",
+          "normalizedLabel": "秀吉が20万の大軍を小田原に動員",
           "notes": {
             "generated": "fill_fluctuation_labels.py (B要素ベース)"
           }
@@ -27960,9 +28013,7 @@
           "elements": [
             "EL_EV_p1590_01_1",
             "EL_EV_p1590_01_2",
-            "EL_EV_p1590_01_3",
             "EL_EV_p1590_01_F",
-            "EL_EV_p1590_01_4",
             "EL_EV_p1590_01_5"
           ],
           "correspondences": []
@@ -28085,18 +28136,6 @@
             "to": "EL_EV_p1590_01_2",
             "mechanism": "tension",
             "description": "権力構造と制度枠組みが逆方向に作用し構造的緊張が蓄積された"
-          },
-          {
-            "from": "EL_EV_p1590_01_1",
-            "to": "EL_EV_p1590_01_3",
-            "mechanism": "tension",
-            "description": "権力構造と対外圧力が逆方向に作用し構造的緊張が蓄積された"
-          },
-          {
-            "from": "EL_EV_p1590_01_2",
-            "to": "EL_EV_p1590_01_3",
-            "mechanism": "enabling",
-            "description": "制度枠組みが対外圧力の作動前提を形成していた"
           }
         ],
         "summary": "対外環境と制度と権力配置の促進・緊張が蓄積し事象に至った"
@@ -28129,7 +28168,11 @@
           "subCategory": "B-RES-01",
           "label": "検地と刀狩により身分固定の基盤が整いつつある",
           "normalizedLabel": "土地統治などの問題が顕在化し",
-          "notes": []
+          "notes": [],
+          "origin": {
+            "sourceEventId": "EV_p1588_01",
+            "sourceLayer": "E"
+          }
         },
         {
           "elementId": "EL_EV_p1591_01_5",
@@ -28159,10 +28202,8 @@
           "label": "因果レーン #1",
           "elements": [
             "EL_EV_p1591_01_1",
-            "EL_EV_p1591_01_2",
             "EL_EV_p1591_01_3",
             "EL_EV_p1591_01_F",
-            "EL_EV_p1591_01_4",
             "EL_EV_p1591_01_5"
           ],
           "correspondences": []
@@ -28282,21 +28323,9 @@
         "relations": [
           {
             "from": "EL_EV_p1591_01_1",
-            "to": "EL_EV_p1591_01_2",
-            "mechanism": "convergence",
-            "description": "武士・農民・商人と朝鮮出兵に向けた兵力が同一の圧力点に収斂していた"
-          },
-          {
-            "from": "EL_EV_p1591_01_1",
             "to": "EL_EV_p1591_01_3",
             "mechanism": "enabling",
             "description": "武士・農民・商人が検地と刀狩により身分固定の作動前提を形成していた"
-          },
-          {
-            "from": "EL_EV_p1591_01_2",
-            "to": "EL_EV_p1591_01_3",
-            "mechanism": "enabling",
-            "description": "朝鮮出兵に向けた兵力が検地と刀狩により身分固定の作動前提を形成していた"
           }
         ],
         "summary": "資源の収斂・促進が蓄積し事象に至った"
@@ -28329,7 +28358,11 @@
           "subCategory": "B-MIL-01",
           "label": "全国統一後の軍事力の向け先として海外遠征が企図されている",
           "normalizedLabel": "対内の軍事衝突が臨界に達し",
-          "notes": []
+          "notes": [],
+          "origin": {
+            "sourceEventId": "EV_p1590_01",
+            "sourceLayer": "E"
+          }
         },
         {
           "elementId": "EL_EV_p1592_01_3",
@@ -28371,7 +28404,6 @@
             "EL_EV_p1592_01_2",
             "EL_EV_p1592_01_3",
             "EL_EV_p1592_01_F",
-            "EL_EV_p1592_01_4",
             "EL_EV_p1592_01_5"
           ],
           "correspondences": []
@@ -28529,7 +28561,11 @@
           "subCategory": "B-EXT-03",
           "label": "文禄の役後の明との講和交渉が決裂している",
           "normalizedLabel": "慶長をめぐる外交",
-          "notes": []
+          "notes": [],
+          "origin": {
+            "sourceEventId": "EV_p1592_01",
+            "sourceLayer": "E"
+          }
         },
         {
           "elementId": "EL_EV_p1597_01_2",
@@ -28580,7 +28616,6 @@
             "EL_EV_p1597_01_2",
             "EL_EV_p1597_01_3",
             "EL_EV_p1597_01_F",
-            "EL_EV_p1597_01_4",
             "EL_EV_p1597_01_5"
           ],
           "correspondences": []
@@ -28789,7 +28824,6 @@
             "EL_EV_p1598_01_2",
             "EL_EV_p1598_01_3",
             "EL_EV_p1598_01_F",
-            "EL_EV_p1598_01_4",
             "EL_EV_p1598_01_5"
           ],
           "correspondences": []
@@ -28947,7 +28981,11 @@
           "subCategory": "B-EXT-03",
           "label": "秀吉死後の政権内部で徳川家康と石田三成の対立が激化している",
           "normalizedLabel": "関ヶ原のをめぐる外交",
-          "notes": []
+          "notes": [],
+          "origin": {
+            "sourceEventId": "EV_p1598_01",
+            "sourceLayer": "E"
+          }
         },
         {
           "elementId": "EL_EV_p1600_01_2",
@@ -28998,7 +29036,6 @@
             "EL_EV_p1600_01_2",
             "EL_EV_p1600_01_3",
             "EL_EV_p1600_01_F",
-            "EL_EV_p1600_01_4",
             "EL_EV_p1600_01_5"
           ],
           "correspondences": []
@@ -29185,8 +29222,8 @@
           "layer": "F",
           "category": "F-ACT",
           "subCategory": "F-ACT-01",
-          "label": "関ヶ原の勝利後、豊臣政権の形式的存続のもとで家康への実権移行が決定的となった",
-          "normalizedLabel": "豊臣政権の形式的存続のもとで実権移行が進んでいた",
+          "label": "家康が源氏長者・征夷大将軍の宣下を朝廷に奏請した",
+          "normalizedLabel": "家康が征夷大将軍宣下を奏請",
           "notes": {
             "generated": "fill_fluctuation_labels.py (B要素ベース)"
           }
@@ -29200,9 +29237,7 @@
           "elements": [
             "EL_EV_p1603_01_1",
             "EL_EV_p1603_01_2",
-            "EL_EV_p1603_01_3",
             "EL_EV_p1603_01_F",
-            "EL_EV_p1603_01_4",
             "EL_EV_p1603_01_5"
           ],
           "correspondences": []
@@ -29325,18 +29360,6 @@
             "to": "EL_EV_p1603_01_2",
             "mechanism": "constraint",
             "description": "権力構造が制度枠組みの選択肢を狭め行動を制約していた"
-          },
-          {
-            "from": "EL_EV_p1603_01_1",
-            "to": "EL_EV_p1603_01_3",
-            "mechanism": "tension",
-            "description": "権力構造と対外圧力が逆方向に作用し構造的緊張が蓄積された"
-          },
-          {
-            "from": "EL_EV_p1603_01_2",
-            "to": "EL_EV_p1603_01_3",
-            "mechanism": "enabling",
-            "description": "制度枠組みが対外圧力の作動前提を形成していた"
           }
         ],
         "summary": "対外環境と制度と権力配置の制約・促進・緊張が蓄積し事象に至った"
@@ -29360,7 +29383,11 @@
           "subCategory": "B-MIL-01",
           "label": "将軍職の世襲を示し徳川氏の政権独占を確立する必要がある",
           "normalizedLabel": "『徳川秀忠が将軍となり家康は大御所として",
-          "notes": []
+          "notes": [],
+          "origin": {
+            "sourceEventId": "EV_p1603_01",
+            "sourceLayer": "E"
+          }
         },
         {
           "elementId": "EL_EV_p1605_01_2",
@@ -29394,8 +29421,8 @@
           "layer": "F",
           "category": "F-ACT",
           "subCategory": "F-ACT-01",
-          "label": "家康が嫡子秀忠に将軍職を譲り、徳川家による世襲の前例を作った",
-          "normalizedLabel": "秀忠は関ヶ原に遅参したが嫡子として正統性を持っていた",
+          "label": "関ヶ原から5年が経過し、豊臣氏が健在なうちに徳川の世襲体制を確立する時間的圧力が高まった",
+          "normalizedLabel": "豊臣健在中の世襲確立に時間的圧力",
           "notes": {
             "generated": "fill_fluctuation_labels.py (B要素ベース)"
           }
@@ -29411,7 +29438,6 @@
             "EL_EV_p1605_01_2",
             "EL_EV_p1605_01_3",
             "EL_EV_p1605_01_F",
-            "EL_EV_p1605_01_4",
             "EL_EV_p1605_01_5"
           ],
           "correspondences": []
@@ -29578,7 +29604,11 @@
           "subCategory": "B-INS-04",
           "label": "方広寺鐘銘事件を口実に家康が豊臣家との対決を決意している",
           "normalizedLabel": "制度運用の矛盾や利害対立",
-          "notes": []
+          "notes": [],
+          "origin": {
+            "sourceEventId": "EV_p1605_01",
+            "sourceLayer": "E"
+          }
         },
         {
           "elementId": "EL_EV_p1614_01_5",
@@ -29609,9 +29639,7 @@
           "elements": [
             "EL_EV_p1614_01_1",
             "EL_EV_p1614_01_2",
-            "EL_EV_p1614_01_3",
             "EL_EV_p1614_01_F",
-            "EL_EV_p1614_01_4",
             "EL_EV_p1614_01_5"
           ],
           "correspondences": []
@@ -29734,18 +29762,6 @@
             "to": "EL_EV_p1614_01_2",
             "mechanism": "convergence",
             "description": "豊臣家と方広寺鐘銘事件が同一の圧力点に収斂していた"
-          },
-          {
-            "from": "EL_EV_p1614_01_1",
-            "to": "EL_EV_p1614_01_3",
-            "mechanism": "enabling",
-            "description": "制度枠組みが対外圧力の作動前提を形成していた"
-          },
-          {
-            "from": "EL_EV_p1614_01_2",
-            "to": "EL_EV_p1614_01_3",
-            "mechanism": "enabling",
-            "description": "制度枠組みが対外圧力の作動前提を形成していた"
           }
         ],
         "summary": "対外環境と制度の収斂・促進が蓄積し事象に至った"
@@ -29820,7 +29836,6 @@
             "EL_EV_p1615_01_2",
             "EL_EV_p1615_01_3",
             "EL_EV_p1615_01_F",
-            "EL_EV_p1615_01_4",
             "EL_EV_p1615_01_5"
           ],
           "correspondences": []
@@ -29978,7 +29993,11 @@
           "subCategory": "B-PWR-02",
           "label": "冬の陣の和議で外堀が埋められ大坂城の防御力が失われた",
           "normalizedLabel": "『大坂夏の陣で豊臣氏が崩壊",
-          "notes": []
+          "notes": [],
+          "origin": {
+            "sourceEventId": "EV_p1614_01",
+            "sourceLayer": "E"
+          }
         },
         {
           "elementId": "EL_EV_p1615_02_2",
@@ -30018,9 +30037,7 @@
           "elements": [
             "EL_EV_p1615_02_1",
             "EL_EV_p1615_02_2",
-            "EL_EV_p1615_02_3",
             "EL_EV_p1615_02_F",
-            "EL_EV_p1615_02_4",
             "EL_EV_p1615_02_5"
           ],
           "correspondences": []
@@ -30143,18 +30160,6 @@
             "to": "EL_EV_p1615_02_2",
             "mechanism": "constraint",
             "description": "権力構造が制度枠組みの選択肢を狭め行動を制約していた"
-          },
-          {
-            "from": "EL_EV_p1615_02_1",
-            "to": "EL_EV_p1615_02_3",
-            "mechanism": "tension",
-            "description": "権力構造と対外圧力が逆方向に作用し構造的緊張が蓄積された"
-          },
-          {
-            "from": "EL_EV_p1615_02_2",
-            "to": "EL_EV_p1615_02_3",
-            "mechanism": "enabling",
-            "description": "制度枠組みが対外圧力の作動前提を形成していた"
           }
         ],
         "summary": "対外環境と制度と権力配置の制約・促進・緊張が蓄積し事象に至った"
@@ -30233,7 +30238,6 @@
             "EL_EV_p1615_03_2",
             "EL_EV_p1615_03_3",
             "EL_EV_p1615_03_F",
-            "EL_EV_p1615_03_4",
             "EL_EV_p1615_03_5"
           ],
           "correspondences": []
@@ -30442,7 +30446,6 @@
             "EL_EV_p1615_04_2",
             "EL_EV_p1615_04_3",
             "EL_EV_p1615_04_F",
-            "EL_EV_p1615_04_4",
             "EL_EV_p1615_04_5"
           ],
           "correspondences": []
@@ -30640,9 +30643,7 @@
           "elements": [
             "EL_EV_p1633_01_1",
             "EL_EV_p1633_01_2",
-            "EL_EV_p1633_01_3",
             "EL_EV_p1633_01_F",
-            "EL_EV_p1633_01_4",
             "EL_EV_p1633_01_5"
           ],
           "correspondences": []
@@ -30765,18 +30766,6 @@
             "to": "EL_EV_p1633_01_2",
             "mechanism": "amplification",
             "description": "キリスト教が海外渡航者を強化し危機のエネルギーが増幅された"
-          },
-          {
-            "from": "EL_EV_p1633_01_1",
-            "to": "EL_EV_p1633_01_3",
-            "mechanism": "amplification",
-            "description": "キリスト教が奉書船以外を強化し危機のエネルギーが増幅された"
-          },
-          {
-            "from": "EL_EV_p1633_01_2",
-            "to": "EL_EV_p1633_01_3",
-            "mechanism": "convergence",
-            "description": "海外渡航者と奉書船以外が同一の圧力点に収斂していた"
           }
         ],
         "summary": "資源の増幅・収斂が蓄積し事象に至った"
@@ -30841,7 +30830,6 @@
             "EL_EV_p1635_02_1",
             "EL_EV_p1635_02_2",
             "EL_EV_p1635_02_F",
-            "EL_EV_p1635_02_3",
             "EL_EV_p1635_02_4"
           ],
           "correspondences": []
@@ -30984,7 +30972,7 @@
           "elementId": "EL_EV_p1637_01_2",
           "layer": "F",
           "category": "F-UNC",
-          "subCategory": "F-UNC-02",
+          "subCategory": "F-UNC-01",
           "label": "飢饉による社会不安が広がり、重税への不満が爆発寸前に達した",
           "normalizedLabel": "飢饉",
           "notes": []
@@ -31006,9 +30994,7 @@
           "label": "因果レーン #1",
           "elements": [
             "EL_EV_p1637_01_1",
-            "EL_EV_p1637_01_3",
             "EL_EV_p1637_01_2",
-            "EL_EV_p1637_01_4",
             "EL_EV_p1637_01_5"
           ],
           "correspondences": []
@@ -31125,14 +31111,7 @@
         "legacyResult": "全員が殺害されキリスト教弾圧と鎖国が一層強化された"
       },
       "accumulation": {
-        "relations": [
-          {
-            "from": "EL_EV_p1637_01_1",
-            "to": "EL_EV_p1637_01_3",
-            "mechanism": "tension",
-            "description": "重い年貢とキリスト教弾圧へと天草四郎が逆方向に作用し構造的緊張が蓄積された"
-          }
-        ],
+        "relations": [],
         "summary": "制度の緊張が蓄積し事象に至った"
       },
       "momentum": "武力による既存秩序への挑戦が顕在化する方向へ",
@@ -31167,7 +31146,11 @@
           "subCategory": "B-INS-04",
           "label": "ポルトガル船は貿易と布教を同一の船員・船舶で行っており、両者を分離した渡航の実例が存在していない",
           "normalizedLabel": "安全保障上の必要",
-          "notes": []
+          "notes": [],
+          "origin": {
+            "sourceEventId": "EV_p1637_01",
+            "sourceLayer": "E"
+          }
         },
         {
           "elementId": "EL_EV_p1639_01_3",
@@ -31209,7 +31192,6 @@
             "EL_EV_p1639_01_2",
             "EL_EV_p1639_01_3",
             "EL_EV_p1639_01_F",
-            "EL_EV_p1639_01_4",
             "EL_EV_p1639_01_5"
           ],
           "correspondences": []
@@ -31385,7 +31367,11 @@
           "subCategory": "B-EXT-03",
           "label": "長崎出島がポルトガル人退去後に空き地となっている",
           "normalizedLabel": "外交",
-          "notes": []
+          "notes": [],
+          "origin": {
+            "sourceEventId": "EV_p1639_01",
+            "sourceLayer": "E"
+          }
         },
         {
           "elementId": "EL_EV_p1641_01_5",
@@ -31401,8 +31387,8 @@
           "layer": "F",
           "category": "F-ACT",
           "subCategory": "F-ACT-01",
-          "label": "ポルトガル人退去で空いた出島にオランダ商館を平戸から強制移転させた",
-          "normalizedLabel": "長崎出島がポルトガル人退去後に空き地となっていた",
+          "label": "ポルトガル人追放により長崎出島が空き、外国人隔離施設の転用先が確保された",
+          "normalizedLabel": "ポルトガル人追放で出島が空き転用可能に",
           "notes": {
             "generated": "fill_fluctuation_labels.py (B要素ベース)"
           }
@@ -31418,7 +31404,6 @@
             "EL_EV_p1641_01_2",
             "EL_EV_p1641_01_3",
             "EL_EV_p1641_01_F",
-            "EL_EV_p1641_01_4",
             "EL_EV_p1641_01_5"
           ],
           "correspondences": []
@@ -31576,7 +31561,11 @@
           "subCategory": "B-RIV-01",
           "label": "大量の浪人が社会不安の要因となっている",
           "normalizedLabel": "慶安をめぐる利害対立が蓄積し",
-          "notes": []
+          "notes": [],
+          "origin": {
+            "sourceEventId": "EV_p1615_02",
+            "sourceLayer": "E"
+          }
         },
         {
           "elementId": "EL_EV_p1651_01_2",
@@ -31617,7 +31606,6 @@
             "EL_EV_p1651_01_1",
             "EL_EV_p1651_01_2",
             "EL_EV_p1651_01_F",
-            "EL_EV_p1651_01_3",
             "EL_EV_p1651_01_4"
           ],
           "correspondences": []
@@ -31740,6 +31728,211 @@
     },
     {
       "version": "2.0",
+      "frameworkViewId": "FW_EV_p1680_01",
+      "eventId": "EV_p1680_01",
+      "primaryEventId": "EV_p1680_01",
+      "title": "徳川綱吉が将軍に就任し文治政治を推進した",
+      "sortKey": 1680,
+      "era": null,
+      "elements": [
+        {
+          "elementId": "EL_EV_p1680_01_1",
+          "layer": "B",
+          "category": "B-PWR",
+          "subCategory": "B-PWR-02",
+          "label": "武断政治の限界が露呈し牢人問題が沈静化した後の統治転換が課題となっている",
+          "normalizedLabel": "武断政治の限界",
+          "notes": []
+        },
+        {
+          "elementId": "EL_EV_p1680_01_2",
+          "layer": "B",
+          "category": "B-NRM",
+          "subCategory": "B-NRM-04",
+          "label": "儒学（朱子学）が幕府の統治理念として浸透し始めている",
+          "normalizedLabel": "儒学振興の潮流",
+          "notes": []
+        },
+        {
+          "elementId": "EL_EV_p1680_01_3",
+          "layer": "B",
+          "category": "B-INS",
+          "subCategory": "B-INS-04",
+          "label": "四代家綱の治世で文治的統治の萌芽が現れている",
+          "normalizedLabel": "文治移行の前兆",
+          "notes": []
+        },
+        {
+          "elementId": "EL_EV_p1680_01_5",
+          "layer": "E",
+          "category": "E-SYS",
+          "subCategory": "E-SYS-04",
+          "label": "文治主義への統治転換",
+          "normalizedLabel": "徳川綱吉が将軍に就任し文治政治を推進した",
+          "notes": []
+        },
+        {
+          "elementId": "EL_EV_p1680_01_F",
+          "layer": "F",
+          "category": "F-CTD",
+          "subCategory": "F-CTD-01",
+          "label": "家綱死去により綱吉が将軍に就任した",
+          "normalizedLabel": "将軍交代により文治路線が本格化した",
+          "notes": {}
+        }
+      ],
+      "lanes": [
+        {
+          "laneId": "LN_1",
+          "laneIndex": 1,
+          "label": "因果レーン #1",
+          "elements": [
+            "EL_EV_p1680_01_1",
+            "EL_EV_p1680_01_2",
+            "EL_EV_p1680_01_3",
+            "EL_EV_p1680_01_F",
+            "EL_EV_p1680_01_5"
+          ],
+          "correspondences": []
+        }
+      ],
+      "meta": {
+        "causeText": "武断政治の限界が露呈し牢人問題も沈静化するなか、儒学振興の潮流と将軍交代が重なり文治主義への転換条件が整った",
+        "resultText": "徳川綱吉が将軍に就任し文治政治を推進した",
+        "causeConfidence": 0.85,
+        "resultConfidence": 0.85,
+        "explicitCause": true,
+        "explicitResult": true,
+        "sortKey": 1680,
+        "notes": [
+          "文治政治のもとで生類憐みの令・湯島聖堂建設などの政策が推進された",
+          "統治原理の転換は進んだが、極端な政策は庶民の不満も招いた"
+        ],
+        "conversion": {
+          "from": "manual_v3_9",
+          "method": "parent_framework_creation"
+        }
+      },
+      "_legacy": {
+        "elements_kind": true,
+        "transitions": [
+          {
+            "transitionId": "TR_EV_p1680_01_1",
+            "type": "parallel",
+            "from": [
+              "EL_EV_p1680_01_1",
+              "EL_EV_p1680_01_2",
+              "EL_EV_p1680_01_3"
+            ],
+            "to": [
+              "EL_EV_p1680_01_4"
+            ]
+          },
+          {
+            "transitionId": "TR_EV_p1680_01_2",
+            "type": "parallel",
+            "from": [
+              "EL_EV_p1680_01_4"
+            ],
+            "to": [
+              "EL_EV_p1680_01_5",
+              "EL_EV_p1680_01_6"
+            ]
+          }
+        ],
+        "catchers": [
+          {
+            "catcherId": "EC_EV_p1680_01_main",
+            "eventRef": {
+              "eventId": "EV_p1680_01",
+              "type": "external"
+            }
+          }
+        ],
+        "mappings": [
+          {
+            "mappingId": "MP_EV_p1680_01_1",
+            "catcherId": "EC_EV_p1680_01_main",
+            "elementId": "EL_EV_p1680_01_1",
+            "linkType": "condition",
+            "confidence": 0.85,
+            "rationale": "武断政治の限界が文治転換の直接条件"
+          },
+          {
+            "mappingId": "MP_EV_p1680_01_2",
+            "catcherId": "EC_EV_p1680_01_main",
+            "elementId": "EL_EV_p1680_01_2",
+            "linkType": "condition",
+            "confidence": 0.85,
+            "rationale": "儒学振興の潮流が文治政治の思想的背景"
+          },
+          {
+            "mappingId": "MP_EV_p1680_01_3",
+            "catcherId": "EC_EV_p1680_01_main",
+            "elementId": "EL_EV_p1680_01_3",
+            "linkType": "condition",
+            "confidence": 0.85,
+            "rationale": "家綱期の文治萌芽が綱吉の路線を準備"
+          },
+          {
+            "mappingId": "MP_EV_p1680_01_4",
+            "catcherId": "EC_EV_p1680_01_main",
+            "elementId": "EL_EV_p1680_01_4",
+            "linkType": "evidence",
+            "confidence": 0.78,
+            "rationale": "将軍就任の主イベント"
+          },
+          {
+            "mappingId": "MP_EV_p1680_01_5",
+            "catcherId": "EC_EV_p1680_01_main",
+            "elementId": "EL_EV_p1680_01_5",
+            "linkType": "result",
+            "confidence": 0.85,
+            "rationale": "文治主義への統治転換が結果"
+          }
+        ],
+        "internalEvents": [],
+        "signature": "order:background-path-result|counts:b3f0p1r1|serial:0|parallel:2|branch:out1in1"
+      },
+      "notes": {
+        "legacyPath": [
+          {
+            "elementId": "EL_EV_p1680_01_4",
+            "category": "P-DES",
+            "subCategory": "P-DES-03",
+            "label": "綱吉が五代将軍に就任し文治政治を推進した"
+          }
+        ],
+        "legacyResult": "武断から文治への統治原理転換が本格化した"
+      },
+      "accumulation": {
+        "relations": [
+          {
+            "from": "EL_EV_p1680_01_1",
+            "to": "EL_EV_p1680_01_2",
+            "mechanism": "enabling",
+            "description": "武断政治の限界が儒学振興への転換を促進していた"
+          },
+          {
+            "from": "EL_EV_p1680_01_1",
+            "to": "EL_EV_p1680_01_3",
+            "mechanism": "enabling",
+            "description": "武断政治の限界が家綱期の文治萌芽を後押ししていた"
+          },
+          {
+            "from": "EL_EV_p1680_01_2",
+            "to": "EL_EV_p1680_01_3",
+            "mechanism": "convergence",
+            "description": "儒学振興と家綱期の文治萌芽が綱吉の文治路線の同一圧力点に収斂していた"
+          }
+        ],
+        "summary": "武断政治の限界と儒学振興と文治萌芽の促進・収斂が蓄積し事象に至った"
+      },
+      "momentum": "武断から文治への統治原理転換の方向へ",
+      "parentFramework": null
+    },
+    {
+      "version": "2.0",
       "frameworkViewId": "FW_EV_p1685_01",
       "eventId": "EV_p1685_01",
       "primaryEventId": "EV_p1685_01",
@@ -31805,7 +31998,6 @@
             "EL_EV_p1685_01_2",
             "EL_EV_p1685_01_3",
             "EL_EV_p1685_01_F",
-            "EL_EV_p1685_01_4",
             "EL_EV_p1685_01_5"
           ],
           "correspondences": []
@@ -31945,7 +32137,10 @@
         "summary": "資源の収斂が蓄積し事象に至った"
       },
       "momentum": "既存制度の実効性が高まる方向へ",
-      "parentFramework": null
+      "parentFramework": {
+        "eventId": "EV_p1680_01",
+        "relationship": "execution_unit"
+      }
     },
     {
       "version": "2.0",
@@ -32014,7 +32209,6 @@
             "EL_EV_p1688_01_2",
             "EL_EV_p1688_01_3",
             "EL_EV_p1688_01_F",
-            "EL_EV_p1688_01_4",
             "EL_EV_p1688_01_5"
           ],
           "correspondences": []
@@ -32223,7 +32417,6 @@
             "EL_EV_p1709_01_2",
             "EL_EV_p1709_01_3",
             "EL_EV_p1709_01_F",
-            "EL_EV_p1709_01_4",
             "EL_EV_p1709_01_5"
           ],
           "correspondences": []
@@ -32432,7 +32625,6 @@
             "EL_EV_p1716_02_2",
             "EL_EV_p1716_02_3",
             "EL_EV_p1716_02_F",
-            "EL_EV_p1716_02_4",
             "EL_EV_p1716_02_5"
           ],
           "correspondences": []
@@ -32630,9 +32822,7 @@
           "elements": [
             "EL_EV_p1720_01_1",
             "EL_EV_p1720_01_2",
-            "EL_EV_p1720_01_3",
             "EL_EV_p1720_01_F",
-            "EL_EV_p1720_01_4",
             "EL_EV_p1720_01_5"
           ],
           "correspondences": []
@@ -32755,25 +32945,13 @@
             "to": "EL_EV_p1720_01_2",
             "mechanism": "constraint",
             "description": "権力構造が制度枠組みの選択肢を狭め行動を制約していた"
-          },
-          {
-            "from": "EL_EV_p1720_01_1",
-            "to": "EL_EV_p1720_01_3",
-            "mechanism": "tension",
-            "description": "権力構造と対外圧力が逆方向に作用し構造的緊張が蓄積された"
-          },
-          {
-            "from": "EL_EV_p1720_01_2",
-            "to": "EL_EV_p1720_01_3",
-            "mechanism": "enabling",
-            "description": "制度枠組みが対外圧力の作動前提を形成していた"
           }
         ],
         "summary": "対外環境と制度と権力配置の制約・促進・緊張が蓄積し事象に至った"
       },
       "momentum": "武力が政治的秩序を規定する方向へ",
       "parentFramework": {
-        "eventId": "EV_p1716_01",
+        "eventId": "EV_p1716_02",
         "relationship": "execution_unit"
       }
     },
@@ -32790,7 +32968,7 @@
           "elementId": "EL_EV_p1732_01_1",
           "layer": "F",
           "category": "F-UNC",
-          "subCategory": "F-UNC-02",
+          "subCategory": "F-UNC-01",
           "label": "西日本でウンカの大発生により稲作が壊滅的被害を受けた",
           "normalizedLabel": "『享保の大飢饉が起きた』に至るまで",
           "notes": []
@@ -32832,7 +33010,6 @@
             "EL_EV_p1732_01_2",
             "EL_EV_p1732_01_3",
             "EL_EV_p1732_01_1",
-            "EL_EV_p1732_01_4",
             "EL_EV_p1732_01_5"
           ],
           "correspondences": []
@@ -33003,8 +33180,8 @@
           "layer": "F",
           "category": "F-ACT",
           "subCategory": "F-ACT-01",
-          "label": "幕府財政の窮乏が限界に達し、農本主義的緊縮策の行き詰まりが明白となった",
-          "normalizedLabel": "田沼意次が側用人から老中に昇進し政策立案の中心となっていた",
+          "label": "10代将軍家治が田沼意次を側用人から老中に抜擢した",
+          "normalizedLabel": "将軍家治が田沼意次を老中に抜擢",
           "notes": {
             "generated": "fill_fluctuation_labels.py (B要素ベース)"
           }
@@ -33018,9 +33195,7 @@
           "elements": [
             "EL_EV_p1772_01_1",
             "EL_EV_p1772_01_2",
-            "EL_EV_p1772_01_3",
             "EL_EV_p1772_01_F",
-            "EL_EV_p1772_01_4",
             "EL_EV_p1772_01_5"
           ],
           "correspondences": []
@@ -33143,18 +33318,6 @@
             "to": "EL_EV_p1772_01_2",
             "mechanism": "constraint",
             "description": "権力構造が制度枠組みの選択肢を狭め行動を制約していた"
-          },
-          {
-            "from": "EL_EV_p1772_01_1",
-            "to": "EL_EV_p1772_01_3",
-            "mechanism": "constraint",
-            "description": "権力構造が対外圧力の選択肢を狭め行動を制約していた"
-          },
-          {
-            "from": "EL_EV_p1772_01_2",
-            "to": "EL_EV_p1772_01_3",
-            "mechanism": "enabling",
-            "description": "制度枠組みが対外圧力の作動前提を形成していた"
           }
         ],
         "summary": "対外環境と制度と権力配置の制約・促進が蓄積し事象に至った"
@@ -33175,7 +33338,7 @@
           "elementId": "EL_EV_p1782_01_1",
           "layer": "F",
           "category": "F-UNC",
-          "subCategory": "F-UNC-02",
+          "subCategory": "F-UNC-01",
           "label": "浅間山の大噴火により日照が減少し冷害が深刻化した",
           "normalizedLabel": "『天明の大飢饉が起きた』に至るまで",
           "notes": []
@@ -33217,7 +33380,6 @@
             "EL_EV_p1782_01_2",
             "EL_EV_p1782_01_3",
             "EL_EV_p1782_01_1",
-            "EL_EV_p1782_01_4",
             "EL_EV_p1782_01_5"
           ],
           "correspondences": []
@@ -33363,7 +33525,11 @@
           "subCategory": "B-RES-01",
           "label": "白河藩主として飢饉対策に成功した実績を持っている",
           "normalizedLabel": "経済",
-          "notes": []
+          "notes": [],
+          "origin": {
+            "sourceEventId": "EV_p1782_01",
+            "sourceLayer": "E"
+          }
         },
         {
           "elementId": "EL_EV_p1787_02_2",
@@ -33418,7 +33584,6 @@
             "EL_EV_p1787_02_2",
             "EL_EV_p1787_02_3",
             "EL_EV_p1787_02_F",
-            "EL_EV_p1787_02_4",
             "EL_EV_p1787_02_5"
           ],
           "correspondences": []
@@ -33601,8 +33766,8 @@
           "layer": "F",
           "category": "F-EXT",
           "subCategory": "F-EXT-01",
-          "label": "鎖国体制下で外国船の来航は重大な外交問題であった",
-          "normalizedLabel": "鎖国体制下で外国船の来航は重大な外交問題であった",
+          "label": "ロシア使節ラクスマンが漂流民大黒屋光太夫を伴い根室に入港した",
+          "normalizedLabel": "ラクスマンが漂流民を伴い根室に入港",
           "notes": {
             "generated": "fill_fluctuation_labels.py (B要素ベース)"
           }
@@ -33616,9 +33781,7 @@
           "elements": [
             "EL_EV_p1792_01_1",
             "EL_EV_p1792_01_2",
-            "EL_EV_p1792_01_3",
             "EL_EV_p1792_01_F",
-            "EL_EV_p1792_01_4",
             "EL_EV_p1792_01_5"
           ],
           "correspondences": []
@@ -33741,18 +33904,6 @@
             "to": "EL_EV_p1792_01_2",
             "mechanism": "constraint",
             "description": "権力構造が制度枠組みの選択肢を狭め行動を制約していた"
-          },
-          {
-            "from": "EL_EV_p1792_01_1",
-            "to": "EL_EV_p1792_01_3",
-            "mechanism": "tension",
-            "description": "権力構造と対外圧力が逆方向に作用し構造的緊張が蓄積された"
-          },
-          {
-            "from": "EL_EV_p1792_01_2",
-            "to": "EL_EV_p1792_01_3",
-            "mechanism": "enabling",
-            "description": "制度枠組みが対外圧力の作動前提を形成していた"
           }
         ],
         "summary": "対外環境と制度と権力配置の制約・促進・緊張が蓄積し事象に至った"
@@ -33776,7 +33927,11 @@
           "subCategory": "B-PWR-02",
           "label": "ラクスマンに交付された入港許可証を持参して来航している",
           "normalizedLabel": "『レザノフが長崎に来航",
-          "notes": []
+          "notes": [],
+          "origin": {
+            "sourceEventId": "EV_p1792_01",
+            "sourceLayer": "E"
+          }
         },
         {
           "elementId": "EL_EV_p1804_01_2",
@@ -33794,7 +33949,11 @@
           "subCategory": "B-EXT-03",
           "label": "ラクスマン来航以来ロシアの南下圧力が継続しており、鎖国体制の「北方の空白」が制度的脆弱性として露呈しつつある",
           "normalizedLabel": "外交",
-          "notes": []
+          "notes": [],
+          "origin": {
+            "sourceEventId": "EV_p1792_01",
+            "sourceLayer": "E"
+          }
         },
         {
           "elementId": "EL_EV_p1804_01_5",
@@ -33827,7 +33986,6 @@
             "EL_EV_p1804_01_2",
             "EL_EV_p1804_01_3",
             "EL_EV_p1804_01_F",
-            "EL_EV_p1804_01_4",
             "EL_EV_p1804_01_5"
           ],
           "correspondences": []
@@ -34036,7 +34194,6 @@
             "EL_EV_p1824_01_2",
             "EL_EV_p1824_01_3",
             "EL_EV_p1824_01_F",
-            "EL_EV_p1824_01_4",
             "EL_EV_p1824_01_5"
           ],
           "correspondences": []
@@ -34194,7 +34351,11 @@
           "subCategory": "B-RES-01",
           "label": "大津浜事件など外国船の来航・上陸が頻発している",
           "normalizedLabel": "経済",
-          "notes": []
+          "notes": [],
+          "origin": {
+            "sourceEventId": "EV_p1824_01",
+            "sourceLayer": "E"
+          }
         },
         {
           "elementId": "EL_EV_p1825_01_2",
@@ -34245,7 +34406,6 @@
             "EL_EV_p1825_01_2",
             "EL_EV_p1825_01_3",
             "EL_EV_p1825_01_F",
-            "EL_EV_p1825_01_4",
             "EL_EV_p1825_01_5"
           ],
           "correspondences": []
@@ -34444,7 +34604,6 @@
             "EL_EV_p1837_01_1",
             "EL_EV_p1837_01_2",
             "EL_EV_p1837_01_F",
-            "EL_EV_p1837_01_3",
             "EL_EV_p1837_01_4"
           ],
           "correspondences": []
@@ -34581,7 +34740,11 @@
           "subCategory": "B-INS-04",
           "label": "モリソン号事件で異国船打払令の問題点が露呈している",
           "normalizedLabel": "『蛮社の獄が起きた』に至るまで",
-          "notes": []
+          "notes": [],
+          "origin": {
+            "sourceEventId": "EV_p1825_01",
+            "sourceLayer": "E"
+          }
         },
         {
           "elementId": "EL_EV_p1839_01_2",
@@ -34621,9 +34784,7 @@
           "elements": [
             "EL_EV_p1839_01_1",
             "EL_EV_p1839_01_2",
-            "EL_EV_p1839_01_3",
             "EL_EV_p1839_01_F",
-            "EL_EV_p1839_01_4",
             "EL_EV_p1839_01_5"
           ],
           "correspondences": []
@@ -34746,18 +34907,6 @@
             "to": "EL_EV_p1839_01_2",
             "mechanism": "convergence",
             "description": "モリソン号事件で異国船打払令と渡辺崋山や高野長英が同一の圧力点に収斂していた"
-          },
-          {
-            "from": "EL_EV_p1839_01_1",
-            "to": "EL_EV_p1839_01_3",
-            "mechanism": "enabling",
-            "description": "制度枠組みが対外圧力の作動前提を形成していた"
-          },
-          {
-            "from": "EL_EV_p1839_01_2",
-            "to": "EL_EV_p1839_01_3",
-            "mechanism": "enabling",
-            "description": "制度枠組みが対外圧力の作動前提を形成していた"
           }
         ],
         "summary": "対外環境と制度の収斂・促進が蓄積し事象に至った"
@@ -34832,7 +34981,6 @@
             "EL_EV_p1841_02_2",
             "EL_EV_p1841_02_3",
             "EL_EV_p1841_02_F",
-            "EL_EV_p1841_02_4",
             "EL_EV_p1841_02_5"
           ],
           "correspondences": []
@@ -35041,7 +35189,6 @@
             "EL_EV_p1853_02_2",
             "EL_EV_p1853_02_3",
             "EL_EV_p1853_02_F",
-            "EL_EV_p1853_02_4",
             "EL_EV_p1853_02_5"
           ],
           "correspondences": []
@@ -35201,7 +35348,7 @@
           "normalizedLabel": "国際環境の圧力",
           "notes": [],
           "origin": {
-            "sourceEventId": "EV_p1853_01",
+            "sourceEventId": "EV_p1853_02",
             "sourceLayer": "E"
           }
         },
@@ -35221,7 +35368,11 @@
           "subCategory": "B-MIL-01",
           "label": "軍事的圧力の前に鎖国維持は不可能と判断されている",
           "normalizedLabel": "貿易条件の変化が迫り",
-          "notes": []
+          "notes": [],
+          "origin": {
+            "sourceEventId": "EV_p1853_02",
+            "sourceLayer": "E"
+          }
         },
         {
           "elementId": "EL_EV_p1854_01_5",
@@ -35254,7 +35405,6 @@
             "EL_EV_p1854_01_2",
             "EL_EV_p1854_01_3",
             "EL_EV_p1854_01_F",
-            "EL_EV_p1854_01_4",
             "EL_EV_p1854_01_5"
           ],
           "correspondences": []
@@ -35412,7 +35562,11 @@
           "subCategory": "B-INS-04",
           "label": "条約勅許問題と将軍継嗣問題で政治対立が激化している",
           "normalizedLabel": "『安政の大獄が始まった』に至るまで",
-          "notes": []
+          "notes": [],
+          "origin": {
+            "sourceEventId": "EV_p1858_02",
+            "sourceLayer": "E"
+          }
         },
         {
           "elementId": "EL_EV_p1858_01_2",
@@ -35452,9 +35606,7 @@
           "elements": [
             "EL_EV_p1858_01_1",
             "EL_EV_p1858_01_2",
-            "EL_EV_p1858_01_3",
             "EL_EV_p1858_01_F",
-            "EL_EV_p1858_01_4",
             "EL_EV_p1858_01_5"
           ],
           "correspondences": []
@@ -35577,18 +35729,6 @@
             "to": "EL_EV_p1858_01_2",
             "mechanism": "tension",
             "description": "条約勅許問題と将軍継嗣問題で政と一橋派と南紀派が逆方向に作用し構造的緊張が蓄積された"
-          },
-          {
-            "from": "EL_EV_p1858_01_1",
-            "to": "EL_EV_p1858_01_3",
-            "mechanism": "tension",
-            "description": "制度枠組みと対外圧力が逆方向に作用し構造的緊張が蓄積された"
-          },
-          {
-            "from": "EL_EV_p1858_01_2",
-            "to": "EL_EV_p1858_01_3",
-            "mechanism": "enabling",
-            "description": "制度枠組みが対外圧力の作動前提を形成していた"
           }
         ],
         "summary": "対外環境と制度の促進・緊張が蓄積し事象に至った"
@@ -35663,7 +35803,6 @@
             "EL_EV_p1858_02_2",
             "EL_EV_p1858_02_3",
             "EL_EV_p1858_02_F",
-            "EL_EV_p1858_02_4",
             "EL_EV_p1858_02_5"
           ],
           "correspondences": []
@@ -35834,7 +35973,11 @@
           "subCategory": "B-MIL-01",
           "label": "水戸藩脱藩浪士が井伊直弼の暗殺を計画している",
           "normalizedLabel": "統治の調整が追いつかず武力衝突に発展",
-          "notes": []
+          "notes": [],
+          "origin": {
+            "sourceEventId": "EV_p1858_01",
+            "sourceLayer": "E"
+          }
         },
         {
           "elementId": "EL_EV_p1860_01_4",
@@ -35866,7 +36009,6 @@
             "EL_EV_p1860_01_1",
             "EL_EV_p1860_01_2",
             "EL_EV_p1860_01_F",
-            "EL_EV_p1860_01_3",
             "EL_EV_p1860_01_4"
           ],
           "correspondences": []
@@ -36003,7 +36145,11 @@
           "subCategory": "B-INS-04",
           "label": "開港により外国人が日本国内を自由に移動するようになっている",
           "normalizedLabel": "『生麦事件が起きた』に至るまで",
-          "notes": []
+          "notes": [],
+          "origin": {
+            "sourceEventId": "EV_p1854_01",
+            "sourceLayer": "E"
+          }
         },
         {
           "elementId": "EL_EV_p1862_01_2",
@@ -36012,7 +36158,11 @@
           "subCategory": "B-INS-04",
           "label": "攘夷思想が高まり外国人への敵意が社会に広がっている",
           "normalizedLabel": "制度運用の矛盾や利害対立",
-          "notes": []
+          "notes": [],
+          "origin": {
+            "sourceEventId": "EV_p1858_02",
+            "sourceLayer": "E"
+          }
         },
         {
           "elementId": "EL_EV_p1862_01_3",
@@ -36054,7 +36204,6 @@
             "EL_EV_p1862_01_2",
             "EL_EV_p1862_01_3",
             "EL_EV_p1862_01_F",
-            "EL_EV_p1862_01_4",
             "EL_EV_p1862_01_5"
           ],
           "correspondences": []
@@ -36257,7 +36406,6 @@
             "EL_EV_p1863_01_1",
             "EL_EV_p1863_01_2",
             "EL_EV_p1863_01_F",
-            "EL_EV_p1863_01_3",
             "EL_EV_p1863_01_4"
           ],
           "correspondences": []
@@ -36435,7 +36583,6 @@
             "EL_EV_p1864_01_1",
             "EL_EV_p1864_01_2",
             "EL_EV_p1864_01_F",
-            "EL_EV_p1864_01_3",
             "EL_EV_p1864_01_4"
           ],
           "correspondences": []
@@ -36572,7 +36719,11 @@
           "subCategory": "B-INS-04",
           "label": "薩摩藩と長州藩がともに幕府への不満を強めている",
           "normalizedLabel": "国際環境の圧力",
-          "notes": []
+          "notes": [],
+          "origin": {
+            "sourceEventId": "EV_p1864_01",
+            "sourceLayer": "E"
+          }
         },
         {
           "elementId": "EL_EV_p1866_02_2",
@@ -36623,7 +36774,6 @@
             "EL_EV_p1866_02_2",
             "EL_EV_p1866_02_3",
             "EL_EV_p1866_02_F",
-            "EL_EV_p1866_02_4",
             "EL_EV_p1866_02_5"
           ],
           "correspondences": []
@@ -36781,7 +36931,11 @@
           "subCategory": "B-INS-04",
           "label": "薩長同盟の成立で武力倒幕の機運が高まっている",
           "normalizedLabel": "『大政奉還が行われた』に至るまで",
-          "notes": []
+          "notes": [],
+          "origin": {
+            "sourceEventId": "EV_p1866_02",
+            "sourceLayer": "E"
+          }
         },
         {
           "elementId": "EL_EV_p1867_01_2",
@@ -36832,7 +36986,6 @@
             "EL_EV_p1867_01_2",
             "EL_EV_p1867_01_3",
             "EL_EV_p1867_01_F",
-            "EL_EV_p1867_01_4",
             "EL_EV_p1867_01_5"
           ],
           "correspondences": []
@@ -37045,7 +37198,6 @@
             "EL_EV_p1867_02_2",
             "EL_EV_p1867_02_3",
             "EL_EV_p1867_02_F",
-            "EL_EV_p1867_02_4",
             "EL_EV_p1867_02_5"
           ],
           "correspondences": []
@@ -37203,7 +37355,11 @@
           "subCategory": "B-PWR-04",
           "label": "版籍奉還後も旧藩主が知藩事として実権を保持している",
           "normalizedLabel": "『廃藩置県が行われた』に至るまで",
-          "notes": []
+          "notes": [],
+          "origin": {
+            "sourceEventId": "EV_p1867_02",
+            "sourceLayer": "E"
+          }
         },
         {
           "elementId": "EL_EV_p1871_01_2",
@@ -37243,9 +37399,7 @@
           "elements": [
             "EL_EV_p1871_01_1",
             "EL_EV_p1871_01_2",
-            "EL_EV_p1871_01_3",
             "EL_EV_p1871_01_F",
-            "EL_EV_p1871_01_4",
             "EL_EV_p1871_01_5"
           ],
           "correspondences": []
@@ -37368,18 +37522,6 @@
             "to": "EL_EV_p1871_01_2",
             "mechanism": "convergence",
             "description": "版籍奉還後も旧藩主と中央集権国家が同一の圧力点に収斂していた"
-          },
-          {
-            "from": "EL_EV_p1871_01_1",
-            "to": "EL_EV_p1871_01_3",
-            "mechanism": "enabling",
-            "description": "制度枠組みが対外圧力の作動前提を形成していた"
-          },
-          {
-            "from": "EL_EV_p1871_01_2",
-            "to": "EL_EV_p1871_01_3",
-            "mechanism": "enabling",
-            "description": "制度枠組みが対外圧力の作動前提を形成していた"
           }
         ],
         "summary": "対外環境と制度の収斂・促進が蓄積し事象に至った"
@@ -37442,10 +37584,8 @@
           "label": "因果レーン #1",
           "elements": [
             "EL_EV_p1873_01_1",
-            "EL_EV_p1873_01_2",
             "EL_EV_p1873_01_3",
             "EL_EV_p1873_01_F",
-            "EL_EV_p1873_01_4",
             "EL_EV_p1873_01_5"
           ],
           "correspondences": []
@@ -37565,21 +37705,9 @@
         "relations": [
           {
             "from": "EL_EV_p1873_01_1",
-            "to": "EL_EV_p1873_01_2",
-            "mechanism": "enabling",
-            "description": "年貢制では政府が近代的な税制の作動前提を形成していた"
-          },
-          {
-            "from": "EL_EV_p1873_01_1",
             "to": "EL_EV_p1873_01_3",
             "mechanism": "enabling",
             "description": "年貢制では政府が土地の作動前提を形成していた"
-          },
-          {
-            "from": "EL_EV_p1873_01_2",
-            "to": "EL_EV_p1873_01_3",
-            "mechanism": "enabling",
-            "description": "近代的な税制が土地の作動前提を形成していた"
           }
         ],
         "summary": "制度の促進が蓄積し事象に至った"
@@ -37654,7 +37782,6 @@
             "EL_EV_p1881_01_2",
             "EL_EV_p1881_01_3",
             "EL_EV_p1881_01_F",
-            "EL_EV_p1881_01_4",
             "EL_EV_p1881_01_5"
           ],
           "correspondences": []
@@ -37867,7 +37994,6 @@
             "EL_EV_p1889_01_2",
             "EL_EV_p1889_01_3",
             "EL_EV_p1889_01_F",
-            "EL_EV_p1889_01_4",
             "EL_EV_p1889_01_5"
           ],
           "correspondences": []
@@ -38069,7 +38195,6 @@
             "EL_EV_p1894_01_1",
             "EL_EV_p1894_01_2",
             "EL_EV_p1894_01_F",
-            "EL_EV_p1894_01_3",
             "EL_EV_p1894_01_4"
           ],
           "correspondences": []
@@ -38257,7 +38382,6 @@
             "EL_EV_p1902_01_2",
             "EL_EV_p1902_01_3",
             "EL_EV_p1902_01_F",
-            "EL_EV_p1902_01_4",
             "EL_EV_p1902_01_5"
           ],
           "correspondences": []
@@ -38424,7 +38548,11 @@
           "subCategory": "B-MIL-01",
           "label": "日英同盟を背景に日本が対露強硬路線をとっている",
           "normalizedLabel": "統治の調整が追いつかず武力衝突に発展",
-          "notes": []
+          "notes": [],
+          "origin": {
+            "sourceEventId": "EV_p1902_01",
+            "sourceLayer": "E"
+          }
         },
         {
           "elementId": "EL_EV_p1904_01_4",
@@ -38456,7 +38584,6 @@
             "EL_EV_p1904_01_1",
             "EL_EV_p1904_01_2",
             "EL_EV_p1904_01_F",
-            "EL_EV_p1904_01_3",
             "EL_EV_p1904_01_4"
           ],
           "correspondences": []
@@ -38648,7 +38775,6 @@
             "EL_EV_p1910_01_2",
             "EL_EV_p1910_01_3",
             "EL_EV_p1910_01_F",
-            "EL_EV_p1910_01_4",
             "EL_EV_p1910_01_5"
           ],
           "correspondences": []
@@ -38815,7 +38941,11 @@
           "subCategory": "B-INS-04",
           "label": "日英同盟を根拠に日本がドイツに宣戦布告している",
           "normalizedLabel": "制度運用の矛盾や利害対立",
-          "notes": []
+          "notes": [],
+          "origin": {
+            "sourceEventId": "EV_p1902_01",
+            "sourceLayer": "E"
+          }
         },
         {
           "elementId": "EL_EV_p1914_01_5",
@@ -38831,8 +38961,8 @@
           "layer": "F",
           "category": "F-EXT",
           "subCategory": "F-EXT-01",
-          "label": "日本は中国のドイツ権益と南洋諸島を占領した",
-          "normalizedLabel": "日本は中国のドイツ権益と南洋諸島を占領した",
+          "label": "サラエボ事件を契機に欧州列強間の戦争が勃発し、日英同盟に基づく参戦要請が生じた",
+          "normalizedLabel": "サラエボ事件で欧州戦争勃発、日英同盟で参戦要請",
           "notes": {
             "generated": "fill_fluctuation_labels.py (B要素ベース)"
           }
@@ -38846,9 +38976,7 @@
           "elements": [
             "EL_EV_p1914_01_1",
             "EL_EV_p1914_01_2",
-            "EL_EV_p1914_01_3",
             "EL_EV_p1914_01_F",
-            "EL_EV_p1914_01_4",
             "EL_EV_p1914_01_5"
           ],
           "correspondences": []
@@ -38971,18 +39099,6 @@
             "to": "EL_EV_p1914_01_2",
             "mechanism": "tension",
             "description": "ヨーロッパと日英同盟が逆方向に作用し構造的緊張が蓄積された"
-          },
-          {
-            "from": "EL_EV_p1914_01_1",
-            "to": "EL_EV_p1914_01_3",
-            "mechanism": "tension",
-            "description": "制度枠組みと対外圧力が逆方向に作用し構造的緊張が蓄積された"
-          },
-          {
-            "from": "EL_EV_p1914_01_2",
-            "to": "EL_EV_p1914_01_3",
-            "mechanism": "enabling",
-            "description": "制度枠組みが対外圧力の作動前提を形成していた"
           }
         ],
         "summary": "対外環境と制度の促進・緊張が蓄積し事象に至った"
@@ -39057,7 +39173,6 @@
             "EL_EV_p1918_01_2",
             "EL_EV_p1918_01_3",
             "EL_EV_p1918_01_F",
-            "EL_EV_p1918_01_4",
             "EL_EV_p1918_01_5"
           ],
           "correspondences": []
@@ -39248,7 +39363,7 @@
           "elementId": "EL_EV_p1923_01_F",
           "layer": "F",
           "category": "F-UNC",
-          "subCategory": "F-UNC-02",
+          "subCategory": "F-UNC-01",
           "label": "1923年9月1日正午、相模湾北部を震源とするM7.9の大地震が発生した",
           "normalizedLabel": "昼食時の火災が被害を拡大させる要因となっていた",
           "notes": {
@@ -39266,7 +39381,6 @@
             "EL_EV_p1923_01_2",
             "EL_EV_p1923_01_3",
             "EL_EV_p1923_01_F",
-            "EL_EV_p1923_01_4",
             "EL_EV_p1923_01_5"
           ],
           "correspondences": []
@@ -39475,7 +39589,6 @@
             "EL_EV_p1925_01_2",
             "EL_EV_p1925_01_3",
             "EL_EV_p1925_01_F",
-            "EL_EV_p1925_01_4",
             "EL_EV_p1925_01_5"
           ],
           "correspondences": []
@@ -39688,7 +39801,6 @@
             "EL_EV_p1925_02_2",
             "EL_EV_p1925_02_3",
             "EL_EV_p1925_02_F",
-            "EL_EV_p1925_02_4",
             "EL_EV_p1925_02_5"
           ],
           "correspondences": []
@@ -39864,7 +39976,11 @@
           "subCategory": "B-EXT-03",
           "label": "1920年代を通じて中国国民政府の権限拡大と鉄道回収運動が進み、満鉄沿線での日本の経済的・行政的優位が段階的に縮小している",
           "normalizedLabel": "外交",
-          "notes": []
+          "notes": [],
+          "origin": {
+            "sourceEventId": "EV_p1910_01",
+            "sourceLayer": "E"
+          }
         },
         {
           "elementId": "EL_EV_p1931_01_5",
@@ -39897,7 +40013,6 @@
             "EL_EV_p1931_01_2",
             "EL_EV_p1931_01_3",
             "EL_EV_p1931_01_F",
-            "EL_EV_p1931_01_4",
             "EL_EV_p1931_01_5"
           ],
           "correspondences": []
@@ -40055,7 +40170,11 @@
           "subCategory": "B-PWR-02",
           "label": "リットン調査団が満州国の独立を否定する報告書を提出している",
           "normalizedLabel": "『日本が国際連盟を脱退",
-          "notes": []
+          "notes": [],
+          "origin": {
+            "sourceEventId": "EV_p1931_01",
+            "sourceLayer": "E"
+          }
         },
         {
           "elementId": "EL_EV_p1933_01_2",
@@ -40064,7 +40183,11 @@
           "subCategory": "B-INS-04",
           "label": "国際連盟総会で満州国不承認決議が採択されている",
           "normalizedLabel": "制度運用の矛盾や利害対立",
-          "notes": []
+          "notes": [],
+          "origin": {
+            "sourceEventId": "EV_p1931_01",
+            "sourceLayer": "E"
+          }
         },
         {
           "elementId": "EL_EV_p1933_01_3",
@@ -40106,7 +40229,6 @@
             "EL_EV_p1933_01_2",
             "EL_EV_p1933_01_3",
             "EL_EV_p1933_01_F",
-            "EL_EV_p1933_01_4",
             "EL_EV_p1933_01_5"
           ],
           "correspondences": []
@@ -40264,7 +40386,11 @@
           "subCategory": "B-MIL-01",
           "label": "華北への日本軍の進出と中国の抗日運動が衝突している",
           "normalizedLabel": "日中をめぐる利害対立が蓄積し",
-          "notes": []
+          "notes": [],
+          "origin": {
+            "sourceEventId": "EV_p1931_01",
+            "sourceLayer": "E"
+          }
         },
         {
           "elementId": "EL_EV_p1937_01_2",
@@ -40305,7 +40431,6 @@
             "EL_EV_p1937_01_1",
             "EL_EV_p1937_01_2",
             "EL_EV_p1937_01_F",
-            "EL_EV_p1937_01_3",
             "EL_EV_p1937_01_4"
           ],
           "correspondences": []
@@ -40442,7 +40567,11 @@
           "subCategory": "B-INS-04",
           "label": "日中戦争の長期化でアメリカとの関係が悪化している",
           "normalizedLabel": "国際環境の圧力",
-          "notes": []
+          "notes": [],
+          "origin": {
+            "sourceEventId": "EV_p1937_01",
+            "sourceLayer": "E"
+          }
         },
         {
           "elementId": "EL_EV_p1940_01_2",
@@ -40493,7 +40622,6 @@
             "EL_EV_p1940_01_2",
             "EL_EV_p1940_01_3",
             "EL_EV_p1940_01_F",
-            "EL_EV_p1940_01_4",
             "EL_EV_p1940_01_5"
           ],
           "correspondences": []
@@ -40660,7 +40788,11 @@
           "subCategory": "B-MIL-01",
           "label": "石油禁輸措置により日本の戦争遂行能力が限界に達している",
           "normalizedLabel": "統治の調整が追いつかず武力衝突に発展",
-          "notes": []
+          "notes": [],
+          "origin": {
+            "sourceEventId": "EV_p1940_01",
+            "sourceLayer": "E"
+          }
         },
         {
           "elementId": "EL_EV_p1941_01_4",
@@ -40692,7 +40824,6 @@
             "EL_EV_p1941_01_1",
             "EL_EV_p1941_01_2",
             "EL_EV_p1941_01_F",
-            "EL_EV_p1941_01_3",
             "EL_EV_p1941_01_4"
           ],
           "correspondences": []
@@ -40829,7 +40960,11 @@
           "subCategory": "B-INS-04",
           "label": "ポツダム宣言の受諾により日本は連合国に降伏している",
           "normalizedLabel": "『ghqによる占領が始まった』に至るまで",
-          "notes": []
+          "notes": [],
+          "origin": {
+            "sourceEventId": "EV_p1945_02",
+            "sourceLayer": "E"
+          }
         },
         {
           "elementId": "EL_EV_p1945_01_2",
@@ -40854,8 +40989,8 @@
           "layer": "F",
           "category": "F-EXT",
           "subCategory": "F-EXT-01",
-          "label": "民主化と非軍事化が占領政策の基本方針として示された",
-          "normalizedLabel": "民主化と非軍事化が占領政策の基本方針として示された",
+          "label": "マッカーサーが連合国軍最高司令官として厚木に到着し、日本政府に占領方針を通告した",
+          "normalizedLabel": "マッカーサー到着と占領方針通告",
           "notes": {
             "generated": "fill_fluctuation_labels.py (B要素ベース)"
           }
@@ -40869,9 +41004,7 @@
           "elements": [
             "EL_EV_p1945_01_1",
             "EL_EV_p1945_01_2",
-            "EL_EV_p1945_01_3",
             "EL_EV_p1945_01_F",
-            "EL_EV_p1945_01_4",
             "EL_EV_p1945_01_5"
           ],
           "correspondences": []
@@ -40994,18 +41127,6 @@
             "to": "EL_EV_p1945_01_2",
             "mechanism": "convergence",
             "description": "ポツダム宣言とマッカーサーが同一の圧力点に収斂していた"
-          },
-          {
-            "from": "EL_EV_p1945_01_1",
-            "to": "EL_EV_p1945_01_3",
-            "mechanism": "enabling",
-            "description": "制度枠組みが対外圧力の作動前提を形成していた"
-          },
-          {
-            "from": "EL_EV_p1945_01_2",
-            "to": "EL_EV_p1945_01_3",
-            "mechanism": "enabling",
-            "description": "制度枠組みが対外圧力の作動前提を形成していた"
           }
         ],
         "summary": "対外環境と制度の収斂・促進が蓄積し事象に至った"
@@ -41080,7 +41201,6 @@
             "EL_EV_p1945_02_2",
             "EL_EV_p1945_02_3",
             "EL_EV_p1945_02_F",
-            "EL_EV_p1945_02_4",
             "EL_EV_p1945_02_5"
           ],
           "correspondences": []
@@ -41238,7 +41358,11 @@
           "subCategory": "B-INS-04",
           "label": "GHQが大日本帝国憲法の全面改正を指示している",
           "normalizedLabel": "既存運用の矛盾や危機対応の必要",
-          "notes": []
+          "notes": [],
+          "origin": {
+            "sourceEventId": "EV_p1945_01",
+            "sourceLayer": "E"
+          }
         },
         {
           "elementId": "EL_EV_p1946_01_2",
@@ -41289,7 +41413,6 @@
             "EL_EV_p1946_01_2",
             "EL_EV_p1946_01_3",
             "EL_EV_p1946_01_F",
-            "EL_EV_p1946_01_4",
             "EL_EV_p1946_01_5"
           ],
           "correspondences": []
@@ -41502,7 +41625,6 @@
             "EL_EV_p1947_01_2",
             "EL_EV_p1947_01_3",
             "EL_EV_p1947_01_F",
-            "EL_EV_p1947_01_4",
             "EL_EV_p1947_01_5"
           ],
           "correspondences": []
@@ -41711,7 +41833,6 @@
             "EL_EV_p1951_01_2",
             "EL_EV_p1951_01_3",
             "EL_EV_p1951_01_F",
-            "EL_EV_p1951_01_4",
             "EL_EV_p1951_01_5"
           ],
           "correspondences": []
@@ -41869,7 +41990,11 @@
           "subCategory": "B-INS-04",
           "label": "サンフランシスコ平和条約が1952年4月28日に発効している",
           "normalizedLabel": "サンフランシスコ平和条約の発効により占領",
-          "notes": []
+          "notes": [],
+          "origin": {
+            "sourceEventId": "EV_p1951_01",
+            "sourceLayer": "E"
+          }
         },
         {
           "elementId": "EL_EV_p1952_02_2",
@@ -41878,7 +42003,11 @@
           "subCategory": "B-INS-04",
           "label": "GHQが廃止され占領が終了している",
           "normalizedLabel": "国際社会への復帰と主権回復が実現",
-          "notes": []
+          "notes": [],
+          "origin": {
+            "sourceEventId": "EV_p1951_01",
+            "sourceLayer": "E"
+          }
         },
         {
           "elementId": "EL_EV_p1952_02_4",
@@ -41910,7 +42039,6 @@
             "EL_EV_p1952_02_1",
             "EL_EV_p1952_02_2",
             "EL_EV_p1952_02_F",
-            "EL_EV_p1952_02_3",
             "EL_EV_p1952_02_4"
           ],
           "correspondences": []
@@ -42047,7 +42175,11 @@
           "subCategory": "B-MIL-01",
           "label": "主権回復後の安全保障の空白を埋め",
           "normalizedLabel": "主権回復後の安全保障の空白を埋め",
-          "notes": []
+          "notes": [],
+          "origin": {
+            "sourceEventId": "EV_p1952_02",
+            "sourceLayer": "E"
+          }
         },
         {
           "elementId": "EL_EV_p1952_03_2",
@@ -42088,7 +42220,6 @@
             "EL_EV_p1952_03_1",
             "EL_EV_p1952_03_2",
             "EL_EV_p1952_03_F",
-            "EL_EV_p1952_03_3",
             "EL_EV_p1952_03_4"
           ],
           "correspondences": []
@@ -42276,7 +42407,6 @@
             "EL_EV_p1964_01_2",
             "EL_EV_p1964_01_3",
             "EL_EV_p1964_01_F",
-            "EL_EV_p1964_01_4",
             "EL_EV_p1964_01_5"
           ],
           "correspondences": []
@@ -42474,9 +42604,7 @@
           "elements": [
             "EL_EV_p1972_01_1",
             "EL_EV_p1972_01_2",
-            "EL_EV_p1972_01_3",
             "EL_EV_p1972_01_F",
-            "EL_EV_p1972_01_4",
             "EL_EV_p1972_01_5"
           ],
           "correspondences": []
@@ -42599,18 +42727,6 @@
             "to": "EL_EV_p1972_01_2",
             "mechanism": "amplification",
             "description": "権力構造が制度枠組みを強化し危機のエネルギーが増幅された"
-          },
-          {
-            "from": "EL_EV_p1972_01_1",
-            "to": "EL_EV_p1972_01_3",
-            "mechanism": "tension",
-            "description": "権力構造と対外圧力が逆方向に作用し構造的緊張が蓄積された"
-          },
-          {
-            "from": "EL_EV_p1972_01_2",
-            "to": "EL_EV_p1972_01_3",
-            "mechanism": "amplification",
-            "description": "制度枠組みが対外圧力を強化し危機のエネルギーが増幅された"
           }
         ],
         "summary": "対外環境と制度と権力配置の増幅・緊張が蓄積し事象に至った"
@@ -42685,7 +42801,6 @@
             "EL_EV_p1985_01_2",
             "EL_EV_p1985_01_3",
             "EL_EV_p1985_01_F",
-            "EL_EV_p1985_01_4",
             "EL_EV_p1985_01_5"
           ],
           "correspondences": []
@@ -42894,7 +43009,6 @@
             "EL_EV_p1989_01_2",
             "EL_EV_p1989_01_3",
             "EL_EV_p1989_01_F",
-            "EL_EV_p1989_01_4",
             "EL_EV_p1989_01_5"
           ],
           "correspondences": []
@@ -43085,7 +43199,7 @@
           "elementId": "EL_EV_p1995_01_F",
           "layer": "F",
           "category": "F-UNC",
-          "subCategory": "F-UNC-02",
+          "subCategory": "F-UNC-01",
           "label": "1995年1月17日未明、淡路島北部を震源とするM7.3の直下型地震が発生した",
           "normalizedLabel": "初動対応の遅れが被害拡大の要因となっていた",
           "notes": {
@@ -43103,7 +43217,6 @@
             "EL_EV_p1995_01_2",
             "EL_EV_p1995_01_3",
             "EL_EV_p1995_01_F",
-            "EL_EV_p1995_01_4",
             "EL_EV_p1995_01_5"
           ],
           "correspondences": []
@@ -43294,7 +43407,7 @@
           "elementId": "EL_EV_p2011_01_F",
           "layer": "F",
           "category": "F-UNC",
-          "subCategory": "F-UNC-02",
+          "subCategory": "F-UNC-01",
           "label": "2011年3月11日、三陸沖を震源とするM9.0の巨大地震と大津波が発生した",
           "normalizedLabel": "想定を超える巨大津波が沿岸部を襲っていた",
           "notes": {
@@ -43312,7 +43425,6 @@
             "EL_EV_p2011_01_2",
             "EL_EV_p2011_01_3",
             "EL_EV_p2011_01_F",
-            "EL_EV_p2011_01_4",
             "EL_EV_p2011_01_5"
           ],
           "correspondences": []
@@ -43509,7 +43621,6 @@
             "EL_EV_p2019_01_2",
             "EL_EV_p2019_01_3",
             "EL_EV_p2019_01_1",
-            "EL_EV_p2019_01_4",
             "EL_EV_p2019_01_5"
           ],
           "correspondences": []

@@ -1,6 +1,6 @@
 {
   "version": "3.8",
-  "sourceSpecification": "myHistory Framework Specification v1.0",
+  "sourceSpecification": "myHistory Framework Specification v3.8",
   "notes": [
     "v3.0 BFE移行: C→B, P削除, R→E。",
     "v3.4 F層カテゴリ再設計: F-CNF/F-CTD/F-ACT/F-EXT/F-PRG追加。",
@@ -168,9 +168,8 @@
           "shortCode": "UNC",
           "name": "揺らぎ（危機・不確実性）",
           "subCategories": {
-            "F-UNC-00": "（揺らぎ未設定）",
-            "F-UNC-02": "災害発生",
-            "F-UNC-04": "経済不安"
+            "F-UNC-01": "災害発生",
+            "F-UNC-02": "経済不安"
           }
         }
       }
