@@ -52,20 +52,20 @@ body{font-family:var(--ff);font-size:13px;color:#222;background:#f8f8fa;overflow
 .fn-偶発連鎖{background:#fff7ed;border-color:#fdba74}.fn-偶発連鎖 .fname-tag{background:#ea580c;color:#fff}
 
 /* frame params */
-.param{display:flex;align-items:flex-start;gap:4px;margin:2px 0}
-.param-role{font-size:9px;font-weight:700;color:#666;min-width:52px;text-align:right;padding-top:1px;flex-shrink:0;font-family:var(--mono)}
-.param-val{font-size:10.5px;line-height:1.4;color:#333}
+/* params grid layout */
+.params-grid{display:grid;grid-template-columns:42px 1fr;gap:2px 8px;align-items:baseline}
+.param-role{font-size:9.5px;font-weight:700;color:#666;text-align:right;font-family:var(--mono);white-space:nowrap;padding-top:2px}
+.param-val{font-size:10.5px;line-height:1.45;color:#333}
 
 /* bname nested */
-.bname-box{display:inline-flex;align-items:center;gap:4px;padding:1px 6px;border-radius:3px;background:rgba(0,0,0,.05);border:1px solid rgba(0,0,0,.08);font-size:9.5px;cursor:pointer;transition:background .12s}
+.bname-box{display:inline-flex;align-items:center;gap:4px;padding:2px 7px;border-radius:3px;background:rgba(0,0,0,.05);border:1px solid rgba(0,0,0,.08);font-size:9.5px;cursor:pointer;transition:background .12s}
 .bname-box:hover{background:rgba(0,0,0,.1)}
 .bname-tag{font-weight:700;color:#555}
-.bname-refs{color:#888;font-family:var(--mono);font-size:8.5px}
-.bname-label{color:#555;max-width:260px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.bname-refs{color:#888;font-size:8.5px}
+.bg-desc{font-size:9.5px;color:#666;margin-top:2px;line-height:1.35}
 
 /* result */
-.result-row{display:flex;align-items:center;gap:4px;margin-top:3px;padding-top:3px;border-top:1px dashed rgba(0,0,0,.1)}
-.result-role{font-size:9px;font-weight:700;color:#888;font-family:var(--mono)}
+.result-role{font-size:9.5px;font-weight:700;color:#888;font-family:var(--mono);text-align:right;white-space:nowrap}
 .result-val{font-size:10.5px;color:#333;font-weight:600}
 
 /* bg lane */
@@ -256,39 +256,32 @@ EVENTS.forEach((ev, ri) => {
   const frame = document.createElement('div');
   frame.className = `frame fn-${ev.fname}`;
 
-  // Header: Fname tag + signature
+  // Header: Fname tag + concrete summary
   const head = document.createElement('div');
   head.className = 'frame-head';
-  head.innerHTML = `<span class="fname-tag">${ev.fname}</span><span class="frame-sig">${ev.fname}(${ev.bgRole}, ${ev.textRole}): ${ev.resultRole}</span>`;
+  const bgShort = ev.bgRefs.map(id => BGS[id]?.label || id).join('+');
+  head.innerHTML = `<span class="fname-tag">${ev.fname}</span><span class="frame-sig">${ev.bname}(${bgShort})</span>`;
   frame.appendChild(head);
 
-  // Param 1: Bname (nested)
-  const p1 = document.createElement('div');
-  p1.className = 'param';
+  // Params grid: unified labels 条件/契機/帰結
   const refLabels = ev.bgRefs.map(id => BGS[id]?.label || id).join(', ');
-  p1.innerHTML = `<span class="param-role">${ev.bgRole}:</span>
+  const grid = document.createElement('div');
+  grid.className = 'params-grid';
+  grid.innerHTML = `
+    <span class="param-role">条件:</span>
     <span class="param-val">
       <span class="bname-box" data-ri="${ri}" data-bgrefs='${JSON.stringify(ev.bgRefs)}'>
         <span class="bname-tag">${ev.bname}</span>
-        <span class="bname-refs">[${ev.bgRefs.join(', ')}]</span>
+        <span class="bname-refs">(${refLabels})</span>
       </span>
-      <br><span style="font-size:9.5px;color:#666">${ev.bgLabel}</span>
-    </span>`;
-  frame.appendChild(p1);
-
-  // Param 2: Text
-  if (ev.textValue) {
-    const p2 = document.createElement('div');
-    p2.className = 'param';
-    p2.innerHTML = `<span class="param-role">${ev.textRole}:</span><span class="param-val">${ev.textValue}</span>`;
-    frame.appendChild(p2);
-  }
-
-  // Result
-  const res = document.createElement('div');
-  res.className = 'result-row';
-  res.innerHTML = `<span class="result-role">${ev.resultRole}:</span><span class="result-val">${ev.resultLabel}</span>`;
-  frame.appendChild(res);
+      <div class="bg-desc">${ev.bgLabel}</div>
+    </span>
+    <span class="param-role">契機:</span>
+    <span class="param-val">${ev.textValue || '—'}</span>
+    <span class="result-role">帰結:</span>
+    <span class="result-val">${ev.resultLabel}</span>
+  `;
+  frame.appendChild(grid);
 
   frR.appendChild(frame);
   frLane.appendChild(frR);
@@ -391,12 +384,12 @@ function onEventClick(ri) {
   // Inspector
   const insp = document.getElementById('insp');
   document.getElementById('inspTitle').textContent = ev.fname + ': ' + ev.title;
+  const refLabelsInsp = ev.bgRefs.map(id => BGS[id]?.label + ' [' + id + ']').join(', ');
   let html = `<div class="fd"><span class="fl">Frame</span><br>
-    <span class="fv" style="font-family:var(--mono);font-size:11px">${ev.fname}(${ev.bgRole}: <strong>${ev.bname}</strong>, ${ev.textRole}): ${ev.resultRole}</span></div>`;
-  html += `<div class="fd"><span class="fl">${ev.bgRole} (${ev.bname})</span><br><span class="fv">${ev.bgLabel}</span>`;
-  html += `<br><span style="font-size:10px;color:#888">BG refs: ${ev.bgRefs.map(id => BGS[id]?.label + ' [' + id + ']').join(', ')}</span></div>`;
-  html += `<div class="fd"><span class="fl">${ev.textRole}</span><br><span class="fv">${ev.textValue}</span></div>`;
-  html += `<div class="fd"><span class="fl">${ev.resultRole}</span><br><span class="fv" style="font-weight:600">${ev.resultLabel}</span></div>`;
+    <span class="fv" style="font-family:var(--mono);font-size:11px">${ev.fname} / ${ev.bname}(${refLabelsInsp})</span></div>`;
+  html += `<div class="fd"><span class="fl">条件</span><br><span class="fv">${ev.bgLabel}</span></div>`;
+  html += `<div class="fd"><span class="fl">契機</span><br><span class="fv">${ev.textValue}</span></div>`;
+  html += `<div class="fd"><span class="fl">帰結</span><br><span class="fv" style="font-weight:600">${ev.resultLabel}</span></div>`;
   html += `<div class="fd"><span class="fl">eGenerates</span><ul style="list-style:none;padding:0;margin:4px 0">`;
   ev.eGenerates.forEach(eg => {
     const bg = BGS[eg.bg];
