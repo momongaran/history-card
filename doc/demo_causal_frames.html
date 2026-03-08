@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>myHistory - Composable Causal Frames v4</title>
+<style>
+:root {
+  --ff: system-ui, -apple-system, "Segoe UI", Roboto, "Hiragino Kaku Gothic ProN", "Noto Sans JP", sans-serif;
+  --mono: "SF Mono", "Menlo", "Consolas", monospace;
+  --row-h: 160px;
+  --ev-w: 160px;
+  --fr-w: 480px;
+}
+*{box-sizing:border-box}
+html,body{height:100%;margin:0}
+body{font-family:var(--ff);font-size:13px;color:#222;background:#f8f8fa;overflow:hidden}
+.app{height:100%;display:grid;grid-template-rows:auto 1fr 36px}
+
+/* header */
+.hdr{display:grid;grid-template-columns:var(--ev-w) var(--fr-w) 1fr;border-bottom:2px solid #ddd;background:#fff}
+.hdr-c{padding:10px 14px;font-size:10px;font-weight:700;color:#777;letter-spacing:.8px;text-transform:uppercase;border-right:1px solid #eee}
+.hdr-c:last-child{border-right:none}
+
+/* main */
+.main{display:grid;grid-template-columns:var(--ev-w) var(--fr-w) 1fr;overflow-y:auto;overflow-x:hidden;background:#fff}
+
+/* event lane */
+.ev-lane{border-right:1px solid #e8e8e8}
+.ev-row{height:var(--row-h);padding:10px 10px;border-bottom:1px solid #f0f0f0;display:flex;flex-direction:column;justify-content:center;gap:2px;cursor:pointer;transition:background .15s}
+.ev-row:hover{background:#fafafa}
+.ev-row.hl{background:#fffde8;border-left:3px solid #c4a700}
+.yr{font-size:12px;font-weight:700;color:#999;font-variant-numeric:tabular-nums}
+.ev-t{font-size:12px;line-height:1.45;color:#333}
+
+/* frame lane */
+.fr-lane{border-right:1px solid #e8e8e8}
+.fr-row{height:var(--row-h);padding:8px 10px;border-bottom:1px solid #f0f0f0;display:flex;flex-direction:column;justify-content:center;gap:4px}
+
+/* frame box */
+.frame{border-radius:6px;padding:6px 10px;position:relative;border:1px solid rgba(0,0,0,.1)}
+.frame-head{display:flex;align-items:center;gap:6px;margin-bottom:4px}
+.fname-tag{font-size:10px;font-weight:800;padding:2px 6px;border-radius:3px;letter-spacing:.3px;white-space:nowrap}
+.frame-sig{font-size:9px;color:#888;font-family:var(--mono)}
+
+/* fname colors */
+.fn-圧力解放{background:#fef2f2;border-color:#fca5a5}.fn-圧力解放 .fname-tag{background:#dc2626;color:#fff}
+.fn-主体的行為{background:#f0fdf4;border-color:#86efac}.fn-主体的行為 .fname-tag{background:#16a34a;color:#fff}
+.fn-外生衝撃{background:#fefce8;border-color:#fde047}.fn-外生衝撃 .fname-tag{background:#ca8a04;color:#fff}
+.fn-矛盾露呈{background:#faf5ff;border-color:#d8b4fe}.fn-矛盾露呈 .fname-tag{background:#9333ea;color:#fff}
+.fn-権力移行{background:#f0f9ff;border-color:#7dd3fc}.fn-権力移行 .fname-tag{background:#0284c7;color:#fff}
+.fn-偶発連鎖{background:#fff7ed;border-color:#fdba74}.fn-偶発連鎖 .fname-tag{background:#ea580c;color:#fff}
+
+/* frame params */
+.param{display:flex;align-items:flex-start;gap:4px;margin:2px 0}
+.param-role{font-size:9px;font-weight:700;color:#666;min-width:52px;text-align:right;padding-top:1px;flex-shrink:0;font-family:var(--mono)}
+.param-val{font-size:10.5px;line-height:1.4;color:#333}
+
+/* bname nested */
+.bname-box{display:inline-flex;align-items:center;gap:4px;padding:1px 6px;border-radius:3px;background:rgba(0,0,0,.05);border:1px solid rgba(0,0,0,.08);font-size:9.5px;cursor:pointer;transition:background .12s}
+.bname-box:hover{background:rgba(0,0,0,.1)}
+.bname-tag{font-weight:700;color:#555}
+.bname-refs{color:#888;font-family:var(--mono);font-size:8.5px}
+.bname-label{color:#555;max-width:260px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+
+/* result */
+.result-row{display:flex;align-items:center;gap:4px;margin-top:3px;padding-top:3px;border-top:1px dashed rgba(0,0,0,.1)}
+.result-role{font-size:9px;font-weight:700;color:#888;font-family:var(--mono)}
+.result-val{font-size:10.5px;color:#333;font-weight:600}
+
+/* bg lane */
+.bg-lane{position:relative;overflow:hidden}
+.bg-content{position:relative}
+.bg-bar{position:absolute;border-radius:4px;font-size:8.5px;font-weight:600;cursor:pointer;border:1px solid rgba(0,0,0,.12);transition:outline .12s;padding:4px 5px;writing-mode:horizontal-tb;overflow:hidden;text-overflow:ellipsis}
+.bg-bar:hover{outline:2px solid rgba(0,0,0,.25);z-index:10}
+.bg-bar.active{outline:2px solid rgba(0,0,0,.45);z-index:10}
+
+/* BG type colors */
+.bg-bar.institution{background:#dce8f4;color:#1a4a6a}
+.bg-bar.power_structure{background:#f0dde8;color:#6a1a4a}
+.bg-bar.external{background:#e0eee0;color:#2a5a2a}
+.bg-bar.culture{background:#f0ece0;color:#5a4a1a}
+.bg-bar.conflict{background:#f4dce0;color:#6a2020}
+.bg-bar.resource{background:#e0e8ee;color:#2a4a5a}
+.bg-bar.knowledge{background:#eee8d8;color:#5a4a2a}
+.bg-bar.demographic{background:#e4eee4;color:#3a5a3a}
+
+/* inspector */
+.insp{position:fixed;bottom:50px;right:16px;width:360px;background:#fff;border:1px solid #ddd;border-radius:10px;box-shadow:0 8px 30px rgba(0,0,0,.12);padding:14px;z-index:50;display:none;font-size:12px;max-height:400px;overflow-y:auto}
+.insp.vis{display:block}
+.insp h4{margin:0 0 8px;font-size:11px;color:#555;font-weight:700}
+.insp .x{position:absolute;top:8px;right:10px;cursor:pointer;color:#999;font-size:18px;border:none;background:none}
+.insp .fd{margin:6px 0;line-height:1.5}
+.insp .fl{font-weight:700;color:#888;font-size:9px;text-transform:uppercase;letter-spacing:.4px}
+.insp .fv{color:#333}
+.insp .eff{display:inline-block;padding:1px 5px;border-radius:3px;font-size:10px;font-weight:600;margin:1px 2px}
+
+/* footer */
+.ftr{border-top:1px solid #eee;display:flex;align-items:center;padding:0 14px;font-size:10px;color:#999;gap:10px;background:#fff}
+.lg{display:inline-flex;align-items:center;gap:3px}
+.ld{display:inline-block;width:10px;height:10px;border-radius:2px}
+
+/* effect colors */
+.eff-generate{background:#d1fae5;color:#065f46}
+.eff-reinforce{background:#dbeafe;color:#1e40af}
+.eff-erode{background:#fee2e2;color:#991b1b}
+.eff-terminate{background:#fecaca;color:#7f1d1d}
+.eff-redirect{background:#fef3c7;color:#92400e}
+</style>
+</head>
+<body>
+<div class="app">
+  <div class="hdr">
+    <div class="hdr-c">Event</div>
+    <div class="hdr-c">Causal Frame &mdash; Fname(Bname, params): result</div>
+    <div class="hdr-c">Background Elements</div>
+  </div>
+  <div class="main" id="main"></div>
+  <div class="insp" id="insp">
+    <button class="x" onclick="clearSel()">&times;</button>
+    <h4 id="inspTitle">Inspector</h4>
+    <div id="inspBody"></div>
+  </div>
+  <div class="ftr">
+    <div class="lg"><div class="ld" style="background:#dc2626"></div>圧力解放</div>
+    <div class="lg"><div class="ld" style="background:#16a34a"></div>主体的行為</div>
+    <div class="lg"><div class="ld" style="background:#ca8a04"></div>外生衝撃</div>
+    <div class="lg"><div class="ld" style="background:#9333ea"></div>矛盾露呈</div>
+    <div class="lg"><div class="ld" style="background:#0284c7"></div>権力移行</div>
+    <div class="lg"><div class="ld" style="background:#ea580c"></div>偶発連鎖</div>
+    <span style="margin-left:8px;color:#ccc">|</span>
+    <div class="lg"><div class="ld" style="background:#f0dde8;border:1px solid rgba(0,0,0,.12)"></div>power</div>
+    <div class="lg"><div class="ld" style="background:#dce8f4;border:1px solid rgba(0,0,0,.12)"></div>institution</div>
+    <div class="lg"><div class="ld" style="background:#e0eee0;border:1px solid rgba(0,0,0,.12)"></div>external</div>
+    <span style="margin-left:auto;font-weight:600">v3.9 Composable Causal Frames</span>
+  </div>
+</div>
+
+<script>
+const BGS = {"BG_003":{"label":"豊臣政権","type":"power_structure"},"BG_005":{"label":"豪族勢力","type":"power_structure"},"BG_006":{"label":"徳川家","type":"power_structure"},"BG_010":{"label":"中央集権化","type":"institution"},"BG_012":{"label":"唐との関係","type":"external"},"BG_013":{"label":"律令制","type":"institution"},"BG_015":{"label":"大名勢力","type":"power_structure"},"BG_017":{"label":"正統性・権威","type":"culture"},"BG_022":{"label":"朝鮮半島情勢","type":"external"},"BG_031":{"label":"雄藩連合","type":"power_structure"},"BG_036":{"label":"藤原氏(奈良)","type":"power_structure"},"BG_039":{"label":"国司行政","type":"institution"},"BG_041":{"label":"後継争い","type":"conflict"},"BG_043":{"label":"防衛体制","type":"resource"},"BG_058":{"label":"班田収授制","type":"institution"},"BG_061":{"label":"蒙古の脅威","type":"external"},"BG_066":{"label":"記紀・史書","type":"knowledge"},"BG_071":{"label":"応仁の乱と秩序崩壊","type":"conflict"},"BG_083":{"label":"藩体制","type":"institution"}};
+
+const EVENTS = [
+  {id:"EV_p0507_01",year:507,title:"継体天皇が即位した",fname:"権力移行",bgRole:"権力空白",bname:"権力集中",bgLabel:"権力集中のもとでの権力空白の圧（豪族勢力の複合）",bgRefs:["BG_005"],textRole:"後継手続",textValue:"武烈天皇が後継なく崩御し大王位が空位となった",resultRole:"新体制",resultLabel:"王統断絶からの新王擁立",eGenerates:[{bg:"BG_005",effect:"terminate"},{bg:"BG_041",effect:"terminate"}]},
+  {id:"EV_p0538_01",year:538,title:"百済から仏教が伝来した",fname:"外生衝撃",bgRole:"受容状態",bname:"外圧環境",bgLabel:"百済が存亡の危機にあり、倭との軍事同盟維持のため文化的贈与を行う構造",bgRefs:["BG_022"],textRole:"衝撃",textValue:"百済が軍事圧迫で追い詰められ、最大級の文化的贈与を決断した",resultRole:"適応",resultLabel:"外来宗教体系の到来",eGenerates:[{bg:"BG_022",effect:"reinforce"},{bg:"BG_017",effect:"reinforce"}]},
+  {id:"EV_p0672_01",year:672,title:"壬申の乱が起き天武天皇の体制につながった",fname:"矛盾露呈",bgRole:"潜在矛盾",bname:"権力集中",bgLabel:"継承問題のもとでの権力空白の圧（豪族勢力の複合）",bgRefs:["BG_005"],textRole:"顕在化契機",textValue:"天智死後の皇位継承対立が制度内で解けず武力決着へ発展",resultRole:"構造変化",resultLabel:"皇位をめぐる武力決着",eGenerates:[{bg:"BG_005",effect:"reinforce"}]},
+  {id:"EV_p0701_01",year:701,title:"大宝律令を制定した",fname:"矛盾露呈",bgRole:"潜在矛盾",bname:"制度的矛盾",bgLabel:"律令制・唐との関係・記紀の複合的制度圧",bgRefs:["BG_013","BG_012","BG_066","BG_036"],textRole:"顕在化契機",textValue:"飛鳥浄御原令に律が欠け、法的空白が統治上の障害に",resultRole:"構造変化",resultLabel:"律令法体系の完成",eGenerates:[{bg:"BG_036",effect:"generate"},{bg:"BG_013",effect:"generate"},{bg:"BG_012",effect:"generate"},{bg:"BG_066",effect:"generate"}]},
+  {id:"EV_p0743_01",year:743,title:"墾田永年私財法が出された",fname:"圧力解放",bgRole:"背景",bname:"制度疲弊",bgLabel:"口分田の不足が深刻化し耕地拡大が国家的課題",bgRefs:["BG_058"],textRole:"揺らぎ",textValue:"三世一身法のもと開墾地が放棄され続け制度の根本的欠陥が露呈",resultRole:"解放",resultLabel:"土地私有の制度的公認",eGenerates:[{bg:"BG_058",effect:"reinforce"}]},
+  {id:"EV_p0939_01",year:939,title:"平将門の乱が起きた",fname:"偶発連鎖",bgRole:"脆弱性",bname:"制度疲弊",bgLabel:"関東の在地武士団が国司の収奪に不満を抱いている",bgRefs:["BG_039"],textRole:"偶発事象",textValue:"一族間の私闘を契機に将門が関東諸国の国府を制圧",resultRole:"連鎖帰結",resultLabel:"地方武士の武力蜂起",eGenerates:[{bg:"BG_039",effect:"reinforce"}]},
+  {id:"EV_p1274_01",year:1274,title:"元寇(文永の役)が起きた",fname:"矛盾露呈",bgRole:"潜在矛盾",bname:"外圧環境",bgLabel:"モンゴル帝国のフビライが日本に朝貢を要求",bgRefs:["BG_061"],textRole:"顕在化契機",textValue:"元・高麗連合軍が対馬・壱岐を攻略し博多湾に上陸",resultRole:"構造変化",resultLabel:"対外軍事衝突",eGenerates:[{bg:"BG_061",effect:"reinforce"}]},
+  {id:"EV_p1467_01",year:1467,title:"応仁の乱が始まった",fname:"圧力解放",bgRole:"背景",bname:"権力集中",bgLabel:"将軍後継問題で細川勝元と山名宗全が対立",bgRefs:["BG_041"],textRole:"揺らぎ",textValue:"畠山氏の家督争いに細川・山名両派が武力介入し洛中で合戦開始",resultRole:"解放",resultLabel:"中央統制の瓦解",eGenerates:[{bg:"BG_041",effect:"redirect"},{bg:"BG_071",effect:"erode"}]},
+  {id:"EV_p1600_01",year:1600,title:"関ヶ原の戦いが起きた",fname:"圧力解放",bgRole:"背景",bname:"勢力対立",bgLabel:"秀吉死後の政権内部で徳川家康と石田三成の対立が激化",bgRefs:["BG_003","BG_006"],textRole:"揺らぎ",textValue:"家康が会津征伐の軍を起こした隙を突き三成が弾劾状を発した",resultRole:"解放",resultLabel:"覇権をかけた決定的軍事衝突",eGenerates:[{bg:"BG_006",effect:"reinforce"},{bg:"BG_015",effect:"reinforce"},{bg:"BG_003",effect:"reinforce"}]},
+  {id:"EV_p1853_02",year:1853,title:"ペリーが浦賀に来航した",fname:"外生衝撃",bgRole:"受容状態",bname:"権力集中",bgLabel:"幕府が諸大名に意見を求め挙国一致の対応を模索",bgRefs:["BG_015"],textRole:"衝撃",textValue:"黒船の圧倒的軍事力を目撃し海防の脆弱性が衝撃的に露呈",resultRole:"適応",resultLabel:"外圧による対外対応の迫り",eGenerates:[{bg:"BG_015",effect:"reinforce"},{bg:"BG_043",effect:"reinforce"}]},
+  {id:"EV_p1871_01",year:1871,title:"廃藩置県が行われた",fname:"主体的行為",bgRole:"状況",bname:"制度的矛盾",bgLabel:"中央集権化のために藩体制を解体する必要の圧",bgRefs:["BG_083","BG_010"],textRole:"判断",textValue:"薩長土の藩兵を御親兵として集結させ、武力を背景に断行",resultRole:"帰結",resultLabel:"中央集権的地方行政の確立",eGenerates:[{bg:"BG_083",effect:"generate"},{bg:"BG_031",effect:"generate"},{bg:"BG_010",effect:"generate"}]},
+];
+
+const effectColors = {generate:'#059669',reinforce:'#2563eb',erode:'#dc2626',terminate:'#991b1b',redirect:'#d97706'};
+const effectLabels = {generate:'生成',reinforce:'強化',erode:'侵食',terminate:'終了',redirect:'転換'};
+
+const rowH = 160;
+const barW = 48;
+const barGap = 5;
+const barLeft = 14;
+
+const main = document.getElementById('main');
+const evLane = document.createElement('div'); evLane.className='ev-lane';
+const frLane = document.createElement('div'); frLane.className='fr-lane';
+const bgLane = document.createElement('div'); bgLane.className='bg-lane';
+main.appendChild(evLane); main.appendChild(frLane); main.appendChild(bgLane);
+
+// BG content container
+const bgContent = document.createElement('div');
+bgContent.className = 'bg-content';
+bgContent.style.position = 'relative';
+bgContent.style.height = (EVENTS.length * rowH) + 'px';
+bgLane.appendChild(bgContent);
+
+// Row grid lines
+for (let i = 0; i < EVENTS.length; i++) {
+  const line = document.createElement('div');
+  line.style.cssText = `position:absolute;left:0;right:0;top:${(i+1)*rowH}px;height:1px;background:#f0f0f0`;
+  bgContent.appendChild(line);
+}
+
+// SVG for arrows
+const svg = document.createElementNS('http://www.w3.org/2000/svg','svg');
+svg.style.cssText = 'position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:5';
+bgContent.appendChild(svg);
+
+// Collect all unique BG IDs referenced
+const allBgIds = new Set();
+EVENTS.forEach(e => {
+  e.bgRefs.forEach(id => allBgIds.add(id));
+  e.eGenerates.forEach(eg => allBgIds.add(eg.bg));
+});
+const bgOrder = [...allBgIds].sort();
+
+// Compute which BGs are "alive" at each row
+const bgAlive = {};
+EVENTS.forEach((e, ri) => {
+  bgAlive[ri] = new Set([...e.bgRefs, ...e.eGenerates.map(eg => eg.bg)]);
+});
+
+// Compute BG bar spans (first to last alive row)
+const bgBarInfo = {};
+const colX = {};
+bgOrder.forEach((id, i) => { colX[id] = barLeft + i * (barW + barGap); });
+
+bgOrder.forEach(id => {
+  const bg = BGS[id];
+  if (!bg) return;
+  let firstRow = -1, lastRow = -1;
+  for (let r = 0; r < EVENTS.length; r++) {
+    if (bgAlive[r].has(id)) {
+      if (firstRow < 0) firstRow = r;
+      lastRow = r;
+    }
+  }
+  if (firstRow < 0) return;
+
+  const x = colX[id];
+  const y = firstRow * rowH + 4;
+  const h = (lastRow - firstRow + 1) * rowH - 8;
+
+  const bar = document.createElement('div');
+  bar.className = 'bg-bar ' + bg.type;
+  bar.style.left = x + 'px';
+  bar.style.top = y + 'px';
+  bar.style.width = barW + 'px';
+  bar.style.height = h + 'px';
+  bar.dataset.bgid = id;
+  bar.textContent = bg.label.slice(0, 6);
+  bar.title = id + ': ' + bg.label + ' (' + bg.type + ')';
+  bar.addEventListener('click', e => { e.stopPropagation(); onBGClick(id); });
+  bgContent.appendChild(bar);
+
+  bgBarInfo[id] = { x, y, h, w: barW, el: bar, firstRow, lastRow };
+});
+
+// Render rows
+const evRowEls = [];
+
+EVENTS.forEach((ev, ri) => {
+  // Event row
+  const evR = document.createElement('div');
+  evR.className = 'ev-row';
+  evR.dataset.ri = ri;
+  evR.innerHTML = `<div class="yr">${ev.year}</div><div class="ev-t">${ev.title}</div>`;
+  evR.addEventListener('click', () => onEventClick(ri));
+  evLane.appendChild(evR);
+  evRowEls.push(evR);
+
+  // Frame row
+  const frR = document.createElement('div');
+  frR.className = 'fr-row';
+
+  const frame = document.createElement('div');
+  frame.className = `frame fn-${ev.fname}`;
+
+  // Header: Fname tag + signature
+  const head = document.createElement('div');
+  head.className = 'frame-head';
+  head.innerHTML = `<span class="fname-tag">${ev.fname}</span><span class="frame-sig">${ev.fname}(${ev.bgRole}, ${ev.textRole}): ${ev.resultRole}</span>`;
+  frame.appendChild(head);
+
+  // Param 1: Bname (nested)
+  const p1 = document.createElement('div');
+  p1.className = 'param';
+  const refLabels = ev.bgRefs.map(id => BGS[id]?.label || id).join(', ');
+  p1.innerHTML = `<span class="param-role">${ev.bgRole}:</span>
+    <span class="param-val">
+      <span class="bname-box" data-ri="${ri}" data-bgrefs='${JSON.stringify(ev.bgRefs)}'>
+        <span class="bname-tag">${ev.bname}</span>
+        <span class="bname-refs">[${ev.bgRefs.join(', ')}]</span>
+      </span>
+      <br><span style="font-size:9.5px;color:#666">${ev.bgLabel}</span>
+    </span>`;
+  frame.appendChild(p1);
+
+  // Param 2: Text
+  if (ev.textValue) {
+    const p2 = document.createElement('div');
+    p2.className = 'param';
+    p2.innerHTML = `<span class="param-role">${ev.textRole}:</span><span class="param-val">${ev.textValue}</span>`;
+    frame.appendChild(p2);
+  }
+
+  // Result
+  const res = document.createElement('div');
+  res.className = 'result-row';
+  res.innerHTML = `<span class="result-role">${ev.resultRole}:</span><span class="result-val">${ev.resultLabel}</span>`;
+  frame.appendChild(res);
+
+  frR.appendChild(frame);
+  frLane.appendChild(frR);
+});
+
+// Bname box click -> highlight BG bars
+document.querySelectorAll('.bname-box').forEach(box => {
+  box.addEventListener('click', e => {
+    e.stopPropagation();
+    const refs = JSON.parse(box.dataset.bgrefs);
+    const ri = parseInt(box.dataset.ri);
+    clearSel();
+    refs.forEach(id => {
+      document.querySelectorAll(`.bg-bar[data-bgid="${id}"]`).forEach(c => c.classList.add('active'));
+    });
+    evRowEls[ri].classList.add('hl');
+  });
+});
+
+// Draw SVG arrows
+function drawArrows() {
+  svg.innerHTML = '';
+  const bgRect = bgContent.getBoundingClientRect();
+  const svgW = bgRect.width || 600;
+  const svgH = EVENTS.length * rowH;
+  svg.setAttribute('viewBox', `0 0 ${svgW} ${svgH}`);
+  svg.style.width = svgW + 'px';
+  svg.style.height = svgH + 'px';
+
+  // Defs with markers
+  const defs = document.createElementNS('http://www.w3.org/2000/svg','defs');
+  Object.entries(effectColors).forEach(([k,c]) => {
+    const m = document.createElementNS('http://www.w3.org/2000/svg','marker');
+    m.setAttribute('id','m-'+k);m.setAttribute('markerWidth','7');m.setAttribute('markerHeight','5');
+    m.setAttribute('refX','6');m.setAttribute('refY','2.5');m.setAttribute('orient','auto');
+    const p = document.createElementNS('http://www.w3.org/2000/svg','path');
+    p.setAttribute('d','M0,0 L7,2.5 L0,5 Z');p.setAttribute('fill',c);
+    m.appendChild(p);defs.appendChild(m);
+  });
+  svg.appendChild(defs);
+
+  // E->BG arrows
+  EVENTS.forEach((ev, ri) => {
+    const rowTop = ri * rowH;
+    ev.eGenerates.forEach((eg, egi) => {
+      const bar = bgBarInfo[eg.bg];
+      if (!bar) return;
+      const color = effectColors[eg.effect] || '#666';
+      const fromX = 0;
+      const fromY = rowTop + 14 + egi * 18;
+      const toX = bar.x;
+      const toY = Math.max(bar.y + 6, Math.min(fromY, bar.y + bar.h - 6));
+      const midX = toX * 0.45;
+
+      const path = document.createElementNS('http://www.w3.org/2000/svg','path');
+      path.setAttribute('d',`M${fromX},${fromY} C${midX},${fromY} ${midX},${toY} ${toX},${toY}`);
+      path.setAttribute('stroke',color);
+      path.setAttribute('stroke-width','1.5');
+      path.setAttribute('fill','none');
+      path.setAttribute('stroke-dasharray','4,2');
+      path.setAttribute('opacity','0.55');
+      path.setAttribute('marker-end',`url(#m-${eg.effect})`);
+      svg.appendChild(path);
+
+      // Label
+      const lbl = document.createElementNS('http://www.w3.org/2000/svg','text');
+      lbl.setAttribute('x', fromX + 3);
+      lbl.setAttribute('y', fromY - 3);
+      lbl.setAttribute('font-size','8');
+      lbl.setAttribute('font-family','var(--mono)');
+      lbl.setAttribute('fill',color);
+      lbl.setAttribute('opacity','0.8');
+      lbl.textContent = effectLabels[eg.effect] || eg.effect;
+      svg.appendChild(lbl);
+    });
+  });
+}
+
+requestAnimationFrame(() => { requestAnimationFrame(drawArrows); });
+window.addEventListener('resize', drawArrows);
+
+// Interaction
+function clearSel() {
+  evRowEls.forEach(e => e.classList.remove('hl'));
+  document.querySelectorAll('.bg-bar.active').forEach(c => c.classList.remove('active'));
+  document.getElementById('insp').classList.remove('vis');
+}
+
+function onEventClick(ri) {
+  clearSel();
+  const ev = EVENTS[ri];
+  evRowEls[ri].classList.add('hl');
+
+  // Highlight related BGs
+  const allRefs = new Set([...ev.bgRefs, ...ev.eGenerates.map(eg => eg.bg)]);
+  allRefs.forEach(id => {
+    document.querySelectorAll(`.bg-bar[data-bgid="${id}"]`).forEach(c => c.classList.add('active'));
+  });
+
+  // Inspector
+  const insp = document.getElementById('insp');
+  document.getElementById('inspTitle').textContent = ev.fname + ': ' + ev.title;
+  let html = `<div class="fd"><span class="fl">Frame</span><br>
+    <span class="fv" style="font-family:var(--mono);font-size:11px">${ev.fname}(${ev.bgRole}: <strong>${ev.bname}</strong>, ${ev.textRole}): ${ev.resultRole}</span></div>`;
+  html += `<div class="fd"><span class="fl">${ev.bgRole} (${ev.bname})</span><br><span class="fv">${ev.bgLabel}</span>`;
+  html += `<br><span style="font-size:10px;color:#888">BG refs: ${ev.bgRefs.map(id => BGS[id]?.label + ' [' + id + ']').join(', ')}</span></div>`;
+  html += `<div class="fd"><span class="fl">${ev.textRole}</span><br><span class="fv">${ev.textValue}</span></div>`;
+  html += `<div class="fd"><span class="fl">${ev.resultRole}</span><br><span class="fv" style="font-weight:600">${ev.resultLabel}</span></div>`;
+  html += `<div class="fd"><span class="fl">eGenerates</span><ul style="list-style:none;padding:0;margin:4px 0">`;
+  ev.eGenerates.forEach(eg => {
+    const bg = BGS[eg.bg];
+    html += `<li style="padding:2px 0"><span class="eff eff-${eg.effect}">${effectLabels[eg.effect]}</span> ${bg?.label||eg.bg} <span style="color:#999;font-size:10px">[${eg.bg}]</span></li>`;
+  });
+  html += `</ul></div>`;
+  document.getElementById('inspBody').innerHTML = html;
+  insp.classList.add('vis');
+}
+
+function onBGClick(bgId) {
+  clearSel();
+  const bg = BGS[bgId];
+  document.querySelectorAll(`.bg-bar[data-bgid="${bgId}"]`).forEach(c => c.classList.add('active'));
+
+  EVENTS.forEach((ev, ri) => {
+    if (ev.bgRefs.includes(bgId) || ev.eGenerates.some(eg => eg.bg === bgId)) {
+      evRowEls[ri].classList.add('hl');
+    }
+  });
+
+  const insp = document.getElementById('insp');
+  document.getElementById('inspTitle').textContent = 'BG: ' + bg.label;
+  let html = `<div class="fd"><span class="fl">ID</span> <span class="fv">${bgId}</span></div>`;
+  html += `<div class="fd"><span class="fl">Type</span> <span class="fv">${bg.type}</span></div>`;
+  html += `<div class="fd"><span class="fl">Referenced by (as background)</span><ul style="list-style:none;padding:0;margin:4px 0">`;
+  EVENTS.forEach(ev => {
+    if (ev.bgRefs.includes(bgId)) {
+      html += `<li style="padding:2px 0"><span style="font-weight:600">${ev.year}</span> ${ev.title} <span style="color:#888;font-size:10px">[${ev.fname}/${ev.bname}]</span></li>`;
+    }
+  });
+  html += `</ul></div>`;
+  html += `<div class="fd"><span class="fl">Affected by (eGenerates)</span><ul style="list-style:none;padding:0;margin:4px 0">`;
+  EVENTS.forEach(ev => {
+    ev.eGenerates.forEach(eg => {
+      if (eg.bg === bgId) {
+        html += `<li style="padding:2px 0"><span style="font-weight:600">${ev.year}</span> <span class="eff eff-${eg.effect}">${effectLabels[eg.effect]}</span> ${ev.title.slice(0,20)}</li>`;
+      }
+    });
+  });
+  html += `</ul></div>`;
+  document.getElementById('inspBody').innerHTML = html;
+  insp.classList.add('vis');
+}
+
+document.addEventListener('click', e => {
+  if (!e.target.closest('.bname-box') && !e.target.closest('.bg-bar') && !e.target.closest('.insp') && !e.target.closest('.ev-row')) clearSel();
+});
+</script>
+</body>
+</html>
