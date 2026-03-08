@@ -1,0 +1,297 @@
+{
+  "_meta": {
+    "description": "v3.9 新構造サンプル（5件）: B=エネルギー溜まり, 背景要素=構造的因子の分離検証用",
+    "date": "2026-03-07",
+    "status": "draft",
+    "events": ["EV_p0701_01", "EV_p0723_01", "EV_p0743_01", "EV_p0897_01", "EV_p1069_01"]
+  },
+
+  "backgroundElements": [
+    {
+      "bgId": "BG_ritsuryo_system",
+      "type": "institution",
+      "label": "律令制",
+      "description": "唐を範とした法体系に基づく中央集権的統治制度。官制・刑法・土地制度・税制を包括する",
+      "lifecycle": {
+        "generatedBy": "EV_p0701_01",
+        "states": [
+          { "period": "701-720", "state": "established", "label": "成立・本格運用" },
+          { "period": "720-743", "state": "strained", "label": "歪み顕在化" },
+          { "period": "743-900", "state": "hollowing", "label": "形骸化進行" },
+          { "period": "900-", "state": "nominal", "label": "名目的存続" }
+        ]
+      }
+    },
+    {
+      "bgId": "BG_handen_land",
+      "type": "institution",
+      "label": "班田収授制",
+      "description": "公地公民の原則に基づき口分田を人民に班給し、死後に回収する土地制度",
+      "lifecycle": {
+        "generatedBy": "EV_p0646_01",
+        "states": [
+          { "period": "646-720", "state": "active", "label": "運用期" },
+          { "period": "720-743", "state": "strained", "label": "口分田不足" },
+          { "period": "743-", "state": "collapsed", "label": "事実上崩壊" }
+        ]
+      }
+    },
+    {
+      "bgId": "BG_shoen_system",
+      "type": "institution",
+      "label": "荘園制",
+      "description": "有力者が開墾・寄進等により獲得した私的土地所有の体系",
+      "lifecycle": {
+        "generatedBy": "EV_p0743_01",
+        "states": [
+          { "period": "723-743", "state": "germinal", "label": "萌芽" },
+          { "period": "743-900", "state": "expanding", "label": "拡大" },
+          { "period": "900-1069", "state": "dominant", "label": "支配的" },
+          { "period": "1069-", "state": "contested", "label": "整理圧" }
+        ]
+      }
+    },
+    {
+      "bgId": "BG_tang_model",
+      "type": "knowledge",
+      "subtype": "normative",
+      "label": "唐制を範とすべき知識",
+      "description": "統治制度は唐の律令を範として構築すべきという規範的知識。遣唐使・留学僧を通じて蓄積された",
+      "lifecycle": {
+        "generatedBy": null,
+        "note": "複数イベントの漸進的蓄積。大化改新以前から存在"
+      }
+    },
+    {
+      "bgId": "BG_population_growth",
+      "type": "demographic",
+      "label": "人口増加圧",
+      "description": "律令制下の安定期に人口が自然増し、耕地面積に対する人口圧が高まる",
+      "lifecycle": {
+        "generatedBy": null,
+        "note": "外部要因（律令安定の副産物として漸進的に発生）"
+      }
+    },
+    {
+      "bgId": "BG_fujiwara_sekkan",
+      "type": "power_structure",
+      "label": "藤原氏摂関体制",
+      "description": "藤原氏が外戚関係を通じて摂関の地位を独占し、天皇の政策決定を事実上支配する権力構造",
+      "lifecycle": {
+        "generatedBy": null,
+        "note": "9世紀以降漸進的に形成",
+        "states": [
+          { "period": "850-1068", "state": "dominant", "label": "全盛期" },
+          { "period": "1068-", "state": "weakened", "label": "後三条天皇により相対化" }
+        ]
+      }
+    },
+    {
+      "bgId": "BG_kokushi_admin",
+      "type": "institution",
+      "label": "国司行政",
+      "description": "律令制下の地方行政。国司が中央から派遣され、徴税・裁判・軍事を担う",
+      "lifecycle": {
+        "generatedBy": "EV_p0701_01",
+        "states": [
+          { "period": "701-800", "state": "functional", "label": "機能期" },
+          { "period": "800-1069", "state": "corrupted", "label": "癒着・形骸化" }
+        ]
+      }
+    },
+    {
+      "bgId": "BG_knowledge_land_policy",
+      "type": "knowledge",
+      "subtype": "strategic",
+      "label": "土地政策の成り行き知識",
+      "description": "開墾奨励→私有化→公地喪失という因果連鎖の経験知。三世一身法の失敗から獲得された",
+      "lifecycle": {
+        "generatedBy": "EV_p0723_01",
+        "note": "723年の政策実施と失敗から蓄積"
+      }
+    }
+  ],
+
+  "frameworkViews": [
+    {
+      "eventId": "EV_p0701_01",
+      "title": "大宝律令を制定した",
+      "year": 701,
+      "causalFramework": {
+        "E": [
+          { "code": "E-SYS-04", "label": "律令法体系が完成し、統治の標準化が実現した" }
+        ],
+        "F": [
+          { "code": "F-CTD-01", "label": "浄御原令に律（刑法）が欠如し、統治に法的空白が存在した" }
+        ],
+        "B": [
+          {
+            "label": "律の不在による統治上の圧（法的空白が運用障害を生んでいる）",
+            "contributingBG": ["BG_ritsuryo_system", "BG_tang_model"],
+            "note": "BG_tang_model（唐制を範とすべき知識）が「律がないのは不完全」という認識圧を生み、BG_ritsuryo_system（浄御原令）の不備が実務上の歪みを蓄積させている"
+          }
+        ]
+      },
+      "eGenerates": [
+        {
+          "targetBG": "BG_ritsuryo_system",
+          "effect": "generate",
+          "description": "律令法体系の完成により、律令制が正式に成立した"
+        },
+        {
+          "targetBG": "BG_handen_land",
+          "effect": "reinforce",
+          "description": "律令完成により班田収授制の法的基盤が確立した"
+        },
+        {
+          "targetBG": "BG_kokushi_admin",
+          "effect": "generate",
+          "description": "律令に基づく国司行政の制度的根拠が整った"
+        }
+      ]
+    },
+    {
+      "eventId": "EV_p0723_01",
+      "title": "三世一身の法を定め開墾を奨励した",
+      "year": 723,
+      "causalFramework": {
+        "E": [
+          { "code": "E-SYS-04", "label": "土地の限定的私有を制度的に認め、開墾を奨励する政策が成立した" }
+        ],
+        "F": [
+          { "code": "F-CTD-02", "label": "口分田の絶対的不足が顕在化し、班田制のみでは維持不能となった" }
+        ],
+        "B": [
+          {
+            "label": "口分田不足による財政・民生の圧（班田制が人口に追いつかず制度的限界に達している）",
+            "contributingBG": ["BG_handen_land", "BG_population_growth", "BG_ritsuryo_system"],
+            "note": "BG_handen_land（班田制）の枠内で、BG_population_growth（人口増）が耕地不足を引き起こし、BG_ritsuryo_system全体への不満圧が蓄積"
+          }
+        ]
+      },
+      "eGenerates": [
+        {
+          "targetBG": "BG_shoen_system",
+          "effect": "generate",
+          "description": "限定的ながら土地の私有を認めたことで、荘園制の萌芽が生まれた"
+        },
+        {
+          "targetBG": "BG_handen_land",
+          "effect": "erode",
+          "description": "公地公民の原則に例外を設けたことで、班田制の排他性が崩れ始めた"
+        },
+        {
+          "targetBG": "BG_knowledge_land_policy",
+          "effect": "generate",
+          "description": "開墾奨励政策の実施経験が、土地政策の成り行き知識として蓄積され始めた"
+        }
+      ]
+    },
+    {
+      "eventId": "EV_p0743_01",
+      "title": "墾田永年私財法が出された",
+      "year": 743,
+      "causalFramework": {
+        "E": [
+          { "code": "E-SYS-04", "label": "土地の永年私有が制度的に公認され、公地公民の原則が実質的に放棄された" }
+        ],
+        "F": [
+          { "code": "F-CTD-02", "label": "三世一身法のもと開墾地が期限到来で放棄され続け、制度の根本欠陥が露呈した" }
+        ],
+        "B": [
+          {
+            "label": "三世一身法の失敗による政策的圧（開墾地放棄の続出が喫緊の課題となっている）",
+            "contributingBG": ["BG_handen_land", "BG_shoen_system", "BG_knowledge_land_policy"],
+            "note": "BG_knowledge_land_policy（三世一身法の失敗経験知）が「返還義務がある限り開墾意欲は出ない」という認識を形成し、BG_handen_land の制度疲労と合わせて政策転換圧を生んでいる"
+          }
+        ]
+      },
+      "eGenerates": [
+        {
+          "targetBG": "BG_shoen_system",
+          "effect": "reinforce",
+          "description": "永年私有の制度的公認により、荘園制の法的基盤が確立し拡大が加速した"
+        },
+        {
+          "targetBG": "BG_handen_land",
+          "effect": "terminate",
+          "description": "公地公民の原則が実質崩壊し、班田収授制は事実上終焉した"
+        },
+        {
+          "targetBG": "BG_ritsuryo_system",
+          "effect": "erode",
+          "description": "律令制の根幹である土地制度が変質し、制度全体の形骸化が進んだ"
+        }
+      ]
+    },
+    {
+      "eventId": "EV_p0897_01",
+      "title": "醍醐天皇が親政を開始し延喜の治が始まった",
+      "year": 897,
+      "causalFramework": {
+        "E": [
+          { "code": "E-POW-01", "label": "天皇親政体制が確立し、律令的統治の立て直しが試みられた" }
+        ],
+        "F": [
+          { "code": "F-CTD-01", "label": "宇多天皇の譲位と親政の委託により、藤原氏を牽制する条件が整った" }
+        ],
+        "B": [
+          {
+            "label": "律令制の形骸化と摂関支配への危機感（統治の正統性が揺らいでいる）",
+            "contributingBG": ["BG_ritsuryo_system", "BG_fujiwara_sekkan", "BG_shoen_system", "BG_kokushi_admin"],
+            "note": "BG_ritsuryo_system の形骸化、BG_fujiwara_sekkan の権力独占、BG_shoen_system による租税基盤侵食、BG_kokushi_admin の癒着が複合して、天皇親政への期待圧を生んでいる"
+          }
+        ]
+      },
+      "eGenerates": [
+        {
+          "targetBG": "BG_ritsuryo_system",
+          "effect": "reinforce",
+          "description": "延喜式の編纂など律令の再整備が試みられた（ただし実効は限定的）"
+        },
+        {
+          "targetBG": "BG_fujiwara_sekkan",
+          "effect": "redirect",
+          "description": "天皇親政により摂関の影響力が一時的に抑制された"
+        }
+      ]
+    },
+    {
+      "eventId": "EV_p1069_01",
+      "title": "延久の荘園整理令を出した",
+      "year": 1069,
+      "causalFramework": {
+        "E": [
+          { "code": "E-SYS-04", "label": "荘園の停止・整理が進み、王権の財政基盤が部分的に回復した" }
+        ],
+        "F": [
+          { "code": "F-UNC-02", "label": "違法荘園の乱立と国務の停滞が報告され、天皇が整理に踏み切った" }
+        ],
+        "B": [
+          {
+            "label": "荘園乱立による統治危機の圧（租税基盤の侵食が限界に達している）",
+            "contributingBG": ["BG_shoen_system", "BG_kokushi_admin", "BG_ritsuryo_system"],
+            "note": "BG_shoen_system の支配的拡大、BG_kokushi_admin の癒着・機能不全、BG_ritsuryo_system の名目化が複合し、財政危機として圧が頂点に達している"
+          },
+          {
+            "label": "天皇が自律的に行動できる条件（藤原氏の制約がない）",
+            "contributingBG": ["BG_fujiwara_sekkan"],
+            "note": "後三条天皇は藤原氏の外戚関係を持たないため、BG_fujiwara_sekkan の拘束力が弱まり、行動可能条件が成立している"
+          }
+        ]
+      },
+      "eGenerates": [
+        {
+          "targetBG": "BG_shoen_system",
+          "effect": "redirect",
+          "description": "記録荘園券契所の設置により、荘園の法的正当性を審査する仕組みが導入された"
+        },
+        {
+          "targetBG": "BG_kokushi_admin",
+          "effect": "reinforce",
+          "description": "国司を通さず天皇直轄で荘園整理を行う仕組みにより、国司行政の立て直しが試みられた"
+        }
+      ]
+    }
+  ]
+}

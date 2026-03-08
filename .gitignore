@@ -3,3 +3,5 @@
 *.swo
 *~
 fromuser/
+event_report/
+__pycache__/

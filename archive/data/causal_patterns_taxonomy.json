@@ -1,0 +1,98 @@
+{
+  "version": "3.9",
+  "description": "因果パターン類型定義 — B/F/Eの解釈をイベントごとに切り替える",
+  "designRationale": "B-F-E（圧力→引き金→解放）は207件中28%にのみ自然適合。残り72%は異なる因果構造を持つ。パターンタグ制により、3層構造を維持しつつ各層の意味をパターンごとに再解釈する。",
+  "causalPatterns": {
+    "A_pressure_release": {
+      "name": "圧力解放型",
+      "nameEn": "Pressure-Release",
+      "structure": "圧力(B) → 引き金(F) → 解放(E)",
+      "description": "構造的矛盾・圧力が蓄積し、特定の引き金で爆発する",
+      "roles": {
+        "B": {"role": "pressure", "label": "蓄積された圧力"},
+        "F": {"role": "trigger", "label": "引き金"},
+        "E": {"role": "release", "label": "解放"}
+      },
+      "typicalExamples": ["壬申の乱", "応仁の乱", "正長の土一揆", "桜田門外の変"],
+      "bfeAffinity": "best"
+    },
+    "B_deliberate_action": {
+      "name": "主体的行為型",
+      "nameEn": "Deliberate Action",
+      "structure": "状況(B) → 判断(F) → 行為の帰結(E)",
+      "description": "行為者が状況を認知し、目的を持って行為する。Bは圧力ではなく状況認知、Fは引き金ではなく判断",
+      "roles": {
+        "B": {"role": "situation", "label": "状況認知・条件"},
+        "F": {"role": "judgment", "label": "判断・意思決定"},
+        "E": {"role": "action_outcome", "label": "行為の帰結"}
+      },
+      "typicalExamples": ["大宝律令制定", "遣唐使派遣", "安土城築城", "廃藩置県"],
+      "bfeAffinity": "poor"
+    },
+    "C_exogenous_shock": {
+      "name": "外生衝撃型",
+      "nameEn": "Exogenous Shock",
+      "structure": "受入れ状態(B) → 衝撃(F) → 適応(E)",
+      "description": "外部からの衝撃がシステムに作用する。内部の圧力蓄積は関係ない",
+      "roles": {
+        "B": {"role": "receiving_state", "label": "衝撃を受ける側の状態"},
+        "F": {"role": "shock", "label": "外部からの衝撃"},
+        "E": {"role": "adaptation", "label": "適応・対応結果"}
+      },
+      "typicalExamples": ["仏教伝来", "元寇", "鉄砲伝来", "関東大震災"],
+      "bfeAffinity": "poor"
+    },
+    "D_contradiction_exposure": {
+      "name": "矛盾露呈型",
+      "nameEn": "Contradiction Exposure",
+      "structure": "潜在的矛盾(B) → 顕在化契機(F) → 構造変化(E)",
+      "description": "矛盾が蓄積して爆発するのではなく、露呈して漸進的に変わる。圧力解放型に近いが解放が瞬間的でない",
+      "roles": {
+        "B": {"role": "latent_contradiction", "label": "潜在的矛盾"},
+        "F": {"role": "exposure_trigger", "label": "矛盾が顕在化する契機"},
+        "E": {"role": "structural_change", "label": "構造変化"}
+      },
+      "typicalExamples": ["墾田永年私財法", "承久の乱の帰結", "鎌倉幕府滅亡"],
+      "bfeAffinity": "partial"
+    },
+    "E_power_transition": {
+      "name": "権力移行型",
+      "nameEn": "Power Transition",
+      "structure": "権力空白(B) → 後継手続(F) → 新体制(E)",
+      "description": "圧力ではなくポストの空きが駆動力。解放すべき圧が存在しない",
+      "roles": {
+        "B": {"role": "power_vacuum", "label": "権力空白・前体制の状態"},
+        "F": {"role": "succession", "label": "後継手続・争い"},
+        "E": {"role": "new_regime", "label": "新体制の成立"}
+      },
+      "typicalExamples": ["継体天皇即位", "藤原良房摂政就任", "徳川家康将軍就任"],
+      "bfeAffinity": "poor"
+    },
+    "F_contingency": {
+      "name": "偶発連鎖型",
+      "nameEn": "Contingency-Cascade",
+      "structure": "脆弱性(B) → 偶発事象(F) → 連鎖帰結(E)",
+      "description": "偶然の出来事がシステムの脆弱点に触れて連鎖反応を起こす",
+      "roles": {
+        "B": {"role": "vulnerability", "label": "システムの脆弱性"},
+        "F": {"role": "accident", "label": "偶発事象"},
+        "E": {"role": "cascade_result", "label": "連鎖反応の帰結"}
+      },
+      "typicalExamples": ["生麦事件", "応天門の変"],
+      "bfeAffinity": "none"
+    },
+    "X_unclassified": {
+      "name": "未分類",
+      "nameEn": "Unclassified",
+      "structure": "背景(B) → 契機(F) → 帰結(E)",
+      "description": "パターン未分類。レビューにより適切なパターンに再分類が必要",
+      "roles": {
+        "B": {"role": "background", "label": "背景条件"},
+        "F": {"role": "catalyst", "label": "契機"},
+        "E": {"role": "outcome", "label": "帰結"}
+      },
+      "typicalExamples": [],
+      "bfeAffinity": "unknown"
+    }
+  }
+}

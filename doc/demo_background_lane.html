@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>myHistory - Background Lane Demo</title>
+<style>
+:root {
+  --font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Hiragino Kaku Gothic ProN", "Noto Sans JP", sans-serif;
+  --font-mono: "SF Mono", "Menlo", "Consolas", monospace;
+  --row-height: 72px;
+  --event-width: 320px;
+  --causal-width: 360px;
+  --bg-lane-width: 280px;
+}
+
+html, body { height: 100%; margin: 0; }
+body {
+  font-family: var(--font-family);
+  font-size: 13px;
+  color: #222;
+  background: #fff;
+  overflow: hidden;
+}
+
+.app {
+  height: 100%;
+  display: grid;
+  grid-template-rows: auto 1fr 40px;
+}
+
+/* Header */
+.header-row {
+  display: grid;
+  grid-template-columns: var(--event-width) var(--causal-width) 1fr;
+  border-bottom: 1px solid #ddd;
+}
+.header-cell {
+  padding: 10px 14px;
+  font-size: 11px;
+  font-weight: 600;
+  color: #999;
+  letter-spacing: 0.6px;
+  border-right: 1px solid #eee;
+}
+.header-cell:last-child { border-right: none; }
+
+/* Main area */
+.main {
+  display: grid;
+  grid-template-columns: var(--event-width) var(--causal-width) 1fr;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+/* Event lane */
+.event-lane {
+  border-right: 1px solid #eee;
+}
+.event-row {
+  display: grid;
+  grid-template-columns: 60px 1fr;
+  align-items: center;
+  gap: 8px;
+  height: var(--row-height);
+  padding: 0 12px;
+  border-bottom: 1px solid #f5f5f5;
+  box-sizing: border-box;
+}
+.event-row.has-event {
+  background: #fafafa;
+}
+.year {
+  font-size: 11px;
+  font-weight: 600;
+  color: #888;
+  font-variant-numeric: tabular-nums;
+}
+.ev-title {
+  font-size: 12px;
+  color: #222;
+  line-height: 1.4;
+}
+.ev-dot {
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #555;
+  margin-right: 6px;
+  vertical-align: middle;
+}
+
+/* Causal lane */
+.causal-lane {
+  border-right: 1px solid #eee;
+}
+.causal-row {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  height: var(--row-height);
+  padding: 0 10px;
+  border-bottom: 1px solid #f5f5f5;
+  box-sizing: border-box;
+}
+.el-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 7px;
+  border-radius: 3px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 500;
+  white-space: nowrap;
+  cursor: default;
+  position: relative;
+}
+.el-badge.layer-e {
+  background: #e8f0e8;
+  color: #2a6a2a;
+  border: 1px solid #c8dcc8;
+}
+.el-badge.layer-f {
+  background: #f0e8e8;
+  color: #6a2a2a;
+  border: 1px solid #dcc8c8;
+}
+.el-badge.layer-b {
+  background: #e8e8f0;
+  color: #2a2a6a;
+  border: 1px solid #c8c8dc;
+}
+.layer-sep {
+  width: 1px;
+  height: 20px;
+  background: #ddd;
+  margin: 0 4px;
+}
+/* Link type indicator */
+.link-indicator {
+  font-size: 9px;
+  color: #999;
+  margin-left: 2px;
+  font-family: var(--font-mono);
+}
+
+/* Tooltip */
+.el-badge[data-tip]:hover::after {
+  content: attr(data-tip);
+  position: absolute;
+  bottom: calc(100% + 6px);
+  left: 0;
+  padding: 6px 10px;
+  background: #333;
+  color: #fff;
+  font-size: 11px;
+  font-family: var(--font-family);
+  font-weight: 400;
+  white-space: pre-line;
+  border-radius: 4px;
+  pointer-events: none;
+  z-index: 100;
+  max-width: 300px;
+  line-height: 1.5;
+}
+
+/* Background lane */
+.bg-lane {
+  position: relative;
+  overflow: hidden;
+}
+.bg-row {
+  height: var(--row-height);
+  border-bottom: 1px solid #f5f5f5;
+  box-sizing: border-box;
+  position: relative;
+}
+
+/* Process bars */
+.process-bar {
+  position: absolute;
+  height: 18px;
+  border-radius: 2px;
+  font-size: 9px;
+  font-weight: 600;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  padding: 0 6px;
+  white-space: nowrap;
+  overflow: hidden;
+  cursor: default;
+}
+.process-bar[data-tip]:hover::after {
+  content: attr(data-tip);
+  position: absolute;
+  bottom: calc(100% + 6px);
+  left: 0;
+  padding: 6px 10px;
+  background: #333;
+  color: #fff;
+  font-size: 11px;
+  font-family: var(--font-family);
+  font-weight: 400;
+  white-space: pre-line;
+  border-radius: 4px;
+  pointer-events: none;
+  z-index: 100;
+  max-width: 280px;
+  line-height: 1.5;
+}
+
+/* Process state segments */
+.seg {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 9px;
+  font-weight: 500;
+  overflow: hidden;
+  border-right: 1px solid rgba(255,255,255,0.3);
+}
+.seg:last-child { border-right: none; }
+
+/* Connector lines from causal B to background lane */
+.connector {
+  position: absolute;
+  right: 0;
+  width: 20px;
+  border-top: 1px dashed #aab;
+  z-index: 5;
+}
+.connector-label {
+  position: absolute;
+  right: 22px;
+  font-size: 8px;
+  color: #888;
+  font-family: var(--font-mono);
+  transform: translateY(-50%);
+  white-space: nowrap;
+}
+
+/* Process name label */
+.process-name {
+  position: absolute;
+  left: 8px;
+  font-size: 10px;
+  font-weight: 700;
+  color: rgba(0,0,0,0.6);
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+/* Interaction arrows between processes */
+.interaction-label {
+  position: absolute;
+  font-size: 8px;
+  color: #c44;
+  font-family: var(--font-mono);
+  font-weight: 600;
+  pointer-events: none;
+}
+
+/* Footer */
+.footer {
+  border-top: 1px solid #eee;
+  display: flex;
+  align-items: center;
+  padding: 0 16px;
+  font-size: 11px;
+  color: #999;
+  gap: 20px;
+}
+.legend-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+.legend-dot {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 2px;
+}
+</style>
+</head>
+<body>
+
+<div class="app">
+  <!-- Header -->
+  <div class="header-row">
+    <div class="header-cell">EVENT</div>
+    <div class="header-cell">CAUSAL (E → F → B)</div>
+    <div class="header-cell">BACKGROUND LANE</div>
+  </div>
+
+  <!-- Main -->
+  <div class="main" id="main"></div>
+
+  <!-- Footer -->
+  <div class="footer">
+    <div class="legend-item"><div class="legend-dot" style="background:#e8f0e8;border:1px solid #c8dcc8"></div>E 解放</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#f0e8e8;border:1px solid #dcc8c8"></div>F 揺らぎ</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#e8e8f0;border:1px solid #c8c8dc"></div>B 背景</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#4a7a8a"></div>律令的土地制度</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#8a6a3a"></div>荘園制</div>
+    <span style="margin-left:auto">v3.9 Background Lane Demo</span>
+  </div>
+</div>
+
+<script>
+// ── Data ──
+const rows = [
+  {
+    year: 645, title: '大化の改新の詔',
+    e: [], f: [], b: [],
+    note: '(公地公民の構想)',
+    processes: {}
+  },
+  {
+    year: 701, title: '大宝律令を制定した',
+    e: [{ code: 'E-SYS-02', label: '律令法体系の完成' }],
+    f: [{ code: 'F-CTD-01', label: '飛鳥浄御原令に律が欠如' }],
+    b: [
+      { code: 'B-INS-01', label: '浄御原令は令のみで律が未整備', process: 'ritsuryo', linkType: 'generate' },
+    ],
+    processes: { ritsuryo: 'generate' }
+  },
+  {
+    year: 710, title: '平城京へ遷都した',
+    e: [{ code: 'E-SYS-04', label: '統治体系整備' }],
+    f: [{ code: 'F-ACT-01', label: '元明天皇が遷都を決断' }],
+    b: [
+      { code: 'B-INS-04', label: '律令国家の本格運用が進む', process: 'ritsuryo', linkType: 'reinforce' },
+    ],
+    processes: { ritsuryo: 'reinforce' }
+  },
+  {
+    year: 723, title: '三世一身の法を定め開墾を奨励した',
+    e: [{ code: 'E-SYS-01', label: '土地私有化への制度的端緒' }],
+    f: [{ code: 'F-CTD-01', label: '口分田不足が顕在化' }],
+    b: [
+      { code: 'B-RES-01', label: '班田制で口分田が不足', process: 'ritsuryo', linkType: 'erode' },
+      { code: 'B-INS-02', label: '人口増に耕地が追いつかない', process: null },
+    ],
+    processes: { ritsuryo: 'self-undermining', shoen: 'generate' }
+  },
+  {
+    year: 743, title: '墾田永年私財法が出された',
+    e: [{ code: 'E-SYS-01', label: '土地私有の制度的公認' }],
+    f: [{ code: 'F-CTD-01', label: '開墾地放棄が続出' }],
+    b: [
+      { code: 'B-RES-01', label: '三世一身法では開墾意欲が不十分', process: 'ritsuryo', linkType: 'erode' },
+      { code: 'B-INS-03', label: '三世後に国へ返還の制度', process: 'shoen', linkType: 'reinforce' },
+    ],
+    processes: { ritsuryo: 'erode', shoen: 'escalating' }
+  },
+  {
+    year: '', title: '',
+    e: [], f: [], b: [],
+    note: '(荘園が拡大し続ける)',
+    processes: {}
+  },
+  {
+    year: 897, title: '延喜の治が始まった',
+    e: [{ code: 'E-POW-02', label: '天皇親政の試み' }],
+    f: [{ code: 'F-ACT-01', label: '醍醐天皇が親政を開始' }],
+    b: [
+      { code: 'B-INS-04', label: '律令制の形骸化が進行', process: 'ritsuryo', linkType: 'pressure' },
+      { code: 'B-INS-01', label: '荘園の乱立が租税基盤を圧迫', process: 'shoen', linkType: 'pressure' },
+    ],
+    processes: { ritsuryo: 'pressure', shoen: 'escalating' }
+  },
+  {
+    year: 1069, title: '延久の荘園整理令を出した',
+    e: [{ code: 'E-SYS-01', label: '荘園整理による天皇親政の強化' }],
+    f: [{ code: 'F-UNC-02', label: '違法荘園の乱立報告' }],
+    b: [
+      { code: 'B-INS-01', label: '荘園の乱立が公田を侵食', process: 'ritsuryo', linkType: 'pressure' },
+      { code: 'B-PWR-04', label: '後三条天皇は藤原外戚なし', process: null },
+      { code: 'B-INS-04', label: '国司と貴族の癒着で整理が形骸化', process: 'shoen', linkType: 'redirect' },
+    ],
+    processes: { ritsuryo: 'pressure', shoen: 'redirect' }
+  },
+];
+
+// ── Process definitions ──
+const processes = {
+  ritsuryo: {
+    name: '律令的土地制度',
+    color: '#4a7a8a',
+    startRow: 1,  // 701
+    endRow: 7,    // 1069+
+    states: [
+      { label: '生成', rows: [1, 1], color: '#5a9aaa' },
+      { label: '安定運用', rows: [2, 2], color: '#4a8a9a' },
+      { label: '変質開始', rows: [3, 3], color: '#7a8a5a' },
+      { label: '変質加速', rows: [4, 5], color: '#9a8a4a' },
+      { label: '形骸化', rows: [6, 7], color: '#8a5a4a' },
+    ]
+  },
+  shoen: {
+    name: '荘園制',
+    color: '#8a6a3a',
+    startRow: 3,  // 723
+    endRow: 7,    // 1069+
+    states: [
+      { label: '萌芽', rows: [3, 3], color: '#9a8a5a' },
+      { label: '拡大', rows: [4, 5], color: '#8a7a3a' },
+      { label: '自己強化', rows: [6, 6], color: '#7a5a2a' },
+      { label: '整理圧', rows: [7, 7], color: '#6a6a5a' },
+    ]
+  }
+};
+
+// ── Render ──
+const main = document.getElementById('main');
+
+// Create three columns
+const eventLane = document.createElement('div');
+eventLane.className = 'event-lane';
+const causalLane = document.createElement('div');
+causalLane.className = 'causal-lane';
+const bgLane = document.createElement('div');
+bgLane.className = 'bg-lane';
+bgLane.style.position = 'relative';
+
+main.appendChild(eventLane);
+main.appendChild(causalLane);
+main.appendChild(bgLane);
+
+const rowHeight = 72;
+
+// Render rows
+rows.forEach((row, i) => {
+  // Event
+  const evRow = document.createElement('div');
+  evRow.className = 'event-row' + (row.title ? ' has-event' : '');
+  if (row.title) {
+    evRow.innerHTML = `
+      <div class="year">${row.year}</div>
+      <div class="ev-title"><span class="ev-dot"></span>${row.title}</div>
+    `;
+  } else {
+    evRow.innerHTML = `
+      <div class="year" style="color:#bbb">${row.year || '...'}</div>
+      <div class="ev-title" style="color:#bbb;font-style:italic">${row.note || ''}</div>
+    `;
+  }
+  eventLane.appendChild(evRow);
+
+  // Causal (E → F → B order)
+  const cRow = document.createElement('div');
+  cRow.className = 'causal-row';
+
+  // E badges
+  row.e.forEach(el => {
+    const badge = document.createElement('span');
+    badge.className = 'el-badge layer-e';
+    badge.textContent = el.code.replace(/^E-/, '');
+    badge.setAttribute('data-tip', `${el.code}\n${el.label}`);
+    cRow.appendChild(badge);
+  });
+
+  if (row.e.length && row.f.length) {
+    const sep = document.createElement('span');
+    sep.className = 'layer-sep';
+    cRow.appendChild(sep);
+  }
+
+  // F badges
+  row.f.forEach(el => {
+    const badge = document.createElement('span');
+    badge.className = 'el-badge layer-f';
+    badge.textContent = el.code.replace(/^F-/, '');
+    badge.setAttribute('data-tip', `${el.code}\n${el.label}`);
+    cRow.appendChild(badge);
+  });
+
+  if (row.f.length && row.b.length) {
+    const sep = document.createElement('span');
+    sep.className = 'layer-sep';
+    cRow.appendChild(sep);
+  }
+
+  // B badges (with link type indicators)
+  row.b.forEach(el => {
+    const badge = document.createElement('span');
+    badge.className = 'el-badge layer-b';
+    const shortCode = el.code.replace(/^B-/, '');
+    badge.textContent = shortCode;
+
+    let tipText = `${el.code}\n${el.label}`;
+    if (el.linkType) {
+      tipText += `\n[${el.linkType}]`;
+      const indicator = document.createElement('span');
+      indicator.className = 'link-indicator';
+      const arrows = {
+        generate: '|>',
+        reinforce: '++',
+        erode: '--',
+        pressure: '!!',
+        redirect: '<>',
+      };
+      indicator.textContent = arrows[el.linkType] || '';
+      badge.appendChild(indicator);
+    }
+    badge.setAttribute('data-tip', tipText);
+    cRow.appendChild(badge);
+  });
+
+  causalLane.appendChild(cRow);
+
+  // Background lane row (empty container - processes are drawn absolutely)
+  const bgRow = document.createElement('div');
+  bgRow.className = 'bg-row';
+  bgLane.appendChild(bgRow);
+});
+
+// ── Draw process bars ──
+const laneWidth = 280;
+const processKeys = Object.keys(processes);
+const barHeight = 22;
+const barGap = 4;
+const barLeftBase = 10;
+
+processKeys.forEach((pKey, pIdx) => {
+  const proc = processes[pKey];
+  const topOffset = proc.startRow * rowHeight + 8 + pIdx * (barHeight + barGap);
+  const height = (proc.endRow - proc.startRow + 1) * rowHeight - 16;
+  const barLeft = barLeftBase + pIdx * 130;
+  const barWidth = 120;
+
+  // Process name
+  const nameLabel = document.createElement('div');
+  nameLabel.className = 'process-name';
+  nameLabel.style.top = (topOffset - 14) + 'px';
+  nameLabel.style.left = (barLeft) + 'px';
+  nameLabel.textContent = proc.name;
+  bgLane.appendChild(nameLabel);
+
+  // State segments
+  proc.states.forEach(state => {
+    const segTop = state.rows[0] * rowHeight + 8 + pIdx * (barHeight + barGap);
+    const segHeight = (state.rows[1] - state.rows[0] + 1) * rowHeight - (state.rows[1] === proc.endRow ? 16 : 0);
+
+    const seg = document.createElement('div');
+    seg.style.position = 'absolute';
+    seg.style.left = barLeft + 'px';
+    seg.style.top = segTop + 'px';
+    seg.style.width = barWidth + 'px';
+    seg.style.height = Math.max(segHeight, barHeight) + 'px';
+    seg.style.background = state.color;
+    seg.style.borderRadius = '3px';
+    seg.style.display = 'flex';
+    seg.style.alignItems = 'center';
+    seg.style.justifyContent = 'center';
+    seg.style.fontSize = '9px';
+    seg.style.fontWeight = '600';
+    seg.style.color = '#fff';
+    seg.style.cursor = 'default';
+    seg.style.boxSizing = 'border-box';
+    seg.style.borderBottom = '1px solid rgba(0,0,0,0.15)';
+    seg.setAttribute('data-tip', `${proc.name}\n状態: ${state.label}`);
+
+    // Hover tooltip
+    seg.addEventListener('mouseenter', function(e) {
+      this.style.outline = '2px solid rgba(0,0,0,0.3)';
+      this.style.zIndex = '10';
+    });
+    seg.addEventListener('mouseleave', function(e) {
+      this.style.outline = 'none';
+      this.style.zIndex = '';
+    });
+
+    seg.textContent = state.label;
+    bgLane.appendChild(seg);
+  });
+});
+
+// ── Draw connection lines (B → process) ──
+rows.forEach((row, i) => {
+  row.b.forEach(bEl => {
+    if (!bEl.process) return;
+    const proc = processes[bEl.process];
+    if (!proc) return;
+
+    const pIdx = processKeys.indexOf(bEl.process);
+    const y = i * rowHeight + rowHeight / 2;
+    const barLeft = barLeftBase + pIdx * 130;
+
+    const line = document.createElement('div');
+    line.style.position = 'absolute';
+    line.style.left = '0px';
+    line.style.top = y + 'px';
+    line.style.width = barLeft + 'px';
+    line.style.height = '0';
+    line.style.borderTop = `1px dashed ${proc.color}88`;
+    line.style.zIndex = '3';
+    bgLane.appendChild(line);
+
+    // Link type label
+    if (bEl.linkType) {
+      const label = document.createElement('div');
+      label.style.position = 'absolute';
+      label.style.left = '2px';
+      label.style.top = (y - 9) + 'px';
+      label.style.fontSize = '8px';
+      label.style.fontFamily = 'var(--font-mono)';
+      label.style.color = proc.color;
+      label.style.fontWeight = '600';
+      label.textContent = bEl.linkType;
+      bgLane.appendChild(label);
+    }
+  });
+});
+
+// ── Draw inverse relationship indicator ──
+const invLabel = document.createElement('div');
+invLabel.className = 'interaction-label';
+invLabel.style.left = '75px';
+invLabel.style.top = (5 * rowHeight + 20) + 'px';
+invLabel.innerHTML = 'inverse &harr;';
+bgLane.appendChild(invLabel);
+
+// self-undermining label
+const selfLabel = document.createElement('div');
+selfLabel.style.position = 'absolute';
+selfLabel.style.left = '12px';
+selfLabel.style.top = (3 * rowHeight + 55) + 'px';
+selfLabel.style.fontSize = '8px';
+selfLabel.style.fontFamily = 'var(--font-mono)';
+selfLabel.style.color = '#4a7a8a';
+selfLabel.style.fontWeight = '600';
+selfLabel.style.fontStyle = 'italic';
+selfLabel.textContent = 'self-undermining';
+bgLane.appendChild(selfLabel);
+</script>
+</body>
+</html>

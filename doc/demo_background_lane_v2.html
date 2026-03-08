@@ -1,0 +1,886 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>myHistory - Background Lane Demo v2</title>
+<style>
+:root {
+  --font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Hiragino Kaku Gothic ProN", "Noto Sans JP", sans-serif;
+  --font-mono: "SF Mono", "Menlo", "Consolas", monospace;
+  --row-height: 80px;
+  --event-width: 280px;
+  --causal-width: 380px;
+  --bg-lane-width: 300px;
+}
+
+html, body { height: 100%; margin: 0; }
+body {
+  font-family: var(--font-family);
+  font-size: 13px;
+  color: #222;
+  background: #fff;
+  overflow: hidden;
+}
+
+.app {
+  height: 100%;
+  display: grid;
+  grid-template-rows: auto 1fr 40px;
+}
+
+/* Header */
+.header-row {
+  display: grid;
+  grid-template-columns: var(--event-width) var(--causal-width) 1fr;
+  border-bottom: 1px solid #ddd;
+}
+.header-cell {
+  padding: 10px 14px;
+  font-size: 11px;
+  font-weight: 600;
+  color: #999;
+  letter-spacing: 0.6px;
+  border-right: 1px solid #eee;
+}
+.header-cell:last-child { border-right: none; }
+
+/* Main area */
+.main {
+  display: grid;
+  grid-template-columns: var(--event-width) var(--causal-width) 1fr;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+/* Sync scroll */
+.main > div { overflow: hidden; }
+
+/* Event lane */
+.event-lane {
+  border-right: 1px solid #eee;
+}
+.event-row {
+  display: grid;
+  grid-template-columns: 56px 1fr;
+  align-items: center;
+  gap: 6px;
+  height: var(--row-height);
+  padding: 0 10px;
+  border-bottom: 1px solid #f5f5f5;
+  box-sizing: border-box;
+}
+.event-row.has-event {
+  background: #fafafa;
+}
+.event-row.highlighted {
+  background: #fffde8;
+  border-left: 3px solid #c4a700;
+}
+.year {
+  font-size: 11px;
+  font-weight: 600;
+  color: #888;
+  font-variant-numeric: tabular-nums;
+}
+.ev-title {
+  font-size: 12px;
+  color: #222;
+  line-height: 1.4;
+}
+.ev-dot {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #555;
+  margin-right: 5px;
+  vertical-align: middle;
+}
+
+/* Causal lane */
+.causal-lane {
+  border-right: 1px solid #eee;
+}
+.causal-row {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 3px;
+  height: var(--row-height);
+  padding: 4px 8px;
+  border-bottom: 1px solid #f5f5f5;
+  box-sizing: border-box;
+}
+.el-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 6px;
+  border-radius: 3px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 500;
+  white-space: nowrap;
+  cursor: default;
+  position: relative;
+}
+.el-badge.layer-e {
+  background: #e8f0e8;
+  color: #2a6a2a;
+  border: 1px solid #c8dcc8;
+}
+.el-badge.layer-f {
+  background: #f0e8e8;
+  color: #6a2a2a;
+  border: 1px solid #dcc8c8;
+}
+.el-badge.layer-b {
+  background: #e8e8f0;
+  color: #2a2a6a;
+  border: 1px solid #c8c8dc;
+  cursor: pointer;
+  transition: outline 0.15s;
+}
+.el-badge.layer-b:hover {
+  outline: 2px solid #6a6aaa;
+}
+.el-badge.layer-b.active-b {
+  outline: 2px solid #4a4a9a;
+  background: #dde;
+}
+.layer-sep {
+  width: 1px;
+  height: 18px;
+  background: #ddd;
+  margin: 0 2px;
+}
+
+/* Origin tag on B badges */
+.origin-tag {
+  font-size: 8px;
+  font-family: var(--font-mono);
+  font-weight: 600;
+  margin-left: 3px;
+  padding: 0 3px;
+  border-radius: 2px;
+  line-height: 1.4;
+}
+.origin-tag.nov { background: #d8ecd8; color: #2a5a2a; }
+.origin-tag.inh { background: #d8d8ec; color: #2a2a5a; }
+.origin-tag.sed { background: #ecdcd8; color: #5a3a2a; }
+.origin-tag.ext { background: #ece8d8; color: #5a4a2a; }
+
+/* Link type indicator */
+.link-indicator {
+  font-size: 8px;
+  color: #888;
+  margin-left: 2px;
+  font-family: var(--font-mono);
+}
+
+/* Tooltip */
+.el-badge[data-tip]:hover::after {
+  content: attr(data-tip);
+  position: absolute;
+  bottom: calc(100% + 6px);
+  left: 0;
+  padding: 6px 10px;
+  background: #333;
+  color: #fff;
+  font-size: 11px;
+  font-family: var(--font-family);
+  font-weight: 400;
+  white-space: pre-line;
+  border-radius: 4px;
+  pointer-events: none;
+  z-index: 100;
+  max-width: 320px;
+  line-height: 1.5;
+}
+
+/* Background lane */
+.bg-lane {
+  position: relative;
+  overflow: hidden;
+}
+.bg-row {
+  height: var(--row-height);
+  border-bottom: 1px solid #f5f5f5;
+  box-sizing: border-box;
+  position: relative;
+}
+
+/* On-demand causal line */
+.causal-line {
+  position: absolute;
+  pointer-events: none;
+  z-index: 20;
+}
+.causal-line-svg {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  pointer-events: none;
+  z-index: 20;
+}
+
+/* Process name label */
+.process-name {
+  position: absolute;
+  left: 8px;
+  font-size: 10px;
+  font-weight: 700;
+  color: rgba(0,0,0,0.55);
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+/* Interaction labels */
+.interaction-label {
+  position: absolute;
+  font-size: 8px;
+  color: #c44;
+  font-family: var(--font-mono);
+  font-weight: 600;
+  pointer-events: none;
+}
+
+/* Inspector panel (right side of bg lane) */
+.inspector {
+  position: fixed;
+  bottom: 50px;
+  right: 16px;
+  width: 300px;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.12);
+  padding: 14px;
+  z-index: 50;
+  display: none;
+  font-size: 12px;
+  max-height: 320px;
+  overflow-y: auto;
+}
+.inspector.visible { display: block; }
+.inspector h4 {
+  margin: 0 0 8px;
+  font-size: 12px;
+  color: #666;
+  font-weight: 600;
+}
+.inspector .close-btn {
+  position: absolute;
+  top: 8px; right: 10px;
+  cursor: pointer;
+  color: #999;
+  font-size: 16px;
+  border: none;
+  background: none;
+}
+.inspector .field {
+  margin: 6px 0;
+  line-height: 1.5;
+}
+.inspector .field-label {
+  font-weight: 600;
+  color: #888;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+.inspector .field-value {
+  color: #333;
+}
+.inspector .event-list {
+  list-style: none;
+  padding: 0;
+  margin: 4px 0 0;
+}
+.inspector .event-list li {
+  padding: 2px 0;
+  font-size: 11px;
+  color: #555;
+  cursor: pointer;
+}
+.inspector .event-list li:hover {
+  color: #222;
+  text-decoration: underline;
+}
+
+/* Footer */
+.footer {
+  border-top: 1px solid #eee;
+  display: flex;
+  align-items: center;
+  padding: 0 16px;
+  font-size: 11px;
+  color: #999;
+  gap: 16px;
+}
+.legend-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+.legend-dot {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 2px;
+}
+</style>
+</head>
+<body>
+
+<div class="app">
+  <!-- Header -->
+  <div class="header-row">
+    <div class="header-cell">EVENT</div>
+    <div class="header-cell">CAUSAL (E -> F -> B)</div>
+    <div class="header-cell">BACKGROUND LANE</div>
+  </div>
+
+  <!-- Main -->
+  <div class="main" id="main"></div>
+
+  <!-- Inspector -->
+  <div class="inspector" id="inspector">
+    <button class="close-btn" onclick="closeInspector()">&times;</button>
+    <h4>Background Inspector</h4>
+    <div id="inspectorContent"></div>
+  </div>
+
+  <!-- Footer -->
+  <div class="footer">
+    <div class="legend-item"><div class="legend-dot" style="background:#e8f0e8;border:1px solid #c8dcc8"></div>E</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#f0e8e8;border:1px solid #dcc8c8"></div>F</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#e8e8f0;border:1px solid #c8c8dc"></div>B</div>
+    <div class="legend-item" style="margin-left:8px"><span style="font-family:var(--font-mono);font-size:9px;background:#d8ecd8;padding:1px 4px;border-radius:2px">NOV</span> new</div>
+    <div class="legend-item"><span style="font-family:var(--font-mono);font-size:9px;background:#d8d8ec;padding:1px 4px;border-radius:2px">INH</span> inherit</div>
+    <div class="legend-item"><span style="font-family:var(--font-mono);font-size:9px;background:#ecdcd8;padding:1px 4px;border-radius:2px">SED</span> sediment</div>
+    <div class="legend-item"><span style="font-family:var(--font-mono);font-size:9px;background:#ece8d8;padding:1px 4px;border-radius:2px">EXT</span> external</div>
+    <div class="legend-item" style="margin-left:8px"><div class="legend-dot" style="background:#4a7a8a"></div>ritsuryo</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#8a6a3a"></div>shoen</div>
+    <span style="margin-left:auto">v3.9 Background Lane Demo v2</span>
+  </div>
+</div>
+
+<script>
+// ── Data ──
+const rows = [
+  {
+    year: 645, title: '大化の改新の詔',
+    e: [{ code: 'E-SYS-01', label: '公地公民の構想を宣言' }],
+    f: [{ code: 'F-ACT-01', label: '中大兄皇子がクーデター' }],
+    b: [
+      { code: 'B-PWR-01', label: '蘇我氏が朝廷を壟断', bKey: 'clan_dominance', origin: { type: 'EXT', from: null, reason: '豪族間の権力闘争が恒常化' }, process: null },
+    ],
+    processes: { ritsuryo: 'generate' }
+  },
+  {
+    year: 701, title: '大宝律令を制定した',
+    e: [{ code: 'E-SYS-02', label: '律令法体系の完成' }],
+    f: [{ code: 'F-CTD-01', label: '浄御原令に律が欠如' }],
+    b: [
+      { code: 'B-INS-01', label: '浄御原令は令のみで律が未整備', bKey: 'ritsuryo_system', origin: { type: 'SED', from: 0, reason: '大化改新の中央集権構想が制度設計に沈殿' }, process: 'ritsuryo', linkType: 'generate' },
+    ],
+    processes: { ritsuryo: 'generate' }
+  },
+  {
+    year: 710, title: '平城京へ遷都した',
+    e: [{ code: 'E-SYS-04', label: '統治体系整備の象徴' }],
+    f: [{ code: 'F-ACT-01', label: '元明天皇が遷都を決断' }],
+    b: [
+      { code: 'B-INS-04', label: '律令国家の本格運用が進む', bKey: 'ritsuryo_system', origin: { type: 'INH', from: 1, reason: '大宝律令の統治設計が首都建設の前提として継続' }, process: 'ritsuryo', linkType: 'reinforce' },
+    ],
+    processes: { ritsuryo: 'reinforce' }
+  },
+  {
+    year: 723, title: '三世一身の法を定め開墾を奨励した',
+    e: [{ code: 'E-SYS-01', label: '土地私有化への制度的端緒' }],
+    f: [{ code: 'F-CTD-01', label: '口分田不足が顕在化' }],
+    b: [
+      { code: 'B-RES-01', label: '班田制で口分田が不足', bKey: 'ritsuryo_system', origin: { type: 'INH', from: 2, reason: '律令的土地制度の運用が人口増に追いつかず歪みとして継続' }, process: 'ritsuryo', linkType: 'erode' },
+      { code: 'B-INS-02', label: '人口増に耕地が追いつかない', bKey: 'population_pressure', origin: { type: 'EXT', from: null, reason: '律令安定期の人口自然増' }, process: null },
+    ],
+    processes: { ritsuryo: 'self-undermining', shoen: 'generate' }
+  },
+  {
+    year: 743, title: '墾田永年私財法が出された',
+    e: [{ code: 'E-SYS-01', label: '土地私有の制度的公認' }],
+    f: [{ code: 'F-CTD-01', label: '三世一身法では開墾意欲が不十分' }],
+    b: [
+      { code: 'B-RES-01', label: '三世一身法では開墾意欲が不十分', bKey: 'ritsuryo_system', origin: { type: 'SED', from: 3, reason: '三世一身法の限界が沈殿し、より強い私有権要求が背景化' }, process: 'ritsuryo', linkType: 'erode' },
+      { code: 'B-INS-03', label: '三世後に国へ返還の制度', bKey: 'shoen_system', origin: { type: 'NOV', from: null, reason: '三世一身法が荘園の萌芽的背景を新たに生成' }, process: 'shoen', linkType: 'reinforce' },
+    ],
+    processes: { ritsuryo: 'erode', shoen: 'escalating' }
+  },
+  {
+    year: '', title: '',
+    e: [], f: [], b: [],
+    note: '(荘園が拡大し続ける)',
+    processes: {}
+  },
+  {
+    year: 897, title: '延喜の治が始まった',
+    e: [{ code: 'E-POW-02', label: '天皇親政の試み' }],
+    f: [{ code: 'F-ACT-01', label: '醍醐天皇が親政を開始' }],
+    b: [
+      { code: 'B-INS-04', label: '律令制の形骸化が進行', bKey: 'ritsuryo_system', origin: { type: 'INH', from: 4, reason: '墾田永年私財法以降の私有化進行が律令形骸化として継続' }, process: 'ritsuryo', linkType: 'pressure' },
+      { code: 'B-INS-01', label: '荘園の乱立が租税基盤を圧迫', bKey: 'shoen_system', origin: { type: 'INH', from: 4, reason: '荘園制が自己強化ループで拡大し続けた結果' }, process: 'shoen', linkType: 'pressure' },
+    ],
+    processes: { ritsuryo: 'pressure', shoen: 'escalating' }
+  },
+  {
+    year: 1069, title: '延久の荘園整理令を出した',
+    e: [{ code: 'E-SYS-01', label: '荘園整理による公領回復の試み' }],
+    f: [{ code: 'F-UNC-02', label: '違法荘園の乱立が限界に' }],
+    b: [
+      { code: 'B-INS-01', label: '荘園の乱立が公田を侵食', bKey: 'shoen_system', origin: { type: 'INH', from: 6, reason: '荘園拡大が加速し公領収入が危機的に' }, process: 'shoen', linkType: 'redirect' },
+      { code: 'B-PWR-04', label: '後三条天皇は藤原外戚なし', bKey: 'imperial_autonomy', origin: { type: 'NOV', from: null, reason: '藤原氏の外戚関係が途切れた個別条件' }, process: null },
+      { code: 'B-INS-04', label: '国司と貴族の癒着で整理が形骸化', bKey: 'ritsuryo_system', origin: { type: 'INH', from: 6, reason: '律令的統治の形骸化がさらに深化' }, process: 'ritsuryo', linkType: 'pressure' },
+    ],
+    processes: { ritsuryo: 'pressure', shoen: 'redirect' }
+  },
+];
+
+// ── Process definitions ──
+const processes = {
+  ritsuryo: {
+    name: '律令的土地制度',
+    color: '#4a7a8a',
+    startRow: 1,
+    endRow: 7,
+    states: [
+      { label: '生成', rows: [1, 1], color: '#5a9aaa' },
+      { label: '安定運用', rows: [2, 2], color: '#4a8a9a' },
+      { label: '変質開始', rows: [3, 3], color: '#7a8a5a' },
+      { label: '変質加速', rows: [4, 5], color: '#9a8a4a' },
+      { label: '形骸化', rows: [6, 7], color: '#8a5a4a' },
+    ]
+  },
+  shoen: {
+    name: '荘園制',
+    color: '#8a6a3a',
+    startRow: 3,
+    endRow: 7,
+    states: [
+      { label: '萌芽', rows: [3, 3], color: '#9a8a5a' },
+      { label: '拡大', rows: [4, 5], color: '#8a7a3a' },
+      { label: '自己強化', rows: [6, 6], color: '#7a5a2a' },
+      { label: '整理圧', rows: [7, 7], color: '#6a6a5a' },
+    ]
+  }
+};
+
+// ── bKey aggregation ──
+function aggregateBKeys() {
+  const map = {};
+  rows.forEach((row, i) => {
+    row.b.forEach(bEl => {
+      if (!bEl.bKey) return;
+      if (!map[bEl.bKey]) map[bEl.bKey] = { count: 0, events: [], labels: [] };
+      map[bEl.bKey].count++;
+      map[bEl.bKey].events.push(i);
+      if (!map[bEl.bKey].labels.includes(bEl.label)) map[bEl.bKey].labels.push(bEl.label);
+    });
+  });
+  return map;
+}
+const bKeyMap = aggregateBKeys();
+
+// ── State ──
+let activeBEl = null;
+let activeRowIdx = null;
+
+// ── Render ──
+const main = document.getElementById('main');
+
+const eventLane = document.createElement('div');
+eventLane.className = 'event-lane';
+const causalLane = document.createElement('div');
+causalLane.className = 'causal-lane';
+const bgLane = document.createElement('div');
+bgLane.className = 'bg-lane';
+bgLane.style.position = 'relative';
+
+main.appendChild(eventLane);
+main.appendChild(causalLane);
+main.appendChild(bgLane);
+
+// SVG for on-demand lines
+const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+svg.classList.add('causal-line-svg');
+svg.style.position = 'absolute';
+svg.style.top = '0';
+svg.style.left = '0';
+svg.style.width = '100%';
+svg.style.pointerEvents = 'none';
+svg.style.zIndex = '20';
+bgLane.appendChild(svg);
+
+const rowHeight = 80;
+const eventRows = [];
+const causalRows = [];
+const bBadges = []; // {el, rowIdx, bEl}
+
+// Render rows
+rows.forEach((row, i) => {
+  // Event
+  const evRow = document.createElement('div');
+  evRow.className = 'event-row' + (row.title ? ' has-event' : '');
+  evRow.dataset.rowIdx = i;
+  if (row.title) {
+    evRow.innerHTML = `
+      <div class="year">${row.year}</div>
+      <div class="ev-title"><span class="ev-dot"></span>${row.title}</div>
+    `;
+  } else {
+    evRow.innerHTML = `
+      <div class="year" style="color:#bbb">${row.year || '...'}</div>
+      <div class="ev-title" style="color:#bbb;font-style:italic">${row.note || ''}</div>
+    `;
+  }
+  eventLane.appendChild(evRow);
+  eventRows.push(evRow);
+
+  // Causal (E -> F -> B order)
+  const cRow = document.createElement('div');
+  cRow.className = 'causal-row';
+
+  // E badges
+  row.e.forEach(el => {
+    const badge = document.createElement('span');
+    badge.className = 'el-badge layer-e';
+    badge.textContent = el.code.replace(/^E-/, '');
+    badge.setAttribute('data-tip', `${el.code}\n${el.label}`);
+    cRow.appendChild(badge);
+  });
+
+  if (row.e.length && row.f.length) {
+    const sep = document.createElement('span');
+    sep.className = 'layer-sep';
+    cRow.appendChild(sep);
+  }
+
+  // F badges
+  row.f.forEach(el => {
+    const badge = document.createElement('span');
+    badge.className = 'el-badge layer-f';
+    badge.textContent = el.code.replace(/^F-/, '');
+    badge.setAttribute('data-tip', `${el.code}\n${el.label}`);
+    cRow.appendChild(badge);
+  });
+
+  if (row.f.length && row.b.length) {
+    const sep = document.createElement('span');
+    sep.className = 'layer-sep';
+    cRow.appendChild(sep);
+  }
+
+  // B badges (with origin tags and link type indicators)
+  row.b.forEach((bEl, bIdx) => {
+    const badge = document.createElement('span');
+    badge.className = 'el-badge layer-b';
+    const shortCode = bEl.code.replace(/^B-/, '');
+    badge.textContent = shortCode;
+
+    // Origin tag
+    if (bEl.origin) {
+      const otag = document.createElement('span');
+      otag.className = 'origin-tag ' + bEl.origin.type.toLowerCase();
+      let tagText = bEl.origin.type;
+      if (bEl.origin.from !== null && bEl.origin.from !== undefined) {
+        const fromRow = rows[bEl.origin.from];
+        if (fromRow && fromRow.year) tagText += '\u2190' + fromRow.year;
+      }
+      otag.textContent = tagText;
+      badge.appendChild(otag);
+    }
+
+    // Link type indicator
+    if (bEl.linkType) {
+      const indicator = document.createElement('span');
+      indicator.className = 'link-indicator';
+      const arrows = { generate: '|>', reinforce: '++', erode: '--', pressure: '!!', redirect: '<>' };
+      indicator.textContent = arrows[bEl.linkType] || '';
+      badge.appendChild(indicator);
+    }
+
+    // bKey count
+    if (bEl.bKey && bKeyMap[bEl.bKey] && bKeyMap[bEl.bKey].count > 1) {
+      const countTag = document.createElement('span');
+      countTag.style.cssText = 'font-size:8px;color:#888;margin-left:2px;font-family:var(--font-mono)';
+      countTag.textContent = '\u00d7' + bKeyMap[bEl.bKey].count;
+      badge.appendChild(countTag);
+    }
+
+    let tipText = `${bEl.code}\n${bEl.label}`;
+    if (bEl.bKey) tipText += `\nbKey: ${bEl.bKey}`;
+    if (bEl.origin) tipText += `\norigin: ${bEl.origin.type}`;
+    if (bEl.linkType) tipText += `\nlink: ${bEl.linkType}`;
+    badge.setAttribute('data-tip', tipText);
+
+    // Click handler
+    badge.addEventListener('click', (e) => {
+      e.stopPropagation();
+      onBClick(bEl, i, badge);
+    });
+
+    cRow.appendChild(badge);
+    bBadges.push({ el: badge, rowIdx: i, bEl: bEl });
+  });
+
+  causalLane.appendChild(cRow);
+  causalRows.push(cRow);
+
+  // Background lane row
+  const bgRow = document.createElement('div');
+  bgRow.className = 'bg-row';
+  bgLane.appendChild(bgRow);
+});
+
+// Set SVG height
+svg.style.height = (rows.length * rowHeight) + 'px';
+svg.setAttribute('viewBox', `0 0 300 ${rows.length * rowHeight}`);
+
+// ── Draw process bars ──
+const processKeys = Object.keys(processes);
+const barHeight = 22;
+const barGap = 4;
+const barLeftBase = 10;
+
+processKeys.forEach((pKey, pIdx) => {
+  const proc = processes[pKey];
+  const barLeft = barLeftBase + pIdx * 140;
+  const barWidth = 125;
+
+  // Process name
+  const nameLabel = document.createElement('div');
+  nameLabel.className = 'process-name';
+  nameLabel.style.top = (proc.startRow * rowHeight - 14) + 'px';
+  nameLabel.style.left = barLeft + 'px';
+  nameLabel.textContent = proc.name;
+  bgLane.appendChild(nameLabel);
+
+  // State segments
+  proc.states.forEach(state => {
+    const segTop = state.rows[0] * rowHeight + 8 + pIdx * (barHeight + barGap);
+    const segHeight = (state.rows[1] - state.rows[0] + 1) * rowHeight - 16;
+
+    const seg = document.createElement('div');
+    seg.style.position = 'absolute';
+    seg.style.left = barLeft + 'px';
+    seg.style.top = segTop + 'px';
+    seg.style.width = barWidth + 'px';
+    seg.style.height = Math.max(segHeight, barHeight) + 'px';
+    seg.style.background = state.color;
+    seg.style.borderRadius = '3px';
+    seg.style.display = 'flex';
+    seg.style.alignItems = 'center';
+    seg.style.justifyContent = 'center';
+    seg.style.fontSize = '9px';
+    seg.style.fontWeight = '600';
+    seg.style.color = '#fff';
+    seg.style.cursor = 'default';
+    seg.style.boxSizing = 'border-box';
+    seg.style.borderBottom = '1px solid rgba(0,0,0,0.15)';
+    seg.setAttribute('data-tip', `${proc.name}\n${state.label}`);
+
+    seg.addEventListener('mouseenter', function() {
+      this.style.outline = '2px solid rgba(0,0,0,0.3)';
+      this.style.zIndex = '10';
+    });
+    seg.addEventListener('mouseleave', function() {
+      this.style.outline = 'none';
+      this.style.zIndex = '';
+    });
+
+    seg.textContent = state.label;
+    bgLane.appendChild(seg);
+  });
+});
+
+// ── Inverse relationship label ──
+const invLabel = document.createElement('div');
+invLabel.className = 'interaction-label';
+invLabel.style.left = '80px';
+invLabel.style.top = (5 * rowHeight + 25) + 'px';
+invLabel.innerHTML = 'inverse &harr;';
+bgLane.appendChild(invLabel);
+
+// self-undermining label
+const selfLabel = document.createElement('div');
+selfLabel.style.position = 'absolute';
+selfLabel.style.left = '12px';
+selfLabel.style.top = (3 * rowHeight + 60) + 'px';
+selfLabel.style.fontSize = '8px';
+selfLabel.style.fontFamily = 'var(--font-mono)';
+selfLabel.style.color = '#4a7a8a';
+selfLabel.style.fontWeight = '600';
+selfLabel.style.fontStyle = 'italic';
+selfLabel.textContent = 'self-undermining';
+bgLane.appendChild(selfLabel);
+
+// ── On-demand B click handler ──
+function onBClick(bEl, rowIdx, badgeEl) {
+  // Clear previous
+  clearSelection();
+
+  activeBEl = bEl;
+  activeRowIdx = rowIdx;
+  badgeEl.classList.add('active-b');
+
+  // Highlight events with same bKey
+  if (bEl.bKey && bKeyMap[bEl.bKey]) {
+    bKeyMap[bEl.bKey].events.forEach(evIdx => {
+      eventRows[evIdx].classList.add('highlighted');
+    });
+  }
+
+  // Draw origin line (on-demand)
+  drawOriginLine(bEl, rowIdx);
+
+  // Show inspector
+  showInspector(bEl, rowIdx);
+}
+
+function clearSelection() {
+  activeBEl = null;
+  activeRowIdx = null;
+
+  // Clear badge highlights
+  bBadges.forEach(b => b.el.classList.remove('active-b'));
+
+  // Clear event highlights
+  eventRows.forEach(ev => ev.classList.remove('highlighted'));
+
+  // Clear SVG lines
+  while (svg.firstChild) svg.removeChild(svg.firstChild);
+
+  // Hide inspector
+  document.getElementById('inspector').classList.remove('visible');
+}
+
+function drawOriginLine(bEl, rowIdx) {
+  if (!bEl.origin || bEl.origin.from === null || bEl.origin.from === undefined) return;
+
+  const fromRowIdx = bEl.origin.from;
+  const fromY = fromRowIdx * rowHeight + rowHeight / 2;
+  const toY = rowIdx * rowHeight + rowHeight / 2;
+
+  // Process bar position (if linked to a process)
+  const pIdx = bEl.process ? processKeys.indexOf(bEl.process) : -1;
+  const barLeft = pIdx >= 0 ? barLeftBase + pIdx * 140 : 60;
+  const x = barLeft + 5;
+
+  // Draw line
+  const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+  line.setAttribute('x1', x);
+  line.setAttribute('y1', fromY);
+  line.setAttribute('x2', x);
+  line.setAttribute('y2', toY);
+  line.setAttribute('stroke', bEl.process && processes[bEl.process] ? processes[bEl.process].color : '#888');
+  line.setAttribute('stroke-width', '2');
+  line.setAttribute('stroke-dasharray', '4,3');
+  line.setAttribute('opacity', '0.7');
+  svg.appendChild(line);
+
+  // Arrow head
+  const arrow = document.createElementNS('http://www.w3.org/2000/svg', 'polygon');
+  const arrowSize = 5;
+  arrow.setAttribute('points',
+    `${x},${toY} ${x - arrowSize},${toY - arrowSize * 1.5} ${x + arrowSize},${toY - arrowSize * 1.5}`
+  );
+  arrow.setAttribute('fill', bEl.process && processes[bEl.process] ? processes[bEl.process].color : '#888');
+  arrow.setAttribute('opacity', '0.7');
+  svg.appendChild(arrow);
+
+  // Origin type label on the line
+  const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+  text.setAttribute('x', x + 8);
+  text.setAttribute('y', (fromY + toY) / 2 + 3);
+  text.setAttribute('font-size', '9');
+  text.setAttribute('font-family', 'var(--font-mono)');
+  text.setAttribute('fill', '#666');
+  text.setAttribute('font-weight', '600');
+  text.textContent = bEl.origin.type;
+  svg.appendChild(text);
+}
+
+function showInspector(bEl, rowIdx) {
+  const inspector = document.getElementById('inspector');
+  const content = document.getElementById('inspectorContent');
+  const row = rows[rowIdx];
+
+  let html = '';
+  html += `<div class="field"><span class="field-label">Code</span><br><span class="field-value">${bEl.code}</span></div>`;
+  html += `<div class="field"><span class="field-label">Label</span><br><span class="field-value">${bEl.label}</span></div>`;
+
+  if (bEl.bKey) {
+    const info = bKeyMap[bEl.bKey];
+    html += `<div class="field"><span class="field-label">bKey</span><br><span class="field-value">${bEl.bKey} (x${info.count})</span></div>`;
+  }
+
+  if (bEl.origin) {
+    let fromText = '';
+    if (bEl.origin.from !== null && bEl.origin.from !== undefined) {
+      const fr = rows[bEl.origin.from];
+      fromText = fr ? `${fr.year} ${fr.title}` : `row ${bEl.origin.from}`;
+    } else {
+      fromText = '(external / new)';
+    }
+    html += `<div class="field"><span class="field-label">Origin</span><br>`;
+    html += `<span class="field-value"><strong>${bEl.origin.type}</strong> <- ${fromText}</span></div>`;
+    html += `<div class="field"><span class="field-label">Reason</span><br><span class="field-value">${bEl.origin.reason}</span></div>`;
+  }
+
+  if (bEl.linkType) {
+    html += `<div class="field"><span class="field-label">Process Link</span><br><span class="field-value">${bEl.linkType} -> ${bEl.process || '-'}</span></div>`;
+  }
+
+  // Events sharing this bKey
+  if (bEl.bKey && bKeyMap[bEl.bKey] && bKeyMap[bEl.bKey].count > 1) {
+    html += `<div class="field"><span class="field-label">Shared Events</span>`;
+    html += `<ul class="event-list">`;
+    bKeyMap[bEl.bKey].events.forEach(evIdx => {
+      const ev = rows[evIdx];
+      if (ev.title) {
+        html += `<li data-row="${evIdx}">${ev.year} ${ev.title}</li>`;
+      }
+    });
+    html += `</ul></div>`;
+  }
+
+  content.innerHTML = html;
+
+  // Click handlers for event list items
+  content.querySelectorAll('.event-list li').forEach(li => {
+    li.addEventListener('click', () => {
+      const idx = parseInt(li.dataset.row);
+      eventRows[idx].scrollIntoView({ behavior: 'smooth', block: 'center' });
+    });
+  });
+
+  inspector.classList.add('visible');
+}
+
+function closeInspector() {
+  clearSelection();
+}
+
+// Click outside to deselect
+document.addEventListener('click', (e) => {
+  if (!e.target.closest('.el-badge.layer-b') && !e.target.closest('.inspector')) {
+    clearSelection();
+  }
+});
+
+// Sync scroll
+main.addEventListener('scroll', () => {
+  // All columns scroll together since they're in the same grid
+}, { passive: true });
+</script>
+</body>
+</html>

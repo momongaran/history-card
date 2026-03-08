@@ -1,0 +1,1258 @@
+{
+  "_meta": {
+    "description": "207件の因果パターン類型分類",
+    "date": "2026-03-08",
+    "patterns": {
+      "A_pressure_release": "圧力解放型: B(圧力) → F(引き金) → E(解放)",
+      "B_deliberate_action": "主体的行為型: S(状況) → J(判断) → A(行為) → E(帰結)",
+      "C_exogenous_shock": "外生衝撃型: X(衝撃) → R(対応) → E(適応)",
+      "D_contradiction_exposure": "矛盾露呈型: C(潜在矛盾) → M(顕在化) → E(変化)",
+      "E_power_transition": "権力移行型: V(空白) → P(手続) → E(新体制)",
+      "F_contingency": "偶発型: I(偶発) → C(連鎖) → E(帰結)"
+    }
+  },
+  "events": [
+    {
+      "eventId": "EV_p0507_01",
+      "title": "継体天皇が即位した",
+      "year": 507,
+      "causalPattern": "E_power_transition"
+    },
+    {
+      "eventId": "EV_p0512_01",
+      "title": "大伴金村が政権を主導した",
+      "year": 512,
+      "causalPattern": "A_pressure_release"
+    },
+    {
+      "eventId": "EV_p0527_01",
+      "title": "磐井の乱が起こった",
+      "year": 527,
+      "causalPattern": "A_pressure_release"
+    },
+    {
+      "eventId": "EV_p0538_01",
+      "title": "百済から仏教が伝来した",
+      "year": 538,
+      "causalPattern": "C_exogenous_shock"
+    },
+    {
+      "eventId": "EV_p0587_01",
+      "title": "丁未の乱で蘇我氏が物部氏に勝利した",
+      "year": 587,
+      "causalPattern": "A_pressure_release"
+    },
+    {
+      "eventId": "EV_p0592_01",
+      "title": "崇峻天皇が蘇我馬子の意向で暗殺された",
+      "year": 592,
+      "causalPattern": "E_power_transition"
+    },
+    {
+      "eventId": "EV_p0593_01",
+      "title": "推古天皇が即位した",
+      "year": 593,
+      "causalPattern": "E_power_transition"
+    },
+    {
+      "eventId": "EV_p0593_02",
+      "title": "厩戸王が摂政に就任した",
+      "year": 593,
+      "causalPattern": "B_deliberate_action"
+    },
+    {
+      "eventId": "EV_p0603_01",
+      "title": "冠位十二階を制定した",
+      "year": 603,
+      "causalPattern": "D_contradiction_exposure"
+    },
+    {
+      "eventId": "EV_p0604_01",
+      "title": "憲法十七条を制定した",
+      "year": 604,
+      "causalPattern": "D_contradiction_exposure"
+    },
+    {
+      "eventId": "EV_p0607_01",
+      "title": "遣隋使を派遣し対等外交を志向した",
+      "year": 607,
+      "causalPattern": "C_exogenous_shock"
+    },
+    {
+      "eventId": "EV_p0630_01",
+      "title": "遣唐使を派遣し大陸制度の学習を本格化した",
+      "year": 630,
+      "causalPattern": "C_exogenous_shock"
+    },
+    {
+      "eventId": "EV_p0645_01",
+      "title": "乙巳の変が起き大化改新が始まった",
+      "year": 645,
+      "causalPattern": "A_pressure_release"
+    },
+    {
+      "eventId": "EV_p0645_02",
+      "title": "大化の改新の詔が出された",
+      "year": 645,
+      "causalPattern": "D_contradiction_exposure"
+    },
+    {
+      "eventId": "EV_p0646_01",
+      "title": "改新の詔を出し公地公民など改革方針を示した",
+      "year": 646,
+      "causalPattern": "D_contradiction_exposure"
+    },
+    {
+      "eventId": "EV_p0647_01",
+      "title": "租・庸・調と運脚により農民の生活負担が急増した",
+      "year": 647,
+      "causalPattern": "B_deliberate_action"
+    },
+    {
+      "eventId": "EV_p0648_01",
+      "title": "兵役と防人制度により農村社会が不安定化した",
+      "year": 648,
+      "causalPattern": "C_exogenous_shock"
+    },
+    {
+      "eventId": "EV_p0664_01",
+      "title": "水城を築き防衛体制を強化した",
+      "year": 664,
+      "causalPattern": "C_exogenous_shock"
+    },
+    {
+      "eventId": "EV_p0667_01",
+      "title": "大津京へ遷都した",
+      "year": 667,
+      "causalPattern": "C_exogenous_shock"
+    },
+    {
+      "eventId": "EV_p0672_01",
+      "title": "壬申の乱が起き天武天皇の体制につながった",
+      "year": 672,
+      "causalPattern": "D_contradiction_exposure"
+    },
+    {
+      "eventId": "EV_p0684_01",
+      "title": "八色の姓を制定し氏姓制度を再編した",
+      "year": 684,
+      "causalPattern": "D_contradiction_exposure"
+    },
+    {
+      "eventId": "EV_p0689_01",
+      "title": "飛鳥浄御原令を施行した",
+      "year": 689,
+      "causalPattern": "A_pressure_release"
+    },
+    {
+      "eventId": "EV_p0694_01",
+      "title": "藤原京へ遷都した",
+      "year": 694,
+      "causalPattern": "B_deliberate_action"
+    },
+    {
+      "eventId": "EV_p0701_01",
+      "title": "大宝律令を制定した",
+      "year": 701,
+      "causalPattern": "D_contradiction_exposure"
+    },
+    {
+      "eventId": "EV_p0708_01",
+      "title": "和同開珎が鋳造された",
+      "year": 708,
+      "causalPattern": "B_deliberate_action"
+    },
+    {
+      "eventId": "EV_p0710_01",
+      "title": "平城京へ遷都した",
+      "year": 710,
+      "causalPattern": "B_deliberate_action"
+    },
+    {
+      "eventId": "EV_p0712_01",
+      "title": "『古事記』が成立した",
+      "year": 712,
+      "causalPattern": "B_deliberate_action"
+    },
+    {
+      "eventId": "EV_p0720_01",
+      "title": "『日本書紀』が成立した",
+      "year": 720,
+      "causalPattern": "B_deliberate_action"
+    },
+    {
+      "eventId": "EV_p0723_01",
+      "title": "三世一身の法を定め開墾を奨励した",
+      "year": 723,
+      "causalPattern": "A_pressure_release"
+    },
+    {
+      "eventId": "EV_p0729_01",
+      "title": "長屋王の変が起きた",
+      "year": 729,
+      "causalPattern": "D_contradiction_exposure"
+    },
+    {
+      "eventId": "EV_p0740_01",
+      "title": "藤原広嗣の乱が起きた",
+      "year": 740,
+      "causalPattern": "A_pressure_release"
+    },
+    {
+      "eventId": "EV_p0741_01",
+      "title": "国分寺・国分尼寺建立の詔を出した",
+      "year": 741,
+      "causalPattern": "D_contradiction_exposure"
+    },
+    {
+      "eventId": "EV_p0743_01",
+      "title": "墾田永年私財法が出された",
+      "year": 743,
+      "causalPattern": "A_pressure_release"
+    },
+    {
+      "eventId": "EV_p0752_01",
+      "title": "東大寺大仏の開眼供養が行われた",
+      "year": 752,
+      "causalPattern": "B_deliberate_action"
+    },
+    {
+      "eventId": "EV_p0757_01",
+      "title": "橘奈良麻呂の乱が起きた",
+      "year": 757,
+      "causalPattern": "D_contradiction_exposure"
+    },
+    {
+      "eventId": "EV_p0759_01",
+      "title": "万葉集が成立した(編纂が進んだ)",
+      "year": 759,
+      "causalPattern": "B_deliberate_action"
+    },
+    {
+      "eventId": "EV_p0764_01",
+      "title": "恵美押勝の乱が起きた",
+      "year": 764,
+      "causalPattern": "A_pressure_release"
+    },
+    {
+      "eventId": "EV_p0769_01",
+      "title": "宇佐八幡神託事件が起きた",
+      "year": 769,
+      "causalPattern": "B_deliberate_action"
+    },
+    {
+      "eventId": "EV_p0784_01",
+      "title": "長岡京へ遷都した",
+      "year": 784,
+      "causalPattern": "B_deliberate_action"
+    },
+    {
+      "eventId": "EV_p0792_01",
+      "title": "健児の制が始まった",
+      "year": 792,
+      "causalPattern": "D_contradiction_exposure"
+    },
+    {
+      "eventId": "EV_p0794_01",
+      "title": "平安京に遷都した",
+      "year": 794,
+      "causalPattern": "D_contradiction_exposure"
+    },
+    {
+      "eventId": "EV_p0805_01",
+      "title": "最澄が天台宗を開いた",
+      "year": 805,
+      "causalPattern": "B_deliberate_action"
+    },
+    {
+      "eventId": "EV_p0806_01",
+      "title": "空海が真言宗を開いた",
+      "year": 806,
+      "causalPattern": "B_deliberate_action"
+    },
+    {
+      "eventId": "EV_p0810_01",
+      "title": "平城太上天皇の変",
+      "year": 810,
+      "causalPattern": "A_pressure_release"
+    },
+    {
+      "eventId": "EV_p0842_01",
+      "title": "承和の変が起き藤原氏が優位になった",
+      "year": 842,
+      "causalPattern": "A_pressure_release"
+    },
+    {
+      "eventId": "EV_p0858_01",
+      "title": "藤原良房が摂政に就任し摂関政治が始まった",
+      "year": 858,
+      "causalPattern": "B_deliberate_action"
+    },
+    {
+      "eventId": "EV_p0866_01",
+      "title": "応天門の変が起きた",
+      "year": 866,
+      "causalPattern": "D_contradiction_exposure"
+    },
+    {
+      "eventId": "EV_p0894_01",
+      "title": "遣唐使の中止",
+      "year": 894,
+      "causalPattern": "C_exogenous_shock"
+    },
+    {
+      "eventId": "EV_p0901_01",
+      "title": "菅原道真が大宰府へ左遷された",
+      "year": 901,
+      "causalPattern": "B_deliberate_action"
+    },
+    {
+      "eventId": "EV_p0897_01",
+      "title": "醍醐天皇が親政を開始し延喜の治が始まった",
+      "year": 897,
+      "causalPattern": "D_contradiction_exposure"
+    },
+    {
+      "eventId": "EV_p0905_01",
+      "title": "古今和歌集が成立した",
+      "year": 905,
+      "causalPattern": "B_deliberate_action"
+    },
+    {
+      "eventId": "EV_p0939_01",
+      "title": "平将門の乱が起きた",
+      "year": 939,
+      "causalPattern": "F_contingency"
+    },
+    {
+      "eventId": "EV_p0939_02",
+      "title": "藤原純友の乱が起きた",
+      "year": 939,
+      "causalPattern": "A_pressure_release"
+    },
+    {
+      "eventId": "EV_p0967_01",
+      "title": "延喜式が施行された",
+      "year": 967,
+      "causalPattern": "A_pressure_release"
+    },
+    {
+      "eventId": "EV_p0969_01",
+      "title": "安和の変が起きた",
+      "year": 969,
+      "causalPattern": "A_pressure_release"
+    },
+    {
+      "eventId": "EV_p0988_01",
+      "title": "尾張国郡司百姓等解文が出された",
+      "year": 988,
+      "causalPattern": "B_deliberate_action"
+    },
+    {
+      "eventId": "EV_p1016_02",
+      "title": "藤原道長が摂政に就任した",
+      "year": 1016,
+      "causalPattern": "B_deliberate_action"
+    },
+    {
+      "eventId": "EV_p1051_01",
+      "title": "前九年の役が始まった",
+      "year": 1051,
+      "causalPattern": "A_pressure_release"
+    },
+    {
+      "eventId": "EV_p1052_01",
+      "title": "末法元年（末法思想）",
+      "year": 1052,
+      "causalPattern": "F_contingency"
+    },
+    {
+      "eventId": "EV_p1068_01",
+      "title": "後三条天皇が即位し親政を開始した",
+      "year": 1068,
+      "causalPattern": "E_power_transition"
+    },
+    {
+      "eventId": "EV_p1069_01",
+      "title": "延久の荘園整理令を出した",
+      "year": 1069,
+      "causalPattern": "F_contingency"
+    },
+    {
+      "eventId": "EV_p1083_01",
+      "title": "後三年の役が始まった",
+      "year": 1083,
+      "causalPattern": "E_power_transition"
+    },
+    {
+      "eventId": "EV_p1086_01",
+      "title": "白河上皇が院政を開始した",
+      "year": 1086,
+      "causalPattern": "B_deliberate_action"
+    },
+    {
+      "eventId": "EV_p1096_01",
+      "title": "永長の大田文が作成された",
+      "year": 1096,
+      "causalPattern": "B_deliberate_action"
+    },
+    {
+      "eventId": "EV_p1108_01",
+      "title": "鳥羽天皇が即位した",
+      "year": 1108,
+      "causalPattern": "E_power_transition"
+    },
+    {
+      "eventId": "EV_p1129_01",
+      "title": "白河上皇が崩御した",
+      "year": 1129,
+      "causalPattern": "B_deliberate_action"
+    },
+    {
+      "eventId": "EV_p1156_01",
+      "title": "保元の乱が起きた",
+      "year": 1156,
+      "causalPattern": "A_pressure_release"
+    },
+    {
+      "eventId": "EV_p1159_01",
+      "title": "平治の乱が起きた",
+      "year": 1159,
+      "causalPattern": "A_pressure_release"
+    },
+    {
+      "eventId": "EV_p1167_01",
+      "title": "平清盛が太政大臣に就任した",
+      "year": 1167,
+      "causalPattern": "B_deliberate_action"
+    },
+    {
+      "eventId": "EV_p1177_01",
+      "title": "鹿ケ谷の陰謀が起きた",
+      "year": 1177,
+      "causalPattern": "A_pressure_release"
+    },
+    {
+      "eventId": "EV_p1180_01",
+      "title": "以仁王の挙兵が起き源平合戦が始まった",
+      "year": 1180,
+      "causalPattern": "D_contradiction_exposure"
+    },
+    {
+      "eventId": "EV_p1183_01",
+      "title": "木曽義仲が入京した",
+      "year": 1183,
+      "causalPattern": "B_deliberate_action"
+    },
+    {
+      "eventId": "EV_p1184_01",
+      "title": "院政の定着と武士台頭、政権構造の揺らぎ(集約)",
+      "year": 1184,
+      "causalPattern": "D_contradiction_exposure"
+    },
+    {
+      "eventId": "EV_p1185_01",
+      "title": "壇ノ浦の戦いで平氏が滅亡した",
+      "year": 1185,
+      "causalPattern": "D_contradiction_exposure"
+    },
+    {
+      "eventId": "EV_p1185_03",
+      "title": "源頼朝が守護・地頭を設置した",
+      "year": 1185,
+      "causalPattern": "B_deliberate_action"
+    },
+    {
+      "eventId": "EV_p1192_01",
+      "title": "源頼朝が征夷大将軍に任じられた",
+      "year": 1192,
+      "causalPattern": "B_deliberate_action"
+    },
+    {
+      "eventId": "EV_p1199_01",
+      "title": "源頼朝が死去し幕府体制が動揺した",
+      "year": 1199,
+      "causalPattern": "B_deliberate_action"
+    },
+    {
+      "eventId": "EV_p1203_01",
+      "title": "北条時政が初代執権となった",
+      "year": 1203,
+      "causalPattern": "A_pressure_release"
+    },
+    {
+      "eventId": "EV_p1205_01",
+      "title": "北条時政が失脚した",
+      "year": 1205,
+      "causalPattern": "B_deliberate_action"
+    },
+    {
+      "eventId": "EV_p1213_01",
+      "title": "和田合戦が起きた",
+      "year": 1213,
+      "causalPattern": "A_pressure_release"
+    },
+    {
+      "eventId": "EV_p1221_02",
+      "title": "承久の乱が起き幕府が朝廷に勝利した",
+      "year": 1221,
+      "causalPattern": "D_contradiction_exposure"
+    },
+    {
+      "eventId": "EV_p1225_01",
+      "title": "北条泰時が執権となり評定衆を整備した",
+      "year": 1225,
+      "causalPattern": "B_deliberate_action"
+    },
+    {
+      "eventId": "EV_p1232_01",
+      "title": "御成敗式目を制定した",
+      "year": 1232,
+      "causalPattern": "A_pressure_release"
+    },
+    {
+      "eventId": "EV_p1247_01",
+      "title": "宝治合戦で三浦氏が滅亡した",
+      "year": 1247,
+      "causalPattern": "A_pressure_release"
+    },
+    {
+      "eventId": "EV_p1274_01",
+      "title": "元寇(文永の役)が起きた",
+      "year": 1274,
+      "causalPattern": "D_contradiction_exposure"
+    },
+    {
+      "eventId": "EV_p1281_01",
+      "title": "弘安の役(元寇)が起きた",
+      "year": 1281,
+      "causalPattern": "C_exogenous_shock"
+    },
+    {
+      "eventId": "EV_p1285_01",
+      "title": "霜月騒動が起きた",
+      "year": 1285,
+      "causalPattern": "A_pressure_release"
+    },
+    {
+      "eventId": "EV_p1297_01",
+      "title": "永仁の徳政令を出した",
+      "year": 1297,
+      "causalPattern": "A_pressure_release"
+    },
+    {
+      "eventId": "EV_p1331_01",
+      "title": "元弘の変で後醍醐天皇が討幕を開始した",
+      "year": 1331,
+      "causalPattern": "D_contradiction_exposure"
+    },
+    {
+      "eventId": "EV_p1333_01",
+      "title": "鎌倉幕府が滅亡した",
+      "year": 1333,
+      "causalPattern": "B_deliberate_action"
+    },
+    {
+      "eventId": "EV_p1334_01",
+      "title": "建武の新政が始まった",
+      "year": 1334,
+      "causalPattern": "E_power_transition"
+    },
+    {
+      "eventId": "EV_p1336_01",
+      "title": "南北朝の対立が始まった",
+      "year": 1336,
+      "causalPattern": "A_pressure_release"
+    },
+    {
+      "eventId": "EV_p1336_02",
+      "title": "足利尊氏が室町幕府を開いた(建武式目)",
+      "year": 1336,
+      "causalPattern": "A_pressure_release"
+    },
+    {
+      "eventId": "EV_p1336_03",
+      "title": "足利尊氏が新政から離反した",
+      "year": 1336,
+      "causalPattern": "A_pressure_release"
+    },
+    {
+      "eventId": "EV_p1338_01",
+      "title": "足利尊氏が征夷大将軍に任じられた",
+      "year": 1338,
+      "causalPattern": "B_deliberate_action"
+    },
+    {
+      "eventId": "EV_p1351_01",
+      "title": "観応の擾乱が起きた",
+      "year": 1351,
+      "causalPattern": "A_pressure_release"
+    },
+    {
+      "eventId": "EV_p1378_01",
+      "title": "足利義満が花の御所を造営した",
+      "year": 1378,
+      "causalPattern": "B_deliberate_action"
+    },
+    {
+      "eventId": "EV_p1392_01",
+      "title": "南北朝が合一した",
+      "year": 1392,
+      "causalPattern": "D_contradiction_exposure"
+    },
+    {
+      "eventId": "EV_p1404_01",
+      "title": "日明貿易(勘合貿易)が始まった",
+      "year": 1404,
+      "causalPattern": "C_exogenous_shock"
+    },
+    {
+      "eventId": "EV_p1428_01",
+      "title": "正長の土一揆が起きた",
+      "year": 1428,
+      "causalPattern": "A_pressure_release"
+    },
+    {
+      "eventId": "EV_p1438_01",
+      "title": "永享の乱が起きた",
+      "year": 1438,
+      "causalPattern": "A_pressure_release"
+    },
+    {
+      "eventId": "EV_p1441_01",
+      "title": "嘉吉の乱で足利義教が暗殺された",
+      "year": 1441,
+      "causalPattern": "A_pressure_release"
+    },
+    {
+      "eventId": "EV_p1454_01",
+      "title": "享徳の乱が始まった",
+      "year": 1454,
+      "causalPattern": "A_pressure_release"
+    },
+    {
+      "eventId": "EV_p1467_01",
+      "title": "応仁の乱が始まった",
+      "year": 1467,
+      "causalPattern": "A_pressure_release"
+    },
+    {
+      "eventId": "EV_p1477_01",
+      "title": "応仁の乱が終結した",
+      "year": 1477,
+      "causalPattern": "D_contradiction_exposure"
+    },
+    {
+      "eventId": "EV_p1485_02",
+      "title": "山城国一揆が起きた",
+      "year": 1485,
+      "causalPattern": "A_pressure_release"
+    },
+    {
+      "eventId": "EV_p1488_01",
+      "title": "加賀の一向一揆が起きた",
+      "year": 1488,
+      "causalPattern": "A_pressure_release"
+    },
+    {
+      "eventId": "EV_p1493_01",
+      "title": "明応の政変が起きた",
+      "year": 1493,
+      "causalPattern": "B_deliberate_action"
+    },
+    {
+      "eventId": "EV_p1543_01",
+      "title": "鉄砲が伝来した",
+      "year": 1543,
+      "causalPattern": "B_deliberate_action"
+    },
+    {
+      "eventId": "EV_p1549_02",
+      "title": "フランシスコ・ザビエルが来日しキリスト教が伝来した",
+      "year": 1549,
+      "causalPattern": "B_deliberate_action"
+    },
+    {
+      "eventId": "EV_p1555_01",
+      "title": "厳島の戦いが起きた",
+      "year": 1555,
+      "causalPattern": "A_pressure_release"
+    },
+    {
+      "eventId": "EV_p1560_01",
+      "title": "桶狭間の戦いが起きた",
+      "year": 1560,
+      "causalPattern": "D_contradiction_exposure"
+    },
+    {
+      "eventId": "EV_p1568_01",
+      "title": "織田信長が足利義昭を奉じて入京した",
+      "year": 1568,
+      "causalPattern": "B_deliberate_action"
+    },
+    {
+      "eventId": "EV_p1570_01",
+      "title": "姉川の戦いが起きた",
+      "year": 1570,
+      "causalPattern": "A_pressure_release"
+    },
+    {
+      "eventId": "EV_p1571_01",
+      "title": "比叡山延暦寺が焼き討ちされた",
+      "year": 1571,
+      "causalPattern": "B_deliberate_action"
+    },
+    {
+      "eventId": "EV_p1573_01",
+      "title": "室町幕府が滅亡した",
+      "year": 1573,
+      "causalPattern": "B_deliberate_action"
+    },
+    {
+      "eventId": "EV_p1575_01",
+      "title": "長篠の戦いが起きた",
+      "year": 1575,
+      "causalPattern": "D_contradiction_exposure"
+    },
+    {
+      "eventId": "EV_p1576_01",
+      "title": "安土城の築城が始まった",
+      "year": 1576,
+      "causalPattern": "B_deliberate_action"
+    },
+    {
+      "eventId": "EV_p1582_01",
+      "title": "山崎の戦いで羽柴秀吉が勝利した",
+      "year": 1582,
+      "causalPattern": "D_contradiction_exposure"
+    },
+    {
+      "eventId": "EV_p1582_02",
+      "title": "本能寺の変が起きた",
+      "year": 1582,
+      "causalPattern": "A_pressure_release"
+    },
+    {
+      "eventId": "EV_p1583_01",
+      "title": "賤ヶ岳の戦いが起きた",
+      "year": 1583,
+      "causalPattern": "A_pressure_release"
+    },
+    {
+      "eventId": "EV_p1584_01",
+      "title": "小牧・長久手の戦いが起きた",
+      "year": 1584,
+      "causalPattern": "A_pressure_release"
+    },
+    {
+      "eventId": "EV_p1585_01",
+      "title": "豊臣秀吉が関白に就任した",
+      "year": 1585,
+      "causalPattern": "B_deliberate_action"
+    },
+    {
+      "eventId": "EV_p1586_01",
+      "title": "豊臣秀吉が太政大臣に就任した",
+      "year": 1586,
+      "causalPattern": "B_deliberate_action"
+    },
+    {
+      "eventId": "EV_p1587_01",
+      "title": "バテレン追放令を出した",
+      "year": 1587,
+      "causalPattern": "D_contradiction_exposure"
+    },
+    {
+      "eventId": "EV_p1587_02",
+      "title": "豊臣秀吉が太政大臣となった",
+      "year": 1587,
+      "causalPattern": "B_deliberate_action"
+    },
+    {
+      "eventId": "EV_p1588_01",
+      "title": "刀狩令が出された",
+      "year": 1588,
+      "causalPattern": "D_contradiction_exposure"
+    },
+    {
+      "eventId": "EV_p1589_01",
+      "title": "戦国の分裂から統一へ向かう権力再編(集約)",
+      "year": 1589,
+      "causalPattern": "B_deliberate_action"
+    },
+    {
+      "eventId": "EV_p1590_01",
+      "title": "豊臣秀吉が全国を統一した",
+      "year": 1590,
+      "causalPattern": "B_deliberate_action"
+    },
+    {
+      "eventId": "EV_p1591_01",
+      "title": "身分統制令を出した",
+      "year": 1591,
+      "causalPattern": "A_pressure_release"
+    },
+    {
+      "eventId": "EV_p1592_01",
+      "title": "文禄の役が始まった",
+      "year": 1592,
+      "causalPattern": "A_pressure_release"
+    },
+    {
+      "eventId": "EV_p1597_01",
+      "title": "慶長の役が始まった",
+      "year": 1597,
+      "causalPattern": "A_pressure_release"
+    },
+    {
+      "eventId": "EV_p1598_01",
+      "title": "豊臣秀吉が死去した",
+      "year": 1598,
+      "causalPattern": "B_deliberate_action"
+    },
+    {
+      "eventId": "EV_p1600_01",
+      "title": "関ヶ原の戦いが起きた",
+      "year": 1600,
+      "causalPattern": "A_pressure_release"
+    },
+    {
+      "eventId": "EV_p1603_01",
+      "title": "徳川家康が征夷大将軍に任じられ江戸幕府を開いた",
+      "year": 1603,
+      "causalPattern": "B_deliberate_action"
+    },
+    {
+      "eventId": "EV_p1605_01",
+      "title": "徳川秀忠が将軍となり家康は大御所として実権を握った",
+      "year": 1605,
+      "causalPattern": "B_deliberate_action"
+    },
+    {
+      "eventId": "EV_p1614_01",
+      "title": "大坂冬の陣が始まった",
+      "year": 1614,
+      "causalPattern": "B_deliberate_action"
+    },
+    {
+      "eventId": "EV_p1615_01",
+      "title": "一国一城令を出した",
+      "year": 1615,
+      "causalPattern": "D_contradiction_exposure"
+    },
+    {
+      "eventId": "EV_p1615_02",
+      "title": "大坂夏の陣で豊臣氏が滅亡した",
+      "year": 1615,
+      "causalPattern": "B_deliberate_action"
+    },
+    {
+      "eventId": "EV_p1615_03",
+      "title": "武家諸法度を制定した",
+      "year": 1615,
+      "causalPattern": "D_contradiction_exposure"
+    },
+    {
+      "eventId": "EV_p1615_04",
+      "title": "禁中並公家諸法度を制定した",
+      "year": 1615,
+      "causalPattern": "A_pressure_release"
+    },
+    {
+      "eventId": "EV_p1633_01",
+      "title": "第一次鎖国令を出した",
+      "year": 1633,
+      "causalPattern": "D_contradiction_exposure"
+    },
+    {
+      "eventId": "EV_p1635_02",
+      "title": "武家諸法度（寛永令）で参勤交代を制度化",
+      "year": 1635,
+      "causalPattern": "D_contradiction_exposure"
+    },
+    {
+      "eventId": "EV_p1637_01",
+      "title": "島原の乱が起きた",
+      "year": 1637,
+      "causalPattern": "F_contingency"
+    },
+    {
+      "eventId": "EV_p1639_01",
+      "title": "ポルトガル船来航禁止で鎖国体制が確立した",
+      "year": 1639,
+      "causalPattern": "D_contradiction_exposure"
+    },
+    {
+      "eventId": "EV_p1641_01",
+      "title": "オランダ商館を出島へ移した",
+      "year": 1641,
+      "causalPattern": "B_deliberate_action"
+    },
+    {
+      "eventId": "EV_p1651_01",
+      "title": "慶安の変が起きた",
+      "year": 1651,
+      "causalPattern": "A_pressure_release"
+    },
+    {
+      "eventId": "EV_p1680_01",
+      "title": "徳川綱吉が将軍に就任し文治政治を推進した",
+      "year": 1680,
+      "causalPattern": "A_pressure_release"
+    },
+    {
+      "eventId": "EV_p1685_01",
+      "title": "生類憐みの令が強化された",
+      "year": 1685,
+      "causalPattern": "D_contradiction_exposure"
+    },
+    {
+      "eventId": "EV_p1688_01",
+      "title": "元禄文化が栄えた",
+      "year": 1688,
+      "causalPattern": "B_deliberate_action"
+    },
+    {
+      "eventId": "EV_p1709_01",
+      "title": "新井白石が政治改革を行った",
+      "year": 1709,
+      "causalPattern": "A_pressure_release"
+    },
+    {
+      "eventId": "EV_p1716_02",
+      "title": "徳川吉宗が享保の改革を開始した",
+      "year": 1716,
+      "causalPattern": "D_contradiction_exposure"
+    },
+    {
+      "eventId": "EV_p1720_01",
+      "title": "洋書輸入の禁を緩和した",
+      "year": 1720,
+      "causalPattern": "B_deliberate_action"
+    },
+    {
+      "eventId": "EV_p1732_01",
+      "title": "享保の大飢饉が起きた",
+      "year": 1732,
+      "causalPattern": "F_contingency"
+    },
+    {
+      "eventId": "EV_p1772_01",
+      "title": "田沼意次が老中となり商業政策を推進した",
+      "year": 1772,
+      "causalPattern": "B_deliberate_action"
+    },
+    {
+      "eventId": "EV_p1782_01",
+      "title": "天明の大飢饉が起きた",
+      "year": 1782,
+      "causalPattern": "F_contingency"
+    },
+    {
+      "eventId": "EV_p1787_02",
+      "title": "松平定信が寛政の改革を開始した",
+      "year": 1787,
+      "causalPattern": "D_contradiction_exposure"
+    },
+    {
+      "eventId": "EV_p1792_01",
+      "title": "ラクスマンが根室に来航した",
+      "year": 1792,
+      "causalPattern": "C_exogenous_shock"
+    },
+    {
+      "eventId": "EV_p1804_01",
+      "title": "レザノフが長崎に来航した",
+      "year": 1804,
+      "causalPattern": "C_exogenous_shock"
+    },
+    {
+      "eventId": "EV_p1824_01",
+      "title": "大津浜事件が起きた",
+      "year": 1824,
+      "causalPattern": "C_exogenous_shock"
+    },
+    {
+      "eventId": "EV_p1825_01",
+      "title": "異国船打払令を出した",
+      "year": 1825,
+      "causalPattern": "D_contradiction_exposure"
+    },
+    {
+      "eventId": "EV_p1837_01",
+      "title": "大塩平八郎の乱が起きた",
+      "year": 1837,
+      "causalPattern": "D_contradiction_exposure"
+    },
+    {
+      "eventId": "EV_p1839_01",
+      "title": "蛮社の獄が起きた",
+      "year": 1839,
+      "causalPattern": "D_contradiction_exposure"
+    },
+    {
+      "eventId": "EV_p1841_02",
+      "title": "水野忠邦が天保の改革を開始した",
+      "year": 1841,
+      "causalPattern": "D_contradiction_exposure"
+    },
+    {
+      "eventId": "EV_p1853_02",
+      "title": "ペリーが浦賀に来航した",
+      "year": 1853,
+      "causalPattern": "C_exogenous_shock"
+    },
+    {
+      "eventId": "EV_p1854_01",
+      "title": "日米和親条約を結んだ",
+      "year": 1854,
+      "causalPattern": "D_contradiction_exposure"
+    },
+    {
+      "eventId": "EV_p1858_01",
+      "title": "安政の大獄が始まった",
+      "year": 1858,
+      "causalPattern": "A_pressure_release"
+    },
+    {
+      "eventId": "EV_p1858_02",
+      "title": "日米修好通商条約を結んだ",
+      "year": 1858,
+      "causalPattern": "A_pressure_release"
+    },
+    {
+      "eventId": "EV_p1860_01",
+      "title": "桜田門外の変で井伊直弼が暗殺された",
+      "year": 1860,
+      "causalPattern": "A_pressure_release"
+    },
+    {
+      "eventId": "EV_p1862_01",
+      "title": "生麦事件が起きた",
+      "year": 1862,
+      "causalPattern": "C_exogenous_shock"
+    },
+    {
+      "eventId": "EV_p1863_01",
+      "title": "薩英戦争が起きた",
+      "year": 1863,
+      "causalPattern": "A_pressure_release"
+    },
+    {
+      "eventId": "EV_p1864_01",
+      "title": "禁門の変が起きた",
+      "year": 1864,
+      "causalPattern": "D_contradiction_exposure"
+    },
+    {
+      "eventId": "EV_p1866_02",
+      "title": "薩長同盟が成立した",
+      "year": 1866,
+      "causalPattern": "A_pressure_release"
+    },
+    {
+      "eventId": "EV_p1867_01",
+      "title": "大政奉還が行われた",
+      "year": 1867,
+      "causalPattern": "B_deliberate_action"
+    },
+    {
+      "eventId": "EV_p1867_02",
+      "title": "王政復古の大号令が出された",
+      "year": 1867,
+      "causalPattern": "D_contradiction_exposure"
+    },
+    {
+      "eventId": "EV_p1871_01",
+      "title": "廃藩置県が行われた",
+      "year": 1871,
+      "causalPattern": "B_deliberate_action"
+    },
+    {
+      "eventId": "EV_p1873_01",
+      "title": "地租改正条例が施行された",
+      "year": 1873,
+      "causalPattern": "D_contradiction_exposure"
+    },
+    {
+      "eventId": "EV_p1881_01",
+      "title": "大日本帝国憲法の発布が決定された",
+      "year": 1881,
+      "causalPattern": "D_contradiction_exposure"
+    },
+    {
+      "eventId": "EV_p1889_01",
+      "title": "大日本帝国憲法が発布された",
+      "year": 1889,
+      "causalPattern": "D_contradiction_exposure"
+    },
+    {
+      "eventId": "EV_p1894_01",
+      "title": "日清戦争が始まった",
+      "year": 1894,
+      "causalPattern": "A_pressure_release"
+    },
+    {
+      "eventId": "EV_p1902_01",
+      "title": "日英同盟が締結された",
+      "year": 1902,
+      "causalPattern": "A_pressure_release"
+    },
+    {
+      "eventId": "EV_p1904_01",
+      "title": "日露戦争が始まった",
+      "year": 1904,
+      "causalPattern": "A_pressure_release"
+    },
+    {
+      "eventId": "EV_p1910_01",
+      "title": "韓国併合が行われた",
+      "year": 1910,
+      "causalPattern": "D_contradiction_exposure"
+    },
+    {
+      "eventId": "EV_p1914_01",
+      "title": "第一次世界大戦が始まった",
+      "year": 1914,
+      "causalPattern": "C_exogenous_shock"
+    },
+    {
+      "eventId": "EV_p1918_01",
+      "title": "米騒動が起きた",
+      "year": 1918,
+      "causalPattern": "A_pressure_release"
+    },
+    {
+      "eventId": "EV_p1923_01",
+      "title": "関東大震災が起きた",
+      "year": 1923,
+      "causalPattern": "F_contingency"
+    },
+    {
+      "eventId": "EV_p1925_01",
+      "title": "普通選挙法が成立した",
+      "year": 1925,
+      "causalPattern": "A_pressure_release"
+    },
+    {
+      "eventId": "EV_p1925_02",
+      "title": "治安維持法が成立した",
+      "year": 1925,
+      "causalPattern": "A_pressure_release"
+    },
+    {
+      "eventId": "EV_p1931_01",
+      "title": "満州事変が起きた",
+      "year": 1931,
+      "causalPattern": "C_exogenous_shock"
+    },
+    {
+      "eventId": "EV_p1933_01",
+      "title": "日本が国際連盟を脱退した",
+      "year": 1933,
+      "causalPattern": "C_exogenous_shock"
+    },
+    {
+      "eventId": "EV_p1937_01",
+      "title": "日中戦争が始まった",
+      "year": 1937,
+      "causalPattern": "A_pressure_release"
+    },
+    {
+      "eventId": "EV_p1940_01",
+      "title": "日独伊三国同盟を結んだ",
+      "year": 1940,
+      "causalPattern": "A_pressure_release"
+    },
+    {
+      "eventId": "EV_p1941_01",
+      "title": "太平洋戦争が始まった",
+      "year": 1941,
+      "causalPattern": "A_pressure_release"
+    },
+    {
+      "eventId": "EV_p1945_01",
+      "title": "GHQによる占領が始まった",
+      "year": 1945,
+      "causalPattern": "C_exogenous_shock"
+    },
+    {
+      "eventId": "EV_p1945_02",
+      "title": "日本がポツダム宣言を受諾し終戦した",
+      "year": 1945,
+      "causalPattern": "B_deliberate_action"
+    },
+    {
+      "eventId": "EV_p1946_01",
+      "title": "日本国憲法が公布された",
+      "year": 1946,
+      "causalPattern": "D_contradiction_exposure"
+    },
+    {
+      "eventId": "EV_p1947_01",
+      "title": "日本国憲法が施行された",
+      "year": 1947,
+      "causalPattern": "D_contradiction_exposure"
+    },
+    {
+      "eventId": "EV_p1951_01",
+      "title": "サンフランシスコ平和条約が調印された",
+      "year": 1951,
+      "causalPattern": "A_pressure_release"
+    },
+    {
+      "eventId": "EV_p1952_02",
+      "title": "日本が主権を回復した",
+      "year": 1952,
+      "causalPattern": "C_exogenous_shock"
+    },
+    {
+      "eventId": "EV_p1952_03",
+      "title": "日米安全保障条約が締結された",
+      "year": 1952,
+      "causalPattern": "C_exogenous_shock"
+    },
+    {
+      "eventId": "EV_p1964_01",
+      "title": "東京オリンピックが開催された",
+      "year": 1964,
+      "causalPattern": "B_deliberate_action"
+    },
+    {
+      "eventId": "EV_p1972_01",
+      "title": "沖縄が日本に返還された",
+      "year": 1972,
+      "causalPattern": "C_exogenous_shock"
+    },
+    {
+      "eventId": "EV_p1985_01",
+      "title": "プラザ合意が結ばれた",
+      "year": 1985,
+      "causalPattern": "B_deliberate_action"
+    },
+    {
+      "eventId": "EV_p1989_01",
+      "title": "昭和天皇が崩御し平成に改元した",
+      "year": 1989,
+      "causalPattern": "B_deliberate_action"
+    },
+    {
+      "eventId": "EV_p1995_01",
+      "title": "阪神・淡路大震災が起きた",
+      "year": 1995,
+      "causalPattern": "F_contingency"
+    },
+    {
+      "eventId": "EV_p2011_01",
+      "title": "東日本大震災が起きた",
+      "year": 2011,
+      "causalPattern": "F_contingency"
+    },
+    {
+      "eventId": "EV_p2019_01",
+      "title": "天皇が即位し令和に改元した",
+      "year": 2019,
+      "causalPattern": "E_power_transition"
+    }
+  ]
+}

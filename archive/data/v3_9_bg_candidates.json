@@ -1,0 +1,2172 @@
+{
+  "_meta": {
+    "description": "BG候補グルーピング結果",
+    "date": "2026-03-07",
+    "stats": {
+      "total_b_elements": 525,
+      "entity_matched": 432,
+      "unmatched": 4,
+      "match_rate": "82.3%",
+      "bg_candidates_named": 83,
+      "bg_candidates_unclassified": 0,
+      "bg_candidates_total": 83
+    }
+  },
+  "bgCandidates": [
+    {
+      "bgId": "BG_001",
+      "type": "power_structure",
+      "label": "織田政権",
+      "eventCount": 11,
+      "elementCount": 23,
+      "yearRange": "1560-1584",
+      "events": [
+        "EV_p1560_01",
+        "EV_p1568_01",
+        "EV_p1570_01",
+        "EV_p1571_01",
+        "EV_p1573_01",
+        "EV_p1575_01",
+        "EV_p1576_01",
+        "EV_p1582_01",
+        "EV_p1582_02",
+        "EV_p1583_01",
+        "EV_p1584_01"
+      ],
+      "energy_ratio": 0.2608695652173913,
+      "sample_labels": [
+        "織田信長は約三千の寡兵で今川軍に対峙する劣勢にある",
+        "織田信長が美濃を制圧し畿内進出の軍事力を備えている",
+        "浅井長政が信長の朝倉攻めに反発し同盟を破棄している"
+      ],
+      "lifecycle": {
+        "generatedBy": null,
+        "states": []
+      }
+    },
+    {
+      "bgId": "BG_002",
+      "type": "power_structure",
+      "label": "摂関家(藤原氏)",
+      "eventCount": 18,
+      "elementCount": 22,
+      "yearRange": "810-1184",
+      "events": [
+        "EV_p0810_01",
+        "EV_p0842_01",
+        "EV_p0858_01",
+        "EV_p0866_01",
+        "EV_p0897_01",
+        "EV_p0901_01",
+        "EV_p0939_02",
+        "EV_p0969_01",
+        "EV_p0988_01",
+        "EV_p1016_02",
+        "EV_p1068_01",
+        "EV_p1069_01",
+        "EV_p1083_01",
+        "EV_p1086_01",
+        "EV_p1156_01",
+        "EV_p1167_01",
+        "EV_p1177_01",
+        "EV_p1184_01"
+      ],
+      "energy_ratio": 0.13636363636363635,
+      "sample_labels": [
+        "藤原薬子・仲成兄妹が平城上皇を擁して権力奪還を画策している",
+        "仁明天皇の皇太子をめぐり藤原良房と伴氏・橘氏が対立している",
+        "藤原良房が他氏排斥と外戚戦略で朝廷内の優位を確立している"
+      ],
+      "lifecycle": {
+        "generatedBy": null,
+        "states": []
+      }
+    },
+    {
+      "bgId": "BG_003",
+      "type": "power_structure",
+      "label": "豊臣政権",
+      "eventCount": 14,
+      "elementCount": 21,
+      "yearRange": "1582-1615",
+      "events": [
+        "EV_p1582_01",
+        "EV_p1583_01",
+        "EV_p1584_01",
+        "EV_p1585_01",
+        "EV_p1586_01",
+        "EV_p1587_02",
+        "EV_p1589_01",
+        "EV_p1590_01",
+        "EV_p1592_01",
+        "EV_p1597_01",
+        "EV_p1598_01",
+        "EV_p1600_01",
+        "EV_p1614_01",
+        "EV_p1615_02"
+      ],
+      "energy_ratio": 0.2857142857142857,
+      "sample_labels": [
+        "羽柴秀吉が中国大返しで迅速に畿内へ帰還している",
+        "信長の後継をめぐり羽柴秀吉と柴田勝家が対立している",
+        "織田信雄が秀吉に対抗し徳川家康と結んでいた"
+      ],
+      "lifecycle": {
+        "generatedBy": null,
+        "states": []
+      }
+    },
+    {
+      "bgId": "BG_004",
+      "type": "resource",
+      "label": "租税・財政",
+      "eventCount": 12,
+      "elementCount": 20,
+      "yearRange": "647-1985",
+      "events": [
+        "EV_p0647_01",
+        "EV_p0723_01",
+        "EV_p1068_01",
+        "EV_p1069_01",
+        "EV_p1096_01",
+        "EV_p1633_01",
+        "EV_p1732_01",
+        "EV_p1772_01",
+        "EV_p1841_02",
+        "EV_p1873_01",
+        "EV_p1918_01",
+        "EV_p1985_01"
+      ],
+      "energy_ratio": 0.21052631578947367,
+      "sample_labels": [
+        "大化改新により租庸調・班田収授が制度化され全国一律の徴税が始まっている",
+        "荘園の拡大が国家財政を圧迫し整理が急務である",
+        "荘園の乱立が公田を侵食し、国家の租税基盤が縮小している",
+        "人口増加に対して耕地面積の拡大が追いつかない"
+      ],
+      "lifecycle": {
+        "generatedBy": null,
+        "states": []
+      }
+    },
+    {
+      "bgId": "BG_005",
+      "type": "power_structure",
+      "label": "豪族勢力",
+      "eventCount": 10,
+      "elementCount": 19,
+      "yearRange": "507-759",
+      "events": [
+        "EV_p0507_01",
+        "EV_p0512_01",
+        "EV_p0587_01",
+        "EV_p0603_01",
+        "EV_p0604_01",
+        "EV_p0645_02",
+        "EV_p0646_01",
+        "EV_p0672_01",
+        "EV_p0684_01",
+        "EV_p0759_01"
+      ],
+      "energy_ratio": 0.2727272727272727,
+      "sample_labels": [
+        "応神天皇五世孫という血統的根拠と、越前・近江・尾張の豪族基盤を持つ候補が存在する",
+        "豪族の世襲的地位に代わる天皇中心の秩序が必要とされている",
+        "豪族間の私的利害が国政を左右し統一的な行動規範がない",
+        "大伴金村・物部麁鹿火ら大連・大臣が大王家の政務を実質的に主導している",
+        "継体天皇擁立の功績により大伴金村が大連として政務を掌握している",
+        "大伴氏が軍事的基盤と朝廷内の人脈を保持している",
+        "大伴金村・物部麁鹿火ら大連・大臣が大王家の政務を実質的に主導している",
+        "仏教受容をめぐる蘇我馬子と物部守屋の対立が武力衝突に至っている",
+        "氏姓制度では個人の才能に基づく人材登用が困難である",
+        "壬申の乱で功績を立てた豪族と、旧来の氏姓による序列が食い違っている"
+      ],
+      "lifecycle": {
+        "generatedBy": null,
+        "states": []
+      }
+    },
+    {
+      "bgId": "BG_006",
+      "type": "power_structure",
+      "label": "徳川家",
+      "eventCount": 11,
+      "elementCount": 18,
+      "yearRange": "1570-1867",
+      "events": [
+        "EV_p1570_01",
+        "EV_p1575_01",
+        "EV_p1584_01",
+        "EV_p1600_01",
+        "EV_p1603_01",
+        "EV_p1605_01",
+        "EV_p1614_01",
+        "EV_p1615_02",
+        "EV_p1615_03",
+        "EV_p1635_02",
+        "EV_p1867_02"
+      ],
+      "energy_ratio": 0.14285714285714285,
+      "sample_labels": [
+        "浅井・朝倉連合軍と織田・徳川連合軍が近江姉川で激突している",
+        "徳川家康の奮戦が戦局を決し織田・徳川連合が勝利している",
+        "織田・徳川連合軍と武田勝頼が三河長篠で対峙している",
+        "関ヶ原の勝利により家康が事実上の天下人となっている",
+        "秀忠は関ヶ原に遅参したが嫡子として正統性を持っている",
+        "大坂の陣終結後に大名統制の法的枠組みが必要となっている",
+        "大名統制を強めて幕藩秩序を安定させる必要"
+      ],
+      "lifecycle": {
+        "generatedBy": null,
+        "states": []
+      }
+    },
+    {
+      "bgId": "BG_007",
+      "type": "resource",
+      "label": "交易・貿易",
+      "eventCount": 10,
+      "elementCount": 17,
+      "yearRange": "527-1985",
+      "events": [
+        "EV_p0527_01",
+        "EV_p1167_01",
+        "EV_p1404_01",
+        "EV_p1543_01",
+        "EV_p1549_02",
+        "EV_p1633_01",
+        "EV_p1639_01",
+        "EV_p1804_01",
+        "EV_p1858_02",
+        "EV_p1985_01"
+      ],
+      "energy_ratio": 0.35294117647058826,
+      "sample_labels": [
+        "筑紫国が大陸交易の拠点として独自の経済力と軍事力を保持している",
+        "日宋貿易で経済力を蓄え摂関家に匹敵する財力を持っている",
+        "足利義満が明との国交樹立と貿易の利益を求めている"
+      ],
+      "lifecycle": {
+        "generatedBy": null,
+        "states": []
+      }
+    },
+    {
+      "bgId": "BG_008",
+      "type": "external",
+      "label": "対外関係(近代)",
+      "eventCount": 11,
+      "elementCount": 17,
+      "yearRange": "1894-1972",
+      "events": [
+        "EV_p1894_01",
+        "EV_p1902_01",
+        "EV_p1904_01",
+        "EV_p1910_01",
+        "EV_p1914_01",
+        "EV_p1931_01",
+        "EV_p1933_01",
+        "EV_p1937_01",
+        "EV_p1940_01",
+        "EV_p1951_01",
+        "EV_p1972_01"
+      ],
+      "energy_ratio": 0.375,
+      "sample_labels": [
+        "ロシアの満州・朝鮮への南下政策が日英両国の脅威となっている",
+        "ロシアが満州を占領し朝鮮半島への進出を強めている",
+        "関東軍が満蒙の権益確保を企図している",
+        "日英同盟を根拠に日本がドイツに宣戦布告している",
+        "ドイツの欧州制覇に便乗し南方進出を企図している",
+        "松岡洋右外相がドイツ・イタリアとの同盟を推進している",
+        "沖縄の住民が長年にわたり日本復帰を求めている",
+        "ベトナム戦争の激化で沖縄の基地負担が増大している",
+        "甲午農民戦争の鎮圧要請を受け、日清両国がほぼ同時期に朝鮮へ出兵し、双方の軍が朝鮮半島内に対峙している",
+        "日露戦争後に日本が韓国の外交権を奪い保護国化している",
+        "日中戦争の長期化でアメリカとの関係が悪化している",
+        "朝鮮戦争勃発で日本の戦略的重要性が高まっている"
+      ],
+      "lifecycle": {
+        "generatedBy": null,
+        "states": []
+      }
+    },
+    {
+      "bgId": "BG_009",
+      "type": "institution",
+      "label": "御家人制",
+      "eventCount": 9,
+      "elementCount": 16,
+      "yearRange": "1192-1333",
+      "events": [
+        "EV_p1192_01",
+        "EV_p1199_01",
+        "EV_p1203_01",
+        "EV_p1213_01",
+        "EV_p1225_01",
+        "EV_p1247_01",
+        "EV_p1285_01",
+        "EV_p1297_01",
+        "EV_p1333_01"
+      ],
+      "energy_ratio": 0.5,
+      "sample_labels": [
+        "頼朝が鎌倉を拠点に御家人制度と守護・地頭を通じて全国を統制している",
+        "御家人間の勢力争いが頼朝の存命中は抑えられている",
+        "源頼家の独断的政治に御家人の不満が高まっている"
+      ],
+      "lifecycle": {
+        "generatedBy": null,
+        "states": []
+      }
+    },
+    {
+      "bgId": "BG_010",
+      "type": "institution",
+      "label": "中央集権化",
+      "eventCount": 12,
+      "elementCount": 15,
+      "yearRange": "604-1871",
+      "events": [
+        "EV_p0604_01",
+        "EV_p0607_01",
+        "EV_p0630_01",
+        "EV_p0645_02",
+        "EV_p0645_01",
+        "EV_p0646_01",
+        "EV_p1378_01",
+        "EV_p1555_01",
+        "EV_p1585_01",
+        "EV_p1588_01",
+        "EV_p1592_01",
+        "EV_p1871_01"
+      ],
+      "energy_ratio": 0.2,
+      "sample_labels": [
+        "豪族間の私的利害が国政を左右し統一的な行動規範がない",
+        "隋の中国統一により東アジアに圧倒的な軍事・文化大国が出現し、周辺諸国が冊封秩序への編入か対抗かの選択を迫られている",
+        "倭国では冠位十二階・十七条憲法など国内制度の整備が進められており、隋は南北朝を統一した大陸最大の統一王朝として存在してい"
+      ],
+      "lifecycle": {
+        "generatedBy": null,
+        "states": []
+      }
+    },
+    {
+      "bgId": "BG_011",
+      "type": "culture",
+      "label": "仏教(古代)",
+      "eventCount": 8,
+      "elementCount": 15,
+      "yearRange": "538-794",
+      "events": [
+        "EV_p0538_01",
+        "EV_p0587_01",
+        "EV_p0604_01",
+        "EV_p0741_01",
+        "EV_p0752_01",
+        "EV_p0769_01",
+        "EV_p0784_01",
+        "EV_p0794_01"
+      ],
+      "energy_ratio": 0.3181818181818182,
+      "sample_labels": [],
+      "lifecycle": {
+        "generatedBy": null,
+        "states": []
+      }
+    },
+    {
+      "bgId": "BG_012",
+      "type": "external",
+      "label": "唐との関係",
+      "eventCount": 11,
+      "elementCount": 15,
+      "yearRange": "630-894",
+      "events": [
+        "EV_p0630_01",
+        "EV_p0645_02",
+        "EV_p0645_01",
+        "EV_p0664_01",
+        "EV_p0667_01",
+        "EV_p0689_01",
+        "EV_p0701_01",
+        "EV_p0710_01",
+        "EV_p0720_01",
+        "EV_p0806_01",
+        "EV_p0894_01"
+      ],
+      "energy_ratio": 0.26666666666666666,
+      "sample_labels": [
+        "唐が中国を統一し律令制に基づく先進的統治体制を確立している",
+        "国内の政治改革に唐の制度を参照する必要性が高まっている",
+        "大化改新後の律令制度導入にあたり、唐の官制・法制を直接学んだ人材が朝廷内にごく少数である"
+      ],
+      "lifecycle": {
+        "generatedBy": null,
+        "states": []
+      }
+    },
+    {
+      "bgId": "BG_013",
+      "type": "institution",
+      "label": "律令制",
+      "eventCount": 12,
+      "elementCount": 15,
+      "yearRange": "630-1232",
+      "events": [
+        "EV_p0630_01",
+        "EV_p0645_02",
+        "EV_p0645_01",
+        "EV_p0689_01",
+        "EV_p0694_01",
+        "EV_p0701_01",
+        "EV_p0708_01",
+        "EV_p0710_01",
+        "EV_p0769_01",
+        "EV_p0897_01",
+        "EV_p0967_01",
+        "EV_p1232_01"
+      ],
+      "energy_ratio": 0.26666666666666666,
+      "sample_labels": [
+        "唐が中国を統一し律令制に基づく先進的統治体制を確立している",
+        "大化改新後の律令制度導入にあたり、唐の官制・法制を直接学んだ人材が朝廷内にごく少数である",
+        "唐の律令体制が東アジアに影響を拡大し、中央集権モデルが認知されている"
+      ],
+      "lifecycle": {
+        "generatedBy": null,
+        "states": []
+      }
+    },
+    {
+      "bgId": "BG_014",
+      "type": "power_structure",
+      "label": "院政体制",
+      "eventCount": 10,
+      "elementCount": 15,
+      "yearRange": "764-2019",
+      "events": [
+        "EV_p0764_01",
+        "EV_p0810_01",
+        "EV_p1086_01",
+        "EV_p1108_01",
+        "EV_p1129_01",
+        "EV_p1156_01",
+        "EV_p1177_01",
+        "EV_p1184_01",
+        "EV_p1192_01",
+        "EV_p2019_01"
+      ],
+      "energy_ratio": 0.4,
+      "sample_labels": [
+        "孝謙上皇と道鏡の台頭に藤原仲麻呂（恵美押勝）が危機感を抱いた",
+        "恵美押勝が淳仁天皇即位の最大功労者として北陸の軍事拠点に権限を持つ一方、孝謙上皇との関係悪化が不可逆的となり政治的生存が",
+        "平城上皇が旧都平城京への還都を図り嵯峨天皇と対立している"
+      ],
+      "lifecycle": {
+        "generatedBy": null,
+        "states": []
+      }
+    },
+    {
+      "bgId": "BG_015",
+      "type": "power_structure",
+      "label": "大名勢力",
+      "eventCount": 12,
+      "elementCount": 14,
+      "yearRange": "1568-1853",
+      "events": [
+        "EV_p1568_01",
+        "EV_p1573_01",
+        "EV_p1586_01",
+        "EV_p1587_01",
+        "EV_p1589_01",
+        "EV_p1590_01",
+        "EV_p1600_01",
+        "EV_p1615_04",
+        "EV_p1615_01",
+        "EV_p1633_01",
+        "EV_p1635_02",
+        "EV_p1853_02"
+      ],
+      "energy_ratio": 0.21428571428571427,
+      "sample_labels": [
+        "足利義昭が各地の大名に将軍就任への支援を求めている",
+        "足利義昭が信長包囲網を形成し各地の大名に挙兵を呼びかけた",
+        "諸大名の服属が進み名実ともに天下人となりつつある"
+      ],
+      "lifecycle": {
+        "generatedBy": null,
+        "states": []
+      }
+    },
+    {
+      "bgId": "BG_016",
+      "type": "external",
+      "label": "対英関係",
+      "eventCount": 9,
+      "elementCount": 14,
+      "yearRange": "1824-1933",
+      "events": [
+        "EV_p1824_01",
+        "EV_p1825_01",
+        "EV_p1858_02",
+        "EV_p1862_01",
+        "EV_p1863_01",
+        "EV_p1902_01",
+        "EV_p1904_01",
+        "EV_p1914_01",
+        "EV_p1933_01"
+      ],
+      "energy_ratio": 0.2857142857142857,
+      "sample_labels": [
+        "イギリス捕鯨船の乗組員が常陸大津浜に上陸して食料・水を要求し、沿岸住民と藩役人が対応に混乱した",
+        "水戸藩領の大津浜にイギリス人水兵が上陸している",
+        "イギリスの捕鯨船が日本近海に増加している"
+      ],
+      "lifecycle": {
+        "generatedBy": null,
+        "states": []
+      }
+    },
+    {
+      "bgId": "BG_017",
+      "type": "culture",
+      "label": "正統性・権威",
+      "eventCount": 12,
+      "elementCount": 14,
+      "yearRange": "538-1605",
+      "events": [
+        "EV_p0538_01",
+        "EV_p0710_01",
+        "EV_p0712_01",
+        "EV_p0720_01",
+        "EV_p0784_01",
+        "EV_p1338_01",
+        "EV_p1378_01",
+        "EV_p1392_01",
+        "EV_p1585_01",
+        "EV_p1587_02",
+        "EV_p1603_01",
+        "EV_p1605_01"
+      ],
+      "energy_ratio": 0.35714285714285715,
+      "sample_labels": [
+        "ヤマト政権内の氏族間序列は血統と軍事力に基づいており、各氏族がそれぞれの氏神を祀って独自の権威を主張している",
+        "律令国家の首都として中国的都城制を採用することが国際的体面と国内統治の正統性の双方に不可欠である",
+        "皇室の正統性と国家の起源を記録する必要がある"
+      ],
+      "lifecycle": {
+        "generatedBy": null,
+        "states": []
+      }
+    },
+    {
+      "bgId": "BG_018",
+      "type": "power_structure",
+      "label": "武士層(中世)",
+      "eventCount": 12,
+      "elementCount": 14,
+      "yearRange": "1192-1454",
+      "events": [
+        "EV_p1192_01",
+        "EV_p1213_01",
+        "EV_p1225_01",
+        "EV_p1232_01",
+        "EV_p1274_01",
+        "EV_p1297_01",
+        "EV_p1336_02",
+        "EV_p1336_01",
+        "EV_p1336_03",
+        "EV_p1338_01",
+        "EV_p1351_01",
+        "EV_p1454_01"
+      ],
+      "energy_ratio": 0.5172413793103449,
+      "sample_labels": [],
+      "lifecycle": {
+        "generatedBy": null,
+        "states": []
+      }
+    },
+    {
+      "bgId": "BG_019",
+      "type": "power_structure",
+      "label": "源氏",
+      "eventCount": 11,
+      "elementCount": 14,
+      "yearRange": "969-1603",
+      "events": [
+        "EV_p0969_01",
+        "EV_p1051_01",
+        "EV_p1083_01",
+        "EV_p1156_01",
+        "EV_p1159_01",
+        "EV_p1180_01",
+        "EV_p1185_01",
+        "EV_p1185_03",
+        "EV_p1199_01",
+        "EV_p1203_01",
+        "EV_p1603_01"
+      ],
+      "energy_ratio": 0.14285714285714285,
+      "sample_labels": [
+        "源高明が醍醐源氏の中心として皇位継承に影響力を持っている",
+        "源頼義は1051年に陸奥守として現地に赴任しており、安倍氏は奥六郡を支配して朝廷への貢納を滞らせている",
+        "出羽の清原氏が源頼義に加勢し安倍氏を挟撃している"
+      ],
+      "lifecycle": {
+        "generatedBy": null,
+        "states": []
+      }
+    },
+    {
+      "bgId": "BG_020",
+      "type": "resource",
+      "label": "商業経済",
+      "eventCount": 10,
+      "elementCount": 13,
+      "yearRange": "527-1931",
+      "events": [
+        "EV_p0527_01",
+        "EV_p1167_01",
+        "EV_p1297_01",
+        "EV_p1555_01",
+        "EV_p1591_01",
+        "EV_p1633_01",
+        "EV_p1688_01",
+        "EV_p1772_01",
+        "EV_p1782_01",
+        "EV_p1931_01"
+      ],
+      "energy_ratio": 0.25,
+      "sample_labels": [
+        "筑紫国が大陸交易の拠点として独自の経済力と軍事力を保持している",
+        "日宋貿易で経済力を蓄え摂関家に匹敵する財力を持っている",
+        "元寇後に「恩賞なき奉公」を強いられた御家人が所領を手放さざるを得なくなり、御家人制度＝幕府の軍事基盤そのものが経済的に空",
+        "毛利元就は陶晴賢への対抗上、石見銀山の確保や能島水軍など周辺勢力への工作を続けている"
+      ],
+      "lifecycle": {
+        "generatedBy": null,
+        "states": []
+      }
+    },
+    {
+      "bgId": "BG_021",
+      "type": "power_structure",
+      "label": "平氏",
+      "eventCount": 8,
+      "elementCount": 13,
+      "yearRange": "1156-1185",
+      "events": [
+        "EV_p1156_01",
+        "EV_p1159_01",
+        "EV_p1167_01",
+        "EV_p1177_01",
+        "EV_p1180_01",
+        "EV_p1183_01",
+        "EV_p1185_01",
+        "EV_p1185_03"
+      ],
+      "energy_ratio": 0.23076923076923078,
+      "sample_labels": [
+        "平清盛・源義朝ら武士が後白河方として参戦している",
+        "保元の乱後の恩賞配分をめぐり平清盛と源義朝が対立している",
+        "保元・平治の乱で武功を立てた平清盛が急速に昇進している"
+      ],
+      "lifecycle": {
+        "generatedBy": null,
+        "states": []
+      }
+    },
+    {
+      "bgId": "BG_022",
+      "type": "external",
+      "label": "朝鮮半島情勢",
+      "eventCount": 9,
+      "elementCount": 13,
+      "yearRange": "512-1904",
+      "events": [
+        "EV_p0512_01",
+        "EV_p0527_01",
+        "EV_p0538_01",
+        "EV_p0607_01",
+        "EV_p0664_01",
+        "EV_p0667_01",
+        "EV_p0720_01",
+        "EV_p1894_01",
+        "EV_p1904_01"
+      ],
+      "energy_ratio": 0.6363636363636364,
+      "sample_labels": [
+        "朝鮮半島の百済・新羅・伽耶間の緊張に対応が求められている",
+        "ヤマト政権の伽耶支援のための軍事動員に筑紫が反発している",
+        "磐井が新羅と通じヤマト政権の半島政策に対抗する姿勢をとっている",
+        "白村江の敗戦後、唐が高句麗征服に向かう過程で次の標的が倭となる可能性があり、百済旧地が海上侵攻の拠点として利用可能になっ",
+        "白村江の敗戦後に唐・新羅の本土侵攻が現実的脅威となり、飛鳥盆地は難波からの海上侵攻に対して地理的に無防備であるという首都"
+      ],
+      "lifecycle": {
+        "generatedBy": null,
+        "states": []
+      }
+    },
+    {
+      "bgId": "BG_023",
+      "type": "power_structure",
+      "label": "蘇我氏",
+      "eventCount": 6,
+      "elementCount": 13,
+      "yearRange": "587-645",
+      "events": [
+        "EV_p0587_01",
+        "EV_p0592_01",
+        "EV_p0593_02",
+        "EV_p0593_01",
+        "EV_p0645_02",
+        "EV_p0645_01"
+      ],
+      "energy_ratio": 0.23076923076923078,
+      "sample_labels": [
+        "仏教受容をめぐる蘇我馬子と物部守屋の対立が武力衝突に至っている",
+        "蘇我氏が皇子たちを味方につけ軍事的優位を確保している",
+        "蘇我馬子が大臣として実権を掌握し天皇は名目的地位にある"
+      ],
+      "lifecycle": {
+        "generatedBy": null,
+        "states": []
+      }
+    },
+    {
+      "bgId": "BG_024",
+      "type": "power_structure",
+      "label": "北条執権体制",
+      "eventCount": 7,
+      "elementCount": 12,
+      "yearRange": "1203-1590",
+      "events": [
+        "EV_p1203_01",
+        "EV_p1205_01",
+        "EV_p1213_01",
+        "EV_p1225_01",
+        "EV_p1247_01",
+        "EV_p1589_01",
+        "EV_p1590_01"
+      ],
+      "energy_ratio": 0.5833333333333334,
+      "sample_labels": [
+        "比企氏が頼家の外戚として権力を握ろうとし北条氏と対立している",
+        "北条時政が後妻・牧の方と結び将軍実朝の排除を企てた",
+        "嫡子・北条義時と政子が父時政の暴走を阻止する立場をとっている"
+      ],
+      "lifecycle": {
+        "generatedBy": null,
+        "states": []
+      }
+    },
+    {
+      "bgId": "BG_025",
+      "type": "power_structure",
+      "label": "足利氏",
+      "eventCount": 11,
+      "elementCount": 12,
+      "yearRange": "1333-1573",
+      "events": [
+        "EV_p1333_01",
+        "EV_p1336_03",
+        "EV_p1336_02",
+        "EV_p1336_01",
+        "EV_p1351_01",
+        "EV_p1404_01",
+        "EV_p1438_01",
+        "EV_p1454_01",
+        "EV_p1493_01",
+        "EV_p1568_01",
+        "EV_p1573_01"
+      ],
+      "energy_ratio": 0.5833333333333334,
+      "sample_labels": [
+        "足利高氏（尊氏）が幕府を裏切り六波羅探題を攻略している",
+        "建武の新政への武士の不満が広がり足利尊氏が離反している",
+        "足利尊氏が北朝の光明天皇から征夷大将軍を目指す立場にある"
+      ],
+      "lifecycle": {
+        "generatedBy": null,
+        "states": []
+      }
+    },
+    {
+      "bgId": "BG_026",
+      "type": "power_structure",
+      "label": "天皇・朝廷(近世)",
+      "eventCount": 8,
+      "elementCount": 11,
+      "yearRange": "1585-1867",
+      "events": [
+        "EV_p1585_01",
+        "EV_p1586_01",
+        "EV_p1587_02",
+        "EV_p1615_04",
+        "EV_p1716_02",
+        "EV_p1858_02",
+        "EV_p1867_01",
+        "EV_p1867_02"
+      ],
+      "energy_ratio": 0.1875,
+      "sample_labels": [],
+      "lifecycle": {
+        "generatedBy": null,
+        "states": []
+      }
+    },
+    {
+      "bgId": "BG_027",
+      "type": "power_structure",
+      "label": "皇位継承(古代)",
+      "eventCount": 7,
+      "elementCount": 11,
+      "yearRange": "593-769",
+      "events": [
+        "EV_p0593_02",
+        "EV_p0593_01",
+        "EV_p0672_01",
+        "EV_p0684_01",
+        "EV_p0712_01",
+        "EV_p0764_01",
+        "EV_p0769_01"
+      ],
+      "energy_ratio": 0.27586206896551724,
+      "sample_labels": [],
+      "lifecycle": {
+        "generatedBy": null,
+        "states": []
+      }
+    },
+    {
+      "bgId": "BG_028",
+      "type": "power_structure",
+      "label": "皇位継承(平安)",
+      "eventCount": 7,
+      "elementCount": 11,
+      "yearRange": "842-1129",
+      "events": [
+        "EV_p0842_01",
+        "EV_p0858_01",
+        "EV_p0897_01",
+        "EV_p0969_01",
+        "EV_p1086_01",
+        "EV_p1108_01",
+        "EV_p1129_01"
+      ],
+      "energy_ratio": 0.27586206896551724,
+      "sample_labels": [],
+      "lifecycle": {
+        "generatedBy": null,
+        "states": []
+      }
+    },
+    {
+      "bgId": "BG_029",
+      "type": "demographic",
+      "label": "九州",
+      "eventCount": 8,
+      "elementCount": 10,
+      "yearRange": "527-1633",
+      "events": [
+        "EV_p0527_01",
+        "EV_p0648_01",
+        "EV_p0664_01",
+        "EV_p0740_01",
+        "EV_p1587_02",
+        "EV_p1587_01",
+        "EV_p1590_01",
+        "EV_p1633_01"
+      ],
+      "energy_ratio": 0.5,
+      "sample_labels": [
+        "ヤマト政権の伽耶支援のための軍事動員に筑紫が反発している",
+        "筑紫国が大陸交易の拠点として独自の経済力と軍事力を保持している",
+        "国防のため成年男子に兵役義務が課され防人として九州に配置されている"
+      ],
+      "lifecycle": {
+        "generatedBy": null,
+        "states": []
+      }
+    },
+    {
+      "bgId": "BG_030",
+      "type": "external",
+      "label": "南蛮貿易/宣教",
+      "eventCount": 6,
+      "elementCount": 10,
+      "yearRange": "1543-1641",
+      "events": [
+        "EV_p1543_01",
+        "EV_p1549_02",
+        "EV_p1587_01",
+        "EV_p1633_01",
+        "EV_p1639_01",
+        "EV_p1641_01"
+      ],
+      "energy_ratio": 0.1,
+      "sample_labels": [
+        "ポルトガル人が東アジア海域に進出し交易路を拡大している",
+        "大航海時代の中でポルトガル・スペインがアジアに進出している",
+        "イエズス会はアジアにおいて布教と貿易を組み合わせた活動を展開しており、ポルトガル商船が東南アジア各地に寄港している"
+      ],
+      "lifecycle": {
+        "generatedBy": null,
+        "states": []
+      }
+    },
+    {
+      "bgId": "BG_031",
+      "type": "power_structure",
+      "label": "雄藩連合",
+      "eventCount": 6,
+      "elementCount": 10,
+      "yearRange": "1862-1867",
+      "events": [
+        "EV_p1862_01",
+        "EV_p1863_01",
+        "EV_p1864_01",
+        "EV_p1866_02",
+        "EV_p1867_01",
+        "EV_p1867_02"
+      ],
+      "energy_ratio": 0.3,
+      "sample_labels": [
+        "薩摩藩の島津久光の行列がイギリス人と遭遇している",
+        "生麦事件の賠償をめぐり薩摩藩とイギリスが対立している",
+        "八月十八日の政変で長州藩が京都から追放されている"
+      ],
+      "lifecycle": {
+        "generatedBy": null,
+        "states": []
+      }
+    },
+    {
+      "bgId": "BG_032",
+      "type": "conflict",
+      "label": "南北朝分裂",
+      "eventCount": 7,
+      "elementCount": 9,
+      "yearRange": "607-1392",
+      "events": [
+        "EV_p0607_01",
+        "EV_p1336_02",
+        "EV_p1336_01",
+        "EV_p1338_01",
+        "EV_p1351_01",
+        "EV_p1378_01",
+        "EV_p1392_01"
+      ],
+      "energy_ratio": 0.0,
+      "sample_labels": [
+        "倭国では冠位十二階・十七条憲法など国内制度の整備が進められており、隋は南北朝を統一した大陸最大の統一王朝として存在してい",
+        "後醍醐天皇が吉野に逃れ南朝を開いた",
+        "足利尊氏が北朝の光明天皇から征夷大将軍を目指す立場にある"
+      ],
+      "lifecycle": {
+        "generatedBy": null,
+        "states": []
+      }
+    },
+    {
+      "bgId": "BG_033",
+      "type": "external",
+      "label": "対ロシア関係",
+      "eventCount": 5,
+      "elementCount": 9,
+      "yearRange": "1792-1925",
+      "events": [
+        "EV_p1792_01",
+        "EV_p1804_01",
+        "EV_p1902_01",
+        "EV_p1904_01",
+        "EV_p1925_02"
+      ],
+      "energy_ratio": 0.6666666666666666,
+      "sample_labels": [
+        "ロシアの極東進出が鎖国体制の前提（長崎一港限定の外交）を北方から崩す圧力となり、250年間維持された外交体制の制度的前提",
+        "ロシアの極東進出が本格化し通商要求が強まっている",
+        "ラクスマン来航以来ロシアの南下圧力が継続しており、鎖国体制の「北方の空白」が制度的脆弱性として露呈しつつある"
+      ],
+      "lifecycle": {
+        "generatedBy": null,
+        "states": []
+      }
+    },
+    {
+      "bgId": "BG_034",
+      "type": "demographic",
+      "label": "東北/蝦夷",
+      "eventCount": 6,
+      "elementCount": 9,
+      "yearRange": "792-2011",
+      "events": [
+        "EV_p0792_01",
+        "EV_p1051_01",
+        "EV_p1083_01",
+        "EV_p1185_03",
+        "EV_p1782_01",
+        "EV_p2011_01"
+      ],
+      "energy_ratio": 0.0,
+      "sample_labels": [
+        "蝦夷征討以外では大規模な軍事力の必要性が低下している",
+        "徴兵農民兵の戦闘能力が蝦夷征討で郡司子弟の志願兵に劣ることが判明し、軍団制は農業生産を阻害しつつ実戦では機能しないという",
+        "奥州の俘囚長・安倍氏が朝廷の統制に従わず勢力を拡大している"
+      ],
+      "lifecycle": {
+        "generatedBy": null,
+        "states": []
+      }
+    },
+    {
+      "bgId": "BG_035",
+      "type": "resource",
+      "label": "海上勢力",
+      "eventCount": 6,
+      "elementCount": 9,
+      "yearRange": "939-1863",
+      "events": [
+        "EV_p0939_02",
+        "EV_p1185_01",
+        "EV_p1555_01",
+        "EV_p1824_01",
+        "EV_p1854_01",
+        "EV_p1863_01"
+      ],
+      "energy_ratio": 0.2222222222222222,
+      "sample_labels": [
+        "瀬戸内海の海賊が横行し朝廷の海上統制が弱体化している",
+        "伊予の国司だった藤原純友が海賊を率いて反乱を起こしている",
+        "源義経が水軍を率いて壇ノ浦で平氏を攻撃している"
+      ],
+      "lifecycle": {
+        "generatedBy": null,
+        "states": []
+      }
+    },
+    {
+      "bgId": "BG_036",
+      "type": "power_structure",
+      "label": "藤原氏(奈良)",
+      "eventCount": 6,
+      "elementCount": 9,
+      "yearRange": "701-764",
+      "events": [
+        "EV_p0701_01",
+        "EV_p0710_01",
+        "EV_p0729_01",
+        "EV_p0740_01",
+        "EV_p0757_01",
+        "EV_p0764_01"
+      ],
+      "energy_ratio": 0.4444444444444444,
+      "sample_labels": [
+        "刑部親王・藤原不比等らが中心となり編纂作業を完成させた",
+        "藤原京が手狭になり大規模な都城への移転が求められている",
+        "皇親勢力の長屋王と外戚の藤原四兄弟が政治的主導権を争っている"
+      ],
+      "lifecycle": {
+        "generatedBy": null,
+        "states": []
+      }
+    },
+    {
+      "bgId": "BG_037",
+      "type": "external",
+      "label": "開国と攘夷",
+      "eventCount": 6,
+      "elementCount": 9,
+      "yearRange": "1720-1862",
+      "events": [
+        "EV_p1720_01",
+        "EV_p1824_01",
+        "EV_p1839_01",
+        "EV_p1853_02",
+        "EV_p1854_01",
+        "EV_p1862_01"
+      ],
+      "energy_ratio": 0.3333333333333333,
+      "sample_labels": [
+        "外国船の日本近海への接近が常態化する一方、幕府は打払令を掲げつつ実際に打払う海軍力を持たず、宣言と実力の乖離が制度的自己",
+        "モリソン号事件で異国船打払令の問題点が露呈している",
+        "渡辺崋山や高野長英が幕府の対外政策を批判している",
+        "鎖国下でも蘭学への関心が一部知識人の間で高まっている",
+        "吉宗が実学を重視し西洋の科学技術に関心を持っている",
+        "黒船の圧倒的軍事力が幕府と民衆に衝撃を与えた",
+        "ペリーが翌年に7隻の艦隊を率いて再来航している",
+        "幕府内で開国か攘夷かの議論が紛糾している",
+        "攘夷思想が高まり外国人への敵意が社会に広がっている"
+      ],
+      "lifecycle": {
+        "generatedBy": null,
+        "states": []
+      }
+    },
+    {
+      "bgId": "BG_038",
+      "type": "culture",
+      "label": "儒学思想",
+      "eventCount": 5,
+      "elementCount": 8,
+      "yearRange": "604-1709",
+      "events": [
+        "EV_p0604_01",
+        "EV_p1615_03",
+        "EV_p1680_01",
+        "EV_p1685_01",
+        "EV_p1709_01"
+      ],
+      "energy_ratio": 0.25,
+      "sample_labels": [
+        "仏教と儒教の思想を基盤とした官僚の行動規範が構想されている",
+        "金地院崇伝が起草にあたり儒学思想に基づく条文が作成されている",
+        "儒学（朱子学）が幕府の統治理念として浸透し始めている"
+      ],
+      "lifecycle": {
+        "generatedBy": null,
+        "states": []
+      }
+    },
+    {
+      "bgId": "BG_039",
+      "type": "institution",
+      "label": "国司行政",
+      "eventCount": 6,
+      "elementCount": 8,
+      "yearRange": "939-1096",
+      "events": [
+        "EV_p0939_01",
+        "EV_p0939_02",
+        "EV_p0967_01",
+        "EV_p0988_01",
+        "EV_p1069_01",
+        "EV_p1096_01"
+      ],
+      "energy_ratio": 0.25,
+      "sample_labels": [
+        "関東の在地武士団が国司の収奪に不満を抱いている",
+        "伊予の国司だった藤原純友が海賊を率いて反乱を起こしている",
+        "国司の交代のたびに行政の細則が変わり、地方の実務担当者が混乱している"
+      ],
+      "lifecycle": {
+        "generatedBy": null,
+        "states": []
+      }
+    },
+    {
+      "bgId": "BG_040",
+      "type": "power_structure",
+      "label": "天皇・朝廷(平安)",
+      "eventCount": 6,
+      "elementCount": 8,
+      "yearRange": "858-1068",
+      "events": [
+        "EV_p0858_01",
+        "EV_p0897_01",
+        "EV_p0939_02",
+        "EV_p1016_02",
+        "EV_p1051_01",
+        "EV_p1068_01"
+      ],
+      "energy_ratio": 0.1875,
+      "sample_labels": [],
+      "lifecycle": {
+        "generatedBy": null,
+        "states": []
+      }
+    },
+    {
+      "bgId": "BG_041",
+      "type": "conflict",
+      "label": "後継争い",
+      "eventCount": 7,
+      "elementCount": 8,
+      "yearRange": "769-1685",
+      "events": [
+        "EV_p0769_01",
+        "EV_p1083_01",
+        "EV_p1203_01",
+        "EV_p1467_01",
+        "EV_p1583_01",
+        "EV_p1598_01",
+        "EV_p1685_01"
+      ],
+      "energy_ratio": 0.5,
+      "sample_labels": [
+        "称徳天皇に後継者がなく道鏡への皇位禅譲の可能性が浮上しており、「臣下は天皇位に就けない」という律令体制の根本原則が崩壊す",
+        "前九年の役後に奥州を支配した清原氏の内部で相続争いが起きた",
+        "頼朝死後の将軍家が御家人を統率する個人的カリスマを欠く幼年相続に陥っており、将軍後見役（外戚）による制度的支配が不可避な"
+      ],
+      "lifecycle": {
+        "generatedBy": null,
+        "states": []
+      }
+    },
+    {
+      "bgId": "BG_042",
+      "type": "power_structure",
+      "label": "武士層(近世)",
+      "eventCount": 7,
+      "elementCount": 8,
+      "yearRange": "1585-1933",
+      "events": [
+        "EV_p1585_01",
+        "EV_p1588_01",
+        "EV_p1591_01",
+        "EV_p1615_03",
+        "EV_p1639_01",
+        "EV_p1867_01",
+        "EV_p1933_01"
+      ],
+      "energy_ratio": 0.5172413793103449,
+      "sample_labels": [],
+      "lifecycle": {
+        "generatedBy": null,
+        "states": []
+      }
+    },
+    {
+      "bgId": "BG_043",
+      "type": "resource",
+      "label": "防衛体制",
+      "eventCount": 7,
+      "elementCount": 8,
+      "yearRange": "647-1952",
+      "events": [
+        "EV_p0647_01",
+        "EV_p0648_01",
+        "EV_p0664_01",
+        "EV_p0667_01",
+        "EV_p0759_01",
+        "EV_p1853_02",
+        "EV_p1952_03"
+      ],
+      "energy_ratio": 0.25,
+      "sample_labels": [
+        "防人制度により成年男子が長期間動員され、農村の労働力が奪われている",
+        "国防のため成年男子に兵役義務が課され防人として九州に配置されている",
+        "大宰府を防衛するための軍事施設の整備が急務である"
+      ],
+      "lifecycle": {
+        "generatedBy": null,
+        "states": []
+      }
+    },
+    {
+      "bgId": "BG_044",
+      "type": "resource",
+      "label": "飢饉・疫病",
+      "eventCount": 5,
+      "elementCount": 8,
+      "yearRange": "741-1837",
+      "events": [
+        "EV_p0741_01",
+        "EV_p1052_01",
+        "EV_p1782_01",
+        "EV_p1787_02",
+        "EV_p1837_01"
+      ],
+      "energy_ratio": 0.125,
+      "sample_labels": [
+        "疫病・飢饉・反乱が相次ぎ国家の安寧が脅かされている",
+        "天災・疫病・戦乱が相次ぎ社会不安が広がっている",
+        "東北地方を中心に数年にわたる不作が続いた"
+      ],
+      "lifecycle": {
+        "generatedBy": null,
+        "states": []
+      }
+    },
+    {
+      "bgId": "BG_045",
+      "type": "culture",
+      "label": "キリスト教",
+      "eventCount": 4,
+      "elementCount": 7,
+      "yearRange": "1587-1639",
+      "events": [
+        "EV_p1587_01",
+        "EV_p1633_01",
+        "EV_p1637_01",
+        "EV_p1639_01"
+      ],
+      "energy_ratio": 0.2,
+      "sample_labels": [
+        "キリスト教の布教が九州を中心に急速に拡大している",
+        "キリシタン大名による神社仏閣の破壊が問題化している",
+        "九州のキリシタン大名が南蛮貿易の利益を通じて独自の財源と人的つながりを拡大している",
+        "島原・天草の新領主（松倉氏・寺沢氏）による急激な課税強化とキリシタン弾圧が数年にわたり農民の生存限界を超える収奪を続けて",
+        "島原の乱で農民3万6千人が宗教的結束のもとに武力蜂起し幕府軍12万が4ヶ月を要した事実が、キリスト教を幕藩体制の根本的代"
+      ],
+      "lifecycle": {
+        "generatedBy": null,
+        "states": []
+      }
+    },
+    {
+      "bgId": "BG_046",
+      "type": "power_structure",
+      "label": "天皇・朝廷(中世)",
+      "eventCount": 5,
+      "elementCount": 7,
+      "yearRange": "1192-1338",
+      "events": [
+        "EV_p1192_01",
+        "EV_p1221_02",
+        "EV_p1331_01",
+        "EV_p1334_01",
+        "EV_p1338_01"
+      ],
+      "energy_ratio": 0.1875,
+      "sample_labels": [],
+      "lifecycle": {
+        "generatedBy": null,
+        "states": []
+      }
+    },
+    {
+      "bgId": "BG_047",
+      "type": "institution",
+      "label": "守護・地頭制",
+      "eventCount": 5,
+      "elementCount": 7,
+      "yearRange": "741-1488",
+      "events": [
+        "EV_p0741_01",
+        "EV_p1192_01",
+        "EV_p1225_01",
+        "EV_p1441_01",
+        "EV_p1488_01"
+      ],
+      "energy_ratio": 0.14285714285714285,
+      "sample_labels": [
+        "華厳経の教えにより仏法で国家を守護できると信じられている",
+        "頼朝が鎌倉を拠点に御家人制度と守護・地頭を通じて全国を統制している",
+        "承久の乱（1221年）の後、幕府は没収した京方武士の所領を御家人に再分配し、西国にも新たに地頭を補任している"
+      ],
+      "lifecycle": {
+        "generatedBy": null,
+        "states": []
+      }
+    },
+    {
+      "bgId": "BG_048",
+      "type": "external",
+      "label": "GHQ占領",
+      "eventCount": 4,
+      "elementCount": 6,
+      "yearRange": "1904-1952",
+      "events": [
+        "EV_p1904_01",
+        "EV_p1945_01",
+        "EV_p1946_01",
+        "EV_p1952_02"
+      ],
+      "energy_ratio": 0.0,
+      "sample_labels": [
+        "ロシアが満州を占領し朝鮮半島への進出を強めている",
+        "ポツダム宣言の受諾により日本は連合国に降伏している",
+        "マッカーサーが連合国軍最高司令官として来日している"
+      ],
+      "lifecycle": {
+        "generatedBy": null,
+        "states": []
+      }
+    },
+    {
+      "bgId": "BG_049",
+      "type": "resource",
+      "label": "インフラ・復興",
+      "eventCount": 2,
+      "elementCount": 6,
+      "yearRange": "1923-1964",
+      "events": [
+        "EV_p1923_01",
+        "EV_p1964_01"
+      ],
+      "energy_ratio": 0.16666666666666666,
+      "sample_labels": [
+        "東京・横浜の急激な都市膨張により木造密集市街地が消防・避難インフラなしに形成され、大規模災害に対する都市の構造的脆弱性が",
+        "戦後復興の成果を世界に示す機会が求められている",
+        "東海道新幹線や首都高速道路などのインフラ整備が進んでいた"
+      ],
+      "lifecycle": {
+        "generatedBy": null,
+        "states": []
+      }
+    },
+    {
+      "bgId": "BG_050",
+      "type": "culture",
+      "label": "仏教(平安)",
+      "eventCount": 3,
+      "elementCount": 6,
+      "yearRange": "805-1052",
+      "events": [
+        "EV_p0805_01",
+        "EV_p0806_01",
+        "EV_p1052_01"
+      ],
+      "energy_ratio": 0.3181818181818182,
+      "sample_labels": [],
+      "lifecycle": {
+        "generatedBy": null,
+        "states": []
+      }
+    },
+    {
+      "bgId": "BG_051",
+      "type": "external",
+      "label": "冷戦構造",
+      "eventCount": 3,
+      "elementCount": 6,
+      "yearRange": "1945-1952",
+      "events": [
+        "EV_p1945_02",
+        "EV_p1951_01",
+        "EV_p1952_03"
+      ],
+      "energy_ratio": 0.16666666666666666,
+      "sample_labels": [
+        "広島・長崎への原爆投下とソ連の参戦で敗北が決定的となっている",
+        "冷戦の激化で西側諸国が日本の早期独立回復を求めている",
+        "冷戦下での防衛枠組みを確保"
+      ],
+      "lifecycle": {
+        "generatedBy": null,
+        "states": []
+      }
+    },
+    {
+      "bgId": "BG_052",
+      "type": "culture",
+      "label": "国風文化",
+      "eventCount": 3,
+      "elementCount": 6,
+      "yearRange": "759-905",
+      "events": [
+        "EV_p0759_01",
+        "EV_p0894_01",
+        "EV_p0905_01"
+      ],
+      "energy_ratio": 0.0,
+      "sample_labels": [
+        "飛鳥時代以来の和歌の伝統が宮廷文化として成熟している",
+        "大伴家持を中心に約四千五百首の和歌が収集・編纂されている",
+        "和歌が天皇から防人まで広い階層で詠まれていたが、体系的に集成されなければ散逸する構造にあり、文化的統合の象徴としての歌の"
+      ],
+      "lifecycle": {
+        "generatedBy": null,
+        "states": []
+      }
+    },
+    {
+      "bgId": "BG_053",
+      "type": "power_structure",
+      "label": "外戚政治",
+      "eventCount": 5,
+      "elementCount": 6,
+      "yearRange": "592-1203",
+      "events": [
+        "EV_p0592_01",
+        "EV_p0858_01",
+        "EV_p1016_02",
+        "EV_p1167_01",
+        "EV_p1203_01"
+      ],
+      "energy_ratio": 0.5,
+      "sample_labels": [
+        "后妃問題で蘇我氏が外戚の地位を確保できず、天皇との利害が対立している",
+        "幼帝清和天皇の即位により外祖父の補佐が不可欠である",
+        "天皇の外祖父として朝廷の人事と政策決定を掌握している"
+      ],
+      "lifecycle": {
+        "generatedBy": null,
+        "states": []
+      }
+    },
+    {
+      "bgId": "BG_054",
+      "type": "power_structure",
+      "label": "天皇・朝廷(古代)",
+      "eventCount": 4,
+      "elementCount": 6,
+      "yearRange": "512-630",
+      "events": [
+        "EV_p0512_01",
+        "EV_p0593_02",
+        "EV_p0593_01",
+        "EV_p0630_01"
+      ],
+      "energy_ratio": 0.1875,
+      "sample_labels": [],
+      "lifecycle": {
+        "generatedBy": null,
+        "states": []
+      }
+    },
+    {
+      "bgId": "BG_055",
+      "type": "power_structure",
+      "label": "明治政府",
+      "eventCount": 4,
+      "elementCount": 6,
+      "yearRange": "1871-1910",
+      "events": [
+        "EV_p1871_01",
+        "EV_p1881_01",
+        "EV_p1889_01",
+        "EV_p1910_01"
+      ],
+      "energy_ratio": 0.0,
+      "sample_labels": [
+        "明治十四年の政変で大隈重信が追放されている",
+        "伊藤博文がプロイセン型の欽定憲法を構想している",
+        "伊藤博文がヨーロッパで憲法調査を行い草案を作成している",
+        "版籍奉還後も旧藩主が知藩事として実権を保持している"
+      ],
+      "lifecycle": {
+        "generatedBy": null,
+        "states": []
+      }
+    },
+    {
+      "bgId": "BG_056",
+      "type": "institution",
+      "label": "条約体制",
+      "eventCount": 4,
+      "elementCount": 6,
+      "yearRange": "1858-1952",
+      "events": [
+        "EV_p1858_02",
+        "EV_p1858_01",
+        "EV_p1881_01",
+        "EV_p1952_02"
+      ],
+      "energy_ratio": 0.6666666666666666,
+      "sample_labels": [
+        "条約勅許問題と将軍継嗣問題で政治対立が激化している",
+        "ハリスが通商条約の締結を強く要求している",
+        "朝廷の勅許が得られないまま条約締結が迫られている"
+      ],
+      "lifecycle": {
+        "generatedBy": null,
+        "states": []
+      }
+    },
+    {
+      "bgId": "BG_057",
+      "type": "power_structure",
+      "label": "武士層(平安)",
+      "eventCount": 5,
+      "elementCount": 6,
+      "yearRange": "587-1184",
+      "events": [
+        "EV_p0587_01",
+        "EV_p0939_01",
+        "EV_p1156_01",
+        "EV_p1180_01",
+        "EV_p1184_01"
+      ],
+      "energy_ratio": 0.5172413793103449,
+      "sample_labels": [],
+      "lifecycle": {
+        "generatedBy": null,
+        "states": []
+      }
+    },
+    {
+      "bgId": "BG_058",
+      "type": "institution",
+      "label": "班田収授制",
+      "eventCount": 3,
+      "elementCount": 6,
+      "yearRange": "647-743",
+      "events": [
+        "EV_p0647_01",
+        "EV_p0723_01",
+        "EV_p0743_01"
+      ],
+      "energy_ratio": 0.3333333333333333,
+      "sample_labels": [
+        "大化改新により租庸調・班田収授が制度化され全国一律の徴税が始まっている",
+        "班田収授制のもとで口分田の不足が深刻化している",
+        "口分田の不足が深刻化し耕地拡大が国家的課題となっている"
+      ],
+      "lifecycle": {
+        "generatedBy": null,
+        "states": []
+      }
+    },
+    {
+      "bgId": "BG_059",
+      "type": "power_structure",
+      "label": "皇位継承(中世)",
+      "eventCount": 4,
+      "elementCount": 6,
+      "yearRange": "1334-1438",
+      "events": [
+        "EV_p1334_01",
+        "EV_p1392_01",
+        "EV_p1428_01",
+        "EV_p1438_01"
+      ],
+      "energy_ratio": 0.27586206896551724,
+      "sample_labels": [],
+      "lifecycle": {
+        "generatedBy": null,
+        "states": []
+      }
+    },
+    {
+      "bgId": "BG_060",
+      "type": "demographic",
+      "label": "自然災害",
+      "eventCount": 2,
+      "elementCount": 6,
+      "yearRange": "1995-2011",
+      "events": [
+        "EV_p1995_01",
+        "EV_p2011_01"
+      ],
+      "energy_ratio": 0.0,
+      "sample_labels": [
+        "活断層が都市直下に存在し大規模地震のリスクがある",
+        "東北沖でプレート境界型の巨大地震が発生するリスクが指摘されている",
+        "原子力発電所の津波対策が不十分である"
+      ],
+      "lifecycle": {
+        "generatedBy": null,
+        "states": []
+      }
+    },
+    {
+      "bgId": "BG_061",
+      "type": "external",
+      "label": "蒙古の脅威",
+      "eventCount": 4,
+      "elementCount": 6,
+      "yearRange": "1274-1297",
+      "events": [
+        "EV_p1274_01",
+        "EV_p1281_01",
+        "EV_p1285_01",
+        "EV_p1297_01"
+      ],
+      "energy_ratio": 0.5,
+      "sample_labels": [
+        "モンゴル帝国（元）のフビライが日本に朝貢を要求している",
+        "幕府がフビライの国書を無視し続けたため武力行使が決定されている",
+        "フビライが再度の日本征服を決意し大規模な遠征軍を編成している"
+      ],
+      "lifecycle": {
+        "generatedBy": null,
+        "states": []
+      }
+    },
+    {
+      "bgId": "BG_062",
+      "type": "institution",
+      "label": "議会制",
+      "eventCount": 4,
+      "elementCount": 6,
+      "yearRange": "1881-1985",
+      "events": [
+        "EV_p1881_01",
+        "EV_p1925_02",
+        "EV_p1925_01",
+        "EV_p1985_01"
+      ],
+      "energy_ratio": 0.5,
+      "sample_labels": [
+        "自由民権運動による国会開設要求と同時に、欧米列強との条約改正交渉で「法治国家でない」と批判される状態が続いており、対内・",
+        "大正デモクラシーの高まりで男子普通選挙を求める声が強まっている",
+        "護憲三派内閣が選挙法改正を公約に掲げている"
+      ],
+      "lifecycle": {
+        "generatedBy": null,
+        "states": []
+      }
+    },
+    {
+      "bgId": "BG_063",
+      "type": "institution",
+      "label": "都城制",
+      "eventCount": 4,
+      "elementCount": 6,
+      "yearRange": "694-810",
+      "events": [
+        "EV_p0694_01",
+        "EV_p0710_01",
+        "EV_p0794_01",
+        "EV_p0810_01"
+      ],
+      "energy_ratio": 0.3333333333333333,
+      "sample_labels": [
+        "中国の都城制を模した本格的な計画都市の建設が構想されている",
+        "藤原京が手狭になり大規模な都城への移転が求められている",
+        "唐の長安城を模範とした壮大な都城計画が立案されている"
+      ],
+      "lifecycle": {
+        "generatedBy": null,
+        "states": []
+      }
+    },
+    {
+      "bgId": "BG_064",
+      "type": "institution",
+      "label": "明治憲法体制",
+      "eventCount": 2,
+      "elementCount": 5,
+      "yearRange": "1889-1946",
+      "events": [
+        "EV_p1889_01",
+        "EV_p1946_01"
+      ],
+      "energy_ratio": 0.2,
+      "sample_labels": [
+        "伊藤博文がヨーロッパで憲法調査を行い草案を作成している",
+        "枢密院での審議を経て天皇の名で発布される形式がとられた",
+        "GHQが大日本帝国憲法の全面改正を指示している"
+      ],
+      "lifecycle": {
+        "generatedBy": null,
+        "states": []
+      }
+    },
+    {
+      "bgId": "BG_065",
+      "type": "institution",
+      "label": "荘園制",
+      "eventCount": 3,
+      "elementCount": 5,
+      "yearRange": "1068-1096",
+      "events": [
+        "EV_p1068_01",
+        "EV_p1069_01",
+        "EV_p1096_01"
+      ],
+      "energy_ratio": 0.0,
+      "sample_labels": [
+        "荘園の拡大が国家財政を圧迫し整理が急務である",
+        "荘園の乱立が公田を侵食し、国家の租税基盤が縮小している",
+        "従来の荘園整理は国司主体だが、国司と有力貴族の癒着で実効性がない"
+      ],
+      "lifecycle": {
+        "generatedBy": null,
+        "states": []
+      }
+    },
+    {
+      "bgId": "BG_066",
+      "type": "knowledge",
+      "label": "記紀・史書",
+      "eventCount": 4,
+      "elementCount": 5,
+      "yearRange": "689-759",
+      "events": [
+        "EV_p0689_01",
+        "EV_p0701_01",
+        "EV_p0720_01",
+        "EV_p0759_01"
+      ],
+      "energy_ratio": 0.0,
+      "sample_labels": [
+        "天武天皇が着手した律令編纂を持統天皇が継承している",
+        "唐の律令を範としつつ日本固有の制度を盛り込む編纂が進められた",
+        "古事記に続き中国の正史に倣った編年体国史の編纂が進められた"
+      ],
+      "lifecycle": {
+        "generatedBy": null,
+        "states": []
+      }
+    },
+    {
+      "bgId": "BG_067",
+      "type": "institution",
+      "label": "鎖国体制",
+      "eventCount": 5,
+      "elementCount": 5,
+      "yearRange": "1720-1854",
+      "events": [
+        "EV_p1720_01",
+        "EV_p1792_01",
+        "EV_p1804_01",
+        "EV_p1825_01",
+        "EV_p1854_01"
+      ],
+      "energy_ratio": 0.6,
+      "sample_labels": [
+        "鎖国下でも蘭学への関心が一部知識人の間で高まっている",
+        "ロシアの極東進出が鎖国体制の前提（長崎一港限定の外交）を北方から崩す圧力となり、250年間維持された外交体制の制度的前提",
+        "ラクスマン来航以来ロシアの南下圧力が継続しており、鎖国体制の「北方の空白」が制度的脆弱性として露呈しつつある"
+      ],
+      "lifecycle": {
+        "generatedBy": null,
+        "states": []
+      }
+    },
+    {
+      "bgId": "BG_068",
+      "type": "institution",
+      "label": "人民把握制度",
+      "eventCount": 4,
+      "elementCount": 4,
+      "yearRange": "646-1635",
+      "events": [
+        "EV_p0646_01",
+        "EV_p0689_01",
+        "EV_p1096_01",
+        "EV_p1635_02"
+      ],
+      "energy_ratio": 0.0,
+      "sample_labels": [
+        "戸籍制度が未整備で人民の把握が不十分である",
+        "戸籍（庚寅年籍）の作成と連動した行政体制の整備が進んでいた",
+        "11世紀後半を通じて荘園の増加が続き、国衙が把握する公領の田地面積と実際の耕地との間に乖離が生じている"
+      ],
+      "lifecycle": {
+        "generatedBy": null,
+        "states": []
+      }
+    },
+    {
+      "bgId": "BG_069",
+      "type": "culture",
+      "label": "仏教(近世)",
+      "eventCount": 2,
+      "elementCount": 4,
+      "yearRange": "1639-1685",
+      "events": [
+        "EV_p1639_01",
+        "EV_p1685_01"
+      ],
+      "energy_ratio": 0.3181818181818182,
+      "sample_labels": [],
+      "lifecycle": {
+        "generatedBy": null,
+        "states": []
+      }
+    },
+    {
+      "bgId": "BG_070",
+      "type": "institution",
+      "label": "室町幕府",
+      "eventCount": 4,
+      "elementCount": 4,
+      "yearRange": "1333-1438",
+      "events": [
+        "EV_p1333_01",
+        "EV_p1351_01",
+        "EV_p1378_01",
+        "EV_p1438_01"
+      ],
+      "energy_ratio": 0.5,
+      "sample_labels": [
+        "足利高氏（尊氏）が幕府を裏切り六波羅探題を攻略している",
+        "将軍足利尊氏と弟の直義が幕政の運営方針をめぐり対立している",
+        "室町幕府は発足以来、将軍の御所が転々と移り、政庁としての拠点が京都内で数度変遷している"
+      ],
+      "lifecycle": {
+        "generatedBy": null,
+        "states": []
+      }
+    },
+    {
+      "bgId": "BG_071",
+      "type": "conflict",
+      "label": "応仁の乱と秩序崩壊",
+      "eventCount": 2,
+      "elementCount": 4,
+      "yearRange": "1477-1485",
+      "events": [
+        "EV_p1477_01",
+        "EV_p1485_02"
+      ],
+      "energy_ratio": 0.25,
+      "sample_labels": [
+        "長期の戦闘で両陣営とも疲弊し戦意が低下している",
+        "畠山氏の内紛で山城国が戦場となり住民が疲弊している",
+        "国人・土民が団結して畠山両軍の撤退を要求している"
+      ],
+      "lifecycle": {
+        "generatedBy": null,
+        "states": []
+      }
+    },
+    {
+      "bgId": "BG_072",
+      "type": "conflict",
+      "label": "戦国の分裂",
+      "eventCount": 3,
+      "elementCount": 4,
+      "yearRange": "1428-1589",
+      "events": [
+        "EV_p1428_01",
+        "EV_p1573_01",
+        "EV_p1589_01"
+      ],
+      "energy_ratio": 0.5,
+      "sample_labels": [
+        "足利義昭が信長包囲網を形成し各地の大名に挙兵を呼びかけた",
+        "武田信玄の死去により包囲網が瓦解している",
+        "農民・馬借ら民衆の間に徳政（債務免除）への期待が高まっている"
+      ],
+      "lifecycle": {
+        "generatedBy": null,
+        "states": []
+      }
+    },
+    {
+      "bgId": "BG_073",
+      "type": "institution",
+      "label": "戦後憲法体制",
+      "eventCount": 2,
+      "elementCount": 4,
+      "yearRange": "1946-1947",
+      "events": [
+        "EV_p1946_01",
+        "EV_p1947_01"
+      ],
+      "energy_ratio": 0.0,
+      "sample_labels": [
+        "国民主権・平和主義・基本的人権の尊重が三原則とされている",
+        "前年に公布された新憲法の施行準備が進められている",
+        "新憲法に基づく法制度の整備が行われた"
+      ],
+      "lifecycle": {
+        "generatedBy": null,
+        "states": []
+      }
+    },
+    {
+      "bgId": "BG_074",
+      "type": "institution",
+      "label": "朝廷統制",
+      "eventCount": 3,
+      "elementCount": 4,
+      "yearRange": "939-1615",
+      "events": [
+        "EV_p0939_02",
+        "EV_p1051_01",
+        "EV_p1615_04"
+      ],
+      "energy_ratio": 0.75,
+      "sample_labels": [
+        "瀬戸内海の海賊が横行し朝廷の海上統制が弱体化している",
+        "奥州の俘囚長・安倍氏が朝廷の統制に従わず勢力を拡大している",
+        "天皇・公家の活動範囲を明確に規定する要求がある"
+      ],
+      "lifecycle": {
+        "generatedBy": null,
+        "states": []
+      }
+    },
+    {
+      "bgId": "BG_075",
+      "type": "demographic",
+      "label": "浪人問題",
+      "eventCount": 3,
+      "elementCount": 4,
+      "yearRange": "1614-1680",
+      "events": [
+        "EV_p1614_01",
+        "EV_p1651_01",
+        "EV_p1680_01"
+      ],
+      "energy_ratio": 0.25,
+      "sample_labels": [
+        "豊臣家が大坂城に拠り莫大な財力と浪人衆を擁している",
+        "大量の浪人が社会不安の要因となっている",
+        "武断政治の限界が露呈し牢人問題が沈静化した後の統治転換が課題となっている"
+      ],
+      "lifecycle": {
+        "generatedBy": null,
+        "states": []
+      }
+    },
+    {
+      "bgId": "BG_076",
+      "type": "conflict",
+      "label": "豊臣家問題",
+      "eventCount": 4,
+      "elementCount": 4,
+      "yearRange": "1614-1615",
+      "events": [
+        "EV_p1614_01",
+        "EV_p1615_03",
+        "EV_p1615_01",
+        "EV_p1615_02"
+      ],
+      "energy_ratio": 0.25,
+      "sample_labels": [
+        "豊臣家が大坂城に拠り莫大な財力と浪人衆を擁している",
+        "大坂の陣の経験から大名の軍事力制限が急務となっている",
+        "冬の陣の和議で外堀が埋められ大坂城の防御力が失われた"
+      ],
+      "lifecycle": {
+        "generatedBy": null,
+        "states": []
+      }
+    },
+    {
+      "bgId": "BG_077",
+      "type": "institution",
+      "label": "鎌倉幕府",
+      "eventCount": 4,
+      "elementCount": 4,
+      "yearRange": "1199-1438",
+      "events": [
+        "EV_p1199_01",
+        "EV_p1333_01",
+        "EV_p1334_01",
+        "EV_p1438_01"
+      ],
+      "energy_ratio": 0.25,
+      "sample_labels": [
+        "頼朝の独裁的指導力に依存した幕府運営が続いている",
+        "全国の御家人が相次いで幕府から離反しており、鎌倉という地理的孤立した政治拠点を防衛する軍事力そのものが敵に転換している",
+        "鎌倉幕府の滅亡により天皇親政を実現する機会が到来している"
+      ],
+      "lifecycle": {
+        "generatedBy": null,
+        "states": []
+      }
+    },
+    {
+      "bgId": "BG_078",
+      "type": "external",
+      "label": "隋との関係",
+      "eventCount": 2,
+      "elementCount": 4,
+      "yearRange": "603-607",
+      "events": [
+        "EV_p0603_01",
+        "EV_p0607_01"
+      ],
+      "energy_ratio": 0.5,
+      "sample_labels": [
+        "隋の官僚制を参考に個人の能力と功績に基づく序列が構想されている",
+        "隋の中国統一により東アジアに圧倒的な軍事・文化大国が出現し、周辺諸国が冊封秩序への編入か対抗かの選択を迫られている",
+        "倭国では冠位十二階・十七条憲法など国内制度の整備が進められており、隋は南北朝を統一した大陸最大の統一王朝として存在してい"
+      ],
+      "lifecycle": {
+        "generatedBy": null,
+        "states": []
+      }
+    },
+    {
+      "bgId": "BG_079",
+      "type": "external",
+      "label": "対米関係",
+      "eventCount": 2,
+      "elementCount": 3,
+      "yearRange": "1940-1985",
+      "events": [
+        "EV_p1940_01",
+        "EV_p1985_01"
+      ],
+      "energy_ratio": 1.0,
+      "sample_labels": [
+        "日中戦争の長期化でアメリカとの関係が悪化している",
+        "アメリカの貿易赤字が拡大しドル高是正が求められている",
+        "レーガン政権の財政赤字拡大によるドル高がアメリカ製造業の競争力を喪失させ、議会に保護主義立法の圧力が高まっており、協調介"
+      ],
+      "lifecycle": {
+        "generatedBy": null,
+        "states": []
+      }
+    },
+    {
+      "bgId": "BG_080",
+      "type": "conflict",
+      "label": "承久の乱後の体制",
+      "eventCount": 2,
+      "elementCount": 3,
+      "yearRange": "1225-1232",
+      "events": [
+        "EV_p1225_01",
+        "EV_p1232_01"
+      ],
+      "energy_ratio": 0.6666666666666666,
+      "sample_labels": [
+        "承久の乱（1221年）の後、幕府は没収した京方武士の所領を御家人に再分配し、西国にも新たに地頭を補任している",
+        "承久の乱後に西国を含む全国統治の課題が一気に拡大し、執権一人の判断では訴訟・行政が処理しきれない制度的過負荷が生じている",
+        "承久の乱後に西国の所領争いが増加し統一的な法典が求められている"
+      ],
+      "lifecycle": {
+        "generatedBy": null,
+        "states": []
+      }
+    },
+    {
+      "bgId": "BG_081",
+      "type": "institution",
+      "label": "検地・兵農分離",
+      "eventCount": 3,
+      "elementCount": 3,
+      "yearRange": "1588-1591",
+      "events": [
+        "EV_p1588_01",
+        "EV_p1589_01",
+        "EV_p1591_01"
+      ],
+      "energy_ratio": 0.3333333333333333,
+      "sample_labels": [
+        "兵農分離による身分秩序の確立が政策課題である",
+        "秀吉による検地・刀狩などの統一政策が進展している",
+        "検地と刀狩により身分固定の基盤が整いつつある"
+      ],
+      "lifecycle": {
+        "generatedBy": null,
+        "states": []
+      }
+    },
+    {
+      "bgId": "BG_082",
+      "type": "power_structure",
+      "label": "皇位継承(近現代)",
+      "eventCount": 2,
+      "elementCount": 3,
+      "yearRange": "1989-2019",
+      "events": [
+        "EV_p1989_01",
+        "EV_p2019_01"
+      ],
+      "energy_ratio": 0.27586206896551724,
+      "sample_labels": [],
+      "lifecycle": {
+        "generatedBy": null,
+        "states": []
+      }
+    },
+    {
+      "bgId": "BG_083",
+      "type": "institution",
+      "label": "藩体制",
+      "eventCount": 3,
+      "elementCount": 3,
+      "yearRange": "1716-1871",
+      "events": [
+        "EV_p1716_02",
+        "EV_p1787_02",
+        "EV_p1871_01"
+      ],
+      "energy_ratio": 0.0,
+      "sample_labels": [
+        "紀州藩主から将軍に就任し幕政刷新の意欲を持っている",
+        "白河藩主として飢饉対策に成功した実績を持っている",
+        "版籍奉還後も旧藩主が知藩事として実権を保持している"
+      ],
+      "lifecycle": {
+        "generatedBy": null,
+        "states": []
+      }
+    }
+  ]
+}

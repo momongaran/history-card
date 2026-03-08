@@ -11,7 +11,7 @@ B要素のoriginフィールド（先行イベントのEから派生したこと
 import json
 from pathlib import Path
 
-DATA_FILE = Path(__file__).resolve().parent.parent / "data" / "framework_output_v3_8.json"
+DATA_FILE = Path(__file__).resolve().parent.parent / "archive" / "data" / "framework_output_v3_8.json"
 
 # elementId -> sourceEventId のマッピング
 # 既存originがあるものは自動スキップ
