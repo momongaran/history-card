@@ -49,11 +49,16 @@ def convert_causal_frame(event: dict, frames: dict) -> dict:
         print(f"WARNING: No functional frame for {event_id}", file=sys.stderr)
         return cf
 
-    # Preserve existing bname/refs as background
-    old_params = cf.get("params", [])
-    background = []
-    if isinstance(old_params, list):
-        background = [p for p in old_params if "bname" in p]
+    # Preserve existing background if already populated (functional format)
+    existing_bg = cf.get("background", [])
+    if existing_bg:
+        background = existing_bg
+    else:
+        # Extract bname/refs from old-style nested params (v3.9 original format)
+        old_params = cf.get("params", [])
+        background = []
+        if isinstance(old_params, list):
+            background = [p for p in old_params if "bname" in p]
 
     return {
         "fnameCategory": frame["fnameCategory"],
