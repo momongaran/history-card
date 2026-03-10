@@ -10,6 +10,7 @@
   --card: #fff; --accent: #2563eb; --warm: #dc6b2f;
   --drives: #2563eb; --pressures: #dc2626; --supports: #059669; --enables: #7c3aed;
   --transforms: #dc6b2f; --inherits: #2563eb; --reinforces: #059669; --branches: #7c3aed;
+  --scale-macro: #0ea5e9; --scale-local: #f59e0b; --scale-trigger: #ef4444;
   --fname-圧力解放: #dc2626; --fname-主体的行為: #2563eb; --fname-矛盾露呈: #d97706;
   --fname-外生衝撃: #7c3aed; --fname-偶発連鎖: #6b7280; --fname-権力移行: #059669;
   --sans: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Noto Sans JP", sans-serif;
@@ -103,6 +104,10 @@ header .stats { font-size: 11px; color: var(--muted); margin-left: auto; white-s
 .bg-stream.highlighted { background: #fffbe8; }
 .bg-stream .bg-label { font-weight: 700; font-size: 12px; }
 .bg-stream .bg-type { color: var(--muted); font-size: 10px; }
+.bg-stream .scale-tag {
+  display: inline-block; font-size: 9px; padding: 1px 5px; border-radius: 3px;
+  font-weight: 700; color: #fff; margin-left: 4px; vertical-align: middle;
+}
 .bg-stream .bg-phase { font-size: 10px; color: var(--muted); margin-top: 2px; }
 .bg-lineage-links { padding: 6px 8px; font-size: 11px; }
 .bg-lineage-links .link-item {
@@ -141,6 +146,12 @@ header .stats { font-size: 11px; color: var(--muted); margin-left: auto; white-s
       <option value="近世">近世(1573〜1868)</option>
       <option value="近現代">近現代(1868〜)</option>
     </select>
+    <select id="scaleFilter">
+      <option value="">全スケール</option>
+      <option value="macro">大地形(macro)</option>
+      <option value="local">局所(local)</option>
+      <option value="trigger">発火点(trigger)</option>
+    </select>
   </div>
   <div class="stats" id="stats"></div>
 </header>
@@ -165,7 +176,7 @@ header .stats { font-size: 11px; color: var(--muted); margin-left: auto; white-s
 let DATA = null;
 let BG_MAP = {};
 let LINEAGE = [];
-let STATE = { selectedEventId: null, selectedBgId: null, searchText: '', fnameFilter: '', eraFilter: '' };
+let STATE = { selectedEventId: null, selectedBgId: null, searchText: '', fnameFilter: '', eraFilter: '', scaleFilter: '' };
 
 const fnameColors = {
   '圧力解放': '#dc2626', '主体的行為': '#2563eb', '矛盾露呈': '#d97706',
@@ -175,6 +186,8 @@ const roleColors = { drives: '#2563eb', pressures: '#dc2626', supports: '#059669
 const roleLabels = { drives: '駆動', pressures: '圧力', supports: '支持', enables: '前提' };
 const kindColors = { transforms: '#dc6b2f', inherits: '#2563eb', reinforces: '#059669', branches: '#7c3aed', merges: '#d97706' };
 const kindLabels = { transforms: '変質', inherits: '継承', reinforces: '併走', branches: '分岐', merges: '統合' };
+const scaleColors = { macro: '#0ea5e9', local: '#f59e0b', trigger: '#ef4444' };
+const scaleLabels = { macro: '大地形', local: '局所', trigger: '発火点' };
 
 function yearToEra(y) {
   if (y < 794) return '古代';
@@ -188,9 +201,18 @@ function filterEvents() {
   const s = STATE.searchText.toLowerCase();
   const f = STATE.fnameFilter;
   const e = STATE.eraFilter;
+  const sc = STATE.scaleFilter;
   return DATA.events.filter(ev => {
     if (f && ev.causalFrame.fnameCategory !== f) return false;
     if (e && yearToEra(ev.year) !== e) return false;
+    if (sc) {
+      // Filter: event must reference at least one BG of the selected scale
+      const bgIds = new Set();
+      (ev.causalFrame.background || []).forEach(b => (b.refs || []).forEach(r => bgIds.add(r.bgId)));
+      (ev.eGenerates || []).forEach(eg => bgIds.add(eg.targetBG));
+      const hasScale = [...bgIds].some(id => BG_MAP[id] && BG_MAP[id].scale === sc);
+      if (!hasScale) return false;
+    }
     if (s) {
       const hay = `${ev.year} ${ev.title} ${ev.causalFrame.fnameCategory} ${ev.causalFrame.fname}`.toLowerCase();
       // Also search in background labels
@@ -399,8 +421,10 @@ function renderBgLane() {
 function renderBgStream(bg, isActive, isLineageOnly, phase) {
   const cls = isActive ? 'active' : (isLineageOnly ? 'highlighted' : '');
   const phaseText = phase ? `<div class="bg-phase">${phase.phase}: ${phase.label || ''}</div>` : '';
+  const sc = bg.scale || '';
+  const scTag = sc ? `<span class="scale-tag" style="background:${scaleColors[sc] || '#999'}">${scaleLabels[sc] || sc}</span>` : '';
   return `<div class="bg-stream ${cls}" onclick="selectBg('${bg.bgId}')">
-    <div class="bg-label">${bg.label}</div>
+    <div class="bg-label">${bg.label} ${scTag}</div>
     <div class="bg-type">${bg.bgId} · ${bg.type}</div>
     ${phaseText}
   </div>`;
@@ -455,6 +479,7 @@ async function init() {
   document.getElementById('search').addEventListener('input', e => { STATE.searchText = e.target.value; renderEventLane(); });
   document.getElementById('fnameFilter').addEventListener('change', e => { STATE.fnameFilter = e.target.value; STATE.selectedEventId = null; render(); });
   document.getElementById('eraFilter').addEventListener('change', e => { STATE.eraFilter = e.target.value; STATE.selectedEventId = null; render(); });
+  document.getElementById('scaleFilter').addEventListener('change', e => { STATE.scaleFilter = e.target.value; STATE.selectedEventId = null; render(); });
 
   render();
 }
