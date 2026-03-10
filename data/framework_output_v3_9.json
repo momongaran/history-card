@@ -58,7 +58,7 @@
         {
           "eventId": "EV_p1573_01",
           "year": 1573,
-          "effect": "terminate"
+          "effect": "reinforce"
         },
         {
           "eventId": "EV_p1575_01",
@@ -68,7 +68,7 @@
         {
           "eventId": "EV_p1576_01",
           "year": 1576,
-          "effect": "generate"
+          "effect": "reinforce"
         },
         {
           "eventId": "EV_p1582_01",
@@ -78,17 +78,7 @@
         {
           "eventId": "EV_p1582_02",
           "year": 1582,
-          "effect": "redirect"
-        },
-        {
-          "eventId": "EV_p1583_01",
-          "year": 1583,
-          "effect": "reinforce"
-        },
-        {
-          "eventId": "EV_p1584_01",
-          "year": 1584,
-          "effect": "reinforce"
+          "effect": "terminate"
         }
       ],
       "phases": [
@@ -139,7 +129,7 @@
         {
           "eventId": "EV_p0897_01",
           "year": 897,
-          "effect": "generate"
+          "effect": "reinforce"
         },
         {
           "eventId": "EV_p0901_01",
@@ -164,7 +154,7 @@
         {
           "eventId": "EV_p1016_02",
           "year": 1016,
-          "effect": "generate"
+          "effect": "reinforce"
         },
         {
           "eventId": "EV_p1068_01",
@@ -184,7 +174,7 @@
         {
           "eventId": "EV_p1086_01",
           "year": 1086,
-          "effect": "generate"
+          "effect": "reinforce"
         },
         {
           "eventId": "EV_p1156_01",
@@ -270,12 +260,12 @@
         {
           "eventId": "EV_p1587_02",
           "year": 1587,
-          "effect": "generate"
+          "effect": "reinforce"
         },
         {
           "eventId": "EV_p1588_01",
           "year": 1588,
-          "effect": "generate"
+          "effect": "reinforce"
         },
         {
           "eventId": "EV_p1589_01",
@@ -310,7 +300,7 @@
         {
           "eventId": "EV_p1605_01",
           "year": 1605,
-          "effect": "generate"
+          "effect": "reinforce"
         },
         {
           "eventId": "EV_p1614_01",
@@ -330,7 +320,7 @@
         {
           "eventId": "EV_p1615_03",
           "year": 1615,
-          "effect": "generate"
+          "effect": "reinforce"
         }
       ],
       "phases": [
@@ -406,7 +396,7 @@
         {
           "eventId": "EV_p1841_02",
           "year": 1841,
-          "effect": "generate"
+          "effect": "reinforce"
         },
         {
           "eventId": "EV_p1873_01",
@@ -546,7 +536,7 @@
         {
           "eventId": "EV_p1605_01",
           "year": 1605,
-          "effect": "generate"
+          "effect": "reinforce"
         },
         {
           "eventId": "EV_p1614_01",
@@ -556,7 +546,7 @@
         {
           "eventId": "EV_p1615_02",
           "year": 1615,
-          "effect": "terminate"
+          "effect": "redirect"
         },
         {
           "eventId": "EV_p1680_01",
@@ -566,7 +556,7 @@
         {
           "eventId": "EV_p1716_02",
           "year": 1716,
-          "effect": "generate"
+          "effect": "reinforce"
         },
         {
           "eventId": "EV_p1860_01",
@@ -646,7 +636,7 @@
         {
           "eventId": "EV_p1639_01",
           "year": 1639,
-          "effect": "generate"
+          "effect": "reinforce"
         },
         {
           "eventId": "EV_p1804_01",
@@ -760,12 +750,12 @@
         {
           "eventId": "EV_p1247_01",
           "year": 1247,
-          "effect": "terminate"
+          "effect": "erode"
         },
         {
           "eventId": "EV_p1285_01",
           "year": 1285,
-          "effect": "generate"
+          "effect": "reinforce"
         },
         {
           "eventId": "EV_p1297_01",
@@ -849,7 +839,7 @@
         {
           "eventId": "EV_p1378_01",
           "year": 1378,
-          "effect": "generate"
+          "effect": "reinforce"
         },
         {
           "eventId": "EV_p1555_01",
@@ -864,7 +854,7 @@
         {
           "eventId": "EV_p1576_01",
           "year": 1576,
-          "effect": "generate"
+          "effect": "reinforce"
         },
         {
           "eventId": "EV_p1582_01",
@@ -874,12 +864,12 @@
         {
           "eventId": "EV_p1585_01",
           "year": 1585,
-          "effect": "generate"
+          "effect": "reinforce"
         },
         {
           "eventId": "EV_p1588_01",
           "year": 1588,
-          "effect": "generate"
+          "effect": "reinforce"
         },
         {
           "eventId": "EV_p1589_01",
@@ -904,7 +894,7 @@
         {
           "eventId": "EV_p1871_01",
           "year": 1871,
-          "effect": "generate"
+          "effect": "reinforce"
         }
       ],
       "phases": [
@@ -997,7 +987,7 @@
         {
           "eventId": "EV_p0701_01",
           "year": 701,
-          "effect": "generate"
+          "effect": "reinforce"
         },
         {
           "eventId": "EV_p0710_01",
@@ -1007,17 +997,17 @@
         {
           "eventId": "EV_p0720_01",
           "year": 720,
-          "effect": "generate"
+          "effect": "reinforce"
         },
         {
           "eventId": "EV_p0805_01",
           "year": 805,
-          "effect": "generate"
+          "effect": "reinforce"
         },
         {
           "eventId": "EV_p0806_01",
           "year": 806,
-          "effect": "generate"
+          "effect": "reinforce"
         },
         {
           "eventId": "EV_p0894_01",
@@ -1086,12 +1076,12 @@
         {
           "eventId": "EV_p0701_01",
           "year": 701,
-          "effect": "generate"
+          "effect": "reinforce"
         },
         {
           "eventId": "EV_p0708_01",
           "year": 708,
-          "effect": "generate"
+          "effect": "reinforce"
         },
         {
           "eventId": "EV_p0710_01",
@@ -1106,12 +1096,12 @@
         {
           "eventId": "EV_p0897_01",
           "year": 897,
-          "effect": "generate"
+          "effect": "reinforce"
         },
         {
           "eventId": "EV_p0967_01",
           "year": 967,
-          "effect": "generate"
+          "effect": "reinforce"
         },
         {
           "eventId": "EV_p1232_01",
@@ -1207,7 +1197,7 @@
         {
           "eventId": "EV_p1192_01",
           "year": 1192,
-          "effect": "generate"
+          "effect": "reinforce"
         },
         {
           "eventId": "EV_p2019_01",
@@ -1251,7 +1241,7 @@
         {
           "eventId": "EV_p1378_01",
           "year": 1378,
-          "effect": "generate"
+          "effect": "reinforce"
         },
         {
           "eventId": "EV_p1568_01",
@@ -1261,7 +1251,7 @@
         {
           "eventId": "EV_p1573_01",
           "year": 1573,
-          "effect": "terminate"
+          "effect": "erode"
         },
         {
           "eventId": "EV_p1586_01",
@@ -1311,7 +1301,7 @@
         {
           "eventId": "EV_p1635_02",
           "year": 1635,
-          "effect": "generate"
+          "effect": "reinforce"
         },
         {
           "eventId": "EV_p1853_02",
@@ -1442,22 +1432,22 @@
         {
           "eventId": "EV_p0784_01",
           "year": 784,
-          "effect": "generate"
+          "effect": "reinforce"
         },
         {
           "eventId": "EV_p1336_02",
           "year": 1336,
-          "effect": "generate"
+          "effect": "reinforce"
         },
         {
           "eventId": "EV_p1338_01",
           "year": 1338,
-          "effect": "generate"
+          "effect": "reinforce"
         },
         {
           "eventId": "EV_p1378_01",
           "year": 1378,
-          "effect": "generate"
+          "effect": "reinforce"
         },
         {
           "eventId": "EV_p1392_01",
@@ -1467,7 +1457,7 @@
         {
           "eventId": "EV_p1585_01",
           "year": 1585,
-          "effect": "generate"
+          "effect": "reinforce"
         },
         {
           "eventId": "EV_p1586_01",
@@ -1477,22 +1467,22 @@
         {
           "eventId": "EV_p1587_02",
           "year": 1587,
-          "effect": "generate"
+          "effect": "reinforce"
         },
         {
           "eventId": "EV_p1603_01",
           "year": 1603,
-          "effect": "generate"
+          "effect": "reinforce"
         },
         {
           "eventId": "EV_p1605_01",
           "year": 1605,
-          "effect": "generate"
+          "effect": "reinforce"
         },
         {
           "eventId": "EV_p1716_02",
           "year": 1716,
-          "effect": "generate"
+          "effect": "reinforce"
         }
       ],
       "phases": [
@@ -1575,7 +1565,7 @@
         {
           "eventId": "EV_p1192_01",
           "year": 1192,
-          "effect": "generate"
+          "effect": "reinforce"
         },
         {
           "eventId": "EV_p1199_01",
@@ -1590,7 +1580,7 @@
         {
           "eventId": "EV_p1603_01",
           "year": 1603,
-          "effect": "generate"
+          "effect": "reinforce"
         }
       ],
       "phases": [
@@ -1859,7 +1849,7 @@
         {
           "eventId": "EV_p0593_02",
           "year": 593,
-          "effect": "generate"
+          "effect": "reinforce"
         },
         {
           "eventId": "EV_p0645_01",
@@ -1922,16 +1912,6 @@
           "eventId": "EV_p1247_01",
           "year": 1247,
           "effect": "terminate"
-        },
-        {
-          "eventId": "EV_p1589_01",
-          "year": 1589,
-          "effect": "redirect"
-        },
-        {
-          "eventId": "EV_p1590_01",
-          "year": 1590,
-          "effect": "reinforce"
         }
       ],
       "phases": [
@@ -1968,7 +1948,7 @@
         {
           "eventId": "EV_p1336_02",
           "year": 1336,
-          "effect": "generate"
+          "effect": "reinforce"
         },
         {
           "eventId": "EV_p1336_03",
@@ -1978,7 +1958,7 @@
         {
           "eventId": "EV_p1338_01",
           "year": 1338,
-          "effect": "generate"
+          "effect": "reinforce"
         },
         {
           "eventId": "EV_p1351_01",
@@ -1988,12 +1968,12 @@
         {
           "eventId": "EV_p1378_01",
           "year": 1378,
-          "effect": "generate"
+          "effect": "reinforce"
         },
         {
           "eventId": "EV_p1404_01",
           "year": 1404,
-          "effect": "generate"
+          "effect": "reinforce"
         },
         {
           "eventId": "EV_p1438_01",
@@ -2245,7 +2225,7 @@
         {
           "eventId": "EV_p1871_01",
           "year": 1871,
-          "effect": "generate"
+          "effect": "reinforce"
         }
       ],
       "phases": [
@@ -2273,12 +2253,12 @@
         {
           "eventId": "EV_p1336_02",
           "year": 1336,
-          "effect": "generate"
+          "effect": "reinforce"
         },
         {
           "eventId": "EV_p1338_01",
           "year": 1338,
-          "effect": "generate"
+          "effect": "reinforce"
         },
         {
           "eventId": "EV_p1351_01",
@@ -2288,7 +2268,7 @@
         {
           "eventId": "EV_p1378_01",
           "year": 1378,
-          "effect": "generate"
+          "effect": "reinforce"
         },
         {
           "eventId": "EV_p1392_01",
@@ -2712,7 +2692,7 @@
         {
           "eventId": "EV_p0507_01",
           "year": 507,
-          "effect": "terminate"
+          "effect": "erode"
         },
         {
           "eventId": "EV_p0769_01",
@@ -2887,7 +2867,7 @@
         {
           "eventId": "EV_p1841_02",
           "year": 1841,
-          "effect": "generate"
+          "effect": "reinforce"
         }
       ],
       "phases": [
@@ -2943,7 +2923,7 @@
         {
           "eventId": "EV_p1720_01",
           "year": 1720,
-          "effect": "generate"
+          "effect": "reinforce"
         }
       ],
       "phases": [
@@ -3008,7 +2988,7 @@
         {
           "eventId": "EV_p1378_01",
           "year": 1378,
-          "effect": "generate"
+          "effect": "reinforce"
         },
         {
           "eventId": "EV_p1441_01",
@@ -3018,7 +2998,7 @@
         {
           "eventId": "EV_p1488_01",
           "year": 1488,
-          "effect": "generate"
+          "effect": "reinforce"
         }
       ],
       "phases": [
@@ -3069,7 +3049,7 @@
         {
           "eventId": "EV_p1947_01",
           "year": 1947,
-          "effect": "generate"
+          "effect": "reinforce"
         },
         {
           "eventId": "EV_p1952_02",
@@ -3230,7 +3210,7 @@
         {
           "eventId": "EV_p1016_02",
           "year": 1016,
-          "effect": "generate"
+          "effect": "reinforce"
         },
         {
           "eventId": "EV_p1167_01",
@@ -3293,7 +3273,7 @@
         {
           "eventId": "EV_p1889_01",
           "year": 1889,
-          "effect": "generate"
+          "effect": "reinforce"
         },
         {
           "eventId": "EV_p1910_01",
@@ -3533,17 +3513,17 @@
         {
           "eventId": "EV_p1889_01",
           "year": 1889,
-          "effect": "generate"
+          "effect": "reinforce"
         },
         {
           "eventId": "EV_p1925_01",
           "year": 1925,
-          "effect": "generate"
+          "effect": "reinforce"
         },
         {
           "eventId": "EV_p1925_02",
           "year": 1925,
-          "effect": "generate"
+          "effect": "reinforce"
         },
         {
           "eventId": "EV_p1985_01",
@@ -3636,12 +3616,12 @@
         {
           "eventId": "EV_p1889_01",
           "year": 1889,
-          "effect": "generate"
+          "effect": "reinforce"
         },
         {
           "eventId": "EV_p1946_01",
           "year": 1946,
-          "effect": "generate"
+          "effect": "reinforce"
         }
       ],
       "phases": [
@@ -3711,7 +3691,7 @@
         {
           "eventId": "EV_p0701_01",
           "year": 701,
-          "effect": "generate"
+          "effect": "reinforce"
         },
         {
           "eventId": "EV_p0712_01",
@@ -3721,7 +3701,7 @@
         {
           "eventId": "EV_p0720_01",
           "year": 720,
-          "effect": "generate"
+          "effect": "reinforce"
         },
         {
           "eventId": "EV_p0759_01",
@@ -3731,12 +3711,12 @@
         {
           "eventId": "EV_p0905_01",
           "year": 905,
-          "effect": "generate"
+          "effect": "reinforce"
         },
         {
           "eventId": "EV_p0967_01",
           "year": 967,
-          "effect": "generate"
+          "effect": "reinforce"
         }
       ],
       "phases": [
@@ -3773,7 +3753,7 @@
         {
           "eventId": "EV_p1720_01",
           "year": 1720,
-          "effect": "generate"
+          "effect": "reinforce"
         },
         {
           "eventId": "EV_p1792_01",
@@ -3788,7 +3768,7 @@
         {
           "eventId": "EV_p1825_01",
           "year": 1825,
-          "effect": "generate"
+          "effect": "reinforce"
         },
         {
           "eventId": "EV_p1854_01",
@@ -3835,7 +3815,7 @@
         {
           "eventId": "EV_p1635_02",
           "year": 1635,
-          "effect": "generate"
+          "effect": "reinforce"
         }
       ],
       "phases": [
@@ -3893,7 +3873,7 @@
         {
           "eventId": "EV_p1378_01",
           "year": 1378,
-          "effect": "generate"
+          "effect": "reinforce"
         },
         {
           "eventId": "EV_p1428_01",
@@ -4027,7 +4007,7 @@
         {
           "eventId": "EV_p1947_01",
           "year": 1947,
-          "effect": "generate"
+          "effect": "reinforce"
         }
       ],
       "phases": [
@@ -4243,7 +4223,7 @@
         {
           "eventId": "EV_p1952_02",
           "year": 1952,
-          "effect": "terminate"
+          "effect": "redirect"
         },
         {
           "eventId": "EV_p1972_01",
@@ -4323,7 +4303,7 @@
         {
           "eventId": "EV_p1591_01",
           "year": 1591,
-          "effect": "generate"
+          "effect": "reinforce"
         }
       ],
       "phases": [
@@ -4374,12 +4354,12 @@
         {
           "eventId": "EV_p1787_02",
           "year": 1787,
-          "effect": "generate"
+          "effect": "reinforce"
         },
         {
           "eventId": "EV_p1871_01",
           "year": 1871,
-          "effect": "generate"
+          "effect": "reinforce"
         },
         {
           "eventId": "EV_p1873_01",
@@ -4447,6 +4427,12 @@
           "targetBG": "BG_005",
           "effect": "terminate",
           "description": "（terminateの推定: 要レビュー）",
+          "_needs_review": true
+        },
+        {
+          "targetBG": "BG_041",
+          "effect": "erode",
+          "description": "(effectLogから復元)",
           "_needs_review": true
         }
       ]
@@ -4811,7 +4797,7 @@
       "eGenerates": [
         {
           "targetBG": "BG_023",
-          "effect": "generate",
+          "effect": "reinforce",
           "description": "（generateの推定: 要レビュー）",
           "_needs_review": true
         }
@@ -5835,19 +5821,19 @@
         },
         {
           "targetBG": "BG_013",
-          "effect": "generate",
+          "effect": "reinforce",
           "description": "（generateの推定: 要レビュー）",
           "_needs_review": true
         },
         {
           "targetBG": "BG_012",
-          "effect": "generate",
+          "effect": "reinforce",
           "description": "（generateの推定: 要レビュー）",
           "_needs_review": true
         },
         {
           "targetBG": "BG_066",
-          "effect": "generate",
+          "effect": "reinforce",
           "description": "（generateの推定: 要レビュー）",
           "_needs_review": true
         }
@@ -5895,7 +5881,7 @@
       "eGenerates": [
         {
           "targetBG": "BG_013",
-          "effect": "generate",
+          "effect": "reinforce",
           "description": "（generateの推定: 要レビュー）",
           "_needs_review": true
         }
@@ -6077,7 +6063,7 @@
       "eGenerates": [
         {
           "targetBG": "BG_012",
-          "effect": "generate",
+          "effect": "reinforce",
           "description": "（generateの推定: 要レビュー）",
           "_needs_review": true
         },
@@ -6095,7 +6081,7 @@
         },
         {
           "targetBG": "BG_066",
-          "effect": "generate",
+          "effect": "reinforce",
           "description": "（generateの推定: 要レビュー）",
           "_needs_review": true
         }
@@ -6723,7 +6709,7 @@
         },
         {
           "targetBG": "BG_017",
-          "effect": "generate",
+          "effect": "reinforce",
           "description": "（generateの推定: 要レビュー）",
           "_needs_review": true
         }
@@ -6822,6 +6808,12 @@
           "effect": "reinforce",
           "description": "（reinforceの推定: 要レビュー）",
           "_needs_review": true
+        },
+        {
+          "targetBG": "BG_036",
+          "effect": "reinforce",
+          "description": "(effectLogから復元)",
+          "_needs_review": true
         }
       ]
     },
@@ -6867,7 +6859,7 @@
       "eGenerates": [
         {
           "targetBG": "BG_012",
-          "effect": "generate",
+          "effect": "reinforce",
           "description": "（generateの推定: 要レビュー）",
           "_needs_review": true
         }
@@ -6915,7 +6907,7 @@
       "eGenerates": [
         {
           "targetBG": "BG_012",
-          "effect": "generate",
+          "effect": "reinforce",
           "description": "（generateの推定: 要レビュー）",
           "_needs_review": true
         }
@@ -7297,13 +7289,13 @@
       "eGenerates": [
         {
           "targetBG": "BG_013",
-          "effect": "generate",
+          "effect": "reinforce",
           "description": "（generateの推定: 要レビュー）",
           "_needs_review": true
         },
         {
           "targetBG": "BG_002",
-          "effect": "generate",
+          "effect": "reinforce",
           "description": "（generateの推定: 要レビュー）",
           "_needs_review": true
         }
@@ -7353,6 +7345,12 @@
           "targetBG": "BG_052",
           "effect": "generate",
           "description": "（generateの推定: 要レビュー）",
+          "_needs_review": true
+        },
+        {
+          "targetBG": "BG_066",
+          "effect": "reinforce",
+          "description": "(effectLogから復元)",
           "_needs_review": true
         }
       ]
@@ -7513,7 +7511,7 @@
       "eGenerates": [
         {
           "targetBG": "BG_013",
-          "effect": "generate",
+          "effect": "reinforce",
           "description": "（generateの推定: 要レビュー）",
           "_needs_review": true
         },
@@ -7527,6 +7525,12 @@
           "targetBG": "BG_010",
           "effect": "generate",
           "description": "（generateの推定: 要レビュー）",
+          "_needs_review": true
+        },
+        {
+          "targetBG": "BG_066",
+          "effect": "reinforce",
+          "description": "(effectLogから復元)",
           "_needs_review": true
         }
       ]
@@ -7693,13 +7697,13 @@
       "eGenerates": [
         {
           "targetBG": "BG_053",
-          "effect": "generate",
+          "effect": "reinforce",
           "description": "（generateの推定: 要レビュー）",
           "_needs_review": true
         },
         {
           "targetBG": "BG_002",
-          "effect": "generate",
+          "effect": "reinforce",
           "description": "（generateの推定: 要レビュー）",
           "_needs_review": true
         }
@@ -8095,7 +8099,7 @@
       "eGenerates": [
         {
           "targetBG": "BG_002",
-          "effect": "generate",
+          "effect": "reinforce",
           "description": "（generateの推定: 要レビュー）",
           "_needs_review": true
         },
@@ -8949,7 +8953,7 @@
       "eGenerates": [
         {
           "targetBG": "BG_019",
-          "effect": "generate",
+          "effect": "reinforce",
           "description": "（generateの推定: 要レビュー）",
           "_needs_review": true
         },
@@ -8967,7 +8971,7 @@
         },
         {
           "targetBG": "BG_014",
-          "effect": "generate",
+          "effect": "reinforce",
           "description": "（generateの推定: 要レビュー）",
           "_needs_review": true
         }
@@ -9533,7 +9537,7 @@
       "eGenerates": [
         {
           "targetBG": "BG_009",
-          "effect": "terminate",
+          "effect": "erode",
           "description": "（terminateの推定: 要レビュー）",
           "_needs_review": true
         },
@@ -9683,7 +9687,7 @@
       "eGenerates": [
         {
           "targetBG": "BG_009",
-          "effect": "generate",
+          "effect": "reinforce",
           "description": "（generateの推定: 要レビュー）",
           "_needs_review": true
         },
@@ -10055,19 +10059,19 @@
       "eGenerates": [
         {
           "targetBG": "BG_032",
-          "effect": "generate",
+          "effect": "reinforce",
           "description": "（generateの推定: 要レビュー）",
           "_needs_review": true
         },
         {
           "targetBG": "BG_017",
-          "effect": "generate",
+          "effect": "reinforce",
           "description": "（generateの推定: 要レビュー）",
           "_needs_review": true
         },
         {
           "targetBG": "BG_025",
-          "effect": "generate",
+          "effect": "reinforce",
           "description": "（generateの推定: 要レビュー）",
           "_needs_review": true
         },
@@ -10173,19 +10177,19 @@
       "eGenerates": [
         {
           "targetBG": "BG_032",
-          "effect": "generate",
+          "effect": "reinforce",
           "description": "（generateの推定: 要レビュー）",
           "_needs_review": true
         },
         {
           "targetBG": "BG_017",
-          "effect": "generate",
+          "effect": "reinforce",
           "description": "（generateの推定: 要レビュー）",
           "_needs_review": true
         },
         {
           "targetBG": "BG_025",
-          "effect": "generate",
+          "effect": "reinforce",
           "description": "（generateの推定: 要レビュー）",
           "_needs_review": true
         }
@@ -10297,38 +10301,44 @@
       "eGenerates": [
         {
           "targetBG": "BG_017",
-          "effect": "generate",
+          "effect": "reinforce",
           "description": "（generateの推定: 要レビュー）",
           "_needs_review": true
         },
         {
           "targetBG": "BG_070",
-          "effect": "generate",
+          "effect": "reinforce",
           "description": "（generateの推定: 要レビュー）",
           "_needs_review": true
         },
         {
           "targetBG": "BG_025",
-          "effect": "generate",
+          "effect": "reinforce",
           "description": "（generateの推定: 要レビュー）",
           "_needs_review": true
         },
         {
           "targetBG": "BG_010",
-          "effect": "generate",
+          "effect": "reinforce",
           "description": "（generateの推定: 要レビュー）",
           "_needs_review": true
         },
         {
           "targetBG": "BG_047",
-          "effect": "generate",
+          "effect": "reinforce",
           "description": "（generateの推定: 要レビュー）",
           "_needs_review": true
         },
         {
           "targetBG": "BG_032",
-          "effect": "generate",
+          "effect": "reinforce",
           "description": "（generateの推定: 要レビュー）",
+          "_needs_review": true
+        },
+        {
+          "targetBG": "BG_015",
+          "effect": "reinforce",
+          "description": "(effectLogから復元)",
           "_needs_review": true
         }
       ]
@@ -10437,7 +10447,7 @@
       "eGenerates": [
         {
           "targetBG": "BG_025",
-          "effect": "generate",
+          "effect": "reinforce",
           "description": "（generateの推定: 要レビュー）",
           "_needs_review": true
         },
@@ -10887,7 +10897,7 @@
       "eGenerates": [
         {
           "targetBG": "BG_047",
-          "effect": "generate",
+          "effect": "reinforce",
           "description": "（generateの推定: 要レビュー）",
           "_needs_review": true
         }
@@ -11381,13 +11391,13 @@
       "eGenerates": [
         {
           "targetBG": "BG_001",
-          "effect": "terminate",
+          "effect": "reinforce",
           "description": "（terminateの推定: 要レビュー）",
           "_needs_review": true
         },
         {
           "targetBG": "BG_015",
-          "effect": "terminate",
+          "effect": "erode",
           "description": "（terminateの推定: 要レビュー）",
           "_needs_review": true
         },
@@ -11505,7 +11515,7 @@
       "eGenerates": [
         {
           "targetBG": "BG_001",
-          "effect": "generate",
+          "effect": "reinforce",
           "description": "（generateの推定: 要レビュー）",
           "_needs_review": true
         },
@@ -11517,7 +11527,7 @@
         },
         {
           "targetBG": "BG_010",
-          "effect": "generate",
+          "effect": "reinforce",
           "description": "（generateの推定: 要レビュー）",
           "_needs_review": true
         }
@@ -11625,7 +11635,7 @@
       "eGenerates": [
         {
           "targetBG": "BG_001",
-          "effect": "redirect",
+          "effect": "terminate",
           "description": "（redirectの推定: 要レビュー）",
           "_needs_review": true
         }
@@ -11679,12 +11689,6 @@
         ]
       },
       "eGenerates": [
-        {
-          "targetBG": "BG_001",
-          "effect": "reinforce",
-          "description": "（reinforceの推定: 要レビュー）",
-          "_needs_review": true
-        },
         {
           "targetBG": "BG_003",
           "effect": "reinforce",
@@ -11742,12 +11746,6 @@
           "_needs_review": true
         },
         {
-          "targetBG": "BG_001",
-          "effect": "reinforce",
-          "description": "（reinforceの推定: 要レビュー）",
-          "_needs_review": true
-        },
-        {
           "targetBG": "BG_003",
           "effect": "reinforce",
           "description": "（reinforceの推定: 要レビュー）",
@@ -11797,7 +11795,7 @@
       "eGenerates": [
         {
           "targetBG": "BG_017",
-          "effect": "generate",
+          "effect": "reinforce",
           "description": "（generateの推定: 要レビュー）",
           "_needs_review": true
         },
@@ -11809,7 +11807,7 @@
         },
         {
           "targetBG": "BG_010",
-          "effect": "generate",
+          "effect": "reinforce",
           "description": "（generateの推定: 要レビュー）",
           "_needs_review": true
         }
@@ -12005,13 +12003,13 @@
         },
         {
           "targetBG": "BG_017",
-          "effect": "generate",
+          "effect": "reinforce",
           "description": "（generateの推定: 要レビュー）",
           "_needs_review": true
         },
         {
           "targetBG": "BG_003",
-          "effect": "generate",
+          "effect": "reinforce",
           "description": "（generateの推定: 要レビュー）",
           "_needs_review": true
         }
@@ -12061,13 +12059,13 @@
         },
         {
           "targetBG": "BG_003",
-          "effect": "generate",
+          "effect": "reinforce",
           "description": "（generateの推定: 要レビュー）",
           "_needs_review": true
         },
         {
           "targetBG": "BG_010",
-          "effect": "generate",
+          "effect": "reinforce",
           "description": "（generateの推定: 要レビュー）",
           "_needs_review": true
         }
@@ -12146,12 +12144,6 @@
           "_needs_review": true
         },
         {
-          "targetBG": "BG_024",
-          "effect": "redirect",
-          "description": "（redirectの推定: 要レビュー）",
-          "_needs_review": true
-        },
-        {
           "targetBG": "BG_010",
           "effect": "redirect",
           "description": "（redirectの推定: 要レビュー）",
@@ -12216,12 +12208,6 @@
           "_needs_review": true
         },
         {
-          "targetBG": "BG_024",
-          "effect": "reinforce",
-          "description": "（reinforceの推定: 要レビュー）",
-          "_needs_review": true
-        },
-        {
           "targetBG": "BG_010",
           "effect": "reinforce",
           "description": "（reinforceの推定: 要レビュー）",
@@ -12273,7 +12259,7 @@
       "eGenerates": [
         {
           "targetBG": "BG_081",
-          "effect": "generate",
+          "effect": "reinforce",
           "description": "（generateの推定: 要レビュー）",
           "_needs_review": true
         },
@@ -12577,13 +12563,13 @@
         },
         {
           "targetBG": "BG_019",
-          "effect": "generate",
+          "effect": "reinforce",
           "description": "（generateの推定: 要レビュー）",
           "_needs_review": true
         },
         {
           "targetBG": "BG_017",
-          "effect": "generate",
+          "effect": "reinforce",
           "description": "（generateの推定: 要レビュー）",
           "_needs_review": true
         }
@@ -12627,19 +12613,19 @@
       "eGenerates": [
         {
           "targetBG": "BG_006",
-          "effect": "generate",
+          "effect": "reinforce",
           "description": "（generateの推定: 要レビュー）",
           "_needs_review": true
         },
         {
           "targetBG": "BG_017",
-          "effect": "generate",
+          "effect": "reinforce",
           "description": "（generateの推定: 要レビュー）",
           "_needs_review": true
         },
         {
           "targetBG": "BG_003",
-          "effect": "generate",
+          "effect": "reinforce",
           "description": "（generateの推定: 要レビュー）",
           "_needs_review": true
         }
@@ -12833,7 +12819,7 @@
       "eGenerates": [
         {
           "targetBG": "BG_006",
-          "effect": "terminate",
+          "effect": "redirect",
           "description": "（terminateの推定: 要レビュー）",
           "_needs_review": true
         },
@@ -12899,7 +12885,7 @@
         },
         {
           "targetBG": "BG_003",
-          "effect": "generate",
+          "effect": "reinforce",
           "description": "（generateの推定: 要レビュー）",
           "_needs_review": true
         },
@@ -13105,13 +13091,13 @@
       "eGenerates": [
         {
           "targetBG": "BG_015",
-          "effect": "generate",
+          "effect": "reinforce",
           "description": "（generateの推定: 要レビュー）",
           "_needs_review": true
         },
         {
           "targetBG": "BG_068",
-          "effect": "generate",
+          "effect": "reinforce",
           "description": "（generateの推定: 要レビュー）",
           "_needs_review": true
         }
@@ -13231,7 +13217,7 @@
         },
         {
           "targetBG": "BG_007",
-          "effect": "generate",
+          "effect": "reinforce",
           "description": "（generateの推定: 要レビュー）",
           "_needs_review": true
         }
@@ -13593,8 +13579,14 @@
         },
         {
           "targetBG": "BG_006",
-          "effect": "generate",
+          "effect": "reinforce",
           "description": "（generateの推定: 要レビュー）",
+          "_needs_review": true
+        },
+        {
+          "targetBG": "BG_017",
+          "effect": "reinforce",
+          "description": "(effectLogから復元)",
           "_needs_review": true
         }
       ]
@@ -13637,8 +13629,14 @@
       "eGenerates": [
         {
           "targetBG": "BG_067",
-          "effect": "generate",
+          "effect": "reinforce",
           "description": "（generateの推定: 要レビュー）",
+          "_needs_review": true
+        },
+        {
+          "targetBG": "BG_045",
+          "effect": "reinforce",
+          "description": "(effectLogから復元)",
           "_needs_review": true
         }
       ]
@@ -13871,7 +13869,7 @@
       "eGenerates": [
         {
           "targetBG": "BG_083",
-          "effect": "generate",
+          "effect": "reinforce",
           "description": "（generateの推定: 要レビュー）",
           "_needs_review": true
         },
@@ -14113,7 +14111,7 @@
         },
         {
           "targetBG": "BG_067",
-          "effect": "generate",
+          "effect": "reinforce",
           "description": "（generateの推定: 要レビュー）",
           "_needs_review": true
         },
@@ -14261,13 +14259,13 @@
       "eGenerates": [
         {
           "targetBG": "BG_004",
-          "effect": "generate",
+          "effect": "reinforce",
           "description": "（generateの推定: 要レビュー）",
           "_needs_review": true
         },
         {
           "targetBG": "BG_044",
-          "effect": "generate",
+          "effect": "reinforce",
           "description": "（generateの推定: 要レビュー）",
           "_needs_review": true
         }
@@ -14485,6 +14483,12 @@
           "targetBG": "BG_007",
           "effect": "reinforce",
           "description": "（reinforceの推定: 要レビュー）",
+          "_needs_review": true
+        },
+        {
+          "targetBG": "BG_048",
+          "effect": "reinforce",
+          "description": "(effectLogから復元)",
           "_needs_review": true
         }
       ]
@@ -14911,19 +14915,19 @@
       "eGenerates": [
         {
           "targetBG": "BG_083",
-          "effect": "generate",
+          "effect": "reinforce",
           "description": "（generateの推定: 要レビュー）",
           "_needs_review": true
         },
         {
           "targetBG": "BG_031",
-          "effect": "generate",
+          "effect": "reinforce",
           "description": "（generateの推定: 要レビュー）",
           "_needs_review": true
         },
         {
           "targetBG": "BG_010",
-          "effect": "generate",
+          "effect": "reinforce",
           "description": "（generateの推定: 要レビュー）",
           "_needs_review": true
         }
@@ -15105,19 +15109,19 @@
       "eGenerates": [
         {
           "targetBG": "BG_055",
-          "effect": "generate",
+          "effect": "reinforce",
           "description": "（generateの推定: 要レビュー）",
           "_needs_review": true
         },
         {
           "targetBG": "BG_064",
-          "effect": "generate",
+          "effect": "reinforce",
           "description": "（generateの推定: 要レビュー）",
           "_needs_review": true
         },
         {
           "targetBG": "BG_062",
-          "effect": "generate",
+          "effect": "reinforce",
           "description": "（generateの推定: 要レビュー）",
           "_needs_review": true
         }
@@ -15291,6 +15295,12 @@
           "targetBG": "BG_033",
           "effect": "reinforce",
           "description": "（reinforceの推定: 要レビュー）",
+          "_needs_review": true
+        },
+        {
+          "targetBG": "BG_035",
+          "effect": "reinforce",
+          "description": "(effectLogから復元)",
           "_needs_review": true
         }
       ]
@@ -15537,7 +15547,7 @@
       "eGenerates": [
         {
           "targetBG": "BG_062",
-          "effect": "generate",
+          "effect": "reinforce",
           "description": "（generateの推定: 要レビュー）",
           "_needs_review": true
         }
@@ -15585,7 +15595,7 @@
       "eGenerates": [
         {
           "targetBG": "BG_062",
-          "effect": "generate",
+          "effect": "reinforce",
           "description": "（generateの推定: 要レビュー）",
           "_needs_review": true
         },
@@ -15830,6 +15840,12 @@
           "effect": "reinforce",
           "description": "（reinforceの推定: 要レビュー）",
           "_needs_review": true
+        },
+        {
+          "targetBG": "BG_035",
+          "effect": "reinforce",
+          "description": "(effectLogから復元)",
+          "_needs_review": true
         }
       ]
     },
@@ -15973,7 +15989,7 @@
         },
         {
           "targetBG": "BG_064",
-          "effect": "generate",
+          "effect": "reinforce",
           "description": "（generateの推定: 要レビュー）",
           "_needs_review": true
         },
@@ -16023,13 +16039,13 @@
       "eGenerates": [
         {
           "targetBG": "BG_073",
-          "effect": "generate",
+          "effect": "reinforce",
           "description": "（generateの推定: 要レビュー）",
           "_needs_review": true
         },
         {
           "targetBG": "BG_048",
-          "effect": "generate",
+          "effect": "reinforce",
           "description": "（generateの推定: 要レビュー）",
           "_needs_review": true
         }
@@ -16139,7 +16155,7 @@
         },
         {
           "targetBG": "BG_079",
-          "effect": "terminate",
+          "effect": "redirect",
           "description": "（terminateの推定: 要レビュー）",
           "_needs_review": true
         },
