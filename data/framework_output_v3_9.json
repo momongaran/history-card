@@ -16494,5 +16494,399 @@
         }
       ]
     }
+  ],
+  "bgLineage": [
+    {
+      "from": "BG_023",
+      "to": "BG_054",
+      "kind": "transforms",
+      "evidence": "蘇我氏→天皇親政への転換",
+      "confidence": "manual"
+    },
+    {
+      "from": "BG_054",
+      "to": "BG_040",
+      "kind": "inherits",
+      "evidence": "天皇・朝廷: 古代→平安",
+      "confidence": "manual"
+    },
+    {
+      "from": "BG_040",
+      "to": "BG_046",
+      "kind": "inherits",
+      "evidence": "天皇・朝廷: 平安→中世",
+      "confidence": "manual"
+    },
+    {
+      "from": "BG_046",
+      "to": "BG_026",
+      "kind": "inherits",
+      "evidence": "天皇・朝廷: 中世→近世",
+      "confidence": "manual"
+    },
+    {
+      "from": "BG_027",
+      "to": "BG_028",
+      "kind": "inherits",
+      "evidence": "皇位継承: 古代→平安",
+      "confidence": "manual"
+    },
+    {
+      "from": "BG_028",
+      "to": "BG_059",
+      "kind": "inherits",
+      "evidence": "皇位継承: 平安→中世",
+      "confidence": "manual"
+    },
+    {
+      "from": "BG_059",
+      "to": "BG_082",
+      "kind": "inherits",
+      "evidence": "皇位継承: 中世→近現代",
+      "confidence": "manual"
+    },
+    {
+      "from": "BG_057",
+      "to": "BG_018",
+      "kind": "transforms",
+      "evidence": "武士層: 平安→中世（台頭）",
+      "confidence": "manual"
+    },
+    {
+      "from": "BG_018",
+      "to": "BG_042",
+      "kind": "transforms",
+      "evidence": "武士層: 中世→近世（統治者化）",
+      "confidence": "manual"
+    },
+    {
+      "from": "BG_011",
+      "to": "BG_050",
+      "kind": "transforms",
+      "evidence": "仏教: 古代→平安",
+      "confidence": "manual"
+    },
+    {
+      "from": "BG_050",
+      "to": "BG_069",
+      "kind": "transforms",
+      "evidence": "仏教: 平安→近世",
+      "confidence": "manual"
+    },
+    {
+      "from": "BG_002",
+      "to": "BG_053",
+      "kind": "reinforces",
+      "evidence": "摂関家と外戚政治は同じ構造の表裏",
+      "confidence": "manual"
+    },
+    {
+      "from": "BG_002",
+      "to": "BG_014",
+      "kind": "transforms",
+      "evidence": "摂関→院政への権力移行",
+      "confidence": "manual"
+    },
+    {
+      "from": "BG_014",
+      "to": "BG_021",
+      "kind": "branches",
+      "evidence": "院政から平氏台頭が分岐",
+      "confidence": "manual"
+    },
+    {
+      "from": "BG_021",
+      "to": "BG_019",
+      "kind": "branches",
+      "evidence": "平氏→源氏（対立から権力移行）",
+      "confidence": "manual"
+    },
+    {
+      "from": "BG_019",
+      "to": "BG_009",
+      "kind": "transforms",
+      "evidence": "源氏→御家人制の制度化",
+      "confidence": "manual"
+    },
+    {
+      "from": "BG_009",
+      "to": "BG_024",
+      "kind": "transforms",
+      "evidence": "御家人制→北条執権体制",
+      "confidence": "manual"
+    },
+    {
+      "from": "BG_024",
+      "to": "BG_077",
+      "kind": "reinforces",
+      "evidence": "北条執権と鎌倉幕府は同じ体制の表裏",
+      "confidence": "manual"
+    },
+    {
+      "from": "BG_077",
+      "to": "BG_025",
+      "kind": "transforms",
+      "evidence": "鎌倉幕府→足利氏への権力移行",
+      "confidence": "manual"
+    },
+    {
+      "from": "BG_025",
+      "to": "BG_070",
+      "kind": "reinforces",
+      "evidence": "足利氏と室町幕府は同じ体制の表裏",
+      "confidence": "manual"
+    },
+    {
+      "from": "BG_070",
+      "to": "BG_072",
+      "kind": "transforms",
+      "evidence": "室町幕府→戦国の分裂",
+      "confidence": "manual"
+    },
+    {
+      "from": "BG_072",
+      "to": "BG_001",
+      "kind": "transforms",
+      "evidence": "戦国→織田政権による統一",
+      "confidence": "manual"
+    },
+    {
+      "from": "BG_001",
+      "to": "BG_003",
+      "kind": "transforms",
+      "evidence": "織田→豊臣への権力移行",
+      "confidence": "manual"
+    },
+    {
+      "from": "BG_003",
+      "to": "BG_006",
+      "kind": "transforms",
+      "evidence": "豊臣→徳川への権力移行",
+      "confidence": "manual"
+    },
+    {
+      "from": "BG_006",
+      "to": "BG_083",
+      "kind": "reinforces",
+      "evidence": "徳川家と藩体制は同じ体制の表裏",
+      "confidence": "manual"
+    },
+    {
+      "from": "BG_006",
+      "to": "BG_067",
+      "kind": "reinforces",
+      "evidence": "徳川家と鎖国体制は同じ体制の表裏",
+      "confidence": "manual"
+    },
+    {
+      "from": "BG_031",
+      "to": "BG_055",
+      "kind": "transforms",
+      "evidence": "雄藩連合→明治政府",
+      "confidence": "manual"
+    },
+    {
+      "from": "BG_013",
+      "to": "BG_058",
+      "kind": "reinforces",
+      "evidence": "律令制と班田収授制は連動",
+      "confidence": "manual"
+    },
+    {
+      "from": "BG_013",
+      "to": "BG_068",
+      "kind": "reinforces",
+      "evidence": "律令制と人民把握制度は連動",
+      "confidence": "manual"
+    },
+    {
+      "from": "BG_013",
+      "to": "BG_039",
+      "kind": "reinforces",
+      "evidence": "律令制と国司行政は連動",
+      "confidence": "manual"
+    },
+    {
+      "from": "BG_058",
+      "to": "BG_065",
+      "kind": "transforms",
+      "evidence": "班田制の崩壊→荘園制の成立",
+      "confidence": "manual"
+    },
+    {
+      "from": "BG_039",
+      "to": "BG_047",
+      "kind": "transforms",
+      "evidence": "国司行政→守護・地頭制",
+      "confidence": "manual"
+    },
+    {
+      "from": "BG_064",
+      "to": "BG_062",
+      "kind": "reinforces",
+      "evidence": "明治憲法体制と議会制は連動",
+      "confidence": "manual"
+    },
+    {
+      "from": "BG_064",
+      "to": "BG_073",
+      "kind": "transforms",
+      "evidence": "明治憲法→戦後憲法への転換",
+      "confidence": "manual"
+    },
+    {
+      "from": "BG_081",
+      "to": "BG_083",
+      "kind": "reinforces",
+      "evidence": "検地・兵農分離と藩体制は連動",
+      "confidence": "manual"
+    },
+    {
+      "from": "BG_078",
+      "to": "BG_012",
+      "kind": "transforms",
+      "evidence": "隋→唐との関係",
+      "confidence": "manual"
+    },
+    {
+      "from": "BG_012",
+      "to": "BG_022",
+      "kind": "reinforces",
+      "evidence": "唐と朝鮮半島情勢は連動",
+      "confidence": "manual"
+    },
+    {
+      "from": "BG_037",
+      "to": "BG_008",
+      "kind": "transforms",
+      "evidence": "開国と攘夷→対外関係(近代)",
+      "confidence": "manual"
+    },
+    {
+      "from": "BG_056",
+      "to": "BG_008",
+      "kind": "reinforces",
+      "evidence": "条約体制と対外関係(近代)は連動",
+      "confidence": "manual"
+    },
+    {
+      "from": "BG_032",
+      "to": "BG_025",
+      "kind": "transforms",
+      "evidence": "南北朝分裂→足利氏による統合",
+      "confidence": "manual"
+    },
+    {
+      "from": "BG_071",
+      "to": "BG_072",
+      "kind": "transforms",
+      "evidence": "応仁の乱→戦国の分裂",
+      "confidence": "manual"
+    },
+    {
+      "from": "BG_002",
+      "to": "BG_019",
+      "kind": "reinforces",
+      "evidence": "共起4回: EV_p0969_01,EV_p1083_01,EV_p1156_01...",
+      "confidence": "auto-cooccurrence"
+    },
+    {
+      "from": "BG_002",
+      "to": "BG_021",
+      "kind": "reinforces",
+      "evidence": "共起4回: EV_p1156_01,EV_p1159_01,EV_p1167_01...",
+      "confidence": "auto-cooccurrence"
+    },
+    {
+      "from": "BG_003",
+      "to": "BG_010",
+      "kind": "reinforces",
+      "evidence": "共起7回: EV_p1582_01,EV_p1585_01,EV_p1588_01...",
+      "confidence": "auto-cooccurrence"
+    },
+    {
+      "from": "BG_003",
+      "to": "BG_015",
+      "kind": "reinforces",
+      "evidence": "共起7回: EV_p1586_01,EV_p1587_01,EV_p1589_01...",
+      "confidence": "auto-cooccurrence"
+    },
+    {
+      "from": "BG_003",
+      "to": "BG_017",
+      "kind": "reinforces",
+      "evidence": "共起4回: EV_p1585_01,EV_p1586_01,EV_p1587_02...",
+      "confidence": "auto-cooccurrence"
+    },
+    {
+      "from": "BG_003",
+      "to": "BG_029",
+      "kind": "reinforces",
+      "evidence": "共起4回: EV_p1586_01,EV_p1587_01,EV_p1587_02...",
+      "confidence": "auto-cooccurrence"
+    },
+    {
+      "from": "BG_003",
+      "to": "BG_076",
+      "kind": "reinforces",
+      "evidence": "共起4回: EV_p1614_01,EV_p1615_01,EV_p1615_02...",
+      "confidence": "auto-cooccurrence"
+    },
+    {
+      "from": "BG_007",
+      "to": "BG_030",
+      "kind": "reinforces",
+      "evidence": "共起4回: EV_p1543_01,EV_p1549_02,EV_p1633_01...",
+      "confidence": "auto-cooccurrence"
+    },
+    {
+      "from": "BG_010",
+      "to": "BG_013",
+      "kind": "reinforces",
+      "evidence": "共起4回: EV_p0630_01,EV_p0645_01,EV_p0645_02...",
+      "confidence": "auto-cooccurrence"
+    },
+    {
+      "from": "BG_010",
+      "to": "BG_015",
+      "kind": "reinforces",
+      "evidence": "共起4回: EV_p1378_01,EV_p1568_01,EV_p1589_01...",
+      "confidence": "auto-cooccurrence"
+    },
+    {
+      "from": "BG_012",
+      "to": "BG_013",
+      "kind": "reinforces",
+      "evidence": "共起6回: EV_p0630_01,EV_p0645_01,EV_p0645_02...",
+      "confidence": "auto-cooccurrence"
+    },
+    {
+      "from": "BG_014",
+      "to": "BG_019",
+      "kind": "reinforces",
+      "evidence": "共起4回: EV_p1156_01,EV_p1159_01,EV_p1185_03...",
+      "confidence": "auto-cooccurrence"
+    },
+    {
+      "from": "BG_015",
+      "to": "BG_029",
+      "kind": "reinforces",
+      "evidence": "共起4回: EV_p1586_01,EV_p1587_01,EV_p1590_01...",
+      "confidence": "auto-cooccurrence"
+    },
+    {
+      "from": "BG_017",
+      "to": "BG_032",
+      "kind": "reinforces",
+      "evidence": "共起4回: EV_p1336_02,EV_p1338_01,EV_p1378_01...",
+      "confidence": "auto-cooccurrence"
+    },
+    {
+      "from": "BG_030",
+      "to": "BG_045",
+      "kind": "reinforces",
+      "evidence": "共起4回: EV_p1549_02,EV_p1587_01,EV_p1633_01...",
+      "confidence": "auto-cooccurrence"
+    }
   ]
 }
