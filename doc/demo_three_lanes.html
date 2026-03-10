@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>myHistory v4.0 — 3レーンデモ</title>
+<style>
+:root {
+  --bg: #fafafa; --ink: #1a1a2e; --muted: #6b7280; --line: #e0e0e0;
+  --card: #fff; --accent: #2563eb; --warm: #dc6b2f;
+  --drives: #2563eb; --pressures: #dc2626; --supports: #059669; --enables: #7c3aed;
+  --transforms: #dc6b2f; --inherits: #2563eb; --reinforces: #059669; --branches: #7c3aed;
+  --fname-圧力解放: #dc2626; --fname-主体的行為: #2563eb; --fname-矛盾露呈: #d97706;
+  --fname-外生衝撃: #7c3aed; --fname-偶発連鎖: #6b7280; --fname-権力移行: #059669;
+  --sans: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Noto Sans JP", sans-serif;
+  --mono: ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+* { box-sizing: border-box; margin: 0; }
+body { font-family: var(--sans); background: var(--bg); color: var(--ink); font-size: 13px; }
+
+/* Header */
+header {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(255,255,255,.95); backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--line); padding: 8px 16px;
+  display: flex; align-items: center; gap: 12px; flex-wrap: wrap;
+}
+header h1 { font-size: 15px; font-weight: 800; white-space: nowrap; }
+header .controls { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; flex: 1; }
+header input, header select {
+  border: 1px solid var(--line); border-radius: 6px; padding: 5px 8px;
+  font-size: 12px; background: #fff;
+}
+header input[type=text] { width: 200px; }
+header .stats { font-size: 11px; color: var(--muted); margin-left: auto; white-space: nowrap; }
+
+/* 3 Lane Layout */
+.lanes {
+  display: grid;
+  grid-template-columns: 240px 1fr 280px;
+  min-height: calc(100vh - 44px);
+}
+.lane { border-right: 1px solid var(--line); overflow-y: auto; }
+.lane:last-child { border-right: none; }
+.lane-header {
+  position: sticky; top: 0; z-index: 10;
+  background: rgba(255,255,255,.95); backdrop-filter: blur(6px);
+  padding: 8px 10px; border-bottom: 1px solid var(--line);
+  font-size: 11px; font-weight: 800; color: var(--muted);
+  text-transform: uppercase; letter-spacing: .04em;
+}
+
+/* Event Lane */
+.event-card {
+  padding: 8px 10px; border-bottom: 1px solid var(--line);
+  cursor: pointer; transition: background .15s;
+}
+.event-card:hover { background: #f0f4ff; }
+.event-card.selected { background: #e8eeff; outline: 2px solid var(--accent); outline-offset: -2px; }
+.event-card .year { font-family: var(--mono); font-size: 11px; color: var(--muted); }
+.event-card .title { font-size: 12px; font-weight: 700; line-height: 1.3; margin-top: 2px; }
+.event-card .fname-tag {
+  display: inline-block; font-size: 10px; padding: 1px 6px; border-radius: 4px;
+  margin-top: 3px; color: #fff; font-weight: 600;
+}
+
+/* Causal Lane */
+.causal-empty { padding: 20px; color: var(--muted); text-align: center; }
+.causal-section { padding: 10px; border-bottom: 1px solid var(--line); }
+.causal-section h3 { font-size: 11px; color: var(--muted); margin-bottom: 6px; text-transform: uppercase; }
+.causal-block {
+  background: var(--card); border: 1px solid var(--line); border-radius: 8px;
+  padding: 8px 10px; margin-bottom: 6px; font-size: 12px; line-height: 1.4;
+}
+.causal-block .label { font-weight: 700; }
+.causal-block .meta { font-size: 11px; color: var(--muted); margin-top: 3px; }
+.causal-block .role-tag {
+  display: inline-block; font-size: 10px; padding: 1px 5px; border-radius: 3px;
+  font-weight: 600; color: #fff; margin-right: 3px;
+}
+.body-template {
+  background: #f8f5f0; border: 1px solid #e8e0d4; border-radius: 8px;
+  padding: 10px; margin: 8px 0; font-size: 12px; line-height: 1.5;
+  font-style: italic; color: #5a4a3a;
+}
+.effect-tag {
+  display: inline-block; font-size: 10px; padding: 1px 5px; border-radius: 3px;
+  border: 1px solid var(--line); margin: 2px 2px 2px 0; font-weight: 600;
+}
+.effect-generate { background: #dcfce7; color: #166534; border-color: #86efac; }
+.effect-reinforce { background: #dbeafe; color: #1e40af; border-color: #93c5fd; }
+.effect-erode { background: #fee2e2; color: #991b1b; border-color: #fca5a5; }
+.effect-terminate { background: #fecaca; color: #7f1d1d; border-color: #f87171; }
+.effect-redirect { background: #fef3c7; color: #92400e; border-color: #fcd34d; }
+
+/* Background Lane */
+.bg-stream {
+  padding: 6px 8px; border-bottom: 1px solid var(--line);
+  cursor: pointer; transition: background .15s; font-size: 11px;
+}
+.bg-stream:hover { background: #f0fff4; }
+.bg-stream.active { background: #e8fff0; outline: 2px solid var(--supports); outline-offset: -2px; }
+.bg-stream.highlighted { background: #fffbe8; }
+.bg-stream .bg-label { font-weight: 700; font-size: 12px; }
+.bg-stream .bg-type { color: var(--muted); font-size: 10px; }
+.bg-stream .bg-phase { font-size: 10px; color: var(--muted); margin-top: 2px; }
+.bg-lineage-links { padding: 6px 8px; font-size: 11px; }
+.bg-lineage-links .link-item {
+  display: flex; align-items: center; gap: 4px; padding: 3px 0;
+  color: var(--muted);
+}
+.bg-lineage-links .link-kind {
+  font-size: 10px; font-weight: 700; padding: 1px 5px; border-radius: 3px; color: #fff;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-thumb { background: #ccc; border-radius: 3px; }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>myHistory v4.0</h1>
+  <div class="controls">
+    <input type="text" id="search" placeholder="検索（年号・イベント名・BG）">
+    <select id="fnameFilter">
+      <option value="">全Fname</option>
+      <option value="圧力解放">圧力解放</option>
+      <option value="主体的行為">主体的行為</option>
+      <option value="矛盾露呈">矛盾露呈</option>
+      <option value="外生衝撃">外生衝撃</option>
+      <option value="偶発連鎖">偶発連鎖</option>
+      <option value="権力移行">権力移行</option>
+    </select>
+    <select id="eraFilter">
+      <option value="">全時代</option>
+      <option value="古代">古代(〜794)</option>
+      <option value="平安">平安(794〜1185)</option>
+      <option value="中世">中世(1185〜1573)</option>
+      <option value="近世">近世(1573〜1868)</option>
+      <option value="近現代">近現代(1868〜)</option>
+    </select>
+  </div>
+  <div class="stats" id="stats"></div>
+</header>
+
+<div class="lanes">
+  <div class="lane" id="eventLane">
+    <div class="lane-header">イベントレーン</div>
+    <div id="eventList"></div>
+  </div>
+  <div class="lane" id="causalLane">
+    <div class="lane-header">因果レーン</div>
+    <div id="causalDetail"></div>
+  </div>
+  <div class="lane" id="bgLane">
+    <div class="lane-header">背景レーン</div>
+    <div id="bgDetail"></div>
+  </div>
+</div>
+
+<script>
+// Data will be embedded
+let DATA = null;
+let BG_MAP = {};
+let LINEAGE = [];
+let STATE = { selectedEventId: null, selectedBgId: null, searchText: '', fnameFilter: '', eraFilter: '' };
+
+const fnameColors = {
+  '圧力解放': '#dc2626', '主体的行為': '#2563eb', '矛盾露呈': '#d97706',
+  '外生衝撃': '#7c3aed', '偶発連鎖': '#6b7280', '権力移行': '#059669'
+};
+const roleColors = { drives: '#2563eb', pressures: '#dc2626', supports: '#059669', enables: '#7c3aed' };
+const roleLabels = { drives: '駆動', pressures: '圧力', supports: '支持', enables: '前提' };
+const kindColors = { transforms: '#dc6b2f', inherits: '#2563eb', reinforces: '#059669', branches: '#7c3aed', merges: '#d97706' };
+const kindLabels = { transforms: '変質', inherits: '継承', reinforces: '併走', branches: '分岐', merges: '統合' };
+
+function yearToEra(y) {
+  if (y < 794) return '古代';
+  if (y < 1185) return '平安';
+  if (y < 1573) return '中世';
+  if (y < 1868) return '近世';
+  return '近現代';
+}
+
+function filterEvents() {
+  const s = STATE.searchText.toLowerCase();
+  const f = STATE.fnameFilter;
+  const e = STATE.eraFilter;
+  return DATA.events.filter(ev => {
+    if (f && ev.causalFrame.fnameCategory !== f) return false;
+    if (e && yearToEra(ev.year) !== e) return false;
+    if (s) {
+      const hay = `${ev.year} ${ev.title} ${ev.causalFrame.fnameCategory} ${ev.causalFrame.fname}`.toLowerCase();
+      // Also search in background labels
+      const bgHay = (ev.causalFrame.background || []).map(b => b.label).join(' ').toLowerCase();
+      if (!hay.includes(s) && !bgHay.includes(s)) return false;
+    }
+    return true;
+  });
+}
+
+function renderEventLane() {
+  const events = filterEvents();
+  const list = document.getElementById('eventList');
+  list.innerHTML = '';
+  events.forEach(ev => {
+    const div = document.createElement('div');
+    div.className = 'event-card' + (STATE.selectedEventId === ev.eventId ? ' selected' : '');
+    const color = fnameColors[ev.causalFrame.fnameCategory] || '#666';
+    div.innerHTML = `
+      <div class="year">${ev.year}</div>
+      <div class="title">${ev.title}</div>
+      <span class="fname-tag" style="background:${color}">${ev.causalFrame.fnameCategory}</span>
+    `;
+    div.onclick = () => { STATE.selectedEventId = ev.eventId; STATE.selectedBgId = null; render(); };
+    list.appendChild(div);
+  });
+  document.getElementById('stats').textContent = `${events.length}/${DATA.events.length}件`;
+}
+
+function renderCausalLane() {
+  const el = document.getElementById('causalDetail');
+  if (!STATE.selectedEventId) {
+    el.innerHTML = '<div class="causal-empty">左のイベントを選択してください</div>';
+    return;
+  }
+  const ev = DATA.events.find(e => e.eventId === STATE.selectedEventId);
+  if (!ev) return;
+  const cf = ev.causalFrame;
+
+  // Build body with params substituted
+  let bodyText = cf.body || '';
+  (cf.params || []).forEach((p, i) => {
+    bodyText = bodyText.replace(`[%${i+1}]`, `<b>${p.value}</b>`);
+  });
+
+  let html = '';
+
+  // Fname + body
+  const color = fnameColors[cf.fnameCategory] || '#666';
+  html += `<div class="causal-section">
+    <h3>因果フレーム</h3>
+    <div class="causal-block">
+      <span class="fname-tag" style="background:${color}">${cf.fnameCategory}</span>
+      <div class="label" style="margin-top:6px">${cf.fname}</div>
+    </div>
+    <div class="body-template">${bodyText}</div>
+  </div>`;
+
+  // Params
+  html += `<div class="causal-section"><h3>パラメータ</h3>`;
+  (cf.params || []).forEach((p, i) => {
+    html += `<div class="causal-block">
+      <div class="meta">[%${i+1}] ${p.type}</div>
+      <div class="label">${p.value}</div>
+    </div>`;
+  });
+  html += `</div>`;
+
+  // Result
+  html += `<div class="causal-section"><h3>結果</h3>
+    <div class="causal-block">
+      <div class="meta">${cf.result.type}</div>
+      <div class="label">${cf.result.label}</div>
+    </div>
+  </div>`;
+
+  // Background (with roles)
+  html += `<div class="causal-section"><h3>背景 → 因果フレーム</h3>`;
+  (cf.background || []).forEach(bg => {
+    const refsHtml = (bg.refs || []).map(r => {
+      const bgInfo = BG_MAP[r.bgId] || {};
+      const rc = roleColors[r.role] || '#666';
+      return `<span class="role-tag" style="background:${rc}">${roleLabels[r.role] || r.role}</span>
+        <span style="cursor:pointer;text-decoration:underline" onclick="selectBg('${r.bgId}')">${bgInfo.label || r.bgId}</span>`;
+    }).join('<br>');
+    html += `<div class="causal-block">
+      <div class="meta">Bname: ${bg.bname}</div>
+      <div style="font-size:12px;margin:4px 0">${bg.label.substring(0, 120)}${bg.label.length > 120 ? '...' : ''}</div>
+      <div style="margin-top:6px">${refsHtml}</div>
+    </div>`;
+  });
+  html += `</div>`;
+
+  // eGenerates
+  html += `<div class="causal-section"><h3>因果フレーム → 背景 (eGenerates)</h3>`;
+  (ev.eGenerates || []).forEach(eg => {
+    const bgInfo = BG_MAP[eg.targetBG] || {};
+    const cls = 'effect-' + eg.effect;
+    html += `<div class="causal-block">
+      <span class="effect-tag ${cls}">${eg.effect}</span>
+      <span style="cursor:pointer;text-decoration:underline" onclick="selectBg('${eg.targetBG}')">${bgInfo.label || eg.targetBG}</span>
+      ${eg._needs_review ? '<span style="color:#d97706;font-size:10px"> (要レビュー)</span>' : ''}
+    </div>`;
+  });
+  html += `</div>`;
+
+  el.innerHTML = html;
+}
+
+function selectBg(bgId) {
+  STATE.selectedBgId = bgId;
+  render();
+  // Scroll bg lane to show selected
+  const active = document.querySelector('.bg-stream.active');
+  if (active) active.scrollIntoView({ behavior: 'smooth', block: 'center' });
+}
+
+function renderBgLane() {
+  const el = document.getElementById('bgDetail');
+  if (!STATE.selectedEventId) {
+    el.innerHTML = '<div class="causal-empty">イベントを選択すると<br>関連する背景要素が表示されます</div>';
+    return;
+  }
+  const ev = DATA.events.find(e => e.eventId === STATE.selectedEventId);
+  if (!ev) return;
+
+  // Collect all BG IDs referenced by this event (background refs + eGenerates targets)
+  const relatedBgIds = new Set();
+  (ev.causalFrame.background || []).forEach(bg => {
+    (bg.refs || []).forEach(r => relatedBgIds.add(r.bgId));
+  });
+  (ev.eGenerates || []).forEach(eg => relatedBgIds.add(eg.targetBG));
+
+  // Also collect lineage-connected BGs (1 hop)
+  const extendedBgIds = new Set(relatedBgIds);
+  LINEAGE.forEach(l => {
+    if (relatedBgIds.has(l.from)) extendedBgIds.add(l.to);
+    if (relatedBgIds.has(l.to)) extendedBgIds.add(l.from);
+  });
+
+  let html = '';
+
+  // Direct BGs
+  html += '<div style="padding:6px 8px;font-size:11px;color:var(--muted);font-weight:700">直接関連 (' + relatedBgIds.size + ')</div>';
+  relatedBgIds.forEach(bgId => {
+    const bg = BG_MAP[bgId];
+    if (!bg) return;
+    const isActive = STATE.selectedBgId === bgId;
+    // Get current phase for this event's year
+    const phase = getCurrentPhase(bg, ev.year);
+    html += renderBgStream(bg, isActive, false, phase);
+  });
+
+  // Lineage-connected BGs
+  const lineageOnly = [...extendedBgIds].filter(id => !relatedBgIds.has(id));
+  if (lineageOnly.length) {
+    html += '<div style="padding:6px 8px;font-size:11px;color:var(--muted);font-weight:700;margin-top:8px">系譜接続 (' + lineageOnly.length + ')</div>';
+    lineageOnly.forEach(bgId => {
+      const bg = BG_MAP[bgId];
+      if (!bg) return;
+      const isActive = STATE.selectedBgId === bgId;
+      html += renderBgStream(bg, isActive, true, null);
+    });
+  }
+
+  // Lineage links for selected BG
+  if (STATE.selectedBgId) {
+    const links = LINEAGE.filter(l => l.from === STATE.selectedBgId || l.to === STATE.selectedBgId);
+    if (links.length) {
+      html += '<div class="bg-lineage-links"><div style="font-weight:700;margin-bottom:4px">系譜リンク</div>';
+      links.forEach(l => {
+        const isFrom = l.from === STATE.selectedBgId;
+        const otherId = isFrom ? l.to : l.from;
+        const other = BG_MAP[otherId] || {};
+        const arrow = isFrom ? '→' : '←';
+        const kc = kindColors[l.kind] || '#666';
+        html += `<div class="link-item">
+          <span class="link-kind" style="background:${kc}">${kindLabels[l.kind] || l.kind}</span>
+          <span>${arrow}</span>
+          <span style="cursor:pointer;text-decoration:underline" onclick="selectBg('${otherId}')">${other.label || otherId}</span>
+        </div>`;
+      });
+      html += '</div>';
+    }
+
+    // Show effectLog for selected BG
+    const bg = BG_MAP[STATE.selectedBgId];
+    if (bg && bg.effectLog && bg.effectLog.length) {
+      html += '<div style="padding:6px 8px"><div style="font-size:11px;font-weight:700;color:var(--muted);margin-bottom:4px">作用履歴</div>';
+      bg.effectLog.forEach(eff => {
+        const cls = 'effect-' + eff.effect;
+        const isCurrentEvent = eff.eventId === STATE.selectedEventId;
+        html += `<div style="font-size:11px;padding:2px 0;${isCurrentEvent ? 'font-weight:700;' : ''}">
+          <span class="effect-tag ${cls}">${eff.effect}</span>
+          <span style="font-family:var(--mono);font-size:10px">${eff.year}</span>
+          <span style="cursor:pointer;${isCurrentEvent ? '' : 'color:var(--muted)'}" onclick="jumpToEvent('${eff.eventId}')">${eff.eventId.replace('EV_p','').replace('_01','')}</span>
+        </div>`;
+      });
+      html += '</div>';
+    }
+  }
+
+  el.innerHTML = html;
+}
+
+function renderBgStream(bg, isActive, isLineageOnly, phase) {
+  const cls = isActive ? 'active' : (isLineageOnly ? 'highlighted' : '');
+  const phaseText = phase ? `<div class="bg-phase">${phase.phase}: ${phase.label || ''}</div>` : '';
+  return `<div class="bg-stream ${cls}" onclick="selectBg('${bg.bgId}')">
+    <div class="bg-label">${bg.label}</div>
+    <div class="bg-type">${bg.bgId} · ${bg.type}</div>
+    ${phaseText}
+  </div>`;
+}
+
+function getCurrentPhase(bg, year) {
+  if (!bg.phases) return null;
+  for (const p of bg.phases) {
+    const parts = p.period.split('-');
+    const start = parseInt(parts[0]);
+    const end = parts[1] ? parseInt(parts[1]) : 9999;
+    if (year >= start && year <= end) return p;
+  }
+  return null;
+}
+
+function jumpToEvent(eventId) {
+  STATE.selectedEventId = eventId;
+  STATE.selectedBgId = null;
+  render();
+  const card = document.querySelector('.event-card.selected');
+  if (card) card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+}
+
+function render() {
+  renderEventLane();
+  renderCausalLane();
+  renderBgLane();
+}
+
+// Load data and init
+async function init() {
+  try {
+    const resp = await fetch('../data/framework_output_v3_9.json');
+    DATA = await resp.json();
+  } catch(e) {
+    // Fallback: try relative paths
+    try {
+      const resp = await fetch('./data/framework_output_v3_9.json');
+      DATA = await resp.json();
+    } catch(e2) {
+      document.body.innerHTML = '<div style="padding:40px;text-align:center;color:#999">データ読み込みエラー。<br>ローカルサーバー経由で開いてください:<br><code>python3 -m http.server 8000</code><br>→ http://localhost:8000/doc/demo_three_lanes.html</div>';
+      return;
+    }
+  }
+
+  // Build BG map
+  DATA.backgroundElements.forEach(bg => { BG_MAP[bg.bgId] = bg; });
+  LINEAGE = DATA.bgLineage || [];
+
+  // Wire up controls
+  document.getElementById('search').addEventListener('input', e => { STATE.searchText = e.target.value; renderEventLane(); });
+  document.getElementById('fnameFilter').addEventListener('change', e => { STATE.fnameFilter = e.target.value; STATE.selectedEventId = null; render(); });
+  document.getElementById('eraFilter').addEventListener('change', e => { STATE.eraFilter = e.target.value; STATE.selectedEventId = null; render(); });
+
+  render();
+}
+
+init();
+</script>
+</body>
+</html>
