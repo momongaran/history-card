@@ -4350,7 +4350,10 @@
           {
             "bname": "権力集中",
             "refs": [
-              "BG_005"
+              {
+                "bgId": "BG_005",
+                "role": "drives"
+              }
             ],
             "label": "権力集中のもとでの権力空白の圧（豪族勢力の複合）"
           }
@@ -4395,7 +4398,10 @@
           {
             "bname": "外圧環境",
             "refs": [
-              "BG_022"
+              {
+                "bgId": "BG_022",
+                "role": "pressures"
+              }
             ],
             "label": "朝鮮半島の百済・新羅・伽耶間の緊張に対応が求められている"
           }
@@ -4436,8 +4442,14 @@
           {
             "bname": "外圧環境",
             "refs": [
-              "BG_022",
-              "BG_029"
+              {
+                "bgId": "BG_022",
+                "role": "pressures"
+              },
+              {
+                "bgId": "BG_029",
+                "role": "supports"
+              }
             ],
             "label": "ヤマト政権の伽耶支援のための軍事動員に筑紫が反発している"
           }
@@ -4500,7 +4512,10 @@
           {
             "bname": "外圧環境",
             "refs": [
-              "BG_022"
+              {
+                "bgId": "BG_022",
+                "role": "pressures"
+              }
             ],
             "label": "百済が新羅・高句麗の圧迫で存亡の危機にあり、倭との軍事同盟を維持するため最も価値ある文化的贈与（仏教）を差し出さざるを得ない構造にある"
           }
@@ -4551,7 +4566,10 @@
           {
             "bname": "権力集中",
             "refs": [
-              "BG_023"
+              {
+                "bgId": "BG_023",
+                "role": "drives"
+              }
             ],
             "label": "仏教受容をめぐる蘇我馬子と物部守屋の対立が武力衝突に至っている"
           }
@@ -4595,7 +4613,20 @@
         "background": [
           {
             "bname": "勢力対立",
-            "refs": [],
+            "refs": [
+              {
+                "bgId": "BG_002",
+                "role": "pressures"
+              },
+              {
+                "bgId": "BG_023",
+                "role": "pressures"
+              },
+              {
+                "bgId": "BG_053",
+                "role": "pressures"
+              }
+            ],
             "label": "后妃問題で蘇我氏が外戚の地位を確保できず、天皇との利害が対立している"
           }
         ]
@@ -4641,7 +4672,10 @@
           {
             "bname": "権力集中",
             "refs": [
-              "BG_023"
+              {
+                "bgId": "BG_023",
+                "role": "drives"
+              }
             ],
             "label": "権力集中のもとでの権力空白の圧（蘇我氏の複合）"
           }
@@ -4682,7 +4716,10 @@
           {
             "bname": "権力集中",
             "refs": [
-              "BG_023"
+              {
+                "bgId": "BG_023",
+                "role": "drives"
+              }
             ],
             "label": "推古天皇は即位時三十九歳で、蘇我氏の血を引く皇女として馬子との協調が求められている"
           }
@@ -4727,7 +4764,10 @@
           {
             "bname": "権力集中",
             "refs": [
-              "BG_005"
+              {
+                "bgId": "BG_005",
+                "role": "drives"
+              }
             ],
             "label": "豪族の世襲的地位に代わる天皇中心の秩序が必要とされている"
           }
@@ -4778,8 +4818,14 @@
           {
             "bname": "思想潮流",
             "refs": [
-              "BG_038",
-              "BG_005"
+              {
+                "bgId": "BG_038",
+                "role": "drives"
+              },
+              {
+                "bgId": "BG_005",
+                "role": "drives"
+              }
             ],
             "label": "天皇を頂点とする和の精神に基づく統治理念が必要とされている"
           }
@@ -4836,8 +4882,14 @@
           {
             "bname": "外圧環境",
             "refs": [
-              "BG_078",
-              "BG_010"
+              {
+                "bgId": "BG_078",
+                "role": "pressures"
+              },
+              {
+                "bgId": "BG_010",
+                "role": "enables"
+              }
             ],
             "label": "隋の中国統一により東アジアに圧倒的な軍事・文化大国が出現し、周辺諸国が冊封秩序への編入か対抗かの選択を迫られている; 倭が隋の冊封体制に従属すれば朝鮮半島諸国と同列の属国になるが、拒否すれば軍事的脅威に直面するという外交的二律背反が存在している"
           }
@@ -4894,7 +4946,10 @@
           {
             "bname": "外圧環境",
             "refs": [
-              "BG_012"
+              {
+                "bgId": "BG_012",
+                "role": "pressures"
+              }
             ],
             "label": "国内の政治改革に唐の制度を参照する必要性が高まっている"
           }
@@ -4950,7 +5005,20 @@
         "background": [
           {
             "bname": "制度的矛盾",
-            "refs": [],
+            "refs": [
+              {
+                "bgId": "BG_012",
+                "role": "pressures"
+              },
+              {
+                "bgId": "BG_013",
+                "role": "pressures"
+              },
+              {
+                "bgId": "BG_023",
+                "role": "pressures"
+              }
+            ],
             "label": "権力集中のもとでの秩序再編の圧（蘇我氏・律令制・唐との関係の複合）"
           }
         ]
@@ -5012,7 +5080,10 @@
           {
             "bname": "権力集中",
             "refs": [
-              "BG_005"
+              {
+                "bgId": "BG_005",
+                "role": "drives"
+              }
             ],
             "label": "豪族による私地私民の支配が国家的統治の障害となっている"
           }
@@ -5080,7 +5151,20 @@
         "background": [
           {
             "bname": "制度的矛盾",
-            "refs": [],
+            "refs": [
+              {
+                "bgId": "BG_005",
+                "role": "pressures"
+              },
+              {
+                "bgId": "BG_010",
+                "role": "pressures"
+              },
+              {
+                "bgId": "BG_068",
+                "role": "pressures"
+              }
+            ],
             "label": "権力集中のもとでの秩序再編の圧（豪族勢力・中央集権化・人民把握制度の複合）"
           }
         ]
@@ -5144,8 +5228,14 @@
           {
             "bname": "経済圧",
             "refs": [
-              "BG_004",
-              "BG_058"
+              {
+                "bgId": "BG_004",
+                "role": "pressures"
+              },
+              {
+                "bgId": "BG_058",
+                "role": "enables"
+              }
             ],
             "label": "律令的賦役制度による農民への過重負担の圧（班田収授制・租税・財政・防衛体制の複合）"
           }
@@ -5207,7 +5297,16 @@
         "background": [
           {
             "bname": "複合背景",
-            "refs": [],
+            "refs": [
+              {
+                "bgId": "BG_022",
+                "role": "pressures"
+              },
+              {
+                "bgId": "BG_029",
+                "role": "supports"
+              }
+            ],
             "label": "長期の軍役により農村の労働力が奪われ家族が困窮している"
           }
         ]
@@ -5265,7 +5364,10 @@
           {
             "bname": "外圧環境",
             "refs": [
-              "BG_012"
+              {
+                "bgId": "BG_012",
+                "role": "pressures"
+              }
             ],
             "label": "白村江の敗戦後、唐が高句麗征服に向かう過程で次の標的が倭となる可能性があり、百済旧地が海上侵攻の拠点として利用可能になったことで軍事的脅威が具体化している"
           }
@@ -5328,8 +5430,14 @@
           {
             "bname": "外圧環境",
             "refs": [
-              "BG_012",
-              "BG_043"
+              {
+                "bgId": "BG_012",
+                "role": "pressures"
+              },
+              {
+                "bgId": "BG_043",
+                "role": "supports"
+              }
             ],
             "label": "白村江の敗戦後に唐・新羅の本土侵攻が現実的脅威となり、飛鳥盆地は難波からの海上侵攻に対して地理的に無防備であるという首都の脆弱性が露呈している; 飛鳥は内陸だが防衛上の再配置と政治的刷新が求められている"
           }
@@ -5392,7 +5500,10 @@
           {
             "bname": "権力集中",
             "refs": [
-              "BG_005"
+              {
+                "bgId": "BG_005",
+                "role": "drives"
+              }
             ],
             "label": "継承問題のもとでの権力空白の圧（豪族勢力の複合）"
           }
@@ -5437,7 +5548,10 @@
           {
             "bname": "権力集中",
             "refs": [
-              "BG_005"
+              {
+                "bgId": "BG_005",
+                "role": "drives"
+              }
             ],
             "label": "壬申の乱の功臣と旧来の豪族の序列を再整理する必要がある"
           }
@@ -5482,8 +5596,14 @@
           {
             "bname": "外圧環境",
             "refs": [
-              "BG_012",
-              "BG_013"
+              {
+                "bgId": "BG_012",
+                "role": "pressures"
+              },
+              {
+                "bgId": "BG_013",
+                "role": "enables"
+              }
             ],
             "label": "唐の律令を参照しつつ日本の実情に合わせた法典が求められている"
           }
@@ -5546,7 +5666,10 @@
           {
             "bname": "制度疲弊",
             "refs": [
-              "BG_013"
+              {
+                "bgId": "BG_013",
+                "role": "pressures"
+              }
             ],
             "label": "律令国家にふさわしい恒久的な都の必要性が高まっている"
           }
@@ -5602,7 +5725,20 @@
         "background": [
           {
             "bname": "制度的矛盾",
-            "refs": [],
+            "refs": [
+              {
+                "bgId": "BG_012",
+                "role": "pressures"
+              },
+              {
+                "bgId": "BG_013",
+                "role": "pressures"
+              },
+              {
+                "bgId": "BG_066",
+                "role": "enables"
+              }
+            ],
             "label": "権力空白の圧（律令制・唐との関係・記紀・史書の複合）"
           }
         ]
@@ -5664,7 +5800,10 @@
           {
             "bname": "制度疲弊",
             "refs": [
-              "BG_013"
+              {
+                "bgId": "BG_013",
+                "role": "pressures"
+              }
             ],
             "label": "制度整備の圧（律令制の複合）"
           }
@@ -5708,7 +5847,20 @@
         "background": [
           {
             "bname": "複合背景",
-            "refs": [],
+            "refs": [
+              {
+                "bgId": "BG_002",
+                "role": "drives"
+              },
+              {
+                "bgId": "BG_036",
+                "role": "drives"
+              },
+              {
+                "bgId": "BG_063",
+                "role": "enables"
+              }
+            ],
             "label": "藤原京が手狭になり大規模な都城への移転が求められている"
           }
         ]
@@ -5776,7 +5928,10 @@
           {
             "bname": "思想潮流",
             "refs": [
-              "BG_017"
+              {
+                "bgId": "BG_017",
+                "role": "drives"
+              }
             ],
             "label": "皇室の正統性と国家の起源を記録する必要がある; 壬申の乱以降の王統の正統性を物語として確定する必要があり、天皇家の系譜と神話の統一的記録がなければ支配の根拠が口承に依存する不安定な状態である"
           }
@@ -5827,7 +5982,10 @@
           {
             "bname": "思想潮流",
             "refs": [
-              "BG_017"
+              {
+                "bgId": "BG_017",
+                "role": "drives"
+              }
             ],
             "label": "対外的に日本の国家としての正統性を示す必要がある"
           }
@@ -5890,7 +6048,10 @@
           {
             "bname": "制度疲弊",
             "refs": [
-              "BG_058"
+              {
+                "bgId": "BG_058",
+                "role": "pressures"
+              }
             ],
             "label": "班田収授制のもとで口分田の不足が深刻化している"
           }
@@ -5935,7 +6096,10 @@
           {
             "bname": "権力集中",
             "refs": [
-              "BG_036"
+              {
+                "bgId": "BG_036",
+                "role": "drives"
+              }
             ],
             "label": "権力集中のもとでの専権への反発圧（藤原氏(奈良)の複合）"
           }
@@ -5979,7 +6143,20 @@
         "background": [
           {
             "bname": "複合背景",
-            "refs": [],
+            "refs": [
+              {
+                "bgId": "BG_002",
+                "role": "drives"
+              },
+              {
+                "bgId": "BG_036",
+                "role": "drives"
+              },
+              {
+                "bgId": "BG_043",
+                "role": "supports"
+              }
+            ],
             "label": "吉備真備・玄昉の重用に藤原広嗣が政治的不満を抱いている; 大宰府という中央監視の及びにくい軍事・外交拠点に左遷された藤原広嗣が、地方軍事力へのアクセスを持ちながら中央政権への不満を蓄積させている"
           }
         ]
@@ -6029,8 +6206,14 @@
           {
             "bname": "経済圧",
             "refs": [
-              "BG_044",
-              "BG_047"
+              {
+                "bgId": "BG_044",
+                "role": "pressures"
+              },
+              {
+                "bgId": "BG_047",
+                "role": "enables"
+              }
             ],
             "label": "社会疲弊のもとでの対立・衝突の圧（飢饉・疫病・守護・地頭制の複合）"
           }
@@ -6081,7 +6264,10 @@
           {
             "bname": "制度疲弊",
             "refs": [
-              "BG_058"
+              {
+                "bgId": "BG_058",
+                "role": "pressures"
+              }
             ],
             "label": "口分田の不足が深刻化し耕地拡大が国家的課題となっている"
           }
@@ -6126,8 +6312,14 @@
           {
             "bname": "思想潮流",
             "refs": [
-              "BG_011",
-              "BG_004"
+              {
+                "bgId": "BG_011",
+                "role": "drives"
+              },
+              {
+                "bgId": "BG_004",
+                "role": "supports"
+              }
             ],
             "label": "国家的仏教事業への資源動員の圧（仏教(古代)・租税・財政の複合）"
           }
@@ -6178,7 +6370,10 @@
           {
             "bname": "権力集中",
             "refs": [
-              "BG_036"
+              {
+                "bgId": "BG_036",
+                "role": "drives"
+              }
             ],
             "label": "権力集中のもとでの対立・衝突の圧（藤原氏(奈良)の複合）"
           }
@@ -6223,8 +6418,14 @@
           {
             "bname": "思想潮流",
             "refs": [
-              "BG_052",
-              "BG_066"
+              {
+                "bgId": "BG_052",
+                "role": "drives"
+              },
+              {
+                "bgId": "BG_066",
+                "role": "enables"
+              }
             ],
             "label": "制度整備の必要（国風文化・記紀・史書・防衛体制の複合）"
           }
@@ -6280,7 +6481,24 @@
         "background": [
           {
             "bname": "勢力対立",
-            "refs": [],
+            "refs": [
+              {
+                "bgId": "BG_002",
+                "role": "pressures"
+              },
+              {
+                "bgId": "BG_014",
+                "role": "pressures"
+              },
+              {
+                "bgId": "BG_036",
+                "role": "pressures"
+              },
+              {
+                "bgId": "BG_043",
+                "role": "supports"
+              }
+            ],
             "label": "孝謙上皇と道鏡の台頭に藤原仲麻呂（恵美押勝）が危機感を抱いた; 恵美押勝が淳仁天皇即位の最大功労者として北陸の軍事拠点に権限を持つ一方、孝謙上皇との関係悪化が不可逆的となり政治的生存が脅かされている"
           }
         ]
@@ -6329,7 +6547,32 @@
         "background": [
           {
             "bname": "複合背景",
-            "refs": [],
+            "refs": [
+              {
+                "bgId": "BG_013",
+                "role": "enables"
+              },
+              {
+                "bgId": "BG_027",
+                "role": "drives"
+              },
+              {
+                "bgId": "BG_028",
+                "role": "drives"
+              },
+              {
+                "bgId": "BG_041",
+                "role": "pressures"
+              },
+              {
+                "bgId": "BG_059",
+                "role": "drives"
+              },
+              {
+                "bgId": "BG_082",
+                "role": "drives"
+              }
+            ],
             "label": "称徳天皇に後継者がなく道鏡への皇位禅譲の可能性が浮上しており、「臣下は天皇位に就けない」という律令体制の根本原則が崩壊する危機にある"
           }
         ]
@@ -6379,7 +6622,10 @@
           {
             "bname": "思想潮流",
             "refs": [
-              "BG_017"
+              {
+                "bgId": "BG_017",
+                "role": "drives"
+              }
             ],
             "label": "奈良の仏教勢力の政治介入から脱却する必要がある"
           }
@@ -6430,7 +6676,10 @@
           {
             "bname": "経済圧",
             "refs": [
-              "BG_034"
+              {
+                "bgId": "BG_034",
+                "role": "supports"
+              }
             ],
             "label": "軍団制の機能不全と辺境防衛の圧（東北/蝦夷の複合）"
           }
@@ -6475,7 +6724,10 @@
           {
             "bname": "制度疲弊",
             "refs": [
-              "BG_063"
+              {
+                "bgId": "BG_063",
+                "role": "pressures"
+              }
             ],
             "label": "専権への反発圧（都城制の複合）"
           }
@@ -6520,7 +6772,10 @@
           {
             "bname": "思想潮流",
             "refs": [
-              "BG_011"
+              {
+                "bgId": "BG_011",
+                "role": "drives"
+              }
             ],
             "label": "奈良仏教が学問的・形式的になり民衆救済の新たな教えが求められている"
           }
@@ -6565,7 +6820,10 @@
           {
             "bname": "外圧環境",
             "refs": [
-              "BG_012"
+              {
+                "bgId": "BG_012",
+                "role": "pressures"
+              }
             ],
             "label": "密教の実践的な加持祈祷が貴族社会の現世利益の要求に合致している"
           }
@@ -6605,7 +6863,12 @@
         "background": [
           {
             "bname": "制度的矛盾",
-            "refs": [],
+            "refs": [
+              {
+                "bgId": "BG_014",
+                "role": "pressures"
+              }
+            ],
             "label": "平城上皇が旧都平城京への還都を図り嵯峨天皇と対立している"
           }
         ]
@@ -6661,7 +6924,10 @@
           {
             "bname": "権力集中",
             "refs": [
-              "BG_002"
+              {
+                "bgId": "BG_002",
+                "role": "drives"
+              }
             ],
             "label": "仁明天皇の皇太子をめぐり藤原良房と伴氏・橘氏が対立している"
           }
@@ -6705,7 +6971,20 @@
         "background": [
           {
             "bname": "勢力対立",
-            "refs": [],
+            "refs": [
+              {
+                "bgId": "BG_002",
+                "role": "pressures"
+              },
+              {
+                "bgId": "BG_036",
+                "role": "pressures"
+              },
+              {
+                "bgId": "BG_053",
+                "role": "pressures"
+              }
+            ],
             "label": "権力移行の圧（外戚政治・摂関家(藤原氏)の複合）"
           }
         ]
@@ -6755,7 +7034,10 @@
           {
             "bname": "権力集中",
             "refs": [
-              "BG_002"
+              {
+                "bgId": "BG_002",
+                "role": "drives"
+              }
             ],
             "label": "対立・衝突の圧（摂関家(藤原氏)の複合）"
           }
@@ -6800,8 +7082,14 @@
           {
             "bname": "思想潮流",
             "refs": [
-              "BG_052",
-              "BG_012"
+              {
+                "bgId": "BG_052",
+                "role": "drives"
+              },
+              {
+                "bgId": "BG_012",
+                "role": "pressures"
+              }
             ],
             "label": "対立・衝突の圧（唐との関係・国風文化の複合）"
           }
@@ -6852,7 +7140,10 @@
           {
             "bname": "権力集中",
             "refs": [
-              "BG_002"
+              {
+                "bgId": "BG_002",
+                "role": "drives"
+              }
             ],
             "label": "専権への反発圧（摂関家(藤原氏)の複合）"
           }
@@ -6902,7 +7193,20 @@
         "background": [
           {
             "bname": "制度的矛盾",
-            "refs": [],
+            "refs": [
+              {
+                "bgId": "BG_002",
+                "role": "pressures"
+              },
+              {
+                "bgId": "BG_013",
+                "role": "pressures"
+              },
+              {
+                "bgId": "BG_036",
+                "role": "pressures"
+              }
+            ],
             "label": "摂関政治への対抗として天皇親政を志向する圧（摂関家(藤原氏)・律令制の複合）"
           }
         ]
@@ -6952,7 +7256,10 @@
           {
             "bname": "思想潮流",
             "refs": [
-              "BG_052"
+              {
+                "bgId": "BG_052",
+                "role": "drives"
+              }
             ],
             "label": "制度整備の必要（国風文化の複合）"
           }
@@ -6993,7 +7300,10 @@
           {
             "bname": "制度疲弊",
             "refs": [
-              "BG_039"
+              {
+                "bgId": "BG_039",
+                "role": "pressures"
+              }
             ],
             "label": "関東の在地武士団が国司の収奪に不満を抱いている"
           }
@@ -7038,8 +7348,14 @@
           {
             "bname": "経済圧",
             "refs": [
-              "BG_035",
-              "BG_074"
+              {
+                "bgId": "BG_035",
+                "role": "pressures"
+              },
+              {
+                "bgId": "BG_074",
+                "role": "enables"
+              }
             ],
             "label": "瀬戸内海の海賊が横行し朝廷の海上統制が弱体化している"
           }
@@ -7102,7 +7418,10 @@
           {
             "bname": "制度疲弊",
             "refs": [
-              "BG_039"
+              {
+                "bgId": "BG_039",
+                "role": "pressures"
+              }
             ],
             "label": "国司の交代のたびに行政の細則が変わり、地方の実務担当者が混乱している"
           }
@@ -7155,7 +7474,10 @@
           {
             "bname": "権力集中",
             "refs": [
-              "BG_002"
+              {
+                "bgId": "BG_002",
+                "role": "drives"
+              }
             ],
             "label": "源高明が左大臣として藤原氏の摂関独占に脅威を与えている"
           }
@@ -7205,7 +7527,20 @@
         "background": [
           {
             "bname": "複合背景",
-            "refs": [],
+            "refs": [
+              {
+                "bgId": "BG_002",
+                "role": "drives"
+              },
+              {
+                "bgId": "BG_036",
+                "role": "drives"
+              },
+              {
+                "bgId": "BG_039",
+                "role": "enables"
+              }
+            ],
             "label": "制度的行き詰まりの圧（国司行政・摂関家(藤原氏)の複合）"
           }
         ]
@@ -7254,7 +7589,20 @@
         "background": [
           {
             "bname": "勢力対立",
-            "refs": [],
+            "refs": [
+              {
+                "bgId": "BG_002",
+                "role": "pressures"
+              },
+              {
+                "bgId": "BG_036",
+                "role": "pressures"
+              },
+              {
+                "bgId": "BG_053",
+                "role": "pressures"
+              }
+            ],
             "label": "権力集中のもとでの制度整備の必要（外戚政治・摂関家(藤原氏)の複合）"
           }
         ]
@@ -7303,7 +7651,20 @@
         "background": [
           {
             "bname": "制度的矛盾",
-            "refs": [],
+            "refs": [
+              {
+                "bgId": "BG_019",
+                "role": "pressures"
+              },
+              {
+                "bgId": "BG_034",
+                "role": "supports"
+              },
+              {
+                "bgId": "BG_074",
+                "role": "pressures"
+              }
+            ],
             "label": "権力集中のもとでの対立・衝突の圧（朝廷統制・東北/蝦夷・源氏の複合）"
           }
         ]
@@ -7359,7 +7720,10 @@
           {
             "bname": "経済圧",
             "refs": [
-              "BG_044"
+              {
+                "bgId": "BG_044",
+                "role": "pressures"
+              }
             ],
             "label": "天災・疫病・戦乱が相次ぎ社会不安が広がっている"
           }
@@ -7403,7 +7767,24 @@
         "background": [
           {
             "bname": "複合背景",
-            "refs": [],
+            "refs": [
+              {
+                "bgId": "BG_002",
+                "role": "drives"
+              },
+              {
+                "bgId": "BG_004",
+                "role": "supports"
+              },
+              {
+                "bgId": "BG_036",
+                "role": "drives"
+              },
+              {
+                "bgId": "BG_065",
+                "role": "enables"
+              }
+            ],
             "label": "権力移行の圧（荘園制・租税・財政・摂関家(藤原氏)の複合）"
           }
         ]
@@ -7458,7 +7839,24 @@
         "background": [
           {
             "bname": "複合背景",
-            "refs": [],
+            "refs": [
+              {
+                "bgId": "BG_002",
+                "role": "drives"
+              },
+              {
+                "bgId": "BG_004",
+                "role": "supports"
+              },
+              {
+                "bgId": "BG_036",
+                "role": "drives"
+              },
+              {
+                "bgId": "BG_065",
+                "role": "enables"
+              }
+            ],
             "label": "制度整備の圧（荘園制・租税・財政・摂関家(藤原氏)の複合）"
           }
         ]
@@ -7519,7 +7917,20 @@
         "background": [
           {
             "bname": "勢力対立",
-            "refs": [],
+            "refs": [
+              {
+                "bgId": "BG_019",
+                "role": "pressures"
+              },
+              {
+                "bgId": "BG_034",
+                "role": "supports"
+              },
+              {
+                "bgId": "BG_041",
+                "role": "pressures"
+              }
+            ],
             "label": "権力集中のもとでの対立・衝突の圧（東北/蝦夷・後継争い・源氏の複合）"
           }
         ]
@@ -7580,7 +7991,20 @@
         "background": [
           {
             "bname": "勢力対立",
-            "refs": [],
+            "refs": [
+              {
+                "bgId": "BG_002",
+                "role": "pressures"
+              },
+              {
+                "bgId": "BG_014",
+                "role": "pressures"
+              },
+              {
+                "bgId": "BG_036",
+                "role": "pressures"
+              }
+            ],
             "label": "摂関家の権力独占に対する天皇家の対抗圧（摂関家(藤原氏)・院政体制の複合）"
           }
         ]
@@ -7630,8 +8054,14 @@
           {
             "bname": "経済圧",
             "refs": [
-              "BG_004",
-              "BG_065"
+              {
+                "bgId": "BG_004",
+                "role": "pressures"
+              },
+              {
+                "bgId": "BG_065",
+                "role": "enables"
+              }
             ],
             "label": "制度整備の圧（荘園制・国司行政・人民把握制度の複合）"
           }
@@ -7700,7 +8130,10 @@
           {
             "bname": "権力集中",
             "refs": [
-              "BG_014"
+              {
+                "bgId": "BG_014",
+                "role": "drives"
+              }
             ],
             "label": "権力空白の圧（院政体制の複合）"
           }
@@ -7741,7 +8174,10 @@
           {
             "bname": "権力集中",
             "refs": [
-              "BG_014"
+              {
+                "bgId": "BG_014",
+                "role": "drives"
+              }
             ],
             "label": "長期の権力保持により政治的蓄積と矛盾が生じている"
           }
@@ -7785,7 +8221,28 @@
         "background": [
           {
             "bname": "勢力対立",
-            "refs": [],
+            "refs": [
+              {
+                "bgId": "BG_002",
+                "role": "pressures"
+              },
+              {
+                "bgId": "BG_014",
+                "role": "pressures"
+              },
+              {
+                "bgId": "BG_018",
+                "role": "pressures"
+              },
+              {
+                "bgId": "BG_042",
+                "role": "pressures"
+              },
+              {
+                "bgId": "BG_057",
+                "role": "pressures"
+              }
+            ],
             "label": "崇徳上皇と後白河天皇の対立に摂関家・武士の対立が重なっている"
           }
         ]
@@ -7846,7 +8303,12 @@
         "background": [
           {
             "bname": "勢力対立",
-            "refs": [],
+            "refs": [
+              {
+                "bgId": "BG_021",
+                "role": "pressures"
+              }
+            ],
             "label": "保元の乱後の恩賞配分をめぐり平清盛と源義朝が対立している"
           }
         ]
@@ -7908,8 +8370,14 @@
           {
             "bname": "経済圧",
             "refs": [
-              "BG_007",
-              "BG_021"
+              {
+                "bgId": "BG_007",
+                "role": "pressures"
+              },
+              {
+                "bgId": "BG_021",
+                "role": "pressures"
+              }
             ],
             "label": "経済変動のもとでの権力空白の圧（平氏・外戚政治・摂関家(藤原氏)の複合）"
           }
@@ -7983,7 +8451,12 @@
         "background": [
           {
             "bname": "勢力対立",
-            "refs": [],
+            "refs": [
+              {
+                "bgId": "BG_021",
+                "role": "pressures"
+              }
+            ],
             "label": "平氏の専横に対し後白河法皇の近臣が不満を募らせている"
           }
         ]
@@ -8038,7 +8511,20 @@
         "background": [
           {
             "bname": "勢力対立",
-            "refs": [],
+            "refs": [
+              {
+                "bgId": "BG_019",
+                "role": "pressures"
+              },
+              {
+                "bgId": "BG_021",
+                "role": "pressures"
+              },
+              {
+                "bgId": "BG_043",
+                "role": "supports"
+              }
+            ],
             "label": "軍事的緊張のもとでの法的統制の圧（平氏・源氏の複合）"
           }
         ]
@@ -8088,7 +8574,10 @@
           {
             "bname": "権力集中",
             "refs": [
-              "BG_021"
+              {
+                "bgId": "BG_021",
+                "role": "drives"
+              }
             ],
             "label": "平氏が安徳天皇を奉じて都落ちし京都が空白状態となっている"
           }
@@ -8132,7 +8621,32 @@
         "background": [
           {
             "bname": "勢力対立",
-            "refs": [],
+            "refs": [
+              {
+                "bgId": "BG_002",
+                "role": "pressures"
+              },
+              {
+                "bgId": "BG_014",
+                "role": "pressures"
+              },
+              {
+                "bgId": "BG_018",
+                "role": "pressures"
+              },
+              {
+                "bgId": "BG_036",
+                "role": "pressures"
+              },
+              {
+                "bgId": "BG_042",
+                "role": "pressures"
+              },
+              {
+                "bgId": "BG_057",
+                "role": "pressures"
+              }
+            ],
             "label": "武士勢力の台頭と院政権力の動揺（摂関家(藤原氏)・院政体制の複合）"
           }
         ]
@@ -8188,8 +8702,14 @@
           {
             "bname": "経済圧",
             "refs": [
-              "BG_035",
-              "BG_021"
+              {
+                "bgId": "BG_035",
+                "role": "pressures"
+              },
+              {
+                "bgId": "BG_021",
+                "role": "pressures"
+              }
             ],
             "label": "権力空白の圧（平氏・源氏・海上勢力の複合）"
           }
@@ -8245,7 +8765,24 @@
         "background": [
           {
             "bname": "複合背景",
-            "refs": [],
+            "refs": [
+              {
+                "bgId": "BG_019",
+                "role": "drives"
+              },
+              {
+                "bgId": "BG_021",
+                "role": "drives"
+              },
+              {
+                "bgId": "BG_034",
+                "role": "supports"
+              },
+              {
+                "bgId": "BG_043",
+                "role": "supports"
+              }
+            ],
             "label": "軍事的緊張のもとでの法的統制の圧（平氏・源氏・東北/蝦夷の複合）"
           }
         ]
@@ -8312,7 +8849,16 @@
         "background": [
           {
             "bname": "複合背景",
-            "refs": [],
+            "refs": [
+              {
+                "bgId": "BG_019",
+                "role": "drives"
+              },
+              {
+                "bgId": "BG_017",
+                "role": "enables"
+              }
+            ],
             "label": "武家の棟梁としての地位を朝廷から公式に認められる必要がある; 後白河法皇の死後に障害が除かれ将軍任命が実現している"
           }
         ]
@@ -8369,7 +8915,40 @@
         "background": [
           {
             "bname": "複合背景",
-            "refs": [],
+            "refs": [
+              {
+                "bgId": "BG_006",
+                "role": "drives"
+              },
+              {
+                "bgId": "BG_009",
+                "role": "enables"
+              },
+              {
+                "bgId": "BG_018",
+                "role": "drives"
+              },
+              {
+                "bgId": "BG_019",
+                "role": "drives"
+              },
+              {
+                "bgId": "BG_042",
+                "role": "drives"
+              },
+              {
+                "bgId": "BG_057",
+                "role": "drives"
+              },
+              {
+                "bgId": "BG_070",
+                "role": "enables"
+              },
+              {
+                "bgId": "BG_077",
+                "role": "enables"
+              }
+            ],
             "label": "権力空白の圧（鎌倉幕府・御家人制・源氏の複合）"
           }
         ]
@@ -8424,7 +9003,40 @@
         "background": [
           {
             "bname": "勢力対立",
-            "refs": [],
+            "refs": [
+              {
+                "bgId": "BG_002",
+                "role": "pressures"
+              },
+              {
+                "bgId": "BG_009",
+                "role": "enables"
+              },
+              {
+                "bgId": "BG_018",
+                "role": "pressures"
+              },
+              {
+                "bgId": "BG_019",
+                "role": "pressures"
+              },
+              {
+                "bgId": "BG_024",
+                "role": "pressures"
+              },
+              {
+                "bgId": "BG_042",
+                "role": "pressures"
+              },
+              {
+                "bgId": "BG_053",
+                "role": "pressures"
+              },
+              {
+                "bgId": "BG_057",
+                "role": "pressures"
+              }
+            ],
             "label": "源頼家の独断的政治に御家人の不満が高まっている; 比企氏が頼家の外戚として権力を握ろうとし北条氏と対立している; 頼朝死後の将軍家が御家人を統率する個人的カリスマを欠く幼年相続に陥っており、将軍後見役（外戚）による制度的支配が不可避な権力空白が生じている"
           }
         ]
@@ -8492,7 +9104,10 @@
           {
             "bname": "権力集中",
             "refs": [
-              "BG_024"
+              {
+                "bgId": "BG_024",
+                "role": "drives"
+              }
             ],
             "label": "権力空白の圧（北条執権体制の複合）"
           }
@@ -8537,7 +9152,10 @@
           {
             "bname": "権力集中",
             "refs": [
-              "BG_024"
+              {
+                "bgId": "BG_024",
+                "role": "drives"
+              }
             ],
             "label": "侍所別当の和田義盛が北条義時の権力集中に反発している"
           }
@@ -8587,7 +9205,44 @@
         "background": [
           {
             "bname": "制度的矛盾",
-            "refs": [],
+            "refs": [
+              {
+                "bgId": "BG_006",
+                "role": "pressures"
+              },
+              {
+                "bgId": "BG_018",
+                "role": "pressures"
+              },
+              {
+                "bgId": "BG_026",
+                "role": "pressures"
+              },
+              {
+                "bgId": "BG_040",
+                "role": "pressures"
+              },
+              {
+                "bgId": "BG_046",
+                "role": "pressures"
+              },
+              {
+                "bgId": "BG_054",
+                "role": "pressures"
+              },
+              {
+                "bgId": "BG_059",
+                "role": "pressures"
+              },
+              {
+                "bgId": "BG_070",
+                "role": "pressures"
+              },
+              {
+                "bgId": "BG_077",
+                "role": "pressures"
+              }
+            ],
             "label": "朝廷と幕府の権力二重構造の矛盾圧（天皇・朝廷(中世)・鎌倉幕府の複合）"
           }
         ]
@@ -8626,7 +9281,16 @@
         "background": [
           {
             "bname": "勢力対立",
-            "refs": [],
+            "refs": [
+              {
+                "bgId": "BG_024",
+                "role": "pressures"
+              },
+              {
+                "bgId": "BG_080",
+                "role": "pressures"
+              }
+            ],
             "label": "執権の独断的権力に歯止めをかける合議体制が求められている; 承久の乱後に西国を含む全国統治の課題が一気に拡大し、執権一人の判断では訴訟・行政が処理しきれない制度的過負荷が生じている"
           }
         ]
@@ -8687,7 +9351,16 @@
         "background": [
           {
             "bname": "複合背景",
-            "refs": [],
+            "refs": [
+              {
+                "bgId": "BG_013",
+                "role": "enables"
+              },
+              {
+                "bgId": "BG_080",
+                "role": "pressures"
+              }
+            ],
             "label": "承久の乱後に西国の所領争いが増加し統一的な法典が求められている; 公家法（律令）とは別に武家独自の法体系が必要とされている"
           }
         ]
@@ -8736,7 +9409,40 @@
         "background": [
           {
             "bname": "制度的矛盾",
-            "refs": [],
+            "refs": [
+              {
+                "bgId": "BG_006",
+                "role": "pressures"
+              },
+              {
+                "bgId": "BG_009",
+                "role": "pressures"
+              },
+              {
+                "bgId": "BG_018",
+                "role": "pressures"
+              },
+              {
+                "bgId": "BG_024",
+                "role": "pressures"
+              },
+              {
+                "bgId": "BG_042",
+                "role": "pressures"
+              },
+              {
+                "bgId": "BG_043",
+                "role": "supports"
+              },
+              {
+                "bgId": "BG_057",
+                "role": "pressures"
+              },
+              {
+                "bgId": "BG_070",
+                "role": "pressures"
+              }
+            ],
             "label": "有力御家人の三浦泰村と北条得宗家の安達氏が対立している; 得宗（北条氏嫡流）による権力集中が進む中、有力御家人の三浦氏が独自の軍事力と人脈を維持しており、幕府内の二大勢力の共存が構造的限界に達している"
           }
         ]
@@ -8786,7 +9492,10 @@
           {
             "bname": "外圧環境",
             "refs": [
-              "BG_061"
+              {
+                "bgId": "BG_061",
+                "role": "pressures"
+              }
             ],
             "label": "モンゴル帝国（元）のフビライが日本に朝貢を要求している"
           }
@@ -8827,7 +9536,10 @@
           {
             "bname": "外圧環境",
             "refs": [
-              "BG_061"
+              {
+                "bgId": "BG_061",
+                "role": "pressures"
+              }
             ],
             "label": "外圧への対応圧（蒙古の脅威の複合）"
           }
@@ -8872,8 +9584,14 @@
           {
             "bname": "外圧環境",
             "refs": [
-              "BG_061",
-              "BG_009"
+              {
+                "bgId": "BG_061",
+                "role": "pressures"
+              },
+              {
+                "bgId": "BG_009",
+                "role": "enables"
+              }
             ],
             "label": "安達泰盛が御家人制度の改革を進め得宗被官の反発を招いている; 元寇後に非常体制が解かれた結果、安達泰盛の御家人重視路線と得宗被官の既得権が根本的に対立し、外圧消滅後に内部矛盾の抑制機能が失われている"
           }
@@ -8924,8 +9642,14 @@
           {
             "bname": "外圧環境",
             "refs": [
-              "BG_061",
-              "BG_009"
+              {
+                "bgId": "BG_061",
+                "role": "pressures"
+              },
+              {
+                "bgId": "BG_009",
+                "role": "enables"
+              }
             ],
             "label": "元寇後の恩賞不足と貨幣経済の浸透で御家人が困窮している"
           }
@@ -8981,7 +9705,44 @@
         "background": [
           {
             "bname": "制度的矛盾",
-            "refs": [],
+            "refs": [
+              {
+                "bgId": "BG_006",
+                "role": "pressures"
+              },
+              {
+                "bgId": "BG_018",
+                "role": "pressures"
+              },
+              {
+                "bgId": "BG_026",
+                "role": "pressures"
+              },
+              {
+                "bgId": "BG_040",
+                "role": "pressures"
+              },
+              {
+                "bgId": "BG_046",
+                "role": "pressures"
+              },
+              {
+                "bgId": "BG_054",
+                "role": "pressures"
+              },
+              {
+                "bgId": "BG_059",
+                "role": "pressures"
+              },
+              {
+                "bgId": "BG_070",
+                "role": "pressures"
+              },
+              {
+                "bgId": "BG_077",
+                "role": "pressures"
+              }
+            ],
             "label": "天皇親政回復の意志と幕府支配への抵抗圧（天皇・朝廷(中世)・鎌倉幕府の複合）"
           }
         ]
@@ -9031,7 +9792,10 @@
           {
             "bname": "制度疲弊",
             "refs": [
-              "BG_009"
+              {
+                "bgId": "BG_009",
+                "role": "pressures"
+              }
             ],
             "label": "得宗専制への御家人の不満と元弘の変以降の討幕運動が拡大している"
           }
@@ -9094,7 +9858,10 @@
           {
             "bname": "制度疲弊",
             "refs": [
-              "BG_077"
+              {
+                "bgId": "BG_077",
+                "role": "pressures"
+              }
             ],
             "label": "権力空白の圧（鎌倉幕府の複合）"
           }
@@ -9139,7 +9906,10 @@
           {
             "bname": "権力集中",
             "refs": [
-              "BG_025"
+              {
+                "bgId": "BG_025",
+                "role": "drives"
+              }
             ],
             "label": "建武の新政への武士の不満が広がり足利尊氏が離反している"
           }
@@ -9185,7 +9955,16 @@
         "background": [
           {
             "bname": "勢力対立",
-            "refs": [],
+            "refs": [
+              {
+                "bgId": "BG_018",
+                "role": "drives"
+              },
+              {
+                "bgId": "BG_046",
+                "role": "pressures"
+              }
+            ],
             "label": "建武の新政が崩壊し武家による新たな統治体制が求められている"
           }
         ]
@@ -9247,7 +10026,10 @@
           {
             "bname": "権力集中",
             "refs": [
-              "BG_025"
+              {
+                "bgId": "BG_025",
+                "role": "drives"
+              }
             ],
             "label": "建武の新政の恩賞配分が公家偏重で武士の不満が高まっている; 中先代の乱鎮圧を機に尊氏が後醍醐天皇から独立して行動している"
           }
@@ -9292,8 +10074,14 @@
           {
             "bname": "思想潮流",
             "refs": [
-              "BG_017",
-              "BG_032"
+              {
+                "bgId": "BG_017",
+                "role": "drives"
+              },
+              {
+                "bgId": "BG_032",
+                "role": "pressures"
+              }
             ],
             "label": "権力移行の圧（南北朝分裂・正統性・権威の複合）"
           }
@@ -9349,7 +10137,12 @@
         "background": [
           {
             "bname": "勢力対立",
-            "refs": [],
+            "refs": [
+              {
+                "bgId": "BG_025",
+                "role": "pressures"
+              }
+            ],
             "label": "将軍足利尊氏と弟の直義が幕政の運営方針をめぐり対立している; 尊氏の執事・高師直と直義派が武力衝突に至っている"
           }
         ]
@@ -9405,8 +10198,14 @@
           {
             "bname": "思想潮流",
             "refs": [
-              "BG_017",
-              "BG_032"
+              {
+                "bgId": "BG_017",
+                "role": "drives"
+              },
+              {
+                "bgId": "BG_032",
+                "role": "pressures"
+              }
             ],
             "label": "対立・衝突の圧（南北朝分裂・正統性・権威・中央集権化の複合）"
           }
@@ -9481,8 +10280,14 @@
           {
             "bname": "思想潮流",
             "refs": [
-              "BG_017",
-              "BG_032"
+              {
+                "bgId": "BG_017",
+                "role": "drives"
+              },
+              {
+                "bgId": "BG_032",
+                "role": "pressures"
+              }
             ],
             "label": "南朝の軍事的衰退による南北朝並立の維持不能圧（南北朝分裂・正統性・権威の複合）"
           }
@@ -9533,8 +10338,14 @@
           {
             "bname": "経済圧",
             "refs": [
-              "BG_007",
-              "BG_025"
+              {
+                "bgId": "BG_007",
+                "role": "pressures"
+              },
+              {
+                "bgId": "BG_025",
+                "role": "pressures"
+              }
             ],
             "label": "足利義満が明との国交樹立と貿易の利益を求めている"
           }
@@ -9581,8 +10392,14 @@
           {
             "bname": "経済圧",
             "refs": [
-              "BG_004",
-              "BG_072"
+              {
+                "bgId": "BG_004",
+                "role": "pressures"
+              },
+              {
+                "bgId": "BG_072",
+                "role": "pressures"
+              }
             ],
             "label": "農民・馬借ら民衆の間に徳政（債務免除）への期待が高まっている"
           }
@@ -9632,7 +10449,40 @@
         "background": [
           {
             "bname": "制度的矛盾",
-            "refs": [],
+            "refs": [
+              {
+                "bgId": "BG_006",
+                "role": "pressures"
+              },
+              {
+                "bgId": "BG_025",
+                "role": "pressures"
+              },
+              {
+                "bgId": "BG_027",
+                "role": "pressures"
+              },
+              {
+                "bgId": "BG_028",
+                "role": "pressures"
+              },
+              {
+                "bgId": "BG_059",
+                "role": "pressures"
+              },
+              {
+                "bgId": "BG_070",
+                "role": "pressures"
+              },
+              {
+                "bgId": "BG_077",
+                "role": "pressures"
+              },
+              {
+                "bgId": "BG_082",
+                "role": "pressures"
+              }
+            ],
             "label": "鎌倉公方足利持氏が幕府の関東支配方針に反発している; 将軍義教と持氏の対立が皇位継承問題を契機に決定的となっている"
           }
         ]
@@ -9684,7 +10534,10 @@
           {
             "bname": "制度疲弊",
             "refs": [
-              "BG_047"
+              {
+                "bgId": "BG_047",
+                "role": "pressures"
+              }
             ],
             "label": "専権への反発圧（守護・地頭制の複合）"
           }
@@ -9735,7 +10588,10 @@
           {
             "bname": "権力集中",
             "refs": [
-              "BG_025"
+              {
+                "bgId": "BG_025",
+                "role": "drives"
+              }
             ],
             "label": "鎌倉公方足利成氏と関東管領上杉氏の対立が激化している; 成氏が関東管領上杉憲忠を暗殺し武力衝突が始まっている"
           }
@@ -9780,7 +10636,10 @@
           {
             "bname": "権力集中",
             "refs": [
-              "BG_041"
+              {
+                "bgId": "BG_041",
+                "role": "pressures"
+              }
             ],
             "label": "将軍後継問題で細川勝元と山名宗全が対立している"
           }
@@ -9831,7 +10690,10 @@
           {
             "bname": "権力集中",
             "refs": [
-              "BG_071"
+              {
+                "bgId": "BG_071",
+                "role": "pressures"
+              }
             ],
             "label": "社会疲弊のもとでの権力空白の圧（応仁の乱と秩序崩壊の複合）"
           }
@@ -9882,7 +10744,10 @@
           {
             "bname": "権力集中",
             "refs": [
-              "BG_071"
+              {
+                "bgId": "BG_071",
+                "role": "pressures"
+              }
             ],
             "label": "国人・土民が団結して畠山両軍の撤退を要求している"
           }
@@ -9927,7 +10792,10 @@
           {
             "bname": "制度疲弊",
             "refs": [
-              "BG_047"
+              {
+                "bgId": "BG_047",
+                "role": "pressures"
+              }
             ],
             "label": "守護・富樫政親と一向宗門徒の対立が激化している"
           }
@@ -9972,7 +10840,10 @@
           {
             "bname": "権力集中",
             "refs": [
-              "BG_025"
+              {
+                "bgId": "BG_025",
+                "role": "drives"
+              }
             ],
             "label": "管領細川政元が将軍足利義材の政策に不満を抱いている"
           }
@@ -10017,8 +10888,14 @@
           {
             "bname": "外圧環境",
             "refs": [
-              "BG_030",
-              "BG_007"
+              {
+                "bgId": "BG_030",
+                "role": "pressures"
+              },
+              {
+                "bgId": "BG_007",
+                "role": "supports"
+              }
             ],
             "label": "経済変動のもとでの外圧への対応圧（南蛮貿易/宣教・交易・貿易の複合）"
           }
@@ -10069,8 +10946,14 @@
           {
             "bname": "外圧環境",
             "refs": [
-              "BG_030",
-              "BG_007"
+              {
+                "bgId": "BG_030",
+                "role": "pressures"
+              },
+              {
+                "bgId": "BG_007",
+                "role": "supports"
+              }
             ],
             "label": "経済変動のもとでの外圧への対応圧（南蛮貿易/宣教・交易・貿易の複合）"
           }
@@ -10127,7 +11010,10 @@
           {
             "bname": "制度疲弊",
             "refs": [
-              "BG_010"
+              {
+                "bgId": "BG_010",
+                "role": "pressures"
+              }
             ],
             "label": "毛利元就が安芸を統一し陶晴賢の大内氏簒奪政権と対立している"
           }
@@ -10178,7 +11064,10 @@
           {
             "bname": "権力集中",
             "refs": [
-              "BG_001"
+              {
+                "bgId": "BG_001",
+                "role": "drives"
+              }
             ],
             "label": "軍事的緊張のもとでの対立・衝突の圧（織田政権の複合）"
           }
@@ -10228,7 +11117,16 @@
         "background": [
           {
             "bname": "勢力対立",
-            "refs": [],
+            "refs": [
+              {
+                "bgId": "BG_015",
+                "role": "pressures"
+              },
+              {
+                "bgId": "BG_025",
+                "role": "pressures"
+              }
+            ],
             "label": "足利義昭が各地の大名に将軍就任への支援を求めている"
           }
         ]
@@ -10286,7 +11184,10 @@
           {
             "bname": "権力集中",
             "refs": [
-              "BG_001"
+              {
+                "bgId": "BG_001",
+                "role": "drives"
+              }
             ],
             "label": "浅井長政が信長の朝倉攻めに反発し同盟を破棄している"
           }
@@ -10333,7 +11234,10 @@
           {
             "bname": "権力集中",
             "refs": [
-              "BG_001"
+              {
+                "bgId": "BG_001",
+                "role": "drives"
+              }
             ],
             "label": "体制転換の圧（織田政権の複合）"
           }
@@ -10377,7 +11281,16 @@
         "background": [
           {
             "bname": "勢力対立",
-            "refs": [],
+            "refs": [
+              {
+                "bgId": "BG_001",
+                "role": "drives"
+              },
+              {
+                "bgId": "BG_015",
+                "role": "pressures"
+              }
+            ],
             "label": "武田信玄の死去により包囲網が瓦解している"
           }
         ]
@@ -10438,7 +11351,16 @@
         "background": [
           {
             "bname": "勢力対立",
-            "refs": [],
+            "refs": [
+              {
+                "bgId": "BG_001",
+                "role": "pressures"
+              },
+              {
+                "bgId": "BG_006",
+                "role": "pressures"
+              }
+            ],
             "label": "対立・衝突の圧（織田政権・徳川家の複合）"
           }
         ]
@@ -10488,7 +11410,10 @@
           {
             "bname": "権力集中",
             "refs": [
-              "BG_001"
+              {
+                "bgId": "BG_001",
+                "role": "drives"
+              }
             ],
             "label": "天下統一事業における拠点整備の必要（織田政権の複合）"
           }
@@ -10545,7 +11470,10 @@
           {
             "bname": "権力集中",
             "refs": [
-              "BG_001"
+              {
+                "bgId": "BG_001",
+                "role": "drives"
+              }
             ],
             "label": "本能寺の変で織田信長が横死し権力の空白が生じた"
           }
@@ -10602,7 +11530,10 @@
           {
             "bname": "権力集中",
             "refs": [
-              "BG_001"
+              {
+                "bgId": "BG_001",
+                "role": "drives"
+              }
             ],
             "label": "明智光秀が織田信長への不満を募らせている"
           }
@@ -10646,7 +11577,20 @@
         "background": [
           {
             "bname": "勢力対立",
-            "refs": [],
+            "refs": [
+              {
+                "bgId": "BG_001",
+                "role": "pressures"
+              },
+              {
+                "bgId": "BG_003",
+                "role": "pressures"
+              },
+              {
+                "bgId": "BG_041",
+                "role": "pressures"
+              }
+            ],
             "label": "信長の後継をめぐり羽柴秀吉と柴田勝家が対立している; 清洲会議後の権力配分に不満が高まっている; 北陸と近畿の勢力圏が衝突する構図となっている"
           }
         ]
@@ -10698,7 +11642,10 @@
           {
             "bname": "権力集中",
             "refs": [
-              "BG_003"
+              {
+                "bgId": "BG_003",
+                "role": "drives"
+              }
             ],
             "label": "秀吉軍が尾張方面に進出し軍事的緊張が高まっている"
           }
@@ -10751,8 +11698,14 @@
           {
             "bname": "思想潮流",
             "refs": [
-              "BG_017",
-              "BG_010"
+              {
+                "bgId": "BG_017",
+                "role": "drives"
+              },
+              {
+                "bgId": "BG_010",
+                "role": "enables"
+              }
             ],
             "label": "天下統一に向け朝廷の権威を利用する必要がある"
           }
@@ -10804,7 +11757,20 @@
         "background": [
           {
             "bname": "勢力対立",
-            "refs": [],
+            "refs": [
+              {
+                "bgId": "BG_003",
+                "role": "pressures"
+              },
+              {
+                "bgId": "BG_015",
+                "role": "pressures"
+              },
+              {
+                "bgId": "BG_076",
+                "role": "pressures"
+              }
+            ],
             "label": "権力空白の圧（豊臣政権・大名勢力の複合）"
           }
         ]
@@ -10862,8 +11828,14 @@
           {
             "bname": "思想潮流",
             "refs": [
-              "BG_045",
-              "BG_029"
+              {
+                "bgId": "BG_045",
+                "role": "drives"
+              },
+              {
+                "bgId": "BG_029",
+                "role": "supports"
+              }
             ],
             "label": "秩序維持の圧（キリスト教・九州・大名勢力の複合）"
           }
@@ -10928,8 +11900,14 @@
           {
             "bname": "思想潮流",
             "refs": [
-              "BG_017",
-              "BG_003"
+              {
+                "bgId": "BG_017",
+                "role": "drives"
+              },
+              {
+                "bgId": "BG_003",
+                "role": "drives"
+              }
             ],
             "label": "九州征伐の成功により秀吉の権威がさらに高まっている"
           }
@@ -10982,7 +11960,10 @@
           {
             "bname": "制度疲弊",
             "refs": [
-              "BG_081"
+              {
+                "bgId": "BG_081",
+                "role": "pressures"
+              }
             ],
             "label": "兵農分離による身分秩序の確立が政策課題である"
           }
@@ -11038,7 +12019,20 @@
         "background": [
           {
             "bname": "勢力対立",
-            "refs": [],
+            "refs": [
+              {
+                "bgId": "BG_015",
+                "role": "pressures"
+              },
+              {
+                "bgId": "BG_072",
+                "role": "pressures"
+              },
+              {
+                "bgId": "BG_081",
+                "role": "enables"
+              }
+            ],
             "label": "対立・衝突の圧（戦国の分裂・大名勢力・検地・兵農分離の複合）"
           }
         ]
@@ -11111,7 +12105,16 @@
         "background": [
           {
             "bname": "複合背景",
-            "refs": [],
+            "refs": [
+              {
+                "bgId": "BG_024",
+                "role": "drives"
+              },
+              {
+                "bgId": "BG_029",
+                "role": "supports"
+              }
+            ],
             "label": "九州・四国の平定が完了し残る抵抗勢力は関東の北条氏のみとなっている"
           }
         ]
@@ -11175,7 +12178,10 @@
           {
             "bname": "経済圧",
             "refs": [
-              "BG_020"
+              {
+                "bgId": "BG_020",
+                "role": "pressures"
+              }
             ],
             "label": "武士・農民・商人の境界が曖昧で社会秩序が不安定である"
           }
@@ -11222,7 +12228,10 @@
           {
             "bname": "権力集中",
             "refs": [
-              "BG_003"
+              {
+                "bgId": "BG_003",
+                "role": "drives"
+              }
             ],
             "label": "秀吉が明の征服を構想し朝鮮に道案内を求めたが拒否されている"
           }
@@ -11269,7 +12278,10 @@
           {
             "bname": "権力集中",
             "refs": [
-              "BG_003"
+              {
+                "bgId": "BG_003",
+                "role": "drives"
+              }
             ],
             "label": "秀吉が講和条件に不満を持ち再出兵を決断している"
           }
@@ -11315,7 +12327,36 @@
         "background": [
           {
             "bname": "勢力対立",
-            "refs": [],
+            "refs": [
+              {
+                "bgId": "BG_003",
+                "role": "pressures"
+              },
+              {
+                "bgId": "BG_027",
+                "role": "pressures"
+              },
+              {
+                "bgId": "BG_028",
+                "role": "pressures"
+              },
+              {
+                "bgId": "BG_041",
+                "role": "pressures"
+              },
+              {
+                "bgId": "BG_059",
+                "role": "pressures"
+              },
+              {
+                "bgId": "BG_076",
+                "role": "pressures"
+              },
+              {
+                "bgId": "BG_082",
+                "role": "pressures"
+              }
+            ],
             "label": "継承問題のもとでの権力空白の圧（豊臣政権・後継争いの複合）"
           }
         ]
@@ -11370,7 +12411,16 @@
         "background": [
           {
             "bname": "勢力対立",
-            "refs": [],
+            "refs": [
+              {
+                "bgId": "BG_003",
+                "role": "pressures"
+              },
+              {
+                "bgId": "BG_006",
+                "role": "pressures"
+              }
+            ],
             "label": "秀吉死後の政権内部で徳川家康と石田三成の対立が激化している"
           }
         ]
@@ -11422,8 +12472,14 @@
           {
             "bname": "思想潮流",
             "refs": [
-              "BG_017",
-              "BG_006"
+              {
+                "bgId": "BG_017",
+                "role": "drives"
+              },
+              {
+                "bgId": "BG_006",
+                "role": "drives"
+              }
             ],
             "label": "権力移行の圧（徳川家・源氏・正統性・権威の複合）"
           }
@@ -11476,7 +12532,10 @@
           {
             "bname": "権力集中",
             "refs": [
-              "BG_006"
+              {
+                "bgId": "BG_006",
+                "role": "drives"
+              }
             ],
             "label": "将軍職の世襲を示し徳川氏の政権独占を確立する必要がある"
           }
@@ -11528,7 +12587,20 @@
         "background": [
           {
             "bname": "勢力対立",
-            "refs": [],
+            "refs": [
+              {
+                "bgId": "BG_003",
+                "role": "pressures"
+              },
+              {
+                "bgId": "BG_075",
+                "role": "supports"
+              },
+              {
+                "bgId": "BG_076",
+                "role": "pressures"
+              }
+            ],
             "label": "豊臣勢力の残存に対する権力統合の圧（豊臣家問題・豊臣政権・浪人問題の複合）"
           }
         ]
@@ -11589,7 +12661,24 @@
         "background": [
           {
             "bname": "勢力対立",
-            "refs": [],
+            "refs": [
+              {
+                "bgId": "BG_003",
+                "role": "pressures"
+              },
+              {
+                "bgId": "BG_015",
+                "role": "pressures"
+              },
+              {
+                "bgId": "BG_043",
+                "role": "supports"
+              },
+              {
+                "bgId": "BG_076",
+                "role": "pressures"
+              }
+            ],
             "label": "軍事的緊張のもとでの権力空白の圧（豊臣家問題・大名勢力の複合）"
           }
         ]
@@ -11640,7 +12729,20 @@
         "background": [
           {
             "bname": "勢力対立",
-            "refs": [],
+            "refs": [
+              {
+                "bgId": "BG_003",
+                "role": "pressures"
+              },
+              {
+                "bgId": "BG_006",
+                "role": "pressures"
+              },
+              {
+                "bgId": "BG_076",
+                "role": "pressures"
+              }
+            ],
             "label": "権力空白の圧（豊臣家問題・豊臣政権・徳川家の複合）"
           }
         ]
@@ -11692,8 +12794,14 @@
           {
             "bname": "思想潮流",
             "refs": [
-              "BG_038",
-              "BG_076"
+              {
+                "bgId": "BG_038",
+                "role": "drives"
+              },
+              {
+                "bgId": "BG_076",
+                "role": "pressures"
+              }
             ],
             "label": "大坂の陣終結後に大名統制の法的枠組みが必要となっている; 武家社会の秩序と幕府への服従を明文化する必要がある"
           }
@@ -11749,7 +12857,20 @@
         "background": [
           {
             "bname": "制度的矛盾",
-            "refs": [],
+            "refs": [
+              {
+                "bgId": "BG_006",
+                "role": "pressures"
+              },
+              {
+                "bgId": "BG_015",
+                "role": "pressures"
+              },
+              {
+                "bgId": "BG_070",
+                "role": "pressures"
+              }
+            ],
             "label": "朝廷が独自に大名と結ぶことを防ぐ必要がある; 天皇・公家の活動範囲を明確に規定する要求がある; 幕府が朝廷を統制下に置く法的根拠を求めている"
           }
         ]
@@ -11795,8 +12916,14 @@
           {
             "bname": "思想潮流",
             "refs": [
-              "BG_045",
-              "BG_030"
+              {
+                "bgId": "BG_045",
+                "role": "drives"
+              },
+              {
+                "bgId": "BG_030",
+                "role": "pressures"
+              }
             ],
             "label": "経済変動のもとでの外圧への対応圧（南蛮貿易/宣教・キリスト教・交易・貿易の複合）"
           }
@@ -11878,7 +13005,16 @@
         "background": [
           {
             "bname": "制度的矛盾",
-            "refs": [],
+            "refs": [
+              {
+                "bgId": "BG_015",
+                "role": "pressures"
+              },
+              {
+                "bgId": "BG_068",
+                "role": "pressures"
+              }
+            ],
             "label": "制度整備の必要（大名勢力・人民把握制度の複合）"
           }
         ]
@@ -11928,7 +13064,10 @@
           {
             "bname": "思想潮流",
             "refs": [
-              "BG_045"
+              {
+                "bgId": "BG_045",
+                "role": "drives"
+              }
             ],
             "label": "島原・天草の新領主（松倉氏・寺沢氏）による急激な課税強化とキリシタン弾圧が数年にわたり農民の生存限界を超える収奪を続けており、旧領主時代の慣行が完全に破壊されている"
           }
@@ -11975,8 +13114,14 @@
           {
             "bname": "思想潮流",
             "refs": [
-              "BG_045",
-              "BG_030"
+              {
+                "bgId": "BG_045",
+                "role": "drives"
+              },
+              {
+                "bgId": "BG_030",
+                "role": "pressures"
+              }
             ],
             "label": "軍事的緊張のもとでの外圧への対応圧（キリスト教・南蛮貿易/宣教・交易・貿易の複合）"
           }
@@ -12035,7 +13180,10 @@
           {
             "bname": "外圧環境",
             "refs": [
-              "BG_030"
+              {
+                "bgId": "BG_030",
+                "role": "pressures"
+              }
             ],
             "label": "外国人の行動を厳格に管理する必要が認識されている"
           }
@@ -12075,7 +13223,12 @@
         "background": [
           {
             "bname": "複合背景",
-            "refs": [],
+            "refs": [
+              {
+                "bgId": "BG_075",
+                "role": "supports"
+              }
+            ],
             "label": "対立・衝突の圧（浪人問題の複合）"
           }
         ]
@@ -12114,7 +13267,16 @@
         "background": [
           {
             "bname": "複合背景",
-            "refs": [],
+            "refs": [
+              {
+                "bgId": "BG_006",
+                "role": "drives"
+              },
+              {
+                "bgId": "BG_075",
+                "role": "pressures"
+              }
+            ],
             "label": "武断政治の限界が露呈し牢人問題が沈静化した後の統治転換が課題となっている"
           }
         ]
@@ -12170,8 +13332,14 @@
           {
             "bname": "思想潮流",
             "refs": [
-              "BG_038",
-              "BG_041"
+              {
+                "bgId": "BG_038",
+                "role": "drives"
+              },
+              {
+                "bgId": "BG_041",
+                "role": "pressures"
+              }
             ],
             "label": "法的統制の圧（儒学思想・後継争いの複合）"
           }
@@ -12222,7 +13390,10 @@
           {
             "bname": "経済圧",
             "refs": [
-              "BG_020"
+              {
+                "bgId": "BG_020",
+                "role": "pressures"
+              }
             ],
             "label": "泰平下の経済成長と町人文化隆盛の勢い（商業経済の複合）"
           }
@@ -12267,7 +13438,10 @@
           {
             "bname": "思想潮流",
             "refs": [
-              "BG_038"
+              {
+                "bgId": "BG_038",
+                "role": "drives"
+              }
             ],
             "label": "綱吉政治の弊害から幕政の立て直しが求められている; 貨幣改鋳による経済混乱が深刻化している"
           }
@@ -12312,7 +13486,10 @@
           {
             "bname": "制度疲弊",
             "refs": [
-              "BG_083"
+              {
+                "bgId": "BG_083",
+                "role": "pressures"
+              }
             ],
             "label": "秩序再編の圧（藩体制の複合）"
           }
@@ -12365,7 +13542,10 @@
           {
             "bname": "制度疲弊",
             "refs": [
-              "BG_067"
+              {
+                "bgId": "BG_067",
+                "role": "pressures"
+              }
             ],
             "label": "鎖国下でも蘭学への関心が一部知識人の間で高まっている"
           }
@@ -12406,7 +13586,10 @@
           {
             "bname": "経済圧",
             "refs": [
-              "BG_004"
+              {
+                "bgId": "BG_004",
+                "role": "pressures"
+              }
             ],
             "label": "米価高騰と食糧不足が都市部にも波及している"
           }
@@ -12452,7 +13635,28 @@
         "background": [
           {
             "bname": "複合背景",
-            "refs": [],
+            "refs": [
+              {
+                "bgId": "BG_004",
+                "role": "supports"
+              },
+              {
+                "bgId": "BG_006",
+                "role": "drives"
+              },
+              {
+                "bgId": "BG_007",
+                "role": "supports"
+              },
+              {
+                "bgId": "BG_020",
+                "role": "supports"
+              },
+              {
+                "bgId": "BG_070",
+                "role": "enables"
+              }
+            ],
             "label": "幕府財政の悪化が従来の緊縮策では解決困難である; 商業経済の発達により貨幣経済への対応が必要となっている"
           }
         ]
@@ -12498,8 +13702,14 @@
           {
             "bname": "経済圧",
             "refs": [
-              "BG_044",
-              "BG_034"
+              {
+                "bgId": "BG_044",
+                "role": "pressures"
+              },
+              {
+                "bgId": "BG_034",
+                "role": "supports"
+              }
             ],
             "label": "異常気象と農業構造の脆弱性による飢饉圧（飢饉・疫病・東北/蝦夷・商業経済の複合）"
           }
@@ -12562,8 +13772,14 @@
           {
             "bname": "経済圧",
             "refs": [
-              "BG_044",
-              "BG_083"
+              {
+                "bgId": "BG_044",
+                "role": "pressures"
+              },
+              {
+                "bgId": "BG_083",
+                "role": "enables"
+              }
             ],
             "label": "社会疲弊のもとでの権力空白の圧（藩体制・飢饉・疫病の複合）"
           }
@@ -12610,8 +13826,14 @@
           {
             "bname": "外圧環境",
             "refs": [
-              "BG_033",
-              "BG_067"
+              {
+                "bgId": "BG_033",
+                "role": "pressures"
+              },
+              {
+                "bgId": "BG_067",
+                "role": "enables"
+              }
             ],
             "label": "ロシアの極東進出が鎖国体制の前提（長崎一港限定の外交）を北方から崩す圧力となり、250年間維持された外交体制の制度的前提が揺らぎ始めている"
           }
@@ -12658,8 +13880,14 @@
           {
             "bname": "外圧環境",
             "refs": [
-              "BG_033",
-              "BG_007"
+              {
+                "bgId": "BG_033",
+                "role": "pressures"
+              },
+              {
+                "bgId": "BG_007",
+                "role": "supports"
+              }
             ],
             "label": "ロシアの極東進出が本格化し通商要求が強まっている; ラクスマン来航以来ロシアの南下圧力が継続しており、鎖国体制の「北方の空白」が制度的脆弱性として露呈しつつある"
           }
@@ -12716,8 +13944,14 @@
           {
             "bname": "外圧環境",
             "refs": [
-              "BG_037",
-              "BG_035"
+              {
+                "bgId": "BG_037",
+                "role": "pressures"
+              },
+              {
+                "bgId": "BG_035",
+                "role": "supports"
+              }
             ],
             "label": "外国船の日本近海への接近が常態化する一方、幕府は打払令を掲げつつ実際に打払う海軍力を持たず、宣言と実力の乖離が制度的自己矛盾を生んでいた; イギリス捕鯨船の乗組員が常陸大津浜に上陸して食料・水を要求し、沿岸住民と藩役人が対応に混乱した"
           }
@@ -12774,8 +14008,14 @@
           {
             "bname": "外圧環境",
             "refs": [
-              "BG_016",
-              "BG_067"
+              {
+                "bgId": "BG_016",
+                "role": "pressures"
+              },
+              {
+                "bgId": "BG_067",
+                "role": "enables"
+              }
             ],
             "label": "外圧への対応圧（対英関係・鎖国体制の複合）"
           }
@@ -12828,7 +14068,10 @@
           {
             "bname": "経済圧",
             "refs": [
-              "BG_044"
+              {
+                "bgId": "BG_044",
+                "role": "pressures"
+              }
             ],
             "label": "社会疲弊のもとでの権力空白の圧（飢饉・疫病の複合）"
           }
@@ -12879,7 +14122,10 @@
           {
             "bname": "外圧環境",
             "refs": [
-              "BG_037"
+              {
+                "bgId": "BG_037",
+                "role": "pressures"
+              }
             ],
             "label": "対外認識をめぐる幕閣内の対立圧（開国と攘夷の複合）"
           }
@@ -12920,7 +14166,10 @@
           {
             "bname": "経済圧",
             "refs": [
-              "BG_004"
+              {
+                "bgId": "BG_004",
+                "role": "pressures"
+              }
             ],
             "label": "権力集中のもとでの秩序再編の圧（租税・財政の複合）"
           }
@@ -12967,7 +14216,10 @@
           {
             "bname": "権力集中",
             "refs": [
-              "BG_015"
+              {
+                "bgId": "BG_015",
+                "role": "drives"
+              }
             ],
             "label": "幕府が諸大名に意見を求め挙国一致の対応を模索している"
           }
@@ -13014,8 +14266,14 @@
           {
             "bname": "経済圧",
             "refs": [
-              "BG_035",
-              "BG_067"
+              {
+                "bgId": "BG_035",
+                "role": "pressures"
+              },
+              {
+                "bgId": "BG_067",
+                "role": "enables"
+              }
             ],
             "label": "軍事的緊張のもとでの外圧への対応圧（海上勢力・鎖国体制の複合）"
           }
@@ -13066,7 +14324,10 @@
           {
             "bname": "制度疲弊",
             "refs": [
-              "BG_056"
+              {
+                "bgId": "BG_056",
+                "role": "pressures"
+              }
             ],
             "label": "条約勅許問題と将軍継嗣問題で政治対立が激化している"
           }
@@ -13111,8 +14372,14 @@
           {
             "bname": "経済圧",
             "refs": [
-              "BG_007",
-              "BG_056"
+              {
+                "bgId": "BG_007",
+                "role": "pressures"
+              },
+              {
+                "bgId": "BG_056",
+                "role": "enables"
+              }
             ],
             "label": "ハリスが通商条約の締結を強く要求している; 朝廷の勅許が得られないまま条約締結が迫られている"
           }
@@ -13165,8 +14432,14 @@
           {
             "bname": "外圧環境",
             "refs": [
-              "BG_037",
-              "BG_031"
+              {
+                "bgId": "BG_037",
+                "role": "pressures"
+              },
+              {
+                "bgId": "BG_031",
+                "role": "pressures"
+              }
             ],
             "label": "安政の大獄による弾圧が尊攘派の憎悪を増大させている"
           }
@@ -13213,8 +14486,14 @@
           {
             "bname": "外圧環境",
             "refs": [
-              "BG_016",
-              "BG_031"
+              {
+                "bgId": "BG_016",
+                "role": "pressures"
+              },
+              {
+                "bgId": "BG_031",
+                "role": "pressures"
+              }
             ],
             "label": "攘夷意識と外国人居留の衝突圧（雄藩連合・対英関係の複合）"
           }
@@ -13265,8 +14544,14 @@
           {
             "bname": "外圧環境",
             "refs": [
-              "BG_016",
-              "BG_031"
+              {
+                "bgId": "BG_016",
+                "role": "pressures"
+              },
+              {
+                "bgId": "BG_031",
+                "role": "pressures"
+              }
             ],
             "label": "生麦事件の賠償をめぐり薩摩藩とイギリスが対立している"
           }
@@ -13323,7 +14608,10 @@
           {
             "bname": "権力集中",
             "refs": [
-              "BG_031"
+              {
+                "bgId": "BG_031",
+                "role": "drives"
+              }
             ],
             "label": "対立・衝突の圧（雄藩連合の複合）"
           }
@@ -13364,7 +14652,10 @@
           {
             "bname": "権力集中",
             "refs": [
-              "BG_031"
+              {
+                "bgId": "BG_031",
+                "role": "drives"
+              }
             ],
             "label": "薩摩藩と長州藩がともに幕府への不満を強めている"
           }
@@ -13409,7 +14700,10 @@
           {
             "bname": "権力集中",
             "refs": [
-              "BG_031"
+              {
+                "bgId": "BG_031",
+                "role": "drives"
+              }
             ],
             "label": "薩長同盟の成立で武力倒幕の機運が高まっている"
           }
@@ -13459,7 +14753,16 @@
         "background": [
           {
             "bname": "勢力対立",
-            "refs": [],
+            "refs": [
+              {
+                "bgId": "BG_006",
+                "role": "pressures"
+              },
+              {
+                "bgId": "BG_031",
+                "role": "pressures"
+              }
+            ],
             "label": "法的統制の圧（徳川家・雄藩連合の複合）"
           }
         ]
@@ -13508,7 +14811,16 @@
         "background": [
           {
             "bname": "制度的矛盾",
-            "refs": [],
+            "refs": [
+              {
+                "bgId": "BG_010",
+                "role": "pressures"
+              },
+              {
+                "bgId": "BG_083",
+                "role": "pressures"
+              }
+            ],
             "label": "中央集権化のために藩体制を解体する必要の圧（藩体制・中央集権化の複合）"
           }
         ]
@@ -13560,7 +14872,10 @@
           {
             "bname": "経済圧",
             "refs": [
-              "BG_004"
+              {
+                "bgId": "BG_004",
+                "role": "pressures"
+              }
             ],
             "label": "制度的行き詰まりの圧（租税・財政の複合）"
           }
@@ -13612,7 +14927,24 @@
         "background": [
           {
             "bname": "制度的矛盾",
-            "refs": [],
+            "refs": [
+              {
+                "bgId": "BG_008",
+                "role": "pressures"
+              },
+              {
+                "bgId": "BG_056",
+                "role": "pressures"
+              },
+              {
+                "bgId": "BG_062",
+                "role": "pressures"
+              },
+              {
+                "bgId": "BG_064",
+                "role": "pressures"
+              }
+            ],
             "label": "自由民権運動による国会開設要求と同時に、欧米列強との条約改正交渉で「法治国家でない」と批判される状態が続いており、対内・対外双方から憲法制定を迫る構造的圧力が存在する"
           }
         ]
@@ -13673,7 +15005,16 @@
         "background": [
           {
             "bname": "制度的矛盾",
-            "refs": [],
+            "refs": [
+              {
+                "bgId": "BG_055",
+                "role": "drives"
+              },
+              {
+                "bgId": "BG_064",
+                "role": "enables"
+              }
+            ],
             "label": "天皇主権と臣民の権利義務を規定する必要がある"
           }
         ]
@@ -13729,7 +15070,10 @@
           {
             "bname": "外圧環境",
             "refs": [
-              "BG_022"
+              {
+                "bgId": "BG_022",
+                "role": "pressures"
+              }
             ],
             "label": "朝鮮の支配権をめぐり日本と清が対立している"
           }
@@ -13770,7 +15114,10 @@
           {
             "bname": "外圧環境",
             "refs": [
-              "BG_033"
+              {
+                "bgId": "BG_033",
+                "role": "pressures"
+              }
             ],
             "label": "ロシアの満州・朝鮮への南下政策が日英両国の脅威となっている; イギリスが「光栄ある孤立」政策を転換する契機を求めている; 日本がロシアに対抗するため列強との同盟を必要としている"
           }
@@ -13823,7 +15170,10 @@
           {
             "bname": "外圧環境",
             "refs": [
-              "BG_022"
+              {
+                "bgId": "BG_022",
+                "role": "pressures"
+              }
             ],
             "label": "外圧への対応圧（朝鮮半島情勢・対ロシア関係・GHQ占領の複合）"
           }
@@ -13892,7 +15242,10 @@
           {
             "bname": "権力集中",
             "refs": [
-              "BG_055"
+              {
+                "bgId": "BG_055",
+                "role": "drives"
+              }
             ],
             "label": "専権への反発圧（明治政府の複合）"
           }
@@ -13933,7 +15286,10 @@
           {
             "bname": "外圧環境",
             "refs": [
-              "BG_016"
+              {
+                "bgId": "BG_016",
+                "role": "pressures"
+              }
             ],
             "label": "ヨーロッパの帝国主義列強間の対立が極限に達している"
           }
@@ -13978,7 +15334,10 @@
           {
             "bname": "経済圧",
             "refs": [
-              "BG_004"
+              {
+                "bgId": "BG_004",
+                "role": "pressures"
+              }
             ],
             "label": "大戦景気の陰で物価が急騰し庶民の生活が困窮している"
           }
@@ -14028,7 +15387,16 @@
         "background": [
           {
             "bname": "複合背景",
-            "refs": [],
+            "refs": [
+              {
+                "bgId": "BG_049",
+                "role": "supports"
+              },
+              {
+                "bgId": "BG_060",
+                "role": "supports"
+              }
+            ],
             "label": "災害への対応圧（インフラ・復興の複合）"
           }
         ]
@@ -14074,7 +15442,10 @@
           {
             "bname": "制度疲弊",
             "refs": [
-              "BG_062"
+              {
+                "bgId": "BG_062",
+                "role": "pressures"
+              }
             ],
             "label": "大正デモクラシーの高まりで男子普通選挙を求める声が強まっている"
           }
@@ -14115,8 +15486,14 @@
           {
             "bname": "外圧環境",
             "refs": [
-              "BG_033",
-              "BG_062"
+              {
+                "bgId": "BG_033",
+                "role": "pressures"
+              },
+              {
+                "bgId": "BG_062",
+                "role": "enables"
+              }
             ],
             "label": "政府が国体変革と私有財産否認を取り締まる法的根拠を求めている"
           }
@@ -14163,8 +15540,14 @@
           {
             "bname": "外圧環境",
             "refs": [
-              "BG_008",
-              "BG_020"
+              {
+                "bgId": "BG_008",
+                "role": "pressures"
+              },
+              {
+                "bgId": "BG_020",
+                "role": "supports"
+              }
             ],
             "label": "世界恐慌の影響で日本経済が深刻な不況に陥っている"
           }
@@ -14211,7 +15594,10 @@
           {
             "bname": "外圧環境",
             "refs": [
-              "BG_008"
+              {
+                "bgId": "BG_008",
+                "role": "pressures"
+              }
             ],
             "label": "満州事変後の国際的孤立と国内強硬論の圧（対外関係(近代)・対英関係の複合）"
           }
@@ -14258,7 +15644,10 @@
           {
             "bname": "外圧環境",
             "refs": [
-              "BG_008"
+              {
+                "bgId": "BG_008",
+                "role": "pressures"
+              }
             ],
             "label": "華北への日本軍の進出と中国の抗日運動が衝突している; 盧溝橋で日中両軍が偶発的に衝突している"
           }
@@ -14299,7 +15688,10 @@
           {
             "bname": "外圧環境",
             "refs": [
-              "BG_079"
+              {
+                "bgId": "BG_079",
+                "role": "pressures"
+              }
             ],
             "label": "日中戦争の長期化でアメリカとの関係が悪化している"
           }
@@ -14340,7 +15732,10 @@
           {
             "bname": "外圧環境",
             "refs": [
-              "BG_008"
+              {
+                "bgId": "BG_008",
+                "role": "pressures"
+              }
             ],
             "label": "石油禁輸措置により日本の戦争遂行能力が限界に達している"
           }
@@ -14381,7 +15776,10 @@
           {
             "bname": "外圧環境",
             "refs": [
-              "BG_048"
+              {
+                "bgId": "BG_048",
+                "role": "pressures"
+              }
             ],
             "label": "体制転換の圧（GHQ占領の複合）"
           }
@@ -14426,7 +15824,10 @@
           {
             "bname": "外圧環境",
             "refs": [
-              "BG_051"
+              {
+                "bgId": "BG_051",
+                "role": "pressures"
+              }
             ],
             "label": "体制転換の圧（冷戦構造の複合）"
           }
@@ -14467,8 +15868,14 @@
           {
             "bname": "外圧環境",
             "refs": [
-              "BG_048",
-              "BG_064"
+              {
+                "bgId": "BG_048",
+                "role": "pressures"
+              },
+              {
+                "bgId": "BG_064",
+                "role": "enables"
+              }
             ],
             "label": "秩序再編の圧（明治憲法体制・GHQ占領・戦後憲法体制の複合）"
           }
@@ -14521,7 +15928,10 @@
           {
             "bname": "制度疲弊",
             "refs": [
-              "BG_073"
+              {
+                "bgId": "BG_073",
+                "role": "pressures"
+              }
             ],
             "label": "制度整備の必要（戦後憲法体制の複合）"
           }
@@ -14568,7 +15978,10 @@
           {
             "bname": "外圧環境",
             "refs": [
-              "BG_051"
+              {
+                "bgId": "BG_051",
+                "role": "pressures"
+              }
             ],
             "label": "冷戦の激化で西側諸国が日本の早期独立回復を求めている; 朝鮮戦争勃発で日本の戦略的重要性が高まっている"
           }
@@ -14621,8 +16034,14 @@
           {
             "bname": "外圧環境",
             "refs": [
-              "BG_048",
-              "BG_056"
+              {
+                "bgId": "BG_048",
+                "role": "pressures"
+              },
+              {
+                "bgId": "BG_056",
+                "role": "enables"
+              }
             ],
             "label": "対立・衝突の圧（条約体制・GHQ占領の複合）"
           }
@@ -14681,8 +16100,14 @@
           {
             "bname": "外圧環境",
             "refs": [
-              "BG_051",
-              "BG_043"
+              {
+                "bgId": "BG_051",
+                "role": "pressures"
+              },
+              {
+                "bgId": "BG_043",
+                "role": "supports"
+              }
             ],
             "label": "主権回復後の安全保障の空白を埋め"
           }
@@ -14734,7 +16159,16 @@
         "background": [
           {
             "bname": "複合背景",
-            "refs": [],
+            "refs": [
+              {
+                "bgId": "BG_049",
+                "role": "supports"
+              },
+              {
+                "bgId": "BG_073",
+                "role": "enables"
+              }
+            ],
             "label": "戦後復興の成果を世界に示す機会が求められている"
           }
         ]
@@ -14774,7 +16208,10 @@
           {
             "bname": "外圧環境",
             "refs": [
-              "BG_079"
+              {
+                "bgId": "BG_079",
+                "role": "pressures"
+              }
             ],
             "label": "沖縄の住民が長年にわたり日本復帰を求めている"
           }
@@ -14819,8 +16256,14 @@
           {
             "bname": "外圧環境",
             "refs": [
-              "BG_079",
-              "BG_007"
+              {
+                "bgId": "BG_079",
+                "role": "pressures"
+              },
+              {
+                "bgId": "BG_007",
+                "role": "supports"
+              }
             ],
             "label": "アメリカの貿易赤字が拡大しドル高是正が求められている; 日米貿易摩擦が深刻化し政治問題となっている; レーガン政権の財政赤字拡大によるドル高がアメリカ製造業の競争力を喪失させ、議会に保護主義立法の圧力が高まっており、協調介入なき場合は貿易戦争が不可避である"
           }
@@ -14879,7 +16322,10 @@
           {
             "bname": "権力集中",
             "refs": [
-              "BG_082"
+              {
+                "bgId": "BG_082",
+                "role": "drives"
+              }
             ],
             "label": "天皇の病状悪化に伴い自粛ムードが社会に広がっている"
           }
@@ -14923,7 +16369,12 @@
         "background": [
           {
             "bname": "複合背景",
-            "refs": [],
+            "refs": [
+              {
+                "bgId": "BG_060",
+                "role": "supports"
+              }
+            ],
             "label": "災害への対応圧（自然災害の複合）"
           }
         ]
@@ -14966,7 +16417,16 @@
         "background": [
           {
             "bname": "複合背景",
-            "refs": [],
+            "refs": [
+              {
+                "bgId": "BG_034",
+                "role": "supports"
+              },
+              {
+                "bgId": "BG_060",
+                "role": "supports"
+              }
+            ],
             "label": "災害への対応圧（東北/蝦夷・自然災害の複合）"
           }
         ]
@@ -15016,7 +16476,10 @@
           {
             "bname": "権力集中",
             "refs": [
-              "BG_014"
+              {
+                "bgId": "BG_014",
+                "role": "drives"
+              }
             ],
             "label": "秩序再編の圧（院政体制の複合）"
           }
