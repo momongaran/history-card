@@ -64,6 +64,28 @@ header .stats { font-size: 11px; color: var(--muted); margin-left: auto; white-s
   display: inline-block; font-size: 10px; padding: 1px 6px; border-radius: 4px;
   margin-top: 3px; color: #fff; font-weight: 600;
 }
+.event-card .pattern-tag {
+  display: inline-block; font-size: 10px; padding: 1px 6px; border-radius: 4px;
+  margin-top: 3px; margin-left: 3px; background: #374151; color: #e5e7eb; font-weight: 600;
+}
+.slot-tag {
+  display: inline-block; font-size: 9px; padding: 1px 4px; border-radius: 3px;
+  background: #e5e7eb; color: #374151; font-weight: 600; margin-right: 4px;
+}
+.state-bar {
+  display: flex; align-items: center; gap: 6px; padding: 4px 0;
+  font-size: 11px; color: var(--muted);
+}
+.state-bar .count {
+  font-family: var(--mono); font-weight: 700; font-size: 13px; color: var(--ink);
+}
+.state-section {
+  background: #f0f4ff; border: 1px solid #dbeafe; border-radius: 8px;
+  padding: 10px; margin: 4px 0;
+}
+.delta-row {
+  display: flex; align-items: center; gap: 4px; padding: 2px 0; font-size: 11px;
+}
 
 /* Causal Lane */
 .causal-empty { padding: 20px; color: var(--muted); text-align: center; }
@@ -146,6 +168,9 @@ header .stats { font-size: 11px; color: var(--muted); margin-left: auto; white-s
       <option value="近世">近世(1573〜1868)</option>
       <option value="近現代">近現代(1868〜)</option>
     </select>
+    <select id="patternFilter">
+      <option value="">全パターン</option>
+    </select>
     <select id="scaleFilter">
       <option value="">全スケール</option>
       <option value="macro">大地形(macro)</option>
@@ -176,7 +201,12 @@ header .stats { font-size: 11px; color: var(--muted); margin-left: auto; white-s
 let DATA = null;
 let BG_MAP = {};
 let LINEAGE = [];
-let STATE = { selectedEventId: null, selectedBgId: null, searchText: '', fnameFilter: '', eraFilter: '', scaleFilter: '' };
+let STATE = { selectedEventId: null, selectedBgId: null, searchText: '', fnameFilter: '', patternFilter: '', eraFilter: '', scaleFilter: '' };
+
+const slotColors = {
+  '前提状態': '#1d4ed8', 'トリガー': '#dc2626', '行為主体': '#7c3aed', '圧力源': '#b91c1c',
+  '行為手段': '#d97706', '対象': '#6b7280', '解放形態': '#059669', '帰結': '#0d9488', '状況記述': '#9ca3af'
+};
 
 const fnameColors = {
   '圧力解放': '#dc2626', '主体的行為': '#2563eb', '矛盾露呈': '#d97706',
@@ -202,8 +232,10 @@ function filterEvents() {
   const f = STATE.fnameFilter;
   const e = STATE.eraFilter;
   const sc = STATE.scaleFilter;
+  const p = STATE.patternFilter;
   return DATA.events.filter(ev => {
     if (f && ev.causalFrame.fnameCategory !== f) return false;
+    if (p && ev.causalFrame.fnamePattern !== p) return false;
     if (e && yearToEra(ev.year) !== e) return false;
     if (sc) {
       // Filter: event must reference at least one BG of the selected scale
@@ -235,6 +267,7 @@ function renderEventLane() {
       <div class="year">${ev.year}</div>
       <div class="title">${ev.title}</div>
       <span class="fname-tag" style="background:${color}">${ev.causalFrame.fnameCategory}</span>
+      <span class="pattern-tag">${ev.causalFrame.fnamePattern || ''}</span>
     `;
     div.onclick = () => { STATE.selectedEventId = ev.eventId; STATE.selectedBgId = null; render(); };
     list.appendChild(div);
@@ -266,6 +299,7 @@ function renderCausalLane() {
     <h3>因果フレーム</h3>
     <div class="causal-block">
       <span class="fname-tag" style="background:${color}">${cf.fnameCategory}</span>
+      <span class="pattern-tag">${cf.fnamePattern || ''}</span>
       <div class="label" style="margin-top:6px">${cf.fname}</div>
     </div>
     <div class="body-template">${bodyText}</div>
@@ -274,9 +308,11 @@ function renderCausalLane() {
   // Params
   html += `<div class="causal-section"><h3>パラメータ</h3>`;
   (cf.params || []).forEach((p, i) => {
+    const sc = slotColors[p.slotFunction] || '#9ca3af';
     html += `<div class="causal-block">
-      <div class="meta">[%${i+1}] ${p.type}</div>
-      <div class="label">${p.value}</div>
+      <span class="slot-tag" style="background:${sc};color:#fff">${p.slotFunction || '?'}</span>
+      <span class="meta">[%${i+1}] ${p.type}</span>
+      <div class="label" style="margin-top:4px">${p.value}</div>
     </div>`;
   });
   html += `</div>`;
@@ -305,6 +341,42 @@ function renderCausalLane() {
     </div>`;
   });
   html += `</div>`;
+
+  // State Transition S₀ → S₁
+  const st = ev.stateTransition;
+  if (st) {
+    html += `<div class="causal-section"><h3>状態遷移 S₀ → S₁</h3>`;
+    // S₀
+    html += `<div class="state-section">
+      <div style="font-size:10px;font-weight:700;color:var(--muted);margin-bottom:4px">S₀ (イベント前)</div>
+      <div class="state-bar"><span>活性BG</span><span class="count">${st.s0.activeBGs.length}</span></div>`;
+    if (st.s0.triggers.length) {
+      html += `<div style="font-size:11px;margin-top:4px"><span style="color:var(--muted)">トリガー:</span> ${st.s0.triggers.map(t => t.substring(0,40)).join(', ')}</div>`;
+    }
+    if (st.s0.tension) {
+      html += `<div style="font-size:11px;margin-top:2px;color:var(--muted)">圧: ${st.s0.tension.substring(0,60)}${st.s0.tension.length > 60 ? '...' : ''}</div>`;
+    }
+    html += `</div>`;
+    // S₁
+    html += `<div class="state-section" style="background:#f0fdf4;border-color:#bbf7d0">
+      <div style="font-size:10px;font-weight:700;color:var(--muted);margin-bottom:4px">S₁ (イベント後)</div>
+      <div class="state-bar"><span>活性BG</span><span class="count">${st.s1.activeBGs.length}</span>
+        <span style="font-size:11px;color:${st.s1.activeBGs.length > st.s0.activeBGs.length ? '#059669' : st.s1.activeBGs.length < st.s0.activeBGs.length ? '#dc2626' : 'var(--muted)'}">
+          (${st.s1.activeBGs.length > st.s0.activeBGs.length ? '+' : ''}${st.s1.activeBGs.length - st.s0.activeBGs.length})
+        </span>
+      </div>`;
+    if (st.s1.bgDelta.length) {
+      html += `<div style="margin-top:4px">`;
+      st.s1.bgDelta.forEach(d => {
+        const bgInfo = BG_MAP[d.bgId] || {};
+        const cls = 'effect-' + d.effect;
+        html += `<div class="delta-row"><span class="effect-tag ${cls}">${d.effect}</span>
+          <span style="cursor:pointer;text-decoration:underline;font-size:11px" onclick="selectBg('${d.bgId}')">${bgInfo.label || d.bgId}</span></div>`;
+      });
+      html += `</div>`;
+    }
+    html += `</div></div>`;
+  }
 
   // eGenerates
   html += `<div class="causal-section"><h3>因果フレーム → 背景 (eGenerates)</h3>`;
@@ -475,11 +547,22 @@ async function init() {
   DATA.backgroundElements.forEach(bg => { BG_MAP[bg.bgId] = bg; });
   LINEAGE = DATA.bgLineage || [];
 
+  // Populate patternFilter dropdown from data
+  const patterns = new Set();
+  DATA.events.forEach(ev => { if (ev.causalFrame.fnamePattern) patterns.add(ev.causalFrame.fnamePattern); });
+  const patternSel = document.getElementById('patternFilter');
+  [...patterns].sort().forEach(p => {
+    const opt = document.createElement('option');
+    opt.value = p; opt.textContent = p;
+    patternSel.appendChild(opt);
+  });
+
   // Wire up controls
   document.getElementById('search').addEventListener('input', e => { STATE.searchText = e.target.value; renderEventLane(); });
   document.getElementById('fnameFilter').addEventListener('change', e => { STATE.fnameFilter = e.target.value; STATE.selectedEventId = null; render(); });
   document.getElementById('eraFilter').addEventListener('change', e => { STATE.eraFilter = e.target.value; STATE.selectedEventId = null; render(); });
   document.getElementById('scaleFilter').addEventListener('change', e => { STATE.scaleFilter = e.target.value; STATE.selectedEventId = null; render(); });
+  document.getElementById('patternFilter').addEventListener('change', e => { STATE.patternFilter = e.target.value; STATE.selectedEventId = null; render(); });
 
   render();
 }
