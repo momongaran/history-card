@@ -7107,11 +7107,11 @@
         },
         "background": [
           {
-            "bname": "権力集中",
+            "bname": "勢力対立",
             "refs": [
               {
                 "bgId": "BG_002",
-                "role": "drives"
+                "role": "pressures"
               }
             ],
             "label": "対立・衝突の圧（摂関家(藤原氏)の複合）"
@@ -7155,11 +7155,11 @@
         },
         "background": [
           {
-            "bname": "思想潮流",
+            "bname": "勢力対立",
             "refs": [
               {
                 "bgId": "BG_052",
-                "role": "drives"
+                "role": "pressures"
               },
               {
                 "bgId": "BG_012",
@@ -10283,11 +10283,11 @@
         },
         "background": [
           {
-            "bname": "思想潮流",
+            "bname": "勢力対立",
             "refs": [
               {
                 "bgId": "BG_017",
-                "role": "drives"
+                "role": "pressures"
               },
               {
                 "bgId": "BG_032",
@@ -13291,7 +13291,7 @@
         },
         "background": [
           {
-            "bname": "複合背景",
+            "bname": "勢力対立",
             "refs": [
               {
                 "bgId": "BG_075",
@@ -14693,11 +14693,11 @@
         },
         "background": [
           {
-            "bname": "権力集中",
+            "bname": "勢力対立",
             "refs": [
               {
                 "bgId": "BG_031",
-                "role": "drives"
+                "role": "pressures"
               }
             ],
             "label": "対立・衝突の圧（雄藩連合の複合）"
@@ -16131,7 +16131,7 @@
         },
         "background": [
           {
-            "bname": "外圧環境",
+            "bname": "勢力対立",
             "refs": [
               {
                 "bgId": "BG_048",
