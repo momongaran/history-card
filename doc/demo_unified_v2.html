@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>myHistory v5.0 — 統一フレームビュー v2</title>
+<style>
+:root {
+  --bg: #fafafa; --ink: #1a1a2e; --muted: #6b7280; --line: #e0e0e0;
+  --card: #fff; --accent: #2563eb;
+  --sans: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Noto Sans JP", sans-serif;
+  --mono: ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+* { box-sizing: border-box; margin: 0; }
+body { font-family: var(--sans); background: var(--bg); color: var(--ink); font-size: 13px; }
+
+header {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(255,255,255,.95); backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--line); padding: 10px 20px;
+  display: flex; align-items: center; gap: 16px;
+}
+header h1 { font-size: 16px; font-weight: 800; }
+header .principle { font-size: 11px; color: var(--muted); font-style: italic; }
+header .stats { font-size: 11px; color: var(--muted); margin-left: auto; }
+
+.container { max-width: 1000px; margin: 0 auto; padding: 16px 20px; }
+
+/* ── Drift card ── */
+.drift-card {
+  background: var(--card); border: 1px solid var(--line); border-radius: 12px;
+  margin-bottom: 12px; overflow: hidden; transition: all .15s;
+}
+.drift-card:hover { border-color: #c4b5fd; }
+.drift-card.expanded { border-color: #7c3aed; box-shadow: 0 2px 16px rgba(124,58,237,.12); }
+
+.drift-header {
+  padding: 12px 16px; cursor: pointer; display: flex; align-items: center; gap: 10px;
+}
+.drift-badge {
+  font-size: 9px; font-weight: 800; padding: 2px 8px; border-radius: 4px;
+  background: #7c3aed; color: #fff; text-transform: uppercase; letter-spacing: .05em;
+}
+.drift-header .title { font-weight: 800; font-size: 14px; flex: 1; }
+.drift-header .period { font-family: var(--mono); font-size: 11px; color: var(--muted); }
+.drift-header .child-count {
+  font-family: var(--mono); font-size: 11px; color: #7c3aed;
+  background: #f3e8ff; padding: 2px 8px; border-radius: 4px;
+}
+.drift-header .chevron {
+  font-size: 14px; color: var(--muted); transition: transform .15s;
+}
+.drift-card.expanded .chevron { transform: rotate(90deg); }
+
+.drift-body { display: none; padding: 0 16px 16px; }
+.drift-card.expanded > .drift-body { display: block; }
+
+/* ── Conditions (replaces "params") ── */
+.condition-row {
+  display: flex; align-items: baseline; gap: 6px; padding: 3px 0;
+  font-size: 12px; border-bottom: 1px solid #f3f4f6;
+}
+.condition-row:last-child { border-bottom: none; }
+.condition-type {
+  font-size: 10px; padding: 1px 6px; border-radius: 3px;
+  font-weight: 600; white-space: nowrap; flex-shrink: 0;
+}
+.ctype-概況 { background: #dbeafe; color: #1e40af; }
+.ctype-摩擦 { background: #fee2e2; color: #991b1b; }
+.ctype-台頭する層 { background: #d1fae5; color: #065f46; }
+.ctype-先行結果 { background: #fef3c7; color: #92400e; }
+.condition-value { flex: 1; }
+.condition-from {
+  font-size: 10px; color: var(--accent); cursor: pointer; white-space: nowrap;
+}
+.condition-from:hover { text-decoration: underline; }
+
+/* ── Result ── */
+.result-box {
+  background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 8px;
+  padding: 8px 12px; font-size: 12px; margin-top: 8px;
+}
+.result-box .result-type { font-size: 10px; color: #059669; font-weight: 600; }
+.result-box .result-label { font-weight: 700; margin-top: 2px; }
+
+/* ── Generates ── */
+.gen-section { margin-top: 8px; }
+.gen-item {
+  display: inline-flex; align-items: center; gap: 4px;
+  font-size: 11px; margin: 2px 4px 2px 0;
+}
+.gen-effect {
+  font-size: 10px; padding: 1px 5px; border-radius: 3px;
+  font-weight: 600; border: 1px solid var(--line);
+}
+.effect-generate { background: #dcfce7; color: #166534; border-color: #86efac; }
+.effect-reinforce { background: #dbeafe; color: #1e40af; border-color: #93c5fd; }
+.effect-erode { background: #fee2e2; color: #991b1b; border-color: #fca5a5; }
+.effect-terminate { background: #fecaca; color: #7f1d1d; border-color: #f87171; }
+.effect-redirect { background: #fef3c7; color: #92400e; border-color: #fcd34d; }
+.effect-backgroundize { background: #f3e8ff; color: #6b21a8; border-color: #c4b5fd; }
+
+/* ── Local FW card ── */
+.local-container { margin-left: 20px; border-left: 2px solid #e5e7eb; padding-left: 14px; }
+
+.local-card {
+  background: #fefce8; border: 1px solid #fde68a; border-radius: 10px;
+  margin-bottom: 6px; overflow: hidden; transition: all .15s;
+}
+.local-card:hover { border-color: #f59e0b; }
+.local-card.expanded { border-color: #d97706; box-shadow: 0 1px 8px rgba(217,119,6,.1); }
+
+.local-header {
+  padding: 8px 12px; cursor: pointer; display: flex; align-items: center; gap: 8px;
+}
+.local-badge {
+  font-size: 9px; font-weight: 800; padding: 2px 6px; border-radius: 4px;
+  background: #f59e0b; color: #fff; text-transform: uppercase; letter-spacing: .05em;
+}
+.local-header .title { font-weight: 700; font-size: 12px; flex: 1; }
+.local-header .year { font-family: var(--mono); font-size: 10px; color: var(--muted); }
+.local-header .child-count {
+  font-family: var(--mono); font-size: 10px; color: #d97706;
+  background: #fef3c7; padding: 2px 6px; border-radius: 4px;
+}
+.local-header .chevron { font-size: 12px; color: var(--muted); transition: transform .15s; }
+.local-card.expanded .chevron { transform: rotate(90deg); }
+
+.local-body { display: none; padding: 0 12px 12px; }
+.local-card.expanded > .local-body { display: block; }
+
+/* ── Connection between local FWs ── */
+.lfw-connection {
+  display: flex; align-items: center; gap: 6px; padding: 4px 0 4px 8px;
+  font-size: 10px; color: var(--muted);
+}
+.lfw-connection .arrow { color: #d97706; font-weight: 700; font-size: 12px; }
+.lfw-connection .via-label {
+  background: #fff7ed; border: 1px solid #fed7aa; border-radius: 4px;
+  padding: 1px 6px; font-size: 9px; color: #9a3412;
+}
+.lfw-connection .target-link {
+  color: var(--accent); cursor: pointer; font-weight: 600;
+}
+.lfw-connection .target-link:hover { text-decoration: underline; }
+
+/* ── Feeds indicators on local FW header ── */
+.feeds-indicator {
+  font-size: 9px; padding: 1px 5px; border-radius: 3px; font-weight: 600;
+}
+.feeds-in { background: #dbeafe; color: #1e40af; }
+.feeds-out { background: #dcfce7; color: #166534; }
+
+/* ── Cross-drift incoming connections ── */
+.cross-drift-in {
+  display: flex; align-items: center; gap: 6px; padding: 3px 0;
+  font-size: 10px; color: var(--muted); border-bottom: 1px solid #f3f4f6;
+}
+.cross-drift-in:last-child { border-bottom: none; }
+.cross-drift-in .src-link {
+  color: #7c3aed; cursor: pointer; font-weight: 600;
+}
+.cross-drift-in .src-link:hover { text-decoration: underline; }
+
+/* ── Event card ── */
+.event-container { margin-left: 16px; border-left: 2px solid #f3f4f6; padding-left: 10px; }
+
+.event-card {
+  background: var(--card); border: 1px solid #e5e7eb; border-radius: 8px;
+  margin-bottom: 4px; overflow: hidden; transition: all .15s;
+}
+.event-card:hover { border-color: #93c5fd; }
+.event-card.expanded { border-color: var(--accent); box-shadow: 0 1px 6px rgba(37,99,235,.08); }
+
+.event-header {
+  padding: 6px 10px; cursor: pointer; display: flex; align-items: center; gap: 6px;
+}
+.event-year { font-family: var(--mono); font-size: 10px; color: var(--muted); min-width: 32px; }
+.event-title { font-weight: 600; font-size: 12px; flex: 1; }
+
+/* fname → result 一体表示 */
+.fname-result {
+  display: flex; align-items: center; gap: 6px; font-size: 10px; flex-shrink: 0;
+}
+.fname-tag {
+  padding: 1px 6px; border-radius: 3px; font-weight: 700; color: #fff; white-space: nowrap;
+}
+.fname-arrow { color: var(--muted); }
+.result-tag {
+  padding: 1px 6px; border-radius: 3px; font-weight: 600;
+  background: #dcfce7; color: #166534; white-space: nowrap; max-width: 120px;
+  overflow: hidden; text-overflow: ellipsis;
+}
+
+.event-header .chevron { font-size: 11px; color: var(--muted); transition: transform .15s; }
+.event-card.expanded .chevron { transform: rotate(90deg); }
+
+.event-body { display: none; padding: 0 10px 10px; }
+.event-card.expanded > .event-body { display: block; }
+
+/* ── Drift connection ── */
+.drift-connection {
+  display: flex; align-items: center; gap: 8px; padding: 8px 16px;
+  font-size: 12px; color: var(--muted);
+}
+.drift-connection .arrow { color: #7c3aed; font-weight: 700; font-size: 16px; }
+
+/* Section label */
+.section-label {
+  font-size: 10px; text-transform: uppercase; color: var(--muted);
+  letter-spacing: .04em; margin: 8px 0 4px; font-weight: 600;
+}
+
+/* role badges */
+.role-badge {
+  font-size: 9px; padding: 1px 4px; border-radius: 3px;
+  font-weight: 700; color: #fff; margin-right: 2px;
+}
+.role-drives { background: #2563eb; }
+.role-pressures { background: #dc2626; }
+.role-supports { background: #059669; }
+.role-enables { background: #7c3aed; }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>myHistory v5.0</h1>
+  <span class="principle">Frame(conditions…) → result — drift ▸ local ▸ event 3スケール入れ子</span>
+  <span class="stats" id="stats"></span>
+</header>
+
+<div class="container" id="main"></div>
+
+<script>
+let DATA = null;
+const DRIFTS = {};
+const LOCALS = {};
+const EVENTS = {};
+const CONNECTIONS = []; // {from, to, via, weight}
+const LFW_TO_DRIFT = {}; // lfwId → driftId
+
+const fnameColors = {
+  '圧力解放': '#dc2626', '主体的行為': '#2563eb', '矛盾露呈': '#d97706',
+  '外生衝撃': '#7c3aed', '偶発連鎖': '#6b7280', '権力移行': '#059669'
+};
+
+function buildIndex() {
+  (DATA.drifts || []).forEach(d => {
+    DRIFTS[d.id] = d;
+    (d.children || []).forEach(cid => { LFW_TO_DRIFT[cid] = d.id; });
+  });
+  (DATA.localFWs || []).forEach(l => { LOCALS[l.id] = l; });
+  (DATA.events || []).forEach(e => { EVENTS[e.id] = e; });
+  (DATA.connections || []).forEach(c => { CONNECTIONS.push(c); });
+}
+
+function getConnectionsTo(lfwId) {
+  return CONNECTIONS.filter(c => c.to === lfwId);
+}
+function getConnectionsFrom(lfwId) {
+  return CONNECTIONS.filter(c => c.from === lfwId);
+}
+
+function renderConditions(conditions) {
+  if (!conditions || !conditions.length) return '';
+  let html = '';
+  conditions.forEach(c => {
+    const typeClass = 'ctype-' + (c.type || '');
+    html += `<div class="condition-row">`;
+    html += `<span class="condition-type ${typeClass}">${c.type || '条件'}</span>`;
+    html += `<span class="condition-value">${c.value || ''}</span>`;
+    if (c.from && c.from.length) {
+      c.from.forEach(f => {
+        const roleClass = f.role ? `role-${f.role}` : '';
+        const roleBadge = f.role ? `<span class="role-badge ${roleClass}">${f.role}</span>` : '';
+        html += `<span class="condition-from" onclick="scrollToFrame('${f.id}')">${roleBadge}← ${f.id}</span>`;
+      });
+    }
+    html += `</div>`;
+  });
+  return html;
+}
+
+function renderResult(result) {
+  if (!result) return '';
+  return `<div class="result-box">
+    <span class="result-type">→ ${result.type || 'result'}</span>
+    <div class="result-label">${result.label || ''}</div>
+    ${result.nextCore ? `<div style="font-size:11px;color:#d97706;margin-top:3px">次段中核: ${result.nextCore}</div>` : ''}
+  </div>`;
+}
+
+function renderGenerates(generates) {
+  if (!generates || !generates.length) return '';
+  let html = '<div class="gen-section">';
+  generates.forEach(g => {
+    const cls = 'effect-' + g.effect;
+    html += `<span class="gen-item">
+      <span class="gen-effect ${cls}">${g.effect}</span>
+      <span>${g.label || ''}</span>
+    </span>`;
+  });
+  html += '</div>';
+  return html;
+}
+
+function renderEvent(ev) {
+  const fc = fnameColors[ev.fnameCategory] || '#666';
+  const resultLabel = ev.result ? (ev.result.label || '').substring(0, 20) : '';
+
+  let html = `<div class="event-card" id="frame-${ev.id}">`;
+  // Header: year, title, fname→result inline
+  html += `<div class="event-header" onclick="toggle('${ev.id}')">`;
+  html += `<span class="event-year">${ev.year}</span>`;
+  html += `<span class="event-title">${ev.title}</span>`;
+  html += `<span class="fname-result">`;
+  html += `<span class="fname-tag" style="background:${fc}">${ev.fnamePattern || ev.fnameCategory || ''}</span>`;
+  if (resultLabel) {
+    html += `<span class="fname-arrow">→</span>`;
+    html += `<span class="result-tag">${resultLabel}</span>`;
+  }
+  html += `</span>`;
+  html += `<span class="chevron">▸</span>`;
+  html += `</div>`;
+
+  // Body
+  html += `<div class="event-body">`;
+
+  // Conditions
+  if (ev.conditions && ev.conditions.length) {
+    html += `<div class="section-label">条件</div>`;
+    html += renderConditions(ev.conditions);
+  }
+
+  // fname → result
+  if (ev.fname) {
+    html += `<div style="margin-top:8px;padding:6px 10px;background:#f8f5f0;border:1px solid #e8e0d4;border-radius:6px;font-size:12px">`;
+    html += `<span style="color:${fc};font-weight:700">${ev.fname}</span>`;
+    html += `</div>`;
+  }
+
+  html += renderResult(ev.result);
+  html += renderGenerates(ev.generates);
+  html += `</div></div>`;
+  return html;
+}
+
+function renderLocalFW(lfw, currentDriftId) {
+  const childCount = (lfw.children || []).length;
+  const yearText = lfw.yearEnd ? `${lfw.year}–${lfw.yearEnd}` : `${lfw.year}`;
+  const feedsIn = getConnectionsTo(lfw.id);
+  const feedsOut = getConnectionsFrom(lfw.id);
+  const crossIn = feedsIn.filter(c => LFW_TO_DRIFT[c.from] !== currentDriftId);
+
+  let html = `<div class="local-card" id="frame-${lfw.id}">`;
+  html += `<div class="local-header" onclick="toggle('${lfw.id}')">`;
+  html += `<span class="local-badge">local</span>`;
+  html += `<span class="year">${yearText}</span>`;
+  html += `<span class="title">${lfw.title}</span>`;
+  if (childCount) html += `<span class="child-count">${childCount}</span>`;
+  if (feedsIn.length) html += `<span class="feeds-indicator feeds-in">←${feedsIn.length}</span>`;
+  if (feedsOut.length) html += `<span class="feeds-indicator feeds-out">→${feedsOut.length}</span>`;
+  html += `<span class="chevron">▸</span>`;
+  html += `</div>`;
+
+  html += `<div class="local-body">`;
+
+  // Cross-drift incoming connections
+  if (crossIn.length) {
+    html += `<div class="section-label">他ドリフトからの流入</div>`;
+    crossIn.forEach(c => {
+      const srcLfw = LOCALS[c.from];
+      const srcDrift = DRIFTS[LFW_TO_DRIFT[c.from]];
+      const srcLabel = srcLfw ? srcLfw.title : c.from;
+      const driftLabel = srcDrift ? srcDrift.title.replace('FW', '') : '';
+      html += `<div class="cross-drift-in">
+        <span class="src-link" onclick="scrollToFrame('${c.from}')">${driftLabel} › ${srcLabel}</span>
+        ${c.via.map(v => `<span class="lfw-connection via-label">${v}</span>`).join('')}
+      </div>`;
+    });
+  }
+
+  // Intra-drift incoming
+  const intraIn = feedsIn.filter(c => LFW_TO_DRIFT[c.from] === currentDriftId);
+  if (intraIn.length) {
+    html += `<div class="section-label">先行フレームからの流入</div>`;
+    intraIn.forEach(c => {
+      const srcLfw = LOCALS[c.from];
+      const srcLabel = srcLfw ? srcLfw.title : c.from;
+      html += `<div class="cross-drift-in">
+        <span class="src-link" onclick="scrollToFrame('${c.from}')">← ${srcLabel}</span>
+        ${c.via.map(v => `<span class="lfw-connection via-label">${v}</span>`).join('')}
+      </div>`;
+    });
+  }
+
+  html += renderResult(lfw.result);
+
+  // Outgoing connections
+  if (feedsOut.length) {
+    html += `<div class="section-label">結果の流出先</div>`;
+    feedsOut.slice(0, 5).forEach(c => {
+      const tgtLfw = LOCALS[c.to];
+      const tgtDrift = DRIFTS[LFW_TO_DRIFT[c.to]];
+      const tgtLabel = tgtLfw ? tgtLfw.title : c.to;
+      const isCross = LFW_TO_DRIFT[c.to] !== currentDriftId;
+      const driftLabel = isCross && tgtDrift ? `${tgtDrift.title.replace('FW', '')} › ` : '';
+      html += `<div class="lfw-connection">
+        <span class="arrow">→</span>
+        <span class="target-link" onclick="scrollToFrame('${c.to}')">${driftLabel}${tgtLabel}</span>
+        ${c.via.map(v => `<span class="via-label">${v}</span>`).join('')}
+      </div>`;
+    });
+    if (feedsOut.length > 5) {
+      html += `<div class="lfw-connection"><span style="color:var(--muted)">…他${feedsOut.length - 5}件</span></div>`;
+    }
+  }
+
+  // Children events
+  if (childCount) {
+    html += `<div class="section-label" style="margin-top:10px">イベント (${childCount})</div>`;
+    html += `<div class="event-container">`;
+    const children = lfw.children
+      .map(id => EVENTS[id])
+      .filter(e => e)
+      .sort((a, b) => a.year - b.year);
+    children.forEach(ev => { html += renderEvent(ev); });
+    html += `</div>`;
+  }
+
+  html += `</div></div>`;
+  return html;
+}
+
+function renderDrift(drift) {
+  const localChildren = (drift.children || [])
+    .map(id => LOCALS[id])
+    .filter(l => l)
+    .sort((a, b) => a.year - b.year);
+  const totalEvents = localChildren.reduce((sum, l) => sum + (l.children || []).length, 0);
+  const periodText = drift.period ? `${drift.period.start}–${drift.period.end}` : '';
+
+  let html = `<div class="drift-card" id="frame-${drift.id}">`;
+  html += `<div class="drift-header" onclick="toggle('${drift.id}')">`;
+  html += `<span class="drift-badge">drift</span>`;
+  html += `<span class="period">${periodText}</span>`;
+  html += `<span class="title">${drift.title}</span>`;
+  html += `<span class="child-count">${localChildren.length} local · ${totalEvents} ev</span>`;
+  html += `<span class="chevron">▸</span>`;
+  html += `</div>`;
+
+  html += `<div class="drift-body">`;
+
+  // Conditions
+  if (drift.conditions && drift.conditions.length) {
+    html += `<div class="section-label">条件</div>`;
+    html += renderConditions(drift.conditions);
+  }
+
+  html += renderResult(drift.result);
+  html += renderGenerates(drift.generates);
+
+  // Local FWs
+  if (localChildren.length) {
+    html += `<div class="section-label" style="margin-top:12px">局所フレームワーク (${localChildren.length})</div>`;
+    html += `<div class="local-container">`;
+
+    localChildren.forEach((lfw, i) => {
+      html += renderLocalFW(lfw, drift.id);
+
+      // Show actual connections from this LFW to next LFWs within this drift
+      if (i < localChildren.length - 1) {
+        const nextIds = new Set(localChildren.slice(i + 1).map(l => l.id));
+        const conns = getConnectionsFrom(lfw.id).filter(c => nextIds.has(c.to));
+        conns.forEach(c => {
+          const tgtLfw = LOCALS[c.to];
+          html += `<div class="lfw-connection">
+            <span class="arrow">↓</span>
+            ${c.via.map(v => `<span class="via-label">${v}</span>`).join('')}
+            <span class="target-link" onclick="scrollToFrame('${c.to}')">→ ${tgtLfw ? tgtLfw.title : c.to}</span>
+          </div>`;
+        });
+      }
+    });
+    html += `</div>`;
+  }
+
+  html += `</div></div>`;
+  return html;
+}
+
+function toggle(id) {
+  const el = document.getElementById('frame-' + id);
+  if (el) el.classList.toggle('expanded');
+}
+
+function scrollToFrame(id) {
+  const el = document.getElementById('frame-' + id);
+  if (el) {
+    // Expand all ancestors
+    let parent = el.parentElement;
+    while (parent) {
+      if (parent.classList && (parent.classList.contains('drift-card') || parent.classList.contains('local-card') || parent.classList.contains('event-card'))) {
+        parent.classList.add('expanded');
+      }
+      parent = parent.parentElement;
+    }
+    el.classList.add('expanded');
+    el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    el.style.outline = '2px solid #f59e0b';
+    setTimeout(() => { el.style.outline = ''; }, 2000);
+  }
+}
+
+async function init() {
+  const paths = ['../data/unified_frames_v2.json', './data/unified_frames_v2.json'];
+  for (const p of paths) {
+    try {
+      const resp = await fetch(p);
+      if (resp.ok) { DATA = await resp.json(); break; }
+    } catch(e) {}
+  }
+  if (!DATA) {
+    document.body.innerHTML = '<div style="padding:40px;text-align:center;color:#999">データ読み込みエラー。<br><code>python3 -m http.server 8000</code></div>';
+    return;
+  }
+
+  buildIndex();
+
+  const driftCount = DATA.drifts ? DATA.drifts.length : 0;
+  const localCount = DATA.localFWs ? DATA.localFWs.length : 0;
+  const eventCount = DATA.events ? DATA.events.length : 0;
+
+  const connCount = CONNECTIONS.length;
+  const crossCount = CONNECTIONS.filter(c => LFW_TO_DRIFT[c.from] !== LFW_TO_DRIFT[c.to]).length;
+  document.getElementById('stats').textContent =
+    `${driftCount} drift · ${localCount} local · ${eventCount} event · ${connCount} connections (${crossCount} cross-drift)`;
+
+  const main = document.getElementById('main');
+  let html = '';
+
+  (DATA.drifts || []).forEach((d, i) => {
+    html += renderDrift(d);
+
+    // Connection to next drift
+    if (d.generates && d.generates.length && i < DATA.drifts.length - 1) {
+      const targets = d.generates
+        .filter(g => g.target && g.target.startsWith('PFW'))
+        .map(g => {
+          const t = DRIFTS[g.target];
+          return t ? t.title : g.target;
+        });
+      if (targets.length) {
+        html += `<div class="drift-connection">
+          <span class="arrow">⟶</span>
+          <span>${targets.join(', ')} へ接続</span>
+        </div>`;
+      }
+    }
+  });
+
+  main.innerHTML = html;
+}
+
+init();
+</script>
+</body>
+</html>
