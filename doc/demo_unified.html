@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>myHistory v5.0 — 統一フレームビュー</title>
+<style>
+:root {
+  --bg: #fafafa; --ink: #1a1a2e; --muted: #6b7280; --line: #e0e0e0;
+  --card: #fff; --accent: #2563eb;
+  --sans: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Noto Sans JP", sans-serif;
+  --mono: ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+* { box-sizing: border-box; margin: 0; }
+body { font-family: var(--sans); background: var(--bg); color: var(--ink); font-size: 13px; }
+
+header {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(255,255,255,.95); backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--line); padding: 10px 20px;
+  display: flex; align-items: center; gap: 16px;
+}
+header h1 { font-size: 16px; font-weight: 800; }
+header .principle { font-size: 11px; color: var(--muted); font-style: italic; }
+header .stats { font-size: 11px; color: var(--muted); margin-left: auto; }
+
+.container { max-width: 960px; margin: 0 auto; padding: 16px 20px; }
+
+/* Frame card — same style for all scales */
+.frame-card {
+  background: var(--card); border: 1px solid var(--line); border-radius: 10px;
+  margin-bottom: 8px; overflow: hidden; transition: all .15s;
+}
+.frame-card:hover { border-color: #93c5fd; }
+.frame-card.expanded { border-color: var(--accent); box-shadow: 0 2px 12px rgba(37,99,235,.1); }
+
+.frame-header {
+  padding: 10px 14px; cursor: pointer; display: flex; align-items: center; gap: 10px;
+}
+.frame-header .scale-badge {
+  font-size: 9px; font-weight: 800; padding: 2px 8px; border-radius: 4px;
+  text-transform: uppercase; letter-spacing: .05em; flex-shrink: 0;
+}
+.scale-drift .scale-badge { background: #7c3aed; color: #fff; }
+.scale-event .scale-badge { background: #e5e7eb; color: #374151; }
+
+.frame-header .title { font-weight: 700; font-size: 13px; flex: 1; }
+.frame-header .year { font-family: var(--mono); font-size: 11px; color: var(--muted); }
+.frame-header .fname { font-size: 11px; color: var(--muted); margin-left: 8px; }
+.frame-header .child-count {
+  font-family: var(--mono); font-size: 11px; color: var(--accent);
+  background: #eff6ff; padding: 2px 6px; border-radius: 4px;
+}
+.frame-header .chevron {
+  font-size: 14px; color: var(--muted); transition: transform .15s; flex-shrink: 0;
+}
+.frame-card.expanded .chevron { transform: rotate(90deg); }
+
+/* Frame body (expanded) */
+.frame-body { display: none; padding: 0 14px 14px; }
+.frame-card.expanded > .frame-body { display: block; }
+
+.frame-section { margin-bottom: 10px; }
+.frame-section h4 {
+  font-size: 10px; text-transform: uppercase; color: var(--muted);
+  letter-spacing: .04em; margin-bottom: 4px;
+}
+
+/* Params */
+.param-item {
+  display: flex; align-items: baseline; gap: 6px; padding: 3px 0;
+  font-size: 12px; border-bottom: 1px solid #f3f4f6;
+}
+.param-item:last-child { border-bottom: none; }
+.param-type {
+  font-size: 10px; padding: 1px 5px; border-radius: 3px;
+  font-weight: 600; white-space: nowrap;
+}
+.type-中核機能 { background: #dbeafe; color: #1e40af; }
+.type-不足機能 { background: #fee2e2; color: #991b1b; }
+.type-補完層 { background: #d1fae5; color: #065f46; }
+.param-value { flex: 1; }
+.param-from {
+  font-size: 10px; color: var(--accent); cursor: pointer;
+  white-space: nowrap;
+}
+.param-from:hover { text-decoration: underline; }
+.param-role {
+  font-size: 9px; padding: 1px 4px; border-radius: 3px;
+  font-weight: 700; color: #fff;
+}
+.role-drives { background: #2563eb; }
+.role-pressures { background: #dc2626; }
+.role-supports { background: #059669; }
+.role-enables { background: #7c3aed; }
+
+/* Body template */
+.body-text {
+  background: #f8f5f0; border: 1px solid #e8e0d4; border-radius: 8px;
+  padding: 8px 12px; font-size: 12px; line-height: 1.5;
+  font-style: italic; color: #5a4a3a; margin-bottom: 8px;
+}
+
+/* Result */
+.result-box {
+  background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 8px;
+  padding: 8px 12px; font-size: 12px;
+}
+.result-box .result-type { font-size: 10px; color: #059669; font-weight: 600; }
+.result-box .result-label { font-weight: 700; margin-top: 2px; }
+
+/* Generates */
+.gen-item {
+  display: inline-flex; align-items: center; gap: 4px;
+  font-size: 11px; margin: 2px 4px 2px 0;
+}
+.gen-effect {
+  font-size: 10px; padding: 1px 5px; border-radius: 3px;
+  font-weight: 600; border: 1px solid var(--line);
+}
+.effect-generate { background: #dcfce7; color: #166534; border-color: #86efac; }
+.effect-reinforce { background: #dbeafe; color: #1e40af; border-color: #93c5fd; }
+.effect-erode { background: #fee2e2; color: #991b1b; border-color: #fca5a5; }
+.effect-terminate { background: #fecaca; color: #7f1d1d; border-color: #f87171; }
+.effect-redirect { background: #fef3c7; color: #92400e; border-color: #fcd34d; }
+.effect-backgroundize { background: #f3e8ff; color: #6b21a8; border-color: #c4b5fd; }
+
+/* Children container */
+.children-container { margin-left: 20px; border-left: 2px solid #e5e7eb; padding-left: 12px; }
+
+/* Connection line */
+.connection {
+  display: flex; align-items: center; gap: 8px; padding: 6px 14px;
+  font-size: 11px; color: var(--muted);
+}
+.connection .arrow { color: #d97706; font-weight: 700; }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>myHistory v5.0</h1>
+  <span class="principle">Frame(params…) → result — 全スケール同一構造</span>
+  <span class="stats" id="stats"></span>
+</header>
+
+<div class="container" id="main"></div>
+
+<script>
+let DATA = null;
+let FRAMES = {};
+
+function buildIndex() {
+  DATA.frames.forEach(f => { FRAMES[f.id] = f; });
+}
+
+function renderParam(p) {
+  const typeClass = 'type-' + (p.type || '');
+  const hasTypeClass = ['中核機能','不足機能','補完層'].includes(p.type);
+  let html = `<div class="param-item">`;
+  if (p.role) {
+    html += `<span class="param-role role-${p.role}">${p.role}</span>`;
+  }
+  html += `<span class="param-type ${hasTypeClass ? typeClass : ''}">${p.type || '?'}</span>`;
+  html += `<span class="param-value">${p.value}</span>`;
+  if (p.from) {
+    const src = FRAMES[p.from];
+    const srcLabel = src ? (src.title || src.id).substring(0, 20) : p.from;
+    html += `<span class="param-from" onclick="scrollToFrame('${p.from}')">← ${srcLabel}</span>`;
+  }
+  html += `</div>`;
+  return html;
+}
+
+function renderFrame(frame, depth) {
+  const isDrift = frame.scale === 'drift';
+  const scaleClass = 'scale-' + frame.scale;
+  const yearText = isDrift
+    ? `${frame.period.start}–${frame.period.end}`
+    : `${frame.year}`;
+  const childCount = (frame.children || []).length;
+
+  let html = `<div class="frame-card ${scaleClass}" id="frame-${frame.id}">`;
+
+  // Header
+  html += `<div class="frame-header" onclick="toggleFrame('${frame.id}')">`;
+  html += `<span class="scale-badge">${isDrift ? 'drift' : 'event'}</span>`;
+  html += `<span class="year">${yearText}</span>`;
+  html += `<span class="title">${frame.title}</span>`;
+  if (!isDrift) {
+    html += `<span class="fname">${frame.fnamePattern || ''}</span>`;
+  }
+  if (childCount > 0) {
+    html += `<span class="child-count">${childCount}</span>`;
+  }
+  html += `<span class="chevron">▸</span>`;
+  html += `</div>`;
+
+  // Body (hidden until expanded)
+  html += `<div class="frame-body">`;
+
+  // Body text (summary/body)
+  if (frame.body) {
+    html += `<div class="body-text">${frame.body}</div>`;
+  }
+
+  // Params
+  if (frame.params && frame.params.length) {
+    html += `<div class="frame-section"><h4>params (入力)</h4>`;
+    frame.params.forEach(p => { html += renderParam(p); });
+    html += `</div>`;
+  }
+
+  // Result
+  if (frame.result) {
+    html += `<div class="frame-section">
+      <div class="result-box">
+        <div class="result-type">→ result: ${frame.result.type || ''}</div>
+        <div class="result-label">${frame.result.label || ''}</div>
+        ${frame.result.nextCore ? '<div style="font-size:11px;color:#d97706;margin-top:4px">次段中核: ' + frame.result.nextCore + '</div>' : ''}
+      </div>
+    </div>`;
+  }
+
+  // Generates
+  if (frame.generates && frame.generates.length) {
+    html += `<div class="frame-section"><h4>generates (出力 → 後続のparams)</h4>`;
+    frame.generates.forEach(g => {
+      const cls = 'effect-' + g.effect;
+      html += `<span class="gen-item">
+        <span class="gen-effect ${cls}">${g.effect}</span>
+        <span>${g.label}</span>
+      </span>`;
+    });
+    html += `</div>`;
+  }
+
+  // Children (nested frames)
+  if (childCount > 0) {
+    html += `<div class="frame-section"><h4>children (${childCount}件)</h4></div>`;
+    html += `<div class="children-container">`;
+    const childFrames = frame.children
+      .map(id => FRAMES[id])
+      .filter(f => f)
+      .sort((a, b) => (a.year || 0) - (b.year || 0));
+    childFrames.forEach(cf => {
+      html += renderFrame(cf, depth + 1);
+    });
+    html += `</div>`;
+  }
+
+  html += `</div></div>`;
+  return html;
+}
+
+function toggleFrame(id) {
+  const el = document.getElementById('frame-' + id);
+  if (el) el.classList.toggle('expanded');
+}
+
+function scrollToFrame(id) {
+  const el = document.getElementById('frame-' + id);
+  if (el) {
+    el.classList.add('expanded');
+    el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
+}
+
+async function init() {
+  try {
+    const resp = await fetch('../data/unified_frames.json');
+    DATA = await resp.json();
+  } catch(e) {
+    try {
+      const resp = await fetch('./data/unified_frames.json');
+      DATA = await resp.json();
+    } catch(e2) {
+      document.body.innerHTML = '<div style="padding:40px;text-align:center;color:#999">データ読み込みエラー。<br><code>python3 -m http.server 8000</code></div>';
+      return;
+    }
+  }
+
+  buildIndex();
+
+  const drifts = DATA.frames.filter(f => f.scale === 'drift');
+  const events = DATA.frames.filter(f => f.scale === 'event');
+
+  document.getElementById('stats').textContent =
+    `${drifts.length} drift · ${events.length} event · model: ${DATA.model}`;
+
+  // Render drift frames (top level)
+  const main = document.getElementById('main');
+  let html = '';
+  drifts.forEach(d => {
+    html += renderFrame(d, 0);
+    // Connection arrow to next drift
+    if (d.generates && d.generates.length) {
+      const nextTargets = d.generates
+        .filter(g => g.target && g.target.startsWith('PFW'))
+        .map(g => {
+          const t = FRAMES[g.target];
+          return t ? t.title : g.target;
+        });
+      if (nextTargets.length) {
+        html += `<div class="connection">
+          <span class="arrow">⟶</span>
+          <span>${nextTargets.join(', ')} へ接続</span>
+        </div>`;
+      }
+    }
+  });
+  main.innerHTML = html;
+}
+
+init();
+</script>
+</body>
+</html>
