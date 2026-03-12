@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>myHistory v5.0 — 親FW入れ子ビュー</title>
+<style>
+:root {
+  --bg: #fafafa; --ink: #1a1a2e; --muted: #6b7280; --line: #e0e0e0;
+  --card: #fff; --accent: #2563eb;
+  --sans: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Noto Sans JP", sans-serif;
+  --mono: ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+* { box-sizing: border-box; margin: 0; }
+body { font-family: var(--sans); background: var(--bg); color: var(--ink); font-size: 13px; }
+
+header {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(255,255,255,.95); backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--line); padding: 10px 20px;
+  display: flex; align-items: center; gap: 16px;
+}
+header h1 { font-size: 16px; font-weight: 800; }
+header .meta-badge {
+  font-size: 11px; background: #f3e8ff; color: #7c3aed; padding: 3px 10px;
+  border-radius: 12px; font-weight: 600;
+}
+header .stats { font-size: 11px; color: var(--muted); margin-left: auto; }
+
+.container { max-width: 1100px; margin: 0 auto; padding: 16px 20px; }
+
+/* Drift Sequence Bar */
+.drift-bar {
+  display: flex; gap: 0; margin-bottom: 24px; overflow-x: auto;
+}
+.drift-node {
+  flex: 1; min-width: 80px; padding: 8px 6px; text-align: center;
+  font-size: 10px; font-weight: 700; cursor: pointer;
+  border: 2px solid var(--line); border-right: none;
+  transition: all .15s; position: relative;
+}
+.drift-node:first-child { border-radius: 8px 0 0 8px; }
+.drift-node:last-child { border-radius: 0 8px 8px 0; border-right: 2px solid var(--line); }
+.drift-node:hover { background: #f0f4ff; }
+.drift-node.selected { background: var(--accent); color: #fff; border-color: var(--accent); }
+.drift-node.selected + .drift-node { border-left-color: var(--accent); }
+.drift-node .count { font-family: var(--mono); font-size: 12px; display: block; margin-top: 2px; }
+.drift-node .fw-type {
+  font-size: 8px; text-transform: uppercase; letter-spacing: .05em;
+  opacity: .7; display: block; margin-top: 1px;
+}
+.drift-arrow {
+  display: flex; align-items: center; color: var(--muted); font-size: 14px;
+  padding: 0 2px; flex-shrink: 0;
+}
+
+/* PFW Detail */
+.pfw-detail { display: none; }
+.pfw-detail.visible { display: block; }
+
+.pfw-header {
+  background: var(--card); border: 1px solid var(--line); border-radius: 12px;
+  padding: 16px 20px; margin-bottom: 16px;
+}
+.pfw-header h2 { font-size: 18px; font-weight: 800; margin-bottom: 4px; }
+.pfw-header .period { font-family: var(--mono); font-size: 12px; color: var(--muted); }
+.pfw-header .summary { font-size: 13px; line-height: 1.6; margin-top: 8px; color: #374151; }
+
+/* Meta Tags */
+.meta-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 10px;
+  margin-top: 12px;
+}
+.meta-item {
+  padding: 8px 12px; border-radius: 8px; font-size: 11px;
+}
+.meta-item.core { background: #dbeafe; border: 1px solid #93c5fd; }
+.meta-item.lack { background: #fee2e2; border: 1px solid #fca5a5; }
+.meta-item.complement { background: #d1fae5; border: 1px solid #6ee7b7; }
+.meta-item.next-core { background: #fef3c7; border: 1px solid #fcd34d; }
+.meta-item h4 { font-size: 10px; text-transform: uppercase; color: var(--muted); margin-bottom: 4px; letter-spacing: .03em; }
+.meta-item .tags { display: flex; flex-wrap: wrap; gap: 4px; }
+.meta-item .tag {
+  display: inline-block; padding: 2px 6px; border-radius: 4px;
+  font-size: 11px; font-weight: 600;
+}
+.meta-item.core .tag { background: #bfdbfe; color: #1e40af; }
+.meta-item.lack .tag { background: #fecaca; color: #991b1b; }
+.meta-item.complement .tag { background: #a7f3d0; color: #065f46; }
+.meta-item.next-core .tag { background: #fde68a; color: #92400e; }
+
+/* Connection */
+.connection-bar {
+  display: flex; align-items: center; gap: 8px; padding: 10px 16px;
+  background: #fffbeb; border: 1px solid #fde68a; border-radius: 8px;
+  margin-bottom: 16px; font-size: 12px;
+}
+.connection-bar .arrow { font-size: 16px; color: #d97706; }
+
+/* ABCD Parts */
+.parts-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 12px;
+  margin-bottom: 16px;
+}
+.part-card {
+  background: var(--card); border: 1px solid var(--line); border-radius: 10px;
+  padding: 12px 14px; cursor: pointer; transition: all .15s;
+}
+.part-card:hover { border-color: var(--accent); box-shadow: 0 2px 8px rgba(37,99,235,.1); }
+.part-card.expanded { grid-column: 1 / -1; border-color: var(--accent); }
+.part-card .part-label {
+  font-size: 11px; font-weight: 800; color: #fff; display: inline-block;
+  padding: 2px 8px; border-radius: 4px; margin-bottom: 6px;
+}
+.part-A .part-label { background: #3b82f6; }
+.part-B .part-label { background: #f59e0b; }
+.part-C .part-label { background: #ef4444; }
+.part-D .part-label { background: #8b5cf6; }
+.part-card .part-summary { font-size: 12px; line-height: 1.5; color: #374151; }
+.part-card .event-count { font-size: 11px; color: var(--muted); margin-top: 6px; }
+
+/* Event List (inside expanded part) */
+.event-list { margin-top: 10px; border-top: 1px solid var(--line); padding-top: 8px; }
+.event-item {
+  display: flex; align-items: baseline; gap: 8px; padding: 4px 0;
+  font-size: 12px; border-bottom: 1px solid #f3f4f6;
+}
+.event-item:last-child { border-bottom: none; }
+.event-item .ev-year { font-family: var(--mono); font-size: 11px; color: var(--muted); min-width: 36px; }
+.event-item .ev-title { font-weight: 600; }
+.event-item .ev-pattern {
+  font-size: 10px; padding: 1px 5px; border-radius: 3px;
+  background: #374151; color: #e5e7eb; font-weight: 600; white-space: nowrap;
+}
+.event-item .ev-fname {
+  font-size: 10px; padding: 1px 5px; border-radius: 3px;
+  color: #fff; font-weight: 600; white-space: nowrap;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .parts-grid { grid-template-columns: 1fr; }
+  .meta-grid { grid-template-columns: 1fr; }
+  .drift-bar { flex-wrap: nowrap; }
+}
+</style>
+</head>
+<body>
+
+<header>
+  <h1>myHistory v5.0</h1>
+  <span class="meta-badge">不足機能外部化→補完層中核化ドリフト</span>
+  <span class="stats" id="stats"></span>
+</header>
+
+<div class="container">
+  <div class="drift-bar" id="driftBar"></div>
+  <div id="pfwDetail"></div>
+</div>
+
+<script>
+let PFW_DATA = null;
+let EVENT_DATA = null;
+let BG_MAP = {};
+let STATE = { selectedPFW: null, expandedPart: null };
+
+const fnameColors = {
+  '圧力解放': '#dc2626', '主体的行為': '#2563eb', '矛盾露呈': '#d97706',
+  '外生衝撃': '#7c3aed', '偶発連鎖': '#6b7280', '権力移行': '#059669'
+};
+
+function renderDriftBar() {
+  const bar = document.getElementById('driftBar');
+  bar.innerHTML = '';
+  PFW_DATA.parentFW.forEach((pfw, i) => {
+    if (i > 0) {
+      const arrow = document.createElement('div');
+      arrow.className = 'drift-arrow';
+      arrow.textContent = '→';
+      bar.appendChild(arrow);
+    }
+    const node = document.createElement('div');
+    node.className = 'drift-node' + (STATE.selectedPFW === pfw.id ? ' selected' : '');
+    const evCount = pfw.eventRefs ? pfw.eventRefs.length : 0;
+    node.innerHTML = `
+      ${pfw.name.replace(/FW$/, '')}
+      <span class="fw-type">${pfw.fwType}</span>
+      <span class="count">${evCount}</span>
+    `;
+    node.onclick = () => { STATE.selectedPFW = pfw.id; STATE.expandedPart = null; render(); };
+    bar.appendChild(node);
+  });
+}
+
+function renderPFWDetail() {
+  const el = document.getElementById('pfwDetail');
+  if (!STATE.selectedPFW) {
+    el.innerHTML = '<div style="text-align:center;padding:60px;color:var(--muted)">上のドリフト列から親FWを選択してください</div>';
+    return;
+  }
+
+  const pfw = PFW_DATA.parentFW.find(p => p.id === STATE.selectedPFW);
+  if (!pfw) return;
+
+  const events = EVENT_DATA.events.filter(ev => ev.parentFWRef === pfw.id);
+  const eventsByPart = { A: [], B: [], C: [], D: [] };
+  events.forEach(ev => {
+    const part = ev.parentFWPart || 'C';
+    if (eventsByPart[part]) eventsByPart[part].push(ev);
+  });
+
+  let html = '';
+
+  // Header
+  html += `<div class="pfw-header">
+    <h2>${pfw.name}</h2>
+    <span class="period">${pfw.period.start}–${pfw.period.end} (${pfw.period.label})</span>
+    <div class="summary">${pfw.summary}</div>
+    <div class="meta-grid">
+      <div class="meta-item core"><h4>中核機能</h4><div class="tags">${(pfw.coreFunction||[]).map(f => `<span class="tag">${f}</span>`).join('')}</div></div>
+      <div class="meta-item lack"><h4>不足機能</h4><div class="tags">${(pfw.lackFunction||[]).map(f => `<span class="tag">${f}</span>`).join('')}</div></div>
+      <div class="meta-item complement"><h4>外部補完層</h4><div class="tags">${(pfw.complementLayer||[]).map(f => `<span class="tag">${f}</span>`).join('')}</div></div>
+      <div class="meta-item next-core"><h4>次段中核候補</h4><div class="tags"><span class="tag">${pfw.nextCoreCandidate || '—'}</span></div></div>
+    </div>
+  </div>`;
+
+  // Connection arrows (nextStageBackgroundizers)
+  if (pfw.nextStageBackgroundizers && pfw.nextStageBackgroundizers.length) {
+    const targets = {};
+    pfw.nextStageBackgroundizers.forEach(nsb => {
+      const targetPFW = PFW_DATA.parentFW.find(p => p.id === nsb.toPFW);
+      if (targetPFW) {
+        if (!targets[nsb.toPFW]) targets[nsb.toPFW] = { name: targetPFW.name, items: [] };
+        targets[nsb.toPFW].items.push(nsb);
+      }
+    });
+    Object.values(targets).forEach(t => {
+      html += `<div class="connection-bar">
+        <span class="arrow">⟶</span>
+        <span><b>${t.name}</b>へ: ${t.items.map(i => `${i.label} (→${i.toPart})`).join(', ')}</span>
+      </div>`;
+    });
+  }
+
+  // ABCD Parts
+  html += '<div class="parts-grid">';
+  ['A', 'B', 'C', 'D'].forEach(partKey => {
+    const part = pfw.parts[partKey];
+    if (!part) return;
+    const partEvents = eventsByPart[partKey] || [];
+    const isExpanded = STATE.expandedPart === partKey;
+    const cls = isExpanded ? ' expanded' : '';
+
+    html += `<div class="part-card part-${partKey}${cls}" onclick="togglePart('${partKey}')">
+      <span class="part-label">${partKey} ${part.label}</span>
+      <div class="part-summary">${part.summary}</div>
+      <div class="event-count">${partEvents.length}件のイベント</div>`;
+
+    if (isExpanded && partEvents.length) {
+      html += '<div class="event-list">';
+      partEvents.sort((a, b) => a.year - b.year).forEach(ev => {
+        const cf = ev.causalFrame;
+        const fc = fnameColors[cf.fnameCategory] || '#666';
+        html += `<div class="event-item">
+          <span class="ev-year">${ev.year}</span>
+          <span class="ev-title">${ev.title}</span>
+          <span class="ev-fname" style="background:${fc}">${cf.fnameCategory}</span>
+          <span class="ev-pattern">${cf.fnamePattern || ''}</span>
+        </div>`;
+      });
+      html += '</div>';
+    }
+
+    html += '</div>';
+  });
+  html += '</div>';
+
+  el.innerHTML = html;
+}
+
+function togglePart(partKey) {
+  STATE.expandedPart = STATE.expandedPart === partKey ? null : partKey;
+  render();
+}
+
+function render() {
+  renderDriftBar();
+  renderPFWDetail();
+  document.getElementById('stats').textContent =
+    `${PFW_DATA.parentFW.length}親FW · ${EVENT_DATA.events.length}イベント`;
+}
+
+async function init() {
+  try {
+    const [pfwResp, evResp] = await Promise.all([
+      fetch('../data/parent_fw_master.json'),
+      fetch('../data/framework_output_v3_9.json')
+    ]);
+    PFW_DATA = await pfwResp.json();
+    EVENT_DATA = await evResp.json();
+  } catch(e) {
+    try {
+      const [pfwResp, evResp] = await Promise.all([
+        fetch('./data/parent_fw_master.json'),
+        fetch('./data/framework_output_v3_9.json')
+      ]);
+      PFW_DATA = await pfwResp.json();
+      EVENT_DATA = await evResp.json();
+    } catch(e2) {
+      document.body.innerHTML = '<div style="padding:40px;text-align:center;color:#999">データ読み込みエラー。<br><code>python3 -m http.server 8000</code> → http://localhost:8000/doc/demo_parent_fw.html</div>';
+      return;
+    }
+  }
+
+  EVENT_DATA.backgroundElements.forEach(bg => { BG_MAP[bg.bgId] = bg; });
+
+  // Auto-select first PFW
+  if (PFW_DATA.parentFW.length) {
+    STATE.selectedPFW = PFW_DATA.parentFW[0].id;
+  }
+
+  render();
+}
+
+init();
+</script>
+</body>
+</html>
