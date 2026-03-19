@@ -153,6 +153,7 @@
     overflow: hidden;
     text-overflow: ellipsis;
   }
+  .ref-chip b { font-family: monospace; font-size: 10px; margin-right: 2px; }
   .ref-chip:hover { filter: brightness(0.9); }
   .ref-chip.role-amplifies  { background: #fef8e8; border-color: #e0c868; color: #8a6a0a; }
   .ref-chip.role-triggers   { background: #fde8e4; border-color: #e0a090; color: #a04030; }
@@ -337,6 +338,11 @@ function renderAll() {
   requestAnimationFrame(drawEdges);
 }
 
+// Node ID → 3-digit display number (N035 → 035)
+function fmtId(nid) {
+  return nid.replace(/^N/, '');
+}
+
 function renderBlock(n) {
   const incoming = EbyTo[n.id] || [];
   const outgoing = EbyFrom[n.id] || [];
@@ -345,13 +351,14 @@ function renderBlock(n) {
   let html = `<div class="block ${hasPat}" data-nid="${n.id}" id="blk-${n.id}">`;
   html += `<div class="block-body">`;
 
-  // Inner area: incoming edges as reference chips
+  // Inner area: incoming edges as reference chips with framework number
   if (incoming.length > 0) {
     html += `<div class="block-inner">`;
     incoming.forEach(e => {
       const src = NM[e.from];
-      const shortLabel = src ? (src.label.length > 18 ? src.label.slice(0, 16) + '…' : src.label) : e.from;
-      html += `<span class="ref-chip role-${e.role}" onclick="event.stopPropagation();flashAndScroll('${e.from}')" title="${src?.label || e.from}\n${e.role}: ${e.note}">${shortLabel}</span>`;
+      const srcNum = fmtId(e.from);
+      const shortLabel = src ? (src.label.length > 14 ? src.label.slice(0, 12) + '…' : src.label) : e.from;
+      html += `<span class="ref-chip role-${e.role}" onclick="event.stopPropagation();flashAndScroll('${e.from}')" title="${src?.label || e.from}\n${e.role}: ${e.note}"><b>${srcNum}</b> ${shortLabel}</span>`;
     });
     html += `</div>`;
   } else {
@@ -375,14 +382,15 @@ function renderBlock(n) {
     html += `<div class="block-out">`;
     outgoing.forEach(e => {
       const tgt = NM[e.to];
-      const shortLabel = tgt ? (tgt.label.length > 14 ? tgt.label.slice(0, 12) + '…' : tgt.label) : e.to;
-      html += `<span class="out-chip" onclick="event.stopPropagation();flashAndScroll('${e.to}')" title="${tgt?.label || e.to}\n${e.role}: ${e.note}">→${shortLabel}</span>`;
+      const tgtNum = fmtId(e.to);
+      const shortLabel = tgt ? (tgt.label.length > 12 ? tgt.label.slice(0, 10) + '…' : tgt.label) : e.to;
+      html += `<span class="out-chip" onclick="event.stopPropagation();flashAndScroll('${e.to}')" title="${tgt?.label || e.to}\n${e.role}: ${e.note}">→${tgtNum} ${shortLabel}</span>`;
     });
     html += `</div>`;
   }
 
   html += `</div>`; // block-body
-  html += `<div class="block-id">${n.id}</div>`;
+  html += `<div class="block-id">${fmtId(n.id)}</div>`;
   html += `<div class="block-era">${n.era}</div>`;
   html += `</div>`;
   return html;
@@ -400,6 +408,22 @@ function drawEdges() {
   svg.style.height = canvas.scrollHeight + 'px';
   svg.setAttribute('viewBox', `0 0 ${canvas.scrollWidth} ${canvas.scrollHeight}`);
 
+  // Pre-compute: for each target block, how many edges arrive and assign index
+  // so arrival points spread across the top of the block
+  const arrivalCount = {};
+  const arrivalIdx = {};
+  G.edges.forEach(e => {
+    arrivalCount[e.to] = (arrivalCount[e.to] || 0) + 1;
+  });
+  const arrivalCur = {};
+
+  // Similarly, spread departure points across bottom of source block
+  const departCount = {};
+  G.edges.forEach(e => {
+    departCount[e.from] = (departCount[e.from] || 0) + 1;
+  });
+  const departCur = {};
+
   G.edges.forEach(e => {
     const fromEl = document.getElementById('blk-' + e.from);
     const toEl = document.getElementById('blk-' + e.to);
@@ -408,22 +432,38 @@ function drawEdges() {
     const fr = fromEl.getBoundingClientRect();
     const tr = toEl.getBoundingClientRect();
 
-    const x1 = fr.left + fr.width / 2 - cr.left + scrollL;
+    // Spread departure points across bottom of source block
+    departCur[e.from] = (departCur[e.from] || 0) + 1;
+    const dTotal = departCount[e.from];
+    const dIdx = departCur[e.from];
+    const dSpread = Math.min(fr.width * 0.6, dTotal * 30);
+    const dOffset = dTotal > 1 ? -dSpread/2 + (dIdx - 1) * dSpread / (dTotal - 1) : 0;
+
+    // Spread arrival points across top of target block
+    arrivalCur[e.to] = (arrivalCur[e.to] || 0) + 1;
+    const aTotal = arrivalCount[e.to];
+    const aIdx = arrivalCur[e.to];
+    const aSpread = Math.min(tr.width * 0.6, aTotal * 30);
+    const aOffset = aTotal > 1 ? -aSpread/2 + (aIdx - 1) * aSpread / (aTotal - 1) : 0;
+
+    const x1 = fr.left + fr.width / 2 + dOffset - cr.left + scrollL;
     const y1 = fr.bottom - cr.top + scrollT;
-    const x2 = tr.left + tr.width / 2 - cr.left + scrollL;
+    const x2 = tr.left + tr.width / 2 + aOffset - cr.left + scrollL;
     const y2 = tr.top - cr.top + scrollT;
 
-    // Determine if same-row (horizontal) or different-row (vertical)
     const dy = y2 - y1;
-    const dx = x2 - x1;
 
     let d;
     if (Math.abs(dy) < 20) {
-      // Horizontal: curve around
-      const midY = y1 - 40;
-      d = `M ${x1} ${y1 - fr.height/2} C ${x1} ${midY}, ${x2} ${midY}, ${x2} ${y2 + tr.height/2}`;
+      // Same row: arc above
+      const midY = Math.min(y1, y2) - 50;
+      const sx1 = fr.left + fr.width / 2 - cr.left + scrollL;
+      const sy1 = fr.top - cr.top + scrollT;
+      const sx2 = tr.left + tr.width / 2 - cr.left + scrollL;
+      const sy2 = tr.top - cr.top + scrollT;
+      d = `M ${sx1} ${sy1} C ${sx1} ${midY}, ${sx2} ${midY}, ${sx2} ${sy2}`;
     } else {
-      // Vertical: gentle S-curve
+      // Vertical: S-curve with offset
       const midY = (y1 + y2) / 2;
       d = `M ${x1} ${y1} C ${x1} ${midY}, ${x2} ${midY}, ${x2} ${y2}`;
     }
