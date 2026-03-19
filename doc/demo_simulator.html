@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>構造遷移シミュレータ — 背景 · 揺らぎ · 解放</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;600&display=swap');
+  :root {
+    --bg: #0d0f14; --paper: #141820; --ink: #c8c0aa;
+    --muted: #6b6350; --accent: #d4aa60; --border: #252b35;
+    --haikei: #1e2535; --furyo: #b87820; --kaiho: #e8d87a;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Noto Serif JP', Georgia, serif;
+    background: var(--bg); color: var(--ink);
+    min-height: 100vh; display: flex; flex-direction: column; align-items: center;
+    padding: 20px 12px;
+  }
+  .title-area { text-align: center; margin-bottom: 14px; }
+  .title-sub { font-size: 11px; letter-spacing: .3em; color: var(--muted); text-transform: uppercase; margin-bottom: 6px; }
+  .title-main { font-size: 22px; letter-spacing: .15em; color: #e8dfc8; }
+
+  /* Scale selector */
+  .scale-bar { display: flex; gap: 6px; margin-bottom: 10px; background: var(--paper); padding: 5px 8px; border-radius: 4px; border: 1px solid var(--border); }
+  .scale-btn {
+    background: transparent; border: 1px solid transparent; color: var(--muted);
+    padding: 3px 10px; border-radius: 3px; cursor: pointer; font-size: 12px;
+    letter-spacing: .1em; font-family: inherit;
+  }
+  .scale-btn.active { background: #2a2e3a; border-color: #4a4035; color: var(--accent); }
+  .examples { display: flex; gap: 5px; margin-bottom: 12px; flex-wrap: wrap; justify-content: center; }
+  .example-tag {
+    font-size: 10px; color: #7a6f58; background: var(--paper);
+    padding: 2px 7px; border-radius: 2px; border: 1px solid var(--border); letter-spacing: .04em;
+  }
+
+  /* Main layout */
+  .main-row { display: flex; gap: 16px; align-items: flex-start; flex-wrap: wrap; justify-content: center; }
+
+  /* Sim canvas */
+  .canvas-wrap {
+    position: relative; border: 1px solid var(--border); border-radius: 4px;
+    overflow: hidden; box-shadow: 0 0 30px rgba(0,0,0,.6); cursor: crosshair;
+  }
+  #simCanvas { display: block; }
+  .gen-label { position: absolute; top: 6px; right: 8px; font-size: 10px; color: #3a3f4a; letter-spacing: .1em; }
+
+  /* Time-series graph */
+  .graph-panel {
+    width: 280px; background: var(--paper); border: 1px solid var(--border);
+    border-radius: 6px; padding: 10px; display: flex; flex-direction: column; gap: 8px;
+  }
+  .graph-title { font-size: 11px; color: var(--muted); letter-spacing: .1em; }
+  #tsCanvas { display: block; border-radius: 3px; }
+  .era-overlay { font-size: 9px; color: #4a4540; margin-top: 4px; line-height: 1.6; }
+
+  /* Stats bar */
+  .stats-bar { display: flex; width: 512px; max-width: 100%; height: 6px; margin: 10px 0; border-radius: 3px; overflow: hidden; border: 1px solid #1e2228; }
+  .stats-haikei { background: var(--haikei); transition: width .3s; }
+  .stats-furyo { background: var(--furyo); transition: width .3s; }
+  .stats-kaiho { background: var(--kaiho); transition: width .3s; }
+
+  /* Legend */
+  .legend { display: flex; gap: 14px; margin-bottom: 12px; font-size: 11px; letter-spacing: .08em; }
+  .legend-item { display: flex; align-items: center; gap: 5px; }
+  .legend-dot { width: 10px; height: 10px; border-radius: 1px; }
+  .legend-label { color: #8a8070; }
+  .legend-pct { color: #5a5545; }
+
+  /* Sliders */
+  .sliders { display: grid; grid-template-columns: 1fr 1fr; gap: 8px 16px; margin-bottom: 12px; max-width: 520px; width: 100%; }
+  .slider-group { display: flex; flex-direction: column; gap: 2px; }
+  .slider-label { font-size: 10px; color: var(--muted); letter-spacing: .06em; display: flex; justify-content: space-between; }
+  .slider-val { color: var(--accent); }
+  input[type=range] { width: 100%; accent-color: #6b5a30; height: 4px; }
+
+  /* Controls */
+  .controls { display: flex; gap: 8px; margin-bottom: 10px; flex-wrap: wrap; justify-content: center; }
+  .ctrl-btn {
+    background: var(--paper); border: 1px solid var(--border); color: #8a7f68;
+    padding: 6px 14px; border-radius: 3px; cursor: pointer; font-size: 12px;
+    letter-spacing: .1em; font-family: inherit; transition: all .15s;
+  }
+  .ctrl-btn:hover { border-color: #4a4035; color: var(--accent); }
+  .ctrl-btn.active { background: #2a2e3a; border-color: #4a4035; color: var(--accent); }
+
+  .hint { font-size: 10px; color: #3a3830; letter-spacing: .1em; text-align: center; line-height: 1.8; margin-top: 8px; }
+</style>
+</head>
+<body>
+
+<div class="title-area">
+  <div class="title-sub">構造遷移シミュレータ</div>
+  <div class="title-main">背景 · 揺らぎ · 解放</div>
+</div>
+
+<div class="scale-bar" id="scaleBar"></div>
+<div class="examples" id="examples"></div>
+
+<div class="main-row">
+  <div>
+    <div class="canvas-wrap">
+      <canvas id="simCanvas" width="512" height="384"></canvas>
+      <div class="gen-label">gen <span id="genNum">0</span></div>
+    </div>
+    <div class="stats-bar">
+      <div class="stats-haikei" id="barH"></div>
+      <div class="stats-furyo" id="barF"></div>
+      <div class="stats-kaiho" id="barK"></div>
+    </div>
+    <div class="legend" id="legend"></div>
+  </div>
+
+  <div class="graph-panel">
+    <div class="graph-title">時系列 — 状態比率の推移</div>
+    <canvas id="tsCanvas" width="260" height="180"></canvas>
+    <div class="graph-title" style="margin-top:4px">状態の読み</div>
+    <div class="era-overlay" id="eraOverlay">
+      背景優勢 = 安定期（時代）<br>
+      揺らぎ増大 = 構造的矛盾の蓄積<br>
+      解放スパイク = 構造転換<br>
+      <span style="color:#5a5040">— 地形に等高線として時代が浮かぶ</span>
+    </div>
+  </div>
+</div>
+
+<div class="sliders" id="sliders"></div>
+<div class="controls" id="ctrlBar"></div>
+<div class="hint">
+  クリックで揺らぎを注入 · 解像度を変えても同じパターン<br>
+  ミクロルールからマクロ構造が自己組織化する
+</div>
+
+<script>
+// ─── Constants ───
+const COLS = 64, ROWS = 48;
+const HAIKEI = 0, FURYO = 1, KAIHO = 2;
+
+const SCALES = [
+  { scale: "ミクロ", examples: ["磐井の乱","丁未の乱","壬申の乱","白村江","本能寺"] },
+  { scale: "メゾ",  examples: ["豪族→律令","律令→貴族","貴族→武家","幕府→近代"] },
+  { scale: "マクロ", examples: ["部族連合","中央集権","封建制","国民国家"] }
+];
+
+// ─── Parameters (slider-driven) ───
+const params = {
+  sensitivity: 2.5,   // 揺らぎ感度: 背景→揺らぎの圧力閾値 (低い=敏感)
+  releaseSpeed: 6,    // 解放の速さ: 揺らぎ→解放までのtick (低い=速い)
+  spread: 2,          // 伝播の広がり: 揺らぎの近傍影響係数
+  viscosity: 0.92     // 背景の粘性: 圧力の減衰率 (高い=圧力が残りやすい)
+};
+
+// ─── State ───
+let grid = createGrid();
+let running = false;
+let generation = 0;
+let scaleIdx = 0;
+let intervalId = null;
+let speed = 120;
+const tsHistory = []; // time-series data
+const TS_MAX = 200;
+
+// ─── Grid ───
+function createGrid() {
+  return Array.from({ length: ROWS }, () =>
+    Array.from({ length: COLS }, () => ({ state: HAIKEI, age: 0, pressure: 0 }))
+  );
+}
+
+function countNeighbors(g, r, c, target) {
+  let count = 0;
+  const range = Math.max(1, Math.round(params.spread / 2));
+  for (let dr = -range; dr <= range; dr++) {
+    for (let dc = -range; dc <= range; dc++) {
+      if (dr === 0 && dc === 0) continue;
+      const nr = r + dr, nc = c + dc;
+      if (nr >= 0 && nr < ROWS && nc >= 0 && nc < COLS && g[nr][nc].state === target) count++;
+    }
+  }
+  return count;
+}
+
+function step(g) {
+  const next = g.map(row => row.map(cell => ({ ...cell, age: cell.age + 1 })));
+  for (let r = 0; r < ROWS; r++) {
+    for (let c = 0; c < COLS; c++) {
+      const cell = g[r][c];
+      const furyoN = countNeighbors(g, r, c, FURYO);
+      const kaihoN = countNeighbors(g, r, c, KAIHO);
+
+      if (cell.state === HAIKEI) {
+        const dp = furyoN * 0.3 * (params.spread / 2) + kaihoN * 0.1;
+        const newP = cell.pressure + dp;
+        if (newP > params.sensitivity || furyoN >= 3) {
+          next[r][c] = { state: FURYO, age: 0, pressure: 0 };
+        } else {
+          next[r][c].pressure = newP * params.viscosity;
+        }
+      } else if (cell.state === FURYO) {
+        const threshold = params.releaseSpeed + Math.floor(Math.random() * 4);
+        if (furyoN >= 4 || cell.age > threshold) {
+          next[r][c] = { state: KAIHO, age: 0, pressure: 0 };
+        }
+      } else if (cell.state === KAIHO) {
+        if (cell.age > 2) {
+          next[r][c] = { state: HAIKEI, age: 0, pressure: Math.random() * 0.5 };
+        }
+      }
+    }
+  }
+  return next;
+}
+
+function getStats(g) {
+  let h = 0, f = 0, k = 0;
+  g.forEach(row => row.forEach(cell => {
+    if (cell.state === HAIKEI) h++;
+    else if (cell.state === FURYO) f++;
+    else k++;
+  }));
+  const total = ROWS * COLS;
+  return { h, f, k, total, hp: h/total, fp: f/total, kp: k/total };
+}
+
+// ─── Drawing ───
+function getCellColor(cell) {
+  if (cell.state === HAIKEI) {
+    const p = Math.min(cell.pressure / 3, 1);
+    return `rgb(${18 + p*25|0}, ${22 + p*30|0}, ${40 + p*35|0})`;
+  }
+  if (cell.state === FURYO) {
+    const i = Math.min(cell.age / 8, 1);
+    return `rgb(${180 + i*60|0}, ${120 + i*40|0}, 30)`;
+  }
+  const fade = Math.max(0, 1 - cell.age / 3);
+  const v = 200 + fade * 55 | 0;
+  return `rgb(${v}, ${v*.95|0}, ${v*.7|0})`;
+}
+
+function drawSim() {
+  const canvas = document.getElementById('simCanvas');
+  const ctx = canvas.getContext('2d');
+  const cw = canvas.width / COLS, ch = canvas.height / ROWS;
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  for (let r = 0; r < ROWS; r++) {
+    for (let c = 0; c < COLS; c++) {
+      ctx.fillStyle = getCellColor(grid[r][c]);
+      ctx.fillRect(c * cw + .3, r * ch + .3, cw - .3, ch - .3);
+    }
+  }
+}
+
+function drawTimeSeries() {
+  const canvas = document.getElementById('tsCanvas');
+  const ctx = canvas.getContext('2d');
+  const W = canvas.width, H = canvas.height;
+  ctx.clearRect(0, 0, W, H);
+
+  // Background
+  ctx.fillStyle = '#0a0c10';
+  ctx.fillRect(0, 0, W, H);
+
+  if (tsHistory.length < 2) return;
+
+  const len = tsHistory.length;
+  const xStep = W / Math.max(len - 1, 1);
+
+  // Draw stacked area
+  // Bottom: haikei, middle: furyo, top: kaiho
+  ctx.globalAlpha = 0.8;
+
+  // Haikei (bottom)
+  ctx.beginPath();
+  ctx.moveTo(0, H);
+  for (let i = 0; i < len; i++) ctx.lineTo(i * xStep, H - tsHistory[i].hp * H);
+  ctx.lineTo((len-1) * xStep, H);
+  ctx.closePath();
+  ctx.fillStyle = '#1e2535';
+  ctx.fill();
+
+  // Furyo (middle)
+  ctx.beginPath();
+  ctx.moveTo(0, H - tsHistory[0].hp * H);
+  for (let i = 0; i < len; i++) ctx.lineTo(i * xStep, H - (tsHistory[i].hp + tsHistory[i].fp) * H);
+  for (let i = len - 1; i >= 0; i--) ctx.lineTo(i * xStep, H - tsHistory[i].hp * H);
+  ctx.closePath();
+  ctx.fillStyle = '#7a5010';
+  ctx.fill();
+
+  // Kaiho (top)
+  ctx.beginPath();
+  ctx.moveTo(0, H - (tsHistory[0].hp + tsHistory[0].fp) * H);
+  for (let i = 0; i < len; i++) ctx.lineTo(i * xStep, 0);
+  for (let i = len - 1; i >= 0; i--) ctx.lineTo(i * xStep, H - (tsHistory[i].hp + tsHistory[i].fp) * H);
+  ctx.closePath();
+  ctx.fillStyle = '#8a7830';
+  ctx.fill();
+
+  ctx.globalAlpha = 1;
+
+  // Line: furyo ratio (most interesting signal)
+  ctx.beginPath();
+  ctx.strokeStyle = '#d4aa60';
+  ctx.lineWidth = 1.5;
+  for (let i = 0; i < len; i++) {
+    const x = i * xStep;
+    const y = H - tsHistory[i].fp * H * 3; // amplify for visibility
+    if (i === 0) ctx.moveTo(x, Math.max(0, y));
+    else ctx.lineTo(x, Math.max(0, y));
+  }
+  ctx.stroke();
+
+  // Label
+  ctx.fillStyle = '#4a4540';
+  ctx.font = '9px serif';
+  ctx.fillText('揺らぎ率', 4, 12);
+
+  // Detect stable periods (background > 85%)
+  ctx.fillStyle = 'rgba(30,37,53,0.6)';
+  ctx.font = '8px serif';
+  let stableStart = -1;
+  for (let i = 0; i < len; i++) {
+    if (tsHistory[i].hp > 0.85) {
+      if (stableStart < 0) stableStart = i;
+    } else {
+      if (stableStart >= 0 && i - stableStart > 8) {
+        const sx = stableStart * xStep;
+        const sw = (i - stableStart) * xStep;
+        ctx.fillRect(sx, H - 14, sw, 12);
+        ctx.fillStyle = '#5a5545';
+        ctx.fillText('安定期', sx + 2, H - 4);
+        ctx.fillStyle = 'rgba(30,37,53,0.6)';
+      }
+      stableStart = -1;
+    }
+  }
+}
+
+// ─── UI Updates ───
+function updateUI() {
+  const s = getStats(grid);
+  document.getElementById('genNum').textContent = generation;
+  document.getElementById('barH').style.width = (s.hp * 100) + '%';
+  document.getElementById('barF').style.width = (s.fp * 100) + '%';
+  document.getElementById('barK').style.width = (s.kp * 100) + '%';
+
+  document.getElementById('legend').innerHTML = [
+    { label: '背景', color: 'var(--haikei)', pct: Math.round(s.hp * 100) },
+    { label: '揺らぎ', color: 'var(--furyo)', pct: Math.round(s.fp * 100) },
+    { label: '解放', color: 'var(--kaiho)', pct: Math.round(s.kp * 100) }
+  ].map(x => `<div class="legend-item"><div class="legend-dot" style="background:${x.color}"></div><span class="legend-label">${x.label}</span><span class="legend-pct">${x.pct}%</span></div>`).join('');
+
+  // Record time-series
+  tsHistory.push({ hp: s.hp, fp: s.fp, kp: s.kp });
+  if (tsHistory.length > TS_MAX) tsHistory.shift();
+}
+
+// ─── Tick ───
+function tick() {
+  grid = step(grid);
+  generation++;
+  drawSim();
+  updateUI();
+  drawTimeSeries();
+}
+
+function startStop() {
+  running = !running;
+  if (running) {
+    intervalId = setInterval(tick, speed);
+  } else {
+    clearInterval(intervalId);
+  }
+  updateCtrlButtons();
+}
+
+// ─── Canvas Click: inject fluctuation ───
+document.getElementById('simCanvas').addEventListener('click', e => {
+  const canvas = e.target;
+  const rect = canvas.getBoundingClientRect();
+  const x = e.clientX - rect.left, y = e.clientY - rect.top;
+  const c = Math.floor(x / (rect.width / COLS));
+  const r = Math.floor(y / (rect.height / ROWS));
+  const radius = Math.max(1, Math.round(params.spread));
+  for (let dr = -radius; dr <= radius; dr++) {
+    for (let dc = -radius; dc <= radius; dc++) {
+      const nr = r + dr, nc = c + dc;
+      if (nr >= 0 && nr < ROWS && nc >= 0 && nc < COLS && Math.abs(dr) + Math.abs(dc) <= radius) {
+        grid[nr][nc] = { state: FURYO, age: 0, pressure: 0 };
+      }
+    }
+  }
+  drawSim();
+  updateUI();
+});
+
+// ─── Scale Selector ───
+function buildScaleBar() {
+  const bar = document.getElementById('scaleBar');
+  SCALES.forEach((s, i) => {
+    const btn = document.createElement('button');
+    btn.className = 'scale-btn' + (i === scaleIdx ? ' active' : '');
+    btn.textContent = s.scale;
+    btn.onclick = () => { scaleIdx = i; updateScale(); };
+    bar.appendChild(btn);
+  });
+}
+
+function updateScale() {
+  document.querySelectorAll('.scale-btn').forEach((btn, i) => {
+    btn.classList.toggle('active', i === scaleIdx);
+  });
+  const ex = document.getElementById('examples');
+  ex.innerHTML = SCALES[scaleIdx].examples.map(e => `<span class="example-tag">${e}</span>`).join('');
+}
+
+// ─── Sliders ───
+function buildSliders() {
+  const defs = [
+    { key: 'sensitivity', label: '揺らぎ感度', min: 0.5, max: 5, step: 0.1, desc: '低い＝敏感' },
+    { key: 'releaseSpeed', label: '解放の速さ', min: 2, max: 14, step: 1, desc: '低い＝速い' },
+    { key: 'spread', label: '伝播の広がり', min: 1, max: 4, step: 0.5, desc: '大＝広範囲' },
+    { key: 'viscosity', label: '背景の粘性', min: 0.7, max: 0.98, step: 0.01, desc: '高い＝圧力残存' }
+  ];
+  const container = document.getElementById('sliders');
+  defs.forEach(d => {
+    const group = document.createElement('div');
+    group.className = 'slider-group';
+    group.innerHTML = `
+      <div class="slider-label"><span>${d.label} <span style="color:#3a3830">${d.desc}</span></span><span class="slider-val" id="val_${d.key}">${params[d.key]}</span></div>
+      <input type="range" min="${d.min}" max="${d.max}" step="${d.step}" value="${params[d.key]}" id="slider_${d.key}">
+    `;
+    container.appendChild(group);
+    group.querySelector('input').addEventListener('input', e => {
+      params[d.key] = parseFloat(e.target.value);
+      document.getElementById(`val_${d.key}`).textContent = params[d.key];
+    });
+  });
+}
+
+// ─── Control Buttons ───
+function buildControls() {
+  const bar = document.getElementById('ctrlBar');
+  const btns = [
+    { id: 'btnRun', label: '▶ 開始', action: startStop },
+    { id: 'btnSeed', label: '◦ 種をまく', action: seed },
+    { id: 'btnReset', label: '↺ リセット', action: reset },
+    { id: 'btnStep', label: '▸ 1ステップ', action: () => { if (!running) tick(); } }
+  ];
+  btns.forEach(b => {
+    const btn = document.createElement('button');
+    btn.className = 'ctrl-btn';
+    btn.id = b.id;
+    btn.textContent = b.label;
+    btn.onclick = b.action;
+    bar.appendChild(btn);
+  });
+  // Speed slider
+  const speedGroup = document.createElement('div');
+  speedGroup.style.cssText = 'display:flex;align-items:center;gap:8px;font-size:11px;color:#5a5545;margin-left:8px;';
+  speedGroup.innerHTML = `<span>速</span><input type="range" min="40" max="400" step="20" value="${400 - speed + 40}" style="width:80px;accent-color:#6b5a30"><span>遅</span>`;
+  speedGroup.querySelector('input').addEventListener('input', e => {
+    speed = 400 - parseInt(e.target.value) + 40;
+    if (running) { clearInterval(intervalId); intervalId = setInterval(tick, speed); }
+  });
+  bar.appendChild(speedGroup);
+}
+
+function updateCtrlButtons() {
+  const btn = document.getElementById('btnRun');
+  btn.textContent = running ? '■ 停止' : '▶ 開始';
+  btn.classList.toggle('active', running);
+}
+
+function seed() {
+  for (let i = 0; i < 15; i++) {
+    const r = Math.floor(Math.random() * ROWS);
+    const c = Math.floor(Math.random() * COLS);
+    grid[r][c] = { state: FURYO, age: 0, pressure: 0 };
+  }
+  drawSim(); updateUI();
+}
+
+function reset() {
+  running = false; clearInterval(intervalId);
+  grid = createGrid(); generation = 0;
+  tsHistory.length = 0;
+  drawSim(); updateUI(); drawTimeSeries();
+  updateCtrlButtons();
+}
+
+// ─── Init ───
+buildScaleBar();
+updateScale();
+buildSliders();
+buildControls();
+drawSim();
+updateUI();
+drawTimeSeries();
+</script>
+</body>
+</html>

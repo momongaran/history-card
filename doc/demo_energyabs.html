@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>EnergyAbs Flow — 磐井の乱から律令国家志向の消滅まで</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;600;700&display=swap');
+  :root {
+    --bg: #f5f0e8; --paper: #fffdf8; --ink: #1a1a1a;
+    --muted: #6a5a48; --line: #d0c8b8; --accent: #3a2a18;
+    --amp: #b8860b; --trg: #b83030; --tfm: #2060b0;
+    --sus: #2a8a48; --sup: #6b7280; --inh: #6848a8;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Noto Serif JP', -apple-system, serif;
+    background: linear-gradient(160deg, #f5efe3, #ede5d5);
+    color: var(--ink); min-height: 100vh;
+  }
+  .header {
+    padding: 16px 24px; border-bottom: 1px solid var(--line);
+    background: rgba(255,253,248,.95);
+  }
+  h1 { font-size: 22px; color: var(--accent); letter-spacing: .04em; }
+  .sub { font-size: 12px; color: var(--muted); margin-top: 2px; }
+
+  /* Controls */
+  .controls {
+    padding: 8px 24px; background: rgba(255,253,248,.9);
+    border-bottom: 1px solid var(--line);
+    display: flex; gap: 6px; flex-wrap: wrap; align-items: center;
+    font-size: 12px;
+  }
+  .controls label { display: flex; align-items: center; gap: 4px; cursor: pointer; padding: 3px 8px; border-radius: 12px; border: 1px solid #e0d8c8; }
+  .controls label:hover { background: #f0e8d8; }
+  .controls label input { display: none; }
+  .controls label.active { border-color: #8a7a60; background: #f0e8d0; }
+  .legend-dot { width: 14px; height: 3px; border-radius: 2px; display: inline-block; }
+  .stats { margin-left: auto; color: var(--muted); font-size: 11px; }
+
+  /* Graph */
+  .graph-wrap { overflow: auto; padding: 24px; }
+  .graph { position: relative; min-width: 1300px; }
+  .cluster-row {
+    display: flex; align-items: flex-start;
+    margin-bottom: 24px; position: relative;
+  }
+  .cluster-label {
+    width: 140px; min-width: 140px; padding: 8px 10px 8px 0;
+    font-size: 12px; color: var(--muted); line-height: 1.5;
+    border-right: 3px solid #c8b898; margin-right: 16px; text-align: right;
+  }
+  .cluster-label .cl-era { font-size: 10px; color: #9a8a78; display: block; margin-top: 2px; }
+  .cluster-nodes { display: flex; gap: 12px; flex-wrap: wrap; flex: 1; padding: 4px 0; }
+
+  /* Node card */
+  .node {
+    width: 188px; min-height: 72px; background: var(--paper);
+    border: 1.5px solid var(--line); border-radius: 10px;
+    padding: 8px 10px 22px; cursor: pointer;
+    transition: all .15s; position: relative;
+  }
+  .node:hover { border-color: #8a7a60; box-shadow: 0 4px 16px rgba(0,0,0,.1); transform: translateY(-1px); }
+  .node.hl { border-color: var(--tfm); box-shadow: 0 0 0 2px rgba(32,96,176,.25); }
+  .node.dim { opacity: .25; }
+  .node.event { border-left: 3px solid var(--trg); }
+  .node-era { font-size: 9px; color: #9a8a78; margin-bottom: 3px; letter-spacing: .02em; }
+  .node-label { font-size: 12px; line-height: 1.45; color: #2a2218; font-weight: 600; }
+  .node-pattern { font-size: 10px; color: var(--tfm); margin-top: 4px; border-top: 1px dotted #e0d8c8; padding-top: 3px; }
+  .node-id {
+    position: absolute; bottom: 4px; right: 7px;
+    font-size: 9px; color: #b8a890; font-family: monospace;
+  }
+  .node-int {
+    position: absolute; top: 6px; right: 7px;
+    width: 7px; height: 7px; border-radius: 50%;
+  }
+  .node-int.high { background: #d04040; }
+  .node-int.medium { background: #c89820; }
+  .node-int.low { background: #50a050; }
+
+  /* SVG edges */
+  svg.edge-layer {
+    position: absolute; top: 0; left: 0;
+    pointer-events: none; overflow: visible;
+  }
+  .edge { fill: none; stroke-width: 1.5; opacity: .35; transition: all .15s; }
+  .edge.hl { opacity: 1; stroke-width: 2.5; }
+  .edge.dim { opacity: .06; }
+  .edge.amplifies { stroke: var(--amp); }
+  .edge.triggers { stroke: var(--trg); }
+  .edge.transforms { stroke: var(--tfm); }
+  .edge.sustains { stroke: var(--sus); }
+  .edge.suppresses { stroke: var(--sup); }
+  .edge.inherits { stroke: var(--inh); }
+
+  /* Tooltip */
+  .tooltip {
+    position: fixed; z-index: 200;
+    background: rgba(255,253,248,.97); border: 1px solid var(--line);
+    border-radius: 10px; padding: 12px 14px;
+    box-shadow: 0 8px 24px rgba(0,0,0,.12);
+    max-width: 340px; display: none; pointer-events: none;
+  }
+  .tooltip.show { display: block; }
+  .tooltip h4 { font-size: 14px; margin-bottom: 6px; color: var(--accent); }
+  .tooltip .t-summary { font-size: 12px; line-height: 1.6; color: #4a3a28; margin-bottom: 8px; }
+  .tooltip .t-actors { font-size: 11px; color: var(--muted); }
+  .tooltip .t-edges { font-size: 11px; color: var(--muted); margin-top: 6px; border-top: 1px solid #e8e0d0; padding-top: 6px; }
+  .tooltip .t-edge-item { padding: 2px 0; }
+  .tooltip .t-role { font-weight: 700; }
+  .t-role.amplifies { color: var(--amp); }
+  .t-role.triggers { color: var(--trg); }
+  .t-role.transforms { color: var(--tfm); }
+  .t-role.sustains { color: var(--sus); }
+
+  /* Long-range edge indicator */
+  .long-edge-badge {
+    position: absolute; top: -6px; left: 10px;
+    font-size: 8px; background: var(--tfm); color: #fff;
+    padding: 1px 5px; border-radius: 8px; letter-spacing: .04em;
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>EnergyAbs Flow</h1>
+  <div class="sub">磐井の乱（527年）→ 律令国家志向の実質的消滅（1100s）— 39ノード・50エッジの有向グラフ</div>
+</div>
+
+<div class="controls" id="controls"></div>
+
+<div class="graph-wrap">
+  <div class="graph" id="graph">
+    <div class="clusters" id="clusters"></div>
+    <svg class="edge-layer" id="edgeSvg"></svg>
+  </div>
+</div>
+
+<div class="tooltip" id="tooltip"></div>
+
+<script>
+// ─── Data ───
+const graph = {"nodes":[{"id":"N035","label":"任那(伽耶)の権益縮小","summary":"5世紀後半から6世紀にかけて新羅・百済の南進により、大和が朝鮮半島南部に保持していた任那の権益が急速に縮小していった","actors":["新羅","百済","大和朝廷"],"intensity":"high","timescale":"long","cluster":"0_磐井の乱前後","era":"470s–520s"},{"id":"N036","label":"磐井の新羅独自外交","summary":"筑紫国造磐井は新羅と独自の通交関係を持ち、大和朝廷を介さない外交・交易ルートを維持していた","actors":["磐井","新羅"],"intensity":"medium","timescale":"medium","cluster":"0_磐井の乱前後","era":"500s–520s"},{"id":"N037","label":"大和の任那出兵圧力","summary":"継体天皇が任那回復のため近江毛野を派遣しようとし、九州豪族への軍事動員が強まった","actors":["継体天皇","近江毛野","大和朝廷"],"intensity":"high","timescale":"short","cluster":"0_磐井の乱前後","era":"527"},{"id":"N038","label":"磐井の乱（527–528年）","summary":"筑紫国造磐井が大和の任那出兵命令に反して叛乱を起こした。物部麁鹿火が鎮圧。中央vs地方の最初の大規模軍事対決","pattern":"{地方}が叛乱を起こす","actors":["磐井","物部麁鹿火","継体天皇"],"intensity":"high","timescale":"short","cluster":"0_磐井の乱前後","era":"527–528"},{"id":"N039","label":"屯倉設置と筑紫直轄化","summary":"磐井の乱の鎮圧後、大和朝廷は筑紫に屯倉（直轄地）を設置し、九州北部の地方支配を直接化した。中央集権化の具体的成功例","actors":["大和朝廷"],"intensity":"high","timescale":"medium","cluster":"0_磐井の乱前後","era":"528–530s"},{"id":"N001","label":"仏教伝来による秩序原理の転換","summary":"百済から仏教が伝来し（552 or 538年）、在来の神祇祭祀を基盤とする政治秩序と相容れない新しい正統性の源泉が朝廷内に持ち込まれた","actors":["百済","蘇我氏","物部氏","中臣氏"],"intensity":"high","timescale":"long","cluster":"A_丁未の乱前後","era":"550s"},{"id":"N002","label":"蘇我氏の仏教推進と政治的権勢拡大","summary":"蘇我氏は仏教受容を推進することで渡来人・新技術・外交ルートを掌握し、政治的優位を確立しようとした","actors":["蘇我馬子","蘇我氏"],"intensity":"high","timescale":"medium","cluster":"A_丁未の乱前後","era":"560s–580s"},{"id":"N003","label":"物部氏の神祇祭祀権威の侵食危機","summary":"仏教の普及が物部氏・中臣氏の存立基盤である神祇祭祀・軍事的権威を根本から脅かしつつあった","actors":["物部守屋","物部氏","中臣氏"],"intensity":"high","timescale":"medium","cluster":"A_丁未の乱前後","era":"560s–580s"},{"id":"N004","label":"用明天皇崩御と皇位継承の空白","summary":"用明天皇が587年に崩御し、次期天皇の選定をめぐって蘇我・物部の対立が一気に顕在化した","actors":["用明天皇"],"intensity":"medium","timescale":"short","cluster":"A_丁未の乱前後","era":"587"},{"id":"N005","label":"丁未の乱（587年）","summary":"蘇我馬子が諸皇子・諸豪族と連合して物部守屋を攻め滅ぼした。蘇我氏が廃仏派を排除し政治的主導権を確立","pattern":"{新秩序派}が{旧秩序派}を武力排除する","actors":["蘇我馬子","物部守屋","厩戸皇子"],"intensity":"high","timescale":"short","cluster":"A_丁未の乱前後","era":"587"},{"id":"N006","label":"蘇我氏主導体制の確立","summary":"丁未の乱後、蘇我馬子が政権を掌握。推古天皇・厩戸皇子と連携しつつ外交・内政を主導する体制が形成された","actors":["蘇我馬子","推古天皇","厩戸皇子"],"intensity":"high","timescale":"long","cluster":"B_丁未から白村江の接続","era":"590s–640s"},{"id":"N007","label":"遣隋使・東アジア外交路線の転換","summary":"600年以降の遣隋使派遣により、朝鮮半島を介さない直接外交が始まった","actors":["厩戸皇子","推古天皇","蘇我氏"],"intensity":"medium","timescale":"long","cluster":"B_丁未から白村江の接続","era":"600s–630s"},{"id":"N008","label":"朝鮮半島三国抗争の激化","summary":"新羅・百済・高句麗の三国が半島の覇権をめぐって激しく争い、大和との関係が流動化した","actors":["新羅","百済","高句麗"],"intensity":"high","timescale":"long","cluster":"B_丁未から白村江の接続","era":"600s–660s"},{"id":"N009","label":"大化の改新（645年）と中央集権化圧力","summary":"蘇我本宗家打倒（乙巳の変）を契機とした改革。律令的中央集権化が推進され、豪族の自律性を縮小する圧力が生まれた","actors":["中大兄皇子","中臣鎌足","孝徳天皇"],"intensity":"high","timescale":"medium","cluster":"B_丁未から白村江の接続","era":"645–660s"},{"id":"N010","label":"百済との軍事的庇護関係","summary":"大和は百済を伝統的な同盟・庇護対象と見なし、援軍派遣が政治的義務として機能していた","actors":["大和朝廷","百済"],"intensity":"medium","timescale":"long","cluster":"B_丁未から白村江の接続","era":"400s–660s"},{"id":"N011","label":"百済滅亡（660年）","summary":"唐・新羅連合軍が百済を滅ぼした。大和にとって半島の足場を失う事態","actors":["唐","新羅","百済"],"intensity":"high","timescale":"short","cluster":"B_丁未から白村江の接続","era":"660"},{"id":"N012","label":"白村江の戦い（663年）","summary":"大和・百済復興軍が唐・新羅連合軍と白村江で壊滅的敗北を喫した","pattern":"{同盟国}救援に出兵し大敗する","actors":["中大兄皇子","唐","新羅"],"intensity":"high","timescale":"short","cluster":"C_白村江","era":"663"},{"id":"N013","label":"白村江敗戦による対外的危機感","summary":"唐・新羅の侵攻恐怖が生まれ、防人・水城・烽火台が整備された。外敵脅威が内政改革の正当化根拠に","actors":["中大兄皇子","大和朝廷"],"intensity":"high","timescale":"medium","cluster":"C_白村江","era":"663–670s"},{"id":"N014","label":"天智天皇による急速な中央集権化（近江令）","summary":"敗戦を背景に天智天皇が近江令を制定。動員体制を急いだが豪族の反発を招いた","actors":["天智天皇","藤原鎌足"],"intensity":"high","timescale":"medium","cluster":"D_白村江から壬申の接続","era":"663–671"},{"id":"N015","label":"豪族層の不満蓄積","summary":"中央集権化による負担増・自律性喪失が豪族に広く不満として蓄積。大海人皇子がその受け皿に","actors":["地方豪族","東国諸豪族"],"intensity":"high","timescale":"medium","cluster":"D_白村江から壬申の接続","era":"645–671"},{"id":"N016","label":"皇位継承をめぐる緊張","summary":"天智天皇が大友皇子への継承を図り、大海人皇子との間で正統性をめぐる緊張が高まった","actors":["天智天皇","大友皇子","大海人皇子"],"intensity":"high","timescale":"short","cluster":"D_白村江から壬申の接続","era":"670–671"},{"id":"N017","label":"天智天皇の崩御（671年）","summary":"天智天皇の死により皇位継承問題が顕在化し、対立が行動水準に達した","actors":["天智天皇"],"intensity":"medium","timescale":"short","cluster":"D_白村江から壬申の接続","era":"671"},{"id":"N018","label":"壬申の乱（672年）","summary":"大海人皇子が吉野から挙兵し東国豪族を糾合。大友皇子を破り天武天皇として即位。律令天皇制確立への決定的転換点","pattern":"{挑戦者}が{後継指名者}を武力で倒す","actors":["大海人皇子","大友皇子","東国豪族"],"intensity":"high","timescale":"short","cluster":"E_壬申の乱","era":"672"},{"id":"N019","label":"天武天皇の律令国家建設志向","summary":"豪族連合で勝利した天武が逆説的に豪族超克のため律令的中央集権国家建設を強力推進","actors":["天武天皇","持統天皇"],"intensity":"high","timescale":"long","cluster":"F_天武朝・律令国家建設","era":"672–700"},{"id":"N020","label":"大宝律令の完成（701年）","summary":"日本初の本格的律令法典。律令国家体制が頂点に達した","actors":["刑部親王","藤原不比等"],"intensity":"high","timescale":"short","cluster":"F_天武朝・律令国家建設","era":"701"},{"id":"N021","label":"公地公民制・班田収授制の制度的確立","summary":"土地と人民はすべて天皇のもの。6年ごとの班田収授が制度化。強力だが運営コストの高い制度","actors":["大和朝廷","地方民衆"],"intensity":"high","timescale":"long","cluster":"F_天武朝・律令国家建設","era":"700s"},{"id":"N022","label":"人口増加と班田用地の慢性的不足","summary":"8世紀を通じて人口増加。口分田だけでは班田を維持できず開墾需要が高まった","actors":["農民","地方官人"],"intensity":"medium","timescale":"long","cluster":"G_律令制の内部矛盾","era":"700s"},{"id":"N023","label":"墾田永年私財法（743年）","summary":"開墾地の永久私有を公認。公地公民原則への事実上の例外規定","pattern":"{公的原則}に{私的例外}を法認する","actors":["聖武天皇","朝廷"],"intensity":"high","timescale":"short","cluster":"G_律令制の内部矛盾","era":"743"},{"id":"N024","label":"初期荘園の形成","summary":"大寺社・貴族が墾田永年私財法を利用して農地を集積し始めた","actors":["大寺社","中央貴族"],"intensity":"medium","timescale":"long","cluster":"G_律令制の内部矛盾","era":"743–800s"},{"id":"N025","label":"律令的租税・徭役負担と農民の逃亡・浮浪","summary":"租庸調・雑徭が重く、逃亡・浮浪が常態化。班田収授制が空洞化し始めた","actors":["班田農民","地方豪族"],"intensity":"high","timescale":"long","cluster":"G_律令制の内部矛盾","era":"700s–800s"},{"id":"N026","label":"受領制の成立と地方支配の請負化","summary":"中央から派遣される受領が徴税・支配を一括請負。直接支配から間接請負へ転換","actors":["受領","中央貴族"],"intensity":"high","timescale":"long","cluster":"G_律令制の内部矛盾","era":"900s–1000s"},{"id":"N027","label":"藤原氏摂関政治の確立","summary":"摂政・関白として天皇の政務を代行。国政の実権が摂関家の私的権力へ移行","actors":["藤原道長","藤原頼通"],"intensity":"high","timescale":"long","cluster":"H_摂関政治・在地領主の台頭","era":"900s–1000s"},{"id":"N028","label":"在地領主・武士団の形成","summary":"地方で実力支配する在地領主層が台頭し武士団を形成。軍事力が私的武力集団へ移行","actors":["在地領主","武士団","源氏・平氏"],"intensity":"high","timescale":"long","cluster":"H_摂関政治・在地領主の台頭","era":"900s–1100s"},{"id":"N029","label":"寄進地系荘園の拡大","summary":"在地領主が土地を中央貴族・大寺社に寄進し不輸不入権を得る荘園が急拡大","actors":["在地領主","中央貴族","大寺社"],"intensity":"high","timescale":"long","cluster":"H_摂関政治・在地領主の台頭","era":"1000s–1100s"},{"id":"N030","label":"不輸不入権の拡大と公領の縮小","summary":"荘園への国司立入禁止・租税免除が慣行化し、律令国家の直接把握できる公領が縮小","actors":["荘園領主","国司"],"intensity":"high","timescale":"long","cluster":"H_摂関政治・在地領主の台頭","era":"1000s–1100s"},{"id":"N031","label":"延久の荘園整理令（1069年）","summary":"後三条天皇が荘園整理を断行。律令原則への最後の本格的回帰の試み","actors":["後三条天皇"],"intensity":"medium","timescale":"short","cluster":"I_院政・荘園公領制の確立","era":"1069"},{"id":"N032","label":"院政の開始（1086年）","summary":"白河上皇が院庁を通じて政務を主導。律令的太政官制でも摂関制でもない私的権力による統治","actors":["白河上皇","鳥羽上皇"],"intensity":"high","timescale":"long","cluster":"I_院政・荘園公領制の確立","era":"1086–1100s"},{"id":"N033","label":"荘園公領制の確立","summary":"荘園と公領が並立する二元的土地支配体制が確立。公地公民原則は放棄された","actors":["荘園領主","国司","在地領主"],"intensity":"high","timescale":"long","cluster":"I_院政・荘園公領制の確立","era":"1100s"},{"id":"N034","label":"律令国家志向の実質的消滅","summary":"一元的公地公民・律令支配が解体。エネルギーは荘園公領制・武家政権という新形態に転化して保存された","actors":[],"intensity":"high","timescale":"long","cluster":"I_院政・荘園公領制の確立","era":"1100s"}],"edges":[{"id":"E045","from":"N035","to":"N037","role":"amplifies","note":"任那の権益縮小が出兵の緊急性を高めた"},{"id":"E046","from":"N036","to":"N037","role":"amplifies","note":"磐井の独自外交が大和との対立を激化させた"},{"id":"E047","from":"N037","to":"N038","role":"triggers","note":"出兵命令が磐井の叛乱を引き起こした"},{"id":"E048","from":"N038","to":"N039","role":"transforms","note":"乱の鎮圧が筑紫直轄化に転化した"},{"id":"E049","from":"N039","to":"N001","role":"amplifies","note":"中央直轄化の成功が仏教受容の土壌を整えた"},{"id":"E050","from":"N035","to":"N008","role":"amplifies","note":"任那権益の縮小が朝鮮半島三国抗争への大和の関与を規定し続けた"},{"id":"E001","from":"N001","to":"N002","role":"amplifies","note":"仏教の新秩序原理が蘇我氏の台頭を後押しした"},{"id":"E002","from":"N001","to":"N003","role":"amplifies","note":"同じ仏教伝来が物部氏の危機感を高めた"},{"id":"E003","from":"N002","to":"N003","role":"amplifies","note":"蘇我の権勢拡大が物部の危機感を増幅した"},{"id":"E004","from":"N002","to":"N004","role":"amplifies","note":"蘇我・物部の緊張が臨界点を超えた"},{"id":"E005","from":"N003","to":"N004","role":"amplifies","note":"物部側の危機感が用明崩御を引き金に"},{"id":"E006","from":"N004","to":"N005","role":"triggers","note":"用明崩御が潜在的対立を行動水準に押し上げた"},{"id":"E007","from":"N005","to":"N006","role":"transforms","note":"丁未の乱が蘇我主導体制に転化した"},{"id":"E008","from":"N006","to":"N007","role":"triggers","note":"蘇我体制の安定が遣隋使を可能にした"},{"id":"E009","from":"N007","to":"N009","role":"amplifies","note":"外交路線転換が律令的中央集権化の参照モデルを提供"},{"id":"E010","from":"N006","to":"N009","role":"transforms","note":"乙巳の変で蘇我本宗家が打倒され大化の改新に"},{"id":"E011","from":"N008","to":"N010","role":"amplifies","note":"三国抗争が大和-百済庇護関係の必要性を高めた"},{"id":"E012","from":"N008","to":"N011","role":"amplifies","note":"三国抗争の帰結として百済滅亡"},{"id":"E013","from":"N010","to":"N011","role":"amplifies","note":"庇護関係が軍事介入を引き起こす引力に"},{"id":"E014","from":"N011","to":"N012","role":"triggers","note":"百済滅亡が白村江派兵の直接的引き金"},{"id":"E015","from":"N009","to":"N012","role":"sustains","note":"中央集権化が大規模遠征軍を組織する能力を提供"},{"id":"E016","from":"N012","to":"N013","role":"transforms","note":"白村江の敗北が対外的危機感に転化"},{"id":"E017","from":"N013","to":"N014","role":"amplifies","note":"外敵脅威が急速な国内改革を正当化・加速"},{"id":"E018","from":"N014","to":"N015","role":"amplifies","note":"急速な中央集権化が豪族不満を蓄積"},{"id":"E019","from":"N009","to":"N015","role":"amplifies","note":"大化以来の中央集権圧力の累積が不満の土台に"},{"id":"E020","from":"N015","to":"N016","role":"amplifies","note":"豪族の不満が皇位継承問題と結びついた"},{"id":"E021","from":"N016","to":"N017","role":"amplifies","note":"継承緊張が高い状態での崩御が臨界点に"},{"id":"E022","from":"N017","to":"N018","role":"triggers","note":"天智崩御が継承問題を行動水準に押し上げた"},{"id":"E023","from":"N015","to":"N018","role":"amplifies","note":"東国豪族の不満蓄積が軍事動員を可能にした"},{"id":"E024","from":"N018","to":"N019","role":"transforms","note":"壬申の乱が天武の律令国家建設志向に転化"},{"id":"E025","from":"N014","to":"N019","role":"amplifies","note":"天智の集権化路線が天武に引き継がれ強化"},{"id":"E026","from":"N019","to":"N020","role":"triggers","note":"天武・持統・文武朝の推進が大宝律令完成を引き起こした"},{"id":"E027","from":"N020","to":"N021","role":"transforms","note":"大宝律令が公地公民・班田収授制を確立"},{"id":"E028","from":"N021","to":"N022","role":"amplifies","note":"班田収授制が耕地不足の矛盾を生み出した"},{"id":"E029","from":"N022","to":"N023","role":"amplifies","note":"開墾需要が墾田永年私財法を引き出した"},{"id":"E030","from":"N023","to":"N024","role":"transforms","note":"私有公認の法的根拠が初期荘園形成に転化"},{"id":"E031","from":"N021","to":"N025","role":"amplifies","note":"重い租税負担が農民逃亡を生み出した"},{"id":"E032","from":"N025","to":"N026","role":"amplifies","note":"公民の流動化が地方支配の請負化を促した"},{"id":"E033","from":"N024","to":"N029","role":"amplifies","note":"初期荘園の慣行が寄進地系荘園の土台に"},{"id":"E034","from":"N025","to":"N028","role":"amplifies","note":"逃亡農民が武士団形成の人的基盤に"},{"id":"E035","from":"N026","to":"N027","role":"amplifies","note":"受領の地方請負が摂関家の利権集中と表裏一体"},{"id":"E036","from":"N026","to":"N028","role":"amplifies","note":"受領制が在地領主の自律性を高めた"},{"id":"E037","from":"N028","to":"N029","role":"amplifies","note":"在地領主が荘園への寄進を選択"},{"id":"E038","from":"N029","to":"N030","role":"amplifies","note":"寄進荘園の拡大が不輸不入を常態化させた"},{"id":"E039","from":"N027","to":"N031","role":"amplifies","note":"摂関家主導への反発が荘園整理令を生んだ"},{"id":"E040","from":"N031","to":"N032","role":"amplifies","note":"整理令の限界が院政を模索させた"},{"id":"E041","from":"N030","to":"N033","role":"amplifies","note":"不輸不入の慣行が荘園公領制を確立した"},{"id":"E042","from":"N032","to":"N033","role":"amplifies","note":"院政が荘園公領制を構造化した"},{"id":"E043","from":"N033","to":"N034","role":"transforms","note":"荘園公領制が律令国家志向の消滅に転化"},{"id":"E044","from":"N021","to":"N034","role":"transforms","note":"律令制のエネルギーは消えず新形態に転化して保存された（長期エッジ）"}]};
+
+// ─── Config ───
+const clusterOrder = [
+  { id: "0_磐井の乱前後", label: "磐井の乱前後", era: "470s–530s" },
+  { id: "A_丁未の乱前後", label: "丁未の乱前後", era: "550s–590s" },
+  { id: "B_丁未から白村江の接続", label: "丁未→白村江", era: "590s–660s" },
+  { id: "C_白村江", label: "白村江", era: "660s" },
+  { id: "D_白村江から壬申の接続", label: "白村江→壬申", era: "663–672" },
+  { id: "E_壬申の乱", label: "壬申の乱", era: "672" },
+  { id: "F_天武朝・律令国家建設", label: "律令国家建設", era: "672–700s" },
+  { id: "G_律令制の内部矛盾", label: "律令制の内部矛盾", era: "700s–1000s" },
+  { id: "H_摂関政治・在地領主の台頭", label: "摂関・在地領主", era: "900s–1100s" },
+  { id: "I_院政・荘園公領制の確立", label: "院政・荘園公領制", era: "1000s–1100s" }
+];
+
+const roleColors = {
+  amplifies: { color: 'var(--amp)', label: 'amplifies（増幅）' },
+  triggers:  { color: 'var(--trg)', label: 'triggers（引き金）' },
+  transforms:{ color: 'var(--tfm)', label: 'transforms（転化）' },
+  sustains:  { color: 'var(--sus)', label: 'sustains（維持）' },
+  suppresses:{ color: 'var(--sup)', label: 'suppresses（抑制）' },
+  inherits:  { color: 'var(--inh)', label: 'inherits（継承）' }
+};
+
+const eventNodes = new Set(['N038','N005','N012','N018','N023','N031','N011','N017','N004']);
+const nodeMap = new Map(graph.nodes.map(n => [n.id, n]));
+const activeRoles = new Set(Object.keys(roleColors));
+let selectedNode = null;
+
+// ─── Build Controls ───
+function buildControls() {
+  const ctrl = document.getElementById('controls');
+  Object.entries(roleColors).forEach(([role, cfg]) => {
+    const lbl = document.createElement('label');
+    lbl.className = 'active';
+    lbl.dataset.role = role;
+    lbl.innerHTML = `<input type="checkbox" checked><span class="legend-dot" style="background:${cfg.color}"></span>${cfg.label}`;
+    lbl.addEventListener('click', () => {
+      const inp = lbl.querySelector('input');
+      // toggle will happen after this handler
+      setTimeout(() => {
+        if (inp.checked) { activeRoles.add(role); lbl.classList.add('active'); }
+        else { activeRoles.delete(role); lbl.classList.remove('active'); }
+        updateEdgeVisibility();
+      }, 0);
+    });
+    ctrl.appendChild(lbl);
+  });
+  const stats = document.createElement('span');
+  stats.className = 'stats';
+  stats.textContent = `${graph.nodes.length} nodes · ${graph.edges.length} edges`;
+  ctrl.appendChild(stats);
+}
+
+// ─── Render Clusters ───
+function renderClusters() {
+  const container = document.getElementById('clusters');
+  clusterOrder.forEach(c => {
+    const row = document.createElement('div');
+    row.className = 'cluster-row';
+    row.innerHTML = `<div class="cluster-label">${c.label}<span class="cl-era">${c.era}</span></div>`;
+    const nodesDiv = document.createElement('div');
+    nodesDiv.className = 'cluster-nodes';
+
+    const clusterNodes = graph.nodes.filter(n => n.cluster === c.id);
+    clusterNodes.forEach(n => {
+      const card = document.createElement('div');
+      card.className = 'node' + (eventNodes.has(n.id) ? ' event' : '');
+      card.dataset.id = n.id;
+      let html = `<div class="node-int ${n.intensity}"></div>`;
+      html += `<div class="node-era">${n.era}</div>`;
+      html += `<div class="node-label">${n.label}</div>`;
+      if (n.pattern) html += `<div class="node-pattern">${n.pattern}</div>`;
+      html += `<div class="node-id">${n.id}</div>`;
+      card.innerHTML = html;
+
+      card.addEventListener('mouseenter', (e) => showTooltip(n, e));
+      card.addEventListener('mousemove', (e) => moveTooltip(e));
+      card.addEventListener('mouseleave', hideTooltip);
+      card.addEventListener('click', () => toggleSelect(n.id));
+      nodesDiv.appendChild(card);
+    });
+    row.appendChild(nodesDiv);
+    container.appendChild(row);
+  });
+}
+
+// ─── Draw Edges ───
+function drawEdges() {
+  const svg = document.getElementById('edgeSvg');
+  const graphEl = document.getElementById('graph');
+  const graphRect = graphEl.getBoundingClientRect();
+
+  // Size SVG to match graph
+  svg.style.width = graphEl.scrollWidth + 'px';
+  svg.style.height = graphEl.scrollHeight + 'px';
+  svg.setAttribute('viewBox', `0 0 ${graphEl.scrollWidth} ${graphEl.scrollHeight}`);
+
+  // Arrow markers
+  let defs = document.createElementNS('http://www.w3.org/2000/svg', 'defs');
+  Object.entries(roleColors).forEach(([role, cfg]) => {
+    const marker = document.createElementNS('http://www.w3.org/2000/svg', 'marker');
+    marker.setAttribute('id', `arrow-${role}`);
+    marker.setAttribute('viewBox', '0 0 10 10');
+    marker.setAttribute('refX', '9');
+    marker.setAttribute('refY', '5');
+    marker.setAttribute('markerWidth', '5');
+    marker.setAttribute('markerHeight', '5');
+    marker.setAttribute('orient', 'auto');
+    const poly = document.createElementNS('http://www.w3.org/2000/svg', 'polygon');
+    poly.setAttribute('points', '0,1 10,5 0,9');
+    // Use actual color values
+    const temp = document.createElement('div');
+    temp.style.color = cfg.color;
+    document.body.appendChild(temp);
+    const realColor = getComputedStyle(temp).color;
+    document.body.removeChild(temp);
+    poly.setAttribute('fill', realColor);
+    marker.appendChild(poly);
+    defs.appendChild(marker);
+  });
+  svg.appendChild(defs);
+
+  graph.edges.forEach(e => {
+    const fromEl = document.querySelector(`[data-id="${e.from}"]`);
+    const toEl = document.querySelector(`[data-id="${e.to}"]`);
+    if (!fromEl || !toEl) return;
+
+    const fRect = fromEl.getBoundingClientRect();
+    const tRect = toEl.getBoundingClientRect();
+    const sx = fRect.left + fRect.width / 2 - graphRect.left;
+    const sy = fRect.bottom - graphRect.top;
+    const tx = tRect.left + tRect.width / 2 - graphRect.left;
+    const ty = tRect.top - graphRect.top;
+
+    // Determine if it's a long-range edge
+    const dy = ty - sy;
+    const dx = tx - sx;
+    const isLong = dy > 600;
+
+    let d;
+    if (dy > 20) {
+      // Normal downward edge
+      const cpOffset = Math.min(dy * 0.4, 120);
+      if (isLong) {
+        // Route around the side for very long edges
+        const side = sx < graphEl.scrollWidth / 2 ? -60 : 60;
+        d = `M${sx},${sy} C${sx + side},${sy + cpOffset} ${tx + side},${ty - cpOffset} ${tx},${ty}`;
+      } else {
+        d = `M${sx},${sy} C${sx},${sy + cpOffset} ${tx},${ty - cpOffset} ${tx},${ty}`;
+      }
+    } else {
+      // Same-row or upward (shouldn't happen much)
+      const midY = (sy + ty) / 2 - 40;
+      d = `M${sx},${sy} C${sx},${midY} ${tx},${midY} ${tx},${ty}`;
+    }
+
+    const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+    path.setAttribute('d', d);
+    path.setAttribute('marker-end', `url(#arrow-${e.role})`);
+    path.classList.add('edge', e.role);
+    path.dataset.id = e.id;
+    path.dataset.from = e.from;
+    path.dataset.to = e.to;
+    path.dataset.role = e.role;
+    svg.appendChild(path);
+  });
+}
+
+// ─── Tooltip ───
+function showTooltip(node, e) {
+  if (selectedNode) return;
+  highlightConnected(node.id);
+  const tt = document.getElementById('tooltip');
+  const inEdges = graph.edges.filter(ed => ed.to === node.id);
+  const outEdges = graph.edges.filter(ed => ed.from === node.id);
+  let html = `<h4>${node.label}</h4>`;
+  html += `<div class="t-summary">${node.summary}</div>`;
+  if (node.actors.length) html += `<div class="t-actors">主体: ${node.actors.join('、')}</div>`;
+  if (inEdges.length || outEdges.length) {
+    html += `<div class="t-edges">`;
+    inEdges.forEach(ed => {
+      const src = nodeMap.get(ed.from);
+      html += `<div class="t-edge-item">← <span class="t-role ${ed.role}">${ed.role}</span> ${src ? src.label : ed.from}</div>`;
+    });
+    outEdges.forEach(ed => {
+      const tgt = nodeMap.get(ed.to);
+      html += `<div class="t-edge-item">→ <span class="t-role ${ed.role}">${ed.role}</span> ${tgt ? tgt.label : ed.to}</div>`;
+    });
+    html += `</div>`;
+  }
+  tt.innerHTML = html;
+  tt.classList.add('show');
+  moveTooltip(e);
+}
+
+function moveTooltip(e) {
+  const tt = document.getElementById('tooltip');
+  const x = Math.min(e.clientX + 16, window.innerWidth - 360);
+  const y = Math.min(e.clientY + 16, window.innerHeight - tt.offsetHeight - 20);
+  tt.style.left = x + 'px';
+  tt.style.top = y + 'px';
+}
+
+function hideTooltip() {
+  if (selectedNode) return;
+  document.getElementById('tooltip').classList.remove('show');
+  clearHighlight();
+}
+
+// ─── Selection ───
+function toggleSelect(id) {
+  if (selectedNode === id) {
+    selectedNode = null;
+    clearHighlight();
+    document.getElementById('tooltip').classList.remove('show');
+  } else {
+    selectedNode = id;
+    highlightConnected(id);
+    const node = nodeMap.get(id);
+    showTooltip(node, { clientX: 100, clientY: 100 });
+    // Position tooltip to the right
+    const tt = document.getElementById('tooltip');
+    tt.style.left = (window.innerWidth - 370) + 'px';
+    tt.style.top = '80px';
+  }
+}
+
+// ─── Highlight ───
+function highlightConnected(nodeId) {
+  const connectedNodes = new Set([nodeId]);
+  const connectedEdges = new Set();
+
+  graph.edges.forEach(e => {
+    if (e.from === nodeId || e.to === nodeId) {
+      connectedEdges.add(e.id);
+      connectedNodes.add(e.from);
+      connectedNodes.add(e.to);
+    }
+  });
+
+  document.querySelectorAll('.node').forEach(el => {
+    el.classList.toggle('hl', connectedNodes.has(el.dataset.id));
+    el.classList.toggle('dim', !connectedNodes.has(el.dataset.id));
+  });
+  document.querySelectorAll('.edge').forEach(el => {
+    el.classList.toggle('hl', connectedEdges.has(el.dataset.id));
+    el.classList.toggle('dim', !connectedEdges.has(el.dataset.id));
+  });
+}
+
+function clearHighlight() {
+  document.querySelectorAll('.node').forEach(el => { el.classList.remove('hl', 'dim'); });
+  document.querySelectorAll('.edge').forEach(el => { el.classList.remove('hl', 'dim'); });
+}
+
+function updateEdgeVisibility() {
+  document.querySelectorAll('.edge').forEach(el => {
+    const role = el.dataset.role;
+    el.style.display = activeRoles.has(role) ? '' : 'none';
+  });
+}
+
+// ─── Init ───
+buildControls();
+renderClusters();
+requestAnimationFrame(() => requestAnimationFrame(drawEdges));
+
+// Redraw on resize
+let resizeTimer;
+window.addEventListener('resize', () => {
+  clearTimeout(resizeTimer);
+  resizeTimer = setTimeout(() => {
+    const svg = document.getElementById('edgeSvg');
+    while (svg.firstChild) svg.removeChild(svg.firstChild);
+    drawEdges();
+  }, 200);
+});
+</script>
+</body>
+</html>

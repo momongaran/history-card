@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>因果フレーム図鑑 ― 全ノード同一ブロック表示</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;600;700&display=swap');
+
+  :root {
+    --bg: #f0ebe0;
+    --paper: #fffdf8;
+    --ink: #28231e;
+    --muted: #6a6058;
+    --line: #c9b89e;
+    --accent: #5c3d1e;
+    --shadow: 0 6px 20px rgba(40,28,14,.08);
+    --block-w: 380px;
+    --block-radius: 14px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Noto Serif JP', -apple-system, "Hiragino Mincho ProN", serif;
+    background: linear-gradient(160deg, #f5efe3 0%, #ede5d5 100%);
+    color: var(--ink);
+    min-height: 100vh;
+  }
+  .page { max-width: 1600px; margin: 0 auto; padding: 24px 20px 80px; }
+  .header { margin-bottom: 12px; border-left: 4px solid var(--accent); padding-left: 16px; }
+  h1 { font-size: 22px; color: var(--accent); letter-spacing: .06em; }
+  .sub { margin-top: 3px; font-size: 12px; color: var(--muted); }
+
+  /* Controls */
+  .controls {
+    display: flex; gap: 8px; margin-bottom: 16px; flex-wrap: wrap; align-items: center;
+  }
+  .controls button {
+    font-family: inherit; font-size: 12px; padding: 5px 12px;
+    border: 1.5px solid var(--line); border-radius: 18px;
+    background: var(--paper); color: var(--muted); cursor: pointer; transition: all .2s;
+  }
+  .controls button:hover, .controls button.active {
+    background: var(--accent); color: #fff; border-color: var(--accent);
+  }
+  .ctrl-info { font-size: 11px; color: var(--muted); margin-left: auto; }
+
+  /* Canvas */
+  .canvas {
+    position: relative;
+    background: var(--bg);
+    border: 1px solid #d8cebb;
+    border-radius: 20px;
+    box-shadow: 0 8px 28px rgba(40,28,14,.10);
+    padding: 30px 24px;
+    overflow-x: auto;
+  }
+  .canvas::before {
+    content: ''; position: absolute; inset: 0; border-radius: 20px;
+    background-image:
+      linear-gradient(rgba(200,188,168,.08) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(200,188,168,.08) 1px, transparent 1px);
+    background-size: 40px 40px; pointer-events: none;
+  }
+
+  /* SVG layer */
+  #edge-svg {
+    position: absolute; inset: 0; width: 100%; height: 100%;
+    pointer-events: none; z-index: 0;
+  }
+  .edge-line { fill: none; stroke-width: 1.8; opacity: 0.6; }
+  .edge-line.role-amplifies  { stroke: #c8960a; }
+  .edge-line.role-triggers   { stroke: #c45a3c; }
+  .edge-line.role-transforms { stroke: #3a6a9a; }
+  .edge-line.role-sustains   { stroke: #3a8a3a; }
+  .edge-line.role-suppresses { stroke: #7a3a8a; }
+  .edge-line.role-inherits   { stroke: #3a7a8a; }
+  .edge-head { stroke-width: 1; }
+  .edge-head.role-amplifies  { fill: #c8960a; stroke: #c8960a; }
+  .edge-head.role-triggers   { fill: #c45a3c; stroke: #c45a3c; }
+  .edge-head.role-transforms { fill: #3a6a9a; stroke: #3a6a9a; }
+  .edge-head.role-sustains   { fill: #3a8a3a; stroke: #3a8a3a; }
+  .edge-head.role-suppresses { fill: #7a3a8a; stroke: #7a3a8a; }
+  .edge-head.role-inherits   { fill: #3a7a8a; stroke: #3a7a8a; }
+
+  .edge-line.hl { opacity: 1; stroke-width: 2.5; }
+  .edge-line.dim { opacity: 0.12; }
+  .edge-head.dim { opacity: 0.12; }
+
+  /* Cluster header */
+  .cluster-header {
+    position: relative; z-index: 1;
+    font-size: 14px; font-weight: 700; color: var(--accent);
+    margin: 28px auto 12px; padding: 6px 14px;
+    background: rgba(255,253,248,.85);
+    border: 1px solid var(--line); border-radius: 12px;
+    display: block; text-align: center;
+    max-width: 500px;
+  }
+  .cluster-header:first-child { margin-top: 0; }
+  .cluster-era { font-size: 11px; color: var(--muted); font-weight: 400; margin-left: 8px; }
+
+  /* Block row */
+  .block-row {
+    position: relative; z-index: 1;
+    display: flex; gap: 16px; margin-bottom: 12px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  /* ── The Block (同一サイズ) ── */
+  .block {
+    width: var(--block-w);
+    background: var(--paper);
+    border: 2px solid #b8a898;
+    border-radius: var(--block-radius);
+    box-shadow: var(--shadow);
+    position: relative;
+    transition: border-color .3s, box-shadow .3s, opacity .3s;
+    cursor: pointer;
+    flex: 0 0 auto;
+  }
+  .block:hover { border-color: #8a7a68; box-shadow: 0 8px 28px rgba(40,28,14,.15); }
+  .block.hl { border-color: var(--accent); box-shadow: 0 0 0 4px rgba(92,61,30,.2); }
+  .block.dim { opacity: 0.2; }
+  .block.has-pattern { border-left: 4px solid #c45a3c; }
+
+  .block-body { padding: 12px 14px 24px; display: flex; flex-direction: column; gap: 6px; }
+
+  /* Inner area: incoming edges as reference slots */
+  .block-inner {
+    border: 1.5px solid #ddd4c8;
+    border-radius: 10px;
+    background: linear-gradient(180deg, #faf7f0, #f5f1e8);
+    padding: 6px 8px;
+    display: flex; gap: 6px; flex-wrap: wrap;
+    min-height: 32px;
+  }
+  .block-inner.empty {
+    border-style: dashed; min-height: 24px;
+    align-items: center; justify-content: center;
+    color: #d0c4b0; font-size: 10px;
+  }
+
+  .ref-chip {
+    font-size: 10px;
+    padding: 2px 7px;
+    border-radius: 8px;
+    border: 1px solid;
+    cursor: pointer;
+    transition: all .15s;
+    white-space: nowrap;
+    max-width: 160px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .ref-chip:hover { filter: brightness(0.9); }
+  .ref-chip.role-amplifies  { background: #fef8e8; border-color: #e0c868; color: #8a6a0a; }
+  .ref-chip.role-triggers   { background: #fde8e4; border-color: #e0a090; color: #a04030; }
+  .ref-chip.role-transforms { background: #e4ecf8; border-color: #a0b8d8; color: #2a5a8a; }
+  .ref-chip.role-sustains   { background: #e4f4e4; border-color: #a0d0a0; color: #2a6a2a; }
+  .ref-chip.role-suppresses { background: #f0e8f4; border-color: #c0a0d0; color: #5a2a7a; }
+  .ref-chip.role-inherits   { background: #e8f0f4; border-color: #a0c8d0; color: #2a5a6a; }
+
+  /* Block text */
+  .block-label {
+    font-size: 14px; font-weight: 600; line-height: 1.6; color: var(--ink);
+  }
+  .block-summary {
+    font-size: 11px; color: var(--muted); line-height: 1.55;
+    display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;
+  }
+  .block-pattern {
+    font-size: 11px; font-weight: 600; color: #2a5a8a;
+    background: #e8f0f8; border: 1px solid #b8d0e8;
+    border-radius: 12px; padding: 2px 8px; display: inline-block;
+    margin-top: 2px;
+  }
+  .block-actors {
+    display: flex; flex-wrap: wrap; gap: 3px; margin-top: 2px;
+  }
+  .actor { font-size: 9px; background: #f0ebe0; border: 1px solid #d8c8b0; border-radius: 8px; padding: 1px 5px; color: var(--muted); }
+
+  .block-id {
+    position: absolute; bottom: 5px; right: 10px;
+    font-size: 11px; font-weight: 700; font-family: monospace;
+    color: #b0a090; letter-spacing: .08em;
+  }
+  .block-era {
+    position: absolute; bottom: 5px; left: 10px;
+    font-size: 10px; color: #c0b0a0;
+  }
+
+  /* Outgoing refs (bottom of block) */
+  .block-out {
+    display: flex; gap: 4px; flex-wrap: wrap; margin-top: 2px;
+  }
+  .out-chip {
+    font-size: 9px; padding: 1px 5px; border-radius: 6px;
+    background: #f4f0e8; border: 1px solid #d8d0c4; color: #8a7a68;
+    cursor: pointer;
+  }
+  .out-chip:hover { background: #e8e0d4; }
+
+  /* Legend */
+  .legend {
+    margin-top: 16px;
+    display: flex; gap: 14px; flex-wrap: wrap; font-size: 11px; color: var(--muted);
+  }
+  .legend-item { display: flex; align-items: center; gap: 4px; }
+  .legend-sw { width: 28px; height: 3px; border-radius: 2px; }
+
+  @media (max-width: 840px) {
+    :root { --block-w: 100%; }
+    .block { max-width: 460px; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="header">
+    <h1>因果フレーム図鑑</h1>
+    <p class="sub">EnergyAbsモデル ― 磐井の乱(527)→幕藩体制確立(1615) ― 約1100年の因果フロー</p>
+  </div>
+  <div class="controls">
+    <button class="active" onclick="resetView(this)">全表示</button>
+    <button onclick="filterRole('amplifies',this)">amplifies</button>
+    <button onclick="filterRole('triggers',this)">triggers</button>
+    <button onclick="filterRole('transforms',this)">transforms</button>
+    <button onclick="filterRole('sustains',this)">sustains</button>
+    <button onclick="showPatterns(this)">パターン付き</button>
+    <span class="ctrl-info" id="info"></span>
+  </div>
+  <div class="canvas" id="canvas">
+    <svg id="edge-svg"></svg>
+    <div id="flow"></div>
+  </div>
+  <div class="legend">
+    <div class="legend-item"><div class="legend-sw" style="background:#c8960a"></div>amplifies（圧を高める=揺らぎ）</div>
+    <div class="legend-item"><div class="legend-sw" style="background:#c45a3c"></div>triggers（遷移を引き起こす）</div>
+    <div class="legend-item"><div class="legend-sw" style="background:#3a6a9a"></div>transforms（形態を変える）</div>
+    <div class="legend-item"><div class="legend-sw" style="background:#3a8a3a"></div>sustains（状態を維持する）</div>
+    <div class="legend-item"><div class="legend-sw" style="background:#7a3a8a"></div>suppresses（抑制する）</div>
+    <div class="legend-item"><div class="legend-sw" style="background:#3a7a8a"></div>inherits（継承される）</div>
+  </div>
+</div>
+
+<script>
+const DATA_URL = '../data/energyabs_v1.json';
+let G = null;       // graph
+let NM = {};         // node map
+let EbyTo = {};      // edges grouped by target
+let EbyFrom = {};    // edges grouped by source
+let clusters = [];   // ordered cluster list
+let selectedNode = null;
+
+async function init() {
+  const res = await fetch(DATA_URL);
+  G = await res.json();
+  G.nodes.forEach(n => NM[n.id] = n);
+  G.edges.forEach(e => {
+    (EbyTo[e.to] = EbyTo[e.to] || []).push(e);
+    (EbyFrom[e.from] = EbyFrom[e.from] || []).push(e);
+  });
+
+  // Ordered clusters
+  const seen = new Set();
+  G.nodes.forEach(n => {
+    if (!seen.has(n.cluster)) { seen.add(n.cluster); clusters.push(n.cluster); }
+  });
+
+  document.getElementById('info').textContent = `${G.nodes.length} nodes / ${G.edges.length} edges`;
+  renderAll();
+}
+
+function renderAll() {
+  const flow = document.getElementById('flow');
+  let html = '';
+
+  clusters.forEach(cl => {
+    const nodes = G.nodes.filter(n => n.cluster === cl);
+    const clName = cl.includes('_') ? cl.split('_').slice(1).join('_') : cl;
+    const clIdx = cl.split('_')[0];
+    const eras = nodes.map(n => n.era);
+    const eraRange = eras[0] + (eras.length > 1 && eras[eras.length-1] !== eras[0] ? ' – ' + eras[eras.length-1] : '');
+
+    html += `<div class="cluster-header">${clIdx}. ${clName}<span class="cluster-era">${eraRange}</span></div>`;
+
+    // Layout: find nodes that can be side-by-side (same depth within cluster)
+    // Simple heuristic: nodes with no internal edges between them can be parallel
+    const internalEdges = G.edges.filter(e => {
+      const f = NM[e.from], t = NM[e.to];
+      return f && t && f.cluster === cl && t.cluster === cl;
+    });
+
+    // Build depth by internal topological order
+    const depths = {};
+    const inDeg = {};
+    nodes.forEach(n => { depths[n.id] = 0; inDeg[n.id] = 0; });
+    internalEdges.forEach(e => { inDeg[e.to] = (inDeg[e.to] || 0) + 1; });
+    const queue = nodes.filter(n => inDeg[n.id] === 0).map(n => n.id);
+    while (queue.length > 0) {
+      const cur = queue.shift();
+      internalEdges.filter(e => e.from === cur).forEach(e => {
+        depths[e.to] = Math.max(depths[e.to], depths[cur] + 1);
+        inDeg[e.to]--;
+        if (inDeg[e.to] === 0) queue.push(e.to);
+      });
+    }
+
+    // Group by depth
+    const byDepth = {};
+    nodes.forEach(n => {
+      const d = depths[n.id] || 0;
+      (byDepth[d] = byDepth[d] || []).push(n);
+    });
+
+    const maxD = Math.max(...Object.keys(byDepth).map(Number));
+    for (let d = 0; d <= maxD; d++) {
+      const row = byDepth[d] || [];
+      if (row.length === 0) continue;
+      html += `<div class="block-row">`;
+      row.forEach(n => { html += renderBlock(n); });
+      html += `</div>`;
+    }
+  });
+
+  flow.innerHTML = html;
+
+  // Attach click handlers
+  document.querySelectorAll('.block').forEach(el => {
+    el.addEventListener('click', (evt) => {
+      if (evt.target.closest('.ref-chip') || evt.target.closest('.out-chip')) return;
+      toggleSelect(el.dataset.nid);
+    });
+  });
+
+  requestAnimationFrame(drawEdges);
+}
+
+function renderBlock(n) {
+  const incoming = EbyTo[n.id] || [];
+  const outgoing = EbyFrom[n.id] || [];
+  const hasPat = n.pattern ? 'has-pattern' : '';
+
+  let html = `<div class="block ${hasPat}" data-nid="${n.id}" id="blk-${n.id}">`;
+  html += `<div class="block-body">`;
+
+  // Inner area: incoming edges as reference chips
+  if (incoming.length > 0) {
+    html += `<div class="block-inner">`;
+    incoming.forEach(e => {
+      const src = NM[e.from];
+      const shortLabel = src ? (src.label.length > 18 ? src.label.slice(0, 16) + '…' : src.label) : e.from;
+      html += `<span class="ref-chip role-${e.role}" onclick="event.stopPropagation();flashAndScroll('${e.from}')" title="${src?.label || e.from}\n${e.role}: ${e.note}">${shortLabel}</span>`;
+    });
+    html += `</div>`;
+  } else {
+    html += `<div class="block-inner empty">（起点）</div>`;
+  }
+
+  // Label
+  html += `<div class="block-label">${n.label}</div>`;
+  // Summary
+  html += `<div class="block-summary">${n.summary}</div>`;
+  // Pattern tag
+  if (n.pattern) {
+    html += `<div class="block-pattern">${n.pattern}</div>`;
+  }
+  // Actors
+  if (n.actors && n.actors.length > 0) {
+    html += `<div class="block-actors">${n.actors.map(a => `<span class="actor">${a}</span>`).join('')}</div>`;
+  }
+  // Outgoing refs
+  if (outgoing.length > 0) {
+    html += `<div class="block-out">`;
+    outgoing.forEach(e => {
+      const tgt = NM[e.to];
+      const shortLabel = tgt ? (tgt.label.length > 14 ? tgt.label.slice(0, 12) + '…' : tgt.label) : e.to;
+      html += `<span class="out-chip" onclick="event.stopPropagation();flashAndScroll('${e.to}')" title="${tgt?.label || e.to}\n${e.role}: ${e.note}">→${shortLabel}</span>`;
+    });
+    html += `</div>`;
+  }
+
+  html += `</div>`; // block-body
+  html += `<div class="block-id">${n.id}</div>`;
+  html += `<div class="block-era">${n.era}</div>`;
+  html += `</div>`;
+  return html;
+}
+
+// ── SVG Edge Drawing ──
+function drawEdges() {
+  const svg = document.getElementById('edge-svg');
+  const canvas = document.getElementById('canvas');
+  const cr = canvas.getBoundingClientRect();
+  const scrollL = canvas.scrollLeft;
+  const scrollT = canvas.scrollTop;
+  svg.innerHTML = '';
+  svg.style.width = canvas.scrollWidth + 'px';
+  svg.style.height = canvas.scrollHeight + 'px';
+  svg.setAttribute('viewBox', `0 0 ${canvas.scrollWidth} ${canvas.scrollHeight}`);
+
+  G.edges.forEach(e => {
+    const fromEl = document.getElementById('blk-' + e.from);
+    const toEl = document.getElementById('blk-' + e.to);
+    if (!fromEl || !toEl) return;
+
+    const fr = fromEl.getBoundingClientRect();
+    const tr = toEl.getBoundingClientRect();
+
+    const x1 = fr.left + fr.width / 2 - cr.left + scrollL;
+    const y1 = fr.bottom - cr.top + scrollT;
+    const x2 = tr.left + tr.width / 2 - cr.left + scrollL;
+    const y2 = tr.top - cr.top + scrollT;
+
+    // Determine if same-row (horizontal) or different-row (vertical)
+    const dy = y2 - y1;
+    const dx = x2 - x1;
+
+    let d;
+    if (Math.abs(dy) < 20) {
+      // Horizontal: curve around
+      const midY = y1 - 40;
+      d = `M ${x1} ${y1 - fr.height/2} C ${x1} ${midY}, ${x2} ${midY}, ${x2} ${y2 + tr.height/2}`;
+    } else {
+      // Vertical: gentle S-curve
+      const midY = (y1 + y2) / 2;
+      d = `M ${x1} ${y1} C ${x1} ${midY}, ${x2} ${midY}, ${x2} ${y2}`;
+    }
+
+    const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+    path.setAttribute('d', d);
+    path.classList.add('edge-line', 'role-' + e.role);
+    path.dataset.eid = e.id;
+    path.dataset.from = e.from;
+    path.dataset.to = e.to;
+    path.dataset.role = e.role;
+    svg.appendChild(path);
+
+    // Arrowhead
+    const ax = x2, ay = y2;
+    const arrow = document.createElementNS('http://www.w3.org/2000/svg', 'polygon');
+    arrow.setAttribute('points', `${ax-4},${ay-6} ${ax},${ay} ${ax+4},${ay-6}`);
+    arrow.classList.add('edge-head', 'role-' + e.role);
+    arrow.dataset.eid = e.id;
+    svg.appendChild(arrow);
+  });
+}
+
+// ── Interaction ──
+function toggleSelect(nid) {
+  if (selectedNode === nid) {
+    selectedNode = null;
+    clearHighlights();
+    return;
+  }
+  selectedNode = nid;
+  highlightNode(nid);
+}
+
+function highlightNode(nid) {
+  // Find connected nodes
+  const connected = new Set([nid]);
+  const connEdges = new Set();
+  G.edges.forEach(e => {
+    if (e.from === nid || e.to === nid) {
+      connected.add(e.from);
+      connected.add(e.to);
+      connEdges.add(e.id);
+    }
+  });
+
+  // Dim non-connected blocks
+  document.querySelectorAll('.block').forEach(el => {
+    el.classList.toggle('dim', !connected.has(el.dataset.nid));
+    el.classList.toggle('hl', el.dataset.nid === nid);
+  });
+
+  // Dim non-connected edges
+  document.querySelectorAll('.edge-line').forEach(el => {
+    el.classList.toggle('hl', connEdges.has(el.dataset.eid));
+    el.classList.toggle('dim', !connEdges.has(el.dataset.eid));
+  });
+  document.querySelectorAll('.edge-head').forEach(el => {
+    el.classList.toggle('dim', !connEdges.has(el.dataset.eid));
+  });
+
+  const node = NM[nid];
+  const inc = (EbyTo[nid] || []).length;
+  const out = (EbyFrom[nid] || []).length;
+  document.getElementById('info').textContent = `${node.label} — ${inc}入 / ${out}出`;
+}
+
+function clearHighlights() {
+  document.querySelectorAll('.block').forEach(el => { el.classList.remove('dim', 'hl'); });
+  document.querySelectorAll('.edge-line, .edge-head').forEach(el => { el.classList.remove('hl', 'dim'); });
+  document.getElementById('info').textContent = `${G.nodes.length} nodes / ${G.edges.length} edges`;
+}
+
+function flashAndScroll(nid) {
+  const el = document.getElementById('blk-' + nid);
+  if (!el) return;
+  el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  el.classList.add('hl');
+  setTimeout(() => { if (selectedNode !== nid) el.classList.remove('hl'); }, 2000);
+}
+
+// ── Filter modes ──
+function filterRole(role, btn) {
+  setActiveBtn(btn);
+  const edgeIds = new Set();
+  const nodeIds = new Set();
+  G.edges.forEach(e => {
+    if (e.role === role) {
+      edgeIds.add(e.id);
+      nodeIds.add(e.from);
+      nodeIds.add(e.to);
+    }
+  });
+
+  document.querySelectorAll('.block').forEach(el => {
+    el.classList.toggle('dim', !nodeIds.has(el.dataset.nid));
+  });
+  document.querySelectorAll('.edge-line').forEach(el => {
+    el.classList.toggle('dim', !edgeIds.has(el.dataset.eid));
+    el.classList.toggle('hl', edgeIds.has(el.dataset.eid));
+  });
+  document.querySelectorAll('.edge-head').forEach(el => {
+    el.classList.toggle('dim', !edgeIds.has(el.dataset.eid));
+  });
+  document.getElementById('info').textContent = `${role}: ${edgeIds.size} edges / ${nodeIds.size} nodes`;
+}
+
+function showPatterns(btn) {
+  setActiveBtn(btn);
+  const patNodes = new Set(G.nodes.filter(n => n.pattern).map(n => n.id));
+  document.querySelectorAll('.block').forEach(el => {
+    el.classList.toggle('dim', !patNodes.has(el.dataset.nid));
+  });
+  document.querySelectorAll('.edge-line, .edge-head').forEach(el => el.classList.add('dim'));
+  document.getElementById('info').textContent = `パターン付き: ${patNodes.size} nodes`;
+}
+
+function resetView(btn) {
+  setActiveBtn(btn);
+  selectedNode = null;
+  clearHighlights();
+}
+
+function setActiveBtn(btn) {
+  document.querySelectorAll('.controls button').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+}
+
+window.addEventListener('resize', () => requestAnimationFrame(drawEdges));
+
+init();
+</script>
+</body>
+</html>
