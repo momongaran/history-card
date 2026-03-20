@@ -65,24 +65,12 @@
     position: absolute; inset: 0; width: 100%; height: 100%;
     pointer-events: none; z-index: 2;
   }
-  .edge-line { fill: none; stroke-width: 1.8; opacity: 0.6; stroke-dasharray: 6 4; }
-  .edge-line.role-amplifies  { stroke: #c8960a; }
-  .edge-line.role-triggers   { stroke: #c45a3c; }
-  .edge-line.role-transforms { stroke: #3a6a9a; }
-  .edge-line.role-sustains   { stroke: #3a8a3a; }
-  .edge-line.role-suppresses { stroke: #7a3a8a; }
-  .edge-line.role-inherits   { stroke: #3a7a8a; }
-  .edge-head { stroke: none; }
-  .edge-head.role-amplifies  { fill: #c8960a; }
-  .edge-head.role-triggers   { fill: #c45a3c; }
-  .edge-head.role-transforms { fill: #3a6a9a; }
-  .edge-head.role-sustains   { fill: #3a8a3a; }
-  .edge-head.role-suppresses { fill: #7a3a8a; }
-  .edge-head.role-inherits   { fill: #3a7a8a; }
+  .edge-line { fill: none; stroke-width: 1.4; opacity: 0.35; stroke-dasharray: 5 4; stroke: #b0a898; }
+  .edge-head { stroke: none; fill: #b0a898; opacity: 0.5; }
 
-  .edge-line.hl { opacity: 1; stroke-width: 2.5; }
-  .edge-line.dim { opacity: 0.12; }
-  .edge-head.dim { opacity: 0.12; }
+  .edge-line.hl { opacity: 0.7; stroke-width: 2; }
+  .edge-line.dim { opacity: 0.08; }
+  .edge-head.dim { opacity: 0.08; }
 
   /* Cluster header */
   .cluster-header {
@@ -117,8 +105,9 @@
     cursor: pointer;
     flex: 0 0 auto;
   }
-  .block:hover { border-color: #8a7a68; box-shadow: 0 8px 28px rgba(40,28,14,.15); }
-  .block.hl { border-color: var(--accent); box-shadow: 0 0 0 4px rgba(92,61,30,.2); }
+  .block:hover { box-shadow: 0 8px 28px rgba(40,28,14,.15); }
+  .block.hl { box-shadow: 0 0 0 5px rgba(92,61,30,.25); filter: brightness(0.97); }
+  .block.source-hl { box-shadow: 0 0 0 6px rgba(200,150,10,.4); transform: scale(1.02); transition: all .15s; }
   .block.dim { opacity: 0.2; }
   .block.has-pattern { border-left: 4px solid #c45a3c; }
 
@@ -142,23 +131,33 @@
   .ref-chip {
     font-size: 10px;
     padding: 2px 7px;
-    border-radius: 8px;
-    border: 1px solid;
+    border-radius: 10px;
+    border: 1px solid #d0c8bc;
+    background: transparent;
+    color: #9a9080;
     cursor: pointer;
     transition: all .15s;
     white-space: nowrap;
-    max-width: 160px;
+    max-width: 180px;
     overflow: hidden;
     text-overflow: ellipsis;
   }
   .ref-chip b { font-family: monospace; font-size: 10px; margin-right: 2px; }
-  .ref-chip:hover { filter: brightness(0.9); }
-  .ref-chip.role-amplifies  { background: #fef8e8; border-color: #e0c868; color: #8a6a0a; }
-  .ref-chip.role-triggers   { background: #fde8e4; border-color: #e0a090; color: #a04030; }
-  .ref-chip.role-transforms { background: #e4ecf8; border-color: #a0b8d8; color: #2a5a8a; }
-  .ref-chip.role-sustains   { background: #e4f4e4; border-color: #a0d0a0; color: #2a6a2a; }
-  .ref-chip.role-suppresses { background: #f0e8f4; border-color: #c0a0d0; color: #5a2a7a; }
-  .ref-chip.role-inherits   { background: #e8f0f4; border-color: #a0c8d0; color: #2a5a6a; }
+  .ref-chip:hover { opacity: 0.8; }
+
+  /* ref-chip border color is set dynamically to match source block's cluster color */
+
+  .role-arrow {
+    display: block; text-align: center;
+    font-size: 10px; line-height: 1; margin-top: 2px;
+    letter-spacing: -1px;
+  }
+  .role-arrow.r-amplifies  { color: #c8960a; }
+  .role-arrow.r-triggers   { color: #c45a3c; }
+  .role-arrow.r-transforms { color: #3a6a9a; }
+  .role-arrow.r-sustains   { color: #3a8a3a; }
+  .role-arrow.r-suppresses { color: #7a3a8a; }
+  .role-arrow.r-inherits   { color: #3a7a8a; }
 
   /* Block text */
   .block-label {
@@ -185,6 +184,10 @@
   .actor:hover { color: #6a6058; border-color: #a89a88; }
   .actor.active { background: #4a4038; color: #f5f0e8; border-color: #4a4038; }
 
+  .block-type-marker {
+    position: absolute; top: 6px; right: 10px;
+    font-size: 13px; line-height: 1;
+  }
   .block-id {
     position: absolute; bottom: 5px; right: 10px;
     font-size: 11px; font-weight: 700; font-family: monospace;
@@ -240,12 +243,25 @@
     <div id="flow"></div>
   </div>
   <div class="legend">
-    <div class="legend-item"><div class="legend-sw" style="background:#c8960a"></div>amplifies（圧を高める=揺らぎ）</div>
-    <div class="legend-item"><div class="legend-sw" style="background:#c45a3c"></div>triggers（遷移を引き起こす）</div>
-    <div class="legend-item"><div class="legend-sw" style="background:#3a6a9a"></div>transforms（形態を変える）</div>
-    <div class="legend-item"><div class="legend-sw" style="background:#3a8a3a"></div>sustains（状態を維持する）</div>
-    <div class="legend-item"><div class="legend-sw" style="background:#7a3a8a"></div>suppresses（抑制する）</div>
-    <div class="legend-item"><div class="legend-sw" style="background:#3a7a8a"></div>inherits（継承される）</div>
+    <div class="legend-item"><div class="legend-sw" style="background:#b0a898"></div>同一性リンク（点線）</div>
+    <div class="legend-item" style="margin-left: 8px; border-left: 2px solid #ddd; padding-left: 8px;">▼ 背景の作用:</div>
+    <div class="legend-item"><span style="color:#c8960a; font-weight:600">▼</span> 圧を高めた</div>
+    <div class="legend-item"><span style="color:#c45a3c; font-weight:600">▼</span> 引き金</div>
+    <div class="legend-item"><span style="color:#3a6a9a; font-weight:600">▼</span> 構造を変えた</div>
+    <div class="legend-item"><span style="color:#3a8a3a; font-weight:600">▼</span> 基盤を支えた</div>
+    <div class="legend-item"><span style="color:#7a3a8a; font-weight:600">▼</span> 抑制した</div>
+    <div class="legend-item"><span style="color:#3a7a8a; font-weight:600">▼</span> 継承した</div>
+  </div>
+  <div class="legend" style="margin-top:8px;">
+    <div class="legend-item" style="border-left: 2px solid #ddd; padding-left: 8px;">枠色 = 抽象FW型:</div>
+    <div class="legend-item"><span style="color:#c45a3c; font-weight:600">⚔</span> 武力衝突・戦い</div>
+    <div class="legend-item"><span style="color:#c8960a; font-weight:600">▲</span> 対立・緊張蓄積</div>
+    <div class="legend-item"><span style="color:#8a3a3a; font-weight:600">⊘</span> 崩壊・滅亡</div>
+    <div class="legend-item"><span style="color:#3a6a9a; font-weight:600">■</span> 制度化・ルール化</div>
+    <div class="legend-item"><span style="color:#6a3a8a; font-weight:600">◆</span> 権力確立・体制形成</div>
+    <div class="legend-item"><span style="color:#c47a3a; font-weight:600">⚡</span> 外生衝撃・外来要因</div>
+    <div class="legend-item"><span style="color:#5a8a5a; font-weight:600">〜</span> 漸進的浸透・構造変化</div>
+    <div class="legend-item"><span style="color:#3a7a8a; font-weight:600">✦</span> 改革・変革</div>
   </div>
 </div>
 
@@ -258,6 +274,18 @@ let EbyFrom = {};    // edges grouped by source
 let clusters = [];   // ordered cluster list
 let selectedNode = null;
 
+// Semantic FW type → color + shape marker
+const FW_TYPE_STYLES = {
+  'battle':      { color: '#c45a3c', shape: '⚔', label: '武力衝突・戦い' },
+  'conflict':    { color: '#c8960a', shape: '▲', label: '対立・緊張蓄積' },
+  'collapse':    { color: '#8a3a3a', shape: '⊘', label: '崩壊・滅亡' },
+  'institution': { color: '#3a6a9a', shape: '■', label: '制度化・ルール化' },
+  'power':       { color: '#6a3a8a', shape: '◆', label: '権力確立・体制形成' },
+  'shock':       { color: '#c47a3a', shape: '⚡', label: '外生衝撃・外来要因' },
+  'drift':       { color: '#5a8a5a', shape: '〜', label: '漸進的浸透・構造変化' },
+  'reform':      { color: '#3a7a8a', shape: '✦', label: '改革・変革' },
+};
+
 async function init() {
   const res = await fetch(DATA_URL);
   G = await res.json();
@@ -267,14 +295,17 @@ async function init() {
     (EbyFrom[e.from] = EbyFrom[e.from] || []).push(e);
   });
 
-  // Ordered clusters
+  // Ordered clusters + color map
   const seen = new Set();
   G.nodes.forEach(n => {
     if (!seen.has(n.cluster)) { seen.add(n.cluster); clusters.push(n.cluster); }
   });
+  // clusterColorMap no longer needed — border color is now by fwType
 
   document.getElementById('info').textContent = `${G.nodes.length} nodes / ${G.edges.length} edges`;
   renderAll();
+
+  // FW type legend is static in HTML
 }
 
 function renderAll() {
@@ -352,19 +383,25 @@ function renderBlock(n) {
   const outgoing = EbyFrom[n.id] || [];
   const hasPat = n.pattern ? 'has-pattern' : '';
 
-  let html = `<div class="block ${hasPat}" data-nid="${n.id}" id="blk-${n.id}">`;
+  const fwStyle = FW_TYPE_STYLES[n.fwType] || FW_TYPE_STYLES['amplifier'];
+  let html = `<div class="block ${hasPat}" data-nid="${n.id}" id="blk-${n.id}" style="border-color:${fwStyle.color}">`;
   html += `<div class="block-body">`;
 
-  // Inner area: incoming edges as reference chips with framework number
+  // Inner area: incoming edges as reference chips (border color = source block's cluster)
   if (incoming.length > 0) {
     html += `<div class="block-inner">`;
     incoming.forEach(e => {
       const src = NM[e.from];
       const srcNum = fmtId(e.from);
       const shortLabel = src ? (src.label.length > 14 ? src.label.slice(0, 12) + '…' : src.label) : e.from;
-      html += `<span class="ref-chip role-${e.role}" id="chip-${e.from}-${n.id}" onclick="event.stopPropagation();flashAndScroll('${e.from}')" title="${src?.label || e.from}\n${e.role}: ${e.note}"><b>${srcNum}</b> ${shortLabel}</span>`;
+      const roleLabelsShort = { triggers: '引き金', amplifies: '圧↑', transforms: '変換', sustains: '基盤', suppresses: '抑制', inherits: '継承' };
+      const srcStyle = src ? (FW_TYPE_STYLES[src.fwType] || FW_TYPE_STYLES['amplifier']) : FW_TYPE_STYLES['amplifier'];
+      const chipColor = srcStyle.color;
+      html += `<span class="ref-chip" id="chip-${e.from}-${n.id}" style="border-color:${chipColor}" data-src="${e.from}" onclick="event.stopPropagation();flashAndScroll('${e.from}')" onmouseenter="hlSource('${e.from}',true)" onmouseleave="hlSource('${e.from}',false)" title="${src?.label || e.from}\n${roleLabelsShort[e.role] || e.role}"><b>${srcNum}</b> ${shortLabel}<span class="role-arrow r-${e.role}">▼</span></span>`;
     });
     html += `</div>`;
+
+    // Role legend is now shown as color bars under each ref-chip
   } else {
     html += `<div class="block-inner empty">（起点）</div>`;
   }
@@ -373,10 +410,12 @@ function renderBlock(n) {
   html += `<div class="block-label">${n.label}</div>`;
   // Summary
   html += `<div class="block-summary">${n.summary}</div>`;
-  // Pattern tag
+  // Pattern (abstract type text, if exists)
   if (n.pattern) {
     html += `<div class="block-pattern">${n.pattern}</div>`;
   }
+  // FW type marker (top-right)
+  html += `<div class="block-type-marker" style="color:${fwStyle.color}" title="${fwStyle.label}">${fwStyle.shape}</div>`;
   // Actors
   if (n.actors && n.actors.length > 0) {
     html += `<div class="block-actors">${n.actors.map(a => `<span class="actor" onclick="event.stopPropagation();toggleActor('${a}')">${a}</span>`).join('')}</div>`;
@@ -495,7 +534,7 @@ function drawEdges() {
 
     const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
     path.setAttribute('d', d);
-    path.classList.add('edge-line', 'role-' + e.role);
+    path.classList.add('edge-line');
     path.dataset.eid = e.id;
     path.dataset.from = e.from;
     path.dataset.to = e.to;
@@ -507,10 +546,34 @@ function drawEdges() {
     dot.setAttribute('cx', x2);
     dot.setAttribute('cy', y2);
     dot.setAttribute('r', 3.5);
-    dot.classList.add('edge-head', 'role-' + e.role);
+    dot.classList.add('edge-head');
     dot.dataset.eid = e.id;
     svg.appendChild(dot);
   });
+}
+
+// ── Hover highlight for ref-chip → source block ──
+function hlSource(nid, on) {
+  const el = document.getElementById('blk-' + nid);
+  if (!el) return;
+  if (on) {
+    el.classList.add('source-hl');
+    // Also highlight the connecting edge lines
+    document.querySelectorAll('.edge-line').forEach(line => {
+      if (line.dataset.from === nid || line.dataset.to === nid) {
+        line.style.opacity = '0.8';
+        line.style.strokeWidth = '2.5';
+      }
+    });
+  } else {
+    el.classList.remove('source-hl');
+    document.querySelectorAll('.edge-line').forEach(line => {
+      if (line.dataset.from === nid || line.dataset.to === nid) {
+        line.style.opacity = '';
+        line.style.strokeWidth = '';
+      }
+    });
+  }
 }
 
 // ── Interaction ──

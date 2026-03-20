@@ -20,7 +20,8 @@
       "intensity": "high",
       "timescale": "long",
       "cluster": "0_磐井の乱前後",
-      "era": "4c–6c"
+      "era": "4c–6c",
+      "fwType": "shock"
     },
     {
       "id": "N035",
@@ -34,7 +35,8 @@
       "intensity": "high",
       "timescale": "long",
       "cluster": "0_磐井の乱前後",
-      "era": "470s–520s"
+      "era": "470s–520s",
+      "fwType": "drift"
     },
     {
       "id": "N036",
@@ -47,7 +49,8 @@
       "intensity": "medium",
       "timescale": "medium",
       "cluster": "0_磐井の乱前後",
-      "era": "500s–520s"
+      "era": "500s–520s",
+      "fwType": "drift"
     },
     {
       "id": "N037",
@@ -61,7 +64,8 @@
       "intensity": "high",
       "timescale": "short",
       "cluster": "0_磐井の乱前後",
-      "era": "527"
+      "era": "527",
+      "fwType": "conflict"
     },
     {
       "id": "N038",
@@ -76,7 +80,8 @@
       "intensity": "high",
       "timescale": "short",
       "cluster": "0_磐井の乱前後",
-      "era": "527–528"
+      "era": "527–528",
+      "fwType": "battle"
     },
     {
       "id": "N039",
@@ -88,7 +93,8 @@
       "intensity": "high",
       "timescale": "medium",
       "cluster": "0_磐井の乱前後",
-      "era": "528–530s"
+      "era": "528–530s",
+      "fwType": "institution"
     },
     {
       "id": "N063",
@@ -101,7 +107,8 @@
       "intensity": "high",
       "timescale": "long",
       "cluster": "A_丁未の乱前後",
-      "era": "4c–550s"
+      "era": "4c–550s",
+      "fwType": "shock"
     },
     {
       "id": "N001",
@@ -117,7 +124,8 @@
       "intensity": "high",
       "timescale": "long",
       "cluster": "A_丁未の乱前後",
-      "era": "550s"
+      "era": "550s",
+      "fwType": "shock"
     },
     {
       "id": "N002",
@@ -130,7 +138,8 @@
       "intensity": "high",
       "timescale": "medium",
       "cluster": "A_丁未の乱前後",
-      "era": "560s–580s"
+      "era": "560s–580s",
+      "fwType": "power"
     },
     {
       "id": "N003",
@@ -144,7 +153,8 @@
       "intensity": "high",
       "timescale": "medium",
       "cluster": "A_丁未の乱前後",
-      "era": "560s–580s"
+      "era": "560s–580s",
+      "fwType": "conflict"
     },
     {
       "id": "N004",
@@ -156,7 +166,8 @@
       "intensity": "medium",
       "timescale": "short",
       "cluster": "A_丁未の乱前後",
-      "era": "587"
+      "era": "587",
+      "fwType": "conflict"
     },
     {
       "id": "N005",
@@ -171,7 +182,8 @@
       "intensity": "high",
       "timescale": "short",
       "cluster": "A_丁未の乱前後",
-      "era": "587"
+      "era": "587",
+      "fwType": "battle"
     },
     {
       "id": "N065",
@@ -184,7 +196,8 @@
       "intensity": "high",
       "timescale": "long",
       "cluster": "B_丁未から白村江の接続",
-      "era": "589–630s"
+      "era": "589–630s",
+      "fwType": "shock"
     },
     {
       "id": "N066",
@@ -198,7 +211,8 @@
       "intensity": "medium",
       "timescale": "long",
       "cluster": "B_丁未から白村江の接続",
-      "era": "4c–6c"
+      "era": "4c–6c",
+      "fwType": "drift"
     },
     {
       "id": "N006",
@@ -212,7 +226,8 @@
       "intensity": "high",
       "timescale": "long",
       "cluster": "B_丁未から白村江の接続",
-      "era": "590s–640s"
+      "era": "590s–640s",
+      "fwType": "power"
     },
     {
       "id": "N007",
@@ -226,7 +241,8 @@
       "intensity": "medium",
       "timescale": "long",
       "cluster": "B_丁未から白村江の接続",
-      "era": "600s–630s"
+      "era": "600s–630s",
+      "fwType": "reform"
     },
     {
       "id": "N008",
@@ -240,7 +256,8 @@
       "intensity": "high",
       "timescale": "long",
       "cluster": "B_丁未から白村江の接続",
-      "era": "600s–660s"
+      "era": "600s–660s",
+      "fwType": "conflict"
     },
     {
       "id": "N009",
@@ -255,7 +272,8 @@
       "intensity": "high",
       "timescale": "medium",
       "cluster": "B_丁未から白村江の接続",
-      "era": "645–660s"
+      "era": "645–660s",
+      "fwType": "reform"
     },
     {
       "id": "N010",
@@ -268,7 +286,8 @@
       "intensity": "medium",
       "timescale": "long",
       "cluster": "B_丁未から白村江の接続",
-      "era": "400s–660s"
+      "era": "400s–660s",
+      "fwType": "drift"
     },
     {
       "id": "N011",
@@ -282,7 +301,8 @@
       "intensity": "high",
       "timescale": "short",
       "cluster": "B_丁未から白村江の接続",
-      "era": "660"
+      "era": "660",
+      "fwType": "collapse"
     },
     {
       "id": "N012",
@@ -298,7 +318,8 @@
       "intensity": "high",
       "timescale": "short",
       "cluster": "C_白村江",
-      "era": "663"
+      "era": "663",
+      "fwType": "battle"
     },
     {
       "id": "N013",
@@ -311,7 +332,8 @@
       "intensity": "high",
       "timescale": "medium",
       "cluster": "C_白村江",
-      "era": "663–670s"
+      "era": "663–670s",
+      "fwType": "shock"
     },
     {
       "id": "N014",
@@ -324,7 +346,8 @@
       "intensity": "high",
       "timescale": "medium",
       "cluster": "D_白村江から壬申の接続",
-      "era": "663–671"
+      "era": "663–671",
+      "fwType": "reform"
     },
     {
       "id": "N015",
@@ -337,7 +360,8 @@
       "intensity": "high",
       "timescale": "medium",
       "cluster": "D_白村江から壬申の接続",
-      "era": "645–671"
+      "era": "645–671",
+      "fwType": "conflict"
     },
     {
       "id": "N016",
@@ -351,7 +375,8 @@
       "intensity": "high",
       "timescale": "short",
       "cluster": "D_白村江から壬申の接続",
-      "era": "670–671"
+      "era": "670–671",
+      "fwType": "conflict"
     },
     {
       "id": "N017",
@@ -363,7 +388,8 @@
       "intensity": "medium",
       "timescale": "short",
       "cluster": "D_白村江から壬申の接続",
-      "era": "671"
+      "era": "671",
+      "fwType": "conflict"
     },
     {
       "id": "N018",
@@ -378,7 +404,8 @@
       "intensity": "high",
       "timescale": "short",
       "cluster": "E_壬申の乱",
-      "era": "672"
+      "era": "672",
+      "fwType": "battle"
     },
     {
       "id": "N019",
@@ -391,7 +418,8 @@
       "intensity": "high",
       "timescale": "long",
       "cluster": "F_天武朝・律令国家建設",
-      "era": "672–700"
+      "era": "672–700",
+      "fwType": "reform"
     },
     {
       "id": "N020",
@@ -405,7 +433,8 @@
       "intensity": "high",
       "timescale": "short",
       "cluster": "F_天武朝・律令国家建設",
-      "era": "701"
+      "era": "701",
+      "fwType": "institution"
     },
     {
       "id": "N021",
@@ -418,7 +447,8 @@
       "intensity": "high",
       "timescale": "long",
       "cluster": "F_天武朝・律令国家建設",
-      "era": "700s"
+      "era": "700s",
+      "fwType": "institution"
     },
     {
       "id": "N067",
@@ -428,7 +458,8 @@
       "intensity": "medium",
       "timescale": "long",
       "cluster": "G_律令制の内部矛盾",
-      "era": "700s–800s"
+      "era": "700s–800s",
+      "fwType": "drift"
     },
     {
       "id": "N022",
@@ -441,7 +472,8 @@
       "intensity": "medium",
       "timescale": "long",
       "cluster": "G_律令制の内部矛盾",
-      "era": "700s"
+      "era": "700s",
+      "fwType": "conflict"
     },
     {
       "id": "N023",
@@ -455,7 +487,8 @@
       "intensity": "high",
       "timescale": "short",
       "cluster": "G_律令制の内部矛盾",
-      "era": "743"
+      "era": "743",
+      "fwType": "institution"
     },
     {
       "id": "N024",
@@ -468,7 +501,8 @@
       "intensity": "medium",
       "timescale": "long",
       "cluster": "G_律令制の内部矛盾",
-      "era": "743–800s"
+      "era": "743–800s",
+      "fwType": "drift"
     },
     {
       "id": "N025",
@@ -481,7 +515,8 @@
       "intensity": "high",
       "timescale": "long",
       "cluster": "G_律令制の内部矛盾",
-      "era": "700s–800s"
+      "era": "700s–800s",
+      "fwType": "conflict"
     },
     {
       "id": "N026",
@@ -494,7 +529,8 @@
       "intensity": "high",
       "timescale": "long",
       "cluster": "G_律令制の内部矛盾",
-      "era": "900s–1000s"
+      "era": "900s–1000s",
+      "fwType": "drift"
     },
     {
       "id": "N027",
@@ -508,7 +544,8 @@
       "intensity": "high",
       "timescale": "long",
       "cluster": "H_摂関政治・在地領主の台頭",
-      "era": "900s–1000s"
+      "era": "900s–1000s",
+      "fwType": "power"
     },
     {
       "id": "N028",
@@ -522,7 +559,8 @@
       "intensity": "high",
       "timescale": "long",
       "cluster": "H_摂関政治・在地領主の台頭",
-      "era": "900s–1100s"
+      "era": "900s–1100s",
+      "fwType": "drift"
     },
     {
       "id": "N029",
@@ -536,7 +574,8 @@
       "intensity": "high",
       "timescale": "long",
       "cluster": "H_摂関政治・在地領主の台頭",
-      "era": "1000s–1100s"
+      "era": "1000s–1100s",
+      "fwType": "drift"
     },
     {
       "id": "N030",
@@ -549,7 +588,8 @@
       "intensity": "high",
       "timescale": "long",
       "cluster": "H_摂関政治・在地領主の台頭",
-      "era": "1000s–1100s"
+      "era": "1000s–1100s",
+      "fwType": "drift"
     },
     {
       "id": "N031",
@@ -562,7 +602,8 @@
       "intensity": "medium",
       "timescale": "short",
       "cluster": "I_院政・荘園公領制の確立",
-      "era": "1069"
+      "era": "1069",
+      "fwType": "reform"
     },
     {
       "id": "N032",
@@ -576,7 +617,8 @@
       "intensity": "high",
       "timescale": "long",
       "cluster": "I_院政・荘園公領制の確立",
-      "era": "1086–1100s"
+      "era": "1086–1100s",
+      "fwType": "power"
     },
     {
       "id": "N033",
@@ -590,7 +632,8 @@
       "intensity": "high",
       "timescale": "long",
       "cluster": "I_院政・荘園公領制の確立",
-      "era": "1100s"
+      "era": "1100s",
+      "fwType": "institution"
     },
     {
       "id": "N034",
@@ -600,7 +643,8 @@
       "intensity": "high",
       "timescale": "long",
       "cluster": "I_院政・荘園公領制の確立",
-      "era": "1100s"
+      "era": "1100s",
+      "fwType": "collapse"
     },
     {
       "id": "N040",
@@ -615,7 +659,8 @@
       "intensity": "high",
       "timescale": "long",
       "cluster": "J_保元・平治の乱",
-      "era": "1100s–1150s"
+      "era": "1100s–1150s",
+      "fwType": "drift"
     },
     {
       "id": "N041",
@@ -631,7 +676,8 @@
       "intensity": "high",
       "timescale": "short",
       "cluster": "J_保元・平治の乱",
-      "era": "1156"
+      "era": "1156",
+      "fwType": "battle"
     },
     {
       "id": "N042",
@@ -645,7 +691,8 @@
       "intensity": "high",
       "timescale": "short",
       "cluster": "J_保元・平治の乱",
-      "era": "1159"
+      "era": "1159",
+      "fwType": "battle"
     },
     {
       "id": "N043",
@@ -658,7 +705,8 @@
       "intensity": "high",
       "timescale": "medium",
       "cluster": "K_平氏政権と源平合戦",
-      "era": "1167–1179"
+      "era": "1167–1179",
+      "fwType": "power"
     },
     {
       "id": "N044",
@@ -673,7 +721,8 @@
       "intensity": "high",
       "timescale": "medium",
       "cluster": "K_平氏政権と源平合戦",
-      "era": "1170s–1180"
+      "era": "1170s–1180",
+      "fwType": "conflict"
     },
     {
       "id": "N045",
@@ -687,7 +736,8 @@
       "intensity": "high",
       "timescale": "short",
       "cluster": "K_平氏政権と源平合戦",
-      "era": "1180"
+      "era": "1180",
+      "fwType": "battle"
     },
     {
       "id": "N046",
@@ -703,7 +753,8 @@
       "intensity": "high",
       "timescale": "medium",
       "cluster": "K_平氏政権と源平合戦",
-      "era": "1180–1185"
+      "era": "1180–1185",
+      "fwType": "battle"
     },
     {
       "id": "N047",
@@ -716,7 +767,8 @@
       "intensity": "high",
       "timescale": "long",
       "cluster": "L_鎌倉幕府の確立",
-      "era": "1185–1192"
+      "era": "1185–1192",
+      "fwType": "power"
     },
     {
       "id": "N048",
@@ -731,7 +783,8 @@
       "intensity": "high",
       "timescale": "short",
       "cluster": "L_鎌倉幕府の確立",
-      "era": "1221"
+      "era": "1221",
+      "fwType": "battle"
     },
     {
       "id": "N049",
@@ -744,7 +797,8 @@
       "intensity": "high",
       "timescale": "long",
       "cluster": "L_鎌倉幕府の確立",
-      "era": "1221–1232"
+      "era": "1221–1232",
+      "fwType": "institution"
     },
     {
       "id": "N068",
@@ -758,7 +812,8 @@
       "intensity": "high",
       "timescale": "medium",
       "cluster": "M_鎌倉後期",
-      "era": "1200s–1280s"
+      "era": "1200s–1280s",
+      "fwType": "shock"
     },
     {
       "id": "N069",
@@ -768,7 +823,8 @@
       "intensity": "medium",
       "timescale": "long",
       "cluster": "M_鎌倉後期",
-      "era": "1100s–1300s"
+      "era": "1100s–1300s",
+      "fwType": "drift"
     },
     {
       "id": "N050",
@@ -783,7 +839,8 @@
       "intensity": "high",
       "timescale": "medium",
       "cluster": "M_鎌倉後期",
-      "era": "1274–1281"
+      "era": "1274–1281",
+      "fwType": "battle"
     },
     {
       "id": "N051",
@@ -796,7 +853,8 @@
       "intensity": "high",
       "timescale": "long",
       "cluster": "M_鎌倉後期",
-      "era": "1280s–1320s"
+      "era": "1280s–1320s",
+      "fwType": "conflict"
     },
     {
       "id": "N052",
@@ -812,7 +870,8 @@
       "intensity": "high",
       "timescale": "short",
       "cluster": "M_鎌倉後期",
-      "era": "1333"
+      "era": "1333",
+      "fwType": "collapse"
     },
     {
       "id": "N053",
@@ -826,7 +885,8 @@
       "intensity": "high",
       "timescale": "short",
       "cluster": "N_室町幕府と南北朝",
-      "era": "1333–1336"
+      "era": "1333–1336",
+      "fwType": "reform"
     },
     {
       "id": "N054",
@@ -840,7 +900,8 @@
       "intensity": "high",
       "timescale": "long",
       "cluster": "N_室町幕府と南北朝",
-      "era": "1336–1392"
+      "era": "1336–1392",
+      "fwType": "power"
     },
     {
       "id": "N055",
@@ -853,7 +914,8 @@
       "intensity": "high",
       "timescale": "long",
       "cluster": "N_室町幕府と南北朝",
-      "era": "1390s–1460s"
+      "era": "1390s–1460s",
+      "fwType": "drift"
     },
     {
       "id": "N056",
@@ -868,7 +930,8 @@
       "intensity": "high",
       "timescale": "long",
       "cluster": "O_応仁の乱と戦国",
-      "era": "1467–1477"
+      "era": "1467–1477",
+      "fwType": "battle"
     },
     {
       "id": "N057",
@@ -881,7 +944,8 @@
       "intensity": "high",
       "timescale": "long",
       "cluster": "O_応仁の乱と戦国",
-      "era": "1490s–1560s"
+      "era": "1490s–1560s",
+      "fwType": "drift"
     },
     {
       "id": "N070",
@@ -894,7 +958,8 @@
       "intensity": "high",
       "timescale": "medium",
       "cluster": "O_応仁の乱と戦国",
-      "era": "1543–1570s"
+      "era": "1543–1570s",
+      "fwType": "shock"
     },
     {
       "id": "N058",
@@ -907,7 +972,8 @@
       "intensity": "high",
       "timescale": "medium",
       "cluster": "P_統一と幕藩体制",
-      "era": "1560–1582"
+      "era": "1560–1582",
+      "fwType": "power"
     },
     {
       "id": "N059",
@@ -919,7 +985,8 @@
       "intensity": "high",
       "timescale": "medium",
       "cluster": "P_統一と幕藩体制",
-      "era": "1582–1598"
+      "era": "1582–1598",
+      "fwType": "power"
     },
     {
       "id": "N060",
@@ -933,7 +1000,8 @@
       "intensity": "high",
       "timescale": "short",
       "cluster": "P_統一と幕藩体制",
-      "era": "1600"
+      "era": "1600",
+      "fwType": "battle"
     },
     {
       "id": "N061",
@@ -946,7 +1014,8 @@
       "intensity": "high",
       "timescale": "long",
       "cluster": "P_統一と幕藩体制",
-      "era": "1603–1615"
+      "era": "1603–1615",
+      "fwType": "institution"
     },
     {
       "id": "N062",
@@ -956,7 +1025,8 @@
       "intensity": "high",
       "timescale": "long",
       "cluster": "P_統一と幕藩体制",
-      "era": "1615–"
+      "era": "1615–",
+      "fwType": "institution"
     }
   ],
   "edges": [
