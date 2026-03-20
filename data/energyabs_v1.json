@@ -21,7 +21,8 @@
       "timescale": "long",
       "cluster": "0_磐井の乱前後",
       "era": "4c–6c",
-      "fwType": "shock"
+      "fwType": "shock",
+      "pattern": "{強国}の膨張が{周辺}の勢力均衡を崩す"
     },
     {
       "id": "N035",
@@ -36,7 +37,8 @@
       "timescale": "long",
       "cluster": "0_磐井の乱前後",
       "era": "470s–520s",
-      "fwType": "drift"
+      "fwType": "drift",
+      "pattern": "{権益}が{外部侵食}により縮小する"
     },
     {
       "id": "N036",
@@ -50,7 +52,8 @@
       "timescale": "medium",
       "cluster": "0_磐井の乱前後",
       "era": "500s–520s",
-      "fwType": "drift"
+      "fwType": "drift",
+      "pattern": "{地方}が{中央}を介さない{独自外交}を維持する"
     },
     {
       "id": "N037",
@@ -65,7 +68,8 @@
       "timescale": "short",
       "cluster": "0_磐井の乱前後",
       "era": "527",
-      "fwType": "conflict"
+      "fwType": "conflict",
+      "pattern": "{中央}が{辺境}に対し{軍事的圧力}をかける"
     },
     {
       "id": "N038",
@@ -94,7 +98,8 @@
       "timescale": "medium",
       "cluster": "0_磐井の乱前後",
       "era": "528–530s",
-      "fwType": "institution"
+      "fwType": "institution",
+      "pattern": "{中央}が{征服地}を直轄化し{制度的支配}を敷く"
     },
     {
       "id": "N063",
@@ -108,7 +113,8 @@
       "timescale": "long",
       "cluster": "A_丁未の乱前後",
       "era": "4c–550s",
-      "fwType": "shock"
+      "fwType": "shock",
+      "pattern": "{外来の文化}が{外交手段}として伝播する"
     },
     {
       "id": "N001",
@@ -139,7 +145,8 @@
       "timescale": "medium",
       "cluster": "A_丁未の乱前後",
       "era": "560s–580s",
-      "fwType": "power"
+      "fwType": "power",
+      "pattern": "{新勢力}が{新原理}を推進して権勢を拡大する"
     },
     {
       "id": "N003",
@@ -154,7 +161,8 @@
       "timescale": "medium",
       "cluster": "A_丁未の乱前後",
       "era": "560s–580s",
-      "fwType": "conflict"
+      "fwType": "conflict",
+      "pattern": "{新秩序}の台頭が{旧秩序}の権威を脅かす"
     },
     {
       "id": "N004",
@@ -167,7 +175,8 @@
       "timescale": "short",
       "cluster": "A_丁未の乱前後",
       "era": "587",
-      "fwType": "conflict"
+      "fwType": "conflict",
+      "pattern": "{指導者}の死が{後継争い}の空白を生む"
     },
     {
       "id": "N005",
@@ -197,7 +206,8 @@
       "timescale": "long",
       "cluster": "B_丁未から白村江の接続",
       "era": "589–630s",
-      "fwType": "shock"
+      "fwType": "shock",
+      "pattern": "{統一帝国}の出現が{周辺}に秩序変動を迫る"
     },
     {
       "id": "N066",
@@ -212,7 +222,8 @@
       "timescale": "long",
       "cluster": "B_丁未から白村江の接続",
       "era": "4c–6c",
-      "fwType": "drift"
+      "fwType": "drift",
+      "pattern": "{王権}が{対外関与}の伝統を持続する"
     },
     {
       "id": "N006",
@@ -227,7 +238,8 @@
       "timescale": "long",
       "cluster": "B_丁未から白村江の接続",
       "era": "590s–640s",
-      "fwType": "power"
+      "fwType": "power",
+      "pattern": "{勝者}が{主導体制}を確立する"
     },
     {
       "id": "N007",
@@ -242,7 +254,8 @@
       "timescale": "long",
       "cluster": "B_丁未から白村江の接続",
       "era": "600s–630s",
-      "fwType": "reform"
+      "fwType": "reform",
+      "pattern": "{対外関係}の{路線}を転換する"
     },
     {
       "id": "N008",
@@ -257,7 +270,8 @@
       "timescale": "long",
       "cluster": "B_丁未から白村江の接続",
       "era": "600s–660s",
-      "fwType": "conflict"
+      "fwType": "conflict",
+      "pattern": "{複数勢力}の{領域争い}が激化する"
     },
     {
       "id": "N009",
@@ -287,7 +301,8 @@
       "timescale": "long",
       "cluster": "B_丁未から白村江の接続",
       "era": "400s–660s",
-      "fwType": "drift"
+      "fwType": "drift",
+      "pattern": "{同盟国}との{軍事的庇護関係}が持続する"
     },
     {
       "id": "N011",
@@ -302,7 +317,8 @@
       "timescale": "short",
       "cluster": "B_丁未から白村江の接続",
       "era": "660",
-      "fwType": "collapse"
+      "fwType": "collapse",
+      "pattern": "{外部勢力}に{同盟国}が滅ぼされる"
     },
     {
       "id": "N012",
@@ -333,7 +349,8 @@
       "timescale": "medium",
       "cluster": "C_白村江",
       "era": "663–670s",
-      "fwType": "shock"
+      "fwType": "shock",
+      "pattern": "{対外敗戦}が{体制}に危機意識を植え付ける"
     },
     {
       "id": "N014",
@@ -347,7 +364,8 @@
       "timescale": "medium",
       "cluster": "D_白村江から壬申の接続",
       "era": "663–671",
-      "fwType": "reform"
+      "fwType": "reform",
+      "pattern": "{危機}を契機に{中央集権化}を急進的に推進する"
     },
     {
       "id": "N015",
@@ -361,7 +379,8 @@
       "timescale": "medium",
       "cluster": "D_白村江から壬申の接続",
       "era": "645–671",
-      "fwType": "conflict"
+      "fwType": "conflict",
+      "pattern": "{急進的改革}が{既得権層}の不満を蓄積させる"
     },
     {
       "id": "N016",
@@ -376,7 +395,8 @@
       "timescale": "short",
       "cluster": "D_白村江から壬申の接続",
       "era": "670–671",
-      "fwType": "conflict"
+      "fwType": "conflict",
+      "pattern": "{後継者}をめぐる{派閥}の緊張が高まる"
     },
     {
       "id": "N017",
@@ -389,7 +409,8 @@
       "timescale": "short",
       "cluster": "D_白村江から壬申の接続",
       "era": "671",
-      "fwType": "conflict"
+      "fwType": "conflict",
+      "pattern": "{指導者}の死が{蓄積された緊張}を解放する"
     },
     {
       "id": "N018",
@@ -419,7 +440,8 @@
       "timescale": "long",
       "cluster": "F_天武朝・律令国家建設",
       "era": "672–700",
-      "fwType": "reform"
+      "fwType": "reform",
+      "pattern": "{勝者}が{理想的体制}の建設に着手する"
     },
     {
       "id": "N020",
@@ -448,7 +470,8 @@
       "timescale": "long",
       "cluster": "F_天武朝・律令国家建設",
       "era": "700s",
-      "fwType": "institution"
+      "fwType": "institution",
+      "pattern": "{法典}に基づく{統一的制度}が実施される"
     },
     {
       "id": "N067",
@@ -459,7 +482,8 @@
       "timescale": "long",
       "cluster": "G_律令制の内部矛盾",
       "era": "700s–800s",
-      "fwType": "drift"
+      "fwType": "drift",
+      "pattern": "{環境変化}と{技術進歩}が{生産力}を底上げする"
     },
     {
       "id": "N022",
@@ -473,7 +497,8 @@
       "timescale": "long",
       "cluster": "G_律令制の内部矛盾",
       "era": "700s",
-      "fwType": "conflict"
+      "fwType": "conflict",
+      "pattern": "{人口}が{制度の容量}を超過する"
     },
     {
       "id": "N023",
@@ -502,7 +527,8 @@
       "timescale": "long",
       "cluster": "G_律令制の内部矛盾",
       "era": "743–800s",
-      "fwType": "drift"
+      "fwType": "drift",
+      "pattern": "{制度的例外}が{私的領域}の形成を促す"
     },
     {
       "id": "N025",
@@ -516,7 +542,8 @@
       "timescale": "long",
       "cluster": "G_律令制の内部矛盾",
       "era": "700s–800s",
-      "fwType": "conflict"
+      "fwType": "conflict",
+      "pattern": "{制度的負担}が{末端}を疲弊させる"
     },
     {
       "id": "N026",
@@ -530,7 +557,8 @@
       "timescale": "long",
       "cluster": "G_律令制の内部矛盾",
       "era": "900s–1000s",
-      "fwType": "drift"
+      "fwType": "drift",
+      "pattern": "{中央の統制力}の低下が{地方請負}を生む"
     },
     {
       "id": "N027",
@@ -545,7 +573,8 @@
       "timescale": "long",
       "cluster": "H_摂関政治・在地領主の台頭",
       "era": "900s–1000s",
-      "fwType": "power"
+      "fwType": "power",
+      "pattern": "{特定氏族}が{制度的地位}を独占する"
     },
     {
       "id": "N028",
@@ -560,7 +589,8 @@
       "timescale": "long",
       "cluster": "H_摂関政治・在地領主の台頭",
       "era": "900s–1100s",
-      "fwType": "drift"
+      "fwType": "drift",
+      "pattern": "{武力}を持つ{在地勢力}が自律的に形成される"
     },
     {
       "id": "N029",
@@ -575,7 +605,8 @@
       "timescale": "long",
       "cluster": "H_摂関政治・在地領主の台頭",
       "era": "1000s–1100s",
-      "fwType": "drift"
+      "fwType": "drift",
+      "pattern": "{保護}を求めて{権門}に{土地}を寄進する動きが拡大する"
     },
     {
       "id": "N030",
@@ -589,7 +620,8 @@
       "timescale": "long",
       "cluster": "H_摂関政治・在地領主の台頭",
       "era": "1000s–1100s",
-      "fwType": "drift"
+      "fwType": "drift",
+      "pattern": "{特権}の拡大が{公的領域}を侵食する"
     },
     {
       "id": "N031",
@@ -618,7 +650,8 @@
       "timescale": "long",
       "cluster": "I_院政・荘園公領制の確立",
       "era": "1086–1100s",
-      "fwType": "power"
+      "fwType": "power",
+      "pattern": "{上位権威}が{既存制度}を迂回して直接統治する"
     },
     {
       "id": "N033",
@@ -633,7 +666,8 @@
       "timescale": "long",
       "cluster": "I_院政・荘園公領制の確立",
       "era": "1100s",
-      "fwType": "institution"
+      "fwType": "institution",
+      "pattern": "{公}と{私}が並立する{二重構造}が制度として定着する"
     },
     {
       "id": "N034",
@@ -644,7 +678,8 @@
       "timescale": "long",
       "cluster": "I_院政・荘園公領制の確立",
       "era": "1100s",
-      "fwType": "collapse"
+      "fwType": "collapse",
+      "pattern": "{旧制度}の理念が{現実}と完全に乖離し形骸化する"
     },
     {
       "id": "N040",
@@ -660,7 +695,8 @@
       "timescale": "long",
       "cluster": "J_保元・平治の乱",
       "era": "1100s–1150s",
-      "fwType": "drift"
+      "fwType": "drift",
+      "pattern": "{権力者}が{武力集団}を政治に動員する"
     },
     {
       "id": "N041",
@@ -692,7 +728,8 @@
       "timescale": "short",
       "cluster": "J_保元・平治の乱",
       "era": "1159",
-      "fwType": "battle"
+      "fwType": "battle",
+      "pattern": "{権力闘争}の{敗者}が武力で排除される"
     },
     {
       "id": "N043",
@@ -706,7 +743,8 @@
       "timescale": "medium",
       "cluster": "K_平氏政権と源平合戦",
       "era": "1167–1179",
-      "fwType": "power"
+      "fwType": "power",
+      "pattern": "{武力勝者}が{政権}を掌握する"
     },
     {
       "id": "N044",
@@ -722,7 +760,8 @@
       "timescale": "medium",
       "cluster": "K_平氏政権と源平合戦",
       "era": "1170s–1180",
-      "fwType": "conflict"
+      "fwType": "conflict",
+      "pattern": "{独占的権力者}への反発が広がる"
     },
     {
       "id": "N045",
@@ -737,7 +776,8 @@
       "timescale": "short",
       "cluster": "K_平氏政権と源平合戦",
       "era": "1180",
-      "fwType": "battle"
+      "fwType": "battle",
+      "pattern": "{大義名分}のもとに{挙兵}する"
     },
     {
       "id": "N046",
@@ -768,7 +808,8 @@
       "timescale": "long",
       "cluster": "L_鎌倉幕府の確立",
       "era": "1185–1192",
-      "fwType": "power"
+      "fwType": "power",
+      "pattern": "{武家}が{独自の統治機構}を樹立する"
     },
     {
       "id": "N048",
@@ -798,7 +839,8 @@
       "timescale": "long",
       "cluster": "L_鎌倉幕府の確立",
       "era": "1221–1232",
-      "fwType": "institution"
+      "fwType": "institution",
+      "pattern": "{実力}による支配が{法的正統性}を獲得する"
     },
     {
       "id": "N068",
@@ -813,7 +855,8 @@
       "timescale": "medium",
       "cluster": "M_鎌倉後期",
       "era": "1200s–1280s",
-      "fwType": "shock"
+      "fwType": "shock",
+      "pattern": "{外部帝国}が{征服}を仕掛ける"
     },
     {
       "id": "N069",
@@ -824,7 +867,8 @@
       "timescale": "long",
       "cluster": "M_鎌倉後期",
       "era": "1100s–1300s",
-      "fwType": "drift"
+      "fwType": "drift",
+      "pattern": "{外来貨幣}の流入が{現物経済}を侵食する"
     },
     {
       "id": "N050",
@@ -854,7 +898,8 @@
       "timescale": "long",
       "cluster": "M_鎌倉後期",
       "era": "1280s–1320s",
-      "fwType": "conflict"
+      "fwType": "conflict",
+      "pattern": "{体制の担い手}が{経済変動}により窮乏化する"
     },
     {
       "id": "N052",
@@ -901,7 +946,8 @@
       "timescale": "long",
       "cluster": "N_室町幕府と南北朝",
       "era": "1336–1392",
-      "fwType": "power"
+      "fwType": "power",
+      "pattern": "{新政権}が{分裂}を抱えたまま成立する"
     },
     {
       "id": "N055",
@@ -915,7 +961,8 @@
       "timescale": "long",
       "cluster": "N_室町幕府と南北朝",
       "era": "1390s–1460s",
-      "fwType": "drift"
+      "fwType": "drift",
+      "pattern": "{地方権力者}が{中央}から自立化する"
     },
     {
       "id": "N056",
@@ -945,7 +992,8 @@
       "timescale": "long",
       "cluster": "O_応仁の乱と戦国",
       "era": "1490s–1560s",
-      "fwType": "drift"
+      "fwType": "drift",
+      "pattern": "{下位者}が{上位者}を実力で凌駕する"
     },
     {
       "id": "N070",
@@ -959,7 +1007,8 @@
       "timescale": "medium",
       "cluster": "O_応仁の乱と戦国",
       "era": "1543–1570s",
-      "fwType": "shock"
+      "fwType": "shock",
+      "pattern": "{外来技術}と{交易}が{既存構造}を一変させる"
     },
     {
       "id": "N058",
@@ -986,7 +1035,8 @@
       "timescale": "medium",
       "cluster": "P_統一と幕藩体制",
       "era": "1582–1598",
-      "fwType": "power"
+      "fwType": "power",
+      "pattern": "{後継者}が{統一事業}を完成させる"
     },
     {
       "id": "N060",
@@ -1015,7 +1065,8 @@
       "timescale": "long",
       "cluster": "P_統一と幕藩体制",
       "era": "1603–1615",
-      "fwType": "institution"
+      "fwType": "institution",
+      "pattern": "{武家}が{全国支配}を制度として完成させる"
     },
     {
       "id": "N062",
@@ -1026,7 +1077,8 @@
       "timescale": "long",
       "cluster": "P_統一と幕藩体制",
       "era": "1615–",
-      "fwType": "institution"
+      "fwType": "institution",
+      "pattern": "{長期的構造変化}が{ひとつの秩序}に結実する"
     }
   ],
   "edges": [
