@@ -207,13 +207,54 @@
   }
   .out-chip:hover { color: #6a6058; border-color: #a89a88; }
 
-  /* Legend */
+  /* Legend — floating */
+  .legend-float {
+    position: sticky; top: 0; z-index: 100;
+    background: var(--paper); border: 1px solid var(--line);
+    border-radius: 12px; padding: 8px 14px;
+    box-shadow: var(--shadow); margin-bottom: 12px;
+  }
+  .legend-float.collapsed { display: none; }
   .legend {
-    margin-top: 16px;
     display: flex; gap: 14px; flex-wrap: wrap; font-size: 11px; color: var(--muted);
   }
+  .legend + .legend { margin-top: 6px; }
   .legend-item { display: flex; align-items: center; gap: 4px; }
   .legend-sw { width: 28px; height: 3px; border-radius: 2px; }
+
+  /* Filter controls row 2 */
+  .controls-row2 {
+    display: flex; gap: 6px; margin-bottom: 12px; flex-wrap: wrap; align-items: center;
+  }
+  .controls-row2 .sep {
+    width: 1px; height: 20px; background: var(--line); margin: 0 4px;
+  }
+  .domain-btn {
+    font-family: inherit; font-size: 11px; padding: 4px 10px;
+    border: 1.5px solid var(--line); border-radius: 14px;
+    background: var(--paper); color: var(--muted); cursor: pointer; transition: all .2s;
+    font-weight: 600;
+  }
+  .domain-btn:hover { background: #e8e0d8; }
+  .domain-btn.active { color: #fff; border-color: transparent; }
+  .fwtype-btn {
+    font-family: inherit; font-size: 11px; padding: 3px 8px;
+    border: 1.5px solid var(--line); border-radius: 12px;
+    background: var(--paper); color: var(--muted); cursor: pointer; transition: all .2s;
+  }
+  .fwtype-btn:hover { opacity: 0.8; }
+  .fwtype-btn.active { color: #fff; border-color: transparent; }
+  .lookup-select {
+    font-family: inherit; font-size: 11px; padding: 4px 8px;
+    border: 1.5px solid var(--line); border-radius: 12px;
+    background: var(--paper); color: var(--ink); max-width: 200px;
+  }
+  .lookup-dir {
+    font-family: inherit; font-size: 10px; padding: 3px 8px;
+    border: 1.5px solid var(--line); border-radius: 12px;
+    background: var(--paper); color: var(--muted); cursor: pointer; transition: all .2s;
+  }
+  .lookup-dir.active { background: var(--accent); color: #fff; border-color: var(--accent); }
 
   @media (max-width: 840px) {
     :root { --block-w: 100%; }
@@ -233,32 +274,43 @@
     <button onclick="filterRole('triggers',this)">triggers</button>
     <button onclick="filterRole('transforms',this)">transforms</button>
     <button onclick="filterRole('sustains',this)">sustains</button>
+    <button onclick="toggleLegend()" id="legend-btn" style="margin-left:auto">凡例 ▶</button>
     <span class="ctrl-info" id="info"></span>
+  </div>
+  <div class="controls-row2" id="controls-row2"></div>
+  <div class="legend-float collapsed" id="legend-panel">
+    <div class="legend">
+      <div class="legend-item"><div class="legend-sw" style="background:#b0a898"></div>同一性リンク（点線）</div>
+      <div class="legend-item" style="margin-left: 8px; border-left: 2px solid #ddd; padding-left: 8px;">▼ 背景の作用:</div>
+      <div class="legend-item"><span style="color:#c8960a; font-weight:600">▼</span> 圧を高めた</div>
+      <div class="legend-item"><span style="color:#c45a3c; font-weight:600">▼</span> 引き金</div>
+      <div class="legend-item"><span style="color:#3a6a9a; font-weight:600">▼</span> 構造を変えた</div>
+      <div class="legend-item"><span style="color:#3a8a3a; font-weight:600">▼</span> 基盤を支えた</div>
+      <div class="legend-item"><span style="color:#7a3a8a; font-weight:600">▼</span> 抑制した</div>
+      <div class="legend-item"><span style="color:#3a7a8a; font-weight:600">▼</span> 継承した</div>
+    </div>
+    <div class="legend">
+      <div class="legend-item" style="border-left: 2px solid #ddd; padding-left: 8px;">枠色 = 抽象FW型:</div>
+      <div class="legend-item"><span style="color:#c45a3c; font-weight:600">⚔</span> 武力衝突</div>
+      <div class="legend-item"><span style="color:#c8960a; font-weight:600">▲</span> 対立蓄積</div>
+      <div class="legend-item"><span style="color:#8a3a3a; font-weight:600">⊘</span> 崩壊</div>
+      <div class="legend-item"><span style="color:#3a6a9a; font-weight:600">■</span> 制度化</div>
+      <div class="legend-item"><span style="color:#6a3a8a; font-weight:600">◆</span> 権力確立</div>
+      <div class="legend-item"><span style="color:#c47a3a; font-weight:600">⚡</span> 外生衝撃</div>
+      <div class="legend-item"><span style="color:#5a8a5a; font-weight:600">〜</span> 漸進変化</div>
+      <div class="legend-item"><span style="color:#3a7a8a; font-weight:600">✦</span> 改革</div>
+    </div>
+    <div class="legend">
+      <div class="legend-item" style="border-left: 2px solid #ddd; padding-left: 8px;">意味領域:</div>
+      <div class="legend-item"><span style="display:inline-block;width:10px;height:10px;border-radius:3px;background:rgba(139,119,90,.25)"></span> 地面（構造）</div>
+      <div class="legend-item"><span style="display:inline-block;width:10px;height:10px;border-radius:3px;background:rgba(196,90,60,.25)"></span> 力学（アクター）</div>
+      <div class="legend-item"><span style="display:inline-block;width:10px;height:10px;border-radius:3px;background:rgba(58,122,138,.25)"></span> 意図（改革）</div>
+      <div class="legend-item"><span style="display:inline-block;width:10px;height:10px;border-radius:3px;background:rgba(196,122,58,.25)"></span> 外部（衝撃）</div>
+    </div>
   </div>
   <div class="canvas" id="canvas">
     <svg id="edge-svg"></svg>
     <div id="flow"></div>
-  </div>
-  <div class="legend">
-    <div class="legend-item"><div class="legend-sw" style="background:#b0a898"></div>同一性リンク（点線）</div>
-    <div class="legend-item" style="margin-left: 8px; border-left: 2px solid #ddd; padding-left: 8px;">▼ 背景の作用:</div>
-    <div class="legend-item"><span style="color:#c8960a; font-weight:600">▼</span> 圧を高めた</div>
-    <div class="legend-item"><span style="color:#c45a3c; font-weight:600">▼</span> 引き金</div>
-    <div class="legend-item"><span style="color:#3a6a9a; font-weight:600">▼</span> 構造を変えた</div>
-    <div class="legend-item"><span style="color:#3a8a3a; font-weight:600">▼</span> 基盤を支えた</div>
-    <div class="legend-item"><span style="color:#7a3a8a; font-weight:600">▼</span> 抑制した</div>
-    <div class="legend-item"><span style="color:#3a7a8a; font-weight:600">▼</span> 継承した</div>
-  </div>
-  <div class="legend" style="margin-top:8px;">
-    <div class="legend-item" style="border-left: 2px solid #ddd; padding-left: 8px;">枠色 = 抽象FW型:</div>
-    <div class="legend-item"><span style="color:#c45a3c; font-weight:600">⚔</span> 武力衝突・戦い</div>
-    <div class="legend-item"><span style="color:#c8960a; font-weight:600">▲</span> 対立・緊張蓄積</div>
-    <div class="legend-item"><span style="color:#8a3a3a; font-weight:600">⊘</span> 崩壊・滅亡</div>
-    <div class="legend-item"><span style="color:#3a6a9a; font-weight:600">■</span> 制度化・ルール化</div>
-    <div class="legend-item"><span style="color:#6a3a8a; font-weight:600">◆</span> 権力確立・体制形成</div>
-    <div class="legend-item"><span style="color:#c47a3a; font-weight:600">⚡</span> 外生衝撃・外来要因</div>
-    <div class="legend-item"><span style="color:#5a8a5a; font-weight:600">〜</span> 漸進的浸透・構造変化</div>
-    <div class="legend-item"><span style="color:#3a7a8a; font-weight:600">✦</span> 改革・変革</div>
   </div>
 </div>
 
@@ -273,15 +325,29 @@ let selectedNode = null;
 
 // Semantic FW type → color + shape marker
 const FW_TYPE_STYLES = {
-  'battle':      { color: '#c45a3c', shape: '⚔', label: '武力衝突・戦い' },
-  'conflict':    { color: '#c8960a', shape: '▲', label: '対立・緊張蓄積' },
-  'collapse':    { color: '#8a3a3a', shape: '⊘', label: '崩壊・滅亡' },
-  'institution': { color: '#3a6a9a', shape: '■', label: '制度化・ルール化' },
-  'power':       { color: '#6a3a8a', shape: '◆', label: '権力確立・体制形成' },
-  'shock':       { color: '#c47a3a', shape: '⚡', label: '外生衝撃・外来要因' },
-  'drift':       { color: '#5a8a5a', shape: '〜', label: '漸進的浸透・構造変化' },
-  'reform':      { color: '#3a7a8a', shape: '✦', label: '改革・変革' },
+  'battle':      { color: '#c45a3c', shape: '⚔', label: '武力衝突', labelFull: '武力衝突・戦い' },
+  'conflict':    { color: '#c8960a', shape: '▲', label: '対立蓄積', labelFull: '対立・緊張蓄積' },
+  'collapse':    { color: '#8a3a3a', shape: '⊘', label: '崩壊', labelFull: '崩壊・滅亡' },
+  'institution': { color: '#3a6a9a', shape: '■', label: '制度化', labelFull: '制度化・ルール化' },
+  'power':       { color: '#6a3a8a', shape: '◆', label: '権力確立', labelFull: '権力確立・体制形成' },
+  'shock':       { color: '#c47a3a', shape: '⚡', label: '外生衝撃', labelFull: '外生衝撃・外来要因' },
+  'drift':       { color: '#5a8a5a', shape: '〜', label: '漸進変化', labelFull: '漸進的浸透・構造変化' },
+  'reform':      { color: '#3a7a8a', shape: '✦', label: '改革', labelFull: '改革・変革' },
 };
+
+// Semantic domains (4 groups of fwTypes)
+const SEMANTIC_DOMAINS = {
+  '地面': { types: ['drift', 'institution', 'collapse'], color: 'rgba(139,119,90,.25)', colorSolid: '#8b7750' },
+  '力学': { types: ['conflict', 'battle', 'power'], color: 'rgba(196,90,60,.25)', colorSolid: '#c45a3c' },
+  '意図': { types: ['reform'], color: 'rgba(58,122,138,.25)', colorSolid: '#3a7a8a' },
+  '外部': { types: ['shock'], color: 'rgba(196,122,58,.25)', colorSolid: '#c47a3a' },
+};
+
+// fwType → domain background tint
+const DOMAIN_BG = {};
+Object.entries(SEMANTIC_DOMAINS).forEach(([name, d]) => {
+  d.types.forEach(t => { DOMAIN_BG[t] = d.color; });
+});
 
 async function init() {
   const res = await fetch(DATA_URL);
@@ -300,10 +366,50 @@ async function init() {
   // clusterColorMap no longer needed — border color is now by fwType
 
   document.getElementById('info').textContent = `${G.nodes.length} nodes / ${G.edges.length} edges`;
-  renderAll();
 
-  // FW type legend is static in HTML
+  // Build controls row 2: domain buttons + fwType buttons + reverse lookup
+  buildControlsRow2();
+
+  renderAll();
 }
+
+function buildControlsRow2() {
+  const row = document.getElementById('controls-row2');
+  let html = '';
+
+  // Domain buttons
+  Object.entries(SEMANTIC_DOMAINS).forEach(([name, d]) => {
+    html += `<button class="domain-btn" onclick="filterDomain('${name}',this)" style="border-color:${d.colorSolid}">${name}</button>`;
+  });
+
+  html += '<div class="sep"></div>';
+
+  // fwType buttons
+  Object.entries(FW_TYPE_STYLES).forEach(([type, s]) => {
+    html += `<button class="fwtype-btn" onclick="filterFwType('${type}',this)" style="border-color:${s.color}">${s.shape} ${s.label}</button>`;
+  });
+
+  html += '<div class="sep"></div>';
+
+  // Reverse lookup
+  html += '<select class="lookup-select" id="lookup-node" onchange="applyLookup()"><option value="">逆引き…</option>';
+  // Group by cluster
+  clusters.forEach(cl => {
+    const clName = cl.includes('_') ? cl.split('_').slice(1).join('_') : cl;
+    html += `<optgroup label="${clName}">`;
+    G.nodes.filter(n => n.cluster === cl).forEach(n => {
+      html += `<option value="${n.id}">${fmtId(n.id)} ${n.label}</option>`;
+    });
+    html += '</optgroup>';
+  });
+  html += '</select>';
+  html += `<button class="lookup-dir active" id="lookup-in" onclick="setLookupDir('in')">← 入力元</button>`;
+  html += `<button class="lookup-dir" id="lookup-out" onclick="setLookupDir('out')">出力先 →</button>`;
+
+  row.innerHTML = html;
+}
+
+let lookupDir = 'in';
 
 function renderAll() {
   const flow = document.getElementById('flow');
@@ -381,7 +487,7 @@ function renderBlock(n) {
   const hasPat = n.pattern ? 'has-pattern' : '';
 
   const fwStyle = FW_TYPE_STYLES[n.fwType] || FW_TYPE_STYLES['amplifier'];
-  let html = `<div class="block ${hasPat}" data-nid="${n.id}" id="blk-${n.id}" style="border-color:${fwStyle.color}">`;
+  let html = `<div class="block ${hasPat}" data-nid="${n.id}" id="blk-${n.id}" data-fwtype="${n.fwType || ''}" style="border-color:${fwStyle.color}">`;
   html += `<div class="block-body">`;
 
   // Inner area: incoming edges as reference chips (border color = source block's cluster)
@@ -717,6 +823,108 @@ function toggleActor(name) {
   document.getElementById('info').textContent = `${name}: ${matchIds.size} nodes`;
   // Reset top controls
   document.querySelectorAll('.controls button').forEach(b => b.classList.remove('active'));
+}
+
+// ── Legend toggle ──
+function toggleLegend() {
+  const panel = document.getElementById('legend-panel');
+  panel.classList.toggle('collapsed');
+  document.getElementById('legend-btn').textContent = panel.classList.contains('collapsed') ? '凡例 ▶' : '凡例';
+}
+
+// ── Domain filter (地面/力学/意図/外部) ──
+function filterDomain(name, btn) {
+  const d = SEMANTIC_DOMAINS[name];
+  if (!d) return;
+  const types = new Set(d.types);
+  const matchIds = new Set(G.nodes.filter(n => types.has(n.fwType)).map(n => n.id));
+  const connEdges = new Set();
+  G.edges.forEach(e => {
+    if (matchIds.has(e.from) || matchIds.has(e.to)) connEdges.add(e.id);
+  });
+
+  document.querySelectorAll('.block').forEach(el => {
+    el.classList.toggle('dim', !matchIds.has(el.dataset.nid));
+    el.classList.remove('hl');
+  });
+  applyEdgeDim(connEdges);
+
+  // Toggle active state
+  document.querySelectorAll('.domain-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  btn.style.background = d.colorSolid;
+  document.querySelectorAll('.controls button').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.fwtype-btn').forEach(b => { b.classList.remove('active'); b.style.background = ''; });
+  document.getElementById('info').textContent = `${name}: ${matchIds.size} nodes`;
+}
+
+// ── FW type filter ──
+function filterFwType(type, btn) {
+  const matchIds = new Set(G.nodes.filter(n => n.fwType === type).map(n => n.id));
+  const connEdges = new Set();
+  G.edges.forEach(e => {
+    if (matchIds.has(e.from) || matchIds.has(e.to)) connEdges.add(e.id);
+  });
+
+  document.querySelectorAll('.block').forEach(el => {
+    el.classList.toggle('dim', !matchIds.has(el.dataset.nid));
+    el.classList.remove('hl');
+  });
+  applyEdgeDim(connEdges);
+
+  // Toggle active state
+  const s = FW_TYPE_STYLES[type];
+  document.querySelectorAll('.fwtype-btn').forEach(b => { b.classList.remove('active'); b.style.background = ''; });
+  btn.classList.add('active');
+  btn.style.background = s.color;
+  document.querySelectorAll('.controls button').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.domain-btn').forEach(b => { b.classList.remove('active'); b.style.background = ''; });
+  document.getElementById('info').textContent = `${s.shape} ${s.labelFull}: ${matchIds.size} nodes`;
+}
+
+// ── Reverse lookup ──
+function applyLookup() {
+  const nid = document.getElementById('lookup-node').value;
+  if (!nid) { resetView(document.querySelector('.controls button')); return; }
+  const connected = new Set([nid]);
+  const connEdges = new Set();
+  G.edges.forEach(e => {
+    if (lookupDir === 'in' && e.to === nid) { connected.add(e.from); connEdges.add(e.id); }
+    if (lookupDir === 'out' && e.from === nid) { connected.add(e.to); connEdges.add(e.id); }
+  });
+
+  document.querySelectorAll('.block').forEach(el => {
+    el.classList.toggle('dim', !connected.has(el.dataset.nid));
+    el.classList.toggle('hl', el.dataset.nid === nid);
+  });
+  applyEdgeDim(connEdges);
+
+  const node = NM[nid];
+  const dir = lookupDir === 'in' ? '入力元' : '出力先';
+  document.getElementById('info').textContent = `${node.label} ← ${dir}: ${connected.size - 1}`;
+
+  // Scroll to selected
+  const el = document.getElementById('blk-' + nid);
+  if (el) el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+}
+
+function setLookupDir(dir) {
+  lookupDir = dir;
+  document.getElementById('lookup-in').classList.toggle('active', dir === 'in');
+  document.getElementById('lookup-out').classList.toggle('active', dir === 'out');
+  // Re-apply if a node is selected
+  if (document.getElementById('lookup-node').value) applyLookup();
+}
+
+// ── Shared edge dim helper ──
+function applyEdgeDim(visibleEdgeIds) {
+  document.querySelectorAll('.edge-line').forEach(el => {
+    el.classList.toggle('dim', !visibleEdgeIds.has(el.dataset.eid));
+    el.classList.toggle('hl', visibleEdgeIds.has(el.dataset.eid));
+  });
+  document.querySelectorAll('.edge-head').forEach(el => {
+    el.classList.toggle('dim', !visibleEdgeIds.has(el.dataset.eid));
+  });
 }
 
 window.addEventListener('resize', () => requestAnimationFrame(drawEdges));

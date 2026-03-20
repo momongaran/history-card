@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>スロット分類一覧</title>
+<style>
+  :root {
+    --bg: #f0ebe0;
+    --paper: #fffdf8;
+    --ink: #28231e;
+    --muted: #6a6058;
+    --line: #c9b89e;
+    --accent: #5c3d1e;
+    --shadow: 0 6px 20px rgba(40,28,14,.08);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", sans-serif;
+    background: linear-gradient(160deg, #f5efe3 0%, #ede5d5 100%);
+    color: var(--ink); min-height: 100vh;
+  }
+  .page { max-width: 1100px; margin: 0 auto; padding: 24px 20px 80px; }
+  .header { margin-bottom: 20px; border-left: 4px solid var(--accent); padding-left: 16px; }
+  h1 { font-size: 20px; color: var(--accent); letter-spacing: .06em; }
+  .sub { margin-top: 3px; font-size: 12px; color: var(--muted); }
+  .stats { font-size: 11px; color: var(--muted); margin-bottom: 16px; }
+
+  /* Category section */
+  .cat-section { margin-bottom: 28px; }
+  .cat-header {
+    display: flex; align-items: center; gap: 10px;
+    margin-bottom: 10px; padding: 8px 14px;
+    background: var(--paper); border: 1px solid var(--line);
+    border-radius: 12px; box-shadow: var(--shadow);
+  }
+  .cat-icon { flex-shrink: 0; }
+  .cat-name { font-size: 15px; font-weight: 700; color: var(--accent); }
+  .cat-count { font-size: 11px; color: var(--muted); }
+  .cat-desc { font-size: 11px; color: var(--muted); margin-left: auto; }
+
+  /* Sub-category */
+  .sub-section { margin-left: 20px; margin-bottom: 12px; }
+  .sub-header {
+    font-size: 12px; font-weight: 600; color: var(--ink);
+    margin-bottom: 6px; padding-bottom: 4px;
+    border-bottom: 1px solid #e8e0d8;
+    display: flex; align-items: center; gap: 6px;
+  }
+  .sub-count { font-size: 10px; color: var(--muted); font-weight: 400; }
+
+  /* Term card */
+  .term-grid {
+    display: flex; flex-wrap: wrap; gap: 6px;
+  }
+  .term-card {
+    background: var(--paper); border: 1px solid var(--line);
+    border-radius: 8px; padding: 5px 10px;
+    font-size: 12px; cursor: default;
+    transition: all .2s; position: relative;
+  }
+  .term-card:hover {
+    box-shadow: 0 4px 12px rgba(40,28,14,.1);
+  }
+  .term-card .term-name { font-weight: 600; }
+  .term-card .term-uses { font-size: 10px; color: var(--muted); margin-left: 4px; }
+
+  /* Expanded usage (on click) */
+  .term-detail {
+    display: none;
+    margin-top: 6px; padding-top: 6px;
+    border-top: 1px solid #ece5d8;
+    font-size: 10px; color: var(--muted); line-height: 1.6;
+  }
+  .term-card.expanded { flex-basis: 100%; }
+  .term-card.expanded .term-detail { display: block; }
+  .usage-line { margin-bottom: 2px; }
+  .usage-id { font-family: monospace; color: #b0a090; }
+  .usage-pattern .uslot { color: var(--accent); font-weight: 600; }
+  .usage-pattern .uslot.self { background: rgba(92,61,30,.1); border-radius: 3px; padding: 0 2px; }
+
+  /* Summary table */
+  .summary-table {
+    width: 100%; border-collapse: collapse; margin-bottom: 24px;
+    font-size: 12px;
+  }
+  .summary-table th {
+    text-align: left; padding: 6px 10px;
+    border-bottom: 2px solid var(--line);
+    color: var(--accent); font-weight: 600;
+  }
+  .summary-table td {
+    padding: 4px 10px; border-bottom: 1px solid #ece5d8;
+  }
+  .summary-table .num { text-align: right; font-family: monospace; }
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="header">
+    <h1>スロット分類一覧</h1>
+    <p class="sub">パターン文の {スロット} を7大分類・27小分類に整理</p>
+  </div>
+  <div class="stats" id="stats"></div>
+
+  <table class="summary-table" id="summary"></table>
+
+  <div id="catalog"></div>
+</div>
+
+<script>
+const DATA_URL = '../data/energyabs_v1.json';
+const TAXO_URL = '../data/slot_taxonomy.json';
+
+const SHAPE_LABELS = {
+  'circle': '●', 'square': '□', 'diamond': '◇',
+  'triangle': '△', 'bar': '▬', 'circle-open': '○', 'wave': '≈'
+};
+
+function shapeSVG(shape, color, size = 20) {
+  const s = size;
+  const m = s / 2;
+  let inner = '';
+  switch (shape) {
+    case 'circle':
+      inner = `<circle cx="${m}" cy="${m}" r="${m-2}" fill="${color}" opacity="0.85"/>`;
+      break;
+    case 'square':
+      inner = `<rect x="2" y="2" width="${s-4}" height="${s-4}" rx="3" fill="${color}" opacity="0.85"/>`;
+      break;
+    case 'diamond':
+      inner = `<polygon points="${m},1 ${s-1},${m} ${m},${s-1} 1,${m}" fill="${color}" opacity="0.85"/>`;
+      break;
+    case 'triangle':
+      inner = `<polygon points="${m},2 ${s-1},${s-2} 1,${s-2}" fill="${color}" opacity="0.85"/>`;
+      break;
+    case 'bar':
+      inner = `<rect x="1" y="${m-3}" width="${s-2}" height="6" rx="3" fill="${color}" opacity="0.85"/>`;
+      break;
+    case 'circle-open':
+      inner = `<circle cx="${m}" cy="${m}" r="${m-3}" fill="none" stroke="${color}" stroke-width="2.5" opacity="0.85"/>`;
+      break;
+    case 'wave':
+      inner = `<path d="M2,${m+2} C${m-2},${m-4} ${m},${m-4} ${m},${m} C${m},${m+4} ${m+2},${m+4} ${s-2},${m-2}" fill="none" stroke="${color}" stroke-width="2.5" stroke-linecap="round" opacity="0.85"/>`;
+      break;
+  }
+  return `<svg width="${s}" height="${s}" viewBox="0 0 ${s} ${s}" style="vertical-align:middle">${inner}</svg>`;
+}
+
+async function init() {
+  const [taxoRes, dataRes] = await Promise.all([fetch(TAXO_URL), fetch(DATA_URL)]);
+  const taxo = await taxoRes.json();
+  const G = await dataRes.json();
+
+  // Build slot usage map
+  const slotUsage = {};
+  G.nodes.forEach(n => {
+    const p = n.pattern || '';
+    const matches = [...p.matchAll(/\{([^}]+)\}/g)];
+    matches.forEach(m => {
+      const term = m[1];
+      if (!slotUsage[term]) slotUsage[term] = [];
+      slotUsage[term].push({ id: n.id, pattern: p, label: n.label });
+    });
+  });
+
+  // Summary table
+  let summaryHtml = '<tr><th></th><th>大分類</th><th>小分類</th><th class="num">語数</th><th class="num">使用回数</th></tr>';
+  let totalTerms = 0, totalUses = 0;
+
+  Object.entries(taxo.categories).forEach(([cat, info]) => {
+    const subs = Object.entries(info.subs);
+    let catTerms = 0, catUses = 0;
+    subs.forEach(([sub, terms], i) => {
+      const uses = terms.reduce((s, t) => s + (slotUsage[t] || []).length, 0);
+      catTerms += terms.length;
+      catUses += uses;
+      summaryHtml += `<tr>`;
+      if (i === 0) {
+        summaryHtml += `<td rowspan="${subs.length}">${shapeSVG(info.shape, info.color, 16)}</td>`;
+        summaryHtml += `<td rowspan="${subs.length}" style="font-weight:600">${cat}</td>`;
+      }
+      summaryHtml += `<td>${sub}</td>`;
+      summaryHtml += `<td class="num">${terms.length}</td>`;
+      summaryHtml += `<td class="num">${uses}</td>`;
+      summaryHtml += `</tr>`;
+    });
+    totalTerms += catTerms;
+    totalUses += catUses;
+  });
+  summaryHtml += `<tr style="font-weight:600;border-top:2px solid var(--line)"><td></td><td>合計</td><td>27</td><td class="num">${totalTerms}</td><td class="num">${totalUses}</td></tr>`;
+  document.getElementById('summary').innerHTML = summaryHtml;
+  document.getElementById('stats').textContent = `${totalTerms} スロット語彙 / ${totalUses} 使用箇所 / ${G.nodes.length} ノード`;
+
+  // Detail catalog
+  let html = '';
+  Object.entries(taxo.categories).forEach(([cat, info]) => {
+    const allTerms = Object.values(info.subs).flat();
+    const catUses = allTerms.reduce((s, t) => s + (slotUsage[t] || []).length, 0);
+
+    html += `<div class="cat-section">`;
+    html += `<div class="cat-header">`;
+    html += `<div class="cat-icon">${shapeSVG(info.shape, info.color, 28)}</div>`;
+    html += `<div class="cat-name">${cat}</div>`;
+    html += `<div class="cat-count">${allTerms.length}語 / ${catUses}回使用</div>`;
+    html += `</div>`;
+
+    Object.entries(info.subs).forEach(([sub, terms]) => {
+      const subUses = terms.reduce((s, t) => s + (slotUsage[t] || []).length, 0);
+      html += `<div class="sub-section">`;
+      html += `<div class="sub-header">${sub} <span class="sub-count">${terms.length}語 / ${subUses}回</span></div>`;
+      html += `<div class="term-grid">`;
+
+      terms.forEach(term => {
+        const uses = slotUsage[term] || [];
+        html += `<div class="term-card" onclick="this.classList.toggle('expanded')">`;
+        html += `<span class="term-name">${term}</span>`;
+        html += `<span class="term-uses">${uses.length}回</span>`;
+
+        if (uses.length > 0) {
+          html += `<div class="term-detail">`;
+          uses.forEach(u => {
+            // Highlight the current term in the pattern
+            const highlighted = u.pattern.replace(/\{([^}]+)\}/g, (match, t) => {
+              const cls = t === term ? 'uslot self' : 'uslot';
+              return `<span class="${cls}">{${t}}</span>`;
+            });
+            html += `<div class="usage-line"><span class="usage-id">${u.id}</span> <span class="usage-pattern">${highlighted}</span></div>`;
+          });
+          html += `</div>`;
+        }
+        html += `</div>`;
+      });
+
+      html += `</div></div>`;
+    });
+
+    html += `</div>`;
+  });
+
+  document.getElementById('catalog').innerHTML = html;
+}
+
+init();
+</script>
+</body>
+</html>

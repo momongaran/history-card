@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>抽象パターン図鑑</title>
+<style>
+  :root {
+    --bg: #f0ebe0;
+    --paper: #fffdf8;
+    --ink: #28231e;
+    --muted: #6a6058;
+    --line: #c9b89e;
+    --accent: #5c3d1e;
+    --shadow: 0 6px 20px rgba(40,28,14,.08);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", sans-serif;
+    background: linear-gradient(160deg, #f5efe3 0%, #ede5d5 100%);
+    color: var(--ink); min-height: 100vh;
+  }
+  .page { max-width: 1200px; margin: 0 auto; padding: 24px 20px 80px; }
+  .header { margin-bottom: 20px; border-left: 4px solid var(--accent); padding-left: 16px; }
+  h1 { font-size: 20px; color: var(--accent); letter-spacing: .06em; }
+  .sub { margin-top: 3px; font-size: 12px; color: var(--muted); }
+
+  /* Controls */
+  .controls {
+    display: flex; gap: 8px; margin-bottom: 16px; flex-wrap: wrap; align-items: center;
+  }
+  .controls button {
+    font-family: inherit; font-size: 11px; padding: 4px 10px;
+    border: 1.5px solid var(--line); border-radius: 14px;
+    background: var(--paper); color: var(--muted); cursor: pointer; transition: all .2s;
+  }
+  .controls button:hover, .controls button.active {
+    background: var(--accent); color: #fff; border-color: var(--accent);
+  }
+  .ctrl-info { font-size: 11px; color: var(--muted); margin-left: auto; }
+
+  /* Transition type section */
+  .trans-section {
+    margin-bottom: 28px;
+  }
+  .trans-header {
+    display: flex; align-items: center; gap: 10px;
+    margin-bottom: 10px; padding-bottom: 6px;
+    border-bottom: 1px solid var(--line);
+  }
+  .trans-type {
+    font-size: 13px; font-weight: 700; color: var(--accent);
+    letter-spacing: .04em;
+  }
+  .trans-count {
+    font-size: 11px; color: var(--muted);
+  }
+  .trans-arrow {
+    display: flex; align-items: center; gap: 6px;
+    font-size: 13px; font-weight: 600;
+  }
+  .trans-arrow .shape {
+    font-size: 15px;
+  }
+
+  /* Pattern card */
+  .pattern-card {
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 14px 16px;
+    margin-bottom: 8px;
+    box-shadow: var(--shadow);
+    transition: all .2s;
+    cursor: default;
+  }
+  .pattern-card:hover {
+    box-shadow: 0 8px 24px rgba(40,28,14,.12);
+  }
+
+  /* The core: pattern chain */
+  .pattern-chain {
+    display: flex; flex-direction: column; gap: 0;
+  }
+  .pattern-slot {
+    display: flex; align-items: flex-start; gap: 8px;
+    padding: 6px 0;
+  }
+  .fw-icon {
+    width: 26px; height: 26px; border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 15px; color: #fff;
+    flex-shrink: 0; cursor: default;
+    position: relative;
+  }
+  .fw-icon::after {
+    content: attr(data-label);
+    position: absolute; left: 50%; top: 100%; transform: translateX(-50%);
+    margin-top: 4px; padding: 2px 8px; border-radius: 6px;
+    font-size: 10px; white-space: nowrap;
+    background: rgba(40,28,14,.85); color: #fff;
+    opacity: 0; pointer-events: none; transition: opacity .15s;
+    z-index: 10;
+  }
+  .fw-icon:hover::after { opacity: 1; }
+  .pattern-shape {
+    font-size: 16px; flex-shrink: 0; width: 22px; text-align: center;
+    line-height: 1.5;
+  }
+  .pattern-text {
+    font-size: 13px; line-height: 1.6; color: var(--ink);
+  }
+  .pattern-text .slot {
+    color: var(--accent); font-weight: 600;
+  }
+  /* Slot icons */
+  .slot-icon {
+    display: inline-block; width: 14px; height: 14px;
+    vertical-align: -2px; margin-right: 2px;
+    position: relative; cursor: default;
+  }
+  .slot-icon::after {
+    content: attr(data-tip);
+    position: absolute; left: 50%; bottom: 100%; transform: translateX(-50%);
+    margin-bottom: 4px; padding: 2px 7px; border-radius: 5px;
+    font-size: 9px; white-space: nowrap;
+    background: rgba(40,28,14,.85); color: #fff;
+    opacity: 0; pointer-events: none; transition: opacity .15s;
+    z-index: 10;
+  }
+  .slot-icon:hover::after { opacity: 1; }
+  .chain-arrow {
+    padding-left: 7px;
+    font-size: 11px; color: var(--line); line-height: 1;
+    letter-spacing: -1px;
+  }
+
+  /* Instance list (collapsed by default) */
+  .instances {
+    margin-top: 8px; padding-top: 8px;
+    border-top: 1px solid #ece5d8;
+  }
+  .instances.collapsed .inst-list { display: none; }
+  .inst-toggle {
+    font-family: inherit; font-size: 10px; color: var(--muted);
+    background: none; border: none; cursor: pointer;
+    padding: 0; letter-spacing: .02em;
+  }
+  .inst-toggle:hover { color: var(--ink); }
+  .inst-list {
+    margin-top: 6px;
+    display: flex; flex-direction: column; gap: 4px;
+  }
+  .inst-row {
+    display: flex; align-items: baseline; gap: 6px;
+    font-size: 11px; color: var(--muted); line-height: 1.5;
+  }
+  .inst-id {
+    font-family: monospace; font-size: 10px; color: #b0a090;
+    flex-shrink: 0;
+  }
+  .inst-label { color: var(--ink); }
+  .inst-arrow { color: var(--line); font-size: 10px; }
+
+  /* Role label */
+  .role-label {
+    font-size: 10px; padding: 1px 6px; border-radius: 8px;
+    background: #f0ebe0; color: var(--muted);
+    margin-left: 4px;
+  }
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="header">
+    <h1>抽象パターン図鑑</h1>
+    <p class="sub">因果フレームの抽象骨格 ― パターンの連鎖としての歴史</p>
+  </div>
+  <div class="controls">
+    <button class="active" onclick="showAll(this)">全表示</button>
+    <span class="ctrl-info" id="info"></span>
+  </div>
+  <div id="catalog"></div>
+</div>
+
+<script>
+const DATA_URL = '../data/energyabs_v1.json';
+const TAXO_URL = '../data/slot_taxonomy.json';
+
+// Slot term → { category, sub, shape, color }
+let SLOT_MAP = {};
+
+async function loadTaxonomy() {
+  const res = await fetch(TAXO_URL);
+  const taxo = await res.json();
+  Object.entries(taxo.categories).forEach(([cat, info]) => {
+    Object.entries(info.subs).forEach(([sub, terms]) => {
+      terms.forEach(t => {
+        SLOT_MAP[t] = { category: cat, sub, shape: info.shape, color: info.color };
+      });
+    });
+  });
+}
+
+function slotSVG(shape, color) {
+  const s = 14;
+  let inner = '';
+  switch (shape) {
+    case 'circle':
+      inner = `<circle cx="7" cy="7" r="5.5" fill="${color}" opacity="0.85"/>`;
+      break;
+    case 'square':
+      inner = `<rect x="1.5" y="1.5" width="11" height="11" rx="2" fill="${color}" opacity="0.85"/>`;
+      break;
+    case 'diamond':
+      inner = `<polygon points="7,1 13,7 7,13 1,7" fill="${color}" opacity="0.85"/>`;
+      break;
+    case 'triangle':
+      inner = `<polygon points="7,1.5 13,12.5 1,12.5" fill="${color}" opacity="0.85"/>`;
+      break;
+    case 'bar':
+      inner = `<rect x="1" y="5" width="12" height="4" rx="2" fill="${color}" opacity="0.85"/>`;
+      break;
+    case 'circle-open':
+      inner = `<circle cx="7" cy="7" r="5" fill="none" stroke="${color}" stroke-width="2" opacity="0.85"/>`;
+      break;
+    case 'wave':
+      inner = `<path d="M1,9 C3,5 5,5 7,7 C9,9 11,9 13,5" fill="none" stroke="${color}" stroke-width="2" stroke-linecap="round" opacity="0.85"/>`;
+      break;
+    default:
+      inner = `<circle cx="7" cy="7" r="5" fill="#999" opacity="0.5"/>`;
+  }
+  return `<svg width="${s}" height="${s}" viewBox="0 0 ${s} ${s}">${inner}</svg>`;
+}
+
+const FW = {
+  'battle':      { color: '#c45a3c', shape: '⚔', label: '武力衝突' },
+  'conflict':    { color: '#c8960a', shape: '▲', label: '対立蓄積' },
+  'collapse':    { color: '#8a3a3a', shape: '⊘', label: '崩壊' },
+  'institution': { color: '#3a6a9a', shape: '■', label: '制度化' },
+  'power':       { color: '#6a3a8a', shape: '◆', label: '権力確立' },
+  'shock':       { color: '#c47a3a', shape: '⚡', label: '外生衝撃' },
+  'drift':       { color: '#5a8a5a', shape: '〜', label: '漸進変化' },
+  'reform':      { color: '#3a7a8a', shape: '✦', label: '改革' },
+};
+
+const ROLE_JA = {
+  amplifies: '圧↑', triggers: '引き金', transforms: '変換',
+  sustains: '基盤', suppresses: '抑制', inherits: '継承'
+};
+
+async function init() {
+  await loadTaxonomy();
+  const res = await fetch(DATA_URL);
+  const G = await res.json();
+  const NM = {};
+  G.nodes.forEach(n => NM[n.id] = n);
+
+  // Build pattern pairs grouped by fwType transition
+  const groups = {};
+  G.edges.forEach(e => {
+    const src = NM[e.from], tgt = NM[e.to];
+    if (!src || !tgt || !src.pattern || !tgt.pattern) return;
+    const transKey = src.fwType + '→' + tgt.fwType;
+    const pairKey = src.pattern + '|||' + tgt.pattern;
+
+    if (!groups[transKey]) groups[transKey] = {};
+    if (!groups[transKey][pairKey]) {
+      groups[transKey][pairKey] = {
+        srcFw: src.fwType, tgtFw: tgt.fwType,
+        srcPattern: src.pattern, tgtPattern: tgt.pattern,
+        instances: []
+      };
+    }
+    groups[transKey][pairKey].instances.push({
+      from: e.from, to: e.to, role: e.role,
+      fromLabel: src.label, toLabel: tgt.label
+    });
+  });
+
+  // Sort transition types by frequency
+  const sorted = Object.entries(groups).sort((a, b) => {
+    const ca = Object.values(a[1]).reduce((s, p) => s + p.instances.length, 0);
+    const cb = Object.values(b[1]).reduce((s, p) => s + p.instances.length, 0);
+    return cb - ca;
+  });
+
+  // Add filter buttons for each fwType
+  const controls = document.querySelector('.controls');
+  Object.entries(FW).forEach(([type, s]) => {
+    const btn = document.createElement('button');
+    btn.textContent = `${s.shape} ${s.label}`;
+    btn.onclick = () => filterByType(type, btn);
+    controls.insertBefore(btn, document.getElementById('info'));
+  });
+
+  // Render
+  const catalog = document.getElementById('catalog');
+  let totalPairs = 0;
+  let html = '';
+
+  sorted.forEach(([transKey, pairs]) => {
+    const [srcType, tgtType] = transKey.split('→');
+    const srcFw = FW[srcType] || { shape: '?', color: '#999', label: srcType };
+    const tgtFw = FW[tgtType] || { shape: '?', color: '#999', label: tgtType };
+    const pairList = Object.values(pairs).sort((a, b) => b.instances.length - a.instances.length);
+    const totalInst = pairList.reduce((s, p) => s + p.instances.length, 0);
+
+    html += `<div class="trans-section" data-src-type="${srcType}" data-tgt-type="${tgtType}">`;
+    html += `<div class="trans-header">`;
+    html += `<div class="trans-arrow">`;
+    html += `<span class="shape" style="color:${srcFw.color}">${srcFw.shape}</span>`;
+    html += `<span style="color:var(--muted);font-size:11px">${srcFw.label}</span>`;
+    html += `<span style="color:var(--line)">→</span>`;
+    html += `<span class="shape" style="color:${tgtFw.color}">${tgtFw.shape}</span>`;
+    html += `<span style="color:var(--muted);font-size:11px">${tgtFw.label}</span>`;
+    html += `</div>`;
+    html += `<span class="trans-count">${pairList.length}パターン / ${totalInst}件</span>`;
+    html += `</div>`;
+
+    pairList.forEach(pair => {
+      totalPairs++;
+      html += `<div class="pattern-card" data-src-type="${srcType}" data-tgt-type="${tgtType}">`;
+      html += `<div class="pattern-chain">`;
+
+      // Source pattern
+      html += `<div class="pattern-slot">`;
+      html += `<div class="fw-icon" style="background:${srcFw.color}" data-label="${srcFw.label}">${srcFw.shape}</div>`;
+      html += `<div class="pattern-text">${highlightSlots(pair.srcPattern)}</div>`;
+      html += `</div>`;
+
+      // Arrow
+      html += `<div class="chain-arrow">↓</div>`;
+
+      // Target pattern
+      html += `<div class="pattern-slot">`;
+      html += `<div class="fw-icon" style="background:${tgtFw.color}" data-label="${tgtFw.label}">${tgtFw.shape}</div>`;
+      html += `<div class="pattern-text">${highlightSlots(pair.tgtPattern)}</div>`;
+      html += `</div>`;
+
+      html += `</div>`; // pattern-chain
+
+      // Instances
+      html += `<div class="instances collapsed">`;
+      html += `<button class="inst-toggle" onclick="this.parentElement.classList.toggle('collapsed')">`;
+      html += `▸ ${pair.instances.length}件のインスタンス`;
+      html += `</button>`;
+      html += `<div class="inst-list">`;
+      pair.instances.forEach(inst => {
+        const roleJa = ROLE_JA[inst.role] || inst.role;
+        html += `<div class="inst-row">`;
+        html += `<span class="inst-id">${inst.from.replace('N','')}</span>`;
+        html += `<span class="inst-label">${inst.fromLabel}</span>`;
+        html += `<span class="inst-arrow">→</span>`;
+        html += `<span class="inst-id">${inst.to.replace('N','')}</span>`;
+        html += `<span class="inst-label">${inst.toLabel}</span>`;
+        html += `<span class="role-label">${roleJa}</span>`;
+        html += `</div>`;
+      });
+      html += `</div></div>`; // inst-list, instances
+
+      html += `</div>`; // pattern-card
+    });
+
+    html += `</div>`; // trans-section
+  });
+
+  catalog.innerHTML = html;
+  document.getElementById('info').textContent = `${totalPairs} パターン / ${G.edges.length} エッジ`;
+}
+
+function highlightSlots(text) {
+  return text.replace(/\{([^}]+)\}/g, (match, term) => {
+    const info = SLOT_MAP[term];
+    if (!info) return `<span class="slot">{${term}}</span>`;
+    const svg = slotSVG(info.shape, info.color);
+    const tip = `${info.category} / ${info.sub}`;
+    return `<span class="slot"><span class="slot-icon" data-tip="${tip}">${svg}</span>${term}</span>`;
+  });
+}
+
+function showAll(btn) {
+  document.querySelectorAll('.controls button').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.trans-section').forEach(s => s.style.display = '');
+}
+
+function filterByType(type, btn) {
+  document.querySelectorAll('.controls button').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.trans-section').forEach(s => {
+    const show = s.dataset.srcType === type || s.dataset.tgtType === type;
+    s.style.display = show ? '' : 'none';
+  });
+}
+
+init();
+</script>
+</body>
+</html>
