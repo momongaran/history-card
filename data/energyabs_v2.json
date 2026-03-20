@@ -1,0 +1,3427 @@
+{
+  "meta": {
+    "version": "2.0",
+    "description": "EnergyAbs有向グラフ v2: 継体天皇(5c)→オイルショック(1975) 約1500年の因果フロー",
+    "nodeCount": 123,
+    "edgeCount": 164,
+    "created": "2026-03-18",
+    "updated": "2026-03-20"
+  },
+  "nodes": [
+    {
+      "id": "N001",
+      "label": "仏教伝来による秩序原理の転換",
+      "summary": "百済から仏教が伝来し（552 or 538年）、在来の神祇祭祀を基盤とする政治秩序と相容れない新しい正統性の源泉が朝廷内に持ち込まれた",
+      "pattern": "{外来の原理}が{既存の秩序}を揺さぶる",
+      "actors": [
+        "百済",
+        "蘇我氏",
+        "物部氏",
+        "中臣氏"
+      ],
+      "intensity": "high",
+      "timescale": "long",
+      "cluster": "A_丁未の乱前後",
+      "era": "550s",
+      "fwType": "shock",
+      "bgType": "外圧",
+      "releaseType": "外圧",
+      "patternType": "外圧→外圧"
+    },
+    {
+      "id": "N002",
+      "label": "蘇我氏の仏教推進と政治的権勢拡大",
+      "summary": "蘇我氏は仏教受容を推進することで渡来人・新技術・外交ルートを掌握し、大和朝廷内での政治的優位を確立しようとした",
+      "actors": [
+        "蘇我馬子",
+        "蘇我氏"
+      ],
+      "intensity": "high",
+      "timescale": "medium",
+      "cluster": "A_丁未の乱前後",
+      "era": "560s–580s",
+      "fwType": "power",
+      "pattern": "{新勢力}が{新原理}を推進して権勢を拡大する",
+      "bgType": "外圧",
+      "releaseType": "権力集中",
+      "patternType": "外圧→権力集中"
+    },
+    {
+      "id": "N003",
+      "label": "物部氏の神祇祭祀権威の侵食危機",
+      "summary": "仏教の普及が物部氏・中臣氏の存立基盤である神祇祭祀・軍事的権威を根本から脅かしつつあった",
+      "actors": [
+        "物部守屋",
+        "物部氏",
+        "中臣氏"
+      ],
+      "intensity": "high",
+      "timescale": "medium",
+      "cluster": "A_丁未の乱前後",
+      "era": "560s–580s",
+      "fwType": "conflict",
+      "pattern": "{新秩序}の台頭が{旧秩序}の権威を脅かす",
+      "bgType": "外圧",
+      "releaseType": "勢力対立",
+      "patternType": "外圧→勢力対立"
+    },
+    {
+      "id": "N004",
+      "label": "用明天皇崩御と皇位継承の空白",
+      "summary": "仏教受容を認めた用明天皇が587年に崩御し、次期天皇の選定をめぐって蘇我・物部の対立が一気に顕在化した",
+      "actors": [
+        "用明天皇"
+      ],
+      "intensity": "medium",
+      "timescale": "short",
+      "cluster": "A_丁未の乱前後",
+      "era": "587",
+      "fwType": "conflict",
+      "pattern": "{指導者}の死が{後継争い}の空白を生む",
+      "bgType": "権力集中",
+      "releaseType": "勢力対立",
+      "patternType": "権力集中→勢力対立"
+    },
+    {
+      "id": "N005",
+      "label": "丁未の乱（587年）",
+      "summary": "蘇我馬子が諸皇子・諸豪族と連合して物部守屋を攻め滅ぼした。蘇我氏が廃仏派を排除し政治的主導権を確立した事件",
+      "pattern": "{新秩序派}が{旧秩序派}を武力排除する",
+      "actors": [
+        "蘇我馬子",
+        "物部守屋",
+        "厩戸皇子"
+      ],
+      "intensity": "high",
+      "timescale": "short",
+      "cluster": "A_丁未の乱前後",
+      "era": "587",
+      "fwType": "battle",
+      "bgType": "勢力対立",
+      "releaseType": "武力衝突",
+      "patternType": "勢力対立→武力衝突"
+    },
+    {
+      "id": "N006",
+      "label": "蘇我氏主導体制の確立",
+      "summary": "丁未の乱後、蘇我馬子が政権を掌握。推古天皇・厩戸皇子と連携しつつ外交・内政を主導する体制が形成された",
+      "actors": [
+        "蘇我馬子",
+        "推古天皇",
+        "厩戸皇子"
+      ],
+      "intensity": "high",
+      "timescale": "long",
+      "cluster": "B_丁未から白村江の接続",
+      "era": "590s–640s",
+      "fwType": "power",
+      "pattern": "{勝者}が{主導体制}を確立する",
+      "bgType": "武力衝突",
+      "releaseType": "権力集中",
+      "patternType": "武力衝突→権力集中"
+    },
+    {
+      "id": "N007",
+      "label": "遣隋使・東アジア外交路線の転換",
+      "summary": "600年以降の遣隋使派遣により、朝鮮半島を介さない直接外交が始まり、大和の国際的立場を再定義しようとする動きが生まれた",
+      "actors": [
+        "厩戸皇子",
+        "推古天皇",
+        "蘇我氏"
+      ],
+      "intensity": "medium",
+      "timescale": "long",
+      "cluster": "B_丁未から白村江の接続",
+      "era": "600s–630s",
+      "fwType": "reform",
+      "pattern": "{対外関係}の{路線}を転換する",
+      "bgType": "権力集中",
+      "releaseType": "改革",
+      "patternType": "権力集中→改革"
+    },
+    {
+      "id": "N008",
+      "label": "朝鮮半島三国抗争の激化",
+      "summary": "新羅・百済・高句麗の三国が半島の覇権をめぐって激しく争い、大和との外交・軍事的関係が流動化した",
+      "actors": [
+        "新羅",
+        "百済",
+        "高句麗"
+      ],
+      "intensity": "high",
+      "timescale": "long",
+      "cluster": "B_丁未から白村江の接続",
+      "era": "600s–660s",
+      "fwType": "conflict",
+      "pattern": "{複数勢力}の{領域争い}が激化する",
+      "bgType": "外圧",
+      "releaseType": "勢力対立",
+      "patternType": "外圧→勢力対立"
+    },
+    {
+      "id": "N009",
+      "label": "大化の改新（645年）と中央集権化圧力",
+      "summary": "蘇我本宗家の打倒（乙巳の変）を契機とした改革。班田収授・評制導入など律令的中央集権化が推進され、豪族の自律性を縮小する方向の圧力が生まれた",
+      "pattern": "{改革者}が{既存権力}を打倒し{中央集権化}を推進する",
+      "actors": [
+        "中大兄皇子",
+        "中臣鎌足",
+        "孝徳天皇"
+      ],
+      "intensity": "high",
+      "timescale": "medium",
+      "cluster": "B_丁未から白村江の接続",
+      "era": "645–660s",
+      "fwType": "reform",
+      "bgType": "改革",
+      "releaseType": "改革",
+      "patternType": "改革→改革"
+    },
+    {
+      "id": "N010",
+      "label": "百済との軍事的庇護関係",
+      "summary": "大和は百済を朝鮮半島における伝統的な同盟・庇護対象と見なしており、百済への援軍派遣が政治的義務として機能していた",
+      "actors": [
+        "大和朝廷",
+        "百済"
+      ],
+      "intensity": "medium",
+      "timescale": "long",
+      "cluster": "B_丁未から白村江の接続",
+      "era": "400s–660s",
+      "fwType": "drift",
+      "pattern": "{同盟国}との{軍事的庇護関係}が持続する",
+      "bgType": "勢力対立",
+      "releaseType": "構造変化",
+      "patternType": "勢力対立→構造変化"
+    },
+    {
+      "id": "N011",
+      "label": "百済滅亡（660年）",
+      "summary": "唐・新羅連合軍が百済を滅ぼした。大和にとって半島の足場を一挙に失う事態であり、軍事介入への直接的な圧力となった",
+      "actors": [
+        "唐",
+        "新羅",
+        "百済"
+      ],
+      "intensity": "high",
+      "timescale": "short",
+      "cluster": "B_丁未から白村江の接続",
+      "era": "660",
+      "fwType": "collapse",
+      "pattern": "{外部勢力}に{同盟国}が滅ぼされる",
+      "bgType": "勢力対立",
+      "releaseType": "崩壊",
+      "patternType": "勢力対立→崩壊"
+    },
+    {
+      "id": "N012",
+      "label": "白村江の戦い（663年）",
+      "summary": "大和・百済復興軍が唐・新羅連合軍と白村江で激突し壊滅的敗北を喫した。東アジアにおける大和の対外的権威と半島権益が完全に失われた",
+      "pattern": "{同盟国}救援に出兵し大敗する",
+      "actors": [
+        "中大兄皇子",
+        "唐",
+        "新羅",
+        "百済復興勢力"
+      ],
+      "intensity": "high",
+      "timescale": "short",
+      "cluster": "C_白村江",
+      "era": "663",
+      "fwType": "battle",
+      "bgType": "崩壊",
+      "releaseType": "武力衝突",
+      "patternType": "崩壊→武力衝突"
+    },
+    {
+      "id": "N013",
+      "label": "白村江敗戦による対外的危機感",
+      "summary": "唐・新羅による日本列島侵攻の恐怖が生まれ、九州・瀬戸内に防人・水城・烽火台が整備された。外敵脅威が内政改革の正当化根拠となった",
+      "actors": [
+        "中大兄皇子",
+        "大和朝廷"
+      ],
+      "intensity": "high",
+      "timescale": "medium",
+      "cluster": "C_白村江",
+      "era": "663–670s",
+      "fwType": "shock",
+      "pattern": "{対外敗戦}が{体制}に危機意識を植え付ける",
+      "bgType": "武力衝突",
+      "releaseType": "外圧",
+      "patternType": "武力衝突→外圧"
+    },
+    {
+      "id": "N014",
+      "label": "天智天皇による急速な中央集権化（近江令）",
+      "summary": "敗戦を背景に天智天皇が近江大津宮へ遷都し近江令を制定。国家的動員体制の整備を急いだが、地方豪族・旧来貴族層の反発を招いた",
+      "actors": [
+        "天智天皇",
+        "藤原鎌足"
+      ],
+      "intensity": "high",
+      "timescale": "medium",
+      "cluster": "D_白村江から壬申の接続",
+      "era": "663–671",
+      "fwType": "reform",
+      "pattern": "{危機}を契機に{中央集権化}を急進的に推進する",
+      "bgType": "外圧",
+      "releaseType": "改革",
+      "patternType": "外圧→改革"
+    },
+    {
+      "id": "N015",
+      "label": "豪族層の不満蓄積",
+      "summary": "律令的中央集権化による負担増・自律性喪失が地方・中央豪族に広く不満として蓄積した。大海人皇子がその受け皿となっていった",
+      "actors": [
+        "地方豪族",
+        "東国諸豪族"
+      ],
+      "intensity": "high",
+      "timescale": "medium",
+      "cluster": "D_白村江から壬申の接続",
+      "era": "645–671",
+      "fwType": "conflict",
+      "pattern": "{急進的改革}が{既得権層}の不満を蓄積させる",
+      "bgType": "改革",
+      "releaseType": "勢力対立",
+      "patternType": "改革→勢力対立"
+    },
+    {
+      "id": "N016",
+      "label": "皇位継承をめぐる緊張",
+      "summary": "天智天皇が弟・大海人皇子ではなく子・大友皇子への皇位継承を図ったことで、皇統の正統性をめぐる緊張が高まった",
+      "actors": [
+        "天智天皇",
+        "大友皇子",
+        "大海人皇子"
+      ],
+      "intensity": "high",
+      "timescale": "short",
+      "cluster": "D_白村江から壬申の接続",
+      "era": "670–671",
+      "fwType": "conflict",
+      "pattern": "{後継者}をめぐる{派閥}の緊張が高まる",
+      "bgType": "勢力対立",
+      "releaseType": "勢力対立",
+      "patternType": "勢力対立→勢力対立"
+    },
+    {
+      "id": "N017",
+      "label": "天智天皇の崩御（671年）",
+      "summary": "天智天皇の死により皇位継承問題が顕在化し、大海人皇子側・大友皇子側の対立が行動水準に達した",
+      "actors": [
+        "天智天皇"
+      ],
+      "intensity": "medium",
+      "timescale": "short",
+      "cluster": "D_白村江から壬申の接続",
+      "era": "671",
+      "fwType": "conflict",
+      "pattern": "{指導者}の死が{蓄積された緊張}を解放する",
+      "bgType": "勢力対立",
+      "releaseType": "勢力対立",
+      "patternType": "勢力対立→勢力対立"
+    },
+    {
+      "id": "N018",
+      "label": "壬申の乱（672年）",
+      "summary": "大海人皇子が吉野から挙兵し東国豪族を糾合。大友皇子（弘文天皇）を破り天武天皇として即位した。律令天皇制確立への決定的転換点",
+      "pattern": "{挑戦者}が{後継指名者}を武力で倒す",
+      "actors": [
+        "大海人皇子（天武天皇）",
+        "大友皇子（弘文天皇）",
+        "東国豪族"
+      ],
+      "intensity": "high",
+      "timescale": "short",
+      "cluster": "E_壬申の乱",
+      "era": "672",
+      "fwType": "battle",
+      "bgType": "勢力対立",
+      "releaseType": "武力衝突",
+      "patternType": "勢力対立→武力衝突"
+    },
+    {
+      "id": "N019",
+      "label": "天武天皇の律令国家建設志向",
+      "summary": "壬申の乱で豪族連合を率いて勝利した天武天皇は、逆説的にその豪族依存を断ち切るため、天皇を頂点とする律令的中央集権国家の建設を強力に推進した",
+      "actors": [
+        "天武天皇",
+        "持統天皇"
+      ],
+      "intensity": "high",
+      "timescale": "long",
+      "cluster": "F_天武朝・律令国家建設",
+      "era": "672–700",
+      "fwType": "reform",
+      "pattern": "{勝者}が{理想的体制}の建設に着手する",
+      "bgType": "武力衝突",
+      "releaseType": "改革",
+      "patternType": "武力衝突→改革"
+    },
+    {
+      "id": "N020",
+      "label": "大宝律令の完成（701年）",
+      "summary": "刑部親王・藤原不比等らが唐律令を参照しつつ完成させた日本初の本格的律令法典。律令国家体制が頂点に達した",
+      "pattern": "{体制}が{法典}として頂点に達する",
+      "actors": [
+        "刑部親王",
+        "藤原不比等"
+      ],
+      "intensity": "high",
+      "timescale": "short",
+      "cluster": "F_天武朝・律令国家建設",
+      "era": "701",
+      "fwType": "institution",
+      "bgType": "改革",
+      "releaseType": "制度",
+      "patternType": "改革→制度"
+    },
+    {
+      "id": "N021",
+      "label": "公地公民制・班田収授制の制度的確立",
+      "summary": "土地と人民はすべて天皇のものという原則のもと、6年ごとの班田収授が制度化された。強力な集権装置だったが運営コストの高い制度でもあった",
+      "actors": [
+        "大和朝廷",
+        "地方民衆"
+      ],
+      "intensity": "high",
+      "timescale": "long",
+      "cluster": "F_天武朝・律令国家建設",
+      "era": "700s",
+      "fwType": "institution",
+      "pattern": "{法典}に基づく{統一的制度}が実施される",
+      "bgType": "制度",
+      "releaseType": "制度",
+      "patternType": "制度→制度"
+    },
+    {
+      "id": "N022",
+      "label": "人口増加と班田用地の慢性的不足",
+      "summary": "8世紀を通じて人口が増加し、既存の口分田だけでは班田を維持できなくなった。開墾の必要性が構造的に高まり続けた",
+      "actors": [
+        "農民",
+        "地方官人"
+      ],
+      "intensity": "medium",
+      "timescale": "long",
+      "cluster": "G_律令制の内部矛盾",
+      "era": "700s",
+      "fwType": "conflict",
+      "pattern": "{人口}が{制度の容量}を超過する",
+      "bgType": "制度",
+      "releaseType": "勢力対立",
+      "patternType": "制度→勢力対立"
+    },
+    {
+      "id": "N023",
+      "label": "墾田永年私財法（743年）",
+      "summary": "新たに開墾した土地の永久私有を公認した法令。律令の公地公民原則に対する事実上の例外規定であり、私的土地所有拡大の法的根拠となった",
+      "pattern": "{公的原則}に{私的例外}を法認する",
+      "actors": [
+        "聖武天皇",
+        "朝廷"
+      ],
+      "intensity": "high",
+      "timescale": "short",
+      "cluster": "G_律令制の内部矛盾",
+      "era": "743",
+      "fwType": "institution",
+      "bgType": "勢力対立",
+      "releaseType": "制度",
+      "patternType": "勢力対立→制度"
+    },
+    {
+      "id": "N024",
+      "label": "初期荘園の形成",
+      "summary": "大寺社・貴族が墾田永年私財法を利用して農地を集積し始めた。不輸不入権はまだ不完全だったが、私的土地集積の慣行が定着した",
+      "actors": [
+        "大寺社",
+        "中央貴族"
+      ],
+      "intensity": "medium",
+      "timescale": "long",
+      "cluster": "G_律令制の内部矛盾",
+      "era": "743–800s",
+      "fwType": "drift",
+      "pattern": "{制度的例外}が{私的領域}の形成を促す",
+      "bgType": "制度",
+      "releaseType": "構造変化",
+      "patternType": "制度→構造変化"
+    },
+    {
+      "id": "N025",
+      "label": "律令的租税・徭役負担の重さと農民の逃亡・浮浪",
+      "summary": "班田農民に課された租庸調・雑徭は重く、逃亡・浮浪が常態化した。国家が直接把握するはずの「公民」が流動化し、班田収授制が空洞化し始めた",
+      "actors": [
+        "班田農民",
+        "地方豪族"
+      ],
+      "intensity": "high",
+      "timescale": "long",
+      "cluster": "G_律令制の内部矛盾",
+      "era": "700s–800s",
+      "fwType": "conflict",
+      "pattern": "{制度的負担}が{末端}を疲弊させる",
+      "bgType": "制度",
+      "releaseType": "勢力対立",
+      "patternType": "制度→勢力対立"
+    },
+    {
+      "id": "N026",
+      "label": "受領制の成立と地方支配の請負化",
+      "summary": "9〜10世紀にかけて、中央から派遣される受領（国司の筆頭）が国内の徴税・支配を一括して請け負う形態に変質した。国家の地方統治が直接支配から間接請負へ転換した",
+      "actors": [
+        "受領（国司）",
+        "中央貴族"
+      ],
+      "intensity": "high",
+      "timescale": "long",
+      "cluster": "G_律令制の内部矛盾",
+      "era": "900s–1000s",
+      "fwType": "drift",
+      "pattern": "{中央の統制力}の低下が{地方請負}を生む",
+      "bgType": "勢力対立",
+      "releaseType": "構造変化",
+      "patternType": "勢力対立→構造変化"
+    },
+    {
+      "id": "N027",
+      "label": "藤原氏摂関政治の確立",
+      "summary": "藤原良房・基経以来の外戚政策が結実し、摂政・関白として天皇の政務を代行する体制が確立した。国政の実権が律令的太政官制から摂関家の私的権力へ移行した",
+      "actors": [
+        "藤原道長",
+        "藤原頼通",
+        "藤原氏"
+      ],
+      "intensity": "high",
+      "timescale": "long",
+      "cluster": "H_摂関政治・在地領主の台頭",
+      "era": "900s–1000s",
+      "fwType": "power",
+      "pattern": "{特定氏族}が{制度的地位}を独占する",
+      "bgType": "構造変化",
+      "releaseType": "権力集中",
+      "patternType": "構造変化→権力集中"
+    },
+    {
+      "id": "N028",
+      "label": "在地領主・武士団の形成",
+      "summary": "地方において実力で土地を開発・支配する在地領主層が台頭し、武装化して武士団を形成した。国家の軍事力を担う存在が律令的軍団から私的武力集団へ移行した",
+      "actors": [
+        "在地領主",
+        "武士団",
+        "源氏・平氏"
+      ],
+      "intensity": "high",
+      "timescale": "long",
+      "cluster": "H_摂関政治・在地領主の台頭",
+      "era": "900s–1100s",
+      "fwType": "drift",
+      "pattern": "{武力}を持つ{在地勢力}が自律的に形成される",
+      "bgType": "勢力対立",
+      "releaseType": "構造変化",
+      "patternType": "勢力対立→構造変化"
+    },
+    {
+      "id": "N029",
+      "label": "寄進地系荘園の拡大",
+      "summary": "在地領主が自らの土地を中央貴族・大寺社に寄進し、その庇護のもとで不輸不入権を得る寄進地系荘園が急拡大した。国家の租税収取基盤が本格的に侵食された",
+      "actors": [
+        "在地領主",
+        "中央貴族",
+        "大寺社"
+      ],
+      "intensity": "high",
+      "timescale": "long",
+      "cluster": "H_摂関政治・在地領主の台頭",
+      "era": "1000s–1100s",
+      "fwType": "drift",
+      "pattern": "{保護}を求めて{権門}に{土地}を寄進する動きが拡大する",
+      "bgType": "構造変化",
+      "releaseType": "構造変化",
+      "patternType": "構造変化→構造変化"
+    },
+    {
+      "id": "N030",
+      "label": "不輸不入権の拡大と公領の縮小",
+      "summary": "荘園への国司立入禁止（不入）・租税免除（不輸）が慣行として定着し、律令国家が直接把握できる公領が相対的に縮小し続けた",
+      "actors": [
+        "荘園領主",
+        "国司（受領）"
+      ],
+      "intensity": "high",
+      "timescale": "long",
+      "cluster": "H_摂関政治・在地領主の台頭",
+      "era": "1000s–1100s",
+      "fwType": "drift",
+      "pattern": "{特権}の拡大が{公的領域}を侵食する",
+      "bgType": "構造変化",
+      "releaseType": "構造変化",
+      "patternType": "構造変化→構造変化"
+    },
+    {
+      "id": "N031",
+      "label": "延久の荘園整理令（1069年）",
+      "summary": "後三条天皇が記録荘園券契所を設置し荘園の整理を断行。律令国家原則への最後の本格的回帰の試みだったが、根本的解決には至らなかった",
+      "pattern": "{旧原則}の回復を試みるが{構造変化}に及ばない",
+      "actors": [
+        "後三条天皇"
+      ],
+      "intensity": "medium",
+      "timescale": "short",
+      "cluster": "I_院政・荘園公領制の確立",
+      "era": "1069",
+      "fwType": "reform",
+      "bgType": "権力集中",
+      "releaseType": "改革",
+      "patternType": "権力集中→改革"
+    },
+    {
+      "id": "N032",
+      "label": "院政の開始（1086年）",
+      "summary": "白河上皇が院庁を通じて政務を主導する院政を開始。律令的太政官制・摂関制のいずれでもない上皇の私的権力による統治が常態化した",
+      "actors": [
+        "白河上皇",
+        "鳥羽上皇",
+        "後白河上皇"
+      ],
+      "intensity": "high",
+      "timescale": "long",
+      "cluster": "I_院政・荘園公領制の確立",
+      "era": "1086–1100s",
+      "fwType": "power",
+      "pattern": "{上位権威}が{既存制度}を迂回して直接統治する",
+      "bgType": "改革",
+      "releaseType": "権力集中",
+      "patternType": "改革→権力集中"
+    },
+    {
+      "id": "N033",
+      "label": "荘園公領制の確立",
+      "summary": "荘園（不輸不入の私的土地）と公領（国司支配下の土地）が並立する二元的土地支配体制が確立した。律令制の公地公民原則は形式的にも実質的にも放棄された",
+      "actors": [
+        "荘園領主",
+        "国司",
+        "在地領主"
+      ],
+      "intensity": "high",
+      "timescale": "long",
+      "cluster": "I_院政・荘園公領制の確立",
+      "era": "1100s",
+      "fwType": "institution",
+      "pattern": "{公}と{私}が並立する{二重構造}が制度として定着する",
+      "bgType": "構造変化",
+      "releaseType": "制度",
+      "patternType": "構造変化→制度"
+    },
+    {
+      "id": "N034",
+      "label": "律令国家志向の実質的消滅",
+      "summary": "天皇を頂点とする一元的な公地公民・律令支配という国家原理が制度・慣行・意識の各層で解体した状態。律令制のエネルギーは荘園公領制・武家政権という新たな形態に転化して保存された",
+      "actors": [],
+      "intensity": "high",
+      "timescale": "long",
+      "cluster": "I_院政・荘園公領制の確立",
+      "era": "1100s",
+      "fwType": "collapse",
+      "pattern": "{旧制度}の理念が{現実}と完全に乖離し形骸化する",
+      "bgType": "制度",
+      "releaseType": "崩壊",
+      "patternType": "制度→崩壊"
+    },
+    {
+      "id": "N035",
+      "label": "任那(伽耶)の権益縮小",
+      "summary": "5世紀後半から6世紀にかけて新羅・百済の南進により、大和が朝鮮半島南部に保持していた任那の権益が急速に縮小していった",
+      "actors": [
+        "新羅",
+        "百済",
+        "大和朝廷"
+      ],
+      "intensity": "high",
+      "timescale": "long",
+      "cluster": "0_磐井の乱前後",
+      "era": "470s–520s",
+      "fwType": "drift",
+      "pattern": "{権益}が{外部侵食}により縮小する",
+      "bgType": "外圧",
+      "releaseType": "構造変化",
+      "patternType": "外圧→構造変化"
+    },
+    {
+      "id": "N036",
+      "label": "磐井の新羅独自外交",
+      "summary": "筑紫国造磐井は新羅と独自の通交関係を持ち、大和朝廷を介さない外交・交易ルートを維持していた",
+      "actors": [
+        "磐井",
+        "新羅"
+      ],
+      "intensity": "medium",
+      "timescale": "medium",
+      "cluster": "0_磐井の乱前後",
+      "era": "500s–520s",
+      "fwType": "drift",
+      "pattern": "{地方}が{中央}を介さない{独自外交}を維持する",
+      "bgType": "外生",
+      "releaseType": "構造変化",
+      "patternType": "外生→構造変化"
+    },
+    {
+      "id": "N037",
+      "label": "大和の任那出兵圧力",
+      "summary": "継体天皇が任那回復のため近江毛野を派遣しようとし、九州豪族への軍事動員が強まった。中央の出兵命令と地方の自律性が直接衝突する局面が生まれた",
+      "actors": [
+        "継体天皇",
+        "近江毛野",
+        "大和朝廷"
+      ],
+      "intensity": "high",
+      "timescale": "short",
+      "cluster": "0_磐井の乱前後",
+      "era": "527",
+      "fwType": "conflict",
+      "pattern": "{中央}が{辺境}に対し{軍事的圧力}をかける",
+      "bgType": "構造変化",
+      "releaseType": "勢力対立",
+      "patternType": "構造変化→勢力対立"
+    },
+    {
+      "id": "N038",
+      "label": "磐井の乱（527–528年）",
+      "summary": "筑紫国造磐井が大和の任那出兵命令に反して叛乱を起こした。物部麁鹿火が鎮圧し、磐井は斬られた。中央vs地方の軍事的対決の最初の大規模事例",
+      "pattern": "{地方}が叛乱を起こす",
+      "actors": [
+        "磐井",
+        "物部麁鹿火",
+        "継体天皇"
+      ],
+      "intensity": "high",
+      "timescale": "short",
+      "cluster": "0_磐井の乱前後",
+      "era": "527–528",
+      "fwType": "battle",
+      "bgType": "勢力対立",
+      "releaseType": "武力衝突",
+      "patternType": "勢力対立→武力衝突"
+    },
+    {
+      "id": "N039",
+      "label": "屯倉設置と筑紫直轄化",
+      "summary": "磐井の乱の鎮圧後、大和朝廷は筑紫に屯倉（直轄地）を設置し、九州北部の地方支配を直接化した。中央集権化の具体的成功例となった",
+      "actors": [
+        "大和朝廷"
+      ],
+      "intensity": "high",
+      "timescale": "medium",
+      "cluster": "0_磐井の乱前後",
+      "era": "528–530s",
+      "fwType": "institution",
+      "pattern": "{中央}が{征服地}を直轄化し{制度的支配}を敷く",
+      "bgType": "武力衝突",
+      "releaseType": "制度",
+      "patternType": "武力衝突→制度"
+    },
+    {
+      "id": "N040",
+      "label": "院政下の武士の政治的動員",
+      "summary": "白河・鳥羽・後白河の歴代院が荘園の武力的保護や政争の解決に武士団を動員するようになり、武士が政治的アクターとして中央に浮上した",
+      "actors": [
+        "白河上皇",
+        "鳥羽上皇",
+        "源氏",
+        "平氏"
+      ],
+      "intensity": "high",
+      "timescale": "long",
+      "cluster": "J_保元・平治の乱",
+      "era": "1100s–1150s",
+      "fwType": "drift",
+      "pattern": "{権力者}が{武力集団}を政治に動員する",
+      "bgType": "構造変化",
+      "releaseType": "構造変化",
+      "patternType": "構造変化→構造変化"
+    },
+    {
+      "id": "N041",
+      "label": "保元の乱（1156年）",
+      "summary": "後白河天皇・崇徳上皇の対立に藤原摂関家の内紛が重なり、双方が源氏・平氏の武力を動員して武力決着した。天皇・貴族の政争が武士の軍事力なしに解決できなくなった画期",
+      "pattern": "{権力者}が{武士}を動員して政争を解決する",
+      "actors": [
+        "後白河天皇",
+        "崇徳上皇",
+        "平清盛",
+        "源義朝"
+      ],
+      "intensity": "high",
+      "timescale": "short",
+      "cluster": "J_保元・平治の乱",
+      "era": "1156",
+      "fwType": "battle",
+      "bgType": "構造変化",
+      "releaseType": "武力衝突",
+      "patternType": "構造変化→武力衝突"
+    },
+    {
+      "id": "N042",
+      "label": "平治の乱（1159年）",
+      "summary": "保元の乱の論功行賞に不満を持つ源義朝・藤原信頼が挙兵するも平清盛に鎮圧された。源氏の中央での軍事力が壊滅し、平氏が唯一の武力として朝廷を支える構図が確定した",
+      "actors": [
+        "源義朝",
+        "藤原信頼",
+        "平清盛"
+      ],
+      "intensity": "high",
+      "timescale": "short",
+      "cluster": "J_保元・平治の乱",
+      "era": "1159",
+      "fwType": "battle",
+      "pattern": "{権力闘争}の{敗者}が武力で排除される",
+      "bgType": "武力衝突",
+      "releaseType": "武力衝突",
+      "patternType": "武力衝突→武力衝突"
+    },
+    {
+      "id": "N043",
+      "label": "平氏政権の確立",
+      "summary": "平清盛が太政大臣に就き、娘を天皇に入内させ外戚となり、知行国・荘園・日宋貿易を掌握した。武士でありながら貴族的権力構造を利用する初の武家政権",
+      "actors": [
+        "平清盛",
+        "平氏一門"
+      ],
+      "intensity": "high",
+      "timescale": "medium",
+      "cluster": "K_平氏政権と源平合戦",
+      "era": "1167–1179",
+      "fwType": "power",
+      "pattern": "{武力勝者}が{政権}を掌握する",
+      "bgType": "武力衝突",
+      "releaseType": "権力集中",
+      "patternType": "武力衝突→権力集中"
+    },
+    {
+      "id": "N044",
+      "label": "平氏専横への反発蓄積",
+      "summary": "平氏一門が知行国の過半を占め、後白河法皇を幽閉（治承三年の政変）するなど強権化。旧貴族層・寺社・地方武士・後白河院の全方位に不満が蓄積した",
+      "actors": [
+        "後白河法皇",
+        "旧貴族",
+        "寺社勢力",
+        "地方武士"
+      ],
+      "intensity": "high",
+      "timescale": "medium",
+      "cluster": "K_平氏政権と源平合戦",
+      "era": "1170s–1180",
+      "fwType": "conflict",
+      "pattern": "{独占的権力者}への反発が広がる",
+      "bgType": "権力集中",
+      "releaseType": "勢力対立",
+      "patternType": "権力集中→勢力対立"
+    },
+    {
+      "id": "N045",
+      "label": "以仁王の令旨と源頼朝挙兵（1180年）",
+      "summary": "以仁王が平氏追討の令旨を発し、伊豆の源頼朝が挙兵。石橋山で敗北するも房総で再起し鎌倉に拠点を確立。東国武士団が頼朝のもとに結集した",
+      "actors": [
+        "以仁王",
+        "源頼朝",
+        "東国武士団"
+      ],
+      "intensity": "high",
+      "timescale": "short",
+      "cluster": "K_平氏政権と源平合戦",
+      "era": "1180",
+      "fwType": "battle",
+      "pattern": "{大義名分}のもとに{挙兵}する",
+      "bgType": "勢力対立",
+      "releaseType": "武力衝突",
+      "patternType": "勢力対立→武力衝突"
+    },
+    {
+      "id": "N046",
+      "label": "源平合戦（治承・寿永の乱）",
+      "summary": "1180年の挙兵から1185年の壇ノ浦まで、源氏を中心とする反平氏勢力が各地で平氏を駆逐した。源義経の軍事的活躍と頼朝の政治的構築が両輪となった",
+      "pattern": "{挑戦者連合}が{既存政権}を軍事的に打倒する",
+      "actors": [
+        "源頼朝",
+        "源義経",
+        "平氏",
+        "木曾義仲"
+      ],
+      "intensity": "high",
+      "timescale": "medium",
+      "cluster": "K_平氏政権と源平合戦",
+      "era": "1180–1185",
+      "fwType": "battle",
+      "bgType": "武力衝突",
+      "releaseType": "武力衝突",
+      "patternType": "武力衝突→武力衝突"
+    },
+    {
+      "id": "N047",
+      "label": "鎌倉幕府の成立",
+      "summary": "源頼朝が鎌倉を本拠に守護・地頭を全国に設置し、朝廷とは別の武家政権を確立した。御恩と奉公による主従関係が国家秩序の新たな基軸となった",
+      "actors": [
+        "源頼朝",
+        "御家人"
+      ],
+      "intensity": "high",
+      "timescale": "long",
+      "cluster": "L_鎌倉幕府の確立",
+      "era": "1185–1192",
+      "fwType": "power",
+      "pattern": "{武家}が{独自の統治機構}を樹立する",
+      "bgType": "武力衝突",
+      "releaseType": "権力集中",
+      "patternType": "武力衝突→権力集中"
+    },
+    {
+      "id": "N048",
+      "label": "承久の乱（1221年）",
+      "summary": "後鳥羽上皇が幕府執権・北条義時の追討を命じて挙兵するも、幕府軍に圧倒的敗北を喫した。朝廷の武力的自立の最後の試みが失敗し、武家政権の不可逆性が確定した",
+      "pattern": "{旧権威}が{新権力}に挑み敗北する",
+      "actors": [
+        "後鳥羽上皇",
+        "北条義時",
+        "北条政子"
+      ],
+      "intensity": "high",
+      "timescale": "short",
+      "cluster": "L_鎌倉幕府の確立",
+      "era": "1221",
+      "fwType": "battle",
+      "bgType": "権力集中",
+      "releaseType": "武力衝突",
+      "patternType": "権力集中→武力衝突"
+    },
+    {
+      "id": "N049",
+      "label": "武家政権の制度的確立",
+      "summary": "承久の乱後、幕府が朝廷を監視する六波羅探題を設置し、上皇の配流・所領没収を断行。御成敗式目（1232年）により武家独自の法体系が成立。律令のエネルギーは武家の制度に転化して保存された",
+      "actors": [
+        "北条泰時",
+        "鎌倉幕府"
+      ],
+      "intensity": "high",
+      "timescale": "long",
+      "cluster": "L_鎌倉幕府の確立",
+      "era": "1221–1232",
+      "fwType": "institution",
+      "pattern": "{実力}による支配が{法的正統性}を獲得する",
+      "bgType": "武力衝突",
+      "releaseType": "制度",
+      "patternType": "武力衝突→制度"
+    },
+    {
+      "id": "N050",
+      "label": "元寇（1274・1281年）",
+      "summary": "モンゴル帝国（元）が二度にわたり日本に襲来。幕府は防衛に成功したが、恩賞として与える新領地がなく、動員された御家人への報償が不十分だった",
+      "pattern": "{外敵}が{体制}を襲い、防衛に成功するも内部を疲弊させる",
+      "actors": [
+        "北条時宗",
+        "御家人",
+        "元軍"
+      ],
+      "intensity": "high",
+      "timescale": "medium",
+      "cluster": "M_鎌倉後期",
+      "era": "1274–1281",
+      "fwType": "battle",
+      "bgType": "制度",
+      "releaseType": "武力衝突",
+      "patternType": "制度→武力衝突"
+    },
+    {
+      "id": "N051",
+      "label": "御家人の窮乏化",
+      "summary": "元寇の防衛負担・分割相続による所領細分化・貨幣経済の浸透により御家人層が経済的に困窮。幕府の徳政令も根本的解決にならず、御恩と奉公の主従関係が空洞化した",
+      "actors": [
+        "御家人",
+        "鎌倉幕府"
+      ],
+      "intensity": "high",
+      "timescale": "long",
+      "cluster": "M_鎌倉後期",
+      "era": "1280s–1320s",
+      "fwType": "conflict",
+      "pattern": "{体制の担い手}が{経済変動}により窮乏化する",
+      "bgType": "武力衝突",
+      "releaseType": "勢力対立",
+      "patternType": "武力衝突→勢力対立"
+    },
+    {
+      "id": "N052",
+      "label": "鎌倉幕府の滅亡（1333年）",
+      "summary": "後醍醐天皇の倒幕運動に足利尊氏・新田義貞ら有力御家人が呼応し、鎌倉幕府が滅亡。北条氏得宗専制への不満が幕府内部からの離反を招いた",
+      "pattern": "{内部離反者}が{外部の大義}に呼応して{体制}を崩壊させる",
+      "actors": [
+        "後醍醐天皇",
+        "足利尊氏",
+        "新田義貞",
+        "楠木正成"
+      ],
+      "intensity": "high",
+      "timescale": "short",
+      "cluster": "M_鎌倉後期",
+      "era": "1333",
+      "fwType": "collapse",
+      "bgType": "勢力対立",
+      "releaseType": "崩壊",
+      "patternType": "勢力対立→崩壊"
+    },
+    {
+      "id": "N053",
+      "label": "建武の新政（1333–1336年）",
+      "summary": "後醍醐天皇が天皇親政を復活させるも、武士の利害を無視した公家中心の政治に不満が噴出。足利尊氏が離反し、わずか3年で崩壊した",
+      "pattern": "{復古的理想}が{現実の利害構造}と乖離して崩壊する",
+      "actors": [
+        "後醍醐天皇",
+        "足利尊氏"
+      ],
+      "intensity": "high",
+      "timescale": "short",
+      "cluster": "N_室町幕府と南北朝",
+      "era": "1333–1336",
+      "fwType": "reform",
+      "bgType": "崩壊",
+      "releaseType": "改革",
+      "patternType": "崩壊→改革"
+    },
+    {
+      "id": "N054",
+      "label": "室町幕府の成立と南北朝の動乱",
+      "summary": "足利尊氏が光明天皇を擁立し室町幕府を開く。後醍醐の南朝と対立する南北朝時代が約60年続き、各地の武士が両朝を利用して勢力拡大を図った",
+      "actors": [
+        "足利尊氏",
+        "後醍醐天皇",
+        "守護大名"
+      ],
+      "intensity": "high",
+      "timescale": "long",
+      "cluster": "N_室町幕府と南北朝",
+      "era": "1336–1392",
+      "fwType": "power",
+      "pattern": "{新政権}が{分裂}を抱えたまま成立する",
+      "bgType": "改革",
+      "releaseType": "権力集中",
+      "patternType": "改革→権力集中"
+    },
+    {
+      "id": "N055",
+      "label": "守護大名の自立化",
+      "summary": "南北朝の動乱を通じて守護が在地の軍事・裁判・徴税権を集積し、一国規模の支配権を持つ守護大名へと成長。幕府の統制力が相対的に低下した",
+      "actors": [
+        "守護大名",
+        "室町幕府"
+      ],
+      "intensity": "high",
+      "timescale": "long",
+      "cluster": "N_室町幕府と南北朝",
+      "era": "1390s–1460s",
+      "fwType": "drift",
+      "pattern": "{地方権力者}が{中央}から自立化する",
+      "bgType": "権力集中",
+      "releaseType": "構造変化",
+      "patternType": "権力集中→構造変化"
+    },
+    {
+      "id": "N056",
+      "label": "応仁の乱（1467–1477年）",
+      "summary": "将軍継嗣問題と管領家の内紛が重なり、京都を中心に東軍・西軍が11年間戦い続けた。幕府の権威が決定的に失墜し、各地の守護大名・国人が自立する戦国時代の端緒となった",
+      "pattern": "{中央の権力闘争}が{体制全体}の求心力を破壊する",
+      "actors": [
+        "足利義政",
+        "山名宗全",
+        "細川勝元"
+      ],
+      "intensity": "high",
+      "timescale": "long",
+      "cluster": "O_応仁の乱と戦国",
+      "era": "1467–1477",
+      "fwType": "battle",
+      "bgType": "構造変化",
+      "releaseType": "武力衝突",
+      "patternType": "構造変化→武力衝突"
+    },
+    {
+      "id": "N057",
+      "label": "戦国大名の台頭と下剋上",
+      "summary": "守護代・国人層が実力で守護大名を排除して領国支配を確立する下剋上が常態化。分国法による独自立法、城下町建設、家臣団の直接編成など、自律的な領域国家が各地に出現した",
+      "actors": [
+        "戦国大名",
+        "国人層"
+      ],
+      "intensity": "high",
+      "timescale": "long",
+      "cluster": "O_応仁の乱と戦国",
+      "era": "1490s–1560s",
+      "fwType": "drift",
+      "pattern": "{下位者}が{上位者}を実力で凌駕する",
+      "bgType": "武力衝突",
+      "releaseType": "構造変化",
+      "patternType": "武力衝突→構造変化"
+    },
+    {
+      "id": "N058",
+      "label": "織田信長の統一事業",
+      "summary": "尾張の織田信長が桶狭間の勝利を皮切りに勢力を拡大。足利将軍を追放し室町幕府を滅亡させ（1573年）、楽市楽座・兵農分離・関所撤廃など中世的秩序の破壊と再編を推進した",
+      "pattern": "{革新者}が{旧秩序}を武力と制度改革で解体する",
+      "actors": [
+        "織田信長"
+      ],
+      "intensity": "high",
+      "timescale": "medium",
+      "cluster": "P_統一と幕藩体制",
+      "era": "1560–1582",
+      "fwType": "power",
+      "bgType": "構造変化",
+      "releaseType": "権力集中",
+      "patternType": "構造変化→権力集中"
+    },
+    {
+      "id": "N059",
+      "label": "豊臣政権の全国統一",
+      "summary": "信長の後継者となった豊臣秀吉が四国・九州・小田原を平定し全国統一を達成。太閤検地・刀狩・身分統制令により兵農分離を完成させ、中世的流動性を制度的に固定化した",
+      "actors": [
+        "豊臣秀吉"
+      ],
+      "intensity": "high",
+      "timescale": "medium",
+      "cluster": "P_統一と幕藩体制",
+      "era": "1582–1598",
+      "fwType": "power",
+      "pattern": "{後継者}が{統一事業}を完成させる",
+      "bgType": "権力集中",
+      "releaseType": "権力集中",
+      "patternType": "権力集中→権力集中"
+    },
+    {
+      "id": "N060",
+      "label": "関ヶ原の戦い（1600年）",
+      "summary": "豊臣政権内の権力闘争が徳川家康率いる東軍と石田三成率いる西軍の全国規模の会戦に至った。家康の勝利により徳川覇権が確定した",
+      "pattern": "{後継者争い}が{決戦}で決着する",
+      "actors": [
+        "徳川家康",
+        "石田三成"
+      ],
+      "intensity": "high",
+      "timescale": "short",
+      "cluster": "P_統一と幕藩体制",
+      "era": "1600",
+      "fwType": "battle",
+      "bgType": "権力集中",
+      "releaseType": "武力衝突",
+      "patternType": "権力集中→武力衝突"
+    },
+    {
+      "id": "N061",
+      "label": "江戸幕府と幕藩体制の確立",
+      "summary": "徳川家康が征夷大将軍に任じられ江戸幕府を開設。大坂の陣で豊臣家を滅ぼし（1615年）、武家諸法度・参勤交代・鎖国により、約260年続く幕藩体制を制度として確立した",
+      "actors": [
+        "徳川家康",
+        "徳川秀忠"
+      ],
+      "intensity": "high",
+      "timescale": "long",
+      "cluster": "P_統一と幕藩体制",
+      "era": "1603–1615",
+      "fwType": "institution",
+      "pattern": "{武家}が{全国支配}を制度として完成させる",
+      "bgType": "武力衝突",
+      "releaseType": "制度",
+      "patternType": "武力衝突→制度"
+    },
+    {
+      "id": "N062",
+      "label": "武家による秩序の完成",
+      "summary": "磐井の乱(527)で始まった中央集権化のエネルギーが、約1100年を経て武家による全国統一秩序として安定した。律令制のエネルギーは消滅したのではなく、幕藩体制という最終形態に転化して保存された",
+      "actors": [],
+      "intensity": "high",
+      "timescale": "long",
+      "cluster": "P_統一と幕藩体制",
+      "era": "1615–",
+      "fwType": "institution",
+      "pattern": "{長期的構造変化}が{ひとつの秩序}に結実する",
+      "bgType": "制度",
+      "releaseType": "制度",
+      "patternType": "制度→制度"
+    },
+    {
+      "id": "N063",
+      "label": "大陸仏教の東漸と百済の文化外交",
+      "summary": "インドから中国を経て朝鮮半島に伝播した仏教を、百済が大和との外交手段として積極的に伝えた。538年（または552年）の仏像・経典献上が画期",
+      "actors": [
+        "百済",
+        "梁（南朝）"
+      ],
+      "intensity": "high",
+      "timescale": "long",
+      "cluster": "A_丁未の乱前後",
+      "era": "4c–550s",
+      "fwType": "shock",
+      "pattern": "{外来の文化}が{外交手段}として伝播する",
+      "bgType": "外生",
+      "releaseType": "外圧",
+      "patternType": "外生→外圧"
+    },
+    {
+      "id": "N064",
+      "label": "高句麗の南下圧力と半島の勢力再編",
+      "summary": "高句麗の広開土王・長寿王による南進が百済・新羅を圧迫し、半島南部の勢力均衡を崩壊させた。百済は熊津への遷都を余儀なくされ、新羅は拡張に転じた",
+      "actors": [
+        "高句麗",
+        "百済",
+        "新羅"
+      ],
+      "intensity": "high",
+      "timescale": "long",
+      "cluster": "0_磐井の乱前後",
+      "era": "4c–6c",
+      "fwType": "shock",
+      "pattern": "{強国}の膨張が{周辺}の勢力均衡を崩す",
+      "bgType": "外生",
+      "releaseType": "外圧",
+      "patternType": "外生→外圧"
+    },
+    {
+      "id": "N065",
+      "label": "隋唐帝国の成立と東アジア国際秩序の変動",
+      "summary": "隋の中国統一（589年）と唐の建国（618年）により東アジアに冊封体制を軸とする新たな国際秩序が出現。周辺諸国は対応を迫られた",
+      "actors": [
+        "隋",
+        "唐"
+      ],
+      "intensity": "high",
+      "timescale": "long",
+      "cluster": "B_丁未から白村江の接続",
+      "era": "589–630s",
+      "fwType": "shock",
+      "pattern": "{統一帝国}の出現が{周辺}に秩序変動を迫る",
+      "bgType": "外生",
+      "releaseType": "外圧",
+      "patternType": "外生→外圧"
+    },
+    {
+      "id": "N066",
+      "label": "ヤマト王権の対朝鮮半島関与の伝統",
+      "summary": "4世紀以来、ヤマト王権は任那を拠点に半島南部と軍事・外交・交易の関係を持ち続けた。この長期的関与が百済との庇護関係の前提となった",
+      "actors": [
+        "ヤマト王権",
+        "百済",
+        "任那"
+      ],
+      "intensity": "medium",
+      "timescale": "long",
+      "cluster": "B_丁未から白村江の接続",
+      "era": "4c–6c",
+      "fwType": "drift",
+      "pattern": "{王権}が{対外関与}の伝統を持続する",
+      "bgType": "外生",
+      "releaseType": "構造変化",
+      "patternType": "外生→構造変化"
+    },
+    {
+      "id": "N067",
+      "label": "気候温暖化と農業技術の進歩",
+      "summary": "奈良時代の温暖な気候と水田開発技術の向上により農業生産力が上昇し、人口増加の基盤となった。律令制の班田だけでは説明できない人口圧の背景",
+      "actors": [],
+      "intensity": "medium",
+      "timescale": "long",
+      "cluster": "G_律令制の内部矛盾",
+      "era": "700s–800s",
+      "fwType": "drift",
+      "pattern": "{環境変化}と{技術進歩}が{生産力}を底上げする",
+      "bgType": "外生",
+      "releaseType": "構造変化",
+      "patternType": "外生→構造変化"
+    },
+    {
+      "id": "N068",
+      "label": "モンゴル帝国のユーラシア征服と東アジア進出",
+      "summary": "チンギス・ハンに始まるモンゴル帝国の膨張がユーラシア全域を席巻。フビライの元朝は高麗を服属させ、日本への遠征を二度にわたり実行した",
+      "actors": [
+        "フビライ",
+        "元朝",
+        "高麗"
+      ],
+      "intensity": "high",
+      "timescale": "medium",
+      "cluster": "M_鎌倉後期",
+      "era": "1200s–1280s",
+      "fwType": "shock",
+      "pattern": "{外部帝国}が{征服}を仕掛ける",
+      "bgType": "外生",
+      "releaseType": "外圧",
+      "patternType": "外生→外圧"
+    },
+    {
+      "id": "N069",
+      "label": "宋銭流入と貨幣経済の浸透",
+      "summary": "日宋貿易を通じた大量の宋銭流入により、鎌倉後期に貨幣経済が急速に浸透。年貢の銭納化が進み、現物経済を前提とした御家人の経営を圧迫した",
+      "actors": [],
+      "intensity": "medium",
+      "timescale": "long",
+      "cluster": "M_鎌倉後期",
+      "era": "1100s–1300s",
+      "fwType": "drift",
+      "pattern": "{外来貨幣}の流入が{現物経済}を侵食する",
+      "bgType": "外生",
+      "releaseType": "構造変化",
+      "patternType": "外生→構造変化"
+    },
+    {
+      "id": "N070",
+      "label": "鉄砲伝来と南蛮貿易",
+      "summary": "1543年のポルトガル人による鉄砲伝来と、その後の南蛮貿易の拡大が戦国期の軍事技術と経済構造を一変させた。統一戦争の速度と規模を決定づけた外生要因",
+      "actors": [
+        "ポルトガル",
+        "種子島時堯"
+      ],
+      "intensity": "high",
+      "timescale": "medium",
+      "cluster": "O_応仁の乱と戦国",
+      "era": "1543–1570s",
+      "fwType": "shock",
+      "pattern": "{外来技術}と{交易}が{既存構造}を一変させる",
+      "bgType": "外生",
+      "releaseType": "外圧",
+      "patternType": "外生→外圧"
+    },
+    {
+      "id": "N071",
+      "label": "倭の五王の対外膨張と半島権益確保の努力",
+      "summary": "倭の五王（讃・珍・済・興・武）が南朝への朝貢・冊封要請を繰り返し、半島南部の支配権を国際的に承認させようとした。5世紀末にこの外交戦略は有効性を失う",
+      "actors": [
+        "倭の五王",
+        "南朝（宋・斉）",
+        "高句麗"
+      ],
+      "intensity": "medium",
+      "timescale": "long",
+      "cluster": "P0_継体天皇と大王継承問題",
+      "era": "4c末–5c",
+      "fwType": "drift",
+      "pattern": "{王権}が{冊封外交}を通じて{半島権益}を正統化しようとする",
+      "bgType": "外生",
+      "releaseType": "構造変化",
+      "patternType": "外生→構造変化"
+    },
+    {
+      "id": "N072",
+      "label": "武烈天皇崩御による大王継承断絶の危機",
+      "summary": "武烈天皇の後継者なき崩御により、ヤマト王権は仁徳系直系の継承が途絶えた。豪族合議による遠縁の継体天皇の擁立という異例の事態が生じた",
+      "actors": [
+        "武烈天皇",
+        "大伴金村",
+        "物部麁鹿火"
+      ],
+      "intensity": "high",
+      "timescale": "short",
+      "cluster": "P0_継体天皇と大王継承問題",
+      "era": "507頃",
+      "fwType": "collapse",
+      "pattern": "{王統}の断絶が{政治的空白}を生む",
+      "bgType": "権力集中",
+      "releaseType": "崩壊",
+      "patternType": "権力集中→崩壊"
+    },
+    {
+      "id": "N073",
+      "label": "継体天皇の即位と正統性の脆弱さ",
+      "summary": "応神天皇の5世孫とされる越前の男大迹王が大伴・物部ら有力豪族の推挙で継体天皇として即位。しかし大和入りが20年近く遅れたとされ、正統性は豪族の合意に大きく依存していた",
+      "actors": [
+        "継体天皇",
+        "大伴金村",
+        "物部麁鹿火"
+      ],
+      "intensity": "high",
+      "timescale": "medium",
+      "cluster": "P0_継体天皇と大王継承問題",
+      "era": "507–520s",
+      "fwType": "power",
+      "pattern": "{傍系}が{豪族合議}で{王位}を獲得するが{正統性}が不安定なまま残る",
+      "bgType": "崩壊",
+      "releaseType": "権力集中",
+      "patternType": "崩壊→権力集中"
+    },
+    {
+      "id": "N074",
+      "label": "ヤマト中枢豪族の分立と合議政治",
+      "summary": "大伴氏（軍事・外交）・物部氏（軍事・神祇）・蘇我氏（財政・渡来人管理）らが各機能を分掌し、大王はその合議上に立つ構造が確立していた。この分立は王権の動員能力に天井を設けた",
+      "actors": [
+        "大伴金村",
+        "物部麁鹿火",
+        "蘇我氏"
+      ],
+      "intensity": "medium",
+      "timescale": "long",
+      "cluster": "P0_継体天皇と大王継承問題",
+      "era": "5c–520s",
+      "fwType": "drift",
+      "pattern": "{複数の有力氏族}が{合議}で{王権}を支える構造が{分立}を生む",
+      "bgType": "権力集中",
+      "releaseType": "構造変化",
+      "patternType": "権力集中→構造変化"
+    },
+    {
+      "id": "N075",
+      "label": "百済・磐井外交をめぐる半島情勢の緊迫化",
+      "summary": "新羅の任那侵食が進む中、百済が大和に軍事援助を求め続け、同時に磐井は新羅と独自に通交していた。朝鮮半島情勢が国内の利害対立を直接的に触発した",
+      "actors": [
+        "百済",
+        "新羅",
+        "磐井",
+        "継体天皇"
+      ],
+      "intensity": "high",
+      "timescale": "medium",
+      "cluster": "P0_継体天皇と大王継承問題",
+      "era": "510s–527",
+      "fwType": "conflict",
+      "pattern": "{外圧}が{中央-地方}の利害衝突を加速する",
+      "bgType": "構造変化",
+      "releaseType": "勢力対立",
+      "patternType": "構造変化→勢力対立"
+    },
+    {
+      "id": "N076",
+      "label": "武家諸法度・禁中並公家諸法度による秩序固定化",
+      "summary": "武家諸法度・禁中並公家諸法度により、幕府が武家・公家・寺社の行動を法的に統制する体制を確立した",
+      "actors": [
+        "徳川秀忠",
+        "金地院崇伝"
+      ],
+      "intensity": "high",
+      "timescale": "long",
+      "cluster": "Q_幕藩体制の展開と鎖国",
+      "era": "1615–1635",
+      "fwType": "institution",
+      "pattern": "{支配者}が{法的規範}で{諸勢力}の行動を拘束し{秩序}を固定する",
+      "bgType": "制度",
+      "releaseType": "制度",
+      "patternType": "制度→制度"
+    },
+    {
+      "id": "N077",
+      "label": "キリスト教禁制の強化と宗教的統制",
+      "summary": "禁教令から島原の乱鎮圧・宗門改めまで、幕府はキリスト教という外来の権威原理を国内から根絶しようとした",
+      "actors": [
+        "徳川幕府",
+        "天草四郎"
+      ],
+      "intensity": "high",
+      "timescale": "medium",
+      "cluster": "Q_幕藩体制の展開と鎖国",
+      "era": "1612–1640",
+      "fwType": "reform",
+      "pattern": "{支配者}が{異質な権威原理}を排除し{秩序の一元化}を図る",
+      "bgType": "制度",
+      "releaseType": "構造変化",
+      "patternType": "制度→構造変化"
+    },
+    {
+      "id": "N078",
+      "label": "島原の乱（1637–38年）",
+      "summary": "天草・島原の農民がキリスト教信仰と過重な年貢負担を背景に大規模反乱を起こした。幕府は12万の大軍で鎮圧し、鎖国完成を加速した",
+      "actors": [
+        "天草四郎",
+        "松倉勝家",
+        "徳川幕府"
+      ],
+      "intensity": "high",
+      "timescale": "short",
+      "cluster": "Q_幕藩体制の展開と鎖国",
+      "era": "1637–1638",
+      "fwType": "battle",
+      "pattern": "{宗教的絶望}と{経済的窮乏}が{民衆反乱}に転化する",
+      "bgType": "勢力対立",
+      "releaseType": "武力衝突",
+      "patternType": "勢力対立→武力衝突"
+    },
+    {
+      "id": "N079",
+      "label": "鎖国体制の完成（1635–41年）",
+      "summary": "日本人の海外渡航禁止、ポルトガル人追放、オランダ商館長崎移転により「四つの口」体制が完成した",
+      "actors": [
+        "徳川幕府"
+      ],
+      "intensity": "high",
+      "timescale": "long",
+      "cluster": "Q_幕藩体制の展開と鎖国",
+      "era": "1635–1641",
+      "fwType": "institution",
+      "pattern": "{外来の不安定要因}を遮断して{国内秩序}を安定化させる",
+      "bgType": "武力衝突",
+      "releaseType": "制度",
+      "patternType": "武力衝突→制度"
+    },
+    {
+      "id": "N080",
+      "label": "参勤交代制による大名統制と経済循環",
+      "summary": "参勤交代は大名の財政を消耗させ反乱能力を削ぐ一方、各地と江戸を結ぶ物流・商品経済の発展をもたらした",
+      "actors": [
+        "徳川幕府",
+        "各藩大名"
+      ],
+      "intensity": "medium",
+      "timescale": "long",
+      "cluster": "Q_幕藩体制の展開と鎖国",
+      "era": "1635–1700s",
+      "fwType": "institution",
+      "pattern": "{制度的移動}が{経済循環}と{支配の貫通}を同時に生む",
+      "bgType": "制度",
+      "releaseType": "構造変化",
+      "patternType": "制度→構造変化"
+    },
+    {
+      "id": "N081",
+      "label": "農村経済の安定と人口増加（17世紀）",
+      "summary": "戦国の終結による農業生産の安定、新田開発の進展により17世紀を通じて人口が急増した（1600年約1200万→1700年約3100万）",
+      "actors": [
+        "農民層",
+        "各藩"
+      ],
+      "intensity": "medium",
+      "timescale": "long",
+      "cluster": "Q_幕藩体制の展開と鎖国",
+      "era": "1600s–1700",
+      "fwType": "drift",
+      "pattern": "{平和}と{農業技術改善}が{人口増加}と{経済拡大}をもたらす",
+      "bgType": "制度",
+      "releaseType": "構造変化",
+      "patternType": "制度→構造変化"
+    },
+    {
+      "id": "N082",
+      "label": "元禄文化と町人階層の台頭",
+      "summary": "商品経済の発展を背景に大坂・京都・江戸の豪商・町人が文化の担い手として台頭。武家中心から町人中心の文化へ転換が始まった",
+      "actors": [
+        "町人階層",
+        "豪商"
+      ],
+      "intensity": "medium",
+      "timescale": "medium",
+      "cluster": "Q_幕藩体制の展開と鎖国",
+      "era": "1680s–1710s",
+      "fwType": "drift",
+      "pattern": "{経済的豊かさ}が{新たな文化的担い手}を生む",
+      "bgType": "構造変化",
+      "releaseType": "構造変化",
+      "patternType": "構造変化→構造変化"
+    },
+    {
+      "id": "N083",
+      "label": "武士の経済的困窮と商人資本の成長",
+      "summary": "武士は米収入に固定されているが物価は上昇し、商人は富を蓄積した。「支配者の貧困と被支配者の豊かさ」という秩序矛盾が生じた",
+      "actors": [
+        "旗本・藩士",
+        "大坂商人"
+      ],
+      "intensity": "medium",
+      "timescale": "long",
+      "cluster": "R_幕政改革の時代",
+      "era": "1700s–1800s",
+      "fwType": "drift",
+      "pattern": "{固定された身分}が{流動する経済}に追いつけず{矛盾}を深める",
+      "bgType": "構造変化",
+      "releaseType": "勢力対立",
+      "patternType": "構造変化→勢力対立"
+    },
+    {
+      "id": "N084",
+      "label": "享保の改革（1716–45年）",
+      "summary": "徳川吉宗が財政再建・法整備・洋学の部分的導入などを実施。一定の成果を挙げたが根本的な商品経済の矛盾は解消できなかった",
+      "actors": [
+        "徳川吉宗"
+      ],
+      "intensity": "medium",
+      "timescale": "medium",
+      "cluster": "R_幕政改革の時代",
+      "era": "1716–1745",
+      "fwType": "reform",
+      "pattern": "{統治者}が{財政立て直し}のために{緊縮・復古}を試みる",
+      "bgType": "勢力対立",
+      "releaseType": "改革",
+      "patternType": "勢力対立→改革"
+    },
+    {
+      "id": "N085",
+      "label": "田沼意次の商業資本活用路線",
+      "summary": "老中田沼意次が株仲間公認・運上金徴収・長崎貿易拡大など商業主義的改革を推進。「商品経済を活用して幕府財政を立て直す」初めての本格的試み",
+      "actors": [
+        "田沼意次",
+        "徳川家治"
+      ],
+      "intensity": "medium",
+      "timescale": "medium",
+      "cluster": "R_幕政改革の時代",
+      "era": "1760s–1786",
+      "fwType": "reform",
+      "pattern": "{現実主義者}が{既存秩序の矛盾}を活用して{権力}を拡大する",
+      "bgType": "改革",
+      "releaseType": "権力集中",
+      "patternType": "改革→権力集中"
+    },
+    {
+      "id": "N086",
+      "label": "天明の飢饉と社会不安（1782–87年）",
+      "summary": "天明の大飢饉で数十万人が死亡し、全国で打ちこわし・百姓一揆が発生。田沼政権は失脚した",
+      "actors": [
+        "浅間山",
+        "農民",
+        "都市貧民"
+      ],
+      "intensity": "high",
+      "timescale": "short",
+      "cluster": "R_幕政改革の時代",
+      "era": "1782–1787",
+      "fwType": "shock",
+      "pattern": "{自然災害}が{構造的矛盾}を一気に顕在化させる",
+      "bgType": "改革",
+      "releaseType": "崩壊",
+      "patternType": "改革→崩壊"
+    },
+    {
+      "id": "N087",
+      "label": "寛政の改革（1787–93年）",
+      "summary": "松平定信が朱子学的倫理の復活・棄捐令・出稼ぎ農民の帰農奨励などを実施。5年余で失脚",
+      "actors": [
+        "松平定信"
+      ],
+      "intensity": "medium",
+      "timescale": "short",
+      "cluster": "R_幕政改革の時代",
+      "era": "1787–1793",
+      "fwType": "reform",
+      "pattern": "{危機の後}に{復古的秩序回復}が試みられる",
+      "bgType": "崩壊",
+      "releaseType": "改革",
+      "patternType": "崩壊→改革"
+    },
+    {
+      "id": "N088",
+      "label": "化政文化と民衆文化の深化",
+      "summary": "寛政の反動として江戸の庶民文化が爆発的に発展。幕府の道徳的統制が及ばない文化空間が形成された",
+      "actors": [
+        "江戸町民",
+        "文人・絵師"
+      ],
+      "intensity": "low",
+      "timescale": "medium",
+      "cluster": "R_幕政改革の時代",
+      "era": "1800s–1830s",
+      "fwType": "drift",
+      "pattern": "{改革の失敗}後に{民衆文化}が{統制}を超えて拡大する",
+      "bgType": "改革",
+      "releaseType": "構造変化",
+      "patternType": "改革→構造変化"
+    },
+    {
+      "id": "N089",
+      "label": "天保の飢饉と大塩平八郎の乱",
+      "summary": "天保の大飢饉で農村・都市が疲弊する中、元大坂町奉行所与力の大塩平八郎が反乱。旧幕臣が幕府に対して反乱するという体制内告発の象徴的事件",
+      "actors": [
+        "大塩平八郎",
+        "大坂町奉行所"
+      ],
+      "intensity": "high",
+      "timescale": "short",
+      "cluster": "R_幕政改革の時代",
+      "era": "1833–1837",
+      "fwType": "shock",
+      "pattern": "{体制内の正義}が{民衆の苦しみ}に応えられず{異義申し立て}が起きる",
+      "bgType": "構造変化",
+      "releaseType": "勢力対立",
+      "patternType": "構造変化→勢力対立"
+    },
+    {
+      "id": "N090",
+      "label": "天保の改革の失敗（1841–43年）",
+      "summary": "老中水野忠邦が株仲間解散・倹約令・人返し令などを断行したが、あらゆる勢力の反発を招い2年余で罷免された。「体制内からの改革限界」の決定的証明",
+      "actors": [
+        "水野忠邦"
+      ],
+      "intensity": "medium",
+      "timescale": "short",
+      "cluster": "R_幕政改革の時代",
+      "era": "1841–1843",
+      "fwType": "reform",
+      "pattern": "{最後の改革}が{あらゆる勢力の反発}を招いて失敗する",
+      "bgType": "勢力対立",
+      "releaseType": "崩壊",
+      "patternType": "勢力対立→崩壊"
+    },
+    {
+      "id": "N091",
+      "label": "アヘン戦争情報と西洋の軍事的優位の衝撃",
+      "summary": "清がアヘン戦争でイギリスに敗北したニュースが長崎経由で伝わった。蛮社の獄で警告者は弾圧された",
+      "actors": [
+        "イギリス",
+        "清",
+        "渡辺崋山",
+        "高野長英"
+      ],
+      "intensity": "medium",
+      "timescale": "short",
+      "cluster": "S_幕末と開国の衝撃",
+      "era": "1840–1842",
+      "fwType": "shock",
+      "pattern": "{遠方の敗北}が{自国の脆弱性}を可視化する",
+      "bgType": "外生",
+      "releaseType": "外圧",
+      "patternType": "外生→外圧"
+    },
+    {
+      "id": "N092",
+      "label": "ペリー来航と開国強制（1853–54年）",
+      "summary": "ペリー艦隊の浦賀来航が日本社会に衝撃を与えた。日米和親条約により鎖国体制は事実上崩壊",
+      "actors": [
+        "マシュー・ペリー",
+        "徳川幕府（阿部正弘）"
+      ],
+      "intensity": "high",
+      "timescale": "short",
+      "cluster": "S_幕末と開国の衝撃",
+      "era": "1853–1854",
+      "fwType": "shock",
+      "pattern": "{圧倒的軍事力}による{開国要求}が{選択の余地}を奪う",
+      "bgType": "外圧",
+      "releaseType": "外圧",
+      "patternType": "外圧→外圧"
+    },
+    {
+      "id": "N093",
+      "label": "安政の不平等条約と幕府権威の失墜",
+      "summary": "日米修好通商条約の勅許なし調印が「幕府が天皇の権威を無視した」と批判を受けた。関税自主権なし・領事裁判権承認という内容も経済的従属を示した",
+      "actors": [
+        "井伊直弼",
+        "タウンゼント・ハリス",
+        "孝明天皇"
+      ],
+      "intensity": "high",
+      "timescale": "medium",
+      "cluster": "S_幕末と開国の衝撃",
+      "era": "1858",
+      "fwType": "institution",
+      "pattern": "{不利な条約}の締結が{支配者の正統性}を掘り崩す",
+      "bgType": "外圧",
+      "releaseType": "勢力対立",
+      "patternType": "外圧→勢力対立"
+    },
+    {
+      "id": "N094",
+      "label": "安政の大獄と井伊直弼暗殺",
+      "summary": "井伊直弼が反対派を弾圧し、報復として桜田門外の変で暗殺された。武力による政治変革の心理的障壁が消えた",
+      "actors": [
+        "井伊直弼",
+        "水戸浪士"
+      ],
+      "intensity": "high",
+      "timescale": "short",
+      "cluster": "S_幕末と開国の衝撃",
+      "era": "1858–1860",
+      "fwType": "conflict",
+      "pattern": "{弾圧}が{殉教者}を生み{反発}を増幅する",
+      "bgType": "勢力対立",
+      "releaseType": "武力衝突",
+      "patternType": "勢力対立→武力衝突"
+    },
+    {
+      "id": "N095",
+      "label": "薩長雄藩の軍事力強化と倒幕路線の確立",
+      "summary": "薩摩・長州が西洋式軍事力を取り込み、幕府の軍事的優位を逆転。1866年薩長同盟が倒幕の政治的基盤を確立",
+      "actors": [
+        "大久保利通",
+        "西郷隆盛",
+        "木戸孝允",
+        "高杉晋作",
+        "坂本龍馬"
+      ],
+      "intensity": "high",
+      "timescale": "medium",
+      "cluster": "S_幕末と開国の衝撃",
+      "era": "1860s",
+      "fwType": "power",
+      "pattern": "{体制外勢力}が{近代的軍事力}を蓄積し{既存権力}に代替する",
+      "bgType": "武力衝突",
+      "releaseType": "権力集中",
+      "patternType": "武力衝突→権力集中"
+    },
+    {
+      "id": "N096",
+      "label": "大政奉還と王政復古の大号令",
+      "summary": "徳川慶喜が大政奉還し政権を朝廷に返上したが、倒幕派は王政復古の大号令で慶喜の参加を封じ込めた",
+      "actors": [
+        "徳川慶喜",
+        "岩倉具視",
+        "西郷隆盛"
+      ],
+      "intensity": "high",
+      "timescale": "short",
+      "cluster": "S_幕末と開国の衝撃",
+      "era": "1867–1868",
+      "fwType": "collapse",
+      "pattern": "{追い詰められた支配者}が{形式的な権力返上}で生き残りを図る",
+      "bgType": "権力集中",
+      "releaseType": "崩壊",
+      "patternType": "権力集中→崩壊"
+    },
+    {
+      "id": "N097",
+      "label": "戊辰戦争（1868–69年）",
+      "summary": "鳥羽・伏見の戦いから箱館・五稜郭の戦いまで、新政府軍対旧幕府軍の内戦。新政府の軍事的勝利が明治政府の権威を確定",
+      "actors": [
+        "新政府軍（薩長土肥）",
+        "旧幕府軍",
+        "奥羽越列藩同盟"
+      ],
+      "intensity": "high",
+      "timescale": "short",
+      "cluster": "S_幕末と開国の衝撃",
+      "era": "1868–1869",
+      "fwType": "battle",
+      "pattern": "{新旧秩序}が{武力}で最終決着をつける",
+      "bgType": "崩壊",
+      "releaseType": "武力衝突",
+      "patternType": "崩壊→武力衝突"
+    },
+    {
+      "id": "N098",
+      "label": "列強の不介入と日本独立維持の条件",
+      "summary": "英米仏蘭露が日本をめぐって競合したが、各国が他の戦略的課題に集中していた時期と日本の内戦期が重なり、植民地化を免れた",
+      "actors": [
+        "イギリス",
+        "フランス",
+        "アメリカ",
+        "ロシア"
+      ],
+      "intensity": "medium",
+      "timescale": "medium",
+      "cluster": "S_幕末と開国の衝撃",
+      "era": "1853–1870s",
+      "fwType": "drift",
+      "pattern": "{列強の均衡}が{弱国の独立}を偶然に保護する",
+      "bgType": "外生",
+      "releaseType": "構造変化",
+      "patternType": "外生→構造変化"
+    },
+    {
+      "id": "N099",
+      "label": "廃藩置県と中央集権の確立",
+      "summary": "薩長土肥の親兵を背景に廃藩置県を断行。約300藩を解体して中央集権体制を一挙に実現",
+      "actors": [
+        "大久保利通",
+        "木戸孝允",
+        "西郷隆盛",
+        "明治天皇"
+      ],
+      "intensity": "high",
+      "timescale": "short",
+      "cluster": "T_明治維新と近代国家建設",
+      "era": "1871",
+      "fwType": "institution",
+      "pattern": "{軍事的勝者}が{地方割拠}を解体し{中央集権}を実現する",
+      "bgType": "武力衝突",
+      "releaseType": "制度",
+      "patternType": "武力衝突→制度"
+    },
+    {
+      "id": "N100",
+      "label": "文明開化・殖産興業・富国強兵政策",
+      "summary": "岩倉使節団・お雇い外国人・学制・徴兵令・地租改正・官営工場設立により、制度・技術・軍事・教育の全面的西洋化が進行",
+      "actors": [
+        "岩倉具視",
+        "大久保利通",
+        "伊藤博文"
+      ],
+      "intensity": "high",
+      "timescale": "long",
+      "cluster": "T_明治維新と近代国家建設",
+      "era": "1868–1890s",
+      "fwType": "reform",
+      "pattern": "{後発国家}が{先進国模倣}によって{短期間の近代化}を試みる",
+      "bgType": "制度",
+      "releaseType": "構造変化",
+      "patternType": "制度→構造変化"
+    },
+    {
+      "id": "N101",
+      "label": "士族の特権剥奪と西南戦争（1877年）",
+      "summary": "廃刀令・秩禄処分など士族の特権剥奪に対し、西郷隆盛を担いだ鹿児島士族が反乱。徴兵制平民軍が士族軍を破った",
+      "actors": [
+        "西郷隆盛",
+        "大久保利通",
+        "山県有朋"
+      ],
+      "intensity": "high",
+      "timescale": "short",
+      "cluster": "T_明治維新と近代国家建設",
+      "era": "1873–1877",
+      "fwType": "battle",
+      "pattern": "{旧支配層}が{新秩序}による{地位剥奪}に武力で抵抗する",
+      "bgType": "構造変化",
+      "releaseType": "武力衝突",
+      "patternType": "構造変化→武力衝突"
+    },
+    {
+      "id": "N102",
+      "label": "自由民権運動と国会開設要求",
+      "summary": "板垣退助の民撰議院設立建白書以降、士族・豪農・農民が参加する自由民権運動が展開。1881年に国会開設の勅諭",
+      "actors": [
+        "板垣退助",
+        "大隈重信",
+        "伊藤博文"
+      ],
+      "intensity": "medium",
+      "timescale": "medium",
+      "cluster": "T_明治維新と近代国家建設",
+      "era": "1874–1889",
+      "fwType": "conflict",
+      "pattern": "{武力革命の失敗}後に{政治的要求}が{議会要求}に転化する",
+      "bgType": "武力衝突",
+      "releaseType": "勢力対立",
+      "patternType": "武力衝突→勢力対立"
+    },
+    {
+      "id": "N103",
+      "label": "大日本帝国憲法の発布と議会政治の開始",
+      "summary": "伊藤博文主導でプロイセン型憲法を採用。天皇主権・統帥権独立・貴族院を含む「上からの立憲主義」",
+      "actors": [
+        "伊藤博文",
+        "山県有朋",
+        "明治天皇"
+      ],
+      "intensity": "high",
+      "timescale": "long",
+      "cluster": "T_明治維新と近代国家建設",
+      "era": "1889–1890",
+      "fwType": "institution",
+      "pattern": "{権力者}が{憲法}を{統治に有利な形}で制定する",
+      "bgType": "勢力対立",
+      "releaseType": "制度",
+      "patternType": "勢力対立→制度"
+    },
+    {
+      "id": "N104",
+      "label": "条約改正問題と不平等の国民的意識化",
+      "summary": "幕末の不平等条約の改正交渉が難航する中、「列強と対等になりたい」という国民意識が高まった",
+      "actors": [
+        "陸奥宗光",
+        "小村寿太郎"
+      ],
+      "intensity": "medium",
+      "timescale": "long",
+      "cluster": "T_明治維新と近代国家建設",
+      "era": "1870s–1899",
+      "fwType": "drift",
+      "pattern": "{不平等な扱い}が{国民的屈辱感}を形成し{ナショナリズム}を育てる",
+      "bgType": "外圧",
+      "releaseType": "構造変化",
+      "patternType": "外圧→構造変化"
+    },
+    {
+      "id": "N105",
+      "label": "日清戦争の勝利と中国大陸進出",
+      "summary": "朝鮮の東学党の乱を契機とした日清戦争で勝利し、下関条約で台湾・賠償金を獲得。「戦争=利権拡大」の経験が刻まれた",
+      "actors": [
+        "陸奥宗光",
+        "伊藤博文",
+        "山県有朋",
+        "李鴻章"
+      ],
+      "intensity": "high",
+      "timescale": "short",
+      "cluster": "U_帝国の膨張",
+      "era": "1894–1895",
+      "fwType": "battle",
+      "pattern": "{後発近代国家}が{旧帝国}に勝利し{帝国主義}への参入を果たす",
+      "bgType": "構造変化",
+      "releaseType": "武力衝突",
+      "patternType": "構造変化→武力衝突"
+    },
+    {
+      "id": "N106",
+      "label": "日露戦争の勝利と列強の一員意識の定着",
+      "summary": "日露戦争での勝利により韓国保護国化・南満州権益獲得が実現。国内では「一等国」意識が定着し軍部の政治的発言力が急上昇",
+      "actors": [
+        "児玉源太郎",
+        "東郷平八郎",
+        "桂太郎"
+      ],
+      "intensity": "high",
+      "timescale": "short",
+      "cluster": "U_帝国の膨張",
+      "era": "1904–1905",
+      "fwType": "battle",
+      "pattern": "{白人列強}への勝利が{民族的覚醒}と{自信過剰}を生む",
+      "bgType": "武力衝突",
+      "releaseType": "権力集中",
+      "patternType": "武力衝突→権力集中"
+    },
+    {
+      "id": "N107",
+      "label": "韓国併合と植民地帝国の形成",
+      "summary": "韓国併合（1910年）により日本は本格的植民地帝国となった。台湾・朝鮮・南満州と版図が拡大",
+      "actors": [
+        "伊藤博文",
+        "寺内正毅"
+      ],
+      "intensity": "high",
+      "timescale": "long",
+      "cluster": "U_帝国の膨張",
+      "era": "1905–1919",
+      "fwType": "institution",
+      "pattern": "{軍事的優位}が{政治的支配}に転化し{植民地制度}を作る",
+      "bgType": "権力集中",
+      "releaseType": "制度",
+      "patternType": "権力集中→制度"
+    },
+    {
+      "id": "N108",
+      "label": "大正デモクラシーと政党政治の展開",
+      "summary": "第一次護憲運動から普通選挙法まで、政党政治・言論の自由が発展。しかし軍部の制度的関与は温存された",
+      "actors": [
+        "原敬",
+        "吉野作造",
+        "犬養毅"
+      ],
+      "intensity": "medium",
+      "timescale": "medium",
+      "cluster": "U_帝国の膨張",
+      "era": "1912–1932",
+      "fwType": "reform",
+      "pattern": "{経済的発展}と{中産階級の成長}が{民主的政治}の要求を生む",
+      "bgType": "制度",
+      "releaseType": "構造変化",
+      "patternType": "制度→構造変化"
+    },
+    {
+      "id": "N109",
+      "label": "関東大震災と経済的混乱",
+      "summary": "関東大震災が東京・横浜を壊滅させ、震災恐慌・金融恐慌と経済危機が連鎖した",
+      "actors": [
+        "自然（地震）"
+      ],
+      "intensity": "high",
+      "timescale": "short",
+      "cluster": "U_帝国の膨張",
+      "era": "1923–1927",
+      "fwType": "shock",
+      "pattern": "{災害}が{潜在していた社会矛盾}を一気に噴出させる",
+      "bgType": "構造変化",
+      "releaseType": "崩壊",
+      "patternType": "構造変化→崩壊"
+    },
+    {
+      "id": "N110",
+      "label": "世界恐慌と農村疲弊・軍部の政治進出",
+      "summary": "世界恐慌で農村は壊滅的打撃を受け、「軍人が国を救う」という論理が説得力を持ち始めた",
+      "actors": [
+        "農民層",
+        "陸軍青年将校"
+      ],
+      "intensity": "high",
+      "timescale": "medium",
+      "cluster": "U_帝国の膨張",
+      "era": "1929–1931",
+      "fwType": "drift",
+      "pattern": "{経済的絶望}が{既存政治への不信}を生み{急進的解決}を求める",
+      "bgType": "崩壊",
+      "releaseType": "勢力対立",
+      "patternType": "崩壊→勢力対立"
+    },
+    {
+      "id": "N111",
+      "label": "満州事変と既成事実化戦略",
+      "summary": "関東軍の謀略で満州全土を占領・満州国を建国。「軍部が政府を無視できる」前例が確立された",
+      "actors": [
+        "石原莞爾",
+        "板垣征四郎",
+        "関東軍"
+      ],
+      "intensity": "high",
+      "timescale": "short",
+      "cluster": "U_帝国の膨張",
+      "era": "1931–1933",
+      "fwType": "battle",
+      "pattern": "{軍部}が{政府の制御}を離れて{既成事実}を作り{対外膨張}を拡大する",
+      "bgType": "勢力対立",
+      "releaseType": "武力衝突",
+      "patternType": "勢力対立→武力衝突"
+    },
+    {
+      "id": "N112",
+      "label": "日中戦争の拡大と泥沼化",
+      "summary": "盧溝橋事件をきっかけに日中全面戦争に突入。南京占領後も蒋介石政権は重慶で抵抗を続け消耗戦に",
+      "actors": [
+        "蒋介石",
+        "近衛文麿"
+      ],
+      "intensity": "high",
+      "timescale": "medium",
+      "cluster": "V_戦争と敗戦",
+      "era": "1937–1941",
+      "fwType": "battle",
+      "pattern": "{短期決戦}の誤算が{消耗戦}に転化する",
+      "bgType": "武力衝突",
+      "releaseType": "武力衝突",
+      "patternType": "武力衝突→武力衝突"
+    },
+    {
+      "id": "N113",
+      "label": "太平洋戦争開戦と戦線拡大",
+      "summary": "石油禁輸に対し対英米蘭開戦を決断。緒戦は優勢だったがミッドウェー海戦で戦局が転換",
+      "actors": [
+        "東条英機",
+        "山本五十六",
+        "ルーズベルト"
+      ],
+      "intensity": "high",
+      "timescale": "short",
+      "cluster": "V_戦争と敗戦",
+      "era": "1941–1942",
+      "fwType": "battle",
+      "pattern": "{資源的追い詰め}が{全か無かの賭け}に国家を追い込む",
+      "bgType": "武力衝突",
+      "releaseType": "武力衝突",
+      "patternType": "武力衝突→武力衝突"
+    },
+    {
+      "id": "N114",
+      "label": "戦局の悪化と本土空襲・沖縄戦",
+      "summary": "サイパン陥落後、本土空襲が本格化し東京大空襲で10万人死亡。沖縄戦で民間人含む20万人以上が死亡",
+      "actors": [
+        "鈴木貫太郎",
+        "昭和天皇"
+      ],
+      "intensity": "high",
+      "timescale": "short",
+      "cluster": "V_戦争と敗戦",
+      "era": "1944–1945",
+      "fwType": "collapse",
+      "pattern": "{軍事的敗勢}が{民間人の犠牲}を拡大する",
+      "bgType": "武力衝突",
+      "releaseType": "崩壊",
+      "patternType": "武力衝突→崩壊"
+    },
+    {
+      "id": "N115",
+      "label": "原爆投下とソ連参戦・日本の降伏",
+      "summary": "広島・長崎への原爆投下とソ連参戦が重なり、昭和天皇の「聖断」でポツダム宣言受諾。明治以来80年の帝国の最終崩壊",
+      "actors": [
+        "トルーマン",
+        "スターリン",
+        "昭和天皇"
+      ],
+      "intensity": "high",
+      "timescale": "short",
+      "cluster": "V_戦争と敗戦",
+      "era": "1945.8",
+      "fwType": "shock",
+      "pattern": "{外生的衝撃}が{内部の意思決定}の膠着を解除する",
+      "bgType": "崩壊",
+      "releaseType": "崩壊",
+      "patternType": "崩壊→崩壊"
+    },
+    {
+      "id": "N116",
+      "label": "戦時体制の国家統制と社会的疲弊",
+      "summary": "国家総動員法以降、物資・労働力・言論すべてが戦争目的に動員された。社会の多様性が破壊された",
+      "actors": [
+        "国家総動員体制",
+        "軍部"
+      ],
+      "intensity": "high",
+      "timescale": "medium",
+      "cluster": "V_戦争と敗戦",
+      "era": "1938–1945",
+      "fwType": "drift",
+      "pattern": "{戦時動員}が{市民社会}を消耗させ{回復力}を削ぐ",
+      "bgType": "武力衝突",
+      "releaseType": "崩壊",
+      "patternType": "武力衝突→崩壊"
+    },
+    {
+      "id": "N117",
+      "label": "GHQによる占領改革と新憲法制定",
+      "summary": "GHQ主導で財閥解体・農地改革・労働組合法・日本国憲法が実施された。戦前体制の制度的清算",
+      "actors": [
+        "マッカーサー",
+        "幣原喜重郎",
+        "吉田茂"
+      ],
+      "intensity": "high",
+      "timescale": "short",
+      "cluster": "W_戦後と現代秩序の形成",
+      "era": "1945–1947",
+      "fwType": "reform",
+      "pattern": "{外部からの強制}が{内部改革の抵抗}を迂回して{根本的制度変更}を実現する",
+      "bgType": "崩壊",
+      "releaseType": "制度",
+      "patternType": "崩壊→制度"
+    },
+    {
+      "id": "N118",
+      "label": "冷戦の開始と逆コース",
+      "summary": "米ソ冷戦の深刻化により、アメリカは日本の民主化より反共の防波堤化を優先。公職追放解除・再軍備・レッドパージ",
+      "actors": [
+        "GHQ",
+        "吉田茂"
+      ],
+      "intensity": "high",
+      "timescale": "medium",
+      "cluster": "W_戦後と現代秩序の形成",
+      "era": "1947–1952",
+      "fwType": "shock",
+      "pattern": "{地政学的変化}が{占領政策}を転換させる",
+      "bgType": "外生",
+      "releaseType": "外圧",
+      "patternType": "外生→外圧"
+    },
+    {
+      "id": "N119",
+      "label": "朝鮮戦争特需と経済復興",
+      "summary": "朝鮮戦争の勃発で日本が後方補給基地となり、軍需物資調達が日本経済に劇的な回復をもたらした",
+      "actors": [
+        "アメリカ軍",
+        "日本の製造業"
+      ],
+      "intensity": "high",
+      "timescale": "short",
+      "cluster": "W_戦後と現代秩序の形成",
+      "era": "1950–1953",
+      "fwType": "shock",
+      "pattern": "{近隣の戦争}が{後方支援国}に{経済的爆発}をもたらす",
+      "bgType": "外圧",
+      "releaseType": "構造変化",
+      "patternType": "外圧→構造変化"
+    },
+    {
+      "id": "N120",
+      "label": "サンフランシスコ講和と主権回復",
+      "summary": "講和条約と日米安保条約を同時締結。西側との単独講和で主権を回復したが米軍基地存続という制約も確定",
+      "actors": [
+        "吉田茂",
+        "ダレス"
+      ],
+      "intensity": "high",
+      "timescale": "long",
+      "cluster": "W_戦後と現代秩序の形成",
+      "era": "1951–1952",
+      "fwType": "institution",
+      "pattern": "{被占領国}が{同盟条約}とセットで{形式的主権}を回復する",
+      "bgType": "構造変化",
+      "releaseType": "制度",
+      "patternType": "構造変化→制度"
+    },
+    {
+      "id": "N121",
+      "label": "高度経済成長とその社会的変容",
+      "summary": "年率10%超の経済成長により日本は世界第2位の経済大国へ。同時に過疎・過密・公害・農村解体が進行",
+      "actors": [
+        "池田勇人",
+        "通産省",
+        "製造業"
+      ],
+      "intensity": "high",
+      "timescale": "long",
+      "cluster": "W_戦後と現代秩序の形成",
+      "era": "1955–1973",
+      "fwType": "drift",
+      "pattern": "{資本と技術の集中投資}が{短期間の経済成長}をもたらすが{社会的歪み}も生む",
+      "bgType": "制度",
+      "releaseType": "構造変化",
+      "patternType": "制度→構造変化"
+    },
+    {
+      "id": "N122",
+      "label": "55年体制と保守vs革新の政治的安定",
+      "summary": "自由民主党の長期政権と社会党の万年野党。経済成長の果実を分配する利益政治が支持基盤",
+      "actors": [
+        "鳩山一郎",
+        "岸信介",
+        "池田勇人"
+      ],
+      "intensity": "medium",
+      "timescale": "long",
+      "cluster": "W_戦後と現代秩序の形成",
+      "era": "1955–1989",
+      "fwType": "institution",
+      "pattern": "{二極化した政治}が{長期的安定}をもたらすが{硬直化}も生む",
+      "bgType": "構造変化",
+      "releaseType": "制度",
+      "patternType": "構造変化→制度"
+    },
+    {
+      "id": "N123",
+      "label": "オイルショックと経済大国の限界認識",
+      "summary": "第一次オイルショックで原油価格が4倍になり高度成長が終焉。成熟社会への移行が始まった",
+      "actors": [
+        "OPEC",
+        "田中角栄内閣"
+      ],
+      "intensity": "high",
+      "timescale": "short",
+      "cluster": "W_戦後と現代秩序の形成",
+      "era": "1973–1975",
+      "fwType": "shock",
+      "pattern": "{外部からの資源制約}が{成長モデル}の限界を可視化する",
+      "bgType": "外生",
+      "releaseType": "外圧",
+      "patternType": "外生→外圧"
+    }
+  ],
+  "edges": [
+    {
+      "id": "E001",
+      "from": "N001",
+      "to": "N002",
+      "role": "amplifies",
+      "note": "仏教の新秩序原理が蘇我氏の政治的台頭を後押しした"
+    },
+    {
+      "id": "E002",
+      "from": "N001",
+      "to": "N003",
+      "role": "amplifies",
+      "note": "同じ仏教伝来が物部氏の危機感を高めた"
+    },
+    {
+      "id": "E003",
+      "from": "N002",
+      "to": "N003",
+      "role": "amplifies",
+      "note": "蘇我の権勢拡大が物部の危機感を直接的に増幅した"
+    },
+    {
+      "id": "E004",
+      "from": "N002",
+      "to": "N004",
+      "role": "amplifies",
+      "note": "蘇我・物部の緊張が高い状態で天皇崩御が起きたことで臨界点を超えた"
+    },
+    {
+      "id": "E005",
+      "from": "N003",
+      "to": "N004",
+      "role": "amplifies",
+      "note": "物部側の危機感が用明崩御を引き金として機能させた"
+    },
+    {
+      "id": "E006",
+      "from": "N004",
+      "to": "N005",
+      "role": "triggers",
+      "note": "用明崩御が潜在的対立を行動水準に押し上げた"
+    },
+    {
+      "id": "E007",
+      "from": "N005",
+      "to": "N006",
+      "role": "transforms",
+      "note": "丁未の乱の解放エネルギーが蘇我主導体制という新たな蓄積に転化した"
+    },
+    {
+      "id": "E008",
+      "from": "N006",
+      "to": "N007",
+      "role": "triggers",
+      "note": "蘇我体制の安定が遣隋使という能動的外交行動を可能にした"
+    },
+    {
+      "id": "E009",
+      "from": "N007",
+      "to": "N009",
+      "role": "amplifies",
+      "note": "外交路線転換が律令的中央集権化の参照モデル（隋・唐）を提供した"
+    },
+    {
+      "id": "E010",
+      "from": "N006",
+      "to": "N009",
+      "role": "transforms",
+      "note": "乙巳の変で蘇我本宗家が打倒されることで大化の改新のエネルギーが解放された"
+    },
+    {
+      "id": "E011",
+      "from": "N008",
+      "to": "N010",
+      "role": "amplifies",
+      "note": "三国抗争の激化が大和-百済庇護関係の軍事的必要性を高めた"
+    },
+    {
+      "id": "E012",
+      "from": "N008",
+      "to": "N011",
+      "role": "amplifies",
+      "note": "三国抗争の帰結として百済滅亡が起きた"
+    },
+    {
+      "id": "E013",
+      "from": "N010",
+      "to": "N011",
+      "role": "amplifies",
+      "note": "庇護関係が大和に軍事介入を引き起こす引力として働いた"
+    },
+    {
+      "id": "E014",
+      "from": "N011",
+      "to": "N012",
+      "role": "triggers",
+      "note": "百済滅亡が白村江派兵の直接的引き金となった"
+    },
+    {
+      "id": "E015",
+      "from": "N009",
+      "to": "N012",
+      "role": "sustains",
+      "note": "大化以来の中央集権化が大規模遠征軍を組織する能力を提供した"
+    },
+    {
+      "id": "E016",
+      "from": "N012",
+      "to": "N013",
+      "role": "transforms",
+      "note": "白村江の敗北が対外的危機感というエネルギーに転化した"
+    },
+    {
+      "id": "E017",
+      "from": "N013",
+      "to": "N014",
+      "role": "amplifies",
+      "note": "外敵脅威が天智天皇の急速な国内改革を正当化・加速した"
+    },
+    {
+      "id": "E018",
+      "from": "N014",
+      "to": "N015",
+      "role": "amplifies",
+      "note": "急速な中央集権化が豪族層の不満を蓄積した"
+    },
+    {
+      "id": "E019",
+      "from": "N009",
+      "to": "N015",
+      "role": "amplifies",
+      "note": "大化以来続く中央集権圧力の累積が不満の土台にあった"
+    },
+    {
+      "id": "E020",
+      "from": "N015",
+      "to": "N016",
+      "role": "amplifies",
+      "note": "豪族の不満が大海人皇子への期待として結集し皇位継承問題と結びついた"
+    },
+    {
+      "id": "E021",
+      "from": "N016",
+      "to": "N017",
+      "role": "amplifies",
+      "note": "継承緊張が高い状態での崩御が臨界点となった"
+    },
+    {
+      "id": "E022",
+      "from": "N017",
+      "to": "N018",
+      "role": "triggers",
+      "note": "天智崩御が継承問題を行動水準に押し上げた"
+    },
+    {
+      "id": "E023",
+      "from": "N015",
+      "to": "N018",
+      "role": "amplifies",
+      "note": "東国豪族の不満蓄積が大海人側の軍事動員を可能にした"
+    },
+    {
+      "id": "E024",
+      "from": "N018",
+      "to": "N019",
+      "role": "transforms",
+      "note": "壬申の乱の解放エネルギーが天武による律令国家建設志向に転化した"
+    },
+    {
+      "id": "E025",
+      "from": "N014",
+      "to": "N019",
+      "role": "amplifies",
+      "note": "天智の集権化路線が天武に引き継がれ強化された"
+    },
+    {
+      "id": "E026",
+      "from": "N019",
+      "to": "N020",
+      "role": "triggers",
+      "note": "天武・持統・文武朝の継続的推進が大宝律令完成を引き起こした"
+    },
+    {
+      "id": "E027",
+      "from": "N020",
+      "to": "N021",
+      "role": "transforms",
+      "note": "大宝律令の完成が公地公民・班田収授制を制度として確立した"
+    },
+    {
+      "id": "E028",
+      "from": "N021",
+      "to": "N022",
+      "role": "amplifies",
+      "note": "班田収授制の運用が人口増加と耕地不足の矛盾を構造的に生み出した"
+    },
+    {
+      "id": "E029",
+      "from": "N022",
+      "to": "N023",
+      "role": "amplifies",
+      "note": "開墾需要の高まりが墾田永年私財法という例外規定を引き出した"
+    },
+    {
+      "id": "E030",
+      "from": "N023",
+      "to": "N024",
+      "role": "transforms",
+      "note": "私有公認の法的根拠が初期荘園形成に転化した"
+    },
+    {
+      "id": "E031",
+      "from": "N021",
+      "to": "N025",
+      "role": "amplifies",
+      "note": "重い租税負担が農民逃亡・浮浪を構造的に生み出した"
+    },
+    {
+      "id": "E032",
+      "from": "N025",
+      "to": "N026",
+      "role": "amplifies",
+      "note": "公民の流動化・班田空洞化が地方支配の請負化（受領制）を促した"
+    },
+    {
+      "id": "E033",
+      "from": "N024",
+      "to": "N029",
+      "role": "amplifies",
+      "note": "初期荘園の慣行が寄進地系荘園という成熟形態への土台となった"
+    },
+    {
+      "id": "E034",
+      "from": "N025",
+      "to": "N028",
+      "role": "amplifies",
+      "note": "逃亡農民の一部が在地領主層に吸収され武士団形成の人的基盤となった"
+    },
+    {
+      "id": "E035",
+      "from": "N026",
+      "to": "N027",
+      "role": "amplifies",
+      "note": "受領による地方請負が中央での利権集中（摂関家）と表裏一体だった"
+    },
+    {
+      "id": "E036",
+      "from": "N026",
+      "to": "N028",
+      "role": "amplifies",
+      "note": "受領制の定着が在地での実力支配者（在地領主）の自律性を高めた"
+    },
+    {
+      "id": "E037",
+      "from": "N028",
+      "to": "N029",
+      "role": "amplifies",
+      "note": "在地領主が自衛と権益確保のために荘園への寄進を選択した"
+    },
+    {
+      "id": "E038",
+      "from": "N029",
+      "to": "N030",
+      "role": "amplifies",
+      "note": "寄進荘園の拡大が不輸不入の慣行を常態化させ公領を圧迫した"
+    },
+    {
+      "id": "E039",
+      "from": "N027",
+      "to": "N031",
+      "role": "amplifies",
+      "note": "摂関家主導への反発が後三条天皇の荘園整理令を生んだ"
+    },
+    {
+      "id": "E040",
+      "from": "N031",
+      "to": "N032",
+      "role": "amplifies",
+      "note": "整理令の限界が院政という新たな権力形態を模索させた"
+    },
+    {
+      "id": "E041",
+      "from": "N030",
+      "to": "N033",
+      "role": "amplifies",
+      "note": "不輸不入の慣行定着が荘園公領制という二元体制を事実として確立した"
+    },
+    {
+      "id": "E042",
+      "from": "N032",
+      "to": "N033",
+      "role": "amplifies",
+      "note": "院政が荘園集積の最大プレーヤーとなり荘園公領制を構造化した"
+    },
+    {
+      "id": "E043",
+      "from": "N033",
+      "to": "N034",
+      "role": "transforms",
+      "note": "荘園公領制の確立が律令国家志向の実質的消滅という状態に転化した"
+    },
+    {
+      "id": "E044",
+      "from": "N021",
+      "to": "N034",
+      "role": "transforms",
+      "note": "律令制のエネルギーは消滅したのではなく荘園公領制・武家政権という新形態に転化して保存された（長期エッジ）"
+    },
+    {
+      "id": "E045",
+      "from": "N035",
+      "to": "N037",
+      "role": "amplifies",
+      "note": "任那の権益縮小が出兵の緊急性を高めた"
+    },
+    {
+      "id": "E046",
+      "from": "N036",
+      "to": "N037",
+      "role": "amplifies",
+      "note": "磐井の独自外交が大和との対立を激化させた"
+    },
+    {
+      "id": "E047",
+      "from": "N037",
+      "to": "N038",
+      "role": "triggers",
+      "note": "出兵命令が磐井の叛乱を引き起こした"
+    },
+    {
+      "id": "E048",
+      "from": "N038",
+      "to": "N039",
+      "role": "transforms",
+      "note": "乱の鎮圧が筑紫直轄化というエネルギーの転化を生んだ"
+    },
+    {
+      "id": "E049",
+      "from": "N035",
+      "to": "N008",
+      "role": "amplifies",
+      "note": "任那権益の縮小が朝鮮半島三国抗争への大和の関与を規定し続けた"
+    },
+    {
+      "id": "E050",
+      "from": "N028",
+      "to": "N040",
+      "role": "amplifies",
+      "note": "在地領主・武士団の軍事力が院政の政治的動員の対象となった"
+    },
+    {
+      "id": "E051",
+      "from": "N032",
+      "to": "N040",
+      "role": "amplifies",
+      "note": "院政が武士を政争の道具として積極的に動員する慣行を作った"
+    },
+    {
+      "id": "E052",
+      "from": "N033",
+      "to": "N040",
+      "role": "sustains",
+      "note": "荘園公領制が武士の経済的基盤を提供し政治参加の前提条件となった"
+    },
+    {
+      "id": "E053",
+      "from": "N040",
+      "to": "N041",
+      "role": "triggers",
+      "note": "武士の政治的動員が常態化した状態で皇位争いが武力解決に至った"
+    },
+    {
+      "id": "E054",
+      "from": "N041",
+      "to": "N042",
+      "role": "amplifies",
+      "note": "保元の乱の論功行賞の不均衡が源義朝の不満を高めた"
+    },
+    {
+      "id": "E055",
+      "from": "N042",
+      "to": "N043",
+      "role": "transforms",
+      "note": "平治の乱で源氏を排除した平清盛が唯一の武力保持者として権力を確立した"
+    },
+    {
+      "id": "E056",
+      "from": "N043",
+      "to": "N044",
+      "role": "amplifies",
+      "note": "平氏の知行国独占・外戚化・法皇幽閉が全方位の反発を蓄積させた"
+    },
+    {
+      "id": "E057",
+      "from": "N044",
+      "to": "N045",
+      "role": "triggers",
+      "note": "蓄積した反発が以仁王の令旨を契機に武力行動として噴出した"
+    },
+    {
+      "id": "E058",
+      "from": "N045",
+      "to": "N046",
+      "role": "triggers",
+      "note": "頼朝の挙兵と鎌倉拠点確立が全国規模の源平合戦へと拡大した"
+    },
+    {
+      "id": "E059",
+      "from": "N046",
+      "to": "N047",
+      "role": "transforms",
+      "note": "平氏打倒の軍事的エネルギーが鎌倉幕府という新体制に転化した"
+    },
+    {
+      "id": "E060",
+      "from": "N028",
+      "to": "N047",
+      "role": "amplifies",
+      "note": "在地領主・武士団の実力支配の蓄積が幕府の御家人制度の基盤となった"
+    },
+    {
+      "id": "E061",
+      "from": "N047",
+      "to": "N048",
+      "role": "amplifies",
+      "note": "幕府の存在が朝廷の権威回復の試みを誘発した"
+    },
+    {
+      "id": "E062",
+      "from": "N048",
+      "to": "N049",
+      "role": "transforms",
+      "note": "承久の乱の勝利が武家政権の制度的不可逆性を確定させた"
+    },
+    {
+      "id": "E063",
+      "from": "N034",
+      "to": "N049",
+      "role": "transforms",
+      "note": "律令国家志向のエネルギーが武家の法体系（御成敗式目）に転化して保存された（長期エッジ）"
+    },
+    {
+      "id": "E064",
+      "from": "N033",
+      "to": "N047",
+      "role": "sustains",
+      "note": "荘園公領制が幕府の経済的基盤（地頭の荘園管理権）を提供した"
+    },
+    {
+      "id": "E065",
+      "from": "N049",
+      "to": "N050",
+      "role": "sustains",
+      "note": "武家政権の制度的基盤が元寇に対する全国動員を可能にした"
+    },
+    {
+      "id": "E066",
+      "from": "N050",
+      "to": "N051",
+      "role": "amplifies",
+      "note": "元寇の防衛負担と恩賞不足が御家人の経済的窮乏を加速した"
+    },
+    {
+      "id": "E067",
+      "from": "N051",
+      "to": "N052",
+      "role": "amplifies",
+      "note": "御恩と奉公の空洞化が幕府内部からの離反を招いた"
+    },
+    {
+      "id": "E068",
+      "from": "N052",
+      "to": "N053",
+      "role": "transforms",
+      "note": "鎌倉幕府崩壊のエネルギーが建武の新政という復古的理想に転化した"
+    },
+    {
+      "id": "E069",
+      "from": "N053",
+      "to": "N054",
+      "role": "transforms",
+      "note": "建武の新政の崩壊が室町幕府と南北朝の動乱を生んだ"
+    },
+    {
+      "id": "E070",
+      "from": "N054",
+      "to": "N055",
+      "role": "amplifies",
+      "note": "南北朝の動乱を通じて守護が在地の権限を集積し自立化した"
+    },
+    {
+      "id": "E071",
+      "from": "N055",
+      "to": "N056",
+      "role": "amplifies",
+      "note": "守護大名の自立化が幕府中枢の権力闘争を致命的なものにした"
+    },
+    {
+      "id": "E072",
+      "from": "N056",
+      "to": "N057",
+      "role": "transforms",
+      "note": "応仁の乱による幕府権威の崩壊が下剋上と戦国大名の台頭に転化した"
+    },
+    {
+      "id": "E073",
+      "from": "N057",
+      "to": "N058",
+      "role": "amplifies",
+      "note": "戦国大名の分立状態が統一事業の条件と動機を形成した"
+    },
+    {
+      "id": "E074",
+      "from": "N058",
+      "to": "N059",
+      "role": "transforms",
+      "note": "信長の統一事業のエネルギーが本能寺の変を経て秀吉の全国統一に転化した"
+    },
+    {
+      "id": "E075",
+      "from": "N059",
+      "to": "N060",
+      "role": "amplifies",
+      "note": "秀吉の死後の権力空白が関ヶ原の決戦を誘発した"
+    },
+    {
+      "id": "E076",
+      "from": "N060",
+      "to": "N061",
+      "role": "transforms",
+      "note": "関ヶ原の勝利が江戸幕府と幕藩体制の確立に転化した"
+    },
+    {
+      "id": "E077",
+      "from": "N061",
+      "to": "N062",
+      "role": "transforms",
+      "note": "幕藩体制の確立が武家秩序の完成という状態に至った"
+    },
+    {
+      "id": "E078",
+      "from": "N049",
+      "to": "N062",
+      "role": "transforms",
+      "note": "鎌倉以来の武家の法と制度が幕藩体制に継承・発展して保存された（長期エッジ）"
+    },
+    {
+      "id": "E079",
+      "from": "N034",
+      "to": "N062",
+      "role": "transforms",
+      "note": "律令国家のエネルギーが1100年を経て幕藩体制という最終形態に転化した（最長期エッジ）"
+    },
+    {
+      "id": "E080",
+      "from": "N047",
+      "to": "N050",
+      "role": "sustains",
+      "note": "鎌倉幕府の統治構造が元寇への組織的対応を可能にした"
+    },
+    {
+      "id": "E081",
+      "from": "N028",
+      "to": "N055",
+      "role": "inherits",
+      "note": "在地領主の実力支配の伝統が守護大名の自立化の基盤となった"
+    },
+    {
+      "id": "E082",
+      "from": "N052",
+      "to": "N054",
+      "role": "amplifies",
+      "note": "幕府滅亡に参加した武士たちの利害対立が南北朝分裂の原動力となった"
+    },
+    {
+      "id": "E083",
+      "from": "N021",
+      "to": "N062",
+      "role": "transforms",
+      "note": "公地公民のエネルギーは消滅せず、幕藩体制の全国土地支配に転化して保存された（超長期エッジ）"
+    },
+    {
+      "from": "N063",
+      "to": "N001",
+      "role": "triggers",
+      "note": "百済の文化外交により仏像・経典が大和に伝来し、新たな秩序原理が導入された",
+      "id": "E084"
+    },
+    {
+      "from": "N064",
+      "to": "N035",
+      "role": "amplifies",
+      "note": "高句麗の南進が半島南部の勢力均衡を崩し、任那の権益基盤を侵食した",
+      "id": "E085"
+    },
+    {
+      "from": "N064",
+      "to": "N008",
+      "role": "amplifies",
+      "note": "高句麗の圧力を受けた百済・新羅の対立激化が三国抗争の根底にある",
+      "id": "E086"
+    },
+    {
+      "from": "N065",
+      "to": "N007",
+      "role": "amplifies",
+      "note": "隋唐の統一帝国出現が大和に外交的対応を迫り、遣隋使派遣の動機となった",
+      "id": "E087"
+    },
+    {
+      "from": "N065",
+      "to": "N008",
+      "role": "amplifies",
+      "note": "隋唐の半島介入が三国間の抗争を決定的段階に押し上げた",
+      "id": "E088"
+    },
+    {
+      "from": "N066",
+      "to": "N010",
+      "role": "sustains",
+      "note": "4世紀以来の半島関与の伝統が百済との軍事的庇護関係を支えた",
+      "id": "E089"
+    },
+    {
+      "from": "N067",
+      "to": "N022",
+      "role": "amplifies",
+      "note": "温暖化と農業技術の進歩が人口増加を加速し、班田不足を深刻化させた",
+      "id": "E090"
+    },
+    {
+      "from": "N068",
+      "to": "N050",
+      "role": "triggers",
+      "note": "モンゴル帝国の東アジア進出が元寇の直接的原因。日本内部の因果とは独立した外生要因",
+      "id": "E091"
+    },
+    {
+      "from": "N069",
+      "to": "N051",
+      "role": "amplifies",
+      "note": "貨幣経済の浸透が現物経済を前提とした御家人の経営基盤を侵食した",
+      "id": "E092"
+    },
+    {
+      "from": "N070",
+      "to": "N058",
+      "role": "amplifies",
+      "note": "鉄砲の大量導入と南蛮貿易による経済力が信長の統一戦争を加速した",
+      "id": "E093"
+    },
+    {
+      "id": "E094",
+      "from": "N071",
+      "to": "N035",
+      "role": "amplifies",
+      "note": "倭の五王の半島権益が縮小した延長線上に任那権益縮小がある"
+    },
+    {
+      "id": "E095",
+      "from": "N072",
+      "to": "N073",
+      "role": "triggers",
+      "note": "大王継承断絶が継体擁立を必然化した"
+    },
+    {
+      "id": "E096",
+      "from": "N073",
+      "to": "N037",
+      "role": "amplifies",
+      "note": "継体の正統性脆弱さが出兵命令への磐井の拒否を可能にした"
+    },
+    {
+      "id": "E097",
+      "from": "N074",
+      "to": "N073",
+      "role": "sustains",
+      "note": "豪族合議が継体天皇を支えた（同時に制約した）"
+    },
+    {
+      "id": "E098",
+      "from": "N074",
+      "to": "N037",
+      "role": "amplifies",
+      "note": "豪族分立が中央の軍事動員能力を制限した"
+    },
+    {
+      "id": "E099",
+      "from": "N075",
+      "to": "N036",
+      "role": "amplifies",
+      "note": "半島情勢の緊迫化が磐井の新羅通交の政治的意味を高めた"
+    },
+    {
+      "id": "E100",
+      "from": "N075",
+      "to": "N037",
+      "role": "triggers",
+      "note": "半島緊迫化が出兵命令の直接的契機となった"
+    },
+    {
+      "id": "E101",
+      "from": "N071",
+      "to": "N074",
+      "role": "sustains",
+      "note": "五王外交が中枢豪族の役割分担構造を規定した"
+    },
+    {
+      "id": "E102",
+      "from": "N062",
+      "to": "N076",
+      "role": "transforms",
+      "note": "幕藩体制確立が法的秩序固定化に転化した"
+    },
+    {
+      "id": "E103",
+      "from": "N062",
+      "to": "N077",
+      "role": "amplifies",
+      "note": "権力安定化が宗教的異端排除を強化した"
+    },
+    {
+      "id": "E104",
+      "from": "N062",
+      "to": "N080",
+      "role": "transforms",
+      "note": "幕藩体制が参勤交代による統制の制度的基盤"
+    },
+    {
+      "id": "E105",
+      "from": "N076",
+      "to": "N079",
+      "role": "amplifies",
+      "note": "法的統制が鎖国の制度的基盤を提供した"
+    },
+    {
+      "id": "E106",
+      "from": "N077",
+      "to": "N078",
+      "role": "amplifies",
+      "note": "キリスト教禁制の強化が島原の乱を触発した"
+    },
+    {
+      "id": "E107",
+      "from": "N078",
+      "to": "N079",
+      "role": "triggers",
+      "note": "島原の乱が鎖国完成を加速した"
+    },
+    {
+      "id": "E108",
+      "from": "N080",
+      "to": "N081",
+      "role": "amplifies",
+      "note": "参勤交代による物流整備が農村経済の拡大を促した"
+    },
+    {
+      "id": "E109",
+      "from": "N081",
+      "to": "N082",
+      "role": "amplifies",
+      "note": "農村経済の安定・人口増加が町人文化の経済的基盤"
+    },
+    {
+      "id": "E110",
+      "from": "N079",
+      "to": "N081",
+      "role": "sustains",
+      "note": "鎖国による平和が農業生産の安定を支えた"
+    },
+    {
+      "id": "E111",
+      "from": "N082",
+      "to": "N083",
+      "role": "amplifies",
+      "note": "商人の富裕化と武士の貧困化が対照的に進んだ"
+    },
+    {
+      "id": "E112",
+      "from": "N080",
+      "to": "N083",
+      "role": "amplifies",
+      "note": "参勤交代による商品経済の展開が武士の困窮を加速"
+    },
+    {
+      "id": "E113",
+      "from": "N079",
+      "to": "N083",
+      "role": "amplifies",
+      "note": "鎖国による外部知識遮断が技術停滞の一因"
+    },
+    {
+      "id": "E114",
+      "from": "N083",
+      "to": "N084",
+      "role": "triggers",
+      "note": "武士の困窮と幕府財政悪化が享保改革を必然化した"
+    },
+    {
+      "id": "E115",
+      "from": "N084",
+      "to": "N085",
+      "role": "transforms",
+      "note": "享保改革の限界が商業活用路線（田沼）を生んだ"
+    },
+    {
+      "id": "E116",
+      "from": "N085",
+      "to": "N086",
+      "role": "amplifies",
+      "note": "田沼の商業主義が貧富格差を拡大し飢饉の打撃を増幅した"
+    },
+    {
+      "id": "E117",
+      "from": "N086",
+      "to": "N087",
+      "role": "triggers",
+      "note": "天明飢饉が復古的改革（寛政）を呼び起こした"
+    },
+    {
+      "id": "E118",
+      "from": "N087",
+      "to": "N088",
+      "role": "amplifies",
+      "note": "寛政改革の文化統制の反動として化政文化が拡大した"
+    },
+    {
+      "id": "E119",
+      "from": "N088",
+      "to": "N089",
+      "role": "amplifies",
+      "note": "民衆文化の深化が体制内告発の思想的背景となった"
+    },
+    {
+      "id": "E120",
+      "from": "N089",
+      "to": "N090",
+      "role": "triggers",
+      "note": "天保飢饉・大塩の乱が天保改革を必然化した"
+    },
+    {
+      "id": "E121",
+      "from": "N083",
+      "to": "N090",
+      "role": "sustains",
+      "note": "武士の経済的困窮という根本矛盾が各改革の反復的失敗を規定した"
+    },
+    {
+      "id": "E122",
+      "from": "N090",
+      "to": "N091",
+      "role": "amplifies",
+      "note": "天保改革失敗が外圧への対応力を低下させた"
+    },
+    {
+      "id": "E123",
+      "from": "N083",
+      "to": "N092",
+      "role": "amplifies",
+      "note": "幕府財政の慢性的弱体化がペリーへの対応能力を制限した"
+    },
+    {
+      "id": "E124",
+      "from": "N091",
+      "to": "N092",
+      "role": "amplifies",
+      "note": "アヘン戦争の衝撃が開国圧力の予兆として機能した"
+    },
+    {
+      "id": "E125",
+      "from": "N092",
+      "to": "N093",
+      "role": "triggers",
+      "note": "ペリー来航が不平等条約締結を強制した"
+    },
+    {
+      "id": "E126",
+      "from": "N093",
+      "to": "N094",
+      "role": "triggers",
+      "note": "不平等条約が攘夷派と開国派の対立を先鋭化した"
+    },
+    {
+      "id": "E127",
+      "from": "N094",
+      "to": "N095",
+      "role": "amplifies",
+      "note": "桜田門外の変が「武力による政治変革」の障壁を除去した"
+    },
+    {
+      "id": "E128",
+      "from": "N095",
+      "to": "N096",
+      "role": "triggers",
+      "note": "薩長の軍事力蓄積が幕府の追い詰めと大政奉還を必然化した"
+    },
+    {
+      "id": "E129",
+      "from": "N096",
+      "to": "N097",
+      "role": "triggers",
+      "note": "王政復古の大号令が戊辰戦争の引き金となった"
+    },
+    {
+      "id": "E130",
+      "from": "N098",
+      "to": "N097",
+      "role": "sustains",
+      "note": "列強の不介入が内戦の国内決着を可能にした"
+    },
+    {
+      "id": "E131",
+      "from": "N079",
+      "to": "N092",
+      "role": "transforms",
+      "note": "200年の鎖国が外圧に無防備な社会を作りペリーの衝撃を最大化した"
+    },
+    {
+      "id": "E132",
+      "from": "N097",
+      "to": "N099",
+      "role": "transforms",
+      "note": "戊辰戦争の勝利が廃藩置県断行の政治的力を生んだ"
+    },
+    {
+      "id": "E133",
+      "from": "N098",
+      "to": "N100",
+      "role": "sustains",
+      "note": "列強の不介入が明治政府に国内改革の時間を与えた"
+    },
+    {
+      "id": "E134",
+      "from": "N099",
+      "to": "N100",
+      "role": "amplifies",
+      "note": "中央集権確立が全国的近代化政策の実施基盤を作った"
+    },
+    {
+      "id": "E135",
+      "from": "N100",
+      "to": "N101",
+      "role": "triggers",
+      "note": "近代化政策による士族特権剥奪が西南戦争を触発した"
+    },
+    {
+      "id": "E136",
+      "from": "N101",
+      "to": "N102",
+      "role": "transforms",
+      "note": "武力革命の失敗が政治的要求を議会要求に転化させた"
+    },
+    {
+      "id": "E137",
+      "from": "N102",
+      "to": "N103",
+      "role": "triggers",
+      "note": "自由民権運動の圧力が明治憲法制定を必然化した"
+    },
+    {
+      "id": "E138",
+      "from": "N100",
+      "to": "N104",
+      "role": "amplifies",
+      "note": "富国強兵政策が条約改正への意志を強化した"
+    },
+    {
+      "id": "E139",
+      "from": "N103",
+      "to": "N110",
+      "role": "transforms",
+      "note": "統帥権独立条項が軍部の政治的独走を制度的に可能にした"
+    },
+    {
+      "id": "E140",
+      "from": "N104",
+      "to": "N105",
+      "role": "amplifies",
+      "note": "不平等条約への屈辱感が対外戦争支持の国民感情を形成した"
+    },
+    {
+      "id": "E141",
+      "from": "N100",
+      "to": "N106",
+      "role": "amplifies",
+      "note": "富国強兵による近代軍の育成が日露戦勝を可能にした"
+    },
+    {
+      "id": "E142",
+      "from": "N105",
+      "to": "N106",
+      "role": "amplifies",
+      "note": "日清戦勝の成功体験が日露戦争への国民的支持を形成した"
+    },
+    {
+      "id": "E143",
+      "from": "N106",
+      "to": "N107",
+      "role": "transforms",
+      "note": "日露戦勝による軍事的優位が植民地化を推進した"
+    },
+    {
+      "id": "E144",
+      "from": "N107",
+      "to": "N108",
+      "role": "amplifies",
+      "note": "帝国の制度化が大正デモクラシーの発展空間を提供した"
+    },
+    {
+      "id": "E145",
+      "from": "N108",
+      "to": "N109",
+      "role": "amplifies",
+      "note": "政党政治の脆弱さが震災後の混乱対応を困難にした"
+    },
+    {
+      "id": "E146",
+      "from": "N109",
+      "to": "N110",
+      "role": "triggers",
+      "note": "経済危機の連鎖が軍部への期待転換を加速した"
+    },
+    {
+      "id": "E147",
+      "from": "N110",
+      "to": "N111",
+      "role": "triggers",
+      "note": "軍部の政治進出が満州事変の政治的許容を作った"
+    },
+    {
+      "id": "E148",
+      "from": "N111",
+      "to": "N112",
+      "role": "transforms",
+      "note": "満州事変の既成事実化パターンが日中全面戦争に反復適用された"
+    },
+    {
+      "id": "E149",
+      "from": "N110",
+      "to": "N113",
+      "role": "amplifies",
+      "note": "経済的絶望が戦争で解決論への社会的支持を供給した"
+    },
+    {
+      "id": "E150",
+      "from": "N112",
+      "to": "N113",
+      "role": "triggers",
+      "note": "日中戦争の泥沼化が南方資源獲得のための対米開戦を促した"
+    },
+    {
+      "id": "E151",
+      "from": "N113",
+      "to": "N114",
+      "role": "transforms",
+      "note": "太平洋戦争の戦線拡大が本土防衛力の枯渇に直結した"
+    },
+    {
+      "id": "E152",
+      "from": "N114",
+      "to": "N115",
+      "role": "amplifies",
+      "note": "戦局の絶望的悪化が降伏受容の前提条件を作った"
+    },
+    {
+      "id": "E153",
+      "from": "N116",
+      "to": "N115",
+      "role": "amplifies",
+      "note": "社会的疲弊が戦争継続の限界を示した"
+    },
+    {
+      "id": "E154",
+      "from": "N103",
+      "to": "N115",
+      "role": "transforms",
+      "note": "明治憲法の統帥権独立条項が最終的に無条件降伏に結びついた"
+    },
+    {
+      "id": "E155",
+      "from": "N115",
+      "to": "N117",
+      "role": "triggers",
+      "note": "降伏がGHQ占領と根本的改革の直接的契機"
+    },
+    {
+      "id": "E156",
+      "from": "N116",
+      "to": "N117",
+      "role": "amplifies",
+      "note": "戦時体制の社会疲弊が改革への抵抗力を削いだ"
+    },
+    {
+      "id": "E157",
+      "from": "N117",
+      "to": "N118",
+      "role": "amplifies",
+      "note": "占領改革の民主化が冷戦下での逆コースとの矛盾を生んだ"
+    },
+    {
+      "id": "E158",
+      "from": "N118",
+      "to": "N119",
+      "role": "transforms",
+      "note": "逆コースによる日本の反共防波堤化が朝鮮特需の前提となった"
+    },
+    {
+      "id": "E159",
+      "from": "N119",
+      "to": "N121",
+      "role": "triggers",
+      "note": "朝鮮特需が高度経済成長の出発点となった"
+    },
+    {
+      "id": "E160",
+      "from": "N118",
+      "to": "N120",
+      "role": "amplifies",
+      "note": "冷戦下の日米関係がサンフランシスコ講和の性格を規定した"
+    },
+    {
+      "id": "E161",
+      "from": "N120",
+      "to": "N121",
+      "role": "sustains",
+      "note": "日米安保体制が軽武装・経済優先の路線を担保した"
+    },
+    {
+      "id": "E162",
+      "from": "N120",
+      "to": "N122",
+      "role": "amplifies",
+      "note": "講和による主権回復が55年体制の政治的安定の前提となった"
+    },
+    {
+      "id": "E163",
+      "from": "N121",
+      "to": "N123",
+      "role": "transforms",
+      "note": "高度成長の成功がオイルショックへの脆弱性を生んだ"
+    },
+    {
+      "id": "E164",
+      "from": "N062",
+      "to": "N122",
+      "role": "inherits",
+      "note": "幕藩体制の統治経験が55年体制の利益政治に形を変えて継承された"
+    }
+  ]
+}
