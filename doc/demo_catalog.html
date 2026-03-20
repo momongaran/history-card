@@ -335,6 +335,21 @@ const FW_TYPE_STYLES = {
   'reform':      { color: '#3a7a8a', shape: '✦', label: '改革', labelFull: '改革・変革' },
 };
 
+// Background type → icon + color
+const BG_TYPE_STYLES = {
+  '構造変化': { icon: '⇄', color: '#5a8a5a' },
+  '武力衝突': { icon: '⚔', color: '#c45a3c' },
+  '勢力対立': { icon: '⚡', color: '#c8960a' },
+  '制度':     { icon: '■', color: '#3a6a9a' },
+  '外生':     { icon: '☄', color: '#c47a3a' },
+  '権力集中': { icon: '◆', color: '#6a3a8a' },
+  '改革':     { icon: '✦', color: '#3a7a8a' },
+  '崩壊':     { icon: '⊘', color: '#8a3a3a' },
+  '外圧':     { icon: '⟐', color: '#8a6a3a' },
+  '経済拡大': { icon: '▲', color: '#5a8a3a' },
+  '硬直化':   { icon: '▰', color: '#6a6058' },
+};
+
 // Semantic domains (4 groups of fwTypes)
 const SEMANTIC_DOMAINS = {
   '地面': { types: ['drift', 'institution', 'collapse'], color: 'rgba(139,119,90,.25)', colorSolid: '#8b7750' },
@@ -515,7 +530,10 @@ function renderBlock(n) {
   html += `<div class="block-summary">${n.summary}</div>`;
   // Abstract layer: pattern + FW type
   html += `<div class="block-abstract">`;
-  html += `<div class="block-pattern"><span style="color:${fwStyle.color}">${fwStyle.shape}</span> ${n.pattern || ''}</div>`;
+  const bgSt = BG_TYPE_STYLES[n.bgType] || {};
+  const bgIcon = bgSt.icon ? `<span style="color:${bgSt.color}" title="背景: ${n.bgType || ''}">${bgSt.icon}</span>` : '';
+  const fwIcon = `<span style="color:${fwStyle.color}" title="解放: ${fwStyle.label}">${fwStyle.shape}</span>`;
+  html += `<div class="block-pattern">${bgIcon}${bgIcon ? '→' : ''}${fwIcon} ${n.pattern || ''}</div>`;
   html += `</div>`;
   // Actors
   if (n.actors && n.actors.length > 0) {

@@ -668,7 +668,7 @@
         "藤原不比等"
       ],
       "fwType": "institution",
-      "bgType": "制度化",
+      "bgType": "制度",
       "releaseType": "制度",
       "patternType": "制度化→制度",
       "intensity": "high",
@@ -687,7 +687,7 @@
         "行基"
       ],
       "fwType": "institution",
-      "bgType": "制度化",
+      "bgType": "制度",
       "releaseType": "制度",
       "patternType": "制度化→制度",
       "intensity": "high",
@@ -1465,7 +1465,7 @@
         "明"
       ],
       "fwType": "shock",
-      "bgType": "外生的衝撃",
+      "bgType": "外生",
       "releaseType": "構造変化",
       "patternType": "外生的衝撃→構造変化",
       "intensity": "medium",
@@ -2328,7 +2328,7 @@
         "軍部"
       ],
       "fwType": "shock",
-      "bgType": "外生的衝撃",
+      "bgType": "外生",
       "releaseType": "構造変化",
       "patternType": "外生的衝撃→構造変化",
       "intensity": "high",
@@ -2587,7 +2587,7 @@
         "沖縄県民"
       ],
       "fwType": "institution",
-      "bgType": "制度化",
+      "bgType": "制度",
       "releaseType": "制度",
       "patternType": "制度化→制度",
       "intensity": "medium",
