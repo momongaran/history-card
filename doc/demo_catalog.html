@@ -5,8 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>因果フレーム図鑑 ― 全ノード同一ブロック表示</title>
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;600;700&display=swap');
-
   :root {
     --bg: #f0ebe0;
     --paper: #fffdf8;
@@ -20,7 +18,7 @@
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body {
-    font-family: 'Noto Serif JP', -apple-system, "Hiragino Mincho ProN", serif;
+    font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", sans-serif;
     background: linear-gradient(160deg, #f5efe3 0%, #ede5d5 100%);
     color: var(--ink);
     min-height: 100vh;
@@ -65,22 +63,22 @@
   /* SVG layer */
   #edge-svg {
     position: absolute; inset: 0; width: 100%; height: 100%;
-    pointer-events: none; z-index: 0;
+    pointer-events: none; z-index: 2;
   }
-  .edge-line { fill: none; stroke-width: 1.8; opacity: 0.6; }
+  .edge-line { fill: none; stroke-width: 1.8; opacity: 0.6; stroke-dasharray: 6 4; }
   .edge-line.role-amplifies  { stroke: #c8960a; }
   .edge-line.role-triggers   { stroke: #c45a3c; }
   .edge-line.role-transforms { stroke: #3a6a9a; }
   .edge-line.role-sustains   { stroke: #3a8a3a; }
   .edge-line.role-suppresses { stroke: #7a3a8a; }
   .edge-line.role-inherits   { stroke: #3a7a8a; }
-  .edge-head { stroke-width: 1; }
-  .edge-head.role-amplifies  { fill: #c8960a; stroke: #c8960a; }
-  .edge-head.role-triggers   { fill: #c45a3c; stroke: #c45a3c; }
-  .edge-head.role-transforms { fill: #3a6a9a; stroke: #3a6a9a; }
-  .edge-head.role-sustains   { fill: #3a8a3a; stroke: #3a8a3a; }
-  .edge-head.role-suppresses { fill: #7a3a8a; stroke: #7a3a8a; }
-  .edge-head.role-inherits   { fill: #3a7a8a; stroke: #3a7a8a; }
+  .edge-head { stroke: none; }
+  .edge-head.role-amplifies  { fill: #c8960a; }
+  .edge-head.role-triggers   { fill: #c45a3c; }
+  .edge-head.role-transforms { fill: #3a6a9a; }
+  .edge-head.role-sustains   { fill: #3a8a3a; }
+  .edge-head.role-suppresses { fill: #7a3a8a; }
+  .edge-head.role-inherits   { fill: #3a7a8a; }
 
   .edge-line.hl { opacity: 1; stroke-width: 2.5; }
   .edge-line.dim { opacity: 0.12; }
@@ -179,7 +177,13 @@
   .block-actors {
     display: flex; flex-wrap: wrap; gap: 3px; margin-top: 2px;
   }
-  .actor { font-size: 9px; background: #f0ebe0; border: 1px solid #d8c8b0; border-radius: 8px; padding: 1px 5px; color: var(--muted); }
+  .actor {
+    font-size: 9px; background: transparent; border: 1px solid #d0c8bc;
+    border-radius: 10px; padding: 1px 6px; color: #9a9080;
+    cursor: pointer; transition: all .2s; letter-spacing: .02em;
+  }
+  .actor:hover { color: #6a6058; border-color: #a89a88; }
+  .actor.active { background: #4a4038; color: #f5f0e8; border-color: #4a4038; }
 
   .block-id {
     position: absolute; bottom: 5px; right: 10px;
@@ -196,11 +200,11 @@
     display: flex; gap: 4px; flex-wrap: wrap; margin-top: 2px;
   }
   .out-chip {
-    font-size: 9px; padding: 1px 5px; border-radius: 6px;
-    background: #f4f0e8; border: 1px solid #d8d0c4; color: #8a7a68;
-    cursor: pointer;
+    font-size: 9px; padding: 1px 6px; border-radius: 10px;
+    background: transparent; border: 1px solid #d0c8bc; color: #9a9080;
+    cursor: pointer; transition: all .2s; letter-spacing: .02em;
   }
-  .out-chip:hover { background: #e8e0d4; }
+  .out-chip:hover { color: #6a6058; border-color: #a89a88; }
 
   /* Legend */
   .legend {
@@ -358,7 +362,7 @@ function renderBlock(n) {
       const src = NM[e.from];
       const srcNum = fmtId(e.from);
       const shortLabel = src ? (src.label.length > 14 ? src.label.slice(0, 12) + '…' : src.label) : e.from;
-      html += `<span class="ref-chip role-${e.role}" onclick="event.stopPropagation();flashAndScroll('${e.from}')" title="${src?.label || e.from}\n${e.role}: ${e.note}"><b>${srcNum}</b> ${shortLabel}</span>`;
+      html += `<span class="ref-chip role-${e.role}" id="chip-${e.from}-${n.id}" onclick="event.stopPropagation();flashAndScroll('${e.from}')" title="${src?.label || e.from}\n${e.role}: ${e.note}"><b>${srcNum}</b> ${shortLabel}</span>`;
     });
     html += `</div>`;
   } else {
@@ -375,7 +379,7 @@ function renderBlock(n) {
   }
   // Actors
   if (n.actors && n.actors.length > 0) {
-    html += `<div class="block-actors">${n.actors.map(a => `<span class="actor">${a}</span>`).join('')}</div>`;
+    html += `<div class="block-actors">${n.actors.map(a => `<span class="actor" onclick="event.stopPropagation();toggleActor('${a}')">${a}</span>`).join('')}</div>`;
   }
   // Outgoing refs
   if (outgoing.length > 0) {
@@ -427,43 +431,64 @@ function drawEdges() {
   G.edges.forEach(e => {
     const fromEl = document.getElementById('blk-' + e.from);
     const toEl = document.getElementById('blk-' + e.to);
-    if (!fromEl || !toEl) return;
+    const chipEl = document.getElementById('chip-' + e.from + '-' + e.to);
+    if (!fromEl || !chipEl) return;
 
     const fr = fromEl.getBoundingClientRect();
-    const tr = toEl.getBoundingClientRect();
+    const ch = chipEl.getBoundingClientRect();
 
-    // Spread departure points across bottom of source block
-    departCur[e.from] = (departCur[e.from] || 0) + 1;
-    const dTotal = departCount[e.from];
-    const dIdx = departCur[e.from];
-    const dSpread = Math.min(fr.width * 0.6, dTotal * 30);
-    const dOffset = dTotal > 1 ? -dSpread/2 + (dIdx - 1) * dSpread / (dTotal - 1) : 0;
+    // Departure: edge of source block closest to chip
+    const chipCX = ch.left + ch.width / 2 - cr.left + scrollL;
+    const chipCY = ch.top + ch.height / 2 - cr.top + scrollT;
+    const fromCX = fr.left + fr.width / 2 - cr.left + scrollL;
+    const fromCY = fr.top + fr.height / 2 - cr.top + scrollT;
 
-    // Spread arrival points across top of target block
-    arrivalCur[e.to] = (arrivalCur[e.to] || 0) + 1;
-    const aTotal = arrivalCount[e.to];
-    const aIdx = arrivalCur[e.to];
-    const aSpread = Math.min(tr.width * 0.6, aTotal * 30);
-    const aOffset = aTotal > 1 ? -aSpread/2 + (aIdx - 1) * aSpread / (aTotal - 1) : 0;
+    // Source block edge point (nearest side to chip)
+    let x1, y1;
+    const fromTop = fr.top - cr.top + scrollT;
+    const fromBot = fr.bottom - cr.top + scrollT;
+    const fromL = fr.left - cr.left + scrollL;
+    const fromR = fr.right - cr.left + scrollL;
 
-    const x1 = fr.left + fr.width / 2 + dOffset - cr.left + scrollL;
-    const y1 = fr.bottom - cr.top + scrollT;
-    const x2 = tr.left + tr.width / 2 + aOffset - cr.left + scrollL;
-    const y2 = tr.top - cr.top + scrollT;
+    if (chipCY > fromBot) {
+      // chip is below source block
+      x1 = fromCX; y1 = fromBot;
+    } else if (chipCY < fromTop) {
+      // chip is above source block
+      x1 = fromCX; y1 = fromTop;
+    } else if (chipCX < fromL) {
+      x1 = fromL; y1 = fromCY;
+    } else {
+      x1 = fromR; y1 = fromCY;
+    }
+
+    // Chip edge point (nearest side to source block)
+    const chTop = ch.top - cr.top + scrollT;
+    const chBot = ch.bottom - cr.top + scrollT;
+    const chL = ch.left - cr.left + scrollL;
+    const chR = ch.right - cr.left + scrollL;
+
+    let x2, y2;
+    if (fromCY < chTop) {
+      x2 = chipCX; y2 = chTop;
+    } else if (fromCY > chBot) {
+      x2 = chipCX; y2 = chBot;
+    } else if (fromCX < chL) {
+      x2 = chL; y2 = chipCY;
+    } else {
+      x2 = chR; y2 = chipCY;
+    }
 
     const dy = y2 - y1;
+    const dx = x2 - x1;
 
     let d;
     if (Math.abs(dy) < 20) {
-      // Same row: arc above
+      // Roughly same height: arc
       const midY = Math.min(y1, y2) - 50;
-      const sx1 = fr.left + fr.width / 2 - cr.left + scrollL;
-      const sy1 = fr.top - cr.top + scrollT;
-      const sx2 = tr.left + tr.width / 2 - cr.left + scrollL;
-      const sy2 = tr.top - cr.top + scrollT;
-      d = `M ${sx1} ${sy1} C ${sx1} ${midY}, ${sx2} ${midY}, ${sx2} ${sy2}`;
+      d = `M ${x1} ${y1} C ${x1} ${midY}, ${x2} ${midY}, ${x2} ${y2}`;
     } else {
-      // Vertical: S-curve with offset
+      // S-curve
       const midY = (y1 + y2) / 2;
       d = `M ${x1} ${y1} C ${x1} ${midY}, ${x2} ${midY}, ${x2} ${y2}`;
     }
@@ -477,13 +502,14 @@ function drawEdges() {
     path.dataset.role = e.role;
     svg.appendChild(path);
 
-    // Arrowhead
-    const ax = x2, ay = y2;
-    const arrow = document.createElementNS('http://www.w3.org/2000/svg', 'polygon');
-    arrow.setAttribute('points', `${ax-4},${ay-6} ${ax},${ay} ${ax+4},${ay-6}`);
-    arrow.classList.add('edge-head', 'role-' + e.role);
-    arrow.dataset.eid = e.id;
-    svg.appendChild(arrow);
+    // Small circle at chip end instead of arrowhead (identity marker)
+    const dot = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+    dot.setAttribute('cx', x2);
+    dot.setAttribute('cy', y2);
+    dot.setAttribute('r', 3.5);
+    dot.classList.add('edge-head', 'role-' + e.role);
+    dot.dataset.eid = e.id;
+    svg.appendChild(dot);
   });
 }
 
@@ -590,6 +616,49 @@ function resetView(btn) {
 function setActiveBtn(btn) {
   document.querySelectorAll('.controls button').forEach(b => b.classList.remove('active'));
   btn.classList.add('active');
+}
+
+// ── Actor toggle ──
+let activeActor = null;
+
+function toggleActor(name) {
+  if (activeActor === name) {
+    activeActor = null;
+    clearHighlights();
+    document.querySelectorAll('.actor.active').forEach(el => el.classList.remove('active'));
+    return;
+  }
+  activeActor = name;
+
+  // Highlight actor labels
+  document.querySelectorAll('.actor').forEach(el => {
+    el.classList.toggle('active', el.textContent === name);
+  });
+
+  // Find blocks containing this actor
+  const matchIds = new Set(G.nodes.filter(n => n.actors && n.actors.includes(name)).map(n => n.id));
+
+  // Find edges connecting matched blocks
+  const connEdges = new Set();
+  G.edges.forEach(e => {
+    if (matchIds.has(e.from) && matchIds.has(e.to)) connEdges.add(e.id);
+  });
+
+  document.querySelectorAll('.block').forEach(el => {
+    el.classList.toggle('dim', !matchIds.has(el.dataset.nid));
+    el.classList.remove('hl');
+  });
+  document.querySelectorAll('.edge-line').forEach(el => {
+    el.classList.toggle('dim', !connEdges.has(el.dataset.eid));
+    el.classList.toggle('hl', connEdges.has(el.dataset.eid));
+  });
+  document.querySelectorAll('.edge-head').forEach(el => {
+    el.classList.toggle('dim', !connEdges.has(el.dataset.eid));
+  });
+
+  document.getElementById('info').textContent = `${name}: ${matchIds.size} nodes`;
+  // Reset top controls
+  document.querySelectorAll('.controls button').forEach(b => b.classList.remove('active'));
 }
 
 window.addEventListener('resize', () => requestAnimationFrame(drawEdges));
