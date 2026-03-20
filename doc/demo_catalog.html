@@ -167,11 +167,13 @@
     font-size: 11px; color: var(--muted); line-height: 1.55;
     display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;
   }
+  .block-abstract {
+    margin-top: 4px; padding-top: 5px;
+    border-top: 1px solid #e8e0d8;
+  }
   .block-pattern {
-    font-size: 11px; font-weight: 600; color: #2a5a8a;
-    background: #e8f0f8; border: 1px solid #b8d0e8;
-    border-radius: 12px; padding: 2px 8px; display: inline-block;
-    margin-top: 2px;
+    font-size: 11px; color: #a09080; line-height: 1.5;
+    letter-spacing: .01em;
   }
   .block-actors {
     display: flex; flex-wrap: wrap; gap: 3px; margin-top: 2px;
@@ -184,10 +186,6 @@
   .actor:hover { color: #6a6058; border-color: #a89a88; }
   .actor.active { background: #4a4038; color: #f5f0e8; border-color: #4a4038; }
 
-  .block-type-marker {
-    position: absolute; top: 6px; right: 10px;
-    font-size: 13px; line-height: 1;
-  }
   .block-id {
     position: absolute; bottom: 5px; right: 10px;
     font-size: 11px; font-weight: 700; font-family: monospace;
@@ -409,12 +407,10 @@ function renderBlock(n) {
   html += `<div class="block-label">${n.label}</div>`;
   // Summary
   html += `<div class="block-summary">${n.summary}</div>`;
-  // Pattern (abstract type text, if exists)
-  if (n.pattern) {
-    html += `<div class="block-pattern">${n.pattern}</div>`;
-  }
-  // FW type marker (top-right)
-  html += `<div class="block-type-marker" style="color:${fwStyle.color}" title="${fwStyle.label}">${fwStyle.shape}</div>`;
+  // Abstract layer: pattern + FW type
+  html += `<div class="block-abstract">`;
+  html += `<div class="block-pattern"><span style="color:${fwStyle.color}">${fwStyle.shape}</span> ${n.pattern || ''}</div>`;
+  html += `</div>`;
   // Actors
   if (n.actors && n.actors.length > 0) {
     html += `<div class="block-actors">${n.actors.map(a => `<span class="actor" onclick="event.stopPropagation();toggleActor('${a}')">${a}</span>`).join('')}</div>`;
