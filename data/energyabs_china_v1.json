@@ -1,0 +1,1445 @@
+{
+  "meta": {
+    "version": "1.0",
+    "description": "EnergyAbs有向グラフ 中国史v1: 殷周(前1600)→中華人民共和国(1949) 約3500年の因果フロー",
+    "nodeCount": 50,
+    "edgeCount": 71,
+    "created": "2026-03-21"
+  },
+  "nodes": [
+    {
+      "id": "C001",
+      "label": "殷周革命と封建制の成立",
+      "summary": "殷（商）の暴政に対し周の武王が牧野の戦いで勝利。天命思想と封建制による広域統治モデルを確立した",
+      "actors": [
+        "武王",
+        "周公旦",
+        "紂王"
+      ],
+      "intensity": "high",
+      "timescale": "long",
+      "cluster": "PC0_殷周・春秋戦国",
+      "era": "前1046年頃",
+      "fwType": "power",
+      "pattern": "{暴政}への天命交替で{新統治秩序}を樹立する",
+      "bgType": "権力集中",
+      "releaseType": "権力移行",
+      "patternType": "権力集中→権力移行"
+    },
+    {
+      "id": "C002",
+      "label": "春秋時代の覇者政治",
+      "summary": "周の権威衰退とともに諸侯が台頭。斉の桓公・晋の文公ら覇者が会盟を主導し、実質的な多極体制が形成された",
+      "actors": [
+        "斉桓公",
+        "晋文公",
+        "楚荘王"
+      ],
+      "intensity": "medium",
+      "timescale": "long",
+      "cluster": "PC0_殷周・春秋戦国",
+      "era": "前770–前476年",
+      "fwType": "conflict",
+      "pattern": "{中央権威の衰退}が{覇者間競争}を生み出す",
+      "bgType": "制度疲弊",
+      "releaseType": "戦闘",
+      "patternType": "制度疲弊→戦闘"
+    },
+    {
+      "id": "C003",
+      "label": "戦国時代と諸子百家",
+      "summary": "覇者体制が崩壊し七雄が領土拡大を競う全面戦争時代に突入。同時に儒家・法家・道家など思想の百花繚乱が起きた",
+      "actors": [
+        "孟子",
+        "荀子",
+        "韓非子",
+        "商鞅"
+      ],
+      "intensity": "high",
+      "timescale": "long",
+      "cluster": "PC0_殷周・春秋戦国",
+      "era": "前475–前221年",
+      "fwType": "conflict",
+      "pattern": "{多極競争}が{思想革新と軍事革新}を同時に駆動する",
+      "bgType": "勢力対立",
+      "releaseType": "戦闘",
+      "patternType": "勢力対立→戦闘",
+      "absorbed": [
+        {
+          "label": "商鞅の変法",
+          "era": "前356年",
+          "type": "component"
+        },
+        {
+          "label": "長平の戦い",
+          "era": "前260年",
+          "type": "component"
+        }
+      ]
+    },
+    {
+      "id": "C004",
+      "label": "秦の統一と法家体制",
+      "summary": "商鞅以来の法家改革で強大化した秦が六国を滅ぼし中国を統一。始皇帝は度量衡・文字・法律を統一し、中央集権の官僚国家を建設した",
+      "actors": [
+        "始皇帝",
+        "李斯"
+      ],
+      "intensity": "high",
+      "timescale": "short",
+      "cluster": "PC1_秦漢帝国",
+      "era": "前221–前210年",
+      "fwType": "institution",
+      "pattern": "{軍事的優位}と{法制度革新}で{統一帝国}を創出する",
+      "bgType": "権力集中",
+      "releaseType": "制度化",
+      "patternType": "権力集中→制度化"
+    },
+    {
+      "id": "C005",
+      "label": "秦の崩壊と楚漢戦争",
+      "summary": "始皇帝の急死後、苛酷な法治への反発から陳勝・呉広の乱が勃発。項羽と劉邦の争覇を経て劉邦が漢を建国した",
+      "actors": [
+        "項羽",
+        "劉邦",
+        "陳勝"
+      ],
+      "intensity": "high",
+      "timescale": "short",
+      "cluster": "PC1_秦漢帝国",
+      "era": "前210–前202年",
+      "fwType": "collapse",
+      "pattern": "{急激な中央集権化}への反発が{体制崩壊}を引き起こす",
+      "bgType": "制度的矛盾",
+      "releaseType": "崩壊",
+      "patternType": "制度的矛盾→崩壊"
+    },
+    {
+      "id": "C006",
+      "label": "前漢の繁栄と儒教国教化",
+      "summary": "武帝期に儒教を国教化し、科挙の原型となる察挙制を導入。匈奴への遠征、シルクロード交易で帝国は最盛期を迎えた",
+      "actors": [
+        "漢武帝",
+        "董仲舒",
+        "張騫"
+      ],
+      "intensity": "high",
+      "timescale": "long",
+      "cluster": "PC1_秦漢帝国",
+      "era": "前202–前8年",
+      "fwType": "institution",
+      "pattern": "{統一帝国}が{思想統合}で正統性を強化する",
+      "bgType": "思想潮流",
+      "releaseType": "制度化",
+      "patternType": "思想潮流→制度化",
+      "absorbed": [
+        {
+          "label": "塩鉄論争",
+          "era": "前81年",
+          "type": "component"
+        },
+        {
+          "label": "張騫の西域派遣",
+          "era": "前139年",
+          "type": "component"
+        }
+      ]
+    },
+    {
+      "id": "C007",
+      "label": "王莽の簒奪と新朝の失敗",
+      "summary": "外戚の王莽が禅譲で新朝を建てたが、復古的改革が混乱を招き赤眉の乱で滅亡。光武帝が後漢を再建した",
+      "actors": [
+        "王莽",
+        "光武帝"
+      ],
+      "intensity": "medium",
+      "timescale": "short",
+      "cluster": "PC1_秦漢帝国",
+      "era": "8–25年",
+      "fwType": "collapse",
+      "pattern": "{理想主義的改革}が現実と乖離し{体制崩壊}を招く",
+      "bgType": "制度的矛盾",
+      "releaseType": "崩壊",
+      "patternType": "制度的矛盾→崩壊"
+    },
+    {
+      "id": "C008",
+      "label": "後漢の衰退と党錮の禁",
+      "summary": "外戚と宦官の権力争いが激化。清流派知識人の弾圧（党錮の禁）で支配層の分裂が決定的となり、黄巾の乱へ至る",
+      "actors": [
+        "宦官勢力",
+        "清流派"
+      ],
+      "intensity": "medium",
+      "timescale": "long",
+      "cluster": "PC2_分裂と再統一",
+      "era": "100年代–184年",
+      "fwType": "drift",
+      "pattern": "{宮廷内の権力闘争}が{統治基盤の腐食}を進行させる",
+      "bgType": "権力集中",
+      "releaseType": "崩壊",
+      "patternType": "権力集中→崩壊"
+    },
+    {
+      "id": "C009",
+      "label": "三国時代",
+      "summary": "後漢崩壊後、魏・蜀・呉の三国が鼎立。曹操の屯田制、諸葛亮の北伐など各国が生存をかけて競争した",
+      "actors": [
+        "曹操",
+        "劉備",
+        "孫権",
+        "諸葛亮"
+      ],
+      "intensity": "high",
+      "timescale": "medium",
+      "cluster": "PC2_分裂と再統一",
+      "era": "220–280年",
+      "fwType": "conflict",
+      "pattern": "{帝国崩壊}後に{群雄割拠}が生じる",
+      "bgType": "勢力対立",
+      "releaseType": "戦闘",
+      "patternType": "勢力対立→戦闘"
+    },
+    {
+      "id": "C010",
+      "label": "五胡十六国と南北朝の分裂",
+      "summary": "西晋の八王の乱を契機に北方遊牧民が華北に侵入。以後約270年にわたる南北分裂時代が続き、仏教が広範に浸透した",
+      "actors": [
+        "匈奴",
+        "鮮卑",
+        "東晋"
+      ],
+      "intensity": "high",
+      "timescale": "long",
+      "cluster": "PC2_分裂と再統一",
+      "era": "304–589年",
+      "fwType": "collapse",
+      "pattern": "{内部分裂}が{外部勢力の侵入}を許し長期分裂に至る",
+      "bgType": "外生",
+      "releaseType": "崩壊",
+      "patternType": "外生→崩壊"
+    },
+    {
+      "id": "C010b",
+      "label": "仏教の浸透と土着化",
+      "summary": "南北朝の混乱期に仏教が急速に普及。中国的に変容し禅宗・浄土宗などの土着化が進み、思想・芸術に深い影響を与えた",
+      "actors": [
+        "鳩摩羅什",
+        "達磨"
+      ],
+      "intensity": "medium",
+      "timescale": "long",
+      "cluster": "PC2_分裂と再統一",
+      "era": "4–6世紀",
+      "fwType": "drift",
+      "pattern": "{社会混乱}が{外来思想の受容}を加速する",
+      "bgType": "思想潮流",
+      "releaseType": "制度化",
+      "patternType": "思想潮流→制度化"
+    },
+    {
+      "id": "C011",
+      "label": "隋の統一と大運河建設",
+      "summary": "隋の文帝が南北を統一。煬帝は大運河を建設し南北の経済を結合したが、高句麗遠征の失敗と過酷な労役で急速に衰退した",
+      "actors": [
+        "隋文帝",
+        "隋煬帝"
+      ],
+      "intensity": "high",
+      "timescale": "short",
+      "cluster": "PC3_隋唐帝国",
+      "era": "581–618年",
+      "fwType": "institution",
+      "pattern": "{分裂の終結}と{大規模インフラ}で統一を物質的に実現する",
+      "bgType": "権力集中",
+      "releaseType": "制度化",
+      "patternType": "権力集中→制度化"
+    },
+    {
+      "id": "C012",
+      "label": "唐の繁栄と律令体制",
+      "summary": "李淵・李世民が唐を建国。貞観の治で律令制・科挙・府兵制を整備し、国際的な大帝国として繁栄した",
+      "actors": [
+        "李世民",
+        "武則天",
+        "玄宗"
+      ],
+      "intensity": "high",
+      "timescale": "long",
+      "cluster": "PC3_隋唐帝国",
+      "era": "618–755年",
+      "fwType": "institution",
+      "pattern": "{前王朝の制度遺産}を継承・洗練して{長期安定体制}を築く",
+      "bgType": "権力集中",
+      "releaseType": "制度化",
+      "patternType": "権力集中→制度化",
+      "absorbed": [
+        {
+          "label": "貞観の治",
+          "era": "626–649年",
+          "type": "component"
+        },
+        {
+          "label": "武則天の即位",
+          "era": "690年",
+          "type": "component"
+        }
+      ]
+    },
+    {
+      "id": "C013",
+      "label": "安史の乱と唐の衰退",
+      "summary": "節度使安禄山が反乱を起こし唐は壊滅的打撃を受けた。以後、藩鎮割拠・宦官専横が恒常化し中央権力は弱体化した",
+      "actors": [
+        "安禄山",
+        "玄宗",
+        "郭子儀"
+      ],
+      "intensity": "high",
+      "timescale": "short",
+      "cluster": "PC3_隋唐帝国",
+      "era": "755–763年",
+      "fwType": "battle",
+      "pattern": "{辺境軍事力の肥大化}が{中央への反乱}として爆発する",
+      "bgType": "制度的矛盾",
+      "releaseType": "戦闘",
+      "patternType": "制度的矛盾→戦闘"
+    },
+    {
+      "id": "C014",
+      "label": "五代十国の分裂",
+      "summary": "唐滅亡後、華北で五つの短命王朝が興亡し、南方には十の地方政権が並立した。武人政治と不安定が常態化した",
+      "actors": [
+        "朱全忠",
+        "石敬瑭"
+      ],
+      "intensity": "medium",
+      "timescale": "medium",
+      "cluster": "PC4_宋と北方民族",
+      "era": "907–960年",
+      "fwType": "conflict",
+      "pattern": "{帝国崩壊}後の{軍閥割拠}が短命王朝の連鎖を生む",
+      "bgType": "勢力対立",
+      "releaseType": "戦闘",
+      "patternType": "勢力対立→戦闘"
+    },
+    {
+      "id": "C015",
+      "label": "北宋の文治主義",
+      "summary": "趙匡胤が五代の混乱を収束し宋を建国。文官優位の統治体制を確立し、科挙を本格化させた。経済・文化は空前の発展を遂げた",
+      "actors": [
+        "趙匡胤",
+        "王安石"
+      ],
+      "intensity": "high",
+      "timescale": "long",
+      "cluster": "PC4_宋と北方民族",
+      "era": "960–1127年",
+      "fwType": "institution",
+      "pattern": "{武人支配への反省}から{文治・官僚制}を徹底化する",
+      "bgType": "思想潮流",
+      "releaseType": "制度化",
+      "patternType": "思想潮流→制度化",
+      "absorbed": [
+        {
+          "label": "王安石の新法",
+          "era": "1069–1085年",
+          "type": "component"
+        },
+        {
+          "label": "活版印刷の発明",
+          "era": "11世紀",
+          "type": "component"
+        }
+      ]
+    },
+    {
+      "id": "C015b",
+      "label": "遼・金の圧迫と燕雲十六州問題",
+      "summary": "契丹（遼）が燕雲十六州を領有し北宋の安全保障上の脅威に。後に女真族の金が遼を滅ぼし、さらに宋を圧迫した",
+      "actors": [
+        "契丹",
+        "女真",
+        "北宋"
+      ],
+      "intensity": "medium",
+      "timescale": "long",
+      "cluster": "PC4_宋と北方民族",
+      "era": "936–1127年",
+      "fwType": "conflict",
+      "pattern": "{北方遊牧勢力}が{農耕帝国}を恒常的に圧迫する",
+      "bgType": "外生",
+      "releaseType": "戦闘",
+      "patternType": "外生→戦闘"
+    },
+    {
+      "id": "C016",
+      "label": "靖康の変と南宋の成立",
+      "summary": "金が北宋の首都開封を陥落させ皇帝を捕虜にした（靖康の変）。趙構が江南に南宋を建て、以後150年の南北対峙が続いた",
+      "actors": [
+        "金",
+        "趙構",
+        "岳飛"
+      ],
+      "intensity": "high",
+      "timescale": "short",
+      "cluster": "PC4_宋と北方民族",
+      "era": "1127年",
+      "fwType": "collapse",
+      "pattern": "{外部軍事力}が{内部の構造的弱点}を突いて体制を崩壊させる",
+      "bgType": "外生",
+      "releaseType": "崩壊",
+      "patternType": "外生→崩壊"
+    },
+    {
+      "id": "C017",
+      "label": "モンゴル帝国の征服と元朝",
+      "summary": "チンギス・ハンの後継者フビライが南宋を滅ぼし元を建国。ユーラシア規模の交易網が形成され、中国は世界体制に組み込まれた",
+      "actors": [
+        "フビライ",
+        "マルコ・ポーロ"
+      ],
+      "intensity": "high",
+      "timescale": "medium",
+      "cluster": "PC5_モンゴルと明",
+      "era": "1271–1368年",
+      "fwType": "shock",
+      "pattern": "{ユーラシア規模の軍事力}が{既存の地域秩序}を破壊・再編する",
+      "bgType": "外生",
+      "releaseType": "衝撃",
+      "patternType": "外生→衝撃"
+    },
+    {
+      "id": "C018",
+      "label": "紅巾の乱と明の建国",
+      "summary": "元末の飢饉と疫病を背景に紅巾の乱が勃発。朱元璋が頭角を現し元を北方に追って明を建国。厳格な中央集権体制を構築した",
+      "actors": [
+        "朱元璋"
+      ],
+      "intensity": "high",
+      "timescale": "short",
+      "cluster": "PC5_モンゴルと明",
+      "era": "1351–1368年",
+      "fwType": "power",
+      "pattern": "{異民族支配への反発}と{社会危機}から{民族王朝}が再建される",
+      "bgType": "複合背景",
+      "releaseType": "権力移行",
+      "patternType": "複合背景→権力移行"
+    },
+    {
+      "id": "C019",
+      "label": "明初の専制強化と朝貢体制",
+      "summary": "洪武帝は丞相を廃止し皇帝独裁を強化。永楽帝は鄭和の大航海を行い朝貢体制を東南アジアまで拡大した",
+      "actors": [
+        "洪武帝",
+        "永楽帝",
+        "鄭和"
+      ],
+      "intensity": "high",
+      "timescale": "medium",
+      "cluster": "PC5_モンゴルと明",
+      "era": "1368–1424年",
+      "fwType": "institution",
+      "pattern": "{新王朝}が{制度の過剰強化}で安定を図る",
+      "bgType": "権力集中",
+      "releaseType": "制度化",
+      "patternType": "権力集中→制度化",
+      "absorbed": [
+        {
+          "label": "鄭和の南海遠征",
+          "era": "1405–1433年",
+          "type": "component"
+        },
+        {
+          "label": "靖難の変",
+          "era": "1399–1402年",
+          "type": "component"
+        }
+      ]
+    },
+    {
+      "id": "C020",
+      "label": "明中期の停滞と海禁政策",
+      "summary": "土木の変で皇帝がモンゴルの捕虜に。以後、宦官の専横・海禁政策の強化で明は内向化し、密貿易（倭寇）が横行した",
+      "actors": [
+        "宦官勢力",
+        "倭寇"
+      ],
+      "intensity": "medium",
+      "timescale": "long",
+      "cluster": "PC5_モンゴルと明",
+      "era": "1449–1570年代",
+      "fwType": "drift",
+      "pattern": "{内向化政策}が{非公式経済}と{統治の硬直化}を招く",
+      "bgType": "制度疲弊",
+      "releaseType": "崩壊",
+      "patternType": "制度疲弊→崩壊",
+      "absorbed": [
+        {
+          "label": "土木の変",
+          "era": "1449年",
+          "type": "component"
+        }
+      ]
+    },
+    {
+      "id": "C021",
+      "label": "明末の危機と李自成の乱",
+      "summary": "小氷期による飢饉・財政破綻・後金の侵攻が重なり、李自成の農民反乱が北京を陥落させ明は滅亡した",
+      "actors": [
+        "李自成",
+        "崇禎帝"
+      ],
+      "intensity": "high",
+      "timescale": "short",
+      "cluster": "PC6_清帝国",
+      "era": "1628–1644年",
+      "fwType": "collapse",
+      "pattern": "{気候変動・財政破綻・外圧}の三重危機が{体制崩壊}を引き起こす",
+      "bgType": "複合背景",
+      "releaseType": "崩壊",
+      "patternType": "複合背景→崩壊"
+    },
+    {
+      "id": "C022",
+      "label": "清の入関と中国支配",
+      "summary": "呉三桂が山海関を開き清（後金）が北京に入城。以後数十年かけて全中国を統一し、満漢融合の統治体制を確立した",
+      "actors": [
+        "ドルゴン",
+        "呉三桂",
+        "順治帝"
+      ],
+      "intensity": "high",
+      "timescale": "medium",
+      "cluster": "PC6_清帝国",
+      "era": "1644–1683年",
+      "fwType": "power",
+      "pattern": "{内部崩壊}に乗じて{外部勢力}が新体制を樹立する",
+      "bgType": "外生",
+      "releaseType": "権力移行",
+      "patternType": "外生→権力移行"
+    },
+    {
+      "id": "C023",
+      "label": "康熙・雍正・乾隆の盛世",
+      "summary": "三代の名君による約130年の繁栄期。領土は過去最大に拡大し、人口は3億人を超え、文化的にも黄金時代を迎えた",
+      "actors": [
+        "康熙帝",
+        "雍正帝",
+        "乾隆帝"
+      ],
+      "intensity": "high",
+      "timescale": "long",
+      "cluster": "PC6_清帝国",
+      "era": "1661–1796年",
+      "fwType": "institution",
+      "pattern": "{異民族王朝}が{既存制度の継承と拡張}で長期安定を実現する",
+      "bgType": "権力集中",
+      "releaseType": "制度化",
+      "patternType": "権力集中→制度化"
+    },
+    {
+      "id": "C024",
+      "label": "白蓮教の乱と清の転換点",
+      "summary": "乾隆末期から官僚腐敗と人口圧力が顕在化。白蓮教の乱（1796-1804）は清の軍事的弱体化を露呈させ、衰退の始まりとなった",
+      "actors": [
+        "白蓮教",
+        "和珅"
+      ],
+      "intensity": "medium",
+      "timescale": "medium",
+      "cluster": "PC6_清帝国",
+      "era": "1796–1804年",
+      "fwType": "battle",
+      "pattern": "{長期繁栄}の後に{人口圧力と腐敗}が{反乱}として噴出する",
+      "bgType": "制度疲弊",
+      "releaseType": "戦闘",
+      "patternType": "制度疲弊→戦闘"
+    },
+    {
+      "id": "C025",
+      "label": "アヘン戦争と不平等条約体制",
+      "summary": "イギリスとの貿易摩擦からアヘン戦争が勃発。南京条約で香港割譲・開港を強いられ、中華世界秩序が根本から動揺した",
+      "actors": [
+        "イギリス",
+        "林則徐",
+        "道光帝"
+      ],
+      "intensity": "high",
+      "timescale": "short",
+      "cluster": "PC7_西洋衝撃と近代化",
+      "era": "1840–1842年",
+      "fwType": "shock",
+      "pattern": "{産業革命による軍事格差}が{伝統的秩序}を一方的に破壊する",
+      "bgType": "外生",
+      "releaseType": "衝撃",
+      "patternType": "外生→衝撃"
+    },
+    {
+      "id": "C026",
+      "label": "太平天国の乱",
+      "summary": "洪秀全がキリスト教的思想で太平天国を建国。14年間の内戦で推定2000万人が死亡し、清朝の統治基盤は決定的に弱体化した",
+      "actors": [
+        "洪秀全",
+        "曾国藩",
+        "李鴻章"
+      ],
+      "intensity": "high",
+      "timescale": "medium",
+      "cluster": "PC7_西洋衝撃と近代化",
+      "era": "1851–1864年",
+      "fwType": "battle",
+      "pattern": "{外来思想}と{社会危機}が結合し{大規模反乱}を生む",
+      "bgType": "複合背景",
+      "releaseType": "戦闘",
+      "patternType": "複合背景→戦闘"
+    },
+    {
+      "id": "C027",
+      "label": "洋務運動（中体西用）",
+      "summary": "李鴻章・曾国藩ら漢人官僚が西洋の軍事技術導入を推進。「中体西用」を掲げたが制度改革を伴わず限界があった",
+      "actors": [
+        "李鴻章",
+        "左宗棠",
+        "曾国藩"
+      ],
+      "intensity": "medium",
+      "timescale": "long",
+      "cluster": "PC7_西洋衝撃と近代化",
+      "era": "1861–1895年",
+      "fwType": "reform",
+      "pattern": "{外圧}への対応として{技術導入}を試みるが{制度改革}を伴わない",
+      "bgType": "外生",
+      "releaseType": "改革",
+      "patternType": "外生→改革"
+    },
+    {
+      "id": "C028",
+      "label": "日清戦争と洋務運動の破綻",
+      "summary": "日本に敗北し下関条約で台湾割譲・賠償金を課された。洋務運動の限界が露呈し、より根本的な改革の必要性が認識された",
+      "actors": [
+        "日本",
+        "李鴻章",
+        "伊藤博文"
+      ],
+      "intensity": "high",
+      "timescale": "short",
+      "cluster": "PC7_西洋衝撃と近代化",
+      "era": "1894–1895年",
+      "fwType": "battle",
+      "pattern": "{技術導入のみの近代化}が{制度的近代化を遂げた隣国}に敗れる",
+      "bgType": "外生",
+      "releaseType": "戦闘",
+      "patternType": "外生→戦闘"
+    },
+    {
+      "id": "C029",
+      "label": "戊戌の変法と挫折",
+      "summary": "康有為・梁啓超が光緒帝を動かし立憲君主制への改革を試みたが、西太后のクーデタで103日で挫折した",
+      "actors": [
+        "光緒帝",
+        "康有為",
+        "西太后"
+      ],
+      "intensity": "medium",
+      "timescale": "short",
+      "cluster": "PC7_西洋衝撃と近代化",
+      "era": "1898年",
+      "fwType": "reform",
+      "pattern": "{危機認識}から{急進的制度改革}を試みるが{守旧勢力}に阻まれる",
+      "bgType": "思想潮流",
+      "releaseType": "改革",
+      "patternType": "思想潮流→改革"
+    },
+    {
+      "id": "C030",
+      "label": "義和団事件と辛丑条約",
+      "summary": "排外主義の義和団を清朝が利用し列強に宣戦したが惨敗。八カ国連合軍が北京を占領し巨額賠償金を課された",
+      "actors": [
+        "義和団",
+        "西太后",
+        "八カ国連合"
+      ],
+      "intensity": "high",
+      "timescale": "short",
+      "cluster": "PC8_清末と革命",
+      "era": "1899–1901年",
+      "fwType": "battle",
+      "pattern": "{排外主義}が{国際的制裁}を招き{主権喪失}を加速する",
+      "bgType": "外生",
+      "releaseType": "戦闘",
+      "patternType": "外生→戦闘"
+    },
+    {
+      "id": "C031",
+      "label": "清末新政と立憲運動",
+      "summary": "義和団事件後、清朝は科挙廃止・新式軍隊・地方自治など近代化改革を実施したが、満州族支配への不満は収まらなかった",
+      "actors": [
+        "西太后",
+        "袁世凱"
+      ],
+      "intensity": "medium",
+      "timescale": "medium",
+      "cluster": "PC8_清末と革命",
+      "era": "1901–1911年",
+      "fwType": "reform",
+      "pattern": "{体制危機}への{遅すぎる改革}が逆に{革命の機運}を高める",
+      "bgType": "制度疲弊",
+      "releaseType": "改革",
+      "patternType": "制度疲弊→改革"
+    },
+    {
+      "id": "C032",
+      "label": "辛亥革命と清朝滅亡",
+      "summary": "武昌蜂起をきっかけに各省が独立を宣言。孫文が臨時大総統に就任し中華民国を建国、清朝は滅亡した",
+      "actors": [
+        "孫文",
+        "袁世凱",
+        "革命派"
+      ],
+      "intensity": "high",
+      "timescale": "short",
+      "cluster": "PC8_清末と革命",
+      "era": "1911–1912年",
+      "fwType": "collapse",
+      "pattern": "{異民族王朝}が{ナショナリズム}と{軍事的反乱}で崩壊する",
+      "bgType": "複合背景",
+      "releaseType": "崩壊",
+      "patternType": "複合背景→崩壊"
+    },
+    {
+      "id": "C033",
+      "label": "軍閥割拠時代",
+      "summary": "袁世凱の死後、中央政府は名目的存在となり各地の軍閥が実権を握った。統一的国家建設は頓挫した",
+      "actors": [
+        "袁世凱",
+        "段祺瑞",
+        "呉佩孚"
+      ],
+      "intensity": "medium",
+      "timescale": "medium",
+      "cluster": "PC9_民国と革命",
+      "era": "1916–1928年",
+      "fwType": "conflict",
+      "pattern": "{帝制崩壊}後に{軍事力を持つ地方勢力}が割拠する",
+      "bgType": "勢力対立",
+      "releaseType": "戦闘",
+      "patternType": "勢力対立→戦闘"
+    },
+    {
+      "id": "C034",
+      "label": "五四運動と新文化運動",
+      "summary": "パリ講和会議での山東問題を契機に学生運動が勃発。白話文学・民主科学（徳先生・賽先生）が知識人に浸透した",
+      "actors": [
+        "陳独秀",
+        "胡適",
+        "魯迅"
+      ],
+      "intensity": "medium",
+      "timescale": "medium",
+      "cluster": "PC9_民国と革命",
+      "era": "1915–1923年",
+      "fwType": "drift",
+      "pattern": "{国際的屈辱}が{知識人の覚醒}と{思想革新}を駆動する",
+      "bgType": "思想潮流",
+      "releaseType": "改革",
+      "patternType": "思想潮流→改革"
+    },
+    {
+      "id": "C035",
+      "label": "国共合作と北伐",
+      "summary": "孫文の主導でソ連の支援を受けた国民党と共産党が合作。蒋介石の北伐が成功し南京に国民政府を樹立した",
+      "actors": [
+        "孫文",
+        "蒋介石",
+        "中国共産党"
+      ],
+      "intensity": "high",
+      "timescale": "short",
+      "cluster": "PC9_民国と革命",
+      "era": "1924–1928年",
+      "fwType": "power",
+      "pattern": "{イデオロギー同盟}で{軍閥}を打倒し{統一政権}を樹立する",
+      "bgType": "勢力対立",
+      "releaseType": "権力移行",
+      "patternType": "勢力対立→権力移行"
+    },
+    {
+      "id": "C036",
+      "label": "国共分裂と白色テロ",
+      "summary": "蒋介石が上海クーデタで共産党を弾圧。以後、国民党と共産党の対立が中国政治の基本軸となった",
+      "actors": [
+        "蒋介石",
+        "毛沢東"
+      ],
+      "intensity": "high",
+      "timescale": "short",
+      "cluster": "PC9_民国と革命",
+      "era": "1927年",
+      "fwType": "conflict",
+      "pattern": "{革命同盟}内の{イデオロギー対立}が{暴力的分裂}に至る",
+      "bgType": "勢力対立",
+      "releaseType": "戦闘",
+      "patternType": "勢力対立→戦闘"
+    },
+    {
+      "id": "C037",
+      "label": "長征と毛沢東の指導権確立",
+      "summary": "国民党の包囲から逃れる1万2千キロの長征を通じて毛沢東が党の指導権を確立。延安を根拠地とした",
+      "actors": [
+        "毛沢東",
+        "周恩来",
+        "朱徳"
+      ],
+      "intensity": "high",
+      "timescale": "short",
+      "cluster": "PC10_日中戦争と内戦",
+      "era": "1934–1936年",
+      "fwType": "power",
+      "pattern": "{存亡の危機}が{指導者の正統性}を鍛え上げる",
+      "bgType": "勢力対立",
+      "releaseType": "権力移行",
+      "patternType": "勢力対立→権力移行"
+    },
+    {
+      "id": "C038",
+      "label": "日中戦争",
+      "summary": "盧溝橋事件をきっかけに全面戦争が勃発。国民政府は重慶に遷都し持久戦を展開、共産党はゲリラ戦で勢力を拡大した",
+      "actors": [
+        "蒋介石",
+        "毛沢東",
+        "日本"
+      ],
+      "intensity": "high",
+      "timescale": "long",
+      "cluster": "PC10_日中戦争と内戦",
+      "era": "1937–1945年",
+      "fwType": "battle",
+      "pattern": "{外国の侵略}が{国内の対立}を一時凍結し{両勢力とも変質}させる",
+      "bgType": "外生",
+      "releaseType": "戦闘",
+      "patternType": "外生→戦闘",
+      "absorbed": [
+        {
+          "label": "南京大虐殺",
+          "era": "1937年",
+          "type": "component"
+        },
+        {
+          "label": "百団大戦",
+          "era": "1940年",
+          "type": "component"
+        }
+      ]
+    },
+    {
+      "id": "C039",
+      "label": "国共内戦と共産党の勝利",
+      "summary": "日本の敗戦後、国共内戦が再開。共産党の農村からの包囲戦略が奏功し、国民党は台湾に撤退した",
+      "actors": [
+        "毛沢東",
+        "蒋介石",
+        "林彪"
+      ],
+      "intensity": "high",
+      "timescale": "short",
+      "cluster": "PC10_日中戦争と内戦",
+      "era": "1946–1949年",
+      "fwType": "battle",
+      "pattern": "{戦時の勢力変動}が{内戦での逆転}を生み出す",
+      "bgType": "勢力対立",
+      "releaseType": "戦闘",
+      "patternType": "勢力対立→戦闘"
+    },
+    {
+      "id": "C040",
+      "label": "中華人民共和国の成立",
+      "summary": "1949年10月1日、毛沢東が天安門で建国を宣言。土地改革・社会主義化を推進し、中国は冷戦構造の一極となった",
+      "actors": [
+        "毛沢東",
+        "周恩来"
+      ],
+      "intensity": "high",
+      "timescale": "short",
+      "cluster": "PC10_日中戦争と内戦",
+      "era": "1949年",
+      "fwType": "institution",
+      "pattern": "{革命勢力}が{新国家体制}を樹立する",
+      "bgType": "権力集中",
+      "releaseType": "制度化",
+      "patternType": "権力集中→制度化"
+    },
+    {
+      "id": "C004b",
+      "label": "秦の苛政と民衆の怨嗟",
+      "summary": "万里の長城・始皇帝陵の建設に数十万人を動員。焚書坑儒で知識人を弾圧。始皇帝の死後、圧政への不満が爆発的に噴出した",
+      "actors": [
+        "秦の民衆",
+        "陳勝"
+      ],
+      "intensity": "high",
+      "timescale": "short",
+      "cluster": "PC1_秦漢帝国",
+      "era": "前221–前210年",
+      "fwType": "conflict",
+      "pattern": "{急激な中央集権化}が{民衆の怨嗟}を極限まで蓄積する",
+      "bgType": "制度的矛盾",
+      "releaseType": "戦闘",
+      "patternType": "制度的矛盾→戦闘"
+    },
+    {
+      "id": "C006b",
+      "label": "前漢末の土地兼併と社会矛盾",
+      "summary": "豪族による土地兼併が進み小農が没落。格差拡大と災害が重なり、儒教的理想と現実の乖離が王莽の改革を招いた",
+      "actors": [
+        "豪族",
+        "小農"
+      ],
+      "intensity": "medium",
+      "timescale": "long",
+      "cluster": "PC1_秦漢帝国",
+      "era": "前1世紀",
+      "fwType": "drift",
+      "pattern": "{長期繁栄}の裏で{社会的格差}が拡大し{体制の正統性}を蝕む",
+      "bgType": "経済圧",
+      "releaseType": "崩壊",
+      "patternType": "経済圧→崩壊"
+    },
+    {
+      "id": "C012b",
+      "label": "唐の辺境軍事力の肥大化",
+      "summary": "均田制の崩壊に伴い府兵制から募兵制に移行。節度使に軍事・財政権が集中し、中央と辺境の力関係が逆転していった",
+      "actors": [
+        "節度使",
+        "安禄山"
+      ],
+      "intensity": "medium",
+      "timescale": "medium",
+      "cluster": "PC3_隋唐帝国",
+      "era": "710–755年",
+      "fwType": "drift",
+      "pattern": "{制度変質}により{辺境軍事力}が{中央}を凌駕する",
+      "bgType": "制度的矛盾",
+      "releaseType": "戦闘",
+      "patternType": "制度的矛盾→戦闘"
+    },
+    {
+      "id": "C017b",
+      "label": "元末の飢饉・疫病と民族的反発",
+      "summary": "黄河氾濫・疫病が頻発し民衆の苦難が増大。モンゴル人優遇の四等人制への漢人の不満が蓄積し、紅巾の乱につながった",
+      "actors": [
+        "漢人農民",
+        "白蓮教"
+      ],
+      "intensity": "high",
+      "timescale": "medium",
+      "cluster": "PC5_モンゴルと明",
+      "era": "1340年代",
+      "fwType": "conflict",
+      "pattern": "{異民族支配}と{自然災害}が{民族的反発}を極限まで蓄積する",
+      "bgType": "複合背景",
+      "releaseType": "戦闘",
+      "patternType": "複合背景→戦闘"
+    },
+    {
+      "id": "C021b",
+      "label": "明末の社会不安と後金の台頭",
+      "summary": "明末の農民反乱と財政破綻が進行する中、満洲でヌルハチが後金を建国し遼東を征服。明は内外の圧力に挟撃された",
+      "actors": [
+        "ヌルハチ",
+        "ホンタイジ"
+      ],
+      "intensity": "high",
+      "timescale": "medium",
+      "cluster": "PC6_清帝国",
+      "era": "1616–1644年",
+      "fwType": "conflict",
+      "pattern": "{内部崩壊}と{外部新興勢力}が同時に{既存体制}を圧迫する",
+      "bgType": "複合背景",
+      "releaseType": "戦闘",
+      "patternType": "複合背景→戦闘"
+    },
+    {
+      "id": "C023b",
+      "label": "清中後期の人口爆発と官僚腐敗",
+      "summary": "盛世の間に人口が1億から3億に急増し、耕地不足・食糧不足が深刻化。同時に官僚腐敗（和珅に象徴）が蔓延した",
+      "actors": [
+        "農民",
+        "和珅"
+      ],
+      "intensity": "medium",
+      "timescale": "long",
+      "cluster": "PC6_清帝国",
+      "era": "18世紀後半",
+      "fwType": "drift",
+      "pattern": "{人口圧力}と{官僚腐敗}が{帝国の統治能力}を蝕む",
+      "bgType": "経済圧",
+      "releaseType": "崩壊",
+      "patternType": "経済圧→崩壊"
+    },
+    {
+      "id": "C025b",
+      "label": "列強の中国分割と半植民地化",
+      "summary": "日清戦争後、列強が租借地・鉄道利権を獲得し中国の分割が進行。「瓜分の危機」が改革派・革命派双方を刺激した",
+      "actors": [
+        "列強各国"
+      ],
+      "intensity": "high",
+      "timescale": "medium",
+      "cluster": "PC7_西洋衝撃と近代化",
+      "era": "1895–1905年",
+      "fwType": "conflict",
+      "pattern": "{列強の競争的進出}が{民族的危機感}を急速に高める",
+      "bgType": "外生",
+      "releaseType": "戦闘",
+      "patternType": "外生→戦闘"
+    },
+    {
+      "id": "C030b",
+      "label": "清朝への不信と革命思想の浸透",
+      "summary": "義和団の失敗と辛丑条約の屈辱で清朝への信頼が決定的に喪失。孫文らの革命派が海外で組織を拡大し、国内でも浸透した",
+      "actors": [
+        "孫文",
+        "革命派"
+      ],
+      "intensity": "medium",
+      "timescale": "medium",
+      "cluster": "PC8_清末と革命",
+      "era": "1901–1911年",
+      "fwType": "drift",
+      "pattern": "{体制への不信}が{革命思想}の浸透を加速する",
+      "bgType": "思想潮流",
+      "releaseType": "改革",
+      "patternType": "思想潮流→改革"
+    }
+  ],
+  "edges": [
+    {
+      "from": "C001",
+      "to": "C002",
+      "role": "transforms",
+      "note": "封建制が覇者政治の前提に"
+    },
+    {
+      "from": "C002",
+      "to": "C003",
+      "role": "amplifies",
+      "note": "覇者間競争が全面戦争へ拡大"
+    },
+    {
+      "from": "C003",
+      "to": "C004",
+      "role": "triggers",
+      "note": "法家改革の秦が統一"
+    },
+    {
+      "from": "C004",
+      "to": "C005",
+      "role": "triggers",
+      "note": "苛酷な法治への反発"
+    },
+    {
+      "from": "C005",
+      "to": "C006",
+      "role": "transforms",
+      "note": "楚漢戦争から前漢成立"
+    },
+    {
+      "from": "C004",
+      "to": "C006",
+      "role": "inherits",
+      "note": "秦の郡県制・中央集権を継承"
+    },
+    {
+      "from": "C006",
+      "to": "C007",
+      "role": "triggers",
+      "note": "前漢末の矛盾が王莽の簒奪を許す"
+    },
+    {
+      "from": "C007",
+      "to": "C008",
+      "role": "transforms",
+      "note": "後漢成立後も構造問題は継続"
+    },
+    {
+      "from": "C006",
+      "to": "C008",
+      "role": "sustains",
+      "note": "漢の官僚制が後漢の権力構造を規定"
+    },
+    {
+      "from": "C008",
+      "to": "C009",
+      "role": "triggers",
+      "note": "後漢崩壊が三国分裂へ"
+    },
+    {
+      "from": "C009",
+      "to": "C010",
+      "role": "amplifies",
+      "note": "分裂状態が長期化・拡大"
+    },
+    {
+      "from": "C010",
+      "to": "C010b",
+      "role": "sustains",
+      "note": "混乱期が仏教受容を促進"
+    },
+    {
+      "from": "C010",
+      "to": "C011",
+      "role": "triggers",
+      "note": "南北朝統一への動き"
+    },
+    {
+      "from": "C010b",
+      "to": "C012",
+      "role": "sustains",
+      "note": "仏教文化が唐の国際性の基盤に"
+    },
+    {
+      "from": "C011",
+      "to": "C012",
+      "role": "inherits",
+      "note": "隋の制度を唐が継承・発展"
+    },
+    {
+      "from": "C012",
+      "to": "C013",
+      "role": "triggers",
+      "note": "節度使制度の矛盾が爆発"
+    },
+    {
+      "from": "C013",
+      "to": "C014",
+      "role": "amplifies",
+      "note": "安史の乱後の藩鎮割拠が五代へ"
+    },
+    {
+      "from": "C014",
+      "to": "C015",
+      "role": "triggers",
+      "note": "五代の混乱を北宋が収束"
+    },
+    {
+      "from": "C013",
+      "to": "C015",
+      "role": "sustains",
+      "note": "武人政治への反省が文治主義を駆動"
+    },
+    {
+      "from": "C015b",
+      "to": "C016",
+      "role": "triggers",
+      "note": "金の軍事圧力が靖康の変を引き起こす"
+    },
+    {
+      "from": "C015",
+      "to": "C015b",
+      "role": "amplifies",
+      "note": "文治主義の軍事的弱さが北方の脅威を増大"
+    },
+    {
+      "from": "C015",
+      "to": "C016",
+      "role": "sustains",
+      "note": "宋の経済力が南宋存続の基盤に"
+    },
+    {
+      "from": "C016",
+      "to": "C017",
+      "role": "triggers",
+      "note": "南宋をモンゴルが征服"
+    },
+    {
+      "from": "C017",
+      "to": "C018",
+      "role": "triggers",
+      "note": "元末の混乱から明建国"
+    },
+    {
+      "from": "C018",
+      "to": "C019",
+      "role": "transforms",
+      "note": "朱元璋の体制が明初の制度に"
+    },
+    {
+      "from": "C019",
+      "to": "C020",
+      "role": "amplifies",
+      "note": "海禁・専制の硬直化"
+    },
+    {
+      "from": "C020",
+      "to": "C021",
+      "role": "amplifies",
+      "note": "制度疲弊が明末危機を深刻化"
+    },
+    {
+      "from": "C021",
+      "to": "C022",
+      "role": "triggers",
+      "note": "明滅亡が清の入関を可能に"
+    },
+    {
+      "from": "C022",
+      "to": "C023",
+      "role": "transforms",
+      "note": "清の統治確立から盛世へ"
+    },
+    {
+      "from": "C023",
+      "to": "C024",
+      "role": "triggers",
+      "note": "長期繁栄の矛盾が白蓮教の乱で露呈"
+    },
+    {
+      "from": "C024",
+      "to": "C025",
+      "role": "amplifies",
+      "note": "清の弱体化がアヘン戦争の背景に"
+    },
+    {
+      "from": "C025",
+      "to": "C026",
+      "role": "amplifies",
+      "note": "不平等条約体制が社会不安を増大"
+    },
+    {
+      "from": "C025",
+      "to": "C027",
+      "role": "triggers",
+      "note": "西洋の衝撃が洋務運動を触発"
+    },
+    {
+      "from": "C026",
+      "to": "C027",
+      "role": "sustains",
+      "note": "太平天国鎮圧の漢人官僚が洋務運動の担い手に"
+    },
+    {
+      "from": "C027",
+      "to": "C028",
+      "role": "triggers",
+      "note": "洋務運動の成果が日清戦争で試される"
+    },
+    {
+      "from": "C028",
+      "to": "C029",
+      "role": "triggers",
+      "note": "敗戦が制度改革の必要性を痛感させる"
+    },
+    {
+      "from": "C029",
+      "to": "C030",
+      "role": "amplifies",
+      "note": "改革失敗が排外主義を強化"
+    },
+    {
+      "from": "C030",
+      "to": "C031",
+      "role": "triggers",
+      "note": "義和団の惨敗が本格改革を不可避に"
+    },
+    {
+      "from": "C031",
+      "to": "C032",
+      "role": "amplifies",
+      "note": "遅すぎる改革が革命機運を高める"
+    },
+    {
+      "from": "C028",
+      "to": "C032",
+      "role": "sustains",
+      "note": "日清敗戦以来のナショナリズムが革命を支える"
+    },
+    {
+      "from": "C032",
+      "to": "C033",
+      "role": "triggers",
+      "note": "清朝滅亡後の権力真空が軍閥割拠に"
+    },
+    {
+      "from": "C032",
+      "to": "C034",
+      "role": "sustains",
+      "note": "共和制の理念が新文化運動の土壌に"
+    },
+    {
+      "from": "C034",
+      "to": "C035",
+      "role": "amplifies",
+      "note": "知識人の覚醒が革命運動を強化"
+    },
+    {
+      "from": "C033",
+      "to": "C035",
+      "role": "triggers",
+      "note": "軍閥打倒のために北伐が発動"
+    },
+    {
+      "from": "C035",
+      "to": "C036",
+      "role": "triggers",
+      "note": "北伐成功後の権力闘争で国共分裂"
+    },
+    {
+      "from": "C036",
+      "to": "C037",
+      "role": "triggers",
+      "note": "弾圧が長征を強いる"
+    },
+    {
+      "from": "C036",
+      "to": "C038",
+      "role": "sustains",
+      "note": "国共対立が日中戦争の構造を規定"
+    },
+    {
+      "from": "C037",
+      "to": "C038",
+      "role": "sustains",
+      "note": "毛沢東の指導権が戦時戦略を決定"
+    },
+    {
+      "from": "C038",
+      "to": "C039",
+      "role": "triggers",
+      "note": "日本敗戦で国共内戦再開"
+    },
+    {
+      "from": "C037",
+      "to": "C039",
+      "role": "amplifies",
+      "note": "共産党の農村基盤が内戦で決定的優位に"
+    },
+    {
+      "from": "C039",
+      "to": "C040",
+      "role": "transforms",
+      "note": "内戦勝利から建国へ"
+    },
+    {
+      "from": "C017",
+      "to": "W030",
+      "role": "sustains",
+      "note": "モンゴル帝国が欧州にも影響"
+    },
+    {
+      "from": "C015b",
+      "to": "C017",
+      "role": "amplifies",
+      "note": "北方遊牧民の恒常的圧迫がモンゴルの基盤"
+    },
+    {
+      "from": "C004",
+      "to": "C004b",
+      "role": "triggers",
+      "note": "秦の制度が苛政を生む"
+    },
+    {
+      "from": "C004b",
+      "to": "C005",
+      "role": "amplifies",
+      "note": "怨嗟の蓄積が反乱を爆発させる"
+    },
+    {
+      "from": "C006",
+      "to": "C006b",
+      "role": "transforms",
+      "note": "前漢の繁栄が格差を拡大"
+    },
+    {
+      "from": "C006b",
+      "to": "C007",
+      "role": "amplifies",
+      "note": "社会矛盾が王莽の改革を招く"
+    },
+    {
+      "from": "C012",
+      "to": "C012b",
+      "role": "transforms",
+      "note": "唐の制度変質が辺境の肥大化に"
+    },
+    {
+      "from": "C012b",
+      "to": "C013",
+      "role": "amplifies",
+      "note": "節度使の力が安史の乱を可能に"
+    },
+    {
+      "from": "C017",
+      "to": "C017b",
+      "role": "triggers",
+      "note": "元の支配が民族的反発を生む"
+    },
+    {
+      "from": "C017b",
+      "to": "C018",
+      "role": "amplifies",
+      "note": "蓄積した不満が紅巾の乱で爆発"
+    },
+    {
+      "from": "C021",
+      "to": "C021b",
+      "role": "sustains",
+      "note": "明末の混乱が後金の台頭を可能に"
+    },
+    {
+      "from": "C021b",
+      "to": "C022",
+      "role": "amplifies",
+      "note": "内外の圧力が清の入関を不可避に"
+    },
+    {
+      "from": "C023",
+      "to": "C023b",
+      "role": "transforms",
+      "note": "盛世の繁栄が人口圧力を生む"
+    },
+    {
+      "from": "C023b",
+      "to": "C024",
+      "role": "amplifies",
+      "note": "人口圧力と腐敗が白蓮教の乱の背景"
+    },
+    {
+      "from": "C028",
+      "to": "C025b",
+      "role": "triggers",
+      "note": "日清敗戦が列強の分割を加速"
+    },
+    {
+      "from": "C025b",
+      "to": "C029",
+      "role": "amplifies",
+      "note": "分割の危機が改革の切迫感を高める"
+    },
+    {
+      "from": "C025b",
+      "to": "C028",
+      "role": "sustains",
+      "note": "半植民地状態が洋務運動の限界を規定"
+    },
+    {
+      "from": "C030",
+      "to": "C030b",
+      "role": "triggers",
+      "note": "義和団の失敗が革命思想の浸透を加速"
+    },
+    {
+      "from": "C030b",
+      "to": "C031",
+      "role": "amplifies",
+      "note": "革命思想が清末新政を追い立てる"
+    },
+    {
+      "from": "C030b",
+      "to": "C032",
+      "role": "amplifies",
+      "note": "革命思想の浸透が辛亥革命の基盤"
+    }
+  ]
+}

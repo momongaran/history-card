@@ -2,8 +2,8 @@
   "meta": {
     "version": "1.0",
     "description": "EnergyAbs有向グラフ 欧州史v1: エーゲ文明(前3000)→冷戦終結(1991) 約5000年の因果フロー",
-    "nodeCount": 62,
-    "edgeCount": 97,
+    "nodeCount": 63,
+    "edgeCount": 99,
     "created": "2026-03-21"
   },
   "nodes": [
@@ -1472,6 +1472,24 @@
           "type": "component"
         }
       ]
+    },
+    {
+      "id": "W018b",
+      "label": "フランク貴族の自立化と後継者間対立",
+      "summary": "カール大帝の死後、帝国内のフランク貴族が自立傾向を強め、ルートヴィヒ敬虔帝の三子が帝国分割を巡って対立を深めた",
+      "actors": [
+        "フランク貴族",
+        "ルートヴィヒ敬虔帝の三子"
+      ],
+      "intensity": "medium",
+      "timescale": "medium",
+      "cluster": "P3_ゲルマン・フランク王国",
+      "era": "814年–843年",
+      "fwType": "drift",
+      "pattern": "{統一帝国}の{貴族自立化}と{後継者対立}が分裂圧力を蓄積する",
+      "bgType": "権力分散",
+      "releaseType": "",
+      "patternType": "権力分散→蓄積"
     }
   ],
   "edges": [
@@ -2056,6 +2074,18 @@
       "to": "W057",
       "role": "triggers",
       "note": "蓄積された経済停滞と東欧の不満がベルリンの壁崩壊を引き起こした"
+    },
+    {
+      "from": "W018",
+      "to": "W018b",
+      "role": "triggers",
+      "note": "カール大帝が築いた広大な帝国が、死後に後継者間の分割争いの種となった"
+    },
+    {
+      "from": "W018b",
+      "to": "W019",
+      "role": "amplifies",
+      "note": "貴族の自立化と後継者対立が帝国分裂を不可避にした"
     }
   ]
 }

@@ -1,0 +1,833 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>世界史因果フレーム図鑑 ― レーン表示</title>
+<style>
+  :root {
+    --bg: #f0ebe0;
+    --paper: #fffdf8;
+    --ink: #28231e;
+    --muted: #6a6058;
+    --line: #c9b89e;
+    --accent: #5c3d1e;
+    --shadow: 0 6px 20px rgba(40,28,14,.08);
+    --block-w: 280px;
+    --block-radius: 12px;
+    --lane-gap: 12px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", sans-serif;
+    background: linear-gradient(160deg, #f5efe3 0%, #ede5d5 100%);
+    color: var(--ink);
+    min-height: 100vh;
+  }
+  .page { max-width: 100%; margin: 0 auto; padding: 16px 16px 80px; }
+  .header { margin-bottom: 10px; border-left: 4px solid var(--accent); padding-left: 16px; }
+  h1 { font-size: 20px; color: var(--accent); letter-spacing: .06em; }
+  .sub { margin-top: 3px; font-size: 12px; color: var(--muted); }
+
+  /* Controls */
+  .controls {
+    display: flex; gap: 8px; margin-bottom: 10px; flex-wrap: wrap; align-items: center;
+  }
+  .controls button {
+    font-family: inherit; font-size: 11px; padding: 4px 10px;
+    border: 1.5px solid var(--line); border-radius: 18px;
+    background: var(--paper); color: var(--muted); cursor: pointer; transition: all .2s;
+  }
+  .controls button:hover, .controls button.active {
+    background: var(--accent); color: #fff; border-color: var(--accent);
+  }
+  .ctrl-info { font-size: 11px; color: var(--muted); margin-left: auto; }
+
+  .controls-row2 {
+    display: flex; gap: 5px; margin-bottom: 10px; flex-wrap: wrap; align-items: center;
+  }
+  .controls-row2 .sep { width: 1px; height: 18px; background: var(--line); margin: 0 3px; }
+  .domain-btn {
+    font-family: inherit; font-size: 10px; padding: 3px 8px;
+    border: 1.5px solid var(--line); border-radius: 14px;
+    background: var(--paper); color: var(--muted); cursor: pointer; transition: all .2s;
+    font-weight: 600;
+  }
+  .domain-btn:hover { background: #e8e0d8; }
+  .domain-btn.active { color: #fff; border-color: transparent; }
+  .fwtype-btn {
+    font-family: inherit; font-size: 10px; padding: 2px 7px;
+    border: 1.5px solid var(--line); border-radius: 12px;
+    background: var(--paper); color: var(--muted); cursor: pointer; transition: all .2s;
+  }
+  .fwtype-btn:hover { opacity: 0.8; }
+  .fwtype-btn.active { color: #fff; border-color: transparent; }
+
+  /* Region toggle buttons */
+  .region-btn {
+    font-family: inherit; font-size: 11px; padding: 4px 12px;
+    border: 2px solid var(--line); border-radius: 18px;
+    background: var(--paper); color: var(--muted); cursor: pointer; transition: all .2s;
+    font-weight: 600;
+  }
+  .region-btn.active { border-color: var(--accent); color: var(--accent); background: #f5efe8; }
+  .region-btn:hover { border-color: var(--accent); }
+
+  /* Legend */
+  .legend-float {
+    position: sticky; top: 0; z-index: 100;
+    background: var(--paper); border: 1px solid var(--line);
+    border-radius: 12px; padding: 8px 14px;
+    box-shadow: var(--shadow); margin-bottom: 10px;
+  }
+  .legend-float.collapsed { display: none; }
+  .legend { display: flex; gap: 12px; flex-wrap: wrap; font-size: 10px; color: var(--muted); }
+  .legend + .legend { margin-top: 4px; }
+  .legend-item { display: flex; align-items: center; gap: 3px; }
+
+  /* ── Lane Layout ── */
+  .lane-headers {
+    display: flex; gap: var(--lane-gap); margin-bottom: 8px; padding-left: 28px;
+    position: sticky; top: 0; z-index: 50; background: linear-gradient(160deg, #f5efe3 0%, #ede5d5 100%);
+    padding-top: 4px; padding-bottom: 4px;
+  }
+  .lane-header {
+    flex: 1; min-width: var(--block-w); max-width: 400px;
+    text-align: center; font-size: 14px; font-weight: 700;
+    padding: 8px 12px; border-radius: 10px;
+    background: var(--paper); border: 1.5px solid var(--line);
+    box-shadow: var(--shadow);
+  }
+  .lane-header .lane-count { font-size: 11px; font-weight: 400; color: var(--muted); margin-left: 6px; }
+
+  .lane-container { position: relative; }
+
+  /* Era band */
+  .era-band {
+    display: flex; gap: var(--lane-gap); margin-bottom: 6px;
+    border-bottom: 1px solid rgba(200,188,168,.2); padding-bottom: 8px;
+  }
+  .era-band-label {
+    writing-mode: vertical-rl; text-orientation: mixed;
+    font-size: 11px; font-weight: 700; color: var(--accent);
+    padding: 8px 4px; background: rgba(92,61,30,.06);
+    border-radius: 8px; text-align: center;
+    min-width: 24px; letter-spacing: .1em;
+  }
+  .era-band-lanes { display: flex; gap: var(--lane-gap); flex: 1; }
+  .era-lane-col {
+    flex: 1 1 0; min-width: var(--block-w); max-width: 400px;
+    display: flex; flex-direction: column; gap: 6px; padding: 4px 0;
+  }
+
+  /* ── SVG overlay ── */
+  #edge-svg {
+    position: absolute; inset: 0; width: 100%; height: 100%;
+    pointer-events: none; z-index: 10;
+  }
+  .edge-line { fill: none; stroke-width: 1.4; opacity: 0.38; stroke-dasharray: 5 4; stroke: #8a7a68; }
+  .edge-line.cross { stroke: #e8a060; opacity: 0.55; stroke-width: 1.8; stroke-dasharray: 8 4; }
+  .edge-head { stroke: none; fill: #8a7a68; opacity: 0.5; }
+  .edge-head.cross { fill: #e8a060; opacity: 0.6; }
+  .edge-dot { stroke: none; fill: #8a7a68; opacity: 0.5; }
+  .edge-dot.cross { fill: #e8a060; opacity: 0.6; }
+  .edge-line.hl { opacity: 0.7; stroke-width: 2; }
+  .edge-line.dim { opacity: 0.06; }
+  .edge-head.dim { opacity: 0.06; }
+  .edge-dot.dim { opacity: 0.06; }
+
+  /* Cluster header */
+  .cluster-header {
+    font-size: 11px; font-weight: 700; color: var(--accent);
+    padding: 4px 10px; background: rgba(255,253,248,.85);
+    border: 1px solid var(--line); border-radius: 10px;
+    text-align: center;
+  }
+
+  /* ── Block ── */
+  .block {
+    width: 100%; background: var(--paper);
+    border: 2px solid #b8a898; border-radius: var(--block-radius);
+    box-shadow: var(--shadow); position: relative;
+    transition: border-color .3s, box-shadow .3s, opacity .3s; cursor: pointer;
+  }
+  .block:hover { box-shadow: 0 8px 28px rgba(40,28,14,.15); }
+  .block.hl { box-shadow: 0 0 0 5px rgba(92,61,30,.25); filter: brightness(0.97); }
+  .block.source-hl { box-shadow: 0 0 0 6px rgba(200,150,10,.4); transform: scale(1.02); transition: all .15s; }
+  .block.dim { opacity: 0.15; }
+
+  .block-body { padding: 8px 10px 20px; display: flex; flex-direction: column; gap: 4px; }
+
+  .block-inner {
+    border: 1.5px solid #ddd4c8; border-radius: 8px;
+    background: linear-gradient(180deg, #faf7f0, #f5f1e8);
+    padding: 4px 6px; display: flex; gap: 4px; flex-wrap: wrap; min-height: 24px;
+  }
+  .block-inner.empty {
+    border-style: dashed; min-height: 20px;
+    align-items: center; justify-content: center;
+    color: #d0c4b0; font-size: 9px;
+  }
+
+  .ref-chip {
+    font-size: 9px; padding: 1px 5px; border-radius: 8px;
+    border: 1px solid #d0c8bc; background: transparent; color: #9a9080;
+    cursor: pointer; transition: all .15s;
+    white-space: nowrap; max-width: 150px; overflow: hidden; text-overflow: ellipsis;
+  }
+  .ref-chip b { font-family: monospace; font-size: 9px; margin-right: 2px; }
+  .ref-chip:hover { opacity: 0.8; }
+  .role-arrow { display: inline; font-size: 9px; line-height: 1; margin-left: 1px; }
+  .role-arrow.r-amplifies  { color: #c8960a; }
+  .role-arrow.r-triggers   { color: #c45a3c; }
+  .role-arrow.r-transforms { color: #3a6a9a; }
+  .role-arrow.r-sustains   { color: #3a8a3a; }
+  .role-arrow.r-suppresses { color: #7a3a8a; }
+  .role-arrow.r-inherits   { color: #3a7a8a; }
+
+  .block-label { font-size: 12px; font-weight: 600; line-height: 1.5; color: var(--ink); }
+  .block-summary {
+    font-size: 10px; color: var(--muted); line-height: 1.5;
+    display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+  }
+  .block-abstract { margin-top: 2px; padding-top: 3px; border-top: 1px solid #e8e0d8; }
+  .block-pattern { font-size: 10px; color: #a09080; line-height: 1.4; }
+  .block-actors { display: flex; flex-wrap: wrap; gap: 2px; margin-top: 2px; }
+  .actor {
+    font-size: 8px; background: transparent; border: 1px solid #d0c8bc;
+    border-radius: 8px; padding: 0 5px; color: #9a9080;
+    cursor: pointer; transition: all .2s;
+  }
+  .actor:hover { color: #6a6058; border-color: #a89a88; }
+  .actor.active { background: #4a4038; color: #f5f0e8; border-color: #4a4038; }
+
+  .block-id {
+    position: absolute; bottom: 3px; right: 8px;
+    font-size: 10px; font-weight: 700; font-family: monospace; color: #b0a090;
+  }
+  .block-era { font-size: 10px; font-weight: 700; color: #2a2520; margin-bottom: 1px; }
+
+  .block-out { display: flex; gap: 3px; flex-wrap: wrap; margin-top: 2px; }
+  .out-chip {
+    font-size: 8px; padding: 0 5px; border-radius: 8px;
+    background: transparent; border: 1px solid #d0c8bc; color: #9a9080;
+    cursor: pointer; transition: all .2s;
+  }
+  .out-chip:hover { color: #6a6058; border-color: #a89a88; }
+
+  .absorbed-toggle {
+    font-size: 9px; color: var(--muted); cursor: pointer;
+    padding: 2px 6px; margin-top: 2px;
+    border: 1px dashed #d8d0c4; border-radius: 6px;
+    background: transparent; transition: all .2s;
+    display: flex; align-items: center; gap: 3px; user-select: none;
+  }
+  .absorbed-toggle:hover { background: #f5f0e8; }
+  .absorbed-arrow { transition: transform .2s; display: inline-block; font-size: 7px; }
+  .absorbed-toggle.open .absorbed-arrow { transform: rotate(90deg); }
+  .absorbed-count { font-size: 8px; background: #e8e0d8; border-radius: 6px; padding: 0 4px; color: #8a8070; }
+  .absorbed-list { display: none; margin-top: 3px; padding: 3px 0; border-top: 1px dotted #e0d8cc; }
+  .absorbed-list.open { display: block; }
+  .absorbed-item {
+    font-size: 9px; color: var(--muted); padding: 2px 6px;
+    border-radius: 4px; transition: background .15s;
+    display: flex; gap: 6px; align-items: baseline; line-height: 1.4;
+  }
+  .absorbed-item:hover { background: #f0ebe0; }
+  .absorbed-item-era { font-weight: 600; color: #8a8070; min-width: 36px; white-space: nowrap; font-size: 8px; }
+  .absorbed-item-label { color: var(--ink); }
+
+  .loading { text-align: center; padding: 60px; color: var(--muted); font-size: 14px; }
+  .empty-lane {
+    min-height: 40px; border: 1px dashed #e0d8cc; border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    color: #d0c4b0; font-size: 9px;
+  }
+
+  @media (max-width: 1200px) { :root { --block-w: 240px; } }
+  @media (max-width: 840px) { :root { --block-w: 100%; } .era-lane-col { max-width: 100%; } }
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="header">
+    <h1>世界史因果フレーム図鑑</h1>
+    <p class="sub" id="subtitle">EnergyAbsモデル ― 4文明圏レーン表示</p>
+  </div>
+  <div class="controls">
+    <button class="active" onclick="resetView(this)">全表示</button>
+    <button onclick="filterRole('amplifies',this)">amplifies</button>
+    <button onclick="filterRole('triggers',this)">triggers</button>
+    <button onclick="filterRole('transforms',this)">transforms</button>
+    <button onclick="filterRole('sustains',this)">sustains</button>
+    <button onclick="toggleLegend()" id="legend-btn" style="margin-left:auto">凡例 ▶</button>
+    <span class="ctrl-info" id="info"></span>
+  </div>
+  <div class="controls-row2" id="controls-row2"></div>
+  <div class="legend-float collapsed" id="legend-panel">
+    <div class="legend">
+      <div class="legend-item" style="border-left: 2px solid #ddd; padding-left: 6px;">▼ エッジ:</div>
+      <div class="legend-item"><span style="color:#c8960a; font-weight:600">▼</span> 圧↑</div>
+      <div class="legend-item"><span style="color:#c45a3c; font-weight:600">▼</span> 引き金</div>
+      <div class="legend-item"><span style="color:#3a6a9a; font-weight:600">▼</span> 変換</div>
+      <div class="legend-item"><span style="color:#3a8a3a; font-weight:600">▼</span> 基盤</div>
+      <div class="legend-item"><span style="color:#7a3a8a; font-weight:600">▼</span> 抑制</div>
+      <div class="legend-item"><span style="color:#3a7a8a; font-weight:600">▼</span> 継承</div>
+    </div>
+    <div class="legend">
+      <div class="legend-item" style="border-left: 2px solid #ddd; padding-left: 6px;">枠色 = FW型:</div>
+      <div class="legend-item"><span style="color:#c45a3c">⚔</span> 武力衝突</div>
+      <div class="legend-item"><span style="color:#c8960a">▲</span> 対立蓄積</div>
+      <div class="legend-item"><span style="color:#8a3a3a">⊘</span> 崩壊</div>
+      <div class="legend-item"><span style="color:#3a6a9a">■</span> 制度化</div>
+      <div class="legend-item"><span style="color:#6a3a8a">◆</span> 権力確立</div>
+      <div class="legend-item"><span style="color:#c47a3a">⚡</span> 外生衝撃</div>
+      <div class="legend-item"><span style="color:#5a8a5a">〜</span> 漸進変化</div>
+      <div class="legend-item"><span style="color:#3a7a8a">✦</span> 改革</div>
+    </div>
+    <div class="legend">
+      <div class="legend-item" style="border-left: 2px solid #ddd; padding-left: 6px;">━━ 橙破線 = クロスリージョンエッジ</div>
+    </div>
+  </div>
+
+  <div id="main-area">
+    <div class="loading" id="loading">データ読み込み中…</div>
+  </div>
+</div>
+
+<script>
+// ══════════════════════════════════════════════
+// Data sources
+// ══════════════════════════════════════════════
+const DATA_SOURCES = [
+  { url: '../data/energyabs_europe_v1.json', region: 'europe', label: '欧州', prefix: 'W', color: '#5c6a8a' },
+  { url: '../data/energyabs_middleeast_v1.json', region: 'middleeast', label: '中東', prefix: 'M', color: '#8a6a3a' },
+  { url: '../data/energyabs_india_v1.json', region: 'india', label: 'インド', prefix: 'I', color: '#3a8a6a' },
+  { url: '../data/energyabs_china_v1.json', region: 'china', label: '中国', prefix: 'C', color: '#c45a3c' },
+];
+
+let G = { nodes: [], edges: [] };
+let NM = {};
+let EbyTo = {};
+let EbyFrom = {};
+let regions = [];
+let regionMap = {};
+let selectedNode = null;
+
+const FW_TYPE_STYLES = {
+  'battle':      { color: '#c45a3c', shape: '⚔', label: '武力衝突' },
+  'conflict':    { color: '#c8960a', shape: '▲', label: '対立蓄積' },
+  'collapse':    { color: '#8a3a3a', shape: '⊘', label: '崩壊' },
+  'institution': { color: '#3a6a9a', shape: '■', label: '制度化' },
+  'power':       { color: '#6a3a8a', shape: '◆', label: '権力確立' },
+  'shock':       { color: '#c47a3a', shape: '⚡', label: '外生衝撃' },
+  'drift':       { color: '#5a8a5a', shape: '〜', label: '漸進変化' },
+  'reform':      { color: '#3a7a8a', shape: '✦', label: '改革' },
+};
+
+const BG_TYPE_STYLES = {
+  '構造変化': { icon: '⇄', color: '#5a8a5a' },
+  '武力衝突': { icon: '⚔', color: '#c45a3c' },
+  '勢力対立': { icon: '⚡', color: '#c8960a' },
+  '制度':     { icon: '■', color: '#3a6a9a' },
+  '外生':     { icon: '☄', color: '#c47a3a' },
+  '権力集中': { icon: '◆', color: '#6a3a8a' },
+  '改革':     { icon: '✦', color: '#3a7a8a' },
+  '崩壊':     { icon: '⊘', color: '#8a3a3a' },
+  '外圧':     { icon: '⟐', color: '#8a6a3a' },
+  '経済拡大': { icon: '▲', color: '#5a8a3a' },
+  '硬直化':   { icon: '▰', color: '#6a6058' },
+  '複合背景': { icon: '◎', color: '#8a7060' },
+  '思想潮流': { icon: '❖', color: '#5a7a9a' },
+  '経済圧':   { icon: '▲', color: '#5a8a3a' },
+  '制度疲弊': { icon: '▰', color: '#6a6058' },
+  '制度的矛盾': { icon: '⊘', color: '#8a3a3a' },
+  '外圧環境': { icon: '⟐', color: '#8a6a3a' },
+};
+
+const SEMANTIC_DOMAINS = {
+  '地面': { types: ['drift', 'institution', 'collapse'], colorSolid: '#8b7750' },
+  '力学': { types: ['conflict', 'battle', 'power'], colorSolid: '#c45a3c' },
+  '意図': { types: ['reform'], colorSolid: '#3a7a8a' },
+  '外部': { types: ['shock'], colorSolid: '#c47a3a' },
+};
+
+// ── Era parsing ──
+function parseEraYear(era) {
+  if (!era) return 9999;
+  const bcMatch = era.match(/前(\d+)/);
+  if (bcMatch) return -parseInt(bcMatch[1]);
+  const adMatch = era.match(/(\d{3,4})/);
+  if (adMatch) return parseInt(adMatch[1]);
+  return 9999;
+}
+
+const ERA_BANDS = [
+  { label: '古代', min: -4000, max: -500 },
+  { label: '古典', min: -500, max: 500 },
+  { label: '後古典', min: 500, max: 1000 },
+  { label: '中世', min: 1000, max: 1500 },
+  { label: '近世', min: 1500, max: 1800 },
+  { label: '近代', min: 1800, max: 1945 },
+  { label: '現代', min: 1945, max: 2100 },
+];
+
+function getRegion(nid) {
+  return regionMap[nid.charAt(0)] || null;
+}
+
+function fmtId(nid) {
+  return nid.replace(/^[NWMIC]/, '');
+}
+
+function edgeKey(e) {
+  return e.id || `${e.from}-${e.to}`;
+}
+
+// ══════════════════════════════════════════════
+// Init
+// ══════════════════════════════════════════════
+async function init() {
+  const results = await Promise.allSettled(
+    DATA_SOURCES.map(async src => {
+      const res = await fetch(src.url);
+      if (!res.ok) throw new Error(`${res.status}`);
+      return { ...src, data: await res.json() };
+    })
+  );
+
+  results.forEach(r => {
+    if (r.status !== 'fulfilled') return;
+    const { data, ...info } = r.value;
+    regions.push(info);
+    regionMap[info.prefix] = info;
+    data.nodes.forEach(n => {
+      n._region = info.region;
+      G.nodes.push(n);
+      NM[n.id] = n;
+    });
+    data.edges.forEach(e => {
+      const fr = getRegion(e.from), tr = getRegion(e.to);
+      e._cross = fr && tr && fr.region !== tr.region;
+      G.edges.push(e);
+      (EbyTo[e.to] = EbyTo[e.to] || []).push(e);
+      (EbyFrom[e.from] = EbyFrom[e.from] || []).push(e);
+    });
+  });
+
+  if (G.nodes.length === 0) {
+    document.getElementById('loading').textContent = 'データを読み込めませんでした';
+    return;
+  }
+
+  G.nodes.sort((a, b) => parseEraYear(a.era) - parseEraYear(b.era));
+
+  document.getElementById('info').textContent =
+    `${regions.map(r => r.label).join('・')} — ${G.nodes.length} nodes / ${G.edges.length} edges`;
+  document.getElementById('subtitle').textContent =
+    `EnergyAbsモデル ― ${regions.map(r => r.label).join('・')} ${G.nodes.length}ノード ${G.edges.length}エッジ`;
+
+  buildControlsRow2();
+  renderLanes();
+}
+
+function buildControlsRow2() {
+  const row = document.getElementById('controls-row2');
+  let html = '';
+  regions.forEach(r => {
+    html += `<button class="region-btn active" data-region="${r.region}" onclick="toggleRegion('${r.region}',this)" style="border-color:${r.color};color:${r.color}">${r.label}</button>`;
+  });
+  html += '<div class="sep"></div>';
+  Object.entries(SEMANTIC_DOMAINS).forEach(([name, d]) => {
+    html += `<button class="domain-btn" onclick="filterDomain('${name}',this)" style="border-color:${d.colorSolid}">${name}</button>`;
+  });
+  html += '<div class="sep"></div>';
+  Object.entries(FW_TYPE_STYLES).forEach(([type, s]) => {
+    html += `<button class="fwtype-btn" onclick="filterFwType('${type}',this)" style="border-color:${s.color}">${s.shape} ${s.label}</button>`;
+  });
+  row.innerHTML = html;
+}
+
+// ══════════════════════════════════════════════
+// Render lanes
+// ══════════════════════════════════════════════
+let activeRegions = new Set();
+
+function renderLanes() {
+  activeRegions = new Set(regions.map(r => r.region));
+  renderLanesInner();
+}
+
+function renderLanesInner() {
+  const area = document.getElementById('main-area');
+  const activeRegs = regions.filter(r => activeRegions.has(r.region));
+
+  // Group nodes by era band × region
+  const bandData = ERA_BANDS.map(band => {
+    const regionNodes = {};
+    activeRegs.forEach(r => {
+      regionNodes[r.region] = G.nodes.filter(n =>
+        n._region === r.region &&
+        parseEraYear(n.era) >= band.min &&
+        parseEraYear(n.era) < band.max
+      );
+    });
+    const total = Object.values(regionNodes).reduce((s, arr) => s + arr.length, 0);
+    return { band, regionNodes, total };
+  }).filter(bd => bd.total > 0);
+
+  let html = '';
+
+  // Sticky lane headers
+  html += '<div class="lane-headers">';
+  activeRegs.forEach(r => {
+    const count = G.nodes.filter(n => n._region === r.region).length;
+    html += `<div class="lane-header" style="border-color:${r.color}">${r.label}<span class="lane-count">${count}</span></div>`;
+  });
+  html += '</div>';
+
+  // Canvas
+  html += '<div class="lane-container" id="canvas">';
+  html += '<svg id="edge-svg"></svg>';
+
+  bandData.forEach(({ band, regionNodes }) => {
+    html += '<div class="era-band">';
+    html += `<div class="era-band-label">${band.label}</div>`;
+    html += '<div class="era-band-lanes">';
+
+    activeRegs.forEach(r => {
+      const nodes = regionNodes[r.region] || [];
+      html += '<div class="era-lane-col">';
+      if (nodes.length === 0) {
+        html += '<div class="empty-lane">—</div>';
+      } else {
+        const clusterOrder = [];
+        const clusterNodes = {};
+        nodes.forEach(n => {
+          if (!clusterNodes[n.cluster]) { clusterOrder.push(n.cluster); clusterNodes[n.cluster] = []; }
+          clusterNodes[n.cluster].push(n);
+        });
+        clusterOrder.forEach(cl => {
+          const clName = cl.includes('_') ? cl.split('_').slice(1).join('_') : cl;
+          html += `<div class="cluster-header">${clName}</div>`;
+          clusterNodes[cl].forEach(n => { html += renderBlock(n); });
+        });
+      }
+      html += '</div>';
+    });
+
+    html += '</div></div>';
+  });
+
+  html += '</div>';
+  area.innerHTML = html;
+
+  document.querySelectorAll('.block').forEach(el => {
+    el.addEventListener('click', evt => {
+      if (evt.target.closest('.ref-chip') || evt.target.closest('.out-chip')) return;
+      toggleSelect(el.dataset.nid);
+    });
+  });
+
+  requestAnimationFrame(drawEdges);
+}
+
+function renderBlock(n) {
+  const incoming = EbyTo[n.id] || [];
+  const outgoing = EbyFrom[n.id] || [];
+  const fwStyle = FW_TYPE_STYLES[n.fwType] || { color: '#b8a898', shape: '?', label: '?' };
+
+  let html = `<div class="block" data-nid="${n.id}" id="blk-${n.id}" data-fwtype="${n.fwType || ''}" data-region="${n._region || ''}" style="border-color:${fwStyle.color}">`;
+  html += '<div class="block-body">';
+
+  // Incoming
+  if (incoming.length > 0) {
+    html += '<div class="block-inner">';
+    incoming.forEach(e => {
+      const src = NM[e.from];
+      if (!src) return;
+      const shortLabel = src.label.length > 12 ? src.label.slice(0, 10) + '…' : src.label;
+      const srcStyle = FW_TYPE_STYLES[src.fwType] || { color: '#b8a898' };
+      const crossBg = e._cross ? ';background:rgba(232,160,96,.12)' : '';
+      html += `<span class="ref-chip" id="chip-${e.from}-${n.id}" style="border-color:${srcStyle.color}${crossBg}" data-src="${e.from}" onclick="event.stopPropagation();flashAndScroll('${e.from}')" onmouseenter="hlSource('${e.from}',true)" onmouseleave="hlSource('${e.from}',false)" title="${src.label}\n${e.role}${e._cross ? ' [cross]' : ''}"><b>${e.from}</b> ${shortLabel}<span class="role-arrow r-${e.role}">▼</span></span>`;
+    });
+    html += '</div>';
+  } else {
+    html += '<div class="block-inner empty">（起点）</div>';
+  }
+
+  html += `<div class="block-era">${n.era || ''}</div>`;
+  html += `<div class="block-label">${n.label}</div>`;
+  html += `<div class="block-summary">${n.summary}</div>`;
+
+  // Absorbed
+  if (n.absorbed && n.absorbed.length > 0) {
+    const aid = n.id + '-abs';
+    html += `<div class="absorbed-toggle" onclick="event.stopPropagation();toggleAbsorbed('${aid}')"><span class="absorbed-arrow" id="arr-${aid}">▸</span> 内包 <span class="absorbed-count">${n.absorbed.length}</span></div>`;
+    html += `<div class="absorbed-list" id="abs-${aid}">`;
+    n.absorbed.forEach(a => {
+      html += `<div class="absorbed-item"><span class="absorbed-item-era">${a.era}</span><span class="absorbed-item-label">${a.label}</span></div>`;
+    });
+    html += '</div>';
+  }
+
+  // Abstract pattern
+  html += '<div class="block-abstract">';
+  const bgSt = BG_TYPE_STYLES[n.bgType] || {};
+  const bgIcon = bgSt.icon ? `<span style="color:${bgSt.color}" title="背景: ${n.bgType || ''}">${bgSt.icon}</span>` : '';
+  const fwIcon = `<span style="color:${fwStyle.color}" title="${fwStyle.label}">${fwStyle.shape}</span>`;
+  html += `<div class="block-pattern">${bgIcon}${bgIcon ? '→' : ''}${fwIcon} ${n.pattern || ''}</div>`;
+  html += '</div>';
+
+  // Actors
+  if (n.actors && n.actors.length > 0) {
+    html += `<div class="block-actors">${n.actors.map(a => `<span class="actor" onclick="event.stopPropagation();toggleActor('${a.replace(/'/g, "\\'")}')">${a}</span>`).join('')}</div>`;
+  }
+
+  // Outgoing
+  if (outgoing.length > 0) {
+    html += '<div class="block-out">';
+    outgoing.forEach(e => {
+      const tgt = NM[e.to];
+      if (!tgt) return;
+      const shortLabel = tgt.label.length > 10 ? tgt.label.slice(0, 8) + '…' : tgt.label;
+      html += `<span class="out-chip" onclick="event.stopPropagation();flashAndScroll('${e.to}')" title="${tgt.label}\n${e.role}">→${e.to} ${shortLabel}</span>`;
+    });
+    html += '</div>';
+  }
+
+  html += '</div>';
+  html += `<div class="block-id">${n.id}</div>`;
+  html += '</div>';
+  return html;
+}
+
+// ══════════════════════════════════════════════
+// SVG Edge Drawing
+// ══════════════════════════════════════════════
+function drawEdges() {
+  const svg = document.getElementById('edge-svg');
+  const canvas = document.getElementById('canvas');
+  if (!svg || !canvas) return;
+  const cr = canvas.getBoundingClientRect();
+  const sL = canvas.scrollLeft, sT = canvas.scrollTop;
+  svg.innerHTML = '';
+  svg.style.width = canvas.scrollWidth + 'px';
+  svg.style.height = canvas.scrollHeight + 'px';
+  svg.setAttribute('viewBox', `0 0 ${canvas.scrollWidth} ${canvas.scrollHeight}`);
+
+  G.edges.forEach(e => {
+    const fromEl = document.getElementById('blk-' + e.from);
+    const chipEl = document.getElementById('chip-' + e.from + '-' + e.to);
+    if (!fromEl || !chipEl) return;
+
+    const fr = fromEl.getBoundingClientRect();
+    const ch = chipEl.getBoundingClientRect();
+
+    const cCX = ch.left + ch.width/2 - cr.left + sL;
+    const cCY = ch.top + ch.height/2 - cr.top + sT;
+    const fCX = fr.left + fr.width/2 - cr.left + sL;
+    const fCY = fr.top + fr.height/2 - cr.top + sT;
+
+    const fT = fr.top - cr.top + sT, fB = fr.bottom - cr.top + sT;
+    const fL = fr.left - cr.left + sL, fR = fr.right - cr.left + sL;
+
+    let x1, y1;
+    if (cCY > fB) { x1 = fCX; y1 = fB; }
+    else if (cCY < fT) { x1 = fCX; y1 = fT; }
+    else if (cCX < fL) { x1 = fL; y1 = fCY; }
+    else { x1 = fR; y1 = fCY; }
+
+    const chT = ch.top - cr.top + sT, chB = ch.bottom - cr.top + sT;
+    const chL = ch.left - cr.left + sL, chR = ch.right - cr.left + sL;
+
+    let x2, y2;
+    if (fCY < chT) { x2 = cCX; y2 = chT; }
+    else if (fCY > chB) { x2 = cCX; y2 = chB; }
+    else if (fCX < chL) { x2 = chL; y2 = cCY; }
+    else { x2 = chR; y2 = cCY; }
+
+    const midY = (y1 + y2) / 2;
+    const d = `M ${x1} ${y1} C ${x1} ${midY}, ${x2} ${midY}, ${x2} ${y2}`;
+
+    const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+    path.setAttribute('d', d);
+    path.classList.add('edge-line');
+    if (e._cross) path.classList.add('cross');
+    path.dataset.eid = edgeKey(e);
+    path.dataset.from = e.from;
+    path.dataset.to = e.to;
+    svg.appendChild(path);
+
+    // Start dot (source block side)
+    const dotS = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+    dotS.setAttribute('cx', x1); dotS.setAttribute('cy', y1); dotS.setAttribute('r', 3);
+    dotS.classList.add('edge-dot');
+    if (e._cross) dotS.classList.add('cross');
+    dotS.dataset.eid = edgeKey(e);
+    svg.appendChild(dotS);
+
+    // End dot (chip side)
+    const dot = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+    dot.setAttribute('cx', x2); dot.setAttribute('cy', y2); dot.setAttribute('r', 3);
+    dot.classList.add('edge-head');
+    if (e._cross) dot.classList.add('cross');
+    dot.dataset.eid = edgeKey(e);
+    svg.appendChild(dot);
+  });
+}
+
+// ══════════════════════════════════════════════
+// Interactions
+// ══════════════════════════════════════════════
+function hlSource(nid, on) {
+  const el = document.getElementById('blk-' + nid);
+  if (el) el.classList.toggle('source-hl', on);
+}
+
+function toggleSelect(nid) {
+  if (selectedNode === nid) { selectedNode = null; clearHighlights(); return; }
+  selectedNode = nid;
+  highlightNode(nid);
+}
+
+function highlightNode(nid) {
+  const connected = new Set([nid]);
+  const connEdges = new Set();
+  G.edges.forEach(e => {
+    if (e.from === nid || e.to === nid) {
+      connected.add(e.from); connected.add(e.to);
+      connEdges.add(edgeKey(e));
+    }
+  });
+  document.querySelectorAll('.block').forEach(el => {
+    el.classList.toggle('dim', !connected.has(el.dataset.nid));
+    el.classList.toggle('hl', el.dataset.nid === nid);
+  });
+  applyEdgeDim(connEdges);
+  const node = NM[nid];
+  document.getElementById('info').textContent = `${node.label} — ${(EbyTo[nid]||[]).length}入 / ${(EbyFrom[nid]||[]).length}出`;
+}
+
+function clearHighlights() {
+  document.querySelectorAll('.block').forEach(el => { el.classList.remove('dim', 'hl'); });
+  document.querySelectorAll('.edge-line, .edge-head, .edge-dot').forEach(el => { el.classList.remove('hl', 'dim'); });
+  document.getElementById('info').textContent = `${G.nodes.length} nodes / ${G.edges.length} edges`;
+}
+
+function flashAndScroll(nid) {
+  const el = document.getElementById('blk-' + nid);
+  if (!el) return;
+  el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  el.classList.add('hl');
+  setTimeout(() => { if (selectedNode !== nid) el.classList.remove('hl'); }, 2000);
+}
+
+function filterRole(role, btn) {
+  setActiveBtn(btn);
+  const eids = new Set(), nids = new Set();
+  G.edges.forEach(e => {
+    if (e.role === role) { eids.add(edgeKey(e)); nids.add(e.from); nids.add(e.to); }
+  });
+  document.querySelectorAll('.block').forEach(el => { el.classList.toggle('dim', !nids.has(el.dataset.nid)); });
+  applyEdgeDim(eids);
+  document.getElementById('info').textContent = `${role}: ${eids.size} edges / ${nids.size} nodes`;
+}
+
+function resetView(btn) { setActiveBtn(btn); selectedNode = null; clearHighlights(); }
+
+function setActiveBtn(btn) {
+  document.querySelectorAll('.controls button').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+}
+
+function toggleLegend() {
+  const p = document.getElementById('legend-panel');
+  p.classList.toggle('collapsed');
+  document.getElementById('legend-btn').textContent = p.classList.contains('collapsed') ? '凡例 ▶' : '凡例';
+}
+
+function toggleAbsorbed(aid) {
+  const list = document.getElementById('abs-' + aid);
+  const arrow = document.getElementById('arr-' + aid);
+  const toggle = arrow?.closest('.absorbed-toggle');
+  if (list) list.classList.toggle('open');
+  if (toggle) toggle.classList.toggle('open');
+  if (arrow) arrow.textContent = list?.classList.contains('open') ? '▾' : '▸';
+}
+
+function toggleRegion(region, btn) {
+  if (activeRegions.has(region)) {
+    if (activeRegions.size <= 1) return;
+    activeRegions.delete(region);
+    btn.classList.remove('active');
+  } else {
+    activeRegions.add(region);
+    btn.classList.add('active');
+  }
+  renderLanesInner();
+}
+
+function filterDomain(name, btn) {
+  const d = SEMANTIC_DOMAINS[name];
+  if (!d) return;
+  const types = new Set(d.types);
+  const matchIds = new Set(G.nodes.filter(n => types.has(n.fwType)).map(n => n.id));
+  const connEdges = new Set();
+  G.edges.forEach(e => { if (matchIds.has(e.from) || matchIds.has(e.to)) connEdges.add(edgeKey(e)); });
+  document.querySelectorAll('.block').forEach(el => { el.classList.toggle('dim', !matchIds.has(el.dataset.nid)); });
+  applyEdgeDim(connEdges);
+  document.querySelectorAll('.domain-btn').forEach(b => { b.classList.remove('active'); b.style.background = ''; });
+  btn.classList.add('active'); btn.style.background = d.colorSolid;
+  document.querySelectorAll('.controls button').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.fwtype-btn').forEach(b => { b.classList.remove('active'); b.style.background = ''; });
+  document.getElementById('info').textContent = `${name}: ${matchIds.size} nodes`;
+}
+
+function filterFwType(type, btn) {
+  const matchIds = new Set(G.nodes.filter(n => n.fwType === type).map(n => n.id));
+  const connEdges = new Set();
+  G.edges.forEach(e => { if (matchIds.has(e.from) || matchIds.has(e.to)) connEdges.add(edgeKey(e)); });
+  document.querySelectorAll('.block').forEach(el => { el.classList.toggle('dim', !matchIds.has(el.dataset.nid)); });
+  applyEdgeDim(connEdges);
+  const s = FW_TYPE_STYLES[type];
+  document.querySelectorAll('.fwtype-btn').forEach(b => { b.classList.remove('active'); b.style.background = ''; });
+  btn.classList.add('active'); btn.style.background = s.color;
+  document.querySelectorAll('.controls button').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.domain-btn').forEach(b => { b.classList.remove('active'); b.style.background = ''; });
+  document.getElementById('info').textContent = `${s.shape} ${s.label}: ${matchIds.size} nodes`;
+}
+
+let activeActor = null;
+function toggleActor(name) {
+  if (activeActor === name) {
+    activeActor = null; clearHighlights();
+    document.querySelectorAll('.actor.active').forEach(el => el.classList.remove('active'));
+    return;
+  }
+  activeActor = name;
+  document.querySelectorAll('.actor').forEach(el => { el.classList.toggle('active', el.textContent === name); });
+  const matchIds = new Set(G.nodes.filter(n => n.actors && n.actors.includes(name)).map(n => n.id));
+  const connEdges = new Set();
+  G.edges.forEach(e => { if (matchIds.has(e.from) && matchIds.has(e.to)) connEdges.add(edgeKey(e)); });
+  document.querySelectorAll('.block').forEach(el => { el.classList.toggle('dim', !matchIds.has(el.dataset.nid)); });
+  applyEdgeDim(connEdges);
+  document.getElementById('info').textContent = `${name}: ${matchIds.size} nodes`;
+}
+
+function applyEdgeDim(visibleIds) {
+  document.querySelectorAll('.edge-line').forEach(el => {
+    el.classList.toggle('dim', !visibleIds.has(el.dataset.eid));
+    el.classList.toggle('hl', visibleIds.has(el.dataset.eid));
+  });
+  document.querySelectorAll('.edge-head, .edge-dot').forEach(el => {
+    el.classList.toggle('dim', !visibleIds.has(el.dataset.eid));
+  });
+}
+
+window.addEventListener('resize', () => requestAnimationFrame(drawEdges));
+
+init();
+</script>
+</body>
+</html>

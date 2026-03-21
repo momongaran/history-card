@@ -1,0 +1,647 @@
+{
+  "meta": {
+    "version": "1.0",
+    "description": "EnergyAbs有向グラフ インド史v1: インダス文明(前2600)→インド独立(1947) 約4500年の因果フロー",
+    "nodeCount": 24,
+    "edgeCount": 32,
+    "created": "2026-03-21"
+  },
+  "nodes": [
+    {
+      "id": "I001",
+      "label": "インダス文明",
+      "summary": "モヘンジョダロ・ハラッパーを中心とする高度な都市計画文明。下水道・度量衡の統一など組織的社会を実現したが、前1800年頃に衰退した",
+      "actors": [
+        "インダス人"
+      ],
+      "intensity": "high",
+      "timescale": "long",
+      "cluster": "PI0_古代インド",
+      "era": "前2600–前1800年頃",
+      "fwType": "institution",
+      "pattern": "{大河流域}で{計画都市文明}が自生的に成立する",
+      "bgType": "外生",
+      "releaseType": "制度化",
+      "patternType": "外生→制度化"
+    },
+    {
+      "id": "I002",
+      "label": "ヴェーダ時代とアーリア人の進出",
+      "summary": "インド・アーリア人がインド亜大陸に進出しヴェーダ文化を形成。カースト制度の原型であるヴァルナ制が成立した",
+      "actors": [
+        "アーリア人"
+      ],
+      "intensity": "high",
+      "timescale": "long",
+      "cluster": "PI0_古代インド",
+      "era": "前1500–前600年頃",
+      "fwType": "drift",
+      "pattern": "{外来民族の浸透}が{先住文化}と融合し{新たな社会秩序}を形成する",
+      "bgType": "外生",
+      "releaseType": "制度化",
+      "patternType": "外生→制度化"
+    },
+    {
+      "id": "I003",
+      "label": "仏教とジャイナ教の成立",
+      "summary": "ガウタマ・シッダールタ（釈迦）が仏教を、マハーヴィーラがジャイナ教を創始。バラモン教の儀礼主義への批判から新宗教が生まれた",
+      "actors": [
+        "釈迦",
+        "マハーヴィーラ"
+      ],
+      "intensity": "high",
+      "timescale": "short",
+      "cluster": "PI0_古代インド",
+      "era": "前500年頃",
+      "fwType": "shock",
+      "pattern": "{既存の宗教権威}への批判から{普遍的教え}が生まれる",
+      "bgType": "思想潮流",
+      "releaseType": "衝撃",
+      "patternType": "思想潮流→衝撃"
+    },
+    {
+      "id": "I004",
+      "label": "マウリヤ朝の統一",
+      "summary": "チャンドラグプタがナンダ朝を倒しインド初の統一王朝を建設。アショーカ王は仏教に帰依し、不殺生の理念で統治を行った",
+      "actors": [
+        "チャンドラグプタ",
+        "アショーカ王"
+      ],
+      "intensity": "high",
+      "timescale": "medium",
+      "cluster": "PI1_マウリヤ・クシャーナ",
+      "era": "前322–前185年",
+      "fwType": "institution",
+      "pattern": "{思想的転換}と{軍事的統一}が{初の亜大陸帝国}を創出する",
+      "bgType": "権力集中",
+      "releaseType": "制度化",
+      "patternType": "権力集中→制度化",
+      "absorbed": [
+        {
+          "label": "アレクサンドロスのインド侵攻",
+          "era": "前326年",
+          "type": "component"
+        },
+        {
+          "label": "アショーカ王の仏教帰依",
+          "era": "前260年頃",
+          "type": "component"
+        }
+      ]
+    },
+    {
+      "id": "I005",
+      "label": "クシャーナ朝とガンダーラ美術",
+      "summary": "中央アジアの遊牧民が北インドに王朝を建設。カニシカ王は仏教を保護し、ギリシア文化と融合したガンダーラ美術が開花した",
+      "actors": [
+        "カニシカ王"
+      ],
+      "intensity": "medium",
+      "timescale": "medium",
+      "cluster": "PI1_マウリヤ・クシャーナ",
+      "era": "1–3世紀",
+      "fwType": "institution",
+      "pattern": "{外来王朝}が{文化融合}の媒介となる",
+      "bgType": "外生",
+      "releaseType": "制度化",
+      "patternType": "外生→制度化"
+    },
+    {
+      "id": "I006",
+      "label": "グプタ朝の黄金時代",
+      "summary": "チャンドラグプタ2世の下で北インドが繁栄。サンスクリット文学・ゼロの概念・天文学など学問が頂点に達した",
+      "actors": [
+        "チャンドラグプタ2世"
+      ],
+      "intensity": "high",
+      "timescale": "long",
+      "cluster": "PI2_グプタと中世",
+      "era": "320–550年",
+      "fwType": "institution",
+      "pattern": "{統一政権の安定}が{学問・芸術の黄金時代}を生む",
+      "bgType": "権力集中",
+      "releaseType": "制度化",
+      "patternType": "権力集中→制度化"
+    },
+    {
+      "id": "I007",
+      "label": "フン族の侵入とグプタ朝崩壊",
+      "summary": "エフタル（白フン）の侵入でグプタ朝が弱体化し分裂。以後インドは地域王国の時代に入った",
+      "actors": [
+        "エフタル"
+      ],
+      "intensity": "high",
+      "timescale": "short",
+      "cluster": "PI2_グプタと中世",
+      "era": "5世紀後半–6世紀",
+      "fwType": "collapse",
+      "pattern": "{遊牧民の侵入}が{安定帝国}を崩壊させる",
+      "bgType": "外生",
+      "releaseType": "崩壊",
+      "patternType": "外生→崩壊"
+    },
+    {
+      "id": "I008",
+      "label": "ラージプート諸王朝の時代",
+      "summary": "グプタ朝崩壊後、北インドにラージプート（武人階級）の諸王国が並立。ヒンドゥー教が発展しイスラームの侵入に抵抗した",
+      "actors": [
+        "ラージプート"
+      ],
+      "intensity": "medium",
+      "timescale": "long",
+      "cluster": "PI2_グプタと中世",
+      "era": "7–12世紀",
+      "fwType": "conflict",
+      "pattern": "{分裂した王国群}が{外部脅威}に対して団結できない",
+      "bgType": "勢力対立",
+      "releaseType": "戦闘",
+      "patternType": "勢力対立→戦闘"
+    },
+    {
+      "id": "I009",
+      "label": "ガズナ朝のインド侵攻",
+      "summary": "マフムードがアフガニスタンからインドに17回侵攻。寺院の略奪で莫大な富を得た。イスラーム勢力のインド進出の先駆けとなった",
+      "actors": [
+        "マフムード・ガズナヴィー"
+      ],
+      "intensity": "high",
+      "timescale": "medium",
+      "cluster": "PI3_イスラーム侵入",
+      "era": "998–1030年",
+      "fwType": "battle",
+      "pattern": "{宗教的動機と経済的略奪}が{繰り返しの侵攻}を駆動する",
+      "bgType": "外生",
+      "releaseType": "戦闘",
+      "patternType": "外生→戦闘"
+    },
+    {
+      "id": "I010",
+      "label": "デリー・スルタン朝",
+      "summary": "ゴール朝のインド征服を受けてデリーにイスラーム王朝が成立。5王朝が約320年間北インドを支配した",
+      "actors": [
+        "アイバク",
+        "イルトゥトミシュ"
+      ],
+      "intensity": "high",
+      "timescale": "long",
+      "cluster": "PI3_イスラーム侵入",
+      "era": "1206–1526年",
+      "fwType": "power",
+      "pattern": "{外来征服者}が{異文化圏}に恒久的支配体制を確立する",
+      "bgType": "外生",
+      "releaseType": "権力移行",
+      "patternType": "外生→権力移行"
+    },
+    {
+      "id": "I011",
+      "label": "ムガル帝国の建国",
+      "summary": "ティムールの子孫バーブルがパーニーパットの戦いでロディー朝を破りムガル帝国を建国した",
+      "actors": [
+        "バーブル"
+      ],
+      "intensity": "high",
+      "timescale": "short",
+      "cluster": "PI4_ムガル帝国",
+      "era": "1526年",
+      "fwType": "power",
+      "pattern": "{中央アジアの軍事力}が{衰退する既存王朝}を打倒する",
+      "bgType": "勢力対立",
+      "releaseType": "権力移行",
+      "patternType": "勢力対立→権力移行"
+    },
+    {
+      "id": "I012",
+      "label": "アクバル大帝の統治",
+      "summary": "アクバルはヒンドゥー・ムスリム融和政策を推進。ジズヤ税を廃止し、マンサブダール制で効率的な官僚制を構築した",
+      "actors": [
+        "アクバル"
+      ],
+      "intensity": "high",
+      "timescale": "medium",
+      "cluster": "PI4_ムガル帝国",
+      "era": "1556–1605年",
+      "fwType": "institution",
+      "pattern": "{異民族王朝}が{宗教的寛容}で{多民族帝国}を安定させる",
+      "bgType": "思想潮流",
+      "releaseType": "制度化",
+      "patternType": "思想潮流→制度化"
+    },
+    {
+      "id": "I013",
+      "label": "シャー・ジャハーンとタージ・マハル",
+      "summary": "ムガル帝国の文化的頂点。タージ・マハルなど壮大な建築が造られたが、軍事遠征と建設費で財政は悪化した",
+      "actors": [
+        "シャー・ジャハーン"
+      ],
+      "intensity": "medium",
+      "timescale": "medium",
+      "cluster": "PI4_ムガル帝国",
+      "era": "1628–1658年",
+      "fwType": "drift",
+      "pattern": "{文化的栄華}が{財政的消耗}を伴い{衰退の種}を蒔く",
+      "bgType": "経済圧",
+      "releaseType": "崩壊",
+      "patternType": "経済圧→崩壊"
+    },
+    {
+      "id": "I014",
+      "label": "アウラングゼーブの不寛容政策",
+      "summary": "アウラングゼーブがジズヤ税を復活しヒンドゥー寺院を破壊。帝国は最大版図に達したが、マラーター・シク教徒の反乱を招いた",
+      "actors": [
+        "アウラングゼーブ"
+      ],
+      "intensity": "high",
+      "timescale": "medium",
+      "cluster": "PI5_ムガル衰退と英国",
+      "era": "1658–1707年",
+      "fwType": "conflict",
+      "pattern": "{宗教的不寛容}が{帝国内の遠心力}を急速に増大させる",
+      "bgType": "思想潮流",
+      "releaseType": "戦闘",
+      "patternType": "思想潮流→戦闘"
+    },
+    {
+      "id": "I015",
+      "label": "マラーター同盟の台頭",
+      "summary": "シヴァージーが創建したマラーター王国がムガル帝国に代わりインド亜大陸の覇権を争う一大勢力に成長した",
+      "actors": [
+        "シヴァージー",
+        "ペーシュワー"
+      ],
+      "intensity": "high",
+      "timescale": "long",
+      "cluster": "PI5_ムガル衰退と英国",
+      "era": "1674–1818年",
+      "fwType": "power",
+      "pattern": "{帝国の衰退}が{地方勢力の覇権争い}を生む",
+      "bgType": "勢力対立",
+      "releaseType": "権力移行",
+      "patternType": "勢力対立→権力移行"
+    },
+    {
+      "id": "I016",
+      "label": "プラッシーの戦いと英東インド会社の支配",
+      "summary": "イギリス東インド会社がベンガルのナワーブを破り、インド植民地化の端緒を開いた。以後100年で亜大陸の大半を支配下に置いた",
+      "actors": [
+        "クライヴ",
+        "東インド会社"
+      ],
+      "intensity": "high",
+      "timescale": "short",
+      "cluster": "PI6_英領インド",
+      "era": "1757年",
+      "fwType": "shock",
+      "pattern": "{商業的進出}が{軍事的征服}に転化し{植民地支配}を確立する",
+      "bgType": "外生",
+      "releaseType": "衝撃",
+      "patternType": "外生→衝撃"
+    },
+    {
+      "id": "I017",
+      "label": "セポイの乱（インド大反乱）",
+      "summary": "イギリスの雇用するインド人兵士が反乱。ムガル皇帝を擁立し広範な抵抗運動となったが鎮圧され、東インド会社が解散しイギリス直轄植民地となった",
+      "actors": [
+        "セポイ",
+        "イギリス"
+      ],
+      "intensity": "high",
+      "timescale": "short",
+      "cluster": "PI6_英領インド",
+      "era": "1857–1858年",
+      "fwType": "battle",
+      "pattern": "{植民地支配への不満}が{軍事反乱}として爆発する",
+      "bgType": "制度的矛盾",
+      "releaseType": "戦闘",
+      "patternType": "制度的矛盾→戦闘"
+    },
+    {
+      "id": "I018",
+      "label": "ヴィクトリア女王のインド皇帝即位",
+      "summary": "1877年、ヴィクトリア女王がインド皇帝を称し、イギリス領インド帝国が正式に成立。インドは大英帝国の「王冠の宝石」となった",
+      "actors": [
+        "ヴィクトリア女王",
+        "ディズレーリ"
+      ],
+      "intensity": "high",
+      "timescale": "short",
+      "cluster": "PI6_英領インド",
+      "era": "1877年",
+      "fwType": "institution",
+      "pattern": "{植民地支配}が{帝国の正式な制度}として確立される",
+      "bgType": "権力集中",
+      "releaseType": "制度化",
+      "patternType": "権力集中→制度化"
+    },
+    {
+      "id": "I019",
+      "label": "インド国民会議派の結成",
+      "summary": "1885年にインド人エリート層が国民会議派を結成。当初は穏健な改革要求だったが、次第にスワデーシ運動など民族主義が高揚した",
+      "actors": [
+        "ダーダーバーイー・ナオロージー"
+      ],
+      "intensity": "medium",
+      "timescale": "long",
+      "cluster": "PI7_独立運動",
+      "era": "1885年",
+      "fwType": "drift",
+      "pattern": "{植民地教育を受けたエリート}が{民族的自覚}に至る",
+      "bgType": "思想潮流",
+      "releaseType": "改革",
+      "patternType": "思想潮流→改革"
+    },
+    {
+      "id": "I020",
+      "label": "ガンディーの非暴力運動と塩の行進",
+      "summary": "ガンディーが非暴力・不服従運動を展開。1930年の塩の行進は世界に衝撃を与え、イギリス支配の正統性を揺さぶった",
+      "actors": [
+        "ガンディー"
+      ],
+      "intensity": "high",
+      "timescale": "long",
+      "cluster": "PI7_独立運動",
+      "era": "1920–1942年",
+      "fwType": "reform",
+      "pattern": "{非暴力の道徳的権威}が{帝国支配の正統性}を解体する",
+      "bgType": "思想潮流",
+      "releaseType": "改革",
+      "patternType": "思想潮流→改革",
+      "absorbed": [
+        {
+          "label": "塩の行進",
+          "era": "1930年",
+          "type": "component"
+        },
+        {
+          "label": "インド統治法",
+          "era": "1935年",
+          "type": "component"
+        }
+      ]
+    },
+    {
+      "id": "I021",
+      "label": "インド独立とパキスタン分離",
+      "summary": "第二次世界大戦後、イギリスがインドの独立を認める。ヒンドゥー・ムスリムの対立からインドとパキスタンに分離独立した",
+      "actors": [
+        "ネルー",
+        "ジンナー",
+        "マウントバッテン"
+      ],
+      "intensity": "high",
+      "timescale": "short",
+      "cluster": "PI7_独立運動",
+      "era": "1947年",
+      "fwType": "collapse",
+      "pattern": "{帝国の弱体化}と{民族運動}で{植民地支配}が崩壊するが{分離}を伴う",
+      "bgType": "複合背景",
+      "releaseType": "崩壊",
+      "patternType": "複合背景→崩壊"
+    },
+    {
+      "id": "I006b",
+      "label": "グプタ朝末期の内部弱体化",
+      "summary": "グプタ朝後期は王位継承争いと地方総督の自立が進行。中央の軍事力が低下し、外部からの侵入に対して脆弱になった",
+      "actors": [
+        "グプタ朝"
+      ],
+      "intensity": "medium",
+      "timescale": "medium",
+      "cluster": "PI2_グプタと中世",
+      "era": "5世紀",
+      "fwType": "drift",
+      "pattern": "{帝国後期の内部弱体化}が{外部侵入}への抵抗力を失わせる",
+      "bgType": "制度疲弊",
+      "releaseType": "崩壊",
+      "patternType": "制度疲弊→崩壊"
+    },
+    {
+      "id": "I009b",
+      "label": "ラージプート諸王国の分裂と対立",
+      "summary": "北インドのラージプート諸王国は相互に対立し統一的防衛を組織できなかった。この分裂がイスラーム征服を容易にした",
+      "actors": [
+        "ラージプート諸王"
+      ],
+      "intensity": "medium",
+      "timescale": "long",
+      "cluster": "PI3_イスラーム侵入",
+      "era": "10–12世紀",
+      "fwType": "conflict",
+      "pattern": "{内部分裂}が{外部征服者}に付け入る隙を与える",
+      "bgType": "勢力対立",
+      "releaseType": "戦闘",
+      "patternType": "勢力対立→戦闘"
+    },
+    {
+      "id": "I016b",
+      "label": "植民地支配への不満の蓄積",
+      "summary": "土地制度の改変、宣教活動、インド人の差別的待遇が蓄積し、セポイの間でも不満が高まっていた",
+      "actors": [
+        "セポイ",
+        "インド農民"
+      ],
+      "intensity": "medium",
+      "timescale": "medium",
+      "cluster": "PI6_英領インド",
+      "era": "1800–1857年",
+      "fwType": "conflict",
+      "pattern": "{植民地支配の矛盾}が{被支配層の不満}として蓄積する",
+      "bgType": "制度的矛盾",
+      "releaseType": "戦闘",
+      "patternType": "制度的矛盾→戦闘"
+    }
+  ],
+  "edges": [
+    {
+      "from": "I001",
+      "to": "I002",
+      "role": "transforms",
+      "note": "インダス衰退後にヴェーダ文化"
+    },
+    {
+      "from": "I002",
+      "to": "I003",
+      "role": "amplifies",
+      "note": "バラモン教権威への不満が新宗教を生む"
+    },
+    {
+      "from": "I003",
+      "to": "I004",
+      "role": "sustains",
+      "note": "仏教がマウリヤ朝の統治理念に"
+    },
+    {
+      "from": "I004",
+      "to": "I005",
+      "role": "inherits",
+      "note": "マウリヤ朝の仏教保護をクシャーナが継承"
+    },
+    {
+      "from": "I005",
+      "to": "I006",
+      "role": "transforms",
+      "note": "北インドの統一伝統をグプタが継承"
+    },
+    {
+      "from": "I006",
+      "to": "I007",
+      "role": "triggers",
+      "note": "フン族侵入でグプタ朝崩壊"
+    },
+    {
+      "from": "I007",
+      "to": "I008",
+      "role": "transforms",
+      "note": "帝国崩壊後の地方王国時代"
+    },
+    {
+      "from": "I008",
+      "to": "I009",
+      "role": "amplifies",
+      "note": "分裂状態がイスラーム侵入を容易に"
+    },
+    {
+      "from": "I009",
+      "to": "I010",
+      "role": "triggers",
+      "note": "ガズナ朝の侵攻がデリー・スルタン朝の前提"
+    },
+    {
+      "from": "I010",
+      "to": "I011",
+      "role": "triggers",
+      "note": "スルタン朝をムガルが打倒"
+    },
+    {
+      "from": "I011",
+      "to": "I012",
+      "role": "transforms",
+      "note": "バーブルの征服をアクバルが制度化"
+    },
+    {
+      "from": "I012",
+      "to": "I013",
+      "role": "inherits",
+      "note": "ムガル文化の継承と発展"
+    },
+    {
+      "from": "I013",
+      "to": "I014",
+      "role": "amplifies",
+      "note": "財政悪化が不寛容政策を促進"
+    },
+    {
+      "from": "I014",
+      "to": "I015",
+      "role": "triggers",
+      "note": "不寛容がマラーター反乱を招く"
+    },
+    {
+      "from": "I014",
+      "to": "I016",
+      "role": "amplifies",
+      "note": "ムガル衰退がイギリス進出を容易に"
+    },
+    {
+      "from": "I015",
+      "to": "I016",
+      "role": "amplifies",
+      "note": "マラーター同盟の分裂がイギリスに付け入られる"
+    },
+    {
+      "from": "I016",
+      "to": "I017",
+      "role": "triggers",
+      "note": "植民地支配への不満がセポイの乱に"
+    },
+    {
+      "from": "I017",
+      "to": "I018",
+      "role": "transforms",
+      "note": "反乱鎮圧後に直轄支配を正式化"
+    },
+    {
+      "from": "I018",
+      "to": "I019",
+      "role": "amplifies",
+      "note": "帝国支配の制度化が民族意識を覚醒"
+    },
+    {
+      "from": "I019",
+      "to": "I020",
+      "role": "transforms",
+      "note": "穏健運動から非暴力大衆運動へ"
+    },
+    {
+      "from": "I020",
+      "to": "I021",
+      "role": "triggers",
+      "note": "独立運動の高揚がイギリス撤退を不可避に"
+    },
+    {
+      "from": "M007",
+      "to": "I004",
+      "role": "triggers",
+      "note": "アレクサンドロス撤退後にマウリヤ朝成立"
+    },
+    {
+      "from": "M017",
+      "to": "I011",
+      "role": "sustains",
+      "note": "ティムールの子孫バーブルがムガル建国"
+    },
+    {
+      "from": "I003",
+      "to": "C010b",
+      "role": "sustains",
+      "note": "インド発の仏教が中国に伝播"
+    },
+    {
+      "from": "I019",
+      "to": "I021",
+      "role": "amplifies",
+      "note": "40年にわたる民族運動の蓄積が独立を不可避に"
+    },
+    {
+      "from": "I014",
+      "to": "I021",
+      "role": "sustains",
+      "note": "ヒンドゥー・ムスリム対立の歴史的蓄積が分離独立の背景"
+    },
+    {
+      "from": "I006",
+      "to": "I006b",
+      "role": "transforms",
+      "note": "グプタ朝の安定が後期に弛緩"
+    },
+    {
+      "from": "I006b",
+      "to": "I007",
+      "role": "amplifies",
+      "note": "内部弱体化がフン族侵入の衝撃を増大"
+    },
+    {
+      "from": "I008",
+      "to": "I009b",
+      "role": "transforms",
+      "note": "ラージプート諸王国の分裂が継続"
+    },
+    {
+      "from": "I009b",
+      "to": "I010",
+      "role": "amplifies",
+      "note": "分裂がイスラーム征服を容易に"
+    },
+    {
+      "from": "I016",
+      "to": "I016b",
+      "role": "triggers",
+      "note": "植民地支配が不満を生む"
+    },
+    {
+      "from": "I016b",
+      "to": "I017",
+      "role": "amplifies",
+      "note": "蓄積した不満がセポイの乱で爆発"
+    }
+  ]
+}

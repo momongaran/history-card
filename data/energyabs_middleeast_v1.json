@@ -1,0 +1,971 @@
+{
+  "meta": {
+    "version": "1.0",
+    "description": "EnergyAbs有向グラフ 中東史v1: メソポタミア(前5000)→パレスチナ問題(1948) 約7000年の因果フロー",
+    "nodeCount": 34,
+    "edgeCount": 48,
+    "created": "2026-03-21"
+  },
+  "nodes": [
+    {
+      "id": "M001",
+      "label": "メソポタミア文明の発生",
+      "summary": "チグリス・ユーフラテス川流域で灌漑農業が発達し、世界最古の都市文明が成立。文字・法典・天文学が生まれた",
+      "actors": [
+        "シュメール人"
+      ],
+      "intensity": "high",
+      "timescale": "long",
+      "cluster": "PM0_メソポタミア・古代オリエント",
+      "era": "前5000年頃",
+      "fwType": "institution",
+      "pattern": "{農業革命}から{都市文明}が自生的に成立する",
+      "bgType": "外生",
+      "releaseType": "制度化",
+      "patternType": "外生→制度化"
+    },
+    {
+      "id": "M002",
+      "label": "シュメール都市国家群",
+      "summary": "ウル・ウルク・ラガシュなど独立した都市国家が並立。楔形文字・ジッグラト・法典が発達した",
+      "actors": [
+        "ウル",
+        "ウルク",
+        "ラガシュ"
+      ],
+      "intensity": "medium",
+      "timescale": "long",
+      "cluster": "PM0_メソポタミア・古代オリエント",
+      "era": "前2700年頃",
+      "fwType": "institution",
+      "pattern": "{初期文明}が{多極的都市国家}として発展する",
+      "bgType": "権力集中",
+      "releaseType": "制度化",
+      "patternType": "権力集中→制度化"
+    },
+    {
+      "id": "M003",
+      "label": "アッカド帝国とバビロニア",
+      "summary": "サルゴンがシュメール都市国家を統一しアッカド帝国を建設。後にハンムラビがバビロン第一王朝を築きハンムラビ法典を制定した",
+      "actors": [
+        "サルゴン",
+        "ハンムラビ"
+      ],
+      "intensity": "high",
+      "timescale": "long",
+      "cluster": "PM0_メソポタミア・古代オリエント",
+      "era": "前2334–前1595年",
+      "fwType": "power",
+      "pattern": "{都市国家の競争}から{統一帝国}が出現する",
+      "bgType": "勢力対立",
+      "releaseType": "権力移行",
+      "patternType": "勢力対立→権力移行",
+      "absorbed": [
+        {
+          "label": "ハンムラビ法典",
+          "era": "前1792年頃",
+          "type": "component"
+        }
+      ]
+    },
+    {
+      "id": "M004",
+      "label": "アッシリア帝国",
+      "summary": "鉄器と騎兵を駆使した軍事国家がオリエント全域を征服。残虐な支配で恐れられたが広大な帝国統治の先例を作った",
+      "actors": [
+        "アッシュルバニパル",
+        "サルゴン2世"
+      ],
+      "intensity": "high",
+      "timescale": "medium",
+      "cluster": "PM0_メソポタミア・古代オリエント",
+      "era": "前934–前612年",
+      "fwType": "power",
+      "pattern": "{軍事技術革新}が{大帝国建設}を可能にする",
+      "bgType": "権力集中",
+      "releaseType": "権力移行",
+      "patternType": "権力集中→権力移行"
+    },
+    {
+      "id": "M005",
+      "label": "新バビロニアとバビロン捕囚",
+      "summary": "アッシリア滅亡後、新バビロニアがメソポタミアを支配。ネブカドネザル2世がエルサレムを破壊しユダヤ人を強制移住させた（バビロン捕囚）",
+      "actors": [
+        "ネブカドネザル2世",
+        "ユダヤ人"
+      ],
+      "intensity": "high",
+      "timescale": "short",
+      "cluster": "PM0_メソポタミア・古代オリエント",
+      "era": "前586年",
+      "fwType": "shock",
+      "pattern": "{帝国の征服}が{被征服民の宗教的アイデンティティ}を強化する",
+      "bgType": "外生",
+      "releaseType": "衝撃",
+      "patternType": "外生→衝撃"
+    },
+    {
+      "id": "M006",
+      "label": "アケメネス朝ペルシア帝国",
+      "summary": "キュロス大王がメディア・リディア・新バビロニアを征服し史上初の世界帝国を建設。寛容な統治でユダヤ人を解放した",
+      "actors": [
+        "キュロス2世",
+        "ダレイオス1世"
+      ],
+      "intensity": "high",
+      "timescale": "long",
+      "cluster": "PM1_ペルシア帝国",
+      "era": "前550–前330年",
+      "fwType": "institution",
+      "pattern": "{前帝国群の遺産}を統合し{寛容な多民族帝国}を構築する",
+      "bgType": "権力集中",
+      "releaseType": "制度化",
+      "patternType": "権力集中→制度化",
+      "absorbed": [
+        {
+          "label": "ペルシア戦争",
+          "era": "前499–前449年",
+          "type": "component"
+        }
+      ]
+    },
+    {
+      "id": "M007",
+      "label": "アレクサンドロスの東方遠征",
+      "summary": "マケドニアのアレクサンドロスがペルシア帝国を征服。ヘレニズム文化がオリエント全域に広がった",
+      "actors": [
+        "アレクサンドロス大王"
+      ],
+      "intensity": "high",
+      "timescale": "short",
+      "cluster": "PM1_ペルシア帝国",
+      "era": "前334–前323年",
+      "fwType": "shock",
+      "pattern": "{外部の軍事天才}が{既存の世界帝国}を一挙に破壊・再編する",
+      "bgType": "外生",
+      "releaseType": "衝撃",
+      "patternType": "外生→衝撃"
+    },
+    {
+      "id": "M008",
+      "label": "セレウコス朝とパルティア",
+      "summary": "アレクサンドロス死後、セレウコス朝がオリエントを支配したが、パルティア（アルサケス朝）がイラン高原で独立し東西の仲介者となった",
+      "actors": [
+        "セレウコス1世",
+        "ミトリダテス1世"
+      ],
+      "intensity": "medium",
+      "timescale": "long",
+      "cluster": "PM1_ペルシア帝国",
+      "era": "前312–前63年",
+      "fwType": "drift",
+      "pattern": "{征服帝国の分裂}から{地域勢力}が台頭する",
+      "bgType": "勢力対立",
+      "releaseType": "権力移行",
+      "patternType": "勢力対立→権力移行"
+    },
+    {
+      "id": "M009",
+      "label": "ササン朝ペルシアとゾロアスター教国教化",
+      "summary": "ササン朝がパルティアを倒しペルシア帝国を再建。ゾロアスター教を国教とし、ローマ/ビザンツと数世紀にわたり対峙した",
+      "actors": [
+        "アルダシール1世",
+        "ホスロー1世"
+      ],
+      "intensity": "high",
+      "timescale": "long",
+      "cluster": "PM2_ササン朝とイスラーム",
+      "era": "224–651年",
+      "fwType": "institution",
+      "pattern": "{古代帝国の復興}を{宗教的正統性}で正当化する",
+      "bgType": "思想潮流",
+      "releaseType": "制度化",
+      "patternType": "思想潮流→制度化"
+    },
+    {
+      "id": "M010",
+      "label": "イスラームの誕生とヒジュラ",
+      "summary": "ムハンマドがメッカで啓示を受け、622年メディナに移住（ヒジュラ）。イスラーム共同体（ウンマ）が形成され、アラビア半島を統一した",
+      "actors": [
+        "ムハンマド"
+      ],
+      "intensity": "high",
+      "timescale": "short",
+      "cluster": "PM2_ササン朝とイスラーム",
+      "era": "622年",
+      "fwType": "shock",
+      "pattern": "{新宗教}が{部族社会}を超えた{統一的共同体}を創出する",
+      "bgType": "思想潮流",
+      "releaseType": "衝撃",
+      "patternType": "思想潮流→衝撃"
+    },
+    {
+      "id": "M011",
+      "label": "正統カリフ時代とイスラーム拡大",
+      "summary": "ムハンマド死後の4代カリフ期にイスラームはササン朝を滅ぼしビザンツからシリア・エジプトを奪取。急速な拡大を遂げた",
+      "actors": [
+        "アブー・バクル",
+        "ウマル",
+        "アリー"
+      ],
+      "intensity": "high",
+      "timescale": "short",
+      "cluster": "PM2_ササン朝とイスラーム",
+      "era": "632–661年",
+      "fwType": "battle",
+      "pattern": "{宗教的情熱}と{周辺帝国の疲弊}が{急速な征服}を可能にする",
+      "bgType": "複合背景",
+      "releaseType": "戦闘",
+      "patternType": "複合背景→戦闘"
+    },
+    {
+      "id": "M012",
+      "label": "ウマイヤ朝の拡大",
+      "summary": "ダマスカスを首都とするウマイヤ朝がイベリア半島からインダス川まで拡大。アラブ至上主義が非アラブムスリムの不満を招いた",
+      "actors": [
+        "ムアーウィヤ",
+        "ウマイヤ朝"
+      ],
+      "intensity": "high",
+      "timescale": "medium",
+      "cluster": "PM3_イスラーム帝国",
+      "era": "661–750年",
+      "fwType": "power",
+      "pattern": "{征服帝国}が{民族的特権}で統治し{被支配層の不満}を蓄積する",
+      "bgType": "権力集中",
+      "releaseType": "権力移行",
+      "patternType": "権力集中→権力移行",
+      "absorbed": [
+        {
+          "label": "トゥール・ポワティエ間の戦い",
+          "era": "732年",
+          "type": "component"
+        },
+        {
+          "label": "タラス河畔の戦い",
+          "era": "751年",
+          "type": "component"
+        }
+      ]
+    },
+    {
+      "id": "M013",
+      "label": "アッバース朝とイスラーム黄金時代",
+      "summary": "アッバース革命でウマイヤ朝を打倒。バグダードを首都に多民族・多文化の黄金時代を現出。学問・交易が繁栄した",
+      "actors": [
+        "アッバース朝",
+        "ハールーン・アッラシード"
+      ],
+      "intensity": "high",
+      "timescale": "long",
+      "cluster": "PM3_イスラーム帝国",
+      "era": "750–1258年",
+      "fwType": "institution",
+      "pattern": "{民族平等}と{学問奨励}が{文明の黄金時代}を生む",
+      "bgType": "思想潮流",
+      "releaseType": "制度化",
+      "patternType": "思想潮流→制度化"
+    },
+    {
+      "id": "M014",
+      "label": "十字軍とイスラーム世界",
+      "summary": "西欧キリスト教勢力が聖地奪回のため侵攻。サラディンがエルサレムを奪回し、十字軍国家は約200年で消滅した",
+      "actors": [
+        "サラディン",
+        "十字軍"
+      ],
+      "intensity": "high",
+      "timescale": "long",
+      "cluster": "PM4_十字軍とモンゴル",
+      "era": "1095–1291年",
+      "fwType": "battle",
+      "pattern": "{異文明間の宗教対立}が{軍事衝突}と{文化交流}を同時に生む",
+      "bgType": "外生",
+      "releaseType": "戦闘",
+      "patternType": "外生→戦闘",
+      "absorbed": [
+        {
+          "label": "第1回十字軍",
+          "era": "1095–1099年",
+          "type": "component"
+        },
+        {
+          "label": "第3回十字軍",
+          "era": "1189–1192年",
+          "type": "component"
+        }
+      ]
+    },
+    {
+      "id": "M015",
+      "label": "モンゴルのバグダード破壊",
+      "summary": "フラグのモンゴル軍がバグダードを陥落させアッバース朝カリフを処刑。イスラーム世界の中心が破壊された",
+      "actors": [
+        "フラグ",
+        "モンゴル帝国"
+      ],
+      "intensity": "high",
+      "timescale": "short",
+      "cluster": "PM4_十字軍とモンゴル",
+      "era": "1258年",
+      "fwType": "shock",
+      "pattern": "{ユーラシア規模の軍事力}が{文明の中心}を壊滅させる",
+      "bgType": "外生",
+      "releaseType": "衝撃",
+      "patternType": "外生→衝撃"
+    },
+    {
+      "id": "M016",
+      "label": "マムルーク朝エジプト",
+      "summary": "奴隷軍人出身のマムルークがエジプトで王朝を樹立。モンゴル軍をアイン・ジャールートで撃退し、イスラーム世界の防衛者となった",
+      "actors": [
+        "バイバルス",
+        "マムルーク"
+      ],
+      "intensity": "high",
+      "timescale": "long",
+      "cluster": "PM4_十字軍とモンゴル",
+      "era": "1250–1517年",
+      "fwType": "power",
+      "pattern": "{外部脅威}への防衛者が{新たな権力}を確立する",
+      "bgType": "外生",
+      "releaseType": "権力移行",
+      "patternType": "外生→権力移行"
+    },
+    {
+      "id": "M017",
+      "label": "ティムール帝国",
+      "summary": "中央アジアからティムールが西アジア全域を征服。アンカラの戦いでオスマン帝国を一時壊滅させたが、帝国は短命に終わった",
+      "actors": [
+        "ティムール"
+      ],
+      "intensity": "high",
+      "timescale": "short",
+      "cluster": "PM5_ティムールとオスマン",
+      "era": "1370–1405年",
+      "fwType": "shock",
+      "pattern": "{遊牧軍事力}が{定住文明圏}を横断的に破壊する",
+      "bgType": "外生",
+      "releaseType": "衝撃",
+      "patternType": "外生→衝撃",
+      "absorbed": [
+        {
+          "label": "アンカラの戦い",
+          "era": "1402年",
+          "type": "component"
+        }
+      ]
+    },
+    {
+      "id": "M018",
+      "label": "オスマン帝国の勃興",
+      "summary": "アナトリアの小侯国から出発したオスマン朝がバルカン半島に進出。ティムールの打撃から復活し急速に拡大した",
+      "actors": [
+        "オスマン1世",
+        "ムラト1世",
+        "バヤズィト1世"
+      ],
+      "intensity": "high",
+      "timescale": "long",
+      "cluster": "PM5_ティムールとオスマン",
+      "era": "1299–1453年",
+      "fwType": "power",
+      "pattern": "{辺境の軍事集団}が{衰退する周辺帝国}の空白を埋めて成長する",
+      "bgType": "勢力対立",
+      "releaseType": "権力移行",
+      "patternType": "勢力対立→権力移行"
+    },
+    {
+      "id": "M019",
+      "label": "コンスタンティノープル陥落",
+      "summary": "メフメト2世がビザンツ帝国の首都コンスタンティノープルを攻略。1000年続いた東ローマ帝国が滅亡し、オスマン帝国が地中海の覇者となった",
+      "actors": [
+        "メフメト2世"
+      ],
+      "intensity": "high",
+      "timescale": "short",
+      "cluster": "PM5_ティムールとオスマン",
+      "era": "1453年",
+      "fwType": "battle",
+      "pattern": "{新興軍事国家}が{古代帝国の最後の拠点}を陥落させる",
+      "bgType": "勢力対立",
+      "releaseType": "戦闘",
+      "patternType": "勢力対立→戦闘"
+    },
+    {
+      "id": "M020",
+      "label": "オスマン帝国の最盛期",
+      "summary": "スレイマン1世の下でオスマン帝国は東欧・北アフリカ・中東を支配する大帝国に。ミッレト制による多宗教共存を実現した",
+      "actors": [
+        "スレイマン1世"
+      ],
+      "intensity": "high",
+      "timescale": "long",
+      "cluster": "PM6_オスマン帝国",
+      "era": "1520–1566年",
+      "fwType": "institution",
+      "pattern": "{軍事的征服}と{制度的寛容}で{多民族帝国}を安定させる",
+      "bgType": "権力集中",
+      "releaseType": "制度化",
+      "patternType": "権力集中→制度化"
+    },
+    {
+      "id": "M021",
+      "label": "サファヴィー朝ペルシア",
+      "summary": "イスマーイール1世がシーア派を国教とするサファヴィー朝を建国。オスマン帝国との宗派対立がイスラーム世界を二分した",
+      "actors": [
+        "イスマーイール1世",
+        "アッバース1世"
+      ],
+      "intensity": "high",
+      "timescale": "long",
+      "cluster": "PM6_オスマン帝国",
+      "era": "1501–1736年",
+      "fwType": "institution",
+      "pattern": "{宗派的差異}が{独立した帝国}の正統性根拠となる",
+      "bgType": "思想潮流",
+      "releaseType": "制度化",
+      "patternType": "思想潮流→制度化"
+    },
+    {
+      "id": "M022",
+      "label": "オスマン帝国の停滞と軍事的後退",
+      "summary": "第二次ウィーン包囲の失敗以降、欧州への拡大が止まる。ロシアの南下政策で黒海支配を失い、「東方問題」が欧州外交の焦点に",
+      "actors": [
+        "オスマン帝国",
+        "ロシア帝国"
+      ],
+      "intensity": "medium",
+      "timescale": "long",
+      "cluster": "PM6_オスマン帝国",
+      "era": "1683–1800年代",
+      "fwType": "drift",
+      "pattern": "{軍事的後退}と{制度改革の遅れ}が{長期衰退}を招く",
+      "bgType": "制度疲弊",
+      "releaseType": "崩壊",
+      "patternType": "制度疲弊→崩壊"
+    },
+    {
+      "id": "M023",
+      "label": "エジプト・トルコ戦争（ムハンマド・アリー）",
+      "summary": "エジプト総督ムハンマド・アリーが近代化を推進しオスマン帝国に反旗。二度の戦争でシリアを一時占領し、帝国の弱体化を露呈させた",
+      "actors": [
+        "ムハンマド・アリー",
+        "オスマン帝国"
+      ],
+      "intensity": "high",
+      "timescale": "medium",
+      "cluster": "PM7_近代化と崩壊",
+      "era": "1831–1841年",
+      "fwType": "battle",
+      "pattern": "{属州の近代化}が{宗主国}を凌駕し{帝国の求心力}を崩す",
+      "bgType": "制度的矛盾",
+      "releaseType": "戦闘",
+      "patternType": "制度的矛盾→戦闘"
+    },
+    {
+      "id": "M024",
+      "label": "タンジマート改革",
+      "summary": "オスマン帝国が西欧式の法制度・教育・軍制改革を実施。近代化を図ったが保守派と民族主義の双方から抵抗を受けた",
+      "actors": [
+        "アブデュルメジト1世"
+      ],
+      "intensity": "medium",
+      "timescale": "long",
+      "cluster": "PM7_近代化と崩壊",
+      "era": "1839–1876年",
+      "fwType": "reform",
+      "pattern": "{外圧と内部危機}への対応として{上からの近代化}を試みる",
+      "bgType": "外生",
+      "releaseType": "改革",
+      "patternType": "外生→改革"
+    },
+    {
+      "id": "M025",
+      "label": "スエズ運河開通とイギリスのエジプト支配",
+      "summary": "1869年スエズ運河が開通。エジプトの財政破綻をきっかけにイギリスが軍事介入し、事実上の植民地化した",
+      "actors": [
+        "イギリス",
+        "エジプト"
+      ],
+      "intensity": "high",
+      "timescale": "short",
+      "cluster": "PM7_近代化と崩壊",
+      "era": "1869–1882年",
+      "fwType": "shock",
+      "pattern": "{インフラ投資の負債}が{外国による支配}の口実となる",
+      "bgType": "経済圧",
+      "releaseType": "衝撃",
+      "patternType": "経済圧→衝撃"
+    },
+    {
+      "id": "M026",
+      "label": "青年トルコ革命",
+      "summary": "統一と進歩委員会が立憲革命を起こし、専制的なアブデュルハミト2世から権力を奪取。立憲政治を回復したが帝国の崩壊は止められなかった",
+      "actors": [
+        "統一と進歩委員会",
+        "アブデュルハミト2世"
+      ],
+      "intensity": "high",
+      "timescale": "short",
+      "cluster": "PM8_オスマン崩壊と中東再編",
+      "era": "1908年",
+      "fwType": "reform",
+      "pattern": "{近代化エリート}が{専制君主}を打倒し{立憲体制}を樹立する",
+      "bgType": "制度的矛盾",
+      "releaseType": "改革",
+      "patternType": "制度的矛盾→改革"
+    },
+    {
+      "id": "M027",
+      "label": "第一次世界大戦とオスマン帝国参戦",
+      "summary": "オスマン帝国がドイツ側で参戦。ガリポリで英仏を撃退したが、アラブ反乱とイギリスの中東進出で帝国は瓦解した",
+      "actors": [
+        "オスマン帝国",
+        "イギリス",
+        "アラブ反乱軍"
+      ],
+      "intensity": "high",
+      "timescale": "short",
+      "cluster": "PM8_オスマン崩壊と中東再編",
+      "era": "1914–1918年",
+      "fwType": "battle",
+      "pattern": "{世界戦争}が{衰退帝国}の最終崩壊を早める",
+      "bgType": "外生",
+      "releaseType": "戦闘",
+      "patternType": "外生→戦闘",
+      "absorbed": [
+        {
+          "label": "サイクス・ピコ協定",
+          "era": "1916年",
+          "type": "component"
+        },
+        {
+          "label": "バルフォア宣言",
+          "era": "1917年",
+          "type": "component"
+        },
+        {
+          "label": "アラブ反乱",
+          "era": "1916–1918年",
+          "type": "component"
+        }
+      ]
+    },
+    {
+      "id": "M028",
+      "label": "トルコ革命と共和国成立",
+      "summary": "ムスタファ・ケマルがギリシャ軍を撃退し、セーヴル条約を破棄。カリフ制を廃止し世俗主義のトルコ共和国を建国した",
+      "actors": [
+        "ムスタファ・ケマル"
+      ],
+      "intensity": "high",
+      "timescale": "short",
+      "cluster": "PM8_オスマン崩壊と中東再編",
+      "era": "1919–1923年",
+      "fwType": "reform",
+      "pattern": "{帝国崩壊}から{世俗的国民国家}への急進的転換",
+      "bgType": "思想潮流",
+      "releaseType": "改革",
+      "patternType": "思想潮流→改革"
+    },
+    {
+      "id": "M029",
+      "label": "委任統治と中東の人工的国境",
+      "summary": "英仏がシリア・イラク・パレスチナ等を委任統治。民族・宗派の実態を無視した国境線が引かれ、将来の紛争の種が蒔かれた",
+      "actors": [
+        "イギリス",
+        "フランス"
+      ],
+      "intensity": "high",
+      "timescale": "medium",
+      "cluster": "PM8_オスマン崩壊と中東再編",
+      "era": "1920年代–1940年代",
+      "fwType": "institution",
+      "pattern": "{外部列強}が{人工的な国家体制}を押しつける",
+      "bgType": "外生",
+      "releaseType": "制度化",
+      "patternType": "外生→制度化"
+    },
+    {
+      "id": "M030",
+      "label": "パレスチナ分割決議とイスラエル建国",
+      "summary": "国連がパレスチナ分割を決議。1948年イスラエルが建国を宣言し、第一次中東戦争が勃発した",
+      "actors": [
+        "イスラエル",
+        "アラブ諸国",
+        "国連"
+      ],
+      "intensity": "high",
+      "timescale": "short",
+      "cluster": "PM8_オスマン崩壊と中東再編",
+      "era": "1947–1948年",
+      "fwType": "conflict",
+      "pattern": "{植民地期の約束の矛盾}が{解決不能な対立}を生む",
+      "bgType": "複合背景",
+      "releaseType": "戦闘",
+      "patternType": "複合背景→戦闘"
+    },
+    {
+      "id": "M002b",
+      "label": "都市国家間の覇権争い",
+      "summary": "シュメール都市国家間の恒常的な戦争と同盟の組み替え。ウルの覇権、ラガシュとウンマの抗争など、統一への圧力が蓄積された",
+      "actors": [
+        "ウル",
+        "ラガシュ",
+        "ウンマ"
+      ],
+      "intensity": "medium",
+      "timescale": "long",
+      "cluster": "PM0_メソポタミア・古代オリエント",
+      "era": "前2500–前2350年頃",
+      "fwType": "conflict",
+      "pattern": "{都市国家間の覇権争い}が{統一帝国}への圧力を蓄積する",
+      "bgType": "勢力対立",
+      "releaseType": "戦闘",
+      "patternType": "勢力対立→戦闘"
+    },
+    {
+      "id": "M011b",
+      "label": "アラブ部族間の統合と宗教的熱狂",
+      "summary": "イスラーム以前の部族対立がウンマの理念で統合され、征服への強烈な動機が形成された。ジハードの理念が軍事的拡大を正当化した",
+      "actors": [
+        "アラブ諸部族"
+      ],
+      "intensity": "medium",
+      "timescale": "short",
+      "cluster": "PM3_イスラーム帝国",
+      "era": "630–660年代",
+      "fwType": "drift",
+      "pattern": "{部族社会の統合}が{征服のエネルギー}に転化する",
+      "bgType": "思想潮流",
+      "releaseType": "制度化",
+      "patternType": "思想潮流→制度化"
+    },
+    {
+      "id": "M013b",
+      "label": "アッバース朝の分裂と地方政権の自立",
+      "summary": "10世紀以降カリフの権威は名目化。ブワイフ朝・セルジューク朝など地方政権が実権を握り、帝国は分裂状態に陥った",
+      "actors": [
+        "ブワイフ朝",
+        "セルジューク朝"
+      ],
+      "intensity": "medium",
+      "timescale": "long",
+      "cluster": "PM4_十字軍とモンゴル",
+      "era": "10–13世紀",
+      "fwType": "drift",
+      "pattern": "{中央権威の名目化}が{帝国の実質的分裂}を進行させる",
+      "bgType": "制度疲弊",
+      "releaseType": "崩壊",
+      "patternType": "制度疲弊→崩壊"
+    },
+    {
+      "id": "M018b",
+      "label": "ビザンツ帝国の長期衰退",
+      "summary": "第4回十字軍のコンスタンティノープル占領（1204）以降、ビザンツは領土を縮小し続け、オスマンの圧迫に抗しきれなくなった",
+      "actors": [
+        "ビザンツ帝国"
+      ],
+      "intensity": "medium",
+      "timescale": "long",
+      "cluster": "PM5_ティムールとオスマン",
+      "era": "1204–1453年",
+      "fwType": "drift",
+      "pattern": "{長期的衰退}が{外部勢力による最終的征服}を不可避にする",
+      "bgType": "制度疲弊",
+      "releaseType": "崩壊",
+      "patternType": "制度疲弊→崩壊"
+    }
+  ],
+  "edges": [
+    {
+      "from": "M001",
+      "to": "M002",
+      "role": "transforms",
+      "note": "メソポタミア文明が都市国家に発展"
+    },
+    {
+      "from": "M002",
+      "to": "M003",
+      "role": "triggers",
+      "note": "都市国家の競争から統一帝国"
+    },
+    {
+      "from": "M003",
+      "to": "M004",
+      "role": "inherits",
+      "note": "帝国統治モデルの継承"
+    },
+    {
+      "from": "M004",
+      "to": "M005",
+      "role": "triggers",
+      "note": "アッシリア滅亡後の新バビロニア"
+    },
+    {
+      "from": "M005",
+      "to": "M006",
+      "role": "triggers",
+      "note": "新バビロニアをペルシアが征服"
+    },
+    {
+      "from": "M006",
+      "to": "M007",
+      "role": "triggers",
+      "note": "ペルシア帝国をアレクサンドロスが征服"
+    },
+    {
+      "from": "M007",
+      "to": "M008",
+      "role": "transforms",
+      "note": "ヘレニズム王国の分裂"
+    },
+    {
+      "from": "M008",
+      "to": "M009",
+      "role": "transforms",
+      "note": "パルティアからササン朝へ"
+    },
+    {
+      "from": "M009",
+      "to": "M010",
+      "role": "sustains",
+      "note": "ササン・ビザンツ戦争の疲弊がイスラーム拡大の前提"
+    },
+    {
+      "from": "M010",
+      "to": "M011",
+      "role": "triggers",
+      "note": "イスラームの教えが征服の動力に"
+    },
+    {
+      "from": "M011",
+      "to": "M012",
+      "role": "transforms",
+      "note": "正統カリフからウマイヤ朝へ"
+    },
+    {
+      "from": "M009",
+      "to": "M011",
+      "role": "amplifies",
+      "note": "ササン朝の疲弊がイスラーム征服を容易に"
+    },
+    {
+      "from": "M012",
+      "to": "M013",
+      "role": "triggers",
+      "note": "アッバース革命"
+    },
+    {
+      "from": "M013",
+      "to": "M014",
+      "role": "sustains",
+      "note": "イスラーム世界の繁栄が十字軍の標的に"
+    },
+    {
+      "from": "M013",
+      "to": "M015",
+      "role": "triggers",
+      "note": "アッバース朝をモンゴルが破壊"
+    },
+    {
+      "from": "M015",
+      "to": "M016",
+      "role": "triggers",
+      "note": "モンゴル撃退でマムルークが台頭"
+    },
+    {
+      "from": "M014",
+      "to": "M016",
+      "role": "sustains",
+      "note": "十字軍との戦いがマムルークの正統性を強化"
+    },
+    {
+      "from": "M015",
+      "to": "M017",
+      "role": "amplifies",
+      "note": "モンゴル後の権力真空をティムールが埋める"
+    },
+    {
+      "from": "M017",
+      "to": "M018",
+      "role": "triggers",
+      "note": "ティムールの打撃からオスマンが復活"
+    },
+    {
+      "from": "M016",
+      "to": "M018",
+      "role": "amplifies",
+      "note": "マムルーク朝の衰退がオスマン台頭を助ける"
+    },
+    {
+      "from": "M018",
+      "to": "M019",
+      "role": "triggers",
+      "note": "オスマンの軍事力がコンスタンティノープルを陥落"
+    },
+    {
+      "from": "M019",
+      "to": "M020",
+      "role": "transforms",
+      "note": "ビザンツ征服が帝国の格を確立"
+    },
+    {
+      "from": "M020",
+      "to": "M021",
+      "role": "amplifies",
+      "note": "オスマンの拡大がサファヴィー朝との対立を激化"
+    },
+    {
+      "from": "M020",
+      "to": "M022",
+      "role": "transforms",
+      "note": "最盛期から停滞へ"
+    },
+    {
+      "from": "M022",
+      "to": "M023",
+      "role": "amplifies",
+      "note": "帝国の弱体化がエジプトの自立を可能に"
+    },
+    {
+      "from": "M022",
+      "to": "M024",
+      "role": "triggers",
+      "note": "衰退への危機感が改革を促す"
+    },
+    {
+      "from": "M024",
+      "to": "M025",
+      "role": "sustains",
+      "note": "近代化の負債が外国支配を招く"
+    },
+    {
+      "from": "M024",
+      "to": "M026",
+      "role": "amplifies",
+      "note": "改革の不徹底が革命を招く"
+    },
+    {
+      "from": "M026",
+      "to": "M027",
+      "role": "triggers",
+      "note": "青年トルコが参戦を決定"
+    },
+    {
+      "from": "M027",
+      "to": "M028",
+      "role": "triggers",
+      "note": "敗戦がトルコ革命を招く"
+    },
+    {
+      "from": "M027",
+      "to": "M029",
+      "role": "transforms",
+      "note": "オスマン領の英仏分割"
+    },
+    {
+      "from": "M029",
+      "to": "M030",
+      "role": "amplifies",
+      "note": "委任統治下の矛盾がパレスチナ問題に"
+    },
+    {
+      "from": "M014",
+      "to": "W025",
+      "role": "sustains",
+      "note": "中東側の十字軍対応が欧州にも影響"
+    },
+    {
+      "from": "M012",
+      "to": "W016",
+      "role": "sustains",
+      "note": "ウマイヤ朝の拡大が欧州のイスラーム認識を規定"
+    },
+    {
+      "from": "M015",
+      "to": "C017",
+      "role": "sustains",
+      "note": "モンゴル帝国は中東と中国を同時に再編"
+    },
+    {
+      "from": "M006",
+      "to": "M007",
+      "role": "amplifies",
+      "note": "ペルシア帝国の硬直がアレクサンドロスの征服を容易に"
+    },
+    {
+      "from": "M022",
+      "to": "M027",
+      "role": "amplifies",
+      "note": "オスマンの長期衰退がWWI参戦の判断ミスの背景"
+    },
+    {
+      "from": "M022",
+      "to": "M028",
+      "role": "amplifies",
+      "note": "帝国の停滞がケマルの急進改革を不可避に"
+    },
+    {
+      "from": "M002b",
+      "to": "M003",
+      "role": "amplifies",
+      "note": "都市国家間抗争が統一帝国の動機"
+    },
+    {
+      "from": "M002",
+      "to": "M002b",
+      "role": "transforms",
+      "note": "都市国家の発展が覇権争いに"
+    },
+    {
+      "from": "M002b",
+      "to": "M004",
+      "role": "sustains",
+      "note": "覇権争いの伝統が軍事国家の土壌に"
+    },
+    {
+      "from": "M002b",
+      "to": "M005",
+      "role": "sustains",
+      "note": "メソポタミアの覇権争いの延長"
+    },
+    {
+      "from": "M011b",
+      "to": "M012",
+      "role": "amplifies",
+      "note": "統合されたアラブの征服エネルギーが拡大を駆動"
+    },
+    {
+      "from": "M010",
+      "to": "M011b",
+      "role": "triggers",
+      "note": "イスラームが部族統合を実現"
+    },
+    {
+      "from": "M013b",
+      "to": "M015",
+      "role": "amplifies",
+      "note": "分裂したイスラーム世界がモンゴルに対して脆弱に"
+    },
+    {
+      "from": "M013",
+      "to": "M013b",
+      "role": "transforms",
+      "note": "アッバース朝の衰退が分裂に"
+    },
+    {
+      "from": "M018b",
+      "to": "M019",
+      "role": "amplifies",
+      "note": "ビザンツの衰退がコンスタンティノープル陥落を不可避に"
+    },
+    {
+      "from": "M014",
+      "to": "M018b",
+      "role": "amplifies",
+      "note": "十字軍がビザンツの衰退を加速"
+    }
+  ]
+}
