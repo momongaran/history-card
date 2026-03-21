@@ -2,8 +2,8 @@
   "meta": {
     "version": "1.0",
     "description": "EnergyAbs有向グラフ 中国史v1: 殷周(前1600)→中華人民共和国(1949) 約3500年の因果フロー",
-    "nodeCount": 50,
-    "edgeCount": 71,
+    "nodeCount": 51,
+    "edgeCount": 74,
     "created": "2026-03-21"
   },
   "nodes": [
@@ -1012,6 +1012,25 @@
       "bgType": "思想潮流",
       "releaseType": "改革",
       "patternType": "思想潮流→改革"
+    },
+    {
+      "id": "C028b",
+      "label": "日露戦争と満州をめぐる列強角逐",
+      "summary": "1904年日露戦争の戦場は清の領土である満州だった。日本の勝利は列強による中国分割の構図を変え、中国ナショナリズムを刺激した",
+      "actors": [
+        "日本",
+        "ロシア",
+        "清"
+      ],
+      "intensity": "high",
+      "timescale": "short",
+      "cluster": "PC8_清末の動揺",
+      "era": "1904年–1905年",
+      "fwType": "shock",
+      "pattern": "{列強}が{自国領土}で戦争し{ナショナリズム}を刺激する",
+      "bgType": "外圧",
+      "releaseType": "衝撃",
+      "patternType": "外圧→衝撃"
     }
   ],
   "edges": [
@@ -1440,6 +1459,24 @@
       "to": "C032",
       "role": "amplifies",
       "note": "革命思想の浸透が辛亥革命の基盤"
+    },
+    {
+      "from": "C025b",
+      "to": "C028b",
+      "role": "sustains",
+      "note": "半植民地化の屈辱が満州での列強角逐への怒りを増幅した"
+    },
+    {
+      "from": "C028b",
+      "to": "C030b",
+      "role": "amplifies",
+      "note": "日露戦争の衝撃が革命思想の浸透を加速した"
+    },
+    {
+      "from": "C028b",
+      "to": "N120",
+      "role": "triggers",
+      "note": "日露戦争は日本側から見れば帝国主義的膨張の達成"
     }
   ]
 }

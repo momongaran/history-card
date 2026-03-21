@@ -2,8 +2,8 @@
   "meta": {
     "version": "1.0",
     "description": "EnergyAbs有向グラフ 中東史v1: メソポタミア(前5000)→パレスチナ問題(1948) 約7000年の因果フロー",
-    "nodeCount": 34,
-    "edgeCount": 48,
+    "nodeCount": 35,
+    "edgeCount": 50,
     "created": "2026-03-21"
   },
   "nodes": [
@@ -676,6 +676,25 @@
       "bgType": "制度疲弊",
       "releaseType": "崩壊",
       "patternType": "制度疲弊→崩壊"
+    },
+    {
+      "id": "M025b",
+      "label": "ナポレオンのエジプト遠征",
+      "summary": "1798年ナポレオンがエジプトに遠征。軍事的には短期間で終わったが、オスマン帝国の軍事的脆弱性を露呈させ、ムハンマド・アリーの台頭とエジプト近代化の契機となった",
+      "actors": [
+        "ナポレオン",
+        "マムルーク",
+        "オスマン帝国"
+      ],
+      "intensity": "high",
+      "timescale": "short",
+      "cluster": "PM7_近代中東の変容",
+      "era": "1798年–1801年",
+      "fwType": "shock",
+      "pattern": "{欧州列強}の{軍事遠征}が{旧体制の脆弱性}を露呈させ{近代化}の契機となる",
+      "bgType": "外圧",
+      "releaseType": "衝撃",
+      "patternType": "外圧→衝撃"
     }
   ],
   "edges": [
@@ -966,6 +985,18 @@
       "to": "M018b",
       "role": "amplifies",
       "note": "十字軍がビザンツの衰退を加速"
+    },
+    {
+      "from": "W043",
+      "to": "M025b",
+      "role": "triggers",
+      "note": "ナポレオンの帝政がエジプト遠征を引き起こした"
+    },
+    {
+      "from": "M025b",
+      "to": "M024",
+      "role": "amplifies",
+      "note": "エジプト遠征がオスマン帝国の近代化改革（タンジマート）の危機意識を高めた"
     }
   ]
 }

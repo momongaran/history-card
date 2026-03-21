@@ -3,8 +3,8 @@
     "version": "1.0",
     "description": "EnergyAbs有向グラフ アメリカ史v1: 先コロンブス文明→冷戦終結 約500年の因果フロー",
     "region": "americas",
-    "nodeCount": 32,
-    "edgeCount": 45,
+    "nodeCount": 33,
+    "edgeCount": 49,
     "created": "2026-03-21"
   },
   "nodes": [
@@ -270,6 +270,24 @@
       "bgType": "勢力対立",
       "releaseType": "戦闘",
       "patternType": "勢力対立→戦闘"
+    },
+    {
+      "id": "A012b",
+      "label": "ペリー来航と日本開国",
+      "summary": "1853年マシュー・ペリー提督が軍艦4隻で浦賀に来航し日本に開国を迫った。翌年の日米和親条約で200年以上の鎖国体制を終わらせ、米国の太平洋覇権への布石となった",
+      "actors": [
+        "ペリー提督",
+        "フィルモア大統領"
+      ],
+      "intensity": "medium",
+      "timescale": "short",
+      "cluster": "PA4_膨張と南北戦争",
+      "era": "1853年–1854年",
+      "fwType": "shock",
+      "pattern": "{太平洋進出}の一環として{軍事圧力}で{東アジアの鎖国体制}を打破する",
+      "bgType": "外圧",
+      "releaseType": "衝撃",
+      "patternType": "外圧→衝撃"
     },
     {
       "id": "A013",
@@ -877,6 +895,30 @@
       "to": "A023",
       "role": "amplifies",
       "note": "東アジアの冷戦緊張が朝鮮戦争への介入を決定づけた"
+    },
+    {
+      "from": "A011",
+      "to": "A012b",
+      "role": "sustains",
+      "note": "マニフェスト・デスティニーの太平洋方面への延長がペリー遠征の背景となった"
+    },
+    {
+      "from": "A012",
+      "to": "A012b",
+      "role": "amplifies",
+      "note": "カリフォルニア獲得による太平洋沿岸進出がアジアへの関心を高めた"
+    },
+    {
+      "from": "A012b",
+      "to": "A016",
+      "role": "sustains",
+      "note": "ペリー遠征の成功が太平洋・アジアへの帝国主義的膨張の先例となった"
+    },
+    {
+      "from": "A012b",
+      "to": "N106",
+      "role": "triggers",
+      "note": "ペリー来航が日本の鎖国体制を崩壊させた"
     }
   ]
 }

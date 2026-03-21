@@ -2,8 +2,8 @@
   "meta": {
     "version": "1.0",
     "description": "EnergyAbs有向グラフ インド史v1: インダス文明(前2600)→インド独立(1947) 約4500年の因果フロー",
-    "nodeCount": 24,
-    "edgeCount": 32,
+    "nodeCount": 26,
+    "edgeCount": 36,
     "created": "2026-03-21"
   },
   "nodes": [
@@ -448,6 +448,43 @@
       "bgType": "制度的矛盾",
       "releaseType": "戦闘",
       "patternType": "制度的矛盾→戦闘"
+    },
+    {
+      "id": "I010b",
+      "label": "ヴァスコ・ダ・ガマの来航と大航海時代の波及",
+      "summary": "1498年ポルトガルのヴァスコ・ダ・ガマがカリカットに到達。香辛料貿易の直接ルートが開かれ、インド洋交易圏の構造が根本的に変化した。以後欧州列強のインド進出が始まる",
+      "actors": [
+        "ヴァスコ・ダ・ガマ",
+        "ポルトガル",
+        "カリカット"
+      ],
+      "intensity": "high",
+      "timescale": "short",
+      "cluster": "PI4_ムガル帝国",
+      "era": "1498年",
+      "fwType": "shock",
+      "pattern": "{外来勢力}が{海上交易路}を開き{既存の交易構造}を変革する",
+      "bgType": "外圧",
+      "releaseType": "衝撃",
+      "patternType": "外圧→衝撃"
+    },
+    {
+      "id": "I011b",
+      "label": "ティムールのデリー破壊",
+      "summary": "1398年ティムールがデリーに侵入し大虐殺と略奪を行った。デリー・スルタン朝は壊滅的打撃を受け、北インドは政治的空白期に入り、後のムガル帝国成立の前提条件を作った",
+      "actors": [
+        "ティムール",
+        "デリー・スルタン朝"
+      ],
+      "intensity": "high",
+      "timescale": "short",
+      "cluster": "PI3_デリー・スルタン朝",
+      "era": "1398年",
+      "fwType": "shock",
+      "pattern": "{外部征服者}の{大規模破壊}が{既存王朝}を壊滅させ{政治的空白}を生む",
+      "bgType": "外圧",
+      "releaseType": "衝撃",
+      "patternType": "外圧→衝撃"
     }
   ],
   "edges": [
@@ -642,6 +679,30 @@
       "to": "I017",
       "role": "amplifies",
       "note": "蓄積した不満がセポイの乱で爆発"
+    },
+    {
+      "from": "W031",
+      "to": "I010b",
+      "role": "triggers",
+      "note": "大航海時代の開始がインド航路の開拓をもたらした"
+    },
+    {
+      "from": "I010b",
+      "to": "I016",
+      "role": "sustains",
+      "note": "欧州のインド進出がイギリス植民地支配の前史となった"
+    },
+    {
+      "from": "M017",
+      "to": "I011b",
+      "role": "triggers",
+      "note": "ティムールの征服活動がインドにも及んだ"
+    },
+    {
+      "from": "I011b",
+      "to": "I011",
+      "role": "amplifies",
+      "note": "ティムールによるデリー破壊がムガル建国の前提条件を作った"
     }
   ]
 }

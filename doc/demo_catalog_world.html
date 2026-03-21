@@ -205,6 +205,15 @@
     position: absolute; bottom: 3px; right: 8px;
     font-size: 10px; font-weight: 700; font-family: monospace; color: #b0a090;
   }
+  .block-pids {
+    position: absolute; bottom: 3px; left: 8px;
+    display: flex; gap: 2px;
+  }
+  .pid-link {
+    font-size: 9px; font-weight: 600; color: #9a8a7a; text-decoration: none;
+    padding: 0 3px; border-radius: 4px; background: rgba(92,61,30,.06);
+  }
+  .pid-link:hover { background: var(--accent); color: #fff; }
   .block-era { font-size: 10px; font-weight: 700; color: #2a2520; margin-bottom: 1px; }
 
   .block-out { display: flex; gap: 3px; flex-wrap: wrap; margin-top: 2px; }
@@ -333,6 +342,7 @@ let EbyTo = {};
 let EbyFrom = {};
 let regions = [];
 let regionMap = {};
+let PATTERN_INDEX = {}; // node_id -> [P-IDs]
 let selectedNode = null;
 
 const FW_TYPE_STYLES = {
@@ -416,6 +426,15 @@ async function init() {
       return { ...src, data: await res.json() };
     })
   );
+
+  // Load pattern index
+  try {
+    const piRes = await fetch('../data/pattern_index.json');
+    if (piRes.ok) {
+      const pi = await piRes.json();
+      PATTERN_INDEX = pi.nodeIndex || {};
+    }
+  } catch(e) {}
 
   results.forEach(r => {
     if (r.status !== 'fulfilled') return;
@@ -658,6 +677,8 @@ function renderBlock(n) {
   }
 
   html += '</div>';
+  const pids = PATTERN_INDEX[n.id];
+  if (pids) { html += `<div class="block-pids">${pids.map(p => `<a href="demo_pattern_catalog.html#${p}" class="pid-link" title="パターン図鑑で表示">${p}</a>`).join(' ')}</div>`; }
   html += `<div class="block-id">${n.id}</div>`;
   html += '</div>';
   return html;

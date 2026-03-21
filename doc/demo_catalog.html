@@ -191,6 +191,15 @@
     font-size: 11px; font-weight: 700; font-family: monospace;
     color: #b0a090; letter-spacing: .08em;
   }
+  .block-pids {
+    position: absolute; bottom: 5px; left: 10px;
+    display: flex; gap: 2px;
+  }
+  .pid-link {
+    font-size: 9px; font-weight: 600; color: #9a8a7a; text-decoration: none;
+    padding: 0 3px; border-radius: 4px; background: rgba(92,61,30,.06);
+  }
+  .pid-link:hover { background: var(--accent); color: #fff; }
   .block-era {
     font-size: 12px; font-weight: 700; color: #2a2520;
     letter-spacing: .03em; margin-bottom: 1px;
@@ -474,6 +483,7 @@ let NM = {};         // node map
 let EbyTo = {};      // edges grouped by target
 let EbyFrom = {};    // edges grouped by source
 let clusters = [];   // ordered cluster list
+let PATTERN_INDEX = {}; // node_id -> [P-IDs]
 let selectedNode = null;
 
 // Semantic FW type → color + shape marker
@@ -527,6 +537,11 @@ async function init() {
     (EbyTo[e.to] = EbyTo[e.to] || []).push(e);
     (EbyFrom[e.from] = EbyFrom[e.from] || []).push(e);
   });
+  // Load pattern index
+  try {
+    const piRes = await fetch('../data/pattern_index.json');
+    if (piRes.ok) { const pi = await piRes.json(); PATTERN_INDEX = pi.nodeIndex || {}; }
+  } catch(e) {}
 
   // Ordered clusters + color map
   const seen = new Set();
@@ -721,6 +736,8 @@ function renderBlock(n) {
   }
 
   html += `</div>`; // block-body
+  const pids = PATTERN_INDEX[n.id];
+  if (pids) { html += `<div class="block-pids">${pids.map(p => `<a href="demo_pattern_catalog.html#${p}" class="pid-link" title="パターン図鑑で表示">${p}</a>`).join(' ')}</div>`; }
   html += `<div class="block-id">${fmtId(n.id)}</div>`;
   html += `</div>`;
   return html;
