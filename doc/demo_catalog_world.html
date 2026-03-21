@@ -379,7 +379,7 @@ function getRegion(nid) {
 }
 
 function fmtId(nid) {
-  return nid.replace(/^[NWMIC]/, '');
+  return nid.replace(/^[NWMICA]/, '');
 }
 
 function edgeKey(e) {
@@ -495,27 +495,67 @@ function renderLanesInner() {
   bandData.forEach(({ band, regionNodes }) => {
     html += '<div class="era-band">';
     html += `<div class="era-band-label">${band.label}</div>`;
-    html += '<div class="era-band-lanes">';
 
-    activeRegs.forEach(r => {
-      const nodes = regionNodes[r.region] || [];
-      html += '<div class="era-lane-col">';
-      if (nodes.length === 0) {
-        html += '<div class="empty-lane">—</div>';
+    // CSS Grid layout: shared rows ensure cross-lane time alignment
+    // 1. Collect all nodes across regions, sorted by year
+    const allEntries = [];
+    activeRegs.forEach((r, ci) => {
+      (regionNodes[r.region] || []).slice()
+        .sort((a, b) => parseEraYear(a.era) - parseEraYear(b.era))
+        .forEach(n => {
+          allEntries.push({ year: parseEraYear(n.era), colIdx: ci, node: n });
+        });
+    });
+    allEntries.sort((a, b) => a.year - b.year || a.colIdx - b.colIdx);
+
+    if (allEntries.length === 0) { html += '</div>'; return; }
+
+    // 2. Group into time slots (±20 year tolerance)
+    const TOLERANCE = 20;
+    const slots = [];
+    allEntries.forEach(entry => {
+      const last = slots[slots.length - 1];
+      if (last && Math.abs(entry.year - last.year) <= TOLERANCE) {
+        last.entries.push(entry);
       } else {
-        const clusterOrder = [];
-        const clusterNodes = {};
-        nodes.forEach(n => {
-          if (!clusterNodes[n.cluster]) { clusterOrder.push(n.cluster); clusterNodes[n.cluster] = []; }
-          clusterNodes[n.cluster].push(n);
-        });
-        clusterOrder.forEach(cl => {
-          const clName = cl.includes('_') ? cl.split('_').slice(1).join('_') : cl;
-          html += `<div class="cluster-header">${clName}</div>`;
-          clusterNodes[cl].forEach(n => { html += renderBlock(n); });
-        });
+        slots.push({ year: entry.year, entries: [entry] });
       }
-      html += '</div>';
+    });
+
+    // 3. Build grid-template-rows: [spacer, content] pairs
+    const dataRange = Math.max(1, slots[slots.length - 1].year - slots[0].year);
+    const pxPerYear = Math.max(0.1, Math.min(2.0, slots.length * 40 / dataRange));
+    const rowDefs = [];
+    const slotRowIdx = [];
+
+    slots.forEach((slot, si) => {
+      if (si > 0) {
+        const gapYears = slot.year - slots[si - 1].year;
+        const gapPx = Math.round(Math.max(0, gapYears * pxPerYear));
+        if (gapPx > 2) {
+          rowDefs.push(`${gapPx}px`);
+        }
+      }
+      slotRowIdx.push(rowDefs.length);
+      rowDefs.push('auto');
+    });
+
+    html += `<div class="era-band-grid" style="display:grid; grid-template-columns:repeat(${activeRegs.length}, minmax(var(--block-w), 1fr)); grid-template-rows:${rowDefs.join(' ')}; column-gap:var(--lane-gap); align-items:start;">`;
+
+    // 4. Place nodes into grid cells
+    slots.forEach((slot, si) => {
+      const row = slotRowIdx[si] + 1; // CSS grid is 1-based
+      const byCols = {};
+      slot.entries.forEach(e => {
+        if (!byCols[e.colIdx]) byCols[e.colIdx] = [];
+        byCols[e.colIdx].push(e.node);
+      });
+
+      Object.entries(byCols).forEach(([colIdx, nodes]) => {
+        html += `<div style="grid-column:${parseInt(colIdx) + 1}; grid-row:${row};">`;
+        nodes.forEach(n => { html += renderBlock(n); });
+        html += '</div>';
+      });
     });
 
     html += '</div></div>';
