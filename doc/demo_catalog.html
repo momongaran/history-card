@@ -368,10 +368,29 @@
     :root { --block-w: 100%; }
     .block { max-width: 460px; }
   }
+
+  .page-nav {
+    display: flex; gap: 12px; margin-bottom: 8px; font-size: 12px;
+  }
+  .page-nav a {
+    color: var(--accent); text-decoration: none; padding: 3px 10px;
+    border: 1.5px solid var(--line); border-radius: 14px; transition: all .2s;
+  }
+  .page-nav a:hover { background: var(--accent); color: #fff; border-color: var(--accent); }
+  .page-nav-current {
+    padding: 3px 10px; border: 1.5px solid var(--accent); border-radius: 14px;
+    background: var(--accent); color: #fff; font-weight: 600;
+  }
 </style>
 </head>
 <body>
 <div class="page">
+  <nav class="page-nav">
+    <span class="page-nav-current">日本史図鑑</span>
+    <a href="demo_catalog_world.html">世界史図鑑</a>
+    <a href="demo_pattern_catalog.html">パターン図鑑</a>
+    <a href="demo_slot_taxonomy.html">スロット分類</a>
+  </nav>
   <div class="header">
     <h1>因果フレーム図鑑</h1>
     <p class="sub">EnergyAbsモデル ― 磐井の乱(527)→幕藩体制確立(1615) ― 約1100年の因果フロー</p>

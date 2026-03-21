@@ -168,13 +168,45 @@
     background: #f0ebe0; color: var(--muted);
     margin-left: 4px;
   }
+  .reg-badge {
+    font-size: 9px; padding: 1px 5px; border-radius: 6px;
+    background: var(--accent); color: #fff; margin-right: 3px;
+    font-weight: 600; white-space: nowrap;
+  }
+  .pattern-meta {
+    margin-top: 4px; font-size: 11px; color: var(--muted);
+  }
+  .inst-pattern {
+    font-size: 10px; color: var(--muted); margin: 0 0 6px 20px;
+    line-height: 1.5; padding-left: 4px;
+    border-left: 2px solid #e8e0d0;
+  }
+
+  .page-nav {
+    display: flex; gap: 12px; margin-bottom: 8px; font-size: 12px;
+  }
+  .page-nav a {
+    color: var(--accent); text-decoration: none; padding: 3px 10px;
+    border: 1.5px solid var(--line); border-radius: 14px; transition: all .2s;
+  }
+  .page-nav a:hover { background: var(--accent); color: #fff; border-color: var(--accent); }
+  .page-nav-current {
+    padding: 3px 10px; border: 1.5px solid var(--accent); border-radius: 14px;
+    background: var(--accent); color: #fff; font-weight: 600;
+  }
 </style>
 </head>
 <body>
 <div class="page">
+  <nav class="page-nav">
+    <a href="demo_catalog.html">日本史図鑑</a>
+    <a href="demo_catalog_world.html">世界史図鑑</a>
+    <span class="page-nav-current">パターン図鑑</span>
+    <a href="demo_slot_taxonomy.html">スロット分類</a>
+  </nav>
   <div class="header">
     <h1>抽象パターン図鑑</h1>
-    <p class="sub">因果フレームの抽象骨格 ― パターンの連鎖としての歴史</p>
+    <p class="sub">因果フレームの抽象骨格 ― 日本史・世界史全リージョンのパターン連鎖</p>
   </div>
   <div class="controls">
     <button class="active" onclick="showAll(this)">全表示</button>
@@ -184,7 +216,14 @@
 </div>
 
 <script>
-const DATA_URL = '../data/energyabs_v2.json';
+const DATA_SOURCES = [
+  { url: '../data/energyabs_v2.json', label: '日本', prefix: 'N' },
+  { url: '../data/energyabs_europe_v1.json', label: '欧州', prefix: 'W' },
+  { url: '../data/energyabs_middleeast_v1.json', label: '中東', prefix: 'M' },
+  { url: '../data/energyabs_india_v1.json', label: 'インド', prefix: 'I' },
+  { url: '../data/energyabs_china_v1.json', label: '中国', prefix: 'C' },
+  { url: '../data/energyabs_americas_v1.json', label: 'アメリカ', prefix: 'A' },
+];
 const TAXO_URL = '../data/slot_taxonomy.json';
 
 // Slot term → { category, sub, shape, color }
@@ -263,32 +302,79 @@ const ROLE_JA = {
   sustains: '基盤', suppresses: '抑制', inherits: '継承'
 };
 
+// Synonym normalization for bgType / releaseType
+const SYNONYMS = {
+  // bgType synonyms
+  '制度': '制度', '制度化': '制度', '制度構築': '制度',
+  '武力衝突': '武力衝突', '戦闘': '武力衝突',
+  '権力集中': '権力集中', '権力確立': '権力集中', '権力移行': '権力集中',
+  '勢力対立': '勢力対立', '対立蓄積': '勢力対立',
+  '外圧': '外圧', '外生': '外圧',
+  '構造変化': '構造変化',
+  '改革': '改革',
+  '崩壊': '崩壊',
+  '経済拡大': '経済圧', '経済成長': '経済圧', '経済圧': '経済圧',
+  '硬直化': '制度疲弊', '制度疲弊': '制度疲弊',
+  '制度的矛盾': '制度的矛盾',
+  '思想潮流': '思想潮流',
+  '複合背景': '複合背景',
+  '権力分散': '権力分散',
+  '自生': '自生',
+  // releaseType synonyms (same mapping)
+  '外生衝撃': '外圧', '衝撃': '外圧',
+  '蓄積': '勢力対立',
+};
+
+function normType(t) {
+  return SYNONYMS[t] || t || '?';
+}
+
 async function init() {
   await loadTaxonomy();
-  const res = await fetch(DATA_URL);
-  const G = await res.json();
+
+  // Load all region data
+  const results = await Promise.allSettled(
+    DATA_SOURCES.map(s => fetch(s.url).then(r => r.json()).then(d => ({ ...s, data: d })))
+  );
+  const G = { nodes: [], edges: [] };
+  const regionLabels = {};
+  results.forEach(r => {
+    if (r.status !== 'fulfilled') return;
+    const { data, prefix, label } = r.value;
+    regionLabels[prefix] = label;
+    data.nodes.forEach(n => { n._prefix = prefix; G.nodes.push(n); });
+    data.edges.forEach(e => G.edges.push(e));
+  });
   const NM = {};
   G.nodes.forEach(n => NM[n.id] = n);
 
-  // Build pattern pairs grouped by fwType transition
+  // Build pattern pairs grouped by normalized patternType transition
   const groups = {};
   G.edges.forEach(e => {
     const src = NM[e.from], tgt = NM[e.to];
-    if (!src || !tgt || !src.pattern || !tgt.pattern) return;
+    if (!src || !tgt) return;
+    const srcBg = normType(src.bgType);
+    const srcRel = normType(src.releaseType || src.bgType);
+    const tgtBg = normType(tgt.bgType);
+    const tgtRel = normType(tgt.releaseType || tgt.bgType);
+    // Group key: normalized bgType→releaseType pair
+    const srcPT = srcBg + (src.releaseType ? '→' + srcRel : '');
+    const tgtPT = tgtBg + (tgt.releaseType ? '→' + tgtRel : '');
     const transKey = src.fwType + '→' + tgt.fwType;
-    const pairKey = src.pattern + '|||' + tgt.pattern;
+    const pairKey = srcPT + '|||' + tgtPT;
 
     if (!groups[transKey]) groups[transKey] = {};
     if (!groups[transKey][pairKey]) {
       groups[transKey][pairKey] = {
         srcFw: src.fwType, tgtFw: tgt.fwType,
-        srcPattern: src.pattern, tgtPattern: tgt.pattern,
+        srcPT, tgtPT,
         instances: []
       };
     }
     groups[transKey][pairKey].instances.push({
       from: e.from, to: e.to, role: e.role,
-      fromLabel: src.label, toLabel: tgt.label
+      fromLabel: src.label, toLabel: tgt.label,
+      srcPattern: src.pattern || '', tgtPattern: tgt.pattern || ''
     });
   });
 
@@ -334,25 +420,30 @@ async function init() {
 
     pairList.forEach(pair => {
       totalPairs++;
+      // Count regions represented
+      const regSet = new Set(pair.instances.map(i => regionLabels[i.from.charAt(0)] || '?'));
+      const regBadges = [...regSet].map(r => `<span class="reg-badge">${r}</span>`).join('');
+
       html += `<div class="pattern-card" data-src-type="${srcType}" data-tgt-type="${tgtType}">`;
       html += `<div class="pattern-chain">`;
 
-      // Source pattern
+      // Source patternType
       html += `<div class="pattern-slot">`;
       html += `<div class="fw-icon" style="background:${srcFw.color}" data-label="${srcFw.label}">${srcFw.shape}</div>`;
-      html += `<div class="pattern-text">${highlightSlots(pair.srcPattern)}</div>`;
+      html += `<div class="pattern-text"><strong>${pair.srcPT}</strong></div>`;
       html += `</div>`;
 
       // Arrow
       html += `<div class="chain-arrow">↓</div>`;
 
-      // Target pattern
+      // Target patternType
       html += `<div class="pattern-slot">`;
       html += `<div class="fw-icon" style="background:${tgtFw.color}" data-label="${tgtFw.label}">${tgtFw.shape}</div>`;
-      html += `<div class="pattern-text">${highlightSlots(pair.tgtPattern)}</div>`;
+      html += `<div class="pattern-text"><strong>${pair.tgtPT}</strong></div>`;
       html += `</div>`;
 
       html += `</div>`; // pattern-chain
+      html += `<div class="pattern-meta">${regBadges} ${pair.instances.length}件</div>`;
 
       // Instances
       html += `<div class="instances collapsed">`;
@@ -362,14 +453,20 @@ async function init() {
       html += `<div class="inst-list">`;
       pair.instances.forEach(inst => {
         const roleJa = ROLE_JA[inst.role] || inst.role;
+        const fromReg = regionLabels[inst.from.charAt(0)] || '';
         html += `<div class="inst-row">`;
-        html += `<span class="inst-id">${inst.from.replace('N','')}</span>`;
+        html += `<span class="reg-badge">${fromReg}</span>`;
+        html += `<span class="inst-id">${inst.from}</span>`;
         html += `<span class="inst-label">${inst.fromLabel}</span>`;
         html += `<span class="inst-arrow">→</span>`;
-        html += `<span class="inst-id">${inst.to.replace('N','')}</span>`;
+        html += `<span class="inst-id">${inst.to}</span>`;
         html += `<span class="inst-label">${inst.toLabel}</span>`;
         html += `<span class="role-label">${roleJa}</span>`;
         html += `</div>`;
+        // Show pattern text as detail
+        if (inst.srcPattern || inst.tgtPattern) {
+          html += `<div class="inst-pattern">${highlightSlots(inst.srcPattern)} → ${highlightSlots(inst.tgtPattern)}</div>`;
+        }
       });
       html += `</div></div>`; // inst-list, instances
 
@@ -380,7 +477,8 @@ async function init() {
   });
 
   catalog.innerHTML = html;
-  document.getElementById('info').textContent = `${totalPairs} パターン / ${G.edges.length} エッジ`;
+  const regList = Object.values(regionLabels).join('・');
+  document.getElementById('info').textContent = `${regList} — ${totalPairs} パターン / ${G.nodes.length} ノード / ${G.edges.length} エッジ`;
 }
 
 function highlightSlots(text) {
