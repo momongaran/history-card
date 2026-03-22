@@ -2,8 +2,8 @@
   "meta": {
     "version": "1.0",
     "description": "EnergyAbs有向グラフ 中東史v1: メソポタミア(前5000)→パレスチナ問題(1948) 約7000年の因果フロー",
-    "nodeCount": 35,
-    "edgeCount": 50,
+    "nodeCount": 41,
+    "edgeCount": 70,
     "created": "2026-03-21"
   },
   "nodes": [
@@ -695,6 +695,115 @@
       "bgType": "外圧",
       "releaseType": "衝撃",
       "patternType": "外圧→衝撃"
+    },
+    {
+      "id": "M006b",
+      "label": "オリエント帝国支配への被征服民の離反",
+      "summary": "アッシリア・新バビロニアの苛烈な支配が被征服民の離反を蓄積。ペルシア人のような辺境勢力が解放者として迎えられる土壌を形成した",
+      "actors": [
+        "被征服民",
+        "ペルシア人"
+      ],
+      "intensity": "medium",
+      "timescale": "long",
+      "cluster": "PM0_メソポタミア・古代オリエント",
+      "era": "前900–前550年頃",
+      "fwType": "drift",
+      "pattern": "{苛烈な帝国支配}が{被征服民の離反}を蓄積し{新興勢力}の台頭を準備する",
+      "bgType": "制度疲弊",
+      "releaseType": "崩壊",
+      "patternType": "制度疲弊→崩壊"
+    },
+    {
+      "id": "M009b",
+      "label": "ササン朝・ビザンツ帝国の長期消耗戦",
+      "summary": "数世紀にわたるササン朝とビザンツ帝国の抗争が両帝国の軍事力・財政を疲弊させ、アラビア半島方面への防衛が手薄になった",
+      "actors": [
+        "ササン朝",
+        "ビザンツ帝国"
+      ],
+      "intensity": "high",
+      "timescale": "long",
+      "cluster": "PM2_ササン朝とイスラーム",
+      "era": "502–628年",
+      "fwType": "conflict",
+      "pattern": "{二大帝国の消耗戦}が{辺境勢力}の台頭余地を生む",
+      "bgType": "勢力対立",
+      "releaseType": "戦闘",
+      "patternType": "勢力対立→戦闘"
+    },
+    {
+      "id": "M012b",
+      "label": "マワーリーの不満蓄積",
+      "summary": "ウマイヤ朝のアラブ至上主義により非アラブムスリム（マワーリー）が差別的待遇を受け、平等を求める不満が革命のエネルギーとなった",
+      "actors": [
+        "マワーリー",
+        "ペルシア系ムスリム"
+      ],
+      "intensity": "medium",
+      "timescale": "medium",
+      "cluster": "PM3_イスラーム帝国",
+      "era": "700–750年頃",
+      "fwType": "conflict",
+      "pattern": "{征服者と被征服者の不平等}が{革命}のエネルギーを蓄積する",
+      "bgType": "制度的矛盾",
+      "releaseType": "戦闘",
+      "patternType": "制度的矛盾→戦闘"
+    },
+    {
+      "id": "M014b",
+      "label": "キリスト教世界とイスラーム世界の宗教的対峙",
+      "summary": "聖地エルサレムの支配をめぐる宗教的対立が西欧の十字軍運動を生み、イスラーム側の聖戦意識を喚起した",
+      "actors": [
+        "教皇庁",
+        "イスラーム諸国"
+      ],
+      "intensity": "high",
+      "timescale": "long",
+      "cluster": "PM4_十字軍とモンゴル",
+      "era": "7–13世紀",
+      "fwType": "conflict",
+      "pattern": "{異文明間の宗教的対峙}が{軍事衝突}の長期的圧力となる",
+      "bgType": "勢力対立",
+      "releaseType": "戦闘",
+      "patternType": "勢力対立→戦闘"
+    },
+    {
+      "id": "M018c",
+      "label": "ポスト・モンゴルの権力空白と遊牧勢力の流動",
+      "summary": "モンゴル帝国の分裂後、イルハン朝崩壊やジョチ・ウルスの衰退により中央アジア・西アジアに広範な権力空白が生じ、遊牧軍事集団の流動が激化した",
+      "actors": [
+        "イルハン朝残余",
+        "トルコ系遊牧民"
+      ],
+      "intensity": "medium",
+      "timescale": "medium",
+      "cluster": "PM5_ティムールとオスマン",
+      "era": "1335–1400年頃",
+      "fwType": "drift",
+      "pattern": "{帝国崩壊後の権力空白}が{軍事的流動}と{新興勢力の台頭}を招く",
+      "bgType": "勢力対立",
+      "releaseType": "権力移行",
+      "patternType": "勢力対立→権力移行"
+    },
+    {
+      "id": "M022b",
+      "label": "列強の中東利権争いと浸透",
+      "summary": "イギリス・フランス・ロシアがオスマン帝国の弱体化に乗じて中東への経済的・政治的浸透を強め、鉄道・通商・領事裁判権などで影響力を拡大した",
+      "actors": [
+        "イギリス",
+        "フランス",
+        "ロシア"
+      ],
+      "intensity": "high",
+      "timescale": "long",
+      "cluster": "PM7_近代化と崩壊",
+      "era": "1800年代–1914年",
+      "fwType": "conflict",
+      "pattern": "{列強の利権争い}が{衰退帝国}の主権を侵食する",
+      "bgType": "外生",
+      "releaseType": "戦闘",
+      "patternType": "外生→戦闘"
     }
   ],
   "edges": [
@@ -997,6 +1106,126 @@
       "to": "M024",
       "role": "amplifies",
       "note": "エジプト遠征がオスマン帝国の近代化改革（タンジマート）の危機意識を高めた"
+    },
+    {
+      "from": "M004",
+      "to": "M006b",
+      "role": "transforms",
+      "note": "アッシリアの苛烈な支配が被征服民の離反を蓄積"
+    },
+    {
+      "from": "M006b",
+      "to": "M006",
+      "role": "amplifies",
+      "note": "被征服民の離反がペルシアの征服を容易にした"
+    },
+    {
+      "from": "M006b",
+      "to": "M007",
+      "role": "sustains",
+      "note": "帝国支配への疲弊がアレクサンドロスの征服時にも作用"
+    },
+    {
+      "from": "M009",
+      "to": "M009b",
+      "role": "transforms",
+      "note": "ササン朝の存在がビザンツとの長期抗争を生む"
+    },
+    {
+      "from": "M009b",
+      "to": "M010",
+      "role": "amplifies",
+      "note": "両帝国の消耗がアラビア半島の防衛を手薄にし新宗教の勃興余地を生む"
+    },
+    {
+      "from": "M009b",
+      "to": "M011",
+      "role": "sustains",
+      "note": "ササン・ビザンツの疲弊がイスラーム征服の軍事的条件を整える"
+    },
+    {
+      "from": "M009b",
+      "to": "M011b",
+      "role": "sustains",
+      "note": "二大帝国の消耗がアラブ部族統合の外部条件を整える"
+    },
+    {
+      "from": "M012",
+      "to": "M012b",
+      "role": "transforms",
+      "note": "ウマイヤ朝のアラブ至上主義がマワーリーの不満を蓄積"
+    },
+    {
+      "from": "M012b",
+      "to": "M013",
+      "role": "amplifies",
+      "note": "マワーリーの不満がアッバース革命を支えた"
+    },
+    {
+      "from": "M014b",
+      "to": "M014",
+      "role": "amplifies",
+      "note": "宗教的対峙の長期蓄積が十字軍の軍事衝突を駆動"
+    },
+    {
+      "from": "M013",
+      "to": "M014b",
+      "role": "sustains",
+      "note": "イスラーム文明の繁栄がキリスト教世界との対峙構造を維持"
+    },
+    {
+      "from": "M015",
+      "to": "M018c",
+      "role": "transforms",
+      "note": "モンゴル侵攻がイスラーム世界に広範な権力空白を生む"
+    },
+    {
+      "from": "M013b",
+      "to": "M016",
+      "role": "amplifies",
+      "note": "アッバース朝の分裂がマムルーク朝の自立を可能にした"
+    },
+    {
+      "from": "M018c",
+      "to": "M017",
+      "role": "amplifies",
+      "note": "ポスト・モンゴルの権力空白がティムールの征服を可能にした"
+    },
+    {
+      "from": "M018c",
+      "to": "M018",
+      "role": "sustains",
+      "note": "権力空白と遊牧勢力の流動がオスマンの拡大の土壌"
+    },
+    {
+      "from": "M013b",
+      "to": "M017",
+      "role": "sustains",
+      "note": "イスラーム世界の分裂がティムールの横断的征服を容易にした"
+    },
+    {
+      "from": "M022",
+      "to": "M022b",
+      "role": "transforms",
+      "note": "オスマンの停滞が列強の浸透を招く"
+    },
+    {
+      "from": "M022b",
+      "to": "M025",
+      "role": "amplifies",
+      "note": "列強の利権争いがスエズ運河と英国のエジプト支配を推進"
+    },
+    {
+      "from": "M022b",
+      "to": "M025b",
+      "role": "sustains",
+      "note": "列強の中東浸透がナポレオン遠征の戦略的背景"
+    },
+    {
+      "from": "M022b",
+      "to": "M026",
+      "role": "amplifies",
+      "note": "列強の圧力が帝国改革の不徹底を露呈させ革命を促進"
     }
   ]
 }

@@ -87,12 +87,11 @@
 
   /* ── Lane Layout ── */
   .lane-headers {
-    display: flex; gap: var(--lane-gap); margin-bottom: 8px; padding-left: 28px;
+    display: grid; gap: var(--lane-gap); margin-bottom: 8px; margin-left: 28px;
     position: sticky; top: 0; z-index: 50; background: linear-gradient(160deg, #f5efe3 0%, #ede5d5 100%);
     padding-top: 4px; padding-bottom: 4px;
   }
   .lane-header {
-    flex: 1; min-width: var(--block-w); max-width: 400px;
     text-align: center; font-size: 14px; font-weight: 700;
     padding: 8px 12px; border-radius: 10px;
     background: var(--paper); border: 1.5px solid var(--line);
@@ -117,7 +116,7 @@
   .era-band-lanes { display: flex; gap: var(--lane-gap); flex: 1; }
   .era-lane-col {
     flex: 1 1 0; min-width: var(--block-w); max-width: 400px;
-    display: flex; flex-direction: column; gap: 6px; padding: 4px 0;
+    display: flex; flex-direction: column; gap: 16px; padding: 4px 0;
   }
 
   /* ── SVG overlay ── */
@@ -277,6 +276,7 @@
     <span class="page-nav-current">世界史図鑑</span>
     <a href="demo_pattern_catalog.html">パターン図鑑</a>
     <a href="demo_slot_taxonomy.html">スロット分類</a>
+    <a href="demo_taxonomy_reference.html">用語リファレンス</a>
   </nav>
   <div class="header">
     <h1>世界史因果フレーム図鑑</h1>
@@ -519,7 +519,7 @@ function renderLanesInner() {
   let html = '';
 
   // Sticky lane headers
-  html += '<div class="lane-headers">';
+  html += `<div class="lane-headers" style="grid-template-columns:repeat(${activeRegs.length}, minmax(var(--block-w), 1fr));">`;
   activeRegs.forEach(r => {
     const count = G.nodes.filter(n => n._region === r.region).length;
     html += `<div class="lane-header" style="border-color:${r.color}">${r.label}<span class="lane-count">${count}</span></div>`;
@@ -609,7 +609,17 @@ function renderLanesInner() {
     });
   });
 
-  requestAnimationFrame(drawEdges);
+  // Draw edges after layout settles; redraw on resize
+  requestAnimationFrame(() => {
+    drawEdges();
+    // Redraw again after a short delay to catch late-layout blocks
+    setTimeout(drawEdges, 300);
+  });
+  if (!window._resizeObserverSet) {
+    window._resizeObserverSet = true;
+    new ResizeObserver(() => requestAnimationFrame(drawEdges))
+      .observe(document.getElementById('canvas'));
+  }
 }
 
 function renderBlock(n) {
@@ -698,40 +708,48 @@ function drawEdges() {
   svg.style.height = canvas.scrollHeight + 'px';
   svg.setAttribute('viewBox', `0 0 ${canvas.scrollWidth} ${canvas.scrollHeight}`);
 
+  // Pass 1: compute edge geometry
+  const edgeGeom = [];
   G.edges.forEach(e => {
     const fromEl = document.getElementById('blk-' + e.from);
-    const chipEl = document.getElementById('chip-' + e.from + '-' + e.to);
-    if (!fromEl || !chipEl) return;
+    const toEl = document.getElementById('blk-' + e.to);
+    if (!fromEl || !toEl) return;
 
     const fr = fromEl.getBoundingClientRect();
-    const ch = chipEl.getBoundingClientRect();
+    const tr = toEl.getBoundingClientRect();
 
-    const cCX = ch.left + ch.width/2 - cr.left + sL;
-    const cCY = ch.top + ch.height/2 - cr.top + sT;
     const fCX = fr.left + fr.width/2 - cr.left + sL;
     const fCY = fr.top + fr.height/2 - cr.top + sT;
+    const tCX = tr.left + tr.width/2 - cr.left + sL;
+    const tCY = tr.top + tr.height/2 - cr.top + sT;
 
     const fT = fr.top - cr.top + sT, fB = fr.bottom - cr.top + sT;
     const fL = fr.left - cr.left + sL, fR = fr.right - cr.left + sL;
 
+    // Source: nearest edge to target card center
     let x1, y1;
-    if (cCY > fB) { x1 = fCX; y1 = fB; }
-    else if (cCY < fT) { x1 = fCX; y1 = fT; }
-    else if (cCX < fL) { x1 = fL; y1 = fCY; }
+    if (tCY > fB) { x1 = fCX; y1 = fB; }
+    else if (tCY < fT) { x1 = fCX; y1 = fT; }
+    else if (tCX < fL) { x1 = fL; y1 = fCY; }
     else { x1 = fR; y1 = fCY; }
 
-    const chT = ch.top - cr.top + sT, chB = ch.bottom - cr.top + sT;
-    const chL = ch.left - cr.left + sL, chR = ch.right - cr.left + sL;
+    // Target: nearest edge to source card center
+    const tT = tr.top - cr.top + sT, tB = tr.bottom - cr.top + sT;
+    const tL = tr.left - cr.left + sL, tR = tr.right - cr.left + sL;
 
     let x2, y2;
-    if (fCY < chT) { x2 = cCX; y2 = chT; }
-    else if (fCY > chB) { x2 = cCX; y2 = chB; }
-    else if (fCX < chL) { x2 = chL; y2 = cCY; }
-    else { x2 = chR; y2 = cCY; }
+    if (fCY < tT) { x2 = tCX; y2 = tT; }
+    else if (fCY > tB) { x2 = tCX; y2 = tB; }
+    else if (fCX < tL) { x2 = tL; y2 = tCY; }
+    else { x2 = tR; y2 = tCY; }
 
     const midY = (y1 + y2) / 2;
     const d = `M ${x1} ${y1} C ${x1} ${midY}, ${x2} ${midY}, ${x2} ${y2}`;
+    edgeGeom.push({ e, d, x1, y1, x2, y2 });
+  });
 
+  // Pass 2: draw lines (bottom layer)
+  edgeGeom.forEach(({ e, d }) => {
     const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
     path.setAttribute('d', d);
     path.classList.add('edge-line');
@@ -740,8 +758,16 @@ function drawEdges() {
     path.dataset.from = e.from;
     path.dataset.to = e.to;
     svg.appendChild(path);
+  });
 
-    // Start dot (source block side)
+  // Pass 3: draw halos + dots (top layer, visually cut passing lines)
+  edgeGeom.forEach(({ e, x1, y1, x2, y2 }) => {
+    // Start: halo (white circle to cut passing lines) + dot
+    const haloS = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+    haloS.setAttribute('cx', x1); haloS.setAttribute('cy', y1); haloS.setAttribute('r', 5);
+    haloS.setAttribute('fill', '#fffdf8'); haloS.setAttribute('stroke', 'none');
+    svg.appendChild(haloS);
+
     const dotS = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
     dotS.setAttribute('cx', x1); dotS.setAttribute('cy', y1); dotS.setAttribute('r', 3);
     dotS.classList.add('edge-dot');
@@ -749,7 +775,7 @@ function drawEdges() {
     dotS.dataset.eid = edgeKey(e);
     svg.appendChild(dotS);
 
-    // End dot (chip side)
+    // End: dot only (no halo — dot center is on card edge)
     const dot = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
     dot.setAttribute('cx', x2); dot.setAttribute('cy', y2); dot.setAttribute('r', 3);
     dot.classList.add('edge-head');

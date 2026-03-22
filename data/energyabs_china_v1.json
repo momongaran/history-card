@@ -2,8 +2,8 @@
   "meta": {
     "version": "1.0",
     "description": "EnergyAbs有向グラフ 中国史v1: 殷周(前1600)→中華人民共和国(1949) 約3500年の因果フロー",
-    "nodeCount": 51,
-    "edgeCount": 74,
+    "nodeCount": 54,
+    "edgeCount": 88,
     "created": "2026-03-21"
   },
   "nodes": [
@@ -1031,6 +1031,60 @@
       "bgType": "外圧",
       "releaseType": "衝撃",
       "patternType": "外圧→衝撃"
+    },
+    {
+      "id": "C010c",
+      "label": "北魏の漢化政策と南北朝の制度的収斂",
+      "summary": "北魏孝文帝の漢化政策により、胡漢の文化的・制度的融合が進んだ。南北朝の制度的差異が縮小し、統一の基盤が整った",
+      "actors": [
+        "北魏孝文帝",
+        "南朝"
+      ],
+      "intensity": "medium",
+      "timescale": "long",
+      "cluster": "PC2_南北朝と隋唐",
+      "era": "5世紀–6世紀",
+      "fwType": "drift",
+      "pattern": "{異民族王朝}の{漢化}が{制度的収斂}を生む",
+      "bgType": "構造変化",
+      "releaseType": "構造変化",
+      "patternType": "構造変化→構造変化"
+    },
+    {
+      "id": "C017c",
+      "label": "元の四等人制と漢人の社会的疲弊",
+      "summary": "モンゴル人・色目人・漢人・南人の四等級制により漢人は政治的に抑圧された。科挙の停止と重税が民衆の不満を蓄積させた",
+      "actors": [
+        "元朝",
+        "漢人"
+      ],
+      "intensity": "medium",
+      "timescale": "long",
+      "cluster": "PC4_元と明",
+      "era": "13世紀–14世紀",
+      "fwType": "drift",
+      "pattern": "{征服王朝}の{差別制度}が{被支配民}の不満を蓄積させる",
+      "bgType": "制度疲弊",
+      "releaseType": "構造変化",
+      "patternType": "制度疲弊→構造変化"
+    },
+    {
+      "id": "C024b",
+      "label": "清の対外的自足と構造的脆弱化",
+      "summary": "マカートニー使節団の拒絶に象徴される清の自足意識。軍事・外交の近代化が遅れ、西洋列強との構造的格差が拡大した",
+      "actors": [
+        "清朝",
+        "マカートニー"
+      ],
+      "intensity": "medium",
+      "timescale": "long",
+      "cluster": "PC6_清末と近代",
+      "era": "18世紀末–1830年代",
+      "fwType": "drift",
+      "pattern": "{帝国}の{自足的閉鎖}が{構造的脆弱化}を進行させる",
+      "bgType": "硬直化",
+      "releaseType": "構造変化",
+      "patternType": "硬直化→構造変化"
     }
   ],
   "edges": [
@@ -1049,8 +1103,8 @@
     {
       "from": "C003",
       "to": "C004",
-      "role": "triggers",
-      "note": "法家改革の秦が統一"
+      "role": "sustains",
+      "note": "戦国時代の競争が秦の統一事業を駆動し続けた"
     },
     {
       "from": "C004",
@@ -1091,8 +1145,8 @@
     {
       "from": "C008",
       "to": "C009",
-      "role": "triggers",
-      "note": "後漢崩壊が三国分裂へ"
+      "role": "amplifies",
+      "note": "後漢の衰退が三国時代の分裂を増幅した"
     },
     {
       "from": "C009",
@@ -1307,8 +1361,8 @@
     {
       "from": "C036",
       "to": "C037",
-      "role": "triggers",
-      "note": "弾圧が長征を強いる"
+      "role": "sustains",
+      "note": "国共分裂の対立状態が長征と毛沢東の指導権確立を駆動し続けた"
     },
     {
       "from": "C036",
@@ -1477,6 +1531,90 @@
       "to": "N120",
       "role": "triggers",
       "note": "日露戦争は日本側から見れば帝国主義的膨張の達成"
+    },
+    {
+      "from": "C003",
+      "to": "C004b",
+      "role": "sustains",
+      "note": "戦国時代の厳しい競争が秦の苛政の基盤となった"
+    },
+    {
+      "from": "C010",
+      "to": "C010c",
+      "role": "transforms",
+      "note": "南北朝の分裂が制度的収斂の前提を作った"
+    },
+    {
+      "from": "C010c",
+      "to": "C011",
+      "role": "sustains",
+      "note": "南北朝の制度的収斂が隋の統一を可能にした"
+    },
+    {
+      "from": "C017",
+      "to": "C017c",
+      "role": "transforms",
+      "note": "元の支配体制がその差別構造を生んだ"
+    },
+    {
+      "from": "C017c",
+      "to": "C017b",
+      "role": "sustains",
+      "note": "四等人制の抑圧が元末の飢饉・反乱の背景を持続させた"
+    },
+    {
+      "from": "C023b",
+      "to": "C024b",
+      "role": "transforms",
+      "note": "清の最盛期が自足意識を醸成した"
+    },
+    {
+      "from": "C024b",
+      "to": "C025",
+      "role": "sustains",
+      "note": "清の構造的脆弱化がアヘン戦争の敗北を不可避にした"
+    },
+    {
+      "from": "C024b",
+      "to": "C025b",
+      "role": "sustains",
+      "note": "清の脆弱化が列強の分割を許す条件を整えた"
+    },
+    {
+      "from": "C024b",
+      "to": "C030",
+      "role": "sustains",
+      "note": "清の近代化の遅れが義和団事件の背景にある"
+    },
+    {
+      "from": "C023b",
+      "to": "C026",
+      "role": "sustains",
+      "note": "清の衰退と社会的不満が太平天国の乱の温床となった"
+    },
+    {
+      "from": "C023b",
+      "to": "C027",
+      "role": "sustains",
+      "note": "清の衰退への危機感が洋務運動を駆動した"
+    },
+    {
+      "from": "C030b",
+      "to": "C033",
+      "role": "sustains",
+      "note": "清朝の崩壊過程が軍閥割拠の条件を維持した"
+    },
+    {
+      "from": "C034",
+      "to": "C036",
+      "role": "sustains",
+      "note": "国共合作内の路線対立が分裂の持続的条件となった"
+    },
+    {
+      "from": "C036",
+      "to": "C039",
+      "role": "sustains",
+      "note": "国共分裂の対立が内戦を不可避にした"
     }
   ]
 }

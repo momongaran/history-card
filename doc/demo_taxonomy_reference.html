@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>用語・分類リファレンス</title>
+<style>
+  :root {
+    --bg: #f0ebe0;
+    --paper: #fffdf8;
+    --ink: #28231e;
+    --muted: #6a6058;
+    --line: #c9b89e;
+    --accent: #5c3d1e;
+    --shadow: 0 6px 20px rgba(40,28,14,.08);
+  }
+  html { scroll-behavior: smooth; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", sans-serif;
+    background: linear-gradient(160deg, #f5efe3 0%, #ede5d5 100%);
+    color: var(--ink); min-height: 100vh;
+  }
+  .page { max-width: 1000px; margin: 0 auto; padding: 24px 20px 80px; }
+  .header { margin-bottom: 20px; border-left: 4px solid var(--accent); padding-left: 16px; }
+  h1 { font-size: 20px; color: var(--accent); letter-spacing: .06em; }
+  .sub { margin-top: 3px; font-size: 12px; color: var(--muted); }
+
+  .page-nav {
+    display: flex; gap: 12px; margin-bottom: 8px; font-size: 12px; flex-wrap: wrap;
+  }
+  .page-nav a {
+    color: var(--accent); text-decoration: none; padding: 3px 10px;
+    border: 1.5px solid var(--line); border-radius: 14px; transition: all .2s;
+  }
+  .page-nav a:hover { background: var(--accent); color: #fff; border-color: var(--accent); }
+  .page-nav-current {
+    padding: 3px 10px; border: 1.5px solid var(--accent); border-radius: 14px;
+    background: var(--accent); color: #fff; font-weight: 600;
+  }
+
+  /* TOC */
+  .toc {
+    background: var(--paper); border: 1px solid var(--line); border-radius: 12px;
+    padding: 16px 20px; margin-bottom: 28px; box-shadow: var(--shadow);
+  }
+  .toc-title { font-size: 13px; font-weight: 700; color: var(--accent); margin-bottom: 8px; }
+  .toc ol { padding-left: 20px; font-size: 12px; line-height: 2; }
+  .toc a { color: var(--accent); text-decoration: none; }
+  .toc a:hover { text-decoration: underline; }
+
+  /* Section */
+  .section { margin-bottom: 36px; }
+  h2 {
+    font-size: 16px; color: var(--accent); margin-bottom: 12px;
+    padding-bottom: 6px; border-bottom: 2px solid var(--line);
+  }
+  h3 { font-size: 13px; color: var(--ink); margin: 16px 0 8px; }
+
+  p, .desc { font-size: 12px; line-height: 1.8; color: var(--ink); margin-bottom: 10px; }
+  .note { font-size: 11px; color: var(--muted); line-height: 1.6; margin-bottom: 8px; }
+
+  /* Type table */
+  .type-table {
+    width: 100%; border-collapse: collapse; font-size: 12px; margin-bottom: 16px;
+  }
+  .type-table th {
+    text-align: left; padding: 6px 10px;
+    border-bottom: 2px solid var(--line); color: var(--accent); font-weight: 600;
+  }
+  .type-table td {
+    padding: 5px 10px; border-bottom: 1px solid #ece5d8; vertical-align: top;
+  }
+  .type-table .num { text-align: right; font-family: monospace; }
+  .type-table tr:hover { background: rgba(92,61,30,.03); }
+
+  .badge {
+    display: inline-block; padding: 1px 7px; border-radius: 8px;
+    font-size: 10px; font-weight: 600; color: #fff; vertical-align: middle;
+  }
+  .fw-icon {
+    display: inline-block; width: 18px; height: 18px; border-radius: 4px;
+    text-align: center; line-height: 18px; font-size: 11px; color: #fff;
+    vertical-align: middle; margin-right: 4px;
+  }
+
+  /* Diagram card */
+  .diagram-card {
+    background: var(--paper); border: 1px solid var(--line); border-radius: 12px;
+    padding: 16px 20px; margin-bottom: 16px; box-shadow: var(--shadow);
+  }
+  .diagram-title { font-size: 13px; font-weight: 700; color: var(--accent); margin-bottom: 10px; }
+
+  /* Contraction diagram */
+  .contraction-box {
+    background: #f8f4ec; border: 1.5px solid var(--line); border-radius: 10px;
+    padding: 12px 16px; margin: 8px 0; font-size: 12px; line-height: 1.8;
+  }
+  .contraction-box .label { font-weight: 700; color: var(--accent); }
+  .contraction-box .arrow { color: var(--muted); margin: 0 4px; }
+  .contraction-box .omitted { color: #b44; font-style: italic; font-size: 11px; }
+
+  .nested-frame {
+    border-left: 3px solid; padding-left: 12px; margin: 6px 0 6px 8px;
+  }
+  .nf-outer { border-color: var(--accent); }
+  .nf-inner { border-color: #7a9a5a; }
+  .nf-absorbed { border-color: #c49a4a; }
+  .nf-label { font-size: 11px; font-weight: 600; margin-bottom: 2px; }
+
+  /* Cross table */
+  .cross-table {
+    width: 100%; border-collapse: collapse; font-size: 11px; margin-bottom: 16px;
+  }
+  .cross-table th {
+    padding: 4px 6px; border-bottom: 2px solid var(--line);
+    color: var(--accent); font-weight: 600; font-size: 10px;
+  }
+  .cross-table td {
+    padding: 3px 6px; border-bottom: 1px solid #ece5d8;
+    text-align: center; font-family: monospace;
+  }
+  .cross-table td.lbl { text-align: left; font-family: inherit; font-weight: 600; }
+  .cross-table .hi { background: rgba(180,60,60,.08); font-weight: 700; }
+  .cross-table .med { background: rgba(180,140,60,.06); }
+  .cross-table .zero { color: #d8d0c4; }
+
+  .stats-bar {
+    display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 16px;
+    font-size: 12px; color: var(--muted);
+  }
+  .stats-bar .stat-val { font-weight: 700; color: var(--accent); font-family: monospace; }
+</style>
+</head>
+<body>
+<div class="page">
+  <nav class="page-nav">
+    <a href="demo_catalog.html">日本史図鑑</a>
+    <a href="demo_catalog_world.html">世界史図鑑</a>
+    <a href="demo_pattern_catalog.html">パターン図鑑</a>
+    <a href="demo_slot_taxonomy.html">スロット分類</a>
+    <span class="page-nav-current">用語リファレンス</span>
+  </nav>
+  <div class="header">
+    <h1>用語・分類リファレンス</h1>
+    <p class="sub">EnergyAbsモデルの型体系・エッジ作用・縮約パターンの定義</p>
+  </div>
+  <div class="stats-bar" id="stats"></div>
+
+  <div class="toc">
+    <div class="toc-title">目次</div>
+    <ol>
+      <li><a href="#sec-overview">モデル概観 — ノード・エッジ・1枚のカード</a></li>
+      <li><a href="#sec-fwtype">fwType（力学的役割）8種</a></li>
+      <li><a href="#sec-bgtype">bgType（背景圧力）</a></li>
+      <li><a href="#sec-reltype">releaseType（解放の型）</a></li>
+      <li><a href="#sec-patterntype">patternType（結合ラベル）</a></li>
+      <li><a href="#sec-cross">fwType × releaseType クロス集計</a></li>
+      <li><a href="#sec-edges">エッジの作用（role）</a></li>
+      <li><a href="#sec-contraction">縮約パターン</a>
+        <ol style="list-style-type: lower-alpha;">
+          <li><a href="#sec-c1">重ね合わせ縮約 — 背景の多重合成</a></li>
+          <li><a href="#sec-c2">内包縮約 — absorbedイベントの省略</a></li>
+          <li><a href="#sec-c3">入れ子縮約 — 背景フレームワークの内部吸収</a></li>
+        </ol>
+      </li>
+    </ol>
+  </div>
+
+  <div id="content"></div>
+</div>
+
+<script>
+const DATA_SOURCES = [
+  { url: '../data/energyabs_v2.json', prefix: 'N', label: '日本' },
+  { url: '../data/energyabs_europe_v1.json', prefix: 'W', label: '欧州' },
+  { url: '../data/energyabs_middleeast_v1.json', prefix: 'M', label: '中東' },
+  { url: '../data/energyabs_india_v1.json', prefix: 'I', label: 'インド' },
+  { url: '../data/energyabs_china_v1.json', prefix: 'C', label: '中国' },
+  { url: '../data/energyabs_americas_v1.json', prefix: 'A', label: 'アメリカ' },
+];
+
+/* ── fwType definitions ── */
+const FW_DEFS = {
+  drift:       { icon: '〜', color: '#7a9a5a', group: '蓄積型', desc: '漸進的な構造変化。エネルギーをじわじわと蓄積する。明確な転換点を持たず、条件が熟す過程そのもの。' },
+  conflict:    { icon: '⚡', color: '#c4a03a', group: '蓄積型', desc: '対立の蓄積。複数勢力の緊張・摩擦がエネルギーとして溜まっていくフェーズ。' },
+  battle:      { icon: '⚔', color: '#c45a3c', group: '解放型', desc: '武力衝突による解放。蓄積されたエネルギーが戦闘・戦争として爆発的に放出される。' },
+  collapse:    { icon: '▼', color: '#8b4a4a', group: '解放型', desc: '崩壊。制度・王朝・秩序が維持不能になり瓦解する。内部的な解体。' },
+  reform:      { icon: '↻', color: '#3a7a9a', group: '解放型', desc: '改革。意図的な制度変更・刷新によるエネルギーの方向づけ。' },
+  power:       { icon: '★', color: '#6a5aaa', group: '解放型', desc: '権力確立。特定主体が支配的地位を獲得・強化する。' },
+  shock:       { icon: '◆', color: '#555', group: '解放型', desc: '外生的衝撃。システム外部からの予測困難な力の介入。' },
+  institution: { icon: '■', color: '#5c3d1e', group: '固定型', desc: '制度化。エネルギーが安定的な構造として固定される。次のサイクルの背景となる。' },
+};
+
+/* ── edge role definitions ── */
+const EDGE_DEFS = {
+  amplifies:  { color: '#c45a3c', desc: '増幅する。源ノードが先ノードのエネルギー蓄積を強める。最も多い作用で、因果連鎖の基本。', example: '継体天皇の正統性の脆弱さ → 磐井の乱（反抗を可能にした）' },
+  triggers:   { color: '#e8a030', desc: '発火させる。蓄積されたエネルギーの解放を直接引き起こす。背景条件が揃った上での最後の一押し。', example: '大王継承断絶 → 継体天皇即位（擁立を必然化した）' },
+  transforms: { color: '#3a7a9a', desc: '変換する。あるイベントの結果が、質的に異なるエネルギー形態に転化する。', example: '倭の五王の膨張 → 蘇我氏の仏教導入（外交姿勢の転換）' },
+  sustains:   { color: '#7a9a5a', desc: '持続させる。源ノードが先ノードの状態を維持・下支えする。背景条件の安定化。', example: '五王外交 → 豪族合議（役割分担構造を規定した）' },
+  inherits:   { color: '#9a7ab0', desc: '継承する。先行する構造・制度・資源をそのまま引き継ぐ。', example: '前の王朝の制度 → 次の王朝の基盤' },
+};
+
+async function init() {
+  const allNodes = [];
+  const allEdges = [];
+
+  for (const src of DATA_SOURCES) {
+    const res = await fetch(src.url);
+    const data = await res.json();
+    data.nodes.forEach(n => { n._region = src.label; allNodes.push(n); });
+    data.edges.forEach(e => allEdges.push(e));
+  }
+
+  // ── Stats ──
+  document.getElementById('stats').innerHTML = [
+    `<span>ノード: <span class="stat-val">${allNodes.length}</span></span>`,
+    `<span>エッジ: <span class="stat-val">${allEdges.length}</span></span>`,
+    `<span>リージョン: <span class="stat-val">${DATA_SOURCES.length}</span></span>`,
+    `<span>absorbed: <span class="stat-val">${allNodes.reduce((s,n) => s + (n.absorbed||[]).length, 0)}</span></span>`,
+  ].join('');
+
+  // ── Counters ──
+  const fwCount = {}, bgCount = {}, relCount = {}, edgeCount = {};
+  const fwExamples = {}, bgExamples = {}, relExamples = {};
+  const crossCount = {};
+
+  allNodes.forEach(n => {
+    const fw = n.fwType || '?';
+    const bg = n.bgType || '?';
+    const rel = n.releaseType || '?';
+    fwCount[fw] = (fwCount[fw]||0) + 1;
+    bgCount[bg] = (bgCount[bg]||0) + 1;
+    relCount[rel] = (relCount[rel]||0) + 1;
+    if (!fwExamples[fw]) fwExamples[fw] = n;
+    if (!bgExamples[bg]) bgExamples[bg] = n;
+    if (!relExamples[rel]) relExamples[rel] = n;
+    const ck = fw + '|' + rel;
+    crossCount[ck] = (crossCount[ck]||0) + 1;
+  });
+  allEdges.forEach(e => {
+    edgeCount[e.role] = (edgeCount[e.role]||0) + 1;
+  });
+
+  // ── Absorbed stats ──
+  const absorbedNodes = allNodes.filter(n => n.absorbed && n.absorbed.length > 0);
+  const absorbedDist = {};
+  absorbedNodes.forEach(n => {
+    const k = n.absorbed.length;
+    absorbedDist[k] = (absorbedDist[k]||0) + 1;
+  });
+
+  // ── Build HTML ──
+  let html = '';
+
+  // §1 Overview
+  html += `<div class="section" id="sec-overview"><h2>1. モデル概観</h2>`;
+  html += `<div class="diagram-card">`;
+  html += `<div class="diagram-title">1枚のカードが表すもの</div>`;
+  html += `<p>各ノード（カード）は歴史イベントの<strong>因果的位置づけ</strong>を表す。以下の4つの分類軸を持つ：</p>`;
+  html += `<table class="type-table">
+    <tr><th>フィールド</th><th>問い</th><th>軸</th><th>種類数</th></tr>
+    <tr><td><strong>fwType</strong></td><td>このイベントは因果ネットワーク上で何をするか？</td><td>力学的役割</td><td class="num">8</td></tr>
+    <tr><td><strong>bgType</strong></td><td>何がエネルギーを溜めたか？</td><td>背景圧力の種類</td><td class="num">${Object.keys(bgCount).length}</td></tr>
+    <tr><td><strong>releaseType</strong></td><td>エネルギーはどう放出されたか？</td><td>解放の型</td><td class="num">${Object.keys(relCount).filter(k=>k).length}</td></tr>
+    <tr><td><strong>patternType</strong></td><td>（表示用結合）</td><td>bgType→releaseType</td><td>—</td></tr>
+  </table>`;
+  html += `<p class="note">fwType と bgType→releaseType は<strong>独立した2軸</strong>。fwTypeは力学的分類（何をするか）、bgType→releaseTypeは意味的分類（どんな圧力がどう解放されたか）。両者が一致する場合もあれば大きく異なる場合もある（§6参照）。</p>`;
+  html += `</div>`;
+
+  html += `<div class="diagram-card">`;
+  html += `<div class="diagram-title">エネルギーの流れ</div>`;
+  html += `<div style="font-size:12px; line-height:2; text-align:center;">`;
+  html += `<span style="background:#7a9a5a22; padding:4px 12px; border-radius:8px;">蓄積型<br><span class="fw-icon" style="background:#7a9a5a">〜</span> drift &nbsp; <span class="fw-icon" style="background:#c4a03a">⚡</span> conflict</span>`;
+  html += `<span style="margin:0 12px; font-size:20px; color:var(--muted);">→</span>`;
+  html += `<span style="background:#c45a3c22; padding:4px 12px; border-radius:8px;">解放型<br><span class="fw-icon" style="background:#c45a3c">⚔</span><span class="fw-icon" style="background:#8b4a4a">▼</span><span class="fw-icon" style="background:#3a7a9a">↻</span><span class="fw-icon" style="background:#6a5aaa">★</span><span class="fw-icon" style="background:#555">◆</span></span>`;
+  html += `<span style="margin:0 12px; font-size:20px; color:var(--muted);">→</span>`;
+  html += `<span style="background:#5c3d1e22; padding:4px 12px; border-radius:8px;">固定型<br><span class="fw-icon" style="background:#5c3d1e">■</span> institution</span>`;
+  html += `</div>`;
+  html += `<p class="note" style="text-align:center; margin-top:8px;">蓄積 → 解放 → 固定 → （次のサイクルの背景へ）</p>`;
+  html += `</div>`;
+  html += `</div>`;
+
+  // §2 fwType
+  html += `<div class="section" id="sec-fwtype"><h2>2. fwType（力学的役割）8種</h2>`;
+  html += `<p>ノードが因果ネットワーク上でどのような<strong>力学的役割</strong>を果たすかを分類する。</p>`;
+  html += `<table class="type-table">
+    <tr><th></th><th>fwType</th><th>グループ</th><th>定義</th><th class="num">件数</th><th>例</th></tr>`;
+  const fwOrder = ['drift','conflict','battle','collapse','reform','power','shock','institution'];
+  fwOrder.forEach(fw => {
+    const d = FW_DEFS[fw];
+    const ex = fwExamples[fw];
+    html += `<tr>
+      <td><span class="fw-icon" style="background:${d.color}">${d.icon}</span></td>
+      <td><strong>${fw}</strong></td>
+      <td>${d.group}</td>
+      <td>${d.desc}</td>
+      <td class="num">${fwCount[fw]||0}</td>
+      <td style="font-size:11px; color:var(--muted);">${ex ? ex.id + ' ' + ex.label.slice(0,20) : ''}</td>
+    </tr>`;
+  });
+  html += `</table></div>`;
+
+  // §3 bgType
+  html += `<div class="section" id="sec-bgtype"><h2>3. bgType（背景圧力の種類）</h2>`;
+  html += `<p>そのイベントのエネルギーを溜めた<strong>背景の圧力</strong>がどのような性質かを表す。</p>`;
+  html += `<table class="type-table">
+    <tr><th>bgType</th><th>説明</th><th class="num">件数</th><th>例</th></tr>`;
+  const bgDescs = {
+    '勢力対立': '複数の勢力・集団間の対立構造。最も普遍的な背景圧力。',
+    '外生': 'システム外部からもたらされる条件・影響。天災、異文化接触、大陸からの文物流入など。',
+    '権力集中': '特定主体への権力・資源の集中。独占化の過程が圧力を生む。',
+    '武力衝突': '先行する武力衝突が生んだ状態が背景となる。戦後処理や軍事的緊張の残存。',
+    '思想潮流': '宗教・学問・イデオロギーの広がりが社会変動の基盤となる。',
+    '構造変化': '先行する構造的転換の結果が次のイベントの背景となる。',
+    '制度': '既存の制度的枠組みが生む条件・制約。制度の存在そのものが次の変動の土台。',
+    '複合背景': '複数の背景圧力が重なり合い、単一の型に還元できない。',
+    '外圧': '外部からの軍事的・政治的圧力。他国・他勢力からの直接的な脅威。',
+    '制度疲弊': '制度が時間とともに機能不全に陥る。形骸化・腐敗・環境不適合。',
+    '改革': '先行する改革が次のイベントの前提条件となる。改革の成功・失敗が新たな圧力を生む。',
+    '崩壊': '先行する崩壊が次のイベントの背景となる。権力の空白・秩序の喪失。',
+    '制度的矛盾': '制度内部の矛盾・齟齬が蓄積する。理念と実態の乖離。',
+    '経済圧': '経済的な圧力（財政難、交易変動、物価変動、貧困の拡大など）。',
+    '制度構築': '新たな制度を一から構築する局面。既存制度の不在または白紙状態が前提。',
+    '経済拡大': '経済成長・交易拡大が生む社会的変動圧。繁栄がもたらす構造変化。',
+    '硬直化': '体制・組織が柔軟性を失い変化に対応できなくなる。制度疲弊より広い概念で、文化・思考様式を含む。',
+    '自生': '外部の影響なく内発的に発生した条件。風土・地理的条件による自然発生的な文明形成。',
+    '経済成長': '経済の持続的成長が社会構造に変動圧を与える。経済拡大と類似だが成長の持続性を強調。',
+    '権力分散': '権力が分散した状態が背景となる。多極化・地方分権・群雄割拠。',
+  };
+  Object.entries(bgCount).sort((a,b) => b[1]-a[1]).forEach(([bg, cnt]) => {
+    const ex = bgExamples[bg];
+    html += `<tr>
+      <td><strong>${bg}</strong></td>
+      <td style="font-size:11px;">${bgDescs[bg]||''}</td>
+      <td class="num">${cnt}</td>
+      <td style="font-size:11px; color:var(--muted);">${ex ? ex.id + ' ' + ex.label.slice(0,18) : ''}</td>
+    </tr>`;
+  });
+  html += `</table>`;
+  html += `</div>`;
+
+  // §4 releaseType
+  html += `<div class="section" id="sec-reltype"><h2>4. releaseType（解放の型）</h2>`;
+  html += `<p>蓄積されたエネルギーが<strong>どのような形で放出・転化されたか</strong>を表す。</p>`;
+  const relDescs = {
+    '構造変化': '社会・政治構造が質的に変化した。',
+    '崩壊': '既存の秩序・制度が瓦解した。',
+    '武力衝突': '戦闘・戦争として爆発的に放出された。',
+    '制度化': '安定的な制度・法として固定された。',
+    '改革': '意図的な変革として方向づけられた。',
+    '戦闘': '局所的な武力行使。',
+    '勢力対立': '新たな対立構造の形成として表出した。',
+    '制度': '制度的な形での安定化。',
+    '権力集中': '特定主体への権力集約として実現した。',
+    '外圧': '外部への圧力行使として表出した。',
+    '衝撃': '衝撃的な事態として顕在化した。',
+    '権力移行': '支配者・権力主体の交替として実現した。',
+    '権力確立': '新たな権力構造の確立。',
+    '対立蓄積': '（蓄積型のため解放ではなく）対立の深化。',
+    '外生衝撃': '外部由来の衝撃的変動。',
+  };
+  html += `<table class="type-table">
+    <tr><th>releaseType</th><th>説明</th><th class="num">件数</th><th>例</th></tr>`;
+  Object.entries(relCount).sort((a,b) => b[1]-a[1]).forEach(([rel, cnt]) => {
+    const ex = relExamples[rel];
+    const displayName = rel || '（未設定）';
+    const desc = rel ? (relDescs[rel]||'') : 'releaseTypeが未設定のノード。主にアメリカ史データの初版で発生。補完が必要。';
+    html += `<tr${!rel ? ' style="background:rgba(180,60,60,.05)"' : ''}>
+      <td><strong>${displayName}</strong></td>
+      <td style="font-size:11px;">${desc}</td>
+      <td class="num">${cnt}</td>
+      <td style="font-size:11px; color:var(--muted);">${ex ? ex.id + ' ' + ex.label.slice(0,18) : ''}</td>
+    </tr>`;
+  });
+  html += `</table>`;
+  html += `</div>`;
+
+  // §5 patternType
+  html += `<div class="section" id="sec-patterntype"><h2>5. patternType（結合ラベル）</h2>`;
+  html += `<p><code>patternType = bgType + "→" + releaseType</code></p>`;
+  html += `<p>独立した概念ではなく、bgTypeとreleaseTypeの<strong>表示用結合文字列</strong>。パターン図鑑ではこの値をグルーピングキーとして使い、同じ「背景圧力→解放型」を持つノードを構造的共通パターンとして抽出する。</p>`;
+  html += `<p class="note">例: <code>権力集中→崩壊</code> = 権力が集中した背景から崩壊が生じるパターン。王朝末期に文明横断的に出現する。</p>`;
+  html += `</div>`;
+
+  // §6 Cross table
+  html += `<div class="section" id="sec-cross"><h2>6. fwType × releaseType クロス集計</h2>`;
+  html += `<p>力学的役割（fwType）と意味的解放型（releaseType）の組み合わせ。対角線付近に集中するが、<strong>軸が異なるため非対角の組み合わせも多い</strong>。</p>`;
+  const relOrder = Object.entries(relCount).filter(([k])=>k).sort((a,b)=>b[1]-a[1]).map(([k])=>k);
+  html += `<table class="cross-table"><tr><th></th>`;
+  relOrder.forEach(r => { html += `<th>${r}</th>`; });
+  html += `<th>計</th></tr>`;
+  fwOrder.forEach(fw => {
+    const d = FW_DEFS[fw];
+    html += `<tr><td class="lbl"><span class="fw-icon" style="background:${d.color}; width:14px; height:14px; line-height:14px; font-size:9px;">${d.icon}</span>${fw}</td>`;
+    let rowTotal = 0;
+    relOrder.forEach(r => {
+      const c = crossCount[fw+'|'+r] || 0;
+      rowTotal += c;
+      const cls = c >= 20 ? 'hi' : c >= 5 ? 'med' : c === 0 ? 'zero' : '';
+      html += `<td class="${cls}">${c || '·'}</td>`;
+    });
+    html += `<td style="font-weight:600">${rowTotal}</td></tr>`;
+  });
+  html += `</table>`;
+  html += `<p class="note"><span style="background:rgba(180,60,60,.08); padding:2px 6px;">■ 20件以上</span> <span style="background:rgba(180,140,60,.06); padding:2px 6px;">■ 5件以上</span> — 対角的一致: battle×武力衝突, collapse×崩壊, reform×改革 など。非対角: drift×構造変化(46), conflict×外圧(24) など。</p>`;
+  html += `</div>`;
+
+  // §7 Edge roles
+  html += `<div class="section" id="sec-edges"><h2>7. エッジの作用（role）</h2>`;
+  html += `<p>ノード間の<strong>因果的作用</strong>を表す有向エッジ。作用の質を5種類に分類する。</p>`;
+  html += `<table class="type-table">
+    <tr><th></th><th>role</th><th>定義</th><th class="num">件数</th><th>例</th></tr>`;
+  ['amplifies','triggers','transforms','sustains','inherits'].forEach(role => {
+    const d = EDGE_DEFS[role];
+    html += `<tr>
+      <td><span style="display:inline-block; width:12px; height:4px; background:${d.color}; border-radius:2px; vertical-align:middle;"></span></td>
+      <td><strong>${role}</strong></td>
+      <td style="font-size:11px;">${d.desc}</td>
+      <td class="num">${edgeCount[role]||0}</td>
+      <td style="font-size:11px; color:var(--muted);">${d.example}</td>
+    </tr>`;
+  });
+  html += `</table>`;
+  html += `<p class="note">suppressesは定義上存在するが、現在のデータでは使用されていない。</p>`;
+  html += `</div>`;
+
+  // §8 Contraction patterns
+  html += `<div class="section" id="sec-contraction"><h2>8. 縮約パターン</h2>`;
+  html += `<p>現実の因果関係は入れ子的・多重的であり、1枚のカードに表現する際に<strong>3種類の縮約</strong>が行われている。</p>`;
+
+  // 8a: superposition
+  html += `<h3 id="sec-c1">8a. 重ね合わせ縮約 — 背景の多重合成</h3>`;
+  html += `<div class="diagram-card">`;
+  html += `<div class="diagram-title">1枚のカードは複数フレームワークの重ね合わせ</div>`;
+  html += `<p>1つのイベントには複数の背景エッジ（amplifies, sustains, transforms, triggers）が入力されている。これらは本来それぞれ独立した因果フレームワークを構成するが、1枚のカードに<strong>合成</strong>されている。</p>`;
+
+  // Find a node with many incoming edges
+  const nodeMap = {};
+  allNodes.forEach(n => nodeMap[n.id] = n);
+  const incomingCount = {};
+  allEdges.forEach(e => {
+    if (!incomingCount[e.to]) incomingCount[e.to] = [];
+    incomingCount[e.to].push(e);
+  });
+  const richNode = Object.entries(incomingCount)
+    .filter(([id]) => nodeMap[id])
+    .sort((a,b) => b[1].length - a[1].length)[0];
+
+  if (richNode) {
+    const [nid, edges] = richNode;
+    const n = nodeMap[nid];
+    html += `<div class="contraction-box">`;
+    html += `<div class="label">${n.id} ${n.label}</div>`;
+    html += `<div style="font-size:11px; margin:4px 0;">入力エッジ ${edges.length}本 — それぞれが独立した因果経路:</div>`;
+    edges.slice(0, 5).forEach(e => {
+      const src = nodeMap[e.from];
+      html += `<div style="font-size:11px; margin-left:12px;">
+        <span style="color:${EDGE_DEFS[e.role]?.color||'#999'}">${e.role}</span>
+        ← ${e.from} ${src ? src.label.slice(0,25) : ''}
+      </div>`;
+    });
+    if (edges.length > 5) html += `<div style="font-size:10px; color:var(--muted); margin-left:12px;">… 他${edges.length-5}本</div>`;
+    html += `<div class="omitted">→ ${edges.length}本の因果経路が1枚のカードに合成されている（bgTypeは最も支配的な1つに代表）</div>`;
+    html += `</div>`;
+  }
+  html += `</div>`;
+
+  // 8b: absorbed
+  html += `<h3 id="sec-c2">8b. 内包縮約 — absorbedイベントの省略</h3>`;
+  html += `<div class="diagram-card">`;
+  html += `<div class="diagram-title">absorbedイベント: 2重の省略</div>`;
+  html += `<p>absorbed（内包）イベントは、本来は独立したフレームワークインスタンスとして記述されるべきものを親ノードに吸収している。これは<strong>2つの意味で省略</strong>されている：</p>`;
+  html += `<div style="font-size:12px; margin:8px 0 4px; font-weight:600;">省略①: フレームワーク記述の省略</div>`;
+  html += `<p class="note">各absorbedイベントは本来、独自のfwType・bgType・releaseType・pattern・背景エッジを持つべきフレームワークインスタンスだが、ラベルとeraのみに縮約されている。</p>`;
+  html += `<div style="font-size:12px; margin:8px 0 4px; font-weight:600;">省略②: 作用記述の省略</div>`;
+  html += `<p class="note">親ノードの「解放」が各absorbedイベントに対してどのような作用（amplifies/triggers/transforms等）を及ぼしたかの記述が省略されている。また、各absorbedイベント固有のreleaseTypeも失われている。</p>`;
+
+  // Show absorbed example
+  const absEx = absorbedNodes.sort((a,b) => (b.absorbed||[]).length - (a.absorbed||[]).length)[0];
+  if (absEx) {
+    html += `<div class="contraction-box">`;
+    html += `<div class="label">${absEx.id} ${absEx.label}</div>`;
+    html += `<div style="font-size:11px;">fwType=${absEx.fwType} / bgType=${absEx.bgType} / releaseType=${absEx.releaseType}</div>`;
+    html += `<div style="font-size:11px; margin-top:6px; font-weight:600;">absorbed ${absEx.absorbed.length}件:</div>`;
+    absEx.absorbed.forEach(a => {
+      html += `<div style="font-size:11px; margin-left:12px;">`;
+      html += `• ${a.label} (${a.era||''})`;
+      html += ` <span class="omitted">← fwType? bgType? releaseType? 作用? すべて省略</span>`;
+      html += `</div>`;
+    });
+    html += `</div>`;
+  }
+
+  // Distribution
+  html += `<div style="margin-top:10px;">`;
+  html += `<table class="type-table"><tr><th>absorbed数</th><th class="num">ノード数</th></tr>`;
+  html += `<tr><td>0（吸収なし）</td><td class="num">${allNodes.length - absorbedNodes.length}</td></tr>`;
+  Object.entries(absorbedDist).sort((a,b)=>a[0]-b[0]).forEach(([k,v]) => {
+    html += `<tr><td>${k}件吸収</td><td class="num">${v}</td></tr>`;
+  });
+  html += `<tr style="font-weight:600"><td>合計absorbed</td><td class="num">${allNodes.reduce((s,n)=>s+(n.absorbed||[]).length,0)}件</td></tr>`;
+  html += `</table></div>`;
+  html += `</div>`;
+
+  // 8c: nested background
+  html += `<h3 id="sec-c3">8c. 入れ子縮約 — 背景フレームワークの内部吸収</h3>`;
+  html += `<div class="diagram-card">`;
+  html += `<div class="diagram-title">多段フレームワークの1段への圧縮</div>`;
+  html += `<p>あるイベントの背景（bgType）は、それ自体が別のフレームワークインスタンスの結果である。本来は入れ子状に記述すべきだが、背景の中に背景を内包して1段のカードにしている。</p>`;
+
+  html += `<div class="contraction-box">`;
+  html += `<div style="font-size:12px; font-weight:600; margin-bottom:8px;">本来の入れ子構造（展開形）:</div>`;
+  html += `<div class="nested-frame nf-outer">`;
+  html += `<div class="nf-label" style="color:var(--accent);">FW-外側: 大化の改新</div>`;
+  html += `<div style="font-size:11px;">bgType=権力集中 / releaseType=改革</div>`;
+  html += `<div class="nested-frame nf-inner">`;
+  html += `<div class="nf-label" style="color:#7a9a5a;">FW-中間: 蘇我氏の権力独占</div>`;
+  html += `<div style="font-size:11px;">bgType=勢力対立 / releaseType=権力集中</div>`;
+  html += `<div class="nested-frame nf-absorbed">`;
+  html += `<div class="nf-label" style="color:#c49a4a;">FW-内側: 仏教伝来と氏族間対立</div>`;
+  html += `<div style="font-size:11px;">bgType=外生 / releaseType=思想転換</div>`;
+  html += `</div>`;
+  html += `</div>`;
+  html += `</div>`;
+  html += `<div style="margin-top:12px; text-align:center; font-size:16px; color:var(--muted);">↓ 縮約</div>`;
+  html += `<div class="nested-frame nf-outer" style="margin-top:8px;">`;
+  html += `<div class="nf-label" style="color:var(--accent);">1枚のカード: 大化の改新</div>`;
+  html += `<div style="font-size:11px;">bgType=権力集中 / releaseType=改革</div>`;
+  html += `<div style="font-size:11px; color:var(--muted);">背景エッジ amplifies ← 蘇我氏の権力独占（別ノード）</div>`;
+  html += `<div class="omitted">中間FWと内側FWの入れ子構造は、背景エッジの連鎖（DAGの経路）に縮約</div>`;
+  html += `</div>`;
+  html += `</div>`;
+
+  html += `<p style="margin-top:12px;">この縮約により、本来2段以上のフレームワークインスタンスを要する記述が、<strong>ノード間のエッジ接続</strong>（DAGの経路）として表現される。背景の深さはDAGを遡ることで復元可能だが、各段の固有のbgType→releaseTypeの意味的記述は失われる。</p>`;
+
+  html += `<p class="note">DAGの経路を辿ることで「N001 → N004 → N009」のように背景の背景を再帰的に読めるが、各エッジが「どの背景フレームワークの中でどのような役割を果たしたか」という<strong>フレームワーク内部の文脈</strong>は縮約されている。これはEnergyAbsモデルの設計的トレードオフであり、記述の簡潔さとDAGの計算可能性を、フレームワークの再帰的表現力と引き換えにしている。</p>`;
+
+  html += `</div>`;
+  html += `</div>`;
+
+  document.getElementById('content').innerHTML = html;
+
+  // ハッシュがあれば該当セクションへスクロール
+  if (location.hash) {
+    const el = document.querySelector(location.hash);
+    if (el) el.scrollIntoView({ behavior: 'smooth' });
+  }
+}
+
+init();
+</script>
+</body>
+</html>

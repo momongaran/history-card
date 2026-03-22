@@ -2,8 +2,8 @@
   "meta": {
     "version": "1.0",
     "description": "EnergyAbs有向グラフ インド史v1: インダス文明(前2600)→インド独立(1947) 約4500年の因果フロー",
-    "nodeCount": 26,
-    "edgeCount": 36,
+    "nodeCount": 28,
+    "edgeCount": 43,
     "created": "2026-03-21"
   },
   "nodes": [
@@ -485,6 +485,43 @@
       "bgType": "外圧",
       "releaseType": "衝撃",
       "patternType": "外圧→衝撃"
+    },
+    {
+      "id": "I010c",
+      "label": "インド洋交易圏の競争と変動",
+      "summary": "アラブ商人が支配していたインド洋交易が、15世紀にはオスマン帝国の地中海支配によりヨーロッパの香辛料入手が困難化。新航路開拓の圧力が高まった",
+      "actors": [
+        "アラブ商人",
+        "オスマン帝国",
+        "ポルトガル"
+      ],
+      "intensity": "medium",
+      "timescale": "long",
+      "cluster": "PI4_ムガル帝国と植民地化",
+      "era": "15世紀",
+      "fwType": "drift",
+      "pattern": "{交易圏}の{支配構造}が変動し{新参者}の参入圧力が高まる",
+      "bgType": "外圧",
+      "releaseType": "構造変化",
+      "patternType": "外圧→構造変化"
+    },
+    {
+      "id": "I011c",
+      "label": "デリー・スルタン朝末期の弱体化",
+      "summary": "トゥグルク朝以降のデリー・スルタン朝は地方政権の離反と内紛で弱体化。中央の統制力が低下し、外部勢力の侵入に対して脆弱な状態となった",
+      "actors": [
+        "トゥグルク朝",
+        "デリー・スルタン朝"
+      ],
+      "intensity": "medium",
+      "timescale": "long",
+      "cluster": "PI3_イスラーム勢力の侵入と定着",
+      "era": "14世紀–15世紀",
+      "fwType": "drift",
+      "pattern": "{王朝}の統制力低下が{外部侵入}への脆弱性を生む",
+      "bgType": "制度疲弊",
+      "releaseType": "構造変化",
+      "patternType": "制度疲弊→構造変化"
     }
   ],
   "edges": [
@@ -703,6 +740,48 @@
       "to": "I011",
       "role": "amplifies",
       "note": "ティムールによるデリー破壊がムガル建国の前提条件を作った"
+    },
+    {
+      "from": "I010c",
+      "to": "I010b",
+      "role": "sustains",
+      "note": "インド洋交易圏の変動がポルトガルの東方進出を駆動し続けた"
+    },
+    {
+      "from": "I010",
+      "to": "I011c",
+      "role": "transforms",
+      "note": "デリー・スルタン朝の支配がその後の弱体化の前提となった"
+    },
+    {
+      "from": "I011c",
+      "to": "I011b",
+      "role": "sustains",
+      "note": "スルタン朝の弱体化がティムール侵攻の被害を拡大した"
+    },
+    {
+      "from": "I011c",
+      "to": "I011",
+      "role": "amplifies",
+      "note": "スルタン朝の弱体化がムガル建国の背景条件を整えた"
+    },
+    {
+      "from": "I013",
+      "to": "I015",
+      "role": "sustains",
+      "note": "ムガル帝国の衰退がマラーター台頭の持続的条件となった"
+    },
+    {
+      "from": "I016b",
+      "to": "I020",
+      "role": "sustains",
+      "note": "植民地支配への不満蓄積がガンディー運動の基盤を支えた"
+    },
+    {
+      "from": "I010b",
+      "to": "I016b",
+      "role": "sustains",
+      "note": "ヨーロッパ勢力の到来が植民地化への道筋を形成した"
     }
   ]
 }

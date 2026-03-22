@@ -66,6 +66,10 @@
     pointer-events: none; z-index: 2;
   }
   .edge-line { fill: none; stroke-width: 1.4; opacity: 0.35; stroke-dasharray: 5 4; stroke: #b0a898; }
+  .edge-dot { stroke: none; fill: #b0a898; opacity: 0.5; }
+  .edge-dot.dim { opacity: 0.08; }
+  .edge-halo { pointer-events: none; }
+  .edge-halo.dim { opacity: 0.08; }
   .edge-head { stroke: none; fill: #b0a898; opacity: 0.5; }
 
   .edge-line.hl { opacity: 0.7; stroke-width: 2; }
@@ -88,7 +92,7 @@
   /* Block row */
   .block-row {
     position: relative; z-index: 1;
-    display: flex; gap: 16px; margin-bottom: 12px;
+    display: flex; gap: 16px; margin-bottom: 20px;
     flex-wrap: wrap;
     justify-content: center;
   }
@@ -109,7 +113,7 @@
   .block.hl { box-shadow: 0 0 0 5px rgba(92,61,30,.25); filter: brightness(0.97); }
   .block.source-hl { box-shadow: 0 0 0 6px rgba(200,150,10,.4); transform: scale(1.02); transition: all .15s; }
   .block.dim { opacity: 0.2; }
-  .block.has-pattern { border-left: 4px solid #c45a3c; }
+  /* border-left removed: fwType color is now shown via full border-color */
 
   .block-body { padding: 12px 14px 24px; display: flex; flex-direction: column; gap: 6px; }
 
@@ -399,6 +403,7 @@
     <a href="demo_catalog_world.html">世界史図鑑</a>
     <a href="demo_pattern_catalog.html">パターン図鑑</a>
     <a href="demo_slot_taxonomy.html">スロット分類</a>
+    <a href="demo_taxonomy_reference.html">用語リファレンス</a>
   </nav>
   <div class="header">
     <h1>因果フレーム図鑑</h1>
@@ -771,71 +776,58 @@ function drawEdges() {
   });
   const departCur = {};
 
+  // Pass 1: compute all edge endpoints (block edge to block edge)
+  const edgeGeom = [];
   G.edges.forEach(e => {
     const fromEl = document.getElementById('blk-' + e.from);
     const toEl = document.getElementById('blk-' + e.to);
-    const chipEl = document.getElementById('chip-' + e.from + '-' + e.to);
-    if (!fromEl || !chipEl) return;
+    if (!fromEl || !toEl) return;
 
     const fr = fromEl.getBoundingClientRect();
-    const ch = chipEl.getBoundingClientRect();
+    const tr = toEl.getBoundingClientRect();
 
-    // Departure: edge of source block closest to chip
-    const chipCX = ch.left + ch.width / 2 - cr.left + scrollL;
-    const chipCY = ch.top + ch.height / 2 - cr.top + scrollT;
     const fromCX = fr.left + fr.width / 2 - cr.left + scrollL;
     const fromCY = fr.top + fr.height / 2 - cr.top + scrollT;
+    const toCX = tr.left + tr.width / 2 - cr.left + scrollL;
+    const toCY = tr.top + tr.height / 2 - cr.top + scrollT;
 
-    // Source block edge point (nearest side to chip)
+    // Source: nearest edge to target card center
     let x1, y1;
     const fromTop = fr.top - cr.top + scrollT;
     const fromBot = fr.bottom - cr.top + scrollT;
     const fromL = fr.left - cr.left + scrollL;
     const fromR = fr.right - cr.left + scrollL;
 
-    if (chipCY > fromBot) {
-      // chip is below source block
-      x1 = fromCX; y1 = fromBot;
-    } else if (chipCY < fromTop) {
-      // chip is above source block
-      x1 = fromCX; y1 = fromTop;
-    } else if (chipCX < fromL) {
-      x1 = fromL; y1 = fromCY;
-    } else {
-      x1 = fromR; y1 = fromCY;
-    }
+    if (toCY > fromBot) { x1 = fromCX; y1 = fromBot; }
+    else if (toCY < fromTop) { x1 = fromCX; y1 = fromTop; }
+    else if (toCX < fromL) { x1 = fromL; y1 = fromCY; }
+    else { x1 = fromR; y1 = fromCY; }
 
-    // Chip edge point (nearest side to source block)
-    const chTop = ch.top - cr.top + scrollT;
-    const chBot = ch.bottom - cr.top + scrollT;
-    const chL = ch.left - cr.left + scrollL;
-    const chR = ch.right - cr.left + scrollL;
+    // Target: nearest edge to source card center
+    const toTop = tr.top - cr.top + scrollT;
+    const toBot = tr.bottom - cr.top + scrollT;
+    const toL = tr.left - cr.left + scrollL;
+    const toR = tr.right - cr.left + scrollL;
 
     let x2, y2;
-    if (fromCY < chTop) {
-      x2 = chipCX; y2 = chTop;
-    } else if (fromCY > chBot) {
-      x2 = chipCX; y2 = chBot;
-    } else if (fromCX < chL) {
-      x2 = chL; y2 = chipCY;
-    } else {
-      x2 = chR; y2 = chipCY;
-    }
-
-    const dy = y2 - y1;
-    const dx = x2 - x1;
+    if (fromCY < toTop) { x2 = toCX; y2 = toTop; }
+    else if (fromCY > toBot) { x2 = toCX; y2 = toBot; }
+    else if (fromCX < toL) { x2 = toL; y2 = toCY; }
+    else { x2 = toR; y2 = toCY; }
 
     let d;
-    if (Math.abs(dy) < 20) {
-      // Roughly same height: arc
+    if (Math.abs(y2 - y1) < 20) {
       const midY = Math.min(y1, y2) - 50;
       d = `M ${x1} ${y1} C ${x1} ${midY}, ${x2} ${midY}, ${x2} ${y2}`;
     } else {
-      // S-curve
       const midY = (y1 + y2) / 2;
       d = `M ${x1} ${y1} C ${x1} ${midY}, ${x2} ${midY}, ${x2} ${y2}`;
     }
+    edgeGeom.push({ e, d, x1, y1, x2, y2 });
+  });
 
+  // Pass 2: draw lines (bottom layer)
+  edgeGeom.forEach(({ e, d }) => {
     const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
     path.setAttribute('d', d);
     path.classList.add('edge-line');
@@ -844,14 +836,26 @@ function drawEdges() {
     path.dataset.to = e.to;
     path.dataset.role = e.role;
     svg.appendChild(path);
+  });
 
-    // Small circle at chip end instead of arrowhead (identity marker)
+  // Pass 3: draw halos + dots (top layer, so they visually cut passing lines)
+  edgeGeom.forEach(({ e, x1, y1, x2, y2 }) => {
+    // Start: halo (white circle to cut passing lines) + dot
+    const haloS = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+    haloS.setAttribute('cx', x1); haloS.setAttribute('cy', y1); haloS.setAttribute('r', 5);
+    haloS.setAttribute('fill', '#fffdf8'); haloS.setAttribute('stroke', 'none');
+    haloS.classList.add('edge-halo'); haloS.dataset.eid = e.id;
+    svg.appendChild(haloS);
+
+    const dotS = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+    dotS.setAttribute('cx', x1); dotS.setAttribute('cy', y1); dotS.setAttribute('r', 3);
+    dotS.classList.add('edge-dot'); dotS.dataset.eid = e.id;
+    svg.appendChild(dotS);
+
+    // End: dot only (no halo — dot center is on card edge)
     const dot = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
-    dot.setAttribute('cx', x2);
-    dot.setAttribute('cy', y2);
-    dot.setAttribute('r', 3.5);
-    dot.classList.add('edge-head');
-    dot.dataset.eid = e.id;
+    dot.setAttribute('cx', x2); dot.setAttribute('cy', y2); dot.setAttribute('r', 3);
+    dot.classList.add('edge-head'); dot.dataset.eid = e.id;
     svg.appendChild(dot);
   });
 }
@@ -926,7 +930,7 @@ function highlightNode(nid) {
 
 function clearHighlights() {
   document.querySelectorAll('.block').forEach(el => { el.classList.remove('dim', 'hl'); });
-  document.querySelectorAll('.edge-line, .edge-head').forEach(el => { el.classList.remove('hl', 'dim'); });
+  document.querySelectorAll('.edge-line, .edge-head, .edge-dot, .edge-halo').forEach(el => { el.classList.remove('hl', 'dim'); });
   document.getElementById('info').textContent = `${G.nodes.length} nodes / ${G.edges.length} edges`;
 }
 
@@ -970,7 +974,7 @@ function showPatterns(btn) {
   document.querySelectorAll('.block').forEach(el => {
     el.classList.toggle('dim', !patNodes.has(el.dataset.nid));
   });
-  document.querySelectorAll('.edge-line, .edge-head').forEach(el => el.classList.add('dim'));
+  document.querySelectorAll('.edge-line, .edge-head, .edge-dot, .edge-halo').forEach(el => el.classList.add('dim'));
   document.getElementById('info').textContent = `パターン付き: ${patNodes.size} nodes`;
 }
 

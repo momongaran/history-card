@@ -3,8 +3,8 @@
     "version": "1.0",
     "description": "EnergyAbs有向グラフ アメリカ史v1: 先コロンブス文明→冷戦終結 約500年の因果フロー",
     "region": "americas",
-    "nodeCount": 33,
-    "edgeCount": 49,
+    "nodeCount": 37,
+    "edgeCount": 63,
     "created": "2026-03-21"
   },
   "nodes": [
@@ -623,6 +623,80 @@
       "bgType": "勢力対立",
       "releaseType": "",
       "patternType": "勢力対立→蓄積"
+    },
+    {
+      "id": "A001b",
+      "label": "欧州列強の海洋進出競争と新航路探索",
+      "summary": "レコンキスタ完了後のスペイン・ポルトガルが大西洋に進出。オスマン帝国による東方貿易の遮断が新航路探索への圧力を高めた",
+      "actors": [
+        "スペイン",
+        "ポルトガル"
+      ],
+      "intensity": "medium",
+      "timescale": "long",
+      "cluster": "PA0_先コロンブス文明と征服",
+      "era": "15世紀",
+      "fwType": "drift",
+      "pattern": "{宗教的勝利}と{交易遮断}が{海洋進出}への圧力を蓄積させる",
+      "bgType": "外圧",
+      "releaseType": "構造変化",
+      "patternType": "外圧→構造変化"
+    },
+    {
+      "id": "A003b",
+      "label": "カリブ海植民地における奴隷制の矛盾蓄積",
+      "summary": "サン＝ドマングでは人口の9割が奴隷。フランス革命の自由・平等理念が植民地に波及し、奴隷制との根本的矛盾が爆発寸前に達した",
+      "actors": [
+        "奴隷",
+        "プランテーション主",
+        "ムラート"
+      ],
+      "intensity": "high",
+      "timescale": "long",
+      "cluster": "PA2_独立革命の連鎖",
+      "era": "18世紀",
+      "fwType": "conflict",
+      "pattern": "{奴隷制社会}の{構造的矛盾}が{革命理念}と結合して爆発する",
+      "bgType": "制度的矛盾",
+      "releaseType": "勢力対立",
+      "patternType": "制度的矛盾→勢力対立"
+    },
+    {
+      "id": "A016b",
+      "label": "国際的利害関係の拡大と孤立主義の動揺",
+      "summary": "ドイツの無制限潜水艦戦とツィンメルマン電報が米国世論を動かした。戦時融資による経済的利害関係も参戦圧力を高めた",
+      "actors": [
+        "ウィルソン大統領",
+        "ドイツ帝国"
+      ],
+      "intensity": "medium",
+      "timescale": "short",
+      "cluster": "PA4_世界大戦と超大国化",
+      "era": "1915–1917年",
+      "fwType": "drift",
+      "pattern": "{孤立主義}が{外部の挑発}と{経済的利害}により動揺する",
+      "bgType": "外圧",
+      "releaseType": "構造変化",
+      "patternType": "外圧→構造変化"
+    },
+    {
+      "id": "A020b",
+      "label": "枢軸国の膨張と国際秩序の崩壊",
+      "summary": "日独伊の膨張政策がヨーロッパ・アジアの秩序を破壊。武器貸与法の成立により米国の中立は実質的に崩壊していた",
+      "actors": [
+        "ルーズベルト大統領",
+        "ナチス・ドイツ",
+        "大日本帝国"
+      ],
+      "intensity": "high",
+      "timescale": "medium",
+      "cluster": "PA4_世界大戦と超大国化",
+      "era": "1939–1941年",
+      "fwType": "conflict",
+      "pattern": "{枢軸国の膨張}が{中立国}の参戦を不可避にする",
+      "bgType": "外圧",
+      "releaseType": "勢力対立",
+      "patternType": "外圧→勢力対立"
     }
   ],
   "edges": [
@@ -743,8 +817,8 @@
     {
       "from": "A015",
       "to": "A015b",
-      "role": "triggers",
-      "note": "急速な工業化が社会的矛盾を生んだ"
+      "role": "sustains",
+      "note": "急速な工業化が社会矛盾の蓄積を駆動し続けた"
     },
     {
       "from": "A015",
@@ -767,8 +841,8 @@
     {
       "from": "A017",
       "to": "A018",
-      "role": "triggers",
-      "note": "大戦の反動として孤立主義への回帰と経済的繁栄が生じた"
+      "role": "sustains",
+      "note": "大戦参戦の経験が戦間期の繁栄と孤立主義回帰を条件づけた"
     },
     {
       "from": "A018",
@@ -821,8 +895,8 @@
     {
       "from": "A025",
       "to": "A025b",
-      "role": "triggers",
-      "note": "ベトナム敗北が米国の威信低下をもたらした"
+      "role": "sustains",
+      "note": "ベトナム戦争の長期化が威信低下と経済停滞を駆動し続けた"
     },
     {
       "from": "A025b",
@@ -887,8 +961,8 @@
     {
       "from": "A022",
       "to": "A022b",
-      "role": "triggers",
-      "note": "冷戦体制が東アジアの共産化を脅威として認識させた"
+      "role": "sustains",
+      "note": "冷戦体制が東アジアの対立を持続させた"
     },
     {
       "from": "A022b",
@@ -919,6 +993,90 @@
       "to": "N106",
       "role": "triggers",
       "note": "ペリー来航が日本の鎖国体制を崩壊させた"
+    },
+    {
+      "from": "A001b",
+      "to": "A002",
+      "role": "amplifies",
+      "note": "海洋進出競争がコロンブスの到達を促進した"
+    },
+    {
+      "from": "A001",
+      "to": "A003",
+      "role": "sustains",
+      "note": "先住民文明の存在が植民地帝国の基盤となった"
+    },
+    {
+      "from": "A003",
+      "to": "A004b",
+      "role": "sustains",
+      "note": "植民地帝国の枠組みが先住民との抗争を持続させた"
+    },
+    {
+      "from": "A005",
+      "to": "A007",
+      "role": "sustains",
+      "note": "自治意識の成熟が憲法制定の基盤を支えた"
+    },
+    {
+      "from": "A003",
+      "to": "A003b",
+      "role": "sustains",
+      "note": "植民地帝国の奴隷制がカリブ海の矛盾を構造化した"
+    },
+    {
+      "from": "A003b",
+      "to": "A008",
+      "role": "amplifies",
+      "note": "奴隷制の矛盾蓄積がハイチ革命を爆発させた"
+    },
+    {
+      "from": "A007",
+      "to": "A010",
+      "role": "sustains",
+      "note": "連邦制の確立がモンロー主義の制度的基盤を提供した"
+    },
+    {
+      "from": "A011",
+      "to": "A015",
+      "role": "sustains",
+      "note": "西漸運動の領土拡大が再建期の工業化基盤となった"
+    },
+    {
+      "from": "A016",
+      "to": "A016b",
+      "role": "sustains",
+      "note": "帝国主義時代の利害拡大が孤立主義の動揺を駆動した"
+    },
+    {
+      "from": "A016b",
+      "to": "A017",
+      "role": "amplifies",
+      "note": "孤立主義の動揺が参戦の条件を整えた"
+    },
+    {
+      "from": "A020",
+      "to": "A020b",
+      "role": "sustains",
+      "note": "世界恐慌後の国際的不安定が枢軸国膨張の背景となった"
+    },
+    {
+      "from": "A020b",
+      "to": "A021",
+      "role": "amplifies",
+      "note": "枢軸国の膨張が米国の参戦を不可避にした"
+    },
+    {
+      "from": "A021",
+      "to": "A022",
+      "role": "sustains",
+      "note": "大戦勝利が冷戦体制構築の持続的条件となった"
+    },
+    {
+      "from": "A022b",
+      "to": "A025",
+      "role": "amplifies",
+      "note": "東アジアの冷戦対立がベトナム戦争介入を促進した"
     }
   ]
 }
