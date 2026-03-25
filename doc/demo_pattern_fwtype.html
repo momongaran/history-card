@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>パターン図鑑 ― 結果タイプ別</title>
+<style>
+  :root {
+    --bg: #f0ebe0;
+    --paper: #fffdf8;
+    --ink: #28231e;
+    --muted: #6a6058;
+    --line: #c9b89e;
+    --accent: #5c3d1e;
+    --shadow: 0 2px 8px rgba(40,28,14,.08);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", sans-serif;
+    background: linear-gradient(160deg, #f5efe3 0%, #ede5d5 100%);
+    color: var(--ink); min-height: 100vh;
+  }
+  .page { max-width: 1400px; margin: 0 auto; padding: 24px 20px 80px; }
+  .header { margin-bottom: 16px; border-left: 4px solid var(--accent); padding-left: 16px; }
+  h1 { font-size: 20px; color: var(--accent); letter-spacing: .06em; }
+  .sub { margin-top: 3px; font-size: 12px; color: var(--muted); }
+
+  /* Nav */
+  .page-nav { display: flex; gap: 12px; margin-bottom: 8px; font-size: 12px; }
+  .page-nav a {
+    color: var(--accent); text-decoration: none; padding: 3px 10px;
+    border: 1.5px solid var(--line); border-radius: 14px; transition: all .2s;
+  }
+  .page-nav a:hover { background: var(--accent); color: #fff; border-color: var(--accent); }
+  .page-nav-current {
+    padding: 3px 10px; border: 1.5px solid var(--accent); border-radius: 14px;
+    background: var(--accent); color: #fff; font-weight: 600;
+  }
+
+  /* Stats bar */
+  .stats-bar {
+    display: flex; gap: 16px; margin-bottom: 16px;
+    padding: 8px 14px; background: rgba(92,61,30,.04);
+    border-radius: 10px; font-size: 11px; color: var(--muted); flex-wrap: wrap;
+  }
+  .stats-bar strong { color: var(--ink); }
+
+  /* Type tabs */
+  .type-tabs {
+    display: flex; gap: 6px; margin-bottom: 18px; flex-wrap: wrap;
+  }
+  .type-tab {
+    font-family: inherit; font-size: 11px; padding: 5px 12px;
+    border: 1.5px solid var(--line); border-radius: 14px;
+    background: var(--paper); color: var(--muted); cursor: pointer; transition: all .2s;
+    display: flex; align-items: center; gap: 4px;
+  }
+  .type-tab:hover { border-color: var(--accent); color: var(--ink); }
+  .type-tab.active { color: #fff; border-color: transparent; }
+  .type-tab .tab-icon { font-size: 13px; }
+  .type-tab .tab-count {
+    font-size: 9px; background: rgba(255,255,255,.3); border-radius: 8px;
+    padding: 0 5px; min-width: 18px; text-align: center;
+  }
+
+  /* fwType section */
+  .fw-section { margin-bottom: 28px; }
+  .fw-section.hidden { display: none; }
+
+  .fw-section-head {
+    display: flex; align-items: center; gap: 10px;
+    margin-bottom: 10px; padding: 8px 14px;
+    border-radius: 10px; position: relative; overflow: hidden;
+  }
+  .fw-section-head::before {
+    content: ''; position: absolute; inset: 0;
+    opacity: 0.07; pointer-events: none;
+  }
+  .fw-section-icon {
+    width: 36px; height: 36px; border-radius: 9px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px; color: #fff; flex-shrink: 0;
+    border: 2px solid rgba(255,255,255,.3);
+    box-shadow: 0 2px 6px rgba(0,0,0,.15);
+  }
+  .fw-section-info { flex: 1; }
+  .fw-section-name { font-size: 15px; font-weight: 700; }
+  .fw-section-desc { font-size: 11px; color: var(--muted); margin-top: 1px; }
+  .fw-section-count {
+    font-size: 12px; font-weight: 700; color: var(--muted);
+  }
+
+  /* Card grid */
+  .card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 8px;
+  }
+
+  /* Card */
+  .pcard {
+    position: relative;
+    background: var(--paper);
+    border-radius: 10px; overflow: hidden;
+    box-shadow: var(--shadow);
+    transition: transform .15s, box-shadow .15s;
+    cursor: default; display: flex; flex-direction: column;
+    border: 1px solid #e8e0d0;
+  }
+  .pcard:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(40,28,14,.14);
+  }
+  .pcard-band { height: 3px; width: 100%; }
+
+  /* Card header */
+  .pcard-head {
+    display: flex; align-items: center; gap: 6px;
+    padding: 6px 10px 2px;
+  }
+  .pcard-num {
+    font-family: "SF Mono", "Menlo", monospace; font-size: 9px;
+    color: #b8a898; letter-spacing: .04em;
+  }
+  .pcard-rarity {
+    margin-left: auto; font-size: 9px; letter-spacing: 1px;
+  }
+
+  /* Card body — bgType→releaseType */
+  .pcard-body {
+    padding: 4px 10px 6px;
+    flex: 1;
+  }
+  .pcard-transition {
+    display: flex; align-items: center; gap: 6px;
+    margin-bottom: 4px;
+  }
+  .pcard-bg-icon {
+    width: 22px; height: 22px; border-radius: 6px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 11px; flex-shrink: 0;
+    border: 1.5px solid; opacity: 0.9;
+  }
+  .pcard-trans-arrow {
+    font-size: 12px; color: var(--line); flex-shrink: 0;
+  }
+  .pcard-label {
+    font-size: 11px; font-weight: 600; color: var(--ink);
+  }
+  .pcard-sublabel {
+    font-size: 10px; color: var(--muted); line-height: 1.3;
+    margin-top: 2px;
+  }
+
+  /* Role distribution mini bar */
+  .role-bar {
+    display: flex; height: 4px; border-radius: 2px; overflow: hidden;
+    margin: 4px 0 2px;
+  }
+  .role-bar-seg { min-width: 2px; }
+
+  /* Card footer */
+  .pcard-foot {
+    display: flex; align-items: center; gap: 3px;
+    padding: 4px 10px 6px;
+    border-top: 1px solid #f0ebe0;
+  }
+  .reg-dot {
+    width: 16px; height: 16px; border-radius: 4px;
+    display: inline-flex; align-items: center; justify-content: center;
+    font-size: 7px; font-weight: 700; color: #fff;
+    background: var(--accent);
+  }
+  .pcard-count {
+    margin-left: auto; font-size: 10px; color: var(--muted); font-weight: 600;
+  }
+
+  /* Instance drawer */
+  .pcard-inst {
+    max-height: 0; overflow: hidden;
+    transition: max-height .25s ease;
+    background: #faf7f0;
+  }
+  .pcard.open .pcard-inst { max-height: 800px; }
+  .pcard-inst-inner {
+    padding: 6px 10px 8px;
+    font-size: 10px; color: var(--muted);
+  }
+  .inst-row {
+    display: flex; align-items: baseline; gap: 4px;
+    line-height: 1.6; flex-wrap: wrap;
+  }
+  .inst-id {
+    font-family: "SF Mono", "Menlo", monospace; font-size: 9px; color: #b0a090;
+    flex-shrink: 0;
+  }
+  .inst-label { color: var(--ink); font-size: 10px; }
+  .inst-era { color: var(--muted); font-size: 9px; }
+  .role-chip {
+    font-size: 8px; padding: 0 4px; border-radius: 4px;
+    color: #fff; margin-left: auto; flex-shrink: 0;
+  }
+
+  /* Click hint */
+  .pcard-click-hint {
+    position: absolute; top: 5px; right: 8px;
+    font-size: 8px; color: #d0c8b8;
+    opacity: 0; transition: opacity .15s; pointer-events: none;
+  }
+  .pcard:hover .pcard-click-hint { opacity: 1; }
+</style>
+</head>
+<body>
+<div class="page">
+  <nav class="page-nav">
+    <a href="demo_catalog.html">日本史</a>
+    <a href="demo_catalog_world.html">世界史</a>
+    <a href="demo_catalog_europe.html">欧州史</a>
+    <a href="demo_capitalism.html">資本主義の誕生</a>
+    <a href="demo_braudel.html">ブローデルの地中海</a>
+    <span class="page-nav-current">パターン図鑑</span>
+    <a href="demo_pattern_catalog.html">遷移パターン</a>
+    <a href="demo_slot_taxonomy.html">スロット分類</a>
+    <a href="demo_taxonomy_reference.html">用語リファレンス</a>
+  </nav>
+  <div class="header">
+    <h1>パターン図鑑 ― 結果タイプ別</h1>
+    <p class="sub">ノードの解放結果(fwType)で分類 ― どんな背景がどんな結果を生むか</p>
+  </div>
+  <div class="stats-bar" id="stats"></div>
+  <div class="type-tabs" id="tabs"></div>
+  <div id="catalog"></div>
+</div>
+
+<script>
+const DATA_SOURCES = [
+  { url: '../data/energyabs_v2.json', label: '日本', prefix: 'N', short: '日' },
+  { url: '../data/energyabs_europe_v1.json', label: '欧州', prefix: 'W', short: '欧' },
+  { url: '../data/energyabs_middleeast_v1.json', label: '中東', prefix: 'M', short: '中東' },
+  { url: '../data/energyabs_india_v1.json', label: 'インド', prefix: 'I', short: '印' },
+  { url: '../data/energyabs_china_v1.json', label: '中国', prefix: 'C', short: '中' },
+  { url: '../data/energyabs_americas_v1.json', label: 'アメリカ', prefix: 'A', short: '米' },
+  { url: '../data/energyabs_capitalism_standalone.json', label: '資本主義', prefix: 'S', short: '資' },
+  { url: '../data/energyabs_braudel_v1.json', label: '地中海', prefix: 'M', short: '地' },
+];
+
+const FW = {
+  'drift':       { color: '#5a8a5a', shape: '〜', label: '漸進変化', desc: '緩慢な構造変容・浸透' },
+  'conflict':    { color: '#c8960a', shape: '▲', label: '対立蓄積', desc: '勢力間の緊張・対立の蓄積' },
+  'institution': { color: '#3a6a9a', shape: '■', label: '制度化', desc: '制度・ルールの構築と固定' },
+  'battle':      { color: '#c45a3c', shape: '⚔', label: '武力衝突', desc: '戦い・軍事的衝突' },
+  'collapse':    { color: '#8a3a3a', shape: '⊘', label: '崩壊', desc: '体制・秩序の崩壊' },
+  'power':       { color: '#6a3a8a', shape: '◆', label: '権力確立', desc: '権力の集中・体制形成' },
+  'reform':      { color: '#3a7a8a', shape: '✦', label: '改革', desc: '意図的な体制変革' },
+  'shock':       { color: '#c47a3a', shape: '⚡', label: '外生衝撃', desc: '外来の衝撃・介入' },
+};
+
+const BG = {
+  '構造変化':   { icon: '⇄', color: '#5a8a5a' },
+  '武力衝突':   { icon: '⚔', color: '#c45a3c' },
+  '勢力対立':   { icon: '⚡', color: '#c8960a' },
+  '制度':       { icon: '■', color: '#3a6a9a' },
+  '外生':       { icon: '☄', color: '#c47a3a' },
+  '権力集中':   { icon: '◆', color: '#6a3a8a' },
+  '改革':       { icon: '✦', color: '#3a7a8a' },
+  '崩壊':       { icon: '⊘', color: '#8a3a3a' },
+  '外圧':       { icon: '⟐', color: '#8a6a3a' },
+  '経済拡大':   { icon: '▲', color: '#5a8a3a' },
+  '硬直化':     { icon: '▰', color: '#6a6058' },
+  '制度疲弊':   { icon: '▰', color: '#6a6058' },
+  '制度的矛盾': { icon: '⊘', color: '#8a5a3a' },
+  '思想潮流':   { icon: '〜', color: '#5a7a8a' },
+  '複合背景':   { icon: '◎', color: '#6a6058' },
+  '経済圧':     { icon: '▲', color: '#5a8a3a' },
+  '権力分散':   { icon: '◇', color: '#7a6a8a' },
+  '自生':       { icon: '●', color: '#5a8a5a' },
+  '制度構築':   { icon: '■', color: '#3a6a9a' },
+  '外圧環境':   { icon: '⟐', color: '#8a6a3a' },
+  // releaseType 同義語
+  '制度化':     { icon: '■', color: '#3a6a9a' },
+  '外生衝撃':   { icon: '⟐', color: '#8a6a3a' },
+  '対立蓄積':   { icon: '⚡', color: '#c8960a' },
+  '戦闘':       { icon: '⚔', color: '#c45a3c' },
+  '権力確立':   { icon: '◆', color: '#6a3a8a' },
+  '権力移行':   { icon: '◆', color: '#6a3a8a' },
+  '衝撃':       { icon: '⟐', color: '#8a6a3a' },
+};
+
+const ROLE_COLORS = {
+  amplifies: '#c8960a', triggers: '#c45a3c', transforms: '#3a6a9a',
+  sustains: '#3a8a3a', suppresses: '#7a3a8a', inherits: '#6a6058',
+};
+const ROLE_JA = {
+  amplifies: '増幅', triggers: '発火', transforms: '変換',
+  sustains: '維持', suppresses: '抑制', inherits: '継承',
+};
+
+const SYNONYMS = {
+  '制度': '制度', '制度化': '制度', '制度構築': '制度',
+  '武力衝突': '武力衝突', '戦闘': '武力衝突',
+  '権力集中': '権力集中', '権力確立': '権力集中', '権力移行': '権力集中',
+  '勢力対立': '勢力対立', '対立蓄積': '勢力対立',
+  '外圧': '外圧', '外生': '外圧',
+  '構造変化': '構造変化',
+  '改革': '改革', '崩壊': '崩壊',
+  '経済拡大': '経済圧', '経済成長': '経済圧', '経済圧': '経済圧',
+  '硬直化': '制度疲弊', '制度疲弊': '制度疲弊',
+  '制度的矛盾': '制度的矛盾', '思想潮流': '思想潮流',
+  '複合背景': '複合背景', '権力分散': '権力分散', '自生': '自生',
+  '外生衝撃': '外圧', '衝撃': '外圧', '蓄積': '勢力対立',
+};
+function norm(t) { return SYNONYMS[t] || t || '?'; }
+
+// Stable pattern ID: prefix letter per fwType + 2-digit sequential (alphabetical patKey order)
+const FW_PREFIX = { battle:'B', collapse:'L', conflict:'C', drift:'D', institution:'I', power:'P', reform:'R', shock:'S' };
+
+function buildPatternMap(allNodes) {
+  const fwPatKeys = {};
+  allNodes.forEach(n => {
+    const fw = n.fwType;
+    if (!fw || !FW_PREFIX[fw]) return;
+    const bgN = norm(n.bgType || '?');
+    const relN = n.releaseType ? norm(n.releaseType) : null;
+    const patKey = relN && relN !== bgN ? bgN + '→' + relN : bgN;
+    if (!fwPatKeys[fw]) fwPatKeys[fw] = new Set();
+    fwPatKeys[fw].add(patKey);
+  });
+  const map = {};
+  Object.keys(FW_PREFIX).sort().forEach(fw => {
+    if (!fwPatKeys[fw]) return;
+    [...fwPatKeys[fw]].sort().forEach((k, i) => {
+      map[fw + '|' + k] = FW_PREFIX[fw] + String(i + 1).padStart(2, '0');
+    });
+  });
+  return map;
+}
+
+function getPatternId(map, n) {
+  const bgN = norm(n.bgType || '?');
+  const relN = n.releaseType ? norm(n.releaseType) : null;
+  const patKey = relN && relN !== bgN ? bgN + '→' + relN : bgN;
+  return map[n.fwType + '|' + patKey] || null;
+}
+
+function rarity(n) {
+  if (n >= 8) return { label: '★★★', title: 'Universal' };
+  if (n >= 4) return { label: '★★☆', title: 'Common' };
+  if (n >= 2) return { label: '★☆☆', title: 'Uncommon' };
+  return { label: '☆☆☆', title: 'Rare' };
+}
+
+async function init() {
+  const results = await Promise.allSettled(
+    DATA_SOURCES.map(s => fetch(s.url).then(r => r.json()).then(d => ({ ...s, data: d })))
+  );
+  const allNodes = [];
+  const allEdges = [];
+  const regionLabels = {};
+  const regionShorts = {};
+  results.forEach(r => {
+    if (r.status !== 'fulfilled') return;
+    const { data, prefix, label, short } = r.value;
+    regionLabels[prefix] = label;
+    regionShorts[prefix] = short;
+    data.nodes.forEach(n => { n._prefix = prefix; allNodes.push(n); });
+    data.edges.forEach(e => allEdges.push(e));
+  });
+
+  // Build incoming edge map: nodeId → [edges]
+  const inEdges = {};
+  allEdges.forEach(e => {
+    if (!inEdges[e.to]) inEdges[e.to] = [];
+    inEdges[e.to].push(e);
+  });
+
+  // Group nodes by fwType, then by normalized bgType pattern
+  // Pattern key = normalized bgType (+ releaseType if different)
+  const fwGroups = {}; // fwType → { patternKey → { nodes, bgType, releaseType } }
+
+  allNodes.forEach(n => {
+    const fw = n.fwType;
+    if (!fw || !FW[fw]) return;
+    const bgN = norm(n.bgType || '?');
+    const relN = n.releaseType ? norm(n.releaseType) : null;
+    const patKey = relN && relN !== bgN ? bgN + '→' + relN : bgN;
+
+    if (!fwGroups[fw]) fwGroups[fw] = {};
+    if (!fwGroups[fw][patKey]) {
+      fwGroups[fw][patKey] = { bgType: bgN, releaseType: relN, nodes: [] };
+    }
+    fwGroups[fw][patKey].nodes.push(n);
+  });
+
+  // Build stable pattern ID map
+  const PAT_MAP = buildPatternMap(allNodes);
+
+  // Render tabs
+  const tabsEl = document.getElementById('tabs');
+  // "All" tab
+  const allTab = document.createElement('button');
+  allTab.className = 'type-tab active';
+  allTab.innerHTML = `<span class="tab-icon">◉</span> 全表示`;
+  allTab.onclick = () => filterType(null, allTab);
+  tabsEl.appendChild(allTab);
+
+  Object.entries(FW).forEach(([type, s]) => {
+    const cnt = fwGroups[type] ? Object.values(fwGroups[type]).reduce((a, p) => a + p.nodes.length, 0) : 0;
+    const tab = document.createElement('button');
+    tab.className = 'type-tab';
+    tab.dataset.type = type;
+    tab.innerHTML = `<span class="tab-icon" style="color:${s.color}">${s.shape}</span> ${s.label} <span class="tab-count">${cnt}</span>`;
+    tab.onclick = () => filterType(type, tab);
+    tabsEl.appendChild(tab);
+  });
+
+  // Render sections
+  const catalog = document.getElementById('catalog');
+  let html = '';
+  let totalPatterns = 0;
+
+  // Order fwTypes by node count desc
+  const fwOrder = Object.keys(FW).sort((a, b) => {
+    const ca = fwGroups[a] ? Object.values(fwGroups[a]).reduce((s, p) => s + p.nodes.length, 0) : 0;
+    const cb = fwGroups[b] ? Object.values(fwGroups[b]).reduce((s, p) => s + p.nodes.length, 0) : 0;
+    return cb - ca;
+  });
+
+  fwOrder.forEach(fwType => {
+    const fw = FW[fwType];
+    const patterns = fwGroups[fwType];
+    if (!patterns) return;
+
+    const patList = Object.entries(patterns).sort((a, b) => b[1].nodes.length - a[1].nodes.length);
+    const totalNodes = patList.reduce((s, [, p]) => s + p.nodes.length, 0);
+    totalPatterns += patList.length;
+
+    html += `<div class="fw-section" data-type="${fwType}">`;
+    html += `<div class="fw-section-head" style="background:linear-gradient(135deg, ${fw.color}12, ${fw.color}06);">`;
+    html += `<div class="fw-section-icon" style="background:${fw.color}">${fw.shape}</div>`;
+    html += `<div class="fw-section-info">`;
+    html += `<div class="fw-section-name" style="color:${fw.color}">${fw.label}</div>`;
+    html += `<div class="fw-section-desc">${fw.desc}</div>`;
+    html += `</div>`;
+    html += `<div class="fw-section-count">${patList.length}種 / ${totalNodes}件</div>`;
+    html += `</div>`;
+
+    html += `<div class="card-grid">`;
+    patList.forEach(([patKey, pat]) => {
+      const pid = PAT_MAP[fwType + '|' + patKey] || '???';
+      const regSet = new Set(pat.nodes.map(n => n._prefix));
+      const r = rarity(pat.nodes.length);
+
+      // Compute role distribution from incoming edges to these nodes
+      const roleCounts = {};
+      pat.nodes.forEach(n => {
+        (inEdges[n.id] || []).forEach(e => {
+          roleCounts[e.role] = (roleCounts[e.role] || 0) + 1;
+        });
+      });
+      const roleTotal = Object.values(roleCounts).reduce((a, b) => a + b, 0);
+
+      // BG info
+      const bgInfo = BG[pat.bgType] || { icon: '?', color: '#999' };
+      const relInfo = pat.releaseType ? (BG[pat.releaseType] || { icon: '?', color: '#999' }) : null;
+
+      html += `<div class="pcard" id="${pid}" onclick="this.classList.toggle('open')">`;
+      html += `<div class="pcard-band" style="background:${fw.color}"></div>`;
+
+      // Head
+      html += `<div class="pcard-head">`;
+      html += `<span class="pcard-num">${pid}</span>`;
+      html += `<span class="pcard-rarity" title="${r.title}">${r.label}</span>`;
+      html += `</div>`;
+
+      // Body
+      html += `<div class="pcard-body">`;
+      html += `<div class="pcard-transition">`;
+      html += `<div class="pcard-bg-icon" style="color:${bgInfo.color};border-color:${bgInfo.color};background:${bgInfo.color}18">${bgInfo.icon}</div>`;
+      html += `<span class="pcard-label">${pat.bgType}</span>`;
+      if (relInfo) {
+        html += `<span class="pcard-trans-arrow">→</span>`;
+        html += `<div class="pcard-bg-icon" style="color:${relInfo.color};border-color:${relInfo.color};background:${relInfo.color}18">${relInfo.icon}</div>`;
+        html += `<span class="pcard-label">${pat.releaseType}</span>`;
+      }
+      html += `</div>`;
+
+      // Role distribution bar
+      if (roleTotal > 0) {
+        html += `<div class="role-bar" title="入力エッジのrole分布">`;
+        Object.entries(roleCounts).sort((a, b) => b[1] - a[1]).forEach(([role, cnt]) => {
+          const pct = (cnt / roleTotal * 100).toFixed(1);
+          const rc = ROLE_COLORS[role] || '#999';
+          html += `<div class="role-bar-seg" style="width:${pct}%;background:${rc}" title="${ROLE_JA[role] || role}: ${cnt}"></div>`;
+        });
+        html += `</div>`;
+        // Role legend (compact)
+        const topRoles = Object.entries(roleCounts).sort((a, b) => b[1] - a[1]).slice(0, 3);
+        html += `<div class="pcard-sublabel">`;
+        html += topRoles.map(([role, cnt]) =>
+          `<span style="color:${ROLE_COLORS[role]||'#999'}">${ROLE_JA[role]||role}</span> ${cnt}`
+        ).join(' · ');
+        html += `</div>`;
+      }
+      html += `</div>`; // body
+
+      // Foot
+      html += `<div class="pcard-foot">`;
+      [...regSet].forEach(p => {
+        html += `<span class="reg-dot" title="${regionLabels[p]}">${regionShorts[p]}</span>`;
+      });
+      html += `<span class="pcard-count">×${pat.nodes.length}</span>`;
+      html += `</div>`;
+
+      html += `<span class="pcard-click-hint">click</span>`;
+
+      // Instance drawer
+      html += `<div class="pcard-inst"><div class="pcard-inst-inner">`;
+      pat.nodes.forEach(n => {
+        const reg = regionShorts[n._prefix] || '?';
+        html += `<div class="inst-row">`;
+        html += `<span class="reg-dot" style="width:14px;height:14px;font-size:6px;">${reg}</span>`;
+        html += `<span class="inst-id">${n.id}</span>`;
+        html += `<span class="inst-label">${n.label}</span>`;
+        if (n.era) html += `<span class="inst-era">${n.era}</span>`;
+        html += `</div>`;
+        // Show incoming edges
+        (inEdges[n.id] || []).forEach(e => {
+          const rc = ROLE_COLORS[e.role] || '#999';
+          html += `<div style="margin-left:16px;font-size:9px;color:var(--muted);">`;
+          html += `← <span class="inst-id">${e.from}</span> `;
+          html += `<span class="role-chip" style="background:${rc}">${ROLE_JA[e.role]||e.role}</span>`;
+          html += `</div>`;
+        });
+      });
+      html += `</div></div>`;
+
+      html += `</div>`; // pcard
+    });
+    html += `</div>`; // card-grid
+    html += `</div>`; // fw-section
+  });
+
+  catalog.innerHTML = html;
+
+  // Stats
+  const regList = Object.values(regionLabels).join('・');
+  document.getElementById('stats').innerHTML =
+    `<span><strong>${Object.keys(regionLabels).length}</strong> リージョン（${regList}）</span>` +
+    `<span><strong>${allNodes.length}</strong> ノード / <strong>${allEdges.length}</strong> エッジ</span>` +
+    `<span><strong>${totalPatterns}</strong> パターン（<strong>8</strong> 結果タイプ）</span>`;
+}
+
+function filterType(type, btn) {
+  document.querySelectorAll('.type-tab').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.fw-section').forEach(s => {
+    s.classList.toggle('hidden', type !== null && s.dataset.type !== type);
+  });
+}
+
+init();
+</script>
+</body>
+</html>

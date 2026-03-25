@@ -1,0 +1,907 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>資本主義の誕生 ― 封建制(8c)→自由放任経済(19c)</title>
+<style>
+  :root {
+    --bg: #f0ebe0;
+    --paper: #fffdf8;
+    --ink: #28231e;
+    --muted: #6a6058;
+    --line: #c9b89e;
+    --accent: #5c3d1e;
+    --shadow: 0 6px 20px rgba(40,28,14,.08);
+    --block-w: 380px;
+    --block-radius: 14px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", sans-serif;
+    background: linear-gradient(160deg, #f5efe3 0%, #ede5d5 100%);
+    color: var(--ink);
+    min-height: 100vh;
+  }
+  .page { max-width: 1600px; margin: 0 auto; padding: 24px 20px 80px; }
+
+  .page-nav {
+    display: flex; gap: 12px; margin-bottom: 8px; font-size: 12px;
+  }
+  .page-nav a {
+    color: var(--accent); text-decoration: none; padding: 3px 10px;
+    border: 1.5px solid var(--line); border-radius: 14px; transition: all .2s;
+  }
+  .page-nav a:hover { background: var(--accent); color: #fff; border-color: var(--accent); }
+  .page-nav-current {
+    padding: 3px 10px; border: 1.5px solid var(--accent); border-radius: 14px;
+    background: var(--accent); color: #fff; font-weight: 600;
+  }
+
+  .header { margin-bottom: 12px; border-left: 4px solid var(--accent); padding-left: 16px; }
+  h1 { font-size: 22px; color: var(--accent); letter-spacing: .06em; }
+  .sub { margin-top: 3px; font-size: 12px; color: var(--muted); }
+
+  /* Controls */
+  .controls {
+    display: flex; gap: 8px; margin-bottom: 16px; flex-wrap: wrap; align-items: center;
+  }
+  .controls button {
+    font-family: inherit; font-size: 12px; padding: 5px 12px;
+    border: 1.5px solid var(--line); border-radius: 18px;
+    background: var(--paper); color: var(--muted); cursor: pointer; transition: all .2s;
+  }
+  .controls button:hover, .controls button.active {
+    background: var(--accent); color: #fff; border-color: var(--accent);
+  }
+  .ctrl-info { font-size: 11px; color: var(--muted); margin-left: auto; }
+
+  /* Canvas */
+  .canvas {
+    position: relative;
+    background: var(--bg);
+    border: 1px solid #d8cebb;
+    border-radius: 20px;
+    box-shadow: 0 8px 28px rgba(40,28,14,.10);
+    padding: 30px 24px;
+    overflow-x: auto;
+  }
+  .canvas::before {
+    content: ''; position: absolute; inset: 0; border-radius: 20px;
+    background-image:
+      linear-gradient(rgba(200,188,168,.08) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(200,188,168,.08) 1px, transparent 1px);
+    background-size: 40px 40px; pointer-events: none;
+  }
+
+  /* SVG layer */
+  #edge-svg {
+    position: absolute; inset: 0; width: 100%; height: 100%;
+    pointer-events: none; z-index: 2;
+  }
+  .edge-line { fill: none; stroke-width: 1.4; opacity: 0.45; stroke-dasharray: 5 4; stroke: #b0a898; }
+  .edge-head { stroke: none; fill: #b0a898; opacity: 0.6; }
+  .edge-line.hl { opacity: 0.85; stroke-width: 2.5; }
+  .edge-head.hl { opacity: 0.85; }
+  .edge-line.dim { opacity: 0.08; }
+  .edge-head.dim { opacity: 0.08; }
+
+  /* Block row */
+  .block-row {
+    position: relative; z-index: 1;
+    display: flex; gap: 16px; margin-bottom: 12px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  /* The Block */
+  .block {
+    width: var(--block-w);
+    background: var(--paper);
+    border: 2px solid #b8a898;
+    border-radius: var(--block-radius);
+    box-shadow: var(--shadow);
+    position: relative;
+    transition: border-color .3s, box-shadow .3s, opacity .3s;
+    cursor: pointer;
+    flex: 0 0 auto;
+  }
+  .block:hover { box-shadow: 0 8px 28px rgba(40,28,14,.15); }
+  .block.hl { box-shadow: 0 0 0 5px rgba(92,61,30,.25); }
+  .block.dim { opacity: 0.2; }
+
+  .block-body { padding: 12px 14px 24px; display: flex; flex-direction: column; gap: 6px; }
+
+  /* Inner area: incoming edges */
+  .block-inner {
+    border: 1.5px solid #ddd4c8;
+    border-radius: 10px;
+    background: linear-gradient(180deg, #faf7f0, #f5f1e8);
+    padding: 6px 8px;
+    display: flex; gap: 6px; flex-wrap: wrap;
+    min-height: 32px;
+  }
+  .block-inner.empty {
+    border-style: dashed; min-height: 24px;
+    align-items: center; justify-content: center;
+    color: #d0c4b0; font-size: 10px;
+  }
+  .ref-chip {
+    font-size: 10px;
+    padding: 2px 7px;
+    border-radius: 10px;
+    border: 1px solid #d0c8bc;
+    background: transparent;
+    color: #9a9080;
+    cursor: pointer;
+    transition: all .15s;
+    white-space: nowrap;
+  }
+  .ref-chip b { font-family: monospace; font-size: 10px; margin-right: 2px; }
+  .ref-chip:hover { opacity: 0.8; }
+
+  .role-arrow {
+    display: inline; font-size: 9px; line-height: 1; margin-left: 2px;
+  }
+  .role-arrow.r-amplifies  { color: #c8960a; }
+  .role-arrow.r-triggers   { color: #c45a3c; }
+  .role-arrow.r-transforms { color: #3a6a9a; }
+  .role-arrow.r-sustains   { color: #3a8a3a; }
+  .role-arrow.r-suppresses { color: #7a3a8a; }
+  .role-arrow.r-inherits   { color: #3a7a8a; }
+
+  .block-label {
+    font-size: 14px; font-weight: 600; line-height: 1.6; color: var(--ink);
+  }
+  .block-summary {
+    font-size: 11px; color: var(--muted); line-height: 1.55;
+  }
+  .block-abstract {
+    margin-top: 4px; padding-top: 5px;
+    border-top: 1px solid #e8e0d8;
+  }
+  .block-pattern {
+    font-size: 11px; color: #a09080; line-height: 1.5;
+    letter-spacing: .01em;
+  }
+  .block-actors {
+    display: flex; flex-wrap: wrap; gap: 3px; margin-top: 2px;
+  }
+  .actor {
+    font-size: 9px; background: transparent; border: 1px solid #d0c8bc;
+    border-radius: 10px; padding: 1px 6px; color: #9a9080;
+    letter-spacing: .02em;
+  }
+
+  .block-id {
+    position: absolute; bottom: 5px; right: 10px;
+    font-size: 11px; font-weight: 700; font-family: monospace;
+    color: #b0a090; letter-spacing: .08em;
+  }
+  .block-fw-label {
+    position: absolute; bottom: 5px; left: 10px;
+    font-size: 10px; font-weight: 600;
+    display: flex; align-items: center; gap: 4px;
+  }
+  .block-fw-label .fw-icon {
+    width: 16px; height: 16px; border-radius: 4px;
+    display: inline-flex; align-items: center; justify-content: center;
+    font-size: 9px; flex-shrink: 0;
+    border: 1px solid; opacity: 0.9;
+    font-variant-emoji: text;
+  }
+  .block-fw-label .fw-text { color: #a09080; }
+  .block-era {
+    font-size: 12px; font-weight: 700; color: #2a2520;
+    letter-spacing: .03em; margin-bottom: 1px;
+  }
+
+  /* fwType border color is set dynamically via style="border-color:..." */
+
+  /* role edge colors */
+  .edge-line.r-amplifies  { stroke: #c8960a; }
+  .edge-line.r-triggers   { stroke: #c45a3c; }
+  .edge-line.r-transforms { stroke: #3a6a9a; }
+  .edge-line.r-sustains   { stroke: #3a8a3a; }
+  .edge-line.r-suppresses { stroke: #7a3a8a; }
+  .edge-line.r-inherits   { stroke: #3a7a8a; }
+  .edge-head.r-amplifies  { fill: #c8960a; }
+  .edge-head.r-triggers   { fill: #c45a3c; }
+  .edge-head.r-transforms { fill: #3a6a9a; }
+  .edge-head.r-sustains   { fill: #3a8a3a; }
+  .edge-head.r-suppresses { fill: #7a3a8a; }
+  .edge-head.r-inherits   { fill: #3a7a8a; }
+  .head-amplifies  { fill: #c8960a; }
+  .head-triggers   { fill: #c45a3c; }
+  .head-transforms { fill: #3a6a9a; }
+  .head-sustains   { fill: #3a8a3a; }
+  .head-suppresses { fill: #7a3a8a; }
+  .head-inherits   { fill: #3a7a8a; }
+
+  /* Legend */
+  .legend {
+    display: flex; gap: 14px; flex-wrap: wrap; font-size: 11px; color: var(--muted);
+    margin-bottom: 16px;
+  }
+  .legend-item { display: flex; align-items: center; gap: 4px; }
+  .legend-sw { width: 28px; height: 3px; border-radius: 2px; }
+
+  /* Tables */
+  .section-title {
+    font-size: 18px; font-weight: 700; color: var(--accent);
+    margin: 32px 0 12px; padding-bottom: 6px;
+    border-bottom: 2px solid var(--line);
+  }
+  table {
+    width: 100%; border-collapse: collapse; font-size: 12px;
+    margin-bottom: 24px; background: var(--paper);
+    border-radius: 10px; overflow: hidden;
+    box-shadow: var(--shadow);
+  }
+  th {
+    background: var(--accent); color: #fff; padding: 8px 10px;
+    text-align: left; font-size: 11px; font-weight: 600;
+  }
+  td {
+    padding: 6px 10px; border-bottom: 1px solid #e8e0d8;
+    vertical-align: top;
+  }
+  tr:hover td { background: #f8f4ec; }
+  .type-badge {
+    display: inline-block; font-size: 10px; padding: 1px 8px;
+    border-radius: 10px; color: #fff; font-weight: 600;
+  }
+  .type-badge.institution { background: #3a6a9a; }
+  .type-badge.drift       { background: #c8960a; }
+  .type-badge.battle      { background: #c45a3c; }
+  .type-badge.collapse    { background: #8a3a5a; }
+  .type-badge.power       { background: #5a3a8a; }
+  .type-badge.reform      { background: #3a6a9a; }
+  .type-badge.conflict    { background: #a05030; }
+  .type-badge.shock       { background: #888; }
+
+  .merge-new { background: #e8f5e8; }
+  .merge-aug { background: #f5f0e0; }
+
+  @media (max-width: 840px) {
+    :root { --block-w: 100%; }
+    .block { max-width: 460px; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+  <nav class="page-nav">
+    <a href="demo_catalog.html">日本史</a>
+    <a href="demo_catalog_world.html">世界史</a>
+    <a href="demo_catalog_europe.html">欧州史</a>
+    <span class="page-nav-current">資本主義の誕生</span>
+    <a href="demo_braudel.html">ブローデルの地中海</a>
+    <a href="demo_pattern_fwtype.html">パターン図鑑</a>
+    <a href="demo_pattern_catalog.html">遷移パターン</a>
+    <a href="demo_slot_taxonomy.html">スロット分類</a>
+  </nav>
+  <div class="header">
+    <h1>資本主義の誕生</h1>
+    <p class="sub">封建制(8c)→自由放任経済(19c) ― 単体フレームワーク表現 ― 12ノード・16エッジ</p>
+    <p class="sub">出典: 『やりなおす経済史』より「資本主義のはじまり」</p>
+  </div>
+
+  <div class="controls">
+    <button class="active" onclick="resetView(this)">全表示</button>
+    <button onclick="filterRole('amplifies',this)">amplifies</button>
+    <button onclick="filterRole('triggers',this)">triggers</button>
+    <button onclick="filterRole('sustains',this)">sustains</button>
+    <span class="ctrl-info" id="info">12ノード / 16エッジ</span>
+  </div>
+
+  <div class="legend">
+    <div class="legend-item"><div class="legend-sw" style="background:#3a6a9a"></div>institution</div>
+    <div class="legend-item"><div class="legend-sw" style="background:#c8960a"></div>drift</div>
+    <div class="legend-item"><div class="legend-sw" style="background:#c45a3c"></div>battle</div>
+    <div class="legend-item"><div class="legend-sw" style="background:#8a3a5a"></div>collapse</div>
+    <div class="legend-item"><div class="legend-sw" style="background:#5a3a8a"></div>power</div>
+    <div class="legend-item"><div class="legend-sw" style="background:#3a6a9a"></div>reform</div>
+    <span style="margin-left: 16px; border-left: 2px solid #ddd; padding-left: 12px;">エッジ:</span>
+    <div class="legend-item"><div class="legend-sw" style="background:#c8960a"></div>amplifies</div>
+    <div class="legend-item"><div class="legend-sw" style="background:#c45a3c"></div>triggers</div>
+    <div class="legend-item"><div class="legend-sw" style="background:#3a8a3a"></div>sustains</div>
+  </div>
+
+  <!-- ===================== DAG Canvas ===================== -->
+  <div class="canvas" id="canvas">
+    <svg id="edge-svg"></svg>
+    <!-- Blocks will be generated by JS -->
+  </div>
+
+  <!-- ===================== Merge Info ===================== -->
+  <h2 class="section-title">欧州史グラフへのマージ時の変更</h2>
+  <p style="font-size:12px; color: var(--muted); margin-bottom:12px;">
+    資本主義テキストの12ノードを欧州史グラフ(73ノード)にマージした結果。既存ノードの再利用率58%。
+  </p>
+  <table>
+    <thead>
+      <tr><th>種別</th><th>ID</th><th>ノード名</th><th>対応する資本主義FWノード</th><th>説明</th></tr>
+    </thead>
+    <tbody>
+      <tr class="merge-new"><td><span class="type-badge institution">新規追加</span></td><td>W037b</td><td>絶対王政と重商主義</td><td>S07+S08</td><td>絶対王政の成立と重商主義政策を統合</td></tr>
+      <tr class="merge-new"><td><span class="type-badge drift">新規追加</span></td><td>W038c</td><td>囲い込み運動と資本の本源的蓄積</td><td>S09</td><td>毛織物需要による囲い込み・階級分化</td></tr>
+      <tr class="merge-new"><td><span class="type-badge reform">新規追加</span></td><td>W038d</td><td>産業革命</td><td>S11</td><td>機械化による生産力飛躍・市場の世界規模化</td></tr>
+      <tr class="merge-aug"><td><span class="type-badge drift">加筆</span></td><td>W021</td><td>十字軍の遠征と封建秩序の動揺</td><td>S04+S06</td><td>十字軍の経済的副作用・領主没落・教会権威失墜を加筆</td></tr>
+      <tr class="merge-aug"><td><span class="type-badge drift">加筆</span></td><td>W025b</td><td>都市の発生と貨幣経済の発展</td><td>S02+S03+S05</td><td>余剰生産物・ギルド・貨幣経済の詳細を加筆</td></tr>
+      <tr class="merge-aug"><td><span class="type-badge reform">加筆</span></td><td>W038</td><td>市民革命</td><td>S10</td><td>ブルジョアジーの台頭・特許会社勢力の没落を加筆</td></tr>
+    </tbody>
+  </table>
+
+  <!-- ===================== Numerical Changes ===================== -->
+  <h2 class="section-title">マージによる数値変化</h2>
+  <p style="font-size:12px; color: var(--muted); margin-bottom:12px;">
+    資本主義テキスト（12ノード・16エッジ）を欧州史グラフにマージした際の構造的変化。
+    ソースのKLダイバージェンス（ソース||ターゲット）= <strong>0.648</strong>（視点の相違は中程度）。
+  </p>
+
+  <h3 style="font-size:14px; margin:16px 0 8px; color: var(--accent);">エントロピー変化</h3>
+  <table>
+    <thead><tr><th>指標</th><th>マージ前</th><th>マージ後</th><th>変化</th><th>解釈</th></tr></thead>
+    <tbody>
+      <tr><td>fwType分布</td><td>2.870</td><td>2.869</td><td style="color:#888;">-0.001</td><td>ほぼ不変。既存分類で吸収可能</td></tr>
+      <tr><td>edgeRole分布</td><td>1.505</td><td>1.456</td><td style="color:#c45a3c;">-0.048</td><td>amplifies偏重が増加（経済史はamplifies主体）</td></tr>
+      <tr><td>入次数分布</td><td>1.763</td><td>1.794</td><td style="color:#3a8a3a;">+0.032</td><td>入力パターンがやや多様化</td></tr>
+      <tr><td>出次数分布</td><td>2.018</td><td>2.045</td><td style="color:#3a8a3a;">+0.027</td><td>出力パターンがやや多様化</td></tr>
+      <tr><td>bgType分布</td><td>2.602</td><td>2.739</td><td style="color:#3a8a3a;font-weight:700;">+0.137</td><td>「経済拡大」の新規追加で多様性向上</td></tr>
+      <tr style="background:#f5f0e0;"><td><strong>総合エントロピー</strong></td><td><strong>2.152</strong></td><td><strong>2.181</strong></td><td style="color:#3a8a3a;font-weight:700;"><strong>+0.029</strong></td><td>微増。構造歪みなく吸収</td></tr>
+    </tbody>
+  </table>
+  <p style="font-size:11px; color: var(--muted); margin-bottom:8px;">
+    <strong>注意:</strong> エントロピーが高い＝良いマージ、ではない。
+    エントロピーは分布の均等性を測るが、因果的整合性や意味的妥当性は評価しない。
+    edgeRole分布のエントロピー低下はamplifies偏重を示すが、経済史では「漸進的な圧力蓄積→解放」が
+    支配的パターンであるため、内容的には妥当。
+    また、見かけ上エントロピーが増加していても、既存ノード間の因果関係に内部歪み（意味的に不整合なエッジや、
+    吸収によって窮屈になった既存の構造）を残している場合があり、これは静的な分布指標には現れない。
+    マージ後の安定は将来の吸収困難を隠蔽している可能性があるため、
+    複数ソース蓄積後に摂動応答や吸収余力を動的に評価する必要がある（課題 D-6）。
+  </p>
+
+  <h3 style="font-size:14px; margin:16px 0 8px; color: var(--accent);">構造指標の変化</h3>
+  <table>
+    <thead><tr><th>指標</th><th>マージ前</th><th>マージ後</th><th>変化</th></tr></thead>
+    <tbody>
+      <tr><td>ノード数</td><td>73</td><td>76</td><td>+3</td></tr>
+      <tr><td>エッジ数</td><td>139</td><td>150</td><td>+11</td></tr>
+      <tr><td>E/N比（接続密度）</td><td>1.90</td><td>1.97</td><td>+0.07</td></tr>
+      <tr><td>孤立ノード</td><td>0</td><td>0</td><td>±0</td></tr>
+      <tr><td>エネルギーだまり 🔴</td><td>0</td><td>0</td><td>±0</td></tr>
+      <tr><td>エネルギーだまり 🟡</td><td>0</td><td>0</td><td>±0</td></tr>
+      <tr><td>再利用率</td><td>—</td><td colspan="2">58%（12ノード中7ノードが既存に統合）</td></tr>
+      <tr><td>構造歪み度</td><td>—</td><td colspan="2">0%（既存エッジのrole変更なし）</td></tr>
+    </tbody>
+  </table>
+
+  <h3 style="font-size:14px; margin:16px 0 8px; color: var(--accent);">fwType分布の変化</h3>
+  <table>
+    <thead><tr><th>fwType</th><th>マージ前</th><th>マージ後</th><th>変化</th></tr></thead>
+    <tbody>
+      <tr><td><span class="type-badge drift">drift</span></td><td>12 (16.4%)</td><td>14 (18.4%)</td><td style="color:#3a8a3a;">+2</td></tr>
+      <tr><td><span class="type-badge reform">reform</span></td><td>6 (8.2%)</td><td>7 (9.2%)</td><td style="color:#3a8a3a;">+1</td></tr>
+      <tr><td>他6種</td><td>55 (75.3%)</td><td>55 (72.4%)</td><td>±0</td></tr>
+    </tbody>
+  </table>
+  <p style="font-size:11px; color: var(--muted); margin-bottom:8px;">
+    drift(+2)とreform(+1)の増加は、資本主義テキストが「漸進的な経済構造変化→意図的な体制変革」
+    という因果パターンを持つことの反映。既存グラフの政治・軍事中心の分布に経済レイヤーが追加された形。
+  </p>
+
+  <h3 style="font-size:14px; margin:16px 0 8px; color: var(--accent);">エッジrole分布の変化</h3>
+  <table>
+    <thead><tr><th>role</th><th>マージ前</th><th>マージ後</th><th>変化</th></tr></thead>
+    <tbody>
+      <tr><td style="color:#c8960a;font-weight:700;">amplifies</td><td>86</td><td>96</td><td style="color:#3a8a3a;">+10</td></tr>
+      <tr><td style="color:#3a8a3a;font-weight:700;">sustains</td><td>23</td><td>24</td><td>+1</td></tr>
+      <tr><td style="color:#c45a3c;font-weight:700;">triggers</td><td>23</td><td>23</td><td>±0</td></tr>
+      <tr><td style="color:#3a6a9a;font-weight:700;">transforms</td><td>7</td><td>7</td><td>±0</td></tr>
+    </tbody>
+  </table>
+  <p style="font-size:11px; color: var(--muted); margin-bottom:16px;">
+    amplifies(+10)が支配的。経済史では「圧力が徐々に蓄積して次の段階へ」という漸進的増幅が
+    最も頻出する因果パターン。triggersの不変は、新たな「引き金」関係が追加されなかったことを示す
+    （既存の十字軍→貨幣経済のtriggersがそのまま活用された）。
+  </p>
+
+  <!-- ===================== Contradiction Analysis ===================== -->
+  <h2 class="section-title">既存データとの矛盾分析</h2>
+  <p style="font-size:12px; color: var(--muted); margin-bottom:12px;">
+    新規知識の吸収時、既存グラフの記述と矛盾する情報が含まれる場合がある。
+    その際は選択肢と理由を明示して判断する。今回の資本主義テキストでは以下の通り。
+  </p>
+  <table>
+    <thead><tr><th>項目</th><th>既存グラフの記述</th><th>新規テキストの記述</th><th>判断</th><th>理由</th></tr></thead>
+    <tbody>
+      <tr>
+        <td><strong>十字軍の位置づけ</strong></td>
+        <td>W021: 十字軍の遠征と<em>封建秩序の動揺</em>（政治的観点）</td>
+        <td>S04: 十字軍は<em>交易拡大</em>の副産物を生んだ（経済的観点）</td>
+        <td style="color:#3a8a3a;">両方保持</td>
+        <td>同一事象の多面性。summaryに経済的側面を加筆して統合。ノード分割は不要</td>
+      </tr>
+      <tr>
+        <td><strong>封建制の崩壊原因</strong></td>
+        <td>W021: 十字軍失敗で領主戦死→封建制の動揺</td>
+        <td>S05-S06: 貨幣経済の浸透が封建制を<em>内側から侵食</em></td>
+        <td style="color:#3a8a3a;">両方保持</td>
+        <td>外的衝撃(十字軍)と内的侵食(貨幣経済)は並行する因果。W025bに貨幣経済driftを加筆</td>
+      </tr>
+      <tr>
+        <td><strong>市民革命の動機</strong></td>
+        <td>W038: 清教徒革命・名誉革命（政治的自由の獲得）</td>
+        <td>S10: ブルジョアジーが<em>経済的自由</em>のために旧体制を打倒</td>
+        <td style="color:#3a8a3a;">両方保持</td>
+        <td>政治的自由と経済的自由は表裏一体。summaryに経済的動機を加筆</td>
+      </tr>
+      <tr style="background:#f5f0e0;">
+        <td colspan="5" style="font-size:11px; color: var(--muted); padding:8px 10px;">
+          <strong>結論:</strong> 今回の吸収では既存記述との矛盾は発生しなかった。
+          全て「同一事象を異なる視点（政治 vs 経済）から記述している」ケースであり、
+          summary加筆による視点統合で解決。ノードの分割・削除・エッジのrole変更は不要だった。<br><br>
+          <strong>今後の留意点:</strong> 経済史テキストが政治史テキストと矛盾する典型パターンは
+          「因果の方向の逆転」（例: 政治が経済を規定 vs 経済が政治を規定）。
+          この種の矛盾が現れた場合、どちらかを選ぶのではなく、
+          並行するdriftチェーンとして<em>両方の因果方向を保持</em>し、
+          どちらが支配的かはコンテキスト依存とするのが推奨方針。
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- ===================== Abstract-Concrete Mapping ===================== -->
+  <h2 class="section-title">抽象概念 ↔ 具体用語の対応</h2>
+  <p style="font-size:12px; color: var(--muted); margin-bottom:12px;">
+    EnergyAbsフレームワークの抽象型(fwType/bgType/releaseType)と、資本主義テキストにおける具体的な対応。
+  </p>
+
+  <h3 style="font-size:14px; margin:16px 0 8px; color: var(--accent);">fwType（因果フレーム型）</h3>
+  <table>
+    <thead>
+      <tr><th>fwType</th><th>抽象的意味</th><th>具体インスタンス</th><th>具体的に何が起きたか</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><span class="type-badge institution">institution</span></td><td>制度の構築・固定化</td><td>S01 封建制</td><td>領主が農民を土地に緊縛し年貢で富を吸収するシステム</td></tr>
+      <tr><td></td><td></td><td>S03 都市とギルド</td><td>余剰生産物の交換の場として都市・同業者組合が制度化</td></tr>
+      <tr><td></td><td></td><td>S08 重商主義</td><td>国王が特許会社に独占権を与え利益を吸い上げるシステム</td></tr>
+      <tr><td></td><td></td><td>S12 自由放任経済</td><td>圧倒的競争力を持つ者が自由競争体制を志向・政府最小化</td></tr>
+      <tr><td><span class="type-badge drift">drift</span></td><td>緩慢な構造変容</td><td>S02 農業生産力向上</td><td>同一活動の継続→生産力向上→余剰→交換への欲求</td></tr>
+      <tr><td></td><td></td><td>S05 貨幣経済の発展</td><td>遠隔地貿易→貨幣経済→封建体制を内側から侵食</td></tr>
+      <tr><td></td><td></td><td>S09 囲い込み運動</td><td>貿易需要→地主の囲い込み→農民の労働者化→階級分化</td></tr>
+      <tr><td><span class="type-badge battle">battle</span></td><td>武力衝突</td><td>S04 十字軍の遠征</td><td>宗教的動機の軍事遠征が失敗→異文化接触→交易拡大</td></tr>
+      <tr><td><span class="type-badge collapse">collapse</span></td><td>体制の崩壊</td><td>S06 封建領主の没落</td><td>十字軍失敗→領主戦死＋教会権威失墜→二本柱同時弱体化</td></tr>
+      <tr><td><span class="type-badge power">power</span></td><td>権力の集中・確立</td><td>S07 絶対王政</td><td>旧権威の没落を弱小だった国王が利用→中央集権達成</td></tr>
+      <tr><td><span class="type-badge reform">reform</span></td><td>意図的な体制変革</td><td>S10 市民革命</td><td>成長した資本家が旧体制を打倒→経済的自由の獲得</td></tr>
+      <tr><td></td><td></td><td>S11 産業革命</td><td>蓄積された資本と労働力→機械化→生産力飛躍</td></tr>
+    </tbody>
+  </table>
+
+  <h3 style="font-size:14px; margin:16px 0 8px; color: var(--accent);">bgType（背景類型）</h3>
+  <table>
+    <thead>
+      <tr><th>bgType</th><th>抽象的意味</th><th>具体インスタンス</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>制度構築</td><td>新しい秩序を構築する局面</td><td>S01 封建制（農業的自給自足体制）</td></tr>
+      <tr><td>経済拡大</td><td>経済活動の量的・質的拡大</td><td>S02 農業生産力向上、S03 都市とギルド、S05 貨幣経済、S08 重商主義、S09 囲い込み、S11 産業革命、S12 自由放任</td></tr>
+      <tr><td>外生</td><td>外部からの衝撃</td><td>S04 十字軍の遠征</td></tr>
+      <tr><td>制度疲弊</td><td>既存制度の機能不全</td><td>S06 封建領主の没落と教会権威の失墜</td></tr>
+      <tr><td>権力集中</td><td>権力の一極集中</td><td>S07 絶対王政の成立</td></tr>
+      <tr><td>勢力対立</td><td>複数勢力間の対立</td><td>S10 市民革命（ブルジョアジー vs 絶対王政）</td></tr>
+    </tbody>
+  </table>
+
+  <h3 style="font-size:14px; margin:16px 0 8px; color: var(--accent);">releaseType（エネルギー解放型）</h3>
+  <table>
+    <thead>
+      <tr><th>releaseType</th><th>抽象的意味</th><th>具体インスタンス</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>制度化</td><td>制度として定着</td><td>S01 封建制、S03 都市とギルド、S08 重商主義、S12 自由放任</td></tr>
+      <tr><td>構造変化</td><td>既存構造の漸進的変容</td><td>S02 余剰生産物、S05 貨幣経済、S09 囲い込み</td></tr>
+      <tr><td>武力衝突</td><td>軍事的手段による解放</td><td>S04 十字軍</td></tr>
+      <tr><td>崩壊</td><td>体制の不可逆的瓦解</td><td>S06 封建領主の没落</td></tr>
+      <tr><td>権力確立</td><td>新権力の樹立</td><td>S07 絶対王政</td></tr>
+      <tr><td>改革</td><td>意図的な制度変革</td><td>S10 市民革命、S11 産業革命</td></tr>
+    </tbody>
+  </table>
+
+  <h3 style="font-size:14px; margin:16px 0 8px; color: var(--accent);">エッジrole（因果関係の型）</h3>
+  <table>
+    <thead>
+      <tr><th>role</th><th>抽象的意味</th><th>このFW内での使用</th><th>具体例</th></tr>
+    </thead>
+    <tbody>
+      <tr><td style="color:#c8960a; font-weight:700;">amplifies</td><td>圧を高める・増幅する</td><td>11本</td><td>S02→S03: 余剰生産物の蓄積が都市形成を持続的に増幅</td></tr>
+      <tr><td style="color:#c45a3c; font-weight:700;">triggers</td><td>直接的な引き金</td><td>3本</td><td>S04→S05: 十字軍による遠隔地貿易が貨幣経済発展の直接的契機</td></tr>
+      <tr><td style="color:#3a8a3a; font-weight:700;">sustains</td><td>基盤を持続的に支える</td><td>2本</td><td>S01→S02: 封建制の農業特化が生産力向上と余剰発生を下支え</td></tr>
+    </tbody>
+  </table>
+
+  <!-- ===================== (2) Framework Classification Changes ===================== -->
+  <h2 class="section-title">マージ時のフレームワーク分類への影響</h2>
+  <p style="font-size:12px; color: var(--muted); margin-bottom:12px;">
+    資本主義テキストを欧州史グラフにマージした場合、既存の分類体系にどのような追加・変更が必要になるか。
+  </p>
+
+  <h3 style="font-size:14px; margin:16px 0 8px; color: var(--accent);">fwType（8種） — 変更なし</h3>
+  <table>
+    <thead><tr><th>fwType</th><th>欧州既存</th><th>資本主義FW</th><th>判定</th></tr></thead>
+    <tbody>
+      <tr><td><span class="type-badge institution">institution</span></td><td>あり</td><td>S01, S03, S08, S12</td><td style="color:#3a8a3a;">既存で対応可</td></tr>
+      <tr><td><span class="type-badge drift">drift</span></td><td>あり</td><td>S02, S05, S09</td><td style="color:#3a8a3a;">既存で対応可</td></tr>
+      <tr><td><span class="type-badge battle">battle</span></td><td>あり</td><td>S04</td><td style="color:#3a8a3a;">既存で対応可</td></tr>
+      <tr><td><span class="type-badge collapse">collapse</span></td><td>あり</td><td>S06</td><td style="color:#3a8a3a;">既存で対応可</td></tr>
+      <tr><td><span class="type-badge power">power</span></td><td>あり</td><td>S07</td><td style="color:#3a8a3a;">既存で対応可</td></tr>
+      <tr><td><span class="type-badge reform">reform</span></td><td>あり</td><td>S10, S11</td><td style="color:#3a8a3a;">既存で対応可</td></tr>
+    </tbody>
+  </table>
+  <p style="font-size:11px; color: var(--muted); margin-bottom:16px;">
+    <strong>結論:</strong> 8種のfwType分類は変更不要。資本主義テキストの全ノードが既存分類で表現可能。
+    conflict/shockが未使用だが、これは経済史テキストの性格を反映（軍事対立・外生衝撃が主題でない）。
+  </p>
+
+  <h3 style="font-size:14px; margin:16px 0 8px; color: var(--accent);">bgType — <span style="color:#c45a3c;">1件追加</span></h3>
+  <table>
+    <thead><tr><th>bgType</th><th>欧州既存</th><th>資本主義FW</th><th>判定</th></tr></thead>
+    <tbody>
+      <tr><td>経済拡大</td><td>あり</td><td>S02,S03,S05,S08,S09,S11,S12</td><td style="color:#3a8a3a;">既存で対応可</td></tr>
+      <tr><td>外生</td><td>あり</td><td>S04</td><td style="color:#3a8a3a;">既存で対応可</td></tr>
+      <tr><td>制度疲弊</td><td>あり</td><td>S06</td><td style="color:#3a8a3a;">既存で対応可</td></tr>
+      <tr><td>権力集中</td><td>あり</td><td>S07</td><td style="color:#3a8a3a;">既存で対応可</td></tr>
+      <tr><td>勢力対立</td><td>あり</td><td>S10</td><td style="color:#3a8a3a;">既存で対応可</td></tr>
+      <tr style="background:#fff0f0;"><td><strong>制度構築</strong></td><td><strong>なし</strong></td><td>S01</td><td style="color:#c45a3c; font-weight:700;">新規追加</td></tr>
+    </tbody>
+  </table>
+  <p style="font-size:11px; color: var(--muted); margin-bottom:16px;">
+    <strong>「制度構築」について:</strong> 既存の欧州グラフでは「制度疲弊」（既存制度の機能不全）はあるが、
+    制度を<em>新しく構築する</em>局面を表すbgTypeがなかった。封建制のように「ゼロから秩序を組み立てる」場面を
+    記述するために必要。ただし実際のマージでは既存ノードW001等に統合されるため、bgType追加は任意。
+  </p>
+
+  <h3 style="font-size:14px; margin:16px 0 8px; color: var(--accent);">releaseType — 変更なし</h3>
+  <p style="font-size:11px; color: var(--muted); margin-bottom:16px;">
+    資本主義FWの全releaseType（制度化/構造変化/武力衝突/崩壊/権力確立/改革）は欧州グラフに既存。追加不要。
+  </p>
+
+  <h3 style="font-size:14px; margin:16px 0 8px; color: var(--accent);">エッジrole — 変更なし</h3>
+  <p style="font-size:11px; color: var(--muted); margin-bottom:16px;">
+    使用されるrole（amplifies/triggers/sustains）は3種のみ。6種のrole分類は変更不要。
+    transforms/suppresses/inheritsが未使用なのは、経済構造の漸進的変容が主題であり、
+    断絶的な変換や明示的な抑制が少ない経済史テキストの特徴を反映。
+  </p>
+
+  <!-- ===================== (3) Slot Taxonomy Changes ===================== -->
+  <h2 class="section-title">スロット分類への影響</h2>
+  <p style="font-size:12px; color: var(--muted); margin-bottom:12px;">
+    パターン内の{スロット語}34語のうち、既存スロット分類(267語)との対応。<br>
+    既存: <strong>2語</strong>（権力者, 中央集権） / 新規候補: <strong>32語</strong>
+  </p>
+
+  <table>
+    <thead><tr><th>分類カテゴリ</th><th>既存小分類</th><th>追加候補のスロット語</th><th>備考</th></tr></thead>
+    <tbody>
+      <tr><td rowspan="3"><strong>主体</strong></td><td>中央</td><td>国王, 教会, 領主, 封建領主</td><td>既存「権力者」「支配者」の具体化</td></tr>
+      <tr><td>挑戦者</td><td>成長した資本家, ブルジョアジー, 農民</td><td>経済的挑戦者という新カテゴリ</td></tr>
+      <tr><td>既存勢力</td><td>地主, 特許会社</td><td>経済的既得権層</td></tr>
+      <tr><td rowspan="2"><strong>構造</strong></td><td>体制</td><td>自給自足体制, 旧体制</td><td>既存「体制」の具体化</td></tr>
+      <tr><td>新規</td><td>同業者組合, 都市</td><td>経済的構造物</td></tr>
+      <tr><td><strong>力学</strong></td><td>軍事</td><td>軍事遠征の失敗, 宗教的動機</td><td>軍事の副作用としての経済効果</td></tr>
+      <tr><td rowspan="3"><strong>資源</strong></td><td>経済</td><td>貨幣経済, 貿易需要, 遠隔地貿易, 交易拡大, 余剰, 余剰生産物, 権力維持コスト</td><td><strong>最大の追加領域</strong>。既存の「経済」小分類を大幅に拡充</td></tr>
+      <tr><td>物質</td><td>生産力向上, 蓄積された資本と労働力, 機械化</td><td>生産手段・技術に関するスロット</td></tr>
+      <tr><td>制度容量</td><td>自由競争, 自らの経済的自由</td><td>経済的自由という概念</td></tr>
+      <tr><td><strong>文化</strong></td><td>交流</td><td>異文化接触</td><td>既存「交流」の具体化</td></tr>
+      <tr><td><strong>変動</strong></td><td>構造変化</td><td>圧倒的競争力, 旧権威の没落, 弱小だった権力者</td><td>権力の逆転パターン</td></tr>
+    </tbody>
+  </table>
+  <p style="font-size:11px; color: var(--muted); margin-bottom:8px;">
+    <strong>最大のインパクト:</strong> 「資源 → 経済」小分類に7語追加。
+    現在のスロット分類は政治・軍事中心で設計されており、経済史の語彙が薄い。
+    資本主義テキストの吸収により、経済関連スロットが約3倍に拡充される。
+  </p>
+  <p style="font-size:11px; color: var(--muted); margin-bottom:16px;">
+    <strong>新規小分類の候補:</strong>
+    「資源 → <strong>労働</strong>」（労働者, 農民→労働者）、
+    「構造 → <strong>経済制度</strong>」（重商主義, 自由放任, 自給自足体制）
+    の新設が今後の経済史吸収に備えて有効。
+  </p>
+</div>
+
+<script src="shared.js"></script>
+<script>
+// ===================== DATA =====================
+const DATA = {
+  "nodes": [
+    {"id":"S01","label":"封建制（農業的自給自足体制）","summary":"領主が農民を土地に緊縛し年貢を吸収するシステム。商品経済・貨幣経済を構造的に抑制。欧州では8世紀頃から14世紀まで","actors":["封建領主","農民"],"era":"8世紀–14世紀","fwType":"institution","pattern":"{権力者}が{農民}を土地に緊縛し{年貢}で富を吸収する自給自足体制","bgType":"制度構築","releaseType":"制度化","patternType":"制度構築→制度化"},
+    {"id":"S02","label":"農業生産力の向上と余剰生産物の発生","summary":"同じ農業を長期間続けることで生産力が向上し、余剰生産物が発生。必需品だけでは飽き足りなくなり、交換への欲求が生まれた","actors":["農民"],"era":"11世紀–12世紀","fwType":"drift","pattern":"{同一活動の継続}が{生産力向上}を生み{余剰}が交換への欲求を駆動する","bgType":"経済拡大","releaseType":"構造変化","patternType":"経済拡大→構造変化"},
+    {"id":"S03","label":"都市の発生とギルドの形成","summary":"余剰生産物の交換の場として都市が生まれた。封建制下では「畑以外の場所」は存在しなかったが、領主の意識変化により都市が許容され、手工業者の同業者組合（ギルド）が発達した","actors":["手工業者","商人","領主"],"era":"11世紀–13世紀","fwType":"institution","pattern":"{余剰生産物}の交換需要が{都市}を生み出し{同業者組合}が組織化される","bgType":"経済拡大","releaseType":"制度化","patternType":"経済拡大→制度化"},
+    {"id":"S04","label":"十字軍の遠征","summary":"ローマ教皇ウルバヌス2世がセルジューク・トルコに対し聖地奪回を発動。1096–1270年に7回実施されたが軍事的には失敗。しかし欧州とアジアの交易拡大をもたらした","actors":["ローマ教皇","十字軍騎士","イスラーム勢力"],"era":"1096–1270年","fwType":"battle","pattern":"{宗教的動機}の軍事遠征が失敗するも{異文化接触}による{交易拡大}を副産物として生む","bgType":"外生","releaseType":"武力衝突","patternType":"外生→武力衝突"},
+    {"id":"S05","label":"貨幣経済の発展","summary":"十字軍による遠隔地貿易の拡大に伴い、物々交換では効率が悪いため貨幣経済が発展した。商品交換が活性化し、封建的自給自足体制を内側から侵食し始めた","actors":["商人","銀行家"],"era":"12世紀–14世紀","fwType":"drift","pattern":"{遠隔地貿易}の拡大が{貨幣経済}を必要とし{自給自足体制}を内側から侵食する","bgType":"経済拡大","releaseType":"構造変化","patternType":"経済拡大→構造変化"},
+    {"id":"S06","label":"封建領主の没落と教会権威の失墜","summary":"十字軍で多くの領主が戦死し、領民が年貢を着服→独立自営農民（ヨーマンリー）の出現。教会も遠征失敗でメンツ丸つぶれとなり権威が失墜。封建体制の二本柱が同時に弱体化した","actors":["独立自営農民","教会","残存領主"],"era":"13世紀–14世紀","fwType":"collapse","pattern":"{軍事遠征の失敗}が{領主}と{教会}の権威を同時に崩壊させ{農民}の自立を許す","bgType":"制度疲弊","releaseType":"崩壊","patternType":"制度疲弊→崩壊"},
+    {"id":"S07","label":"国王の権力回復と絶対王政の成立","summary":"領主と教会の弱体化を機に、「田舎親分」に格下げされていた国王が中央集権化を推進。疲弊した領主が領地を差し出し忠誠を誓ったことで、16世紀に無制限の王権（絶対王政）が完成した","actors":["国王","旧封建領主","教会"],"era":"14世紀–16世紀","fwType":"power","pattern":"{旧権威の没落}を{弱小だった権力者}が利用し{中央集権}を達成する","bgType":"権力集中","releaseType":"権力確立","patternType":"権力集中→権力確立"},
+    {"id":"S08","label":"重商主義と東インド会社","summary":"絶対王政の維持コスト（官僚制+常備軍）を賄うため、国王が東インド会社等の特許会社に貿易独占権を付与し利益を吸い上げた。初期の重金主義から貿易差額主義へ移行","actors":["国王","東インド会社","トーマス・マン","コルベール"],"era":"16世紀–18世紀","fwType":"institution","pattern":"{権力維持コスト}を賄うため{特許会社}に独占権を与え利益を吸い上げるシステム","bgType":"経済拡大","releaseType":"制度化","patternType":"経済拡大→制度化"},
+    {"id":"S09","label":"囲い込み運動と資本の本源的蓄積","summary":"毛織物貿易の拡大を背景に地主が農地を囲い込み牧羊地に転換。土地を追われた農民→労働者、工場所有者→資本家。階級分化が進行した","actors":["ジェントリー","ヨーマンリー","農民→労働者"],"era":"15世紀–18世紀","fwType":"drift","pattern":"{貿易需要}が{地主}の囲い込みを誘発し{農民}を{労働者}に転化させ階級分化を進行させる","bgType":"経済拡大","releaseType":"構造変化","patternType":"経済拡大→構造変化"},
+    {"id":"S10","label":"市民革命（清教徒革命・名誉革命）","summary":"産業資本家（ブルジョアジー）が絶対王政と重商主義を打倒。17世紀の二度の市民革命で王と結んだ特許会社勢力が没落し、資本家が自分たちの時代を掴んだ","actors":["ブルジョアジー","議会","国王"],"era":"1642–1689年","fwType":"reform","pattern":"{成長した資本家}が{旧体制}を打倒し{自らの経済的自由}を獲得する","bgType":"勢力対立","releaseType":"改革","patternType":"勢力対立→改革"},
+    {"id":"S11","label":"産業革命","summary":"繊維産業の機械化から始まり、ワットの蒸気機関で全産業に波及。マニュファクチュア→工場制機械工業への転換によりイギリスが圧倒的生産力を獲得","actors":["産業資本家","ジョン・ケイ","ハーグリーブズ","ワット"],"era":"1760年代–1840年代","fwType":"reform","pattern":"{蓄積された資本と労働力}を前提に{機械化}が生産力を飛躍的に向上させる","bgType":"経済拡大","releaseType":"改革","patternType":"経済拡大→改革"},
+    {"id":"S12","label":"自由放任経済と夜警国家","summary":"産業革命で圧倒的競争力を得た資本家は、重商主義的保護貿易を不要とし「機会の平等」に基づく自由競争を志向。政府の役割は国防・治安のみ（夜警国家/小さな政府）でよいとされた","actors":["産業資本家","ラッサール"],"era":"18世紀末–19世紀","fwType":"institution","pattern":"{圧倒的競争力}を持つ者が{自由競争}体制を志向し{政府}を最小化する","bgType":"経済拡大","releaseType":"制度化","patternType":"経済拡大→制度化"}
+  ],
+  "edges": [
+    {"from":"S01","to":"S02","role":"sustains","note":"封建制の農業特化が長期的に生産力向上と余剰発生を下支え"},
+    {"from":"S02","to":"S03","role":"amplifies","note":"余剰生産物の蓄積が都市形成と商業活動を持続的に増幅"},
+    {"from":"S03","to":"S05","role":"amplifies","note":"都市と商業活動の成長が貨幣経済の発展を加速"},
+    {"from":"S04","to":"S05","role":"triggers","note":"十字軍による遠隔地貿易が貨幣経済発展の直接的契機"},
+    {"from":"S04","to":"S06","role":"triggers","note":"十字軍の失敗が領主の戦死と教会のメンツ喪失を引き起こした"},
+    {"from":"S05","to":"S06","role":"amplifies","note":"貨幣経済の浸透が封建的自給自足体制の基盤を侵食"},
+    {"from":"S06","to":"S07","role":"amplifies","note":"領主と教会の没落が国王の中央集権化を可能にした"},
+    {"from":"S07","to":"S08","role":"triggers","note":"絶対王政の維持コストが重商主義政策を必要とした"},
+    {"from":"S08","to":"S09","role":"amplifies","note":"重商主義の毛織物輸出需要が囲い込み運動を加速"},
+    {"from":"S05","to":"S09","role":"sustains","note":"貨幣経済の発展が囲い込みの経済的動機を持続的に提供"},
+    {"from":"S09","to":"S10","role":"amplifies","note":"資本家階級の成長が市民革命の社会的基盤を形成"},
+    {"from":"S08","to":"S10","role":"amplifies","note":"重商主義による「えこひいき」への不満が革命の動機"},
+    {"from":"S10","to":"S11","role":"amplifies","note":"市民革命による政治的安定と所有権保護が産業資本の自由な発展を可能に"},
+    {"from":"S09","to":"S11","role":"amplifies","note":"囲い込みで蓄積された資本・労働力が産業革命の前提"},
+    {"from":"S05","to":"S07","role":"amplifies","note":"貨幣経済の発展が国王の経済的基盤を提供し中央集権化の資源を生んだ"},
+    {"from":"S05","to":"S08","role":"sustains","note":"貨幣経済と国際貿易の発展が重商主義政策の経済的基盤を持続的に提供"}
+  ]
+};
+
+// ===================== LAYOUT =====================
+// Manual layout rows for nice DAG appearance
+const LAYOUT = [
+  ["S01"],
+  ["S02", "S04"],
+  ["S03", "S05"],
+  ["S06"],
+  ["S07"],
+  ["S08"],
+  ["S09"],
+  ["S10"],
+  ["S11"],
+  ["S12"]
+];
+
+const nodeMap = {};
+DATA.nodes.forEach(n => nodeMap[n.id] = n);
+const inEdges = {};
+const outEdges = {};
+DATA.nodes.forEach(n => { inEdges[n.id] = []; outEdges[n.id] = []; });
+DATA.edges.forEach(e => { inEdges[e.to].push(e); outEdges[e.from].push(e); });
+
+const ROLE_COLORS = {
+  amplifies: '#c8960a', triggers: '#c45a3c', transforms: '#3a6a9a',
+  sustains: '#3a8a3a', suppresses: '#7a3a8a', inherits: '#3a7a8a'
+};
+
+// Pattern ID computation: provided by shared.js
+
+// FW_TYPE_STYLES, BG_TYPE_STYLES: provided by shared.js
+
+const canvas = document.getElementById('canvas');
+const blockEls = {};
+
+// Build blocks
+LAYOUT.forEach(row => {
+  const rowEl = document.createElement('div');
+  rowEl.className = 'block-row';
+
+  row.forEach(id => {
+    const n = nodeMap[id];
+    if (!n) return;
+    const block = document.createElement('div');
+    block.className = 'block';
+    block.dataset.id = id;
+    block.id = 'blk-' + id;
+    const fwColor = (FW_TYPE_STYLES[n.fwType] || {}).color || '#b8a898';
+    block.style.borderColor = fwColor;
+
+    // Incoming edges
+    const ins = inEdges[id];
+    let innerHtml = '';
+    if (ins.length > 0) {
+      innerHtml = '<div class="block-inner">';
+      ins.forEach(e => {
+        const src = nodeMap[e.from];
+        const srcColor = (FW_TYPE_STYLES[src?.fwType] || {}).color || '#b0a898';
+        innerHtml += `<span class="ref-chip" id="chip-${e.from}-${id}" data-from="${e.from}" style="border-color:${srcColor}" title="${e.note}">`;
+        innerHtml += `<b>${e.from}</b> ${src ? src.label.slice(0,18) : e.from}`;
+        innerHtml += `<span class="role-arrow r-${e.role}">▶</span>`;
+        innerHtml += `</span>`;
+      });
+      innerHtml += '</div>';
+    } else {
+      innerHtml = '<div class="block-inner empty">外生起点</div>';
+    }
+
+    const fwS = FW_TYPE_STYLES[n.fwType] || {};
+    const bgS = BG_TYPE_STYLES[n.bgType] || {};
+    const relS = BG_TYPE_STYLES[n.releaseType] || {};
+
+    block.innerHTML = `
+      <div class="block-body">
+        ${innerHtml}
+        <div class="block-era">${n.era}</div>
+        <div class="block-label">${n.label}</div>
+        <div class="block-summary">${n.summary}</div>
+        <div class="block-abstract">
+          <div class="block-pattern">${n.pattern}</div>
+        </div>
+        <div class="block-actors">${n.actors.map(a => `<span class="actor">${a}</span>`).join('')}</div>
+      </div>
+      <div class="block-fw-label">
+        ${bgS.icon ? `<span class="fw-icon" style="color:${bgS.color};border-color:${bgS.color};background:${bgS.color}18">${bgS.icon}</span><span style="color:#c0b8a0;margin:0 1px">→</span>` : ''}
+        ${relS.icon ? `<span class="fw-icon" style="color:${relS.color};border-color:${relS.color};background:${relS.color}18">${relS.icon}</span>` : `<span class="fw-icon" style="color:${fwS.color};border-color:${fwS.color};background:${fwS.color}18">${fwS.shape}</span>`}
+        <span class="fw-text">${fwS.label}</span>
+        <span class="pat-id-slot" data-node="${id}"></span>
+      </div>
+      <span class="block-id">${id}</span>
+    `;
+    rowEl.appendChild(block);
+    blockEls[id] = block;
+  });
+  canvas.appendChild(rowEl);
+});
+
+// ===================== EDGES (SVG) =====================
+function drawEdges() {
+  const svg = document.getElementById('edge-svg');
+  const cr = canvas.getBoundingClientRect();
+  const sL = canvas.scrollLeft, sT = canvas.scrollTop;
+  svg.innerHTML = '';
+  svg.style.width = canvas.scrollWidth + 'px';
+  svg.style.height = canvas.scrollHeight + 'px';
+  svg.setAttribute('viewBox', `0 0 ${canvas.scrollWidth} ${canvas.scrollHeight}`);
+
+  DATA.edges.forEach(e => {
+    const fromEl = blockEls[e.from];
+    const chipEl = document.getElementById('chip-' + e.from + '-' + e.to);
+    if (!fromEl || !chipEl) return;
+
+    const fr = fromEl.getBoundingClientRect();
+    const ch = chipEl.getBoundingClientRect();
+
+    const chipCX = ch.left + ch.width/2 - cr.left + sL;
+    const chipCY = ch.top + ch.height/2 - cr.top + sT;
+    const fromCX = fr.left + fr.width/2 - cr.left + sL;
+    const fromCY = fr.top + fr.height/2 - cr.top + sT;
+
+    // Source block edge (nearest side to chip)
+    let x1, y1;
+    const fT = fr.top - cr.top + sT, fB = fr.bottom - cr.top + sT;
+    const fL = fr.left - cr.left + sL, fR = fr.right - cr.left + sL;
+
+    if (chipCY > fB) { x1 = fromCX; y1 = fB; }
+    else if (chipCY < fT) { x1 = fromCX; y1 = fT; }
+    else if (chipCX < fL) { x1 = fL; y1 = fromCY; }
+    else { x1 = fR; y1 = fromCY; }
+
+    // Chip edge (nearest side to source block)
+    const cT = ch.top - cr.top + sT, cB = ch.bottom - cr.top + sT;
+    const cL = ch.left - cr.left + sL, cR = ch.right - cr.left + sL;
+
+    let x2, y2;
+    if (fromCY < cT) { x2 = chipCX; y2 = cT; }
+    else if (fromCY > cB) { x2 = chipCX; y2 = cB; }
+    else if (fromCX < cL) { x2 = cL; y2 = chipCY; }
+    else { x2 = cR; y2 = chipCY; }
+
+    const midY = (y1 + y2) / 2;
+    const d = `M ${x1} ${y1} C ${x1} ${midY}, ${x2} ${midY}, ${x2} ${y2}`;
+
+    const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+    path.setAttribute('d', d);
+    path.classList.add('edge-line', `r-${e.role}`);
+    path.dataset.from = e.from;
+    path.dataset.to = e.to;
+    path.dataset.role = e.role;
+    svg.appendChild(path);
+
+    // Small dot at chip end
+    const dot = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+    dot.setAttribute('cx', x2);
+    dot.setAttribute('cy', y2);
+    dot.setAttribute('r', 3.5);
+    dot.classList.add('edge-head', `r-${e.role}`);
+    dot.dataset.from = e.from;
+    dot.dataset.to = e.to;
+    svg.appendChild(dot);
+  });
+}
+
+// ===================== INTERACTION =====================
+let activeFilter = null;
+
+function resetView(btn) {
+  activeFilter = null;
+  document.querySelectorAll('.controls button').forEach(b => b.classList.remove('active'));
+  if (btn) btn.classList.add('active');
+  Object.values(blockEls).forEach(el => { el.classList.remove('dim', 'hl'); });
+  document.querySelectorAll('.edge-line, .edge-head').forEach(el => el.classList.remove('dim', 'hl'));
+}
+
+function filterRole(role, btn) {
+  document.querySelectorAll('.controls button').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  activeFilter = role;
+
+  const involved = new Set();
+  DATA.edges.filter(e => e.role === role).forEach(e => { involved.add(e.from); involved.add(e.to); });
+
+  Object.entries(blockEls).forEach(([id, el]) => {
+    el.classList.toggle('dim', !involved.has(id));
+    el.classList.remove('hl');
+  });
+  document.querySelectorAll('.edge-line').forEach(el => {
+    el.classList.toggle('dim', el.dataset.role !== role);
+    el.classList.toggle('hl', el.dataset.role === role);
+  });
+  document.querySelectorAll('.edge-head').forEach(el => {
+    el.classList.toggle('dim', !DATA.edges.some(e => e.from === el.dataset.from && e.to === el.dataset.to && e.role === role));
+  });
+}
+
+// Click block to highlight connections
+canvas.addEventListener('click', (ev) => {
+  const block = ev.target.closest('.block');
+  if (!block) { resetView(document.querySelector('.controls button')); return; }
+  const id = block.dataset.id;
+
+  const connected = new Set([id]);
+  DATA.edges.forEach(e => {
+    if (e.from === id) connected.add(e.to);
+    if (e.to === id) connected.add(e.from);
+  });
+
+  Object.entries(blockEls).forEach(([nid, el]) => {
+    el.classList.toggle('dim', !connected.has(nid));
+    el.classList.toggle('hl', nid === id);
+  });
+  document.querySelectorAll('.edge-line').forEach(el => {
+    const relevant = el.dataset.from === id || el.dataset.to === id;
+    el.classList.toggle('dim', !relevant);
+    el.classList.toggle('hl', relevant);
+  });
+  document.querySelectorAll('.edge-head').forEach(el => {
+    const relevant = el.dataset.from === id || el.dataset.to === id;
+    el.classList.toggle('dim', !relevant);
+    el.classList.toggle('hl', relevant);
+  });
+});
+
+// Ref chip click → scroll to source
+canvas.addEventListener('click', (ev) => {
+  const chip = ev.target.closest('.ref-chip');
+  if (!chip) return;
+  ev.stopPropagation();
+  const fromId = chip.dataset.from;
+  const el = blockEls[fromId];
+  if (el) {
+    el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    el.classList.add('hl');
+    setTimeout(() => el.classList.remove('hl'), 1500);
+  }
+});
+
+// ===================== INIT =====================
+window.addEventListener('load', () => {
+  drawEdges();
+  // Inject pattern IDs asynchronously
+  buildPatternIds().then(() => {
+    document.querySelectorAll('.pat-id-slot').forEach(slot => {
+      const nid = slot.dataset.node;
+      const n = nodeMap[nid];
+      if (!n) return;
+      const pid = PAT_ID_MAP[n.fwType + '|' + patKeyOf(n)];
+      if (pid) {
+        slot.innerHTML = `<a href="demo_pattern_fwtype.html#${pid}" style="margin-left:4px;font-family:monospace;font-size:9px;color:#b0a090;text-decoration:none;border-bottom:1px dotted #c0b8a0;" title="パターン図鑑で表示">${pid}</a>`;
+      }
+    });
+  });
+});
+window.addEventListener('resize', () => { drawEdges(); });
+</script>
+</body>
+</html>

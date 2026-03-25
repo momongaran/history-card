@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>因果フレーム図鑑（欧州史） ― エーゲ文明→ゲルフ・ギベリン</title>
+<title>欧州史 ― エーゲ文明→ゲルフ・ギベリン</title>
 <style>
   :root {
     --bg: #f0ebe0;
@@ -65,8 +65,22 @@
     position: absolute; inset: 0; width: 100%; height: 100%;
     pointer-events: none; z-index: 2;
   }
-  .edge-line { fill: none; stroke-width: 1.4; opacity: 0.35; stroke-dasharray: 5 4; stroke: #b0a898; }
-  .edge-head { stroke: none; fill: #b0a898; opacity: 0.5; }
+  .edge-line { fill: none; stroke-width: 1.4; opacity: 0.45; stroke-dasharray: 5 4; stroke: #b0a898; }
+  .edge-head { stroke: none; fill: #b0a898; opacity: 0.6; }
+
+  /* role edge colors */
+  .edge-line.r-amplifies  { stroke: #c8960a; }
+  .edge-line.r-triggers   { stroke: #c45a3c; }
+  .edge-line.r-transforms { stroke: #3a6a9a; }
+  .edge-line.r-sustains   { stroke: #3a8a3a; }
+  .edge-line.r-suppresses { stroke: #7a3a8a; }
+  .edge-line.r-inherits   { stroke: #3a7a8a; }
+  .edge-head.r-amplifies  { fill: #c8960a; }
+  .edge-head.r-triggers   { fill: #c45a3c; }
+  .edge-head.r-transforms { fill: #3a6a9a; }
+  .edge-head.r-sustains   { fill: #3a8a3a; }
+  .edge-head.r-suppresses { fill: #7a3a8a; }
+  .edge-head.r-inherits   { fill: #3a7a8a; }
 
   .edge-line.hl { opacity: 0.7; stroke-width: 2; }
   .edge-line.dim { opacity: 0.08; }
@@ -109,7 +123,20 @@
   .block.hl { box-shadow: 0 0 0 5px rgba(92,61,30,.25); filter: brightness(0.97); }
   .block.source-hl { box-shadow: 0 0 0 6px rgba(200,150,10,.4); transform: scale(1.02); transition: all .15s; }
   .block.dim { opacity: 0.2; }
-  .block.has-pattern { border-left: 4px solid #c45a3c; }
+  /* block-fw-label: fwType classification at bottom-left */
+  .block-fw-label {
+    position: absolute; bottom: 5px; left: 10px;
+    font-size: 10px; font-weight: 600;
+    display: flex; align-items: center; gap: 4px;
+  }
+  .block-fw-label .fw-icon {
+    width: 16px; height: 16px; border-radius: 4px;
+    display: inline-flex; align-items: center; justify-content: center;
+    font-size: 9px; flex-shrink: 0;
+    border: 1px solid; opacity: 0.9;
+    font-variant-emoji: text;
+  }
+  .block-fw-label .fw-text { color: #a09080; }
 
   .block-body { padding: 12px 14px 24px; display: flex; flex-direction: column; gap: 6px; }
 
@@ -148,9 +175,7 @@
   /* ref-chip border color is set dynamically to match source block's cluster color */
 
   .role-arrow {
-    display: block; text-align: center;
-    font-size: 10px; line-height: 1; margin-top: 2px;
-    letter-spacing: -1px;
+    display: inline; font-size: 9px; line-height: 1; margin-left: 2px;
   }
   .role-arrow.r-amplifies  { color: #c8960a; }
   .role-arrow.r-triggers   { color: #c45a3c; }
@@ -364,6 +389,19 @@
   }
   .plookup-empty { font-size: 12px; color: var(--muted); text-align: center; padding: 40px 0; }
 
+  .page-nav {
+    display: flex; gap: 12px; margin-bottom: 8px; font-size: 12px;
+  }
+  .page-nav a {
+    color: var(--accent); text-decoration: none; padding: 3px 10px;
+    border: 1.5px solid var(--line); border-radius: 14px; transition: all .2s;
+  }
+  .page-nav a:hover { background: var(--accent); color: #fff; border-color: var(--accent); }
+  .page-nav-current {
+    padding: 3px 10px; border: 1.5px solid var(--accent); border-radius: 14px;
+    background: var(--accent); color: #fff; font-weight: 600;
+  }
+
   @media (max-width: 840px) {
     :root { --block-w: 100%; }
     .block { max-width: 460px; }
@@ -372,8 +410,18 @@
 </head>
 <body>
 <div class="page">
+  <nav class="page-nav">
+    <a href="demo_catalog.html">日本史</a>
+    <a href="demo_catalog_world.html">世界史</a>
+    <span class="page-nav-current">欧州史</span>
+    <a href="demo_capitalism.html">資本主義の誕生</a>
+    <a href="demo_braudel.html">ブローデルの地中海</a>
+    <a href="demo_pattern_fwtype.html">パターン図鑑</a>
+    <a href="demo_pattern_catalog.html">遷移パターン</a>
+    <a href="demo_slot_taxonomy.html">スロット分類</a>
+  </nav>
   <div class="header">
-    <h1>因果フレーム図鑑（欧州史）</h1>
+    <h1>欧州史</h1>
     <p class="sub">EnergyAbsモデル ― エーゲ文明(前3000)→冷戦終結(1991) ― 約5000年の因果フロー</p>
   </div>
   <div class="controls">
@@ -390,13 +438,13 @@
   <div class="legend-float collapsed" id="legend-panel">
     <div class="legend">
       <div class="legend-item"><div class="legend-sw" style="background:#b0a898"></div>同一性リンク（点線）</div>
-      <div class="legend-item" style="margin-left: 8px; border-left: 2px solid #ddd; padding-left: 8px;">▼ 背景の作用:</div>
-      <div class="legend-item"><span style="color:#c8960a; font-weight:600">▼</span> 圧を高めた</div>
-      <div class="legend-item"><span style="color:#c45a3c; font-weight:600">▼</span> 引き金</div>
-      <div class="legend-item"><span style="color:#3a6a9a; font-weight:600">▼</span> 構造を変えた</div>
-      <div class="legend-item"><span style="color:#3a8a3a; font-weight:600">▼</span> 基盤を支えた</div>
-      <div class="legend-item"><span style="color:#7a3a8a; font-weight:600">▼</span> 抑制した</div>
-      <div class="legend-item"><span style="color:#3a7a8a; font-weight:600">▼</span> 継承した</div>
+      <div class="legend-item" style="margin-left: 8px; border-left: 2px solid #ddd; padding-left: 8px;">▶ 背景の作用:</div>
+      <div class="legend-item"><span style="color:#c8960a; font-weight:600">▶</span> 圧を高めた</div>
+      <div class="legend-item"><span style="color:#c45a3c; font-weight:600">▶</span> 引き金</div>
+      <div class="legend-item"><span style="color:#3a6a9a; font-weight:600">▶</span> 構造を変えた</div>
+      <div class="legend-item"><span style="color:#3a8a3a; font-weight:600">▶</span> 基盤を支えた</div>
+      <div class="legend-item"><span style="color:#7a3a8a; font-weight:600">▶</span> 抑制した</div>
+      <div class="legend-item"><span style="color:#3a7a8a; font-weight:600">▶</span> 継承した</div>
     </div>
     <div class="legend">
       <div class="legend-item" style="border-left: 2px solid #ddd; padding-left: 8px;">枠色 = 抽象FW型:</div>
@@ -448,6 +496,7 @@
   <div class="plookup-results" id="plookup-results"></div>
 </div>
 
+<script src="shared.js"></script>
 <script>
 const DATA_URL = '../data/energyabs_europe_v1.json';
 let G = null;       // graph
@@ -456,35 +505,6 @@ let EbyTo = {};      // edges grouped by target
 let EbyFrom = {};    // edges grouped by source
 let clusters = [];   // ordered cluster list
 let selectedNode = null;
-
-// Semantic FW type → color + shape marker
-const FW_TYPE_STYLES = {
-  'battle':      { color: '#c45a3c', shape: '⚔', label: '武力衝突', labelFull: '武力衝突・戦い' },
-  'conflict':    { color: '#c8960a', shape: '▲', label: '対立蓄積', labelFull: '対立・緊張蓄積' },
-  'collapse':    { color: '#8a3a3a', shape: '⊘', label: '崩壊', labelFull: '崩壊・滅亡' },
-  'institution': { color: '#3a6a9a', shape: '■', label: '制度化', labelFull: '制度化・ルール化' },
-  'power':       { color: '#6a3a8a', shape: '◆', label: '権力確立', labelFull: '権力確立・体制形成' },
-  'shock':       { color: '#c47a3a', shape: '⚡', label: '外生衝撃', labelFull: '外生衝撃・外来要因' },
-  'drift':       { color: '#5a8a5a', shape: '〜', label: '漸進変化', labelFull: '漸進的浸透・構造変化' },
-  'reform':      { color: '#3a7a8a', shape: '✦', label: '改革', labelFull: '改革・変革' },
-};
-
-// Background type → icon + color
-const BG_TYPE_STYLES = {
-  '構造変化': { icon: '⇄', color: '#5a8a5a' },
-  '武力衝突': { icon: '⚔', color: '#c45a3c' },
-  '勢力対立': { icon: '⚡', color: '#c8960a' },
-  '制度':     { icon: '■', color: '#3a6a9a' },
-  '外生':     { icon: '☄', color: '#c47a3a' },
-  '権力集中': { icon: '◆', color: '#6a3a8a' },
-  '改革':     { icon: '✦', color: '#3a7a8a' },
-  '崩壊':     { icon: '⊘', color: '#8a3a3a' },
-  '外圧':     { icon: '⟐', color: '#8a6a3a' },
-  '経済拡大': { icon: '▲', color: '#5a8a3a' },
-  '硬直化':   { icon: '▰', color: '#6a6058' },
-  '複合背景': { icon: '◎', color: '#8a7060' },
-  '思想潮流': { icon: '❖', color: '#5a7a9a' },
-};
 
 // Semantic domains (4 groups of fwTypes)
 const SEMANTIC_DOMAINS = {
@@ -501,7 +521,7 @@ Object.entries(SEMANTIC_DOMAINS).forEach(([name, d]) => {
 });
 
 async function init() {
-  const res = await fetch(DATA_URL);
+  const [res] = await Promise.all([fetch(DATA_URL), buildPatternIds()]);
   G = await res.json();
   G.nodes.forEach(n => NM[n.id] = n);
   G.edges.forEach(e => {
@@ -652,7 +672,7 @@ function renderBlock(n) {
       const roleLabelsShort = { triggers: '引き金', amplifies: '圧↑', transforms: '変換', sustains: '基盤', suppresses: '抑制', inherits: '継承' };
       const srcStyle = src ? (FW_TYPE_STYLES[src.fwType] || FW_TYPE_STYLES['amplifier']) : FW_TYPE_STYLES['amplifier'];
       const chipColor = srcStyle.color;
-      html += `<span class="ref-chip" id="chip-${e.from}-${n.id}" style="border-color:${chipColor}" data-src="${e.from}" onclick="event.stopPropagation();flashAndScroll('${e.from}')" onmouseenter="hlSource('${e.from}',true)" onmouseleave="hlSource('${e.from}',false)" title="${src?.label || e.from}\n${roleLabelsShort[e.role] || e.role}"><b>${srcNum}</b> ${shortLabel}<span class="role-arrow r-${e.role}">▼</span></span>`;
+      html += `<span class="ref-chip" id="chip-${e.from}-${n.id}" style="border-color:${chipColor}" data-src="${e.from}" onclick="event.stopPropagation();flashAndScroll('${e.from}')" onmouseenter="hlSource('${e.from}',true)" onmouseleave="hlSource('${e.from}',false)" title="${src?.label || e.from}\n${roleLabelsShort[e.role] || e.role}"><b>${srcNum}</b> ${shortLabel}<span class="role-arrow r-${e.role}">▶</span></span>`;
     });
     html += `</div>`;
 
@@ -683,7 +703,7 @@ function renderBlock(n) {
   const bgSt = BG_TYPE_STYLES[n.bgType] || {};
   const bgIcon = bgSt.icon ? `<span style="color:${bgSt.color}" title="背景: ${n.bgType || ''}">${bgSt.icon}</span>` : '';
   const fwIcon = `<span style="color:${fwStyle.color}" title="解放: ${fwStyle.label}">${fwStyle.shape}</span>`;
-  html += `<div class="block-pattern">${bgIcon}${bgIcon ? '→' : ''}${fwIcon} ${n.pattern || ''}</div>`;
+  html += `<div class="block-pattern">${n.pattern || ''}</div>`;
   html += `</div>`;
   // Actors
   if (n.actors && n.actors.length > 0) {
@@ -702,6 +722,14 @@ function renderBlock(n) {
   }
 
   html += `</div>`; // block-body
+  const _pid = nodePatId(n);
+  const _bgSt = BG_TYPE_STYLES[n.bgType] || {};
+  const _relSt = BG_TYPE_STYLES[n.releaseType] || {};
+  const _bgIc = _bgSt.icon ? `<span class="fw-icon" style="color:${_bgSt.color};border-color:${_bgSt.color};background:${_bgSt.color}18">${_bgSt.icon}</span><span style="color:#c0b8a0;margin:0 1px">→</span>` : '';
+  const _relIc = _relSt.icon ? `<span class="fw-icon" style="color:${_relSt.color};border-color:${_relSt.color};background:${_relSt.color}18">${_relSt.icon}</span>` : `<span class="fw-icon" style="color:${fwStyle.color};border-color:${fwStyle.color};background:${fwStyle.color}18">${fwStyle.shape}</span>`;
+  html += `<div class="block-fw-label">${_bgIc}${_relIc}<span class="fw-text">${fwStyle.label}</span>`;
+  if (_pid) html += `<a href="demo_pattern_fwtype.html#${_pid}" style="margin-left:4px;font-family:monospace;font-size:9px;color:#b0a090;text-decoration:none;border-bottom:1px dotted #c0b8a0;" title="パターン図鑑で表示">${_pid}</a>`;
+  html += `</div>`;
   html += `<div class="block-id">${fmtId(n.id)}</div>`;
   html += `</div>`;
   return html;
@@ -802,7 +830,7 @@ function drawEdges() {
 
     const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
     path.setAttribute('d', d);
-    path.classList.add('edge-line');
+    path.classList.add('edge-line', 'r-' + e.role);
     path.dataset.eid = e.id;
     path.dataset.from = e.from;
     path.dataset.to = e.to;
@@ -814,7 +842,7 @@ function drawEdges() {
     dot.setAttribute('cx', x2);
     dot.setAttribute('cy', y2);
     dot.setAttribute('r', 3.5);
-    dot.classList.add('edge-head');
+    dot.classList.add('edge-head', 'r-' + e.role);
     dot.dataset.eid = e.id;
     svg.appendChild(dot);
   });

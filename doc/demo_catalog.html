@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>因果フレーム図鑑 ― 全ノード同一ブロック表示</title>
+<title>日本史 ― 全ノード同一ブロック表示</title>
 <style>
   :root {
     --bg: #f0ebe0;
@@ -65,12 +65,32 @@
     position: absolute; inset: 0; width: 100%; height: 100%;
     pointer-events: none; z-index: 2;
   }
-  .edge-line { fill: none; stroke-width: 1.4; opacity: 0.35; stroke-dasharray: 5 4; stroke: #b0a898; }
+  .edge-line { fill: none; stroke-width: 1.4; opacity: 0.45; stroke-dasharray: 5 4; stroke: #b0a898; }
   .edge-dot { stroke: none; fill: #b0a898; opacity: 0.5; }
   .edge-dot.dim { opacity: 0.08; }
   .edge-halo { pointer-events: none; }
   .edge-halo.dim { opacity: 0.08; }
-  .edge-head { stroke: none; fill: #b0a898; opacity: 0.5; }
+  .edge-head { stroke: none; fill: #b0a898; opacity: 0.6; }
+
+  /* role edge colors */
+  .edge-line.r-amplifies  { stroke: #c8960a; }
+  .edge-line.r-triggers   { stroke: #c45a3c; }
+  .edge-line.r-transforms { stroke: #3a6a9a; }
+  .edge-line.r-sustains   { stroke: #3a8a3a; }
+  .edge-line.r-suppresses { stroke: #7a3a8a; }
+  .edge-line.r-inherits   { stroke: #3a7a8a; }
+  .edge-dot.r-amplifies  { fill: #c8960a; }
+  .edge-dot.r-triggers   { fill: #c45a3c; }
+  .edge-dot.r-transforms { fill: #3a6a9a; }
+  .edge-dot.r-sustains   { fill: #3a8a3a; }
+  .edge-dot.r-suppresses { fill: #7a3a8a; }
+  .edge-dot.r-inherits   { fill: #3a7a8a; }
+  .edge-head.r-amplifies  { fill: #c8960a; }
+  .edge-head.r-triggers   { fill: #c45a3c; }
+  .edge-head.r-transforms { fill: #3a6a9a; }
+  .edge-head.r-sustains   { fill: #3a8a3a; }
+  .edge-head.r-suppresses { fill: #7a3a8a; }
+  .edge-head.r-inherits   { fill: #3a7a8a; }
 
   .edge-line.hl { opacity: 0.7; stroke-width: 2; }
   .edge-line.dim { opacity: 0.08; }
@@ -152,9 +172,7 @@
   /* ref-chip border color is set dynamically to match source block's cluster color */
 
   .role-arrow {
-    display: block; text-align: center;
-    font-size: 10px; line-height: 1; margin-top: 2px;
-    letter-spacing: -1px;
+    display: inline; font-size: 9px; line-height: 1; margin-left: 2px;
   }
   .role-arrow.r-amplifies  { color: #c8960a; }
   .role-arrow.r-triggers   { color: #c45a3c; }
@@ -195,15 +213,19 @@
     font-size: 11px; font-weight: 700; font-family: monospace;
     color: #b0a090; letter-spacing: .08em;
   }
-  .block-pids {
+  .block-fw-label {
     position: absolute; bottom: 5px; left: 10px;
-    display: flex; gap: 2px;
+    font-size: 10px; font-weight: 600;
+    display: flex; align-items: center; gap: 4px;
   }
-  .pid-link {
-    font-size: 9px; font-weight: 600; color: #9a8a7a; text-decoration: none;
-    padding: 0 3px; border-radius: 4px; background: rgba(92,61,30,.06);
+  .block-fw-label .fw-icon {
+    width: 16px; height: 16px; border-radius: 4px;
+    display: inline-flex; align-items: center; justify-content: center;
+    font-size: 9px; flex-shrink: 0;
+    border: 1px solid; opacity: 0.9;
+    font-variant-emoji: text;
   }
-  .pid-link:hover { background: var(--accent); color: #fff; }
+  .block-fw-label .fw-text { color: #a09080; }
   .block-era {
     font-size: 12px; font-weight: 700; color: #2a2520;
     letter-spacing: .03em; margin-bottom: 1px;
@@ -399,14 +421,18 @@
 <body>
 <div class="page">
   <nav class="page-nav">
-    <span class="page-nav-current">日本史図鑑</span>
-    <a href="demo_catalog_world.html">世界史図鑑</a>
-    <a href="demo_pattern_catalog.html">パターン図鑑</a>
+    <span class="page-nav-current">日本史</span>
+    <a href="demo_catalog_world.html">世界史</a>
+    <a href="demo_catalog_europe.html">欧州史</a>
+    <a href="demo_capitalism.html">資本主義の誕生</a>
+    <a href="demo_braudel.html">ブローデルの地中海</a>
+    <a href="demo_pattern_fwtype.html">パターン図鑑</a>
+    <a href="demo_pattern_catalog.html">遷移パターン</a>
     <a href="demo_slot_taxonomy.html">スロット分類</a>
     <a href="demo_taxonomy_reference.html">用語リファレンス</a>
   </nav>
   <div class="header">
-    <h1>因果フレーム図鑑</h1>
+    <h1>日本史</h1>
     <p class="sub">EnergyAbsモデル ― 磐井の乱(527)→幕藩体制確立(1615) ― 約1100年の因果フロー</p>
   </div>
   <div class="controls">
@@ -423,13 +449,13 @@
   <div class="legend-float collapsed" id="legend-panel">
     <div class="legend">
       <div class="legend-item"><div class="legend-sw" style="background:#b0a898"></div>同一性リンク（点線）</div>
-      <div class="legend-item" style="margin-left: 8px; border-left: 2px solid #ddd; padding-left: 8px;">▼ 背景の作用:</div>
-      <div class="legend-item"><span style="color:#c8960a; font-weight:600">▼</span> 圧を高めた</div>
-      <div class="legend-item"><span style="color:#c45a3c; font-weight:600">▼</span> 引き金</div>
-      <div class="legend-item"><span style="color:#3a6a9a; font-weight:600">▼</span> 構造を変えた</div>
-      <div class="legend-item"><span style="color:#3a8a3a; font-weight:600">▼</span> 基盤を支えた</div>
-      <div class="legend-item"><span style="color:#7a3a8a; font-weight:600">▼</span> 抑制した</div>
-      <div class="legend-item"><span style="color:#3a7a8a; font-weight:600">▼</span> 継承した</div>
+      <div class="legend-item" style="margin-left: 8px; border-left: 2px solid #ddd; padding-left: 8px;">▶ 背景の作用:</div>
+      <div class="legend-item"><span style="color:#c8960a; font-weight:600">▶</span> 圧を高めた</div>
+      <div class="legend-item"><span style="color:#c45a3c; font-weight:600">▶</span> 引き金</div>
+      <div class="legend-item"><span style="color:#3a6a9a; font-weight:600">▶</span> 構造を変えた</div>
+      <div class="legend-item"><span style="color:#3a8a3a; font-weight:600">▶</span> 基盤を支えた</div>
+      <div class="legend-item"><span style="color:#7a3a8a; font-weight:600">▶</span> 抑制した</div>
+      <div class="legend-item"><span style="color:#3a7a8a; font-weight:600">▶</span> 継承した</div>
     </div>
     <div class="legend">
       <div class="legend-item" style="border-left: 2px solid #ddd; padding-left: 8px;">枠色 = 抽象FW型:</div>
@@ -481,6 +507,7 @@
   <div class="plookup-results" id="plookup-results"></div>
 </div>
 
+<script src="shared.js"></script>
 <script>
 const DATA_URL = '../data/energyabs_v2.json';
 let G = null;       // graph
@@ -490,35 +517,6 @@ let EbyFrom = {};    // edges grouped by source
 let clusters = [];   // ordered cluster list
 let PATTERN_INDEX = {}; // node_id -> [P-IDs]
 let selectedNode = null;
-
-// Semantic FW type → color + shape marker
-const FW_TYPE_STYLES = {
-  'battle':      { color: '#c45a3c', shape: '⚔', label: '武力衝突', labelFull: '武力衝突・戦い' },
-  'conflict':    { color: '#c8960a', shape: '▲', label: '対立蓄積', labelFull: '対立・緊張蓄積' },
-  'collapse':    { color: '#8a3a3a', shape: '⊘', label: '崩壊', labelFull: '崩壊・滅亡' },
-  'institution': { color: '#3a6a9a', shape: '■', label: '制度化', labelFull: '制度化・ルール化' },
-  'power':       { color: '#6a3a8a', shape: '◆', label: '権力確立', labelFull: '権力確立・体制形成' },
-  'shock':       { color: '#c47a3a', shape: '⚡', label: '外生衝撃', labelFull: '外生衝撃・外来要因' },
-  'drift':       { color: '#5a8a5a', shape: '〜', label: '漸進変化', labelFull: '漸進的浸透・構造変化' },
-  'reform':      { color: '#3a7a8a', shape: '✦', label: '改革', labelFull: '改革・変革' },
-};
-
-// Background type → icon + color
-const BG_TYPE_STYLES = {
-  '構造変化': { icon: '⇄', color: '#5a8a5a' },
-  '武力衝突': { icon: '⚔', color: '#c45a3c' },
-  '勢力対立': { icon: '⚡', color: '#c8960a' },
-  '制度':     { icon: '■', color: '#3a6a9a' },
-  '外生':     { icon: '☄', color: '#c47a3a' },
-  '権力集中': { icon: '◆', color: '#6a3a8a' },
-  '改革':     { icon: '✦', color: '#3a7a8a' },
-  '崩壊':     { icon: '⊘', color: '#8a3a3a' },
-  '外圧':     { icon: '⟐', color: '#8a6a3a' },
-  '経済拡大': { icon: '▲', color: '#5a8a3a' },
-  '硬直化':   { icon: '▰', color: '#6a6058' },
-  '複合背景': { icon: '◎', color: '#8a7060' },
-  '思想潮流': { icon: '❖', color: '#5a7a9a' },
-};
 
 // Semantic domains (4 groups of fwTypes)
 const SEMANTIC_DOMAINS = {
@@ -535,7 +533,7 @@ Object.entries(SEMANTIC_DOMAINS).forEach(([name, d]) => {
 });
 
 async function init() {
-  const res = await fetch(DATA_URL);
+  const [res] = await Promise.all([fetch(DATA_URL), buildPatternIds()]);
   G = await res.json();
   G.nodes.forEach(n => NM[n.id] = n);
   G.edges.forEach(e => {
@@ -691,7 +689,7 @@ function renderBlock(n) {
       const roleLabelsShort = { triggers: '引き金', amplifies: '圧↑', transforms: '変換', sustains: '基盤', suppresses: '抑制', inherits: '継承' };
       const srcStyle = src ? (FW_TYPE_STYLES[src.fwType] || FW_TYPE_STYLES['amplifier']) : FW_TYPE_STYLES['amplifier'];
       const chipColor = srcStyle.color;
-      html += `<span class="ref-chip" id="chip-${e.from}-${n.id}" style="border-color:${chipColor}" data-src="${e.from}" onclick="event.stopPropagation();flashAndScroll('${e.from}')" onmouseenter="hlSource('${e.from}',true)" onmouseleave="hlSource('${e.from}',false)" title="${src?.label || e.from}\n${roleLabelsShort[e.role] || e.role}"><b>${srcNum}</b> ${shortLabel}<span class="role-arrow r-${e.role}">▼</span></span>`;
+      html += `<span class="ref-chip" id="chip-${e.from}-${n.id}" style="border-color:${chipColor}" data-src="${e.from}" onclick="event.stopPropagation();flashAndScroll('${e.from}')" onmouseenter="hlSource('${e.from}',true)" onmouseleave="hlSource('${e.from}',false)" title="${src?.label || e.from}\n${roleLabelsShort[e.role] || e.role}"><b>${srcNum}</b> ${shortLabel}<span class="role-arrow r-${e.role}">▶</span></span>`;
     });
     html += `</div>`;
 
@@ -722,7 +720,7 @@ function renderBlock(n) {
   const bgSt = BG_TYPE_STYLES[n.bgType] || {};
   const bgIcon = bgSt.icon ? `<span style="color:${bgSt.color}" title="背景: ${n.bgType || ''}">${bgSt.icon}</span>` : '';
   const fwIcon = `<span style="color:${fwStyle.color}" title="解放: ${fwStyle.label}">${fwStyle.shape}</span>`;
-  html += `<div class="block-pattern">${bgIcon}${bgIcon ? '→' : ''}${fwIcon} ${n.pattern || ''}</div>`;
+  html += `<div class="block-pattern">${n.pattern || ''}</div>`;
   html += `</div>`;
   // Actors
   if (n.actors && n.actors.length > 0) {
@@ -741,8 +739,14 @@ function renderBlock(n) {
   }
 
   html += `</div>`; // block-body
-  const pids = PATTERN_INDEX[n.id];
-  if (pids) { html += `<div class="block-pids">${pids.map(p => `<a href="demo_pattern_catalog.html#${p}" class="pid-link" title="パターン図鑑で表示">${p}</a>`).join(' ')}</div>`; }
+  const _pid = nodePatId(n);
+  const _bgSt = BG_TYPE_STYLES[n.bgType] || {};
+  const _relSt = BG_TYPE_STYLES[n.releaseType] || {};
+  const _bgIc = _bgSt.icon ? `<span class="fw-icon" style="color:${_bgSt.color};border-color:${_bgSt.color};background:${_bgSt.color}18">${_bgSt.icon}</span><span style="color:#c0b8a0;margin:0 1px">→</span>` : '';
+  const _relIc = _relSt.icon ? `<span class="fw-icon" style="color:${_relSt.color};border-color:${_relSt.color};background:${_relSt.color}18">${_relSt.icon}</span>` : `<span class="fw-icon" style="color:${fwStyle.color};border-color:${fwStyle.color};background:${fwStyle.color}18">${fwStyle.shape}</span>`;
+  html += `<div class="block-fw-label">${_bgIc}${_relIc}<span class="fw-text">${fwStyle.label}</span>`;
+  if (_pid) html += `<a href="demo_pattern_fwtype.html#${_pid}" style="margin-left:4px;font-family:monospace;font-size:9px;color:#b0a090;text-decoration:none;border-bottom:1px dotted #c0b8a0;" title="パターン図鑑で表示">${_pid}</a>`;
+  html += `</div>`;
   html += `<div class="block-id">${fmtId(n.id)}</div>`;
   html += `</div>`;
   return html;
@@ -776,44 +780,44 @@ function drawEdges() {
   });
   const departCur = {};
 
-  // Pass 1: compute all edge endpoints (block edge to block edge)
+  // Pass 1: compute all edge endpoints (block edge → ref-chip)
   const edgeGeom = [];
   G.edges.forEach(e => {
     const fromEl = document.getElementById('blk-' + e.from);
-    const toEl = document.getElementById('blk-' + e.to);
-    if (!fromEl || !toEl) return;
+    const chipEl = document.getElementById('chip-' + e.from + '-' + e.to);
+    if (!fromEl || !chipEl) return;
 
     const fr = fromEl.getBoundingClientRect();
-    const tr = toEl.getBoundingClientRect();
+    const ch = chipEl.getBoundingClientRect();
 
+    const chipCX = ch.left + ch.width / 2 - cr.left + scrollL;
+    const chipCY = ch.top + ch.height / 2 - cr.top + scrollT;
     const fromCX = fr.left + fr.width / 2 - cr.left + scrollL;
     const fromCY = fr.top + fr.height / 2 - cr.top + scrollT;
-    const toCX = tr.left + tr.width / 2 - cr.left + scrollL;
-    const toCY = tr.top + tr.height / 2 - cr.top + scrollT;
 
-    // Source: nearest edge to target card center
+    // Source block edge (nearest side to chip)
     let x1, y1;
     const fromTop = fr.top - cr.top + scrollT;
     const fromBot = fr.bottom - cr.top + scrollT;
     const fromL = fr.left - cr.left + scrollL;
     const fromR = fr.right - cr.left + scrollL;
 
-    if (toCY > fromBot) { x1 = fromCX; y1 = fromBot; }
-    else if (toCY < fromTop) { x1 = fromCX; y1 = fromTop; }
-    else if (toCX < fromL) { x1 = fromL; y1 = fromCY; }
+    if (chipCY > fromBot) { x1 = fromCX; y1 = fromBot; }
+    else if (chipCY < fromTop) { x1 = fromCX; y1 = fromTop; }
+    else if (chipCX < fromL) { x1 = fromL; y1 = fromCY; }
     else { x1 = fromR; y1 = fromCY; }
 
-    // Target: nearest edge to source card center
-    const toTop = tr.top - cr.top + scrollT;
-    const toBot = tr.bottom - cr.top + scrollT;
-    const toL = tr.left - cr.left + scrollL;
-    const toR = tr.right - cr.left + scrollL;
+    // Chip edge (nearest side to source block)
+    const chTop = ch.top - cr.top + scrollT;
+    const chBot = ch.bottom - cr.top + scrollT;
+    const chL = ch.left - cr.left + scrollL;
+    const chR = ch.right - cr.left + scrollL;
 
     let x2, y2;
-    if (fromCY < toTop) { x2 = toCX; y2 = toTop; }
-    else if (fromCY > toBot) { x2 = toCX; y2 = toBot; }
-    else if (fromCX < toL) { x2 = toL; y2 = toCY; }
-    else { x2 = toR; y2 = toCY; }
+    if (fromCY < chTop) { x2 = chipCX; y2 = chTop; }
+    else if (fromCY > chBot) { x2 = chipCX; y2 = chBot; }
+    else if (fromCX < chL) { x2 = chL; y2 = chipCY; }
+    else { x2 = chR; y2 = chipCY; }
 
     let d;
     if (Math.abs(y2 - y1) < 20) {
@@ -830,7 +834,7 @@ function drawEdges() {
   edgeGeom.forEach(({ e, d }) => {
     const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
     path.setAttribute('d', d);
-    path.classList.add('edge-line');
+    path.classList.add('edge-line', 'r-' + e.role);
     path.dataset.eid = e.id;
     path.dataset.from = e.from;
     path.dataset.to = e.to;
@@ -849,13 +853,13 @@ function drawEdges() {
 
     const dotS = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
     dotS.setAttribute('cx', x1); dotS.setAttribute('cy', y1); dotS.setAttribute('r', 3);
-    dotS.classList.add('edge-dot'); dotS.dataset.eid = e.id;
+    dotS.classList.add('edge-dot', 'r-' + e.role); dotS.dataset.eid = e.id;
     svg.appendChild(dotS);
 
     // End: dot only (no halo — dot center is on card edge)
     const dot = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
     dot.setAttribute('cx', x2); dot.setAttribute('cy', y2); dot.setAttribute('r', 3);
-    dot.classList.add('edge-head'); dot.dataset.eid = e.id;
+    dot.classList.add('edge-head', 'r-' + e.role); dot.dataset.eid = e.id;
     svg.appendChild(dot);
   });
 }

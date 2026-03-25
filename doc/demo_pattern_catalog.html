@@ -20,176 +20,12 @@
     background: linear-gradient(160deg, #f5efe3 0%, #ede5d5 100%);
     color: var(--ink); min-height: 100vh;
   }
-  .page { max-width: 1200px; margin: 0 auto; padding: 24px 20px 80px; }
-  .header { margin-bottom: 20px; border-left: 4px solid var(--accent); padding-left: 16px; }
+  .page { max-width: 1400px; margin: 0 auto; padding: 24px 20px 80px; }
+  .header { margin-bottom: 16px; border-left: 4px solid var(--accent); padding-left: 16px; }
   h1 { font-size: 20px; color: var(--accent); letter-spacing: .06em; }
   .sub { margin-top: 3px; font-size: 12px; color: var(--muted); }
 
-  /* Controls */
-  .controls {
-    display: flex; gap: 8px; margin-bottom: 16px; flex-wrap: wrap; align-items: center;
-  }
-  .controls button {
-    font-family: inherit; font-size: 11px; padding: 4px 10px;
-    border: 1.5px solid var(--line); border-radius: 14px;
-    background: var(--paper); color: var(--muted); cursor: pointer; transition: all .2s;
-  }
-  .controls button:hover, .controls button.active {
-    background: var(--accent); color: #fff; border-color: var(--accent);
-  }
-  .ctrl-info { font-size: 11px; color: var(--muted); margin-left: auto; }
-
-  /* Transition type section */
-  .trans-section {
-    margin-bottom: 28px;
-  }
-  .trans-header {
-    display: flex; align-items: center; gap: 10px;
-    margin-bottom: 10px; padding-bottom: 6px;
-    border-bottom: 1px solid var(--line);
-  }
-  .trans-type {
-    font-size: 13px; font-weight: 700; color: var(--accent);
-    letter-spacing: .04em;
-  }
-  .trans-count {
-    font-size: 11px; color: var(--muted);
-  }
-  .trans-arrow {
-    display: flex; align-items: center; gap: 6px;
-    font-size: 13px; font-weight: 600;
-  }
-  .trans-arrow .shape {
-    font-size: 15px;
-  }
-
-  /* Pattern card */
-  .pattern-card {
-    background: var(--paper);
-    border: 1px solid var(--line);
-    border-radius: 12px;
-    padding: 14px 16px;
-    margin-bottom: 8px;
-    box-shadow: var(--shadow);
-    transition: all .2s;
-    cursor: default;
-  }
-  .pattern-card {
-    position: relative;
-  }
-  .pattern-card:hover {
-    box-shadow: 0 8px 24px rgba(40,28,14,.12);
-  }
-  .pattern-id {
-    position: absolute; right: 10px; bottom: 8px;
-    font-family: monospace; font-size: 10px; color: #c0b8a8;
-    letter-spacing: .04em;
-  }
-
-  /* The core: pattern chain */
-  .pattern-chain {
-    display: flex; flex-direction: column; gap: 0;
-  }
-  .pattern-slot {
-    display: flex; align-items: flex-start; gap: 8px;
-    padding: 6px 0;
-  }
-  .fw-icon {
-    width: 26px; height: 26px; border-radius: 8px;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 15px; color: #fff;
-    flex-shrink: 0; cursor: default;
-    position: relative;
-  }
-  .fw-icon::after {
-    content: attr(data-label);
-    position: absolute; left: 50%; top: 100%; transform: translateX(-50%);
-    margin-top: 4px; padding: 2px 8px; border-radius: 6px;
-    font-size: 10px; white-space: nowrap;
-    background: rgba(40,28,14,.85); color: #fff;
-    opacity: 0; pointer-events: none; transition: opacity .15s;
-    z-index: 10;
-  }
-  .fw-icon:hover::after { opacity: 1; }
-  .pattern-shape {
-    font-size: 16px; flex-shrink: 0; width: 22px; text-align: center;
-    line-height: 1.5;
-  }
-  .pattern-text {
-    font-size: 13px; line-height: 1.6; color: var(--ink);
-  }
-  .pattern-text .slot {
-    color: var(--accent); font-weight: 600;
-  }
-  /* Slot icons */
-  .slot-icon {
-    display: inline-block; width: 14px; height: 14px;
-    vertical-align: -2px; margin-right: 2px;
-    position: relative; cursor: default;
-  }
-  .slot-icon::after {
-    content: attr(data-tip);
-    position: absolute; left: 50%; bottom: 100%; transform: translateX(-50%);
-    margin-bottom: 4px; padding: 2px 7px; border-radius: 5px;
-    font-size: 9px; white-space: nowrap;
-    background: rgba(40,28,14,.85); color: #fff;
-    opacity: 0; pointer-events: none; transition: opacity .15s;
-    z-index: 10;
-  }
-  .slot-icon:hover::after { opacity: 1; }
-  .chain-arrow {
-    padding-left: 7px;
-    font-size: 11px; color: var(--line); line-height: 1;
-    letter-spacing: -1px;
-  }
-
-  /* Instance list (collapsed by default) */
-  .instances {
-    margin-top: 8px; padding-top: 8px;
-    border-top: 1px solid #ece5d8;
-  }
-  .instances.collapsed .inst-list { display: none; }
-  .inst-toggle {
-    font-family: inherit; font-size: 10px; color: var(--muted);
-    background: none; border: none; cursor: pointer;
-    padding: 0; letter-spacing: .02em;
-  }
-  .inst-toggle:hover { color: var(--ink); }
-  .inst-list {
-    margin-top: 6px;
-    display: flex; flex-direction: column; gap: 4px;
-  }
-  .inst-row {
-    display: flex; align-items: baseline; gap: 6px;
-    font-size: 11px; color: var(--muted); line-height: 1.5;
-  }
-  .inst-id {
-    font-family: monospace; font-size: 10px; color: #b0a090;
-    flex-shrink: 0;
-  }
-  .inst-label { color: var(--ink); }
-  .inst-arrow { color: var(--line); font-size: 10px; }
-
-  /* Role label */
-  .role-label {
-    font-size: 10px; padding: 1px 6px; border-radius: 8px;
-    background: #f0ebe0; color: var(--muted);
-    margin-left: 4px;
-  }
-  .reg-badge {
-    font-size: 9px; padding: 1px 5px; border-radius: 6px;
-    background: var(--accent); color: #fff; margin-right: 3px;
-    font-weight: 600; white-space: nowrap;
-  }
-  .pattern-meta {
-    margin-top: 4px; font-size: 11px; color: var(--muted);
-  }
-  .inst-pattern {
-    font-size: 10px; color: var(--muted); margin: 0 0 6px 20px;
-    line-height: 1.5; padding-left: 4px;
-    border-left: 2px solid #e8e0d0;
-  }
-
+  /* Nav */
   .page-nav {
     display: flex; gap: 12px; margin-bottom: 8px; font-size: 12px;
   }
@@ -202,21 +38,209 @@
     padding: 3px 10px; border: 1.5px solid var(--accent); border-radius: 14px;
     background: var(--accent); color: #fff; font-weight: 600;
   }
+
+  /* Controls */
+  .controls {
+    display: flex; gap: 6px; margin-bottom: 16px; flex-wrap: wrap; align-items: center;
+  }
+  .controls button {
+    font-family: inherit; font-size: 11px; padding: 4px 10px;
+    border: 1.5px solid var(--line); border-radius: 14px;
+    background: var(--paper); color: var(--muted); cursor: pointer; transition: all .2s;
+  }
+  .controls button:hover, .controls button.active {
+    background: var(--accent); color: #fff; border-color: var(--accent);
+  }
+  .ctrl-info { font-size: 11px; color: var(--muted); margin-left: auto; }
+
+  /* Transition section */
+  .trans-section { margin-bottom: 20px; }
+  .trans-header {
+    display: flex; align-items: center; gap: 10px;
+    margin-bottom: 8px; padding: 6px 12px;
+    background: rgba(92,61,30,.06); border-radius: 10px;
+  }
+  .trans-arrow {
+    display: flex; align-items: center; gap: 5px; font-size: 13px; font-weight: 600;
+  }
+  .trans-arrow .shape { font-size: 15px; }
+  .trans-count { font-size: 11px; color: var(--muted); margin-left: auto; }
+
+  /* === Card grid === */
+  .card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 10px;
+  }
+
+  /* === Pattern Card — TCG style === */
+  .pcard {
+    position: relative;
+    background: var(--paper);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(40,28,14,.08);
+    transition: transform .15s, box-shadow .15s;
+    cursor: default;
+    display: flex; flex-direction: column;
+  }
+  .pcard:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(40,28,14,.14);
+  }
+
+  /* Card top band — fwType color gradient */
+  .pcard-band {
+    height: 4px; width: 100%;
+  }
+
+  /* Card header row */
+  .pcard-head {
+    display: flex; align-items: center; gap: 6px;
+    padding: 8px 10px 4px;
+  }
+  .pcard-num {
+    font-family: "SF Mono", "Menlo", monospace; font-size: 9px;
+    color: #b8a898; letter-spacing: .04em;
+  }
+  .pcard-rarity {
+    margin-left: auto;
+    font-size: 9px; letter-spacing: 1px;
+  }
+
+  /* Card body — the transition diagram */
+  .pcard-body {
+    padding: 2px 10px 6px;
+    display: flex; align-items: center; gap: 6px;
+    min-height: 42px;
+  }
+  .pcard-fw-icon {
+    width: 28px; height: 28px; border-radius: 7px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 14px; color: #fff; flex-shrink: 0;
+    border: 2px solid rgba(255,255,255,.3);
+    box-shadow: 0 1px 4px rgba(0,0,0,.15);
+  }
+  .pcard-arrow {
+    font-size: 14px; color: var(--line); flex-shrink: 0;
+  }
+  .pcard-type-text {
+    font-size: 10px; color: var(--muted); line-height: 1.3;
+    flex: 1; min-width: 0;
+    overflow: hidden; text-overflow: ellipsis;
+  }
+  .pcard-type-text strong {
+    display: block; font-size: 11px; color: var(--ink);
+  }
+
+  /* Card footer — regions + count */
+  .pcard-foot {
+    display: flex; align-items: center; gap: 4px;
+    padding: 4px 10px 7px; margin-top: auto;
+    border-top: 1px solid #f0ebe0;
+  }
+  .reg-dot {
+    width: 16px; height: 16px; border-radius: 4px;
+    display: inline-flex; align-items: center; justify-content: center;
+    font-size: 7px; font-weight: 700; color: #fff;
+    background: var(--accent);
+  }
+  .pcard-count {
+    margin-left: auto; font-size: 10px; color: var(--muted);
+    font-weight: 600;
+  }
+
+  /* Instance drawer */
+  .pcard-inst {
+    max-height: 0; overflow: hidden;
+    transition: max-height .25s ease;
+    background: #faf7f0;
+  }
+  .pcard.open .pcard-inst {
+    max-height: 600px;
+  }
+  .pcard-inst-inner {
+    padding: 6px 10px 8px;
+    font-size: 10px; color: var(--muted);
+  }
+  .inst-row {
+    display: flex; align-items: baseline; gap: 4px;
+    line-height: 1.6; flex-wrap: wrap;
+  }
+  .inst-id {
+    font-family: "SF Mono", "Menlo", monospace; font-size: 9px; color: #b0a090;
+    flex-shrink: 0;
+  }
+  .inst-label { color: var(--ink); font-size: 10px; }
+  .inst-arrow { color: var(--line); font-size: 9px; }
+  .role-label {
+    font-size: 9px; padding: 0 5px; border-radius: 6px;
+    background: #ece5d8; color: var(--muted);
+  }
+  .inst-pattern {
+    font-size: 9px; color: var(--muted); margin: 0 0 4px 16px;
+    line-height: 1.4; padding-left: 4px;
+    border-left: 2px solid #e8e0d0;
+  }
+
+  /* Slot styling */
+  .slot { color: var(--accent); font-weight: 600; }
+  .slot-icon {
+    display: inline-block; width: 12px; height: 12px;
+    vertical-align: -1px; margin-right: 1px;
+    position: relative; cursor: default;
+  }
+  .slot-icon::after {
+    content: attr(data-tip);
+    position: absolute; left: 50%; bottom: 100%; transform: translateX(-50%);
+    margin-bottom: 4px; padding: 2px 6px; border-radius: 4px;
+    font-size: 8px; white-space: nowrap;
+    background: rgba(40,28,14,.85); color: #fff;
+    opacity: 0; pointer-events: none; transition: opacity .15s;
+    z-index: 10;
+  }
+  .slot-icon:hover::after { opacity: 1; }
+
+  /* Click hint */
+  .pcard-click-hint {
+    position: absolute; top: 6px; right: 8px;
+    font-size: 8px; color: #d0c8b8;
+    opacity: 0; transition: opacity .15s;
+    pointer-events: none;
+  }
+  .pcard:hover .pcard-click-hint { opacity: 1; }
+
+  /* Dim for filter */
+  .trans-section.hidden { display: none; }
+
+  /* Stats bar */
+  .stats-bar {
+    display: flex; gap: 16px; margin-bottom: 16px;
+    padding: 8px 14px; background: rgba(92,61,30,.04);
+    border-radius: 10px; font-size: 11px; color: var(--muted);
+    flex-wrap: wrap;
+  }
+  .stats-bar strong { color: var(--ink); }
 </style>
 </head>
 <body>
 <div class="page">
   <nav class="page-nav">
-    <a href="demo_catalog.html">日本史図鑑</a>
-    <a href="demo_catalog_world.html">世界史図鑑</a>
-    <span class="page-nav-current">パターン図鑑</span>
+    <a href="demo_catalog.html">日本史</a>
+    <a href="demo_catalog_world.html">世界史</a>
+    <a href="demo_catalog_europe.html">欧州史</a>
+    <a href="demo_capitalism.html">資本主義の誕生</a>
+    <a href="demo_braudel.html">ブローデルの地中海</a>
+    <a href="demo_pattern_fwtype.html">パターン図鑑</a>
+    <span class="page-nav-current">遷移パターン</span>
     <a href="demo_slot_taxonomy.html">スロット分類</a>
     <a href="demo_taxonomy_reference.html">用語リファレンス</a>
   </nav>
   <div class="header">
     <h1>抽象パターン図鑑</h1>
-    <p class="sub">因果フレームの抽象骨格 ― 日本史・世界史全リージョンのパターン連鎖</p>
+    <p class="sub">因果フレームの抽象骨格 ― 全リージョンのパターン遷移カード</p>
   </div>
+  <div class="stats-bar" id="stats"></div>
   <div class="controls">
     <button class="active" onclick="showAll(this)">全表示</button>
     <span class="ctrl-info" id="info"></span>
@@ -226,16 +250,17 @@
 
 <script>
 const DATA_SOURCES = [
-  { url: '../data/energyabs_v2.json', label: '日本', prefix: 'N' },
-  { url: '../data/energyabs_europe_v1.json', label: '欧州', prefix: 'W' },
-  { url: '../data/energyabs_middleeast_v1.json', label: '中東', prefix: 'M' },
-  { url: '../data/energyabs_india_v1.json', label: 'インド', prefix: 'I' },
-  { url: '../data/energyabs_china_v1.json', label: '中国', prefix: 'C' },
-  { url: '../data/energyabs_americas_v1.json', label: 'アメリカ', prefix: 'A' },
+  { url: '../data/energyabs_v2.json', label: '日本', prefix: 'N', short: '日' },
+  { url: '../data/energyabs_europe_v1.json', label: '欧州', prefix: 'W', short: '欧' },
+  { url: '../data/energyabs_middleeast_v1.json', label: '中東', prefix: 'M', short: '中東' },
+  { url: '../data/energyabs_india_v1.json', label: 'インド', prefix: 'I', short: '印' },
+  { url: '../data/energyabs_china_v1.json', label: '中国', prefix: 'C', short: '中' },
+  { url: '../data/energyabs_americas_v1.json', label: 'アメリカ', prefix: 'A', short: '米' },
+  { url: '../data/energyabs_capitalism_standalone.json', label: '資本主義', prefix: 'S', short: '資' },
+  { url: '../data/energyabs_braudel_v1.json', label: '地中海', prefix: 'M', short: '地' },
 ];
 const TAXO_URL = '../data/slot_taxonomy.json';
 
-// Slot term → { category, sub, shape, color }
 let SLOT_MAP = {};
 
 async function loadTaxonomy() {
@@ -251,32 +276,17 @@ async function loadTaxonomy() {
 }
 
 function slotSVG(shape, color) {
-  const s = 14;
+  const s = 12;
   let inner = '';
   switch (shape) {
-    case 'circle':
-      inner = `<circle cx="7" cy="7" r="5.5" fill="${color}" opacity="0.85"/>`;
-      break;
-    case 'square':
-      inner = `<rect x="1.5" y="1.5" width="11" height="11" rx="2" fill="${color}" opacity="0.85"/>`;
-      break;
-    case 'diamond':
-      inner = `<polygon points="7,1 13,7 7,13 1,7" fill="${color}" opacity="0.85"/>`;
-      break;
-    case 'triangle':
-      inner = `<polygon points="7,1.5 13,12.5 1,12.5" fill="${color}" opacity="0.85"/>`;
-      break;
-    case 'bar':
-      inner = `<rect x="1" y="5" width="12" height="4" rx="2" fill="${color}" opacity="0.85"/>`;
-      break;
-    case 'circle-open':
-      inner = `<circle cx="7" cy="7" r="5" fill="none" stroke="${color}" stroke-width="2" opacity="0.85"/>`;
-      break;
-    case 'wave':
-      inner = `<path d="M1,9 C3,5 5,5 7,7 C9,9 11,9 13,5" fill="none" stroke="${color}" stroke-width="2" stroke-linecap="round" opacity="0.85"/>`;
-      break;
-    default:
-      inner = `<circle cx="7" cy="7" r="5" fill="#999" opacity="0.5"/>`;
+    case 'circle': inner = `<circle cx="6" cy="6" r="4.5" fill="${color}" opacity="0.85"/>`; break;
+    case 'square': inner = `<rect x="1" y="1" width="10" height="10" rx="2" fill="${color}" opacity="0.85"/>`; break;
+    case 'diamond': inner = `<polygon points="6,0.5 11.5,6 6,11.5 0.5,6" fill="${color}" opacity="0.85"/>`; break;
+    case 'triangle': inner = `<polygon points="6,1 11,11 1,11" fill="${color}" opacity="0.85"/>`; break;
+    case 'bar': inner = `<rect x="0.5" y="4" width="11" height="4" rx="2" fill="${color}" opacity="0.85"/>`; break;
+    case 'circle-open': inner = `<circle cx="6" cy="6" r="4" fill="none" stroke="${color}" stroke-width="1.8" opacity="0.85"/>`; break;
+    case 'wave': inner = `<path d="M0.5,8 C2.5,4 4.5,4 6,6 C7.5,8 9.5,8 11.5,4" fill="none" stroke="${color}" stroke-width="1.8" stroke-linecap="round" opacity="0.85"/>`; break;
+    default: inner = `<circle cx="6" cy="6" r="4" fill="#999" opacity="0.5"/>`;
   }
   return `<svg width="${s}" height="${s}" viewBox="0 0 ${s} ${s}">${inner}</svg>`;
 }
@@ -311,9 +321,7 @@ const ROLE_JA = {
   sustains: '基盤', suppresses: '抑制', inherits: '継承'
 };
 
-// Synonym normalization for bgType / releaseType
 const SYNONYMS = {
-  // bgType synonyms
   '制度': '制度', '制度化': '制度', '制度構築': '制度',
   '武力衝突': '武力衝突', '戦闘': '武力衝突',
   '権力集中': '権力集中', '権力確立': '権力集中', '権力移行': '権力集中',
@@ -329,35 +337,41 @@ const SYNONYMS = {
   '複合背景': '複合背景',
   '権力分散': '権力分散',
   '自生': '自生',
-  // releaseType synonyms (same mapping)
   '外生衝撃': '外圧', '衝撃': '外圧',
   '蓄積': '勢力対立',
 };
 
-function normType(t) {
-  return SYNONYMS[t] || t || '?';
+function normType(t) { return SYNONYMS[t] || t || '?'; }
+
+// Rarity based on instance count
+function rarity(n) {
+  if (n >= 10) return { label: '★★★', title: 'Universal' };
+  if (n >= 5)  return { label: '★★☆', title: 'Common' };
+  if (n >= 3)  return { label: '★☆☆', title: 'Uncommon' };
+  return { label: '☆☆☆', title: 'Rare' };
 }
 
 async function init() {
   await loadTaxonomy();
 
-  // Load all region data
   const results = await Promise.allSettled(
     DATA_SOURCES.map(s => fetch(s.url).then(r => r.json()).then(d => ({ ...s, data: d })))
   );
   const G = { nodes: [], edges: [] };
   const regionLabels = {};
+  const regionShorts = {};
   results.forEach(r => {
     if (r.status !== 'fulfilled') return;
-    const { data, prefix, label } = r.value;
+    const { data, prefix, label, short } = r.value;
     regionLabels[prefix] = label;
+    regionShorts[prefix] = short;
     data.nodes.forEach(n => { n._prefix = prefix; G.nodes.push(n); });
     data.edges.forEach(e => G.edges.push(e));
   });
   const NM = {};
   G.nodes.forEach(n => NM[n.id] = n);
 
-  // Build pattern pairs grouped by normalized patternType transition
+  // Build pattern pairs
   const groups = {};
   G.edges.forEach(e => {
     const src = NM[e.from], tgt = NM[e.to];
@@ -366,7 +380,6 @@ async function init() {
     const srcRel = normType(src.releaseType || src.bgType);
     const tgtBg = normType(tgt.bgType);
     const tgtRel = normType(tgt.releaseType || tgt.bgType);
-    // Group key: normalized bgType→releaseType pair
     const srcPT = srcBg + (src.releaseType ? '→' + srcRel : '');
     const tgtPT = tgtBg + (tgt.releaseType ? '→' + tgtRel : '');
     const transKey = src.fwType + '→' + tgt.fwType;
@@ -376,8 +389,7 @@ async function init() {
     if (!groups[transKey][pairKey]) {
       groups[transKey][pairKey] = {
         srcFw: src.fwType, tgtFw: tgt.fwType,
-        srcPT, tgtPT,
-        instances: []
+        srcPT, tgtPT, instances: []
       };
     }
     groups[transKey][pairKey].instances.push({
@@ -387,14 +399,13 @@ async function init() {
     });
   });
 
-  // Sort transition types by frequency
   const sorted = Object.entries(groups).sort((a, b) => {
     const ca = Object.values(a[1]).reduce((s, p) => s + p.instances.length, 0);
     const cb = Object.values(b[1]).reduce((s, p) => s + p.instances.length, 0);
     return cb - ca;
   });
 
-  // Add filter buttons for each fwType
+  // Filter buttons
   const controls = document.querySelector('.controls');
   Object.entries(FW).forEach(([type, s]) => {
     const btn = document.createElement('button');
@@ -406,66 +417,78 @@ async function init() {
   // Render
   const catalog = document.getElementById('catalog');
   let totalPairs = 0;
+  let totalInsts = 0;
   let html = '';
+  const transitionStats = {};
 
   sorted.forEach(([transKey, pairs]) => {
     const [srcType, tgtType] = transKey.split('→');
     const srcFw = FW[srcType] || { shape: '?', color: '#999', label: srcType };
     const tgtFw = FW[tgtType] || { shape: '?', color: '#999', label: tgtType };
     const pairList = Object.values(pairs).sort((a, b) => b.instances.length - a.instances.length);
-    const totalInst = pairList.reduce((s, p) => s + p.instances.length, 0);
+    const sectionInst = pairList.reduce((s, p) => s + p.instances.length, 0);
+    totalInsts += sectionInst;
+
+    // Gradient for band
+    const bandGrad = `linear-gradient(90deg, ${srcFw.color}, ${tgtFw.color})`;
 
     html += `<div class="trans-section" data-src-type="${srcType}" data-tgt-type="${tgtType}">`;
     html += `<div class="trans-header">`;
     html += `<div class="trans-arrow">`;
     html += `<span class="shape" style="color:${srcFw.color}">${srcFw.shape}</span>`;
     html += `<span style="color:var(--muted);font-size:11px">${srcFw.label}</span>`;
-    html += `<span style="color:var(--line)">→</span>`;
+    html += `<span style="color:var(--line);margin:0 2px">→</span>`;
     html += `<span class="shape" style="color:${tgtFw.color}">${tgtFw.shape}</span>`;
     html += `<span style="color:var(--muted);font-size:11px">${tgtFw.label}</span>`;
     html += `</div>`;
-    html += `<span class="trans-count">${pairList.length}パターン / ${totalInst}件</span>`;
+    html += `<span class="trans-count">${pairList.length}種 / ${sectionInst}件</span>`;
     html += `</div>`;
 
+    html += `<div class="card-grid">`;
     pairList.forEach(pair => {
       totalPairs++;
       const pid = 'P' + String(totalPairs).padStart(3, '0');
-      // Count regions represented
-      const regSet = new Set(pair.instances.map(i => regionLabels[i.from.charAt(0)] || '?'));
-      const regBadges = [...regSet].map(r => `<span class="reg-badge">${r}</span>`).join('');
+      const regSet = new Set(pair.instances.map(i => i.from.charAt(0)));
+      const r = rarity(pair.instances.length);
 
-      html += `<div class="pattern-card" id="${pid}" data-src-type="${srcType}" data-tgt-type="${tgtType}" data-pid="${pid}">`;
-      html += `<div class="pattern-chain">`;
+      html += `<div class="pcard" id="${pid}" data-src-type="${srcType}" data-tgt-type="${tgtType}" onclick="this.classList.toggle('open')">`;
+      html += `<div class="pcard-band" style="background:${bandGrad}"></div>`;
 
-      // Source patternType
-      html += `<div class="pattern-slot">`;
-      html += `<div class="fw-icon" style="background:${srcFw.color}" data-label="${srcFw.label}">${srcFw.shape}</div>`;
-      html += `<div class="pattern-text"><strong>${pair.srcPT}</strong></div>`;
+      // Head
+      html += `<div class="pcard-head">`;
+      html += `<span class="pcard-num">${pid}</span>`;
+      html += `<span class="pcard-rarity" title="${r.title}">${r.label}</span>`;
       html += `</div>`;
 
-      // Arrow
-      html += `<div class="chain-arrow">↓</div>`;
-
-      // Target patternType
-      html += `<div class="pattern-slot">`;
-      html += `<div class="fw-icon" style="background:${tgtFw.color}" data-label="${tgtFw.label}">${tgtFw.shape}</div>`;
-      html += `<div class="pattern-text"><strong>${pair.tgtPT}</strong></div>`;
+      // Body: src icon → tgt icon + text
+      html += `<div class="pcard-body">`;
+      html += `<div class="pcard-fw-icon" style="background:${srcFw.color}">${srcFw.shape}</div>`;
+      html += `<div class="pcard-type-text"><strong>${pair.srcPT}</strong></div>`;
+      html += `</div>`;
+      html += `<div style="padding:0 10px;color:var(--line);font-size:11px;">↓</div>`;
+      html += `<div class="pcard-body">`;
+      html += `<div class="pcard-fw-icon" style="background:${tgtFw.color}">${tgtFw.shape}</div>`;
+      html += `<div class="pcard-type-text"><strong>${pair.tgtPT}</strong></div>`;
       html += `</div>`;
 
-      html += `</div>`; // pattern-chain
-      html += `<div class="pattern-meta">${regBadges} ${pair.instances.length}件</div>`;
+      // Foot
+      html += `<div class="pcard-foot">`;
+      [...regSet].forEach(p => {
+        html += `<span class="reg-dot" title="${regionLabels[p]}">${regionShorts[p]}</span>`;
+      });
+      html += `<span class="pcard-count">×${pair.instances.length}</span>`;
+      html += `</div>`;
 
-      // Instances
-      html += `<div class="instances collapsed">`;
-      html += `<button class="inst-toggle" onclick="this.parentElement.classList.toggle('collapsed')">`;
-      html += `▸ ${pair.instances.length}件のインスタンス`;
-      html += `</button>`;
-      html += `<div class="inst-list">`;
+      // Click hint
+      html += `<span class="pcard-click-hint">click</span>`;
+
+      // Instance drawer
+      html += `<div class="pcard-inst"><div class="pcard-inst-inner">`;
       pair.instances.forEach(inst => {
         const roleJa = ROLE_JA[inst.role] || inst.role;
-        const fromReg = regionLabels[inst.from.charAt(0)] || '';
+        const fromReg = regionShorts[inst.from.charAt(0)] || '';
         html += `<div class="inst-row">`;
-        html += `<span class="reg-badge">${fromReg}</span>`;
+        html += `<span class="reg-dot" style="width:14px;height:14px;font-size:6px;">${fromReg}</span>`;
         html += `<span class="inst-id">${inst.from}</span>`;
         html += `<span class="inst-label">${inst.fromLabel}</span>`;
         html += `<span class="inst-arrow">→</span>`;
@@ -473,22 +496,39 @@ async function init() {
         html += `<span class="inst-label">${inst.toLabel}</span>`;
         html += `<span class="role-label">${roleJa}</span>`;
         html += `</div>`;
-        // Show pattern text as detail
         if (inst.srcPattern || inst.tgtPattern) {
           html += `<div class="inst-pattern">${highlightSlots(inst.srcPattern)} → ${highlightSlots(inst.tgtPattern)}</div>`;
         }
       });
-      html += `</div></div>`; // inst-list, instances
-      html += `<div class="pattern-id">${pid}</div>`;
-      html += `</div>`; // pattern-card
-    });
+      html += `</div></div>`; // inst-inner, inst
 
+      html += `</div>`; // pcard
+    });
+    html += `</div>`; // card-grid
     html += `</div>`; // trans-section
+
+    transitionStats[transKey] = sectionInst;
   });
 
   catalog.innerHTML = html;
+
+  // Stats bar
   const regList = Object.values(regionLabels).join('・');
-  document.getElementById('info').textContent = `${regList} — ${totalPairs} パターン / ${G.nodes.length} ノード / ${G.edges.length} エッジ`;
+  document.getElementById('info').textContent = `${totalPairs} パターン`;
+
+  // Top transitions
+  const topTrans = Object.entries(transitionStats)
+    .sort((a, b) => b[1] - a[1]).slice(0, 5)
+    .map(([k, v]) => {
+      const [s, t] = k.split('→');
+      return `<span style="color:${(FW[s]||{}).color}">${(FW[s]||{}).shape}</span>→<span style="color:${(FW[t]||{}).color}">${(FW[t]||{}).shape}</span> ${v}`;
+    }).join('&emsp;');
+
+  document.getElementById('stats').innerHTML =
+    `<span><strong>${Object.keys(regionLabels).length}</strong> リージョン（${regList}）</span>` +
+    `<span><strong>${G.nodes.length}</strong> ノード / <strong>${G.edges.length}</strong> エッジ</span>` +
+    `<span><strong>${totalPairs}</strong> パターン</span>` +
+    `<span>頻出遷移: ${topTrans}</span>`;
 }
 
 function highlightSlots(text) {
