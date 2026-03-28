@@ -25,19 +25,6 @@
   }
   .page { max-width: 1600px; margin: 0 auto; padding: 24px 20px 80px; }
 
-  .page-nav {
-    display: flex; gap: 12px; margin-bottom: 8px; font-size: 12px;
-  }
-  .page-nav a {
-    color: var(--accent); text-decoration: none; padding: 3px 10px;
-    border: 1.5px solid var(--line); border-radius: 14px; transition: all .2s;
-  }
-  .page-nav a:hover { background: var(--accent); color: #fff; border-color: var(--accent); }
-  .page-nav-current {
-    padding: 3px 10px; border: 1.5px solid var(--accent); border-radius: 14px;
-    background: var(--accent); color: #fff; font-weight: 600;
-  }
-
   .header { margin-bottom: 12px; border-left: 4px solid var(--accent); padding-left: 16px; }
   h1 { font-size: 22px; color: var(--accent); letter-spacing: .06em; }
   .sub { margin-top: 3px; font-size: 12px; color: var(--muted); }
@@ -286,15 +273,7 @@
 </head>
 <body>
 <div class="page">
-  <nav class="page-nav">
-    <a href="demo_catalog.html">日本史</a>
-    <a href="demo_catalog_world.html">世界史</a>
-    <a href="demo_catalog_europe.html">欧州史</a>
-    <a href="demo_capitalism.html">資本主義の誕生</a>
-    <span class="page-nav-current">ブローデルの地中海</span>
-    <a href="demo_pattern_fwtype.html">パターン図鑑</a>
-    <a href="demo_pattern_catalog.html">遷移パターン</a>
-  </nav>
+  <nav id="page-nav"></nav>
   <div class="header">
     <h1>ブローデルの地中海</h1>
     <p class="sub">三層因果フレーム（地理的時間・社会的時間・事件的時間）― 15ノード・23エッジ</p>
@@ -514,7 +493,7 @@ const DATA = {
     {"from":"M05","to":"M06","role":"amplifies","note":"超国家的金融ネットワークが貨幣経済浸透を加速"},
     {"from":"M06","to":"M09","role":"amplifies","note":"価格革命がスペイン帝国財政の脆弱性を増幅"},
     {"from":"M06","to":"M13","role":"amplifies","note":"貨幣経済浸透が社会的摩擦を増大させモリスコ排斥に寄与"},
-    {"from":"M07","to":"M04","role":"suppresses","note":"レパント敗北がオスマンの西方拡張に地政学的上限を画す"},
+    {"from":"M07","to":"M08","role":"amplifies","note":"レパント後の正規艦隊制限が代理暴力としての海賊を激増させる"},
     {"from":"M08","to":"M09","role":"amplifies","note":"海賊による通商妨害がスペイン財政負担を増大"},
     {"from":"M09","to":"M13","role":"triggers","note":"帝国財政の窮迫がモリスコ追放の経済的動機を生む"},
     {"from":"M09","to":"M15","role":"amplifies","note":"スペイン財政崩壊が地中海経済重心の北海移行を加速"},

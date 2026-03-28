@@ -25,19 +25,6 @@
   }
   .page { max-width: 1600px; margin: 0 auto; padding: 24px 20px 80px; }
 
-  .page-nav {
-    display: flex; gap: 12px; margin-bottom: 8px; font-size: 12px;
-  }
-  .page-nav a {
-    color: var(--accent); text-decoration: none; padding: 3px 10px;
-    border: 1.5px solid var(--line); border-radius: 14px; transition: all .2s;
-  }
-  .page-nav a:hover { background: var(--accent); color: #fff; border-color: var(--accent); }
-  .page-nav-current {
-    padding: 3px 10px; border: 1.5px solid var(--accent); border-radius: 14px;
-    background: var(--accent); color: #fff; font-weight: 600;
-  }
-
   .header { margin-bottom: 12px; border-left: 4px solid var(--accent); padding-left: 16px; }
   h1 { font-size: 22px; color: var(--accent); letter-spacing: .06em; }
   .sub { margin-top: 3px; font-size: 12px; color: var(--muted); }
@@ -271,16 +258,7 @@
 </head>
 <body>
 <div class="page">
-  <nav class="page-nav">
-    <a href="demo_catalog.html">日本史</a>
-    <a href="demo_catalog_world.html">世界史</a>
-    <a href="demo_catalog_europe.html">欧州史</a>
-    <span class="page-nav-current">資本主義の誕生</span>
-    <a href="demo_braudel.html">ブローデルの地中海</a>
-    <a href="demo_pattern_fwtype.html">パターン図鑑</a>
-    <a href="demo_pattern_catalog.html">遷移パターン</a>
-    <a href="demo_slot_taxonomy.html">スロット分類</a>
-  </nav>
+  <nav id="page-nav"></nav>
   <div class="header">
     <h1>資本主義の誕生</h1>
     <p class="sub">封建制(8c)→自由放任経済(19c) ― 単体フレームワーク表現 ― 12ノード・16エッジ</p>

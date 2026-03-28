@@ -20,7 +20,7 @@
     background: linear-gradient(160deg, #f5efe3 0%, #ede5d5 100%);
     color: var(--ink); min-height: 100vh;
   }
-  .page { max-width: 1100px; margin: 0 auto; padding: 24px 20px 80px; }
+  .page { max-width: 1600px; margin: 0 auto; padding: 24px 20px 80px; }
   .header { margin-bottom: 20px; border-left: 4px solid var(--accent); padding-left: 16px; }
   h1 { font-size: 20px; color: var(--accent); letter-spacing: .06em; }
   .sub { margin-top: 3px; font-size: 12px; color: var(--muted); }
@@ -94,29 +94,11 @@
   }
   .summary-table .num { text-align: right; font-family: monospace; }
 
-  .page-nav {
-    display: flex; gap: 12px; margin-bottom: 8px; font-size: 12px;
-  }
-  .page-nav a {
-    color: var(--accent); text-decoration: none; padding: 3px 10px;
-    border: 1.5px solid var(--line); border-radius: 14px; transition: all .2s;
-  }
-  .page-nav a:hover { background: var(--accent); color: #fff; border-color: var(--accent); }
-  .page-nav-current {
-    padding: 3px 10px; border: 1.5px solid var(--accent); border-radius: 14px;
-    background: var(--accent); color: #fff; font-weight: 600;
-  }
 </style>
 </head>
 <body>
 <div class="page">
-  <nav class="page-nav">
-    <a href="demo_catalog.html">日本史</a>
-    <a href="demo_catalog_world.html">世界史</a>
-    <a href="demo_pattern_catalog.html">パターン図鑑</a>
-    <span class="page-nav-current">スロット分類</span>
-    <a href="demo_taxonomy_reference.html">用語リファレンス</a>
-  </nav>
+  <nav id="page-nav"></nav>
   <div class="header">
     <h1>スロット分類一覧</h1>
     <p class="sub">パターン文の {スロット} を7大分類・27小分類に整理</p>
@@ -128,6 +110,7 @@
   <div id="catalog"></div>
 </div>
 
+<script src="shared.js"></script>
 <script>
 const DATA_URL = '../data/energyabs_v2.json';
 const TAXO_URL = '../data/slot_taxonomy.json';

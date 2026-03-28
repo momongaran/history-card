@@ -2,8 +2,8 @@
   "meta": {
     "version": "1.0",
     "description": "EnergyAbs有向グラフ 中国史v1: 殷周(前1600)→中華人民共和国(1949) 約3500年の因果フロー",
-    "nodeCount": 54,
-    "edgeCount": 88,
+    "nodeCount": 55,
+    "edgeCount": 89,
     "created": "2026-03-21"
   },
   "nodes": [
@@ -1085,6 +1085,24 @@
       "bgType": "硬直化",
       "releaseType": "構造変化",
       "patternType": "硬直化→構造変化"
+    },
+    {
+      "id": "C001b",
+      "label": "殷の苛政と紂王の暴政",
+      "summary": "殷王朝末期の紂王による暴政と酒池肉林。諸侯の離反と周の文王・武王による徳治の対比が革命の正統性基盤を形成",
+      "actors": [
+        "紂王",
+        "周の文王",
+        "周の武王"
+      ],
+      "intensity": "high",
+      "timescale": "medium",
+      "era": "前11世紀",
+      "fwType": "conflict",
+      "bgType": "制度疲弊",
+      "releaseType": "対立蓄積",
+      "pattern": "{既存王朝}の苛政が{諸侯}の離反と{挑戦者}の正統性を蓄積する",
+      "patternType": "制度疲弊→対立蓄積"
     }
   ],
   "edges": [
@@ -1205,7 +1223,7 @@
     {
       "from": "C015b",
       "to": "C016",
-      "role": "triggers",
+      "role": "amplifies",
       "note": "金の軍事圧力が靖康の変を引き起こす"
     },
     {
@@ -1615,6 +1633,12 @@
       "to": "C039",
       "role": "sustains",
       "note": "国共分裂の対立が内戦を不可避にした"
+    },
+    {
+      "from": "C001b",
+      "to": "C001",
+      "role": "amplifies",
+      "note": "殷の苛政への不満蓄積が周による革命を増幅"
     }
   ]
 }

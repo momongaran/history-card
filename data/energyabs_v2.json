@@ -3,7 +3,7 @@
     "version": "2.0",
     "description": "EnergyAbs有向グラフ v2: 継体天皇(5c)→オイルショック(1975) 約1500年の因果フロー",
     "nodeCount": 159,
-    "edgeCount": 277,
+    "edgeCount": 278,
     "created": "2026-03-18",
     "updated": "2026-03-20"
   },
@@ -3786,7 +3786,7 @@
       "id": "E100",
       "from": "N061",
       "to": "N062",
-      "role": "triggers",
+      "role": "amplifies",
       "note": "武士の政治的動員が常態化した状態で皇位争いが武力解決に至った"
     },
     {
@@ -4115,7 +4115,7 @@
       "id": "E147",
       "from": "N097",
       "to": "N098",
-      "role": "triggers",
+      "role": "amplifies",
       "note": "武士の困窮と幕府財政悪化が享保改革を必然化した"
     },
     {
@@ -4388,7 +4388,7 @@
       "id": "E186",
       "from": "N124",
       "to": "N125",
-      "role": "triggers",
+      "role": "amplifies",
       "note": "軍部の政治進出が満州事変の政治的許容を作った"
     },
     {
@@ -4423,7 +4423,7 @@
       "id": "E191",
       "from": "N127",
       "to": "N122",
-      "role": "triggers",
+      "role": "amplifies",
       "note": "米騒動が政党内閣と普選運動を加速した"
     },
     {
@@ -4514,7 +4514,7 @@
       "id": "E204",
       "from": "N137",
       "to": "N139",
-      "role": "transforms",
+      "role": "amplifies",
       "note": "高度成長の成功がオイルショックへの脆弱性を生んだ"
     },
     {
@@ -4969,6 +4969,12 @@
       "to": "N147",
       "role": "amplifies",
       "note": "長期不況下の社会不安が強いリーダーシップへの期待を醸成"
+    },
+    {
+      "from": "N004",
+      "to": "N002",
+      "role": "amplifies",
+      "note": "ヤマト中枢豪族の分立と合議政治が大王継承の不安定化を増幅"
     }
   ]
 }

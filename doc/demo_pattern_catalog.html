@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>抽象パターン図鑑</title>
+<title>パターン図鑑詳細</title>
 <style>
   :root {
     --bg: #f0ebe0;
@@ -25,19 +25,6 @@
   h1 { font-size: 20px; color: var(--accent); letter-spacing: .06em; }
   .sub { margin-top: 3px; font-size: 12px; color: var(--muted); }
 
-  /* Nav */
-  .page-nav {
-    display: flex; gap: 12px; margin-bottom: 8px; font-size: 12px;
-  }
-  .page-nav a {
-    color: var(--accent); text-decoration: none; padding: 3px 10px;
-    border: 1.5px solid var(--line); border-radius: 14px; transition: all .2s;
-  }
-  .page-nav a:hover { background: var(--accent); color: #fff; border-color: var(--accent); }
-  .page-nav-current {
-    padding: 3px 10px; border: 1.5px solid var(--accent); border-radius: 14px;
-    background: var(--accent); color: #fff; font-weight: 600;
-  }
 
   /* Controls */
   .controls {
@@ -225,19 +212,9 @@
 </head>
 <body>
 <div class="page">
-  <nav class="page-nav">
-    <a href="demo_catalog.html">日本史</a>
-    <a href="demo_catalog_world.html">世界史</a>
-    <a href="demo_catalog_europe.html">欧州史</a>
-    <a href="demo_capitalism.html">資本主義の誕生</a>
-    <a href="demo_braudel.html">ブローデルの地中海</a>
-    <a href="demo_pattern_fwtype.html">パターン図鑑</a>
-    <span class="page-nav-current">遷移パターン</span>
-    <a href="demo_slot_taxonomy.html">スロット分類</a>
-    <a href="demo_taxonomy_reference.html">用語リファレンス</a>
-  </nav>
+  <nav id="page-nav"></nav>
   <div class="header">
-    <h1>抽象パターン図鑑</h1>
+    <h1>パターン図鑑詳細</h1>
     <p class="sub">因果フレームの抽象骨格 ― 全リージョンのパターン遷移カード</p>
   </div>
   <div class="stats-bar" id="stats"></div>
@@ -248,6 +225,7 @@
   <div id="catalog"></div>
 </div>
 
+<script src="shared.js"></script>
 <script>
 const DATA_SOURCES = [
   { url: '../data/energyabs_v2.json', label: '日本', prefix: 'N', short: '日' },
@@ -302,19 +280,7 @@ const FW = {
   'reform':      { color: '#3a7a8a', shape: '✦', label: '改革' },
 };
 
-const BG_TYPE_STYLES = {
-  '構造変化': { icon: '⇄', color: '#5a8a5a' },
-  '武力衝突': { icon: '⚔', color: '#c45a3c' },
-  '勢力対立': { icon: '⚡', color: '#c8960a' },
-  '制度':     { icon: '■', color: '#3a6a9a' },
-  '外生':     { icon: '☄', color: '#c47a3a' },
-  '権力集中': { icon: '◆', color: '#6a3a8a' },
-  '改革':     { icon: '✦', color: '#3a7a8a' },
-  '崩壊':     { icon: '⊘', color: '#8a3a3a' },
-  '外圧':     { icon: '⟐', color: '#8a6a3a' },
-  '経済拡大': { icon: '▲', color: '#5a8a3a' },
-  '硬直化':   { icon: '▰', color: '#6a6058' },
-};
+// BG_TYPE_STYLES は shared.js で定義済み
 
 const ROLE_JA = {
   amplifies: '圧↑', triggers: '引き金', transforms: '変換',

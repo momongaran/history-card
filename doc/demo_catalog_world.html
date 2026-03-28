@@ -24,9 +24,9 @@
     color: var(--ink);
     min-height: 100vh;
   }
-  .page { max-width: 100%; margin: 0 auto; padding: 16px 16px 80px; }
-  .header { margin-bottom: 10px; border-left: 4px solid var(--accent); padding-left: 16px; }
-  h1 { font-size: 20px; color: var(--accent); letter-spacing: .06em; }
+  .page { max-width: 1600px; margin: 0 auto; padding: 24px 20px 80px; }
+  .header { margin-bottom: 12px; border-left: 4px solid var(--accent); padding-left: 16px; }
+  h1 { font-size: 22px; color: var(--accent); letter-spacing: .06em; }
   .sub { margin-top: 3px; font-size: 12px; color: var(--muted); }
 
   /* Controls */
@@ -280,33 +280,11 @@
   @media (max-width: 1200px) { :root { --block-w: 240px; } }
   @media (max-width: 840px) { :root { --block-w: 100%; } .era-lane-col { max-width: 100%; } }
 
-  .page-nav {
-    display: flex; gap: 12px; margin-bottom: 8px; font-size: 12px;
-  }
-  .page-nav a {
-    color: var(--accent); text-decoration: none; padding: 3px 10px;
-    border: 1.5px solid var(--line); border-radius: 14px; transition: all .2s;
-  }
-  .page-nav a:hover { background: var(--accent); color: #fff; border-color: var(--accent); }
-  .page-nav-current {
-    padding: 3px 10px; border: 1.5px solid var(--accent); border-radius: 14px;
-    background: var(--accent); color: #fff; font-weight: 600;
-  }
 </style>
 </head>
 <body>
 <div class="page">
-  <nav class="page-nav">
-    <a href="demo_catalog.html">日本史</a>
-    <span class="page-nav-current">世界史</span>
-    <a href="demo_catalog_europe.html">欧州史</a>
-    <a href="demo_capitalism.html">資本主義の誕生</a>
-    <a href="demo_braudel.html">ブローデルの地中海</a>
-    <a href="demo_pattern_fwtype.html">パターン図鑑</a>
-    <a href="demo_pattern_catalog.html">遷移パターン</a>
-    <a href="demo_slot_taxonomy.html">スロット分類</a>
-    <a href="demo_taxonomy_reference.html">用語リファレンス</a>
-  </nav>
+  <nav id="page-nav"></nav>
   <div class="header">
     <h1>世界史</h1>
     <p class="sub" id="subtitle">EnergyAbsモデル ― 4文明圏レーン表示</p>

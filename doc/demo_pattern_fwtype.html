@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>パターン図鑑 ― 結果タイプ別</title>
+<title>パターン図鑑</title>
 <style>
   :root {
     --bg: #f0ebe0;
@@ -24,18 +24,6 @@
   .header { margin-bottom: 16px; border-left: 4px solid var(--accent); padding-left: 16px; }
   h1 { font-size: 20px; color: var(--accent); letter-spacing: .06em; }
   .sub { margin-top: 3px; font-size: 12px; color: var(--muted); }
-
-  /* Nav */
-  .page-nav { display: flex; gap: 12px; margin-bottom: 8px; font-size: 12px; }
-  .page-nav a {
-    color: var(--accent); text-decoration: none; padding: 3px 10px;
-    border: 1.5px solid var(--line); border-radius: 14px; transition: all .2s;
-  }
-  .page-nav a:hover { background: var(--accent); color: #fff; border-color: var(--accent); }
-  .page-nav-current {
-    padding: 3px 10px; border: 1.5px solid var(--accent); border-radius: 14px;
-    background: var(--accent); color: #fff; font-weight: 600;
-  }
 
   /* Stats bar */
   .stats-bar {
@@ -212,19 +200,9 @@
 </head>
 <body>
 <div class="page">
-  <nav class="page-nav">
-    <a href="demo_catalog.html">日本史</a>
-    <a href="demo_catalog_world.html">世界史</a>
-    <a href="demo_catalog_europe.html">欧州史</a>
-    <a href="demo_capitalism.html">資本主義の誕生</a>
-    <a href="demo_braudel.html">ブローデルの地中海</a>
-    <span class="page-nav-current">パターン図鑑</span>
-    <a href="demo_pattern_catalog.html">遷移パターン</a>
-    <a href="demo_slot_taxonomy.html">スロット分類</a>
-    <a href="demo_taxonomy_reference.html">用語リファレンス</a>
-  </nav>
+  <nav id="page-nav"></nav>
   <div class="header">
-    <h1>パターン図鑑 ― 結果タイプ別</h1>
+    <h1>パターン図鑑</h1>
     <p class="sub">ノードの解放結果(fwType)で分類 ― どんな背景がどんな結果を生むか</p>
   </div>
   <div class="stats-bar" id="stats"></div>
@@ -232,6 +210,7 @@
   <div id="catalog"></div>
 </div>
 
+<script src="shared.js"></script>
 <script>
 const DATA_SOURCES = [
   { url: '../data/energyabs_v2.json', label: '日本', prefix: 'N', short: '日' },

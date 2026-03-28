@@ -95,6 +95,138 @@ function nodePatId(n) {
   return PAT_ID_MAP[n.fwType + '|' + patKey(n)] || null;
 }
 
+// ── ページナビゲーション（共通） ──
+const PAGE_NAV = [
+  { href: 'demo_catalog.html',            label: '日本史' },
+  { href: 'demo_catalog_world.html',      label: '世界史' },
+  { href: 'demo_catalog_europe.html',     label: '欧州史' },
+  { href: 'demo_pattern_fwtype.html',     label: 'パターン図鑑' },
+  { href: 'demo_slot_taxonomy.html',      label: 'スロット分類' },
+  { href: 'demo_taxonomy_reference.html', label: '用語・分類リファレンス' },
+];
+
+// テストページ（パスワード保護）
+const TEST_PAGES = [
+  { href: 'demo_capitalism.html',       label: '資本主義の誕生' },
+  { href: 'demo_braudel.html',          label: 'ブローデルの地中海' },
+  { href: 'demo_pattern_catalog.html',  label: 'パターン図鑑詳細' },
+  { href: 'demo_catalog_fallacy.html',  label: 'ファラシー' },
+];
+const TEST_PASSWORD = 'history2026';
+
+// ナビCSS注入（各HTMLから重複定義を排除するため）
+(function injectNavCSS() {
+  if (document.getElementById('page-nav-css')) return;
+  const style = document.createElement('style');
+  style.id = 'page-nav-css';
+  style.textContent = `
+    .page-nav {
+      display:flex; gap:12px; font-size:12px; flex-wrap:wrap;
+      max-width:1600px; margin:0 auto; padding:24px 20px 8px;
+      align-items:center;
+    }
+    .page-nav a {
+      color:var(--accent,#5c3d1e); text-decoration:none; padding:3px 10px;
+      border:1.5px solid var(--line,#c9b89e); border-radius:14px; transition:all .2s;
+    }
+    .page-nav a:hover { background:var(--accent,#5c3d1e); color:#fff; border-color:var(--accent,#5c3d1e); }
+    .page-nav-current {
+      padding:3px 10px; border:1.5px solid var(--accent,#5c3d1e); border-radius:14px;
+      background:var(--accent,#5c3d1e); color:#fff; font-weight:600;
+    }
+    .test-menu-wrap { position:relative; display:inline-block; }
+    .test-menu-btn {
+      color:var(--muted,#6a6058); padding:3px 10px; cursor:pointer;
+      border:1.5px dashed var(--line,#c9b89e); border-radius:14px;
+      font-size:12px; background:none; font-family:inherit; transition:all .2s;
+    }
+    .test-menu-btn:hover { border-color:var(--accent,#5c3d1e); color:var(--accent,#5c3d1e); }
+    .test-menu-drop {
+      display:none; position:absolute; top:calc(100% + 6px); left:0; z-index:200;
+      background:#fffdf8; border:1.5px solid var(--line,#c9b89e); border-radius:10px;
+      padding:8px 0; min-width:180px; box-shadow:0 4px 16px rgba(40,28,14,.12);
+    }
+    .test-menu-drop.open { display:block; }
+    .test-menu-drop a {
+      display:block; padding:6px 16px; font-size:12px; border:none; border-radius:0;
+      color:var(--ink,#28231e); text-decoration:none;
+    }
+    .test-menu-drop a:hover { background:#f0ebe0; color:var(--accent,#5c3d1e); }
+  `;
+  document.head.appendChild(style);
+})();
+
+function renderPageNav() {
+  const el = document.getElementById('page-nav');
+  if (!el) return;
+  // ナビを .page の外に移動（各ページの .page の padding/max-width に依存しない）
+  const page = el.closest('.page');
+  if (page && page.parentNode) {
+    page.parentNode.insertBefore(el, page);
+  }
+  const here = location.pathname.split('/').pop();
+  const isTestPage = TEST_PAGES.some(p => p.href === here);
+
+  // 通常ナビ
+  let html = PAGE_NAV.map(p => {
+    if (p.href === here) {
+      return `<span class="page-nav-current">${p.label}</span>`;
+    }
+    return `<a href="${p.href}">${p.label}</a>`;
+  }).join('\n    ');
+
+  // テストメニュー
+  const testItems = TEST_PAGES.map(p => {
+    if (p.href === here) {
+      return `<span style="display:block;padding:6px 16px;font-size:12px;font-weight:600;color:var(--accent,#5c3d1e)">${p.label}</span>`;
+    }
+    return `<a href="#" data-test-href="${p.href}">${p.label}</a>`;
+  }).join('');
+
+  html += `
+    <span class="test-menu-wrap">
+      <button class="test-menu-btn" id="test-menu-toggle">${isTestPage ? '◉' : '○'} テスト</button>
+      <div class="test-menu-drop" id="test-menu-drop">${testItems}</div>
+    </span>`;
+
+  el.className = 'page-nav';
+  el.innerHTML = html;
+
+  // テストメニュー開閉
+  const toggle = document.getElementById('test-menu-toggle');
+  const drop = document.getElementById('test-menu-drop');
+  toggle.addEventListener('click', (ev) => {
+    ev.stopPropagation();
+    drop.classList.toggle('open');
+  });
+  document.addEventListener('click', () => drop.classList.remove('open'));
+
+  // パスワード認証してから遷移
+  drop.querySelectorAll('a[data-test-href]').forEach(a => {
+    a.addEventListener('click', (ev) => {
+      ev.preventDefault();
+      if (sessionStorage.getItem('test_auth') === '1') {
+        location.href = a.dataset.testHref;
+        return;
+      }
+      const pw = prompt('テストページのパスワードを入力してください');
+      if (pw === TEST_PASSWORD) {
+        sessionStorage.setItem('test_auth', '1');
+        location.href = a.dataset.testHref;
+      } else if (pw !== null) {
+        alert('パスワードが違います');
+      }
+    });
+  });
+}
+
+// 自動実行: DOM準備後にナビを描画
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', renderPageNav);
+} else {
+  renderPageNav();
+}
+
 async function buildPatternIds() {
   const rs = await Promise.allSettled(
     ALL_SOURCES.map(u => fetch(u).then(r => r.json()))

@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>日本史 ― 全ノード同一ブロック表示</title>
+<title>愛はファラシー ― 因果フレーム図鑑</title>
 <style>
   :root {
     --bg: #f0ebe0;
@@ -66,10 +66,6 @@
     pointer-events: none; z-index: 2;
   }
   .edge-line { fill: none; stroke-width: 1.4; opacity: 0.45; stroke-dasharray: 5 4; stroke: #b0a898; }
-  .edge-dot { stroke: none; fill: #b0a898; opacity: 0.5; }
-  .edge-dot.dim { opacity: 0.08; }
-  .edge-halo { pointer-events: none; }
-  .edge-halo.dim { opacity: 0.08; }
   .edge-head { stroke: none; fill: #b0a898; opacity: 0.6; }
 
   /* role edge colors */
@@ -79,12 +75,6 @@
   .edge-line.r-sustains   { stroke: #3a8a3a; }
   .edge-line.r-suppresses { stroke: #7a3a8a; }
   .edge-line.r-inherits   { stroke: #3a7a8a; }
-  .edge-dot.r-amplifies  { fill: #c8960a; }
-  .edge-dot.r-triggers   { fill: #c45a3c; }
-  .edge-dot.r-transforms { fill: #3a6a9a; }
-  .edge-dot.r-sustains   { fill: #3a8a3a; }
-  .edge-dot.r-suppresses { fill: #7a3a8a; }
-  .edge-dot.r-inherits   { fill: #3a7a8a; }
   .edge-head.r-amplifies  { fill: #c8960a; }
   .edge-head.r-triggers   { fill: #c45a3c; }
   .edge-head.r-transforms { fill: #3a6a9a; }
@@ -112,12 +102,12 @@
   /* Block row */
   .block-row {
     position: relative; z-index: 1;
-    display: flex; gap: 16px; margin-bottom: 20px;
+    display: flex; gap: 16px; margin-bottom: 12px;
     flex-wrap: wrap;
     justify-content: center;
   }
 
-  /* ── The Block (同一サイズ) ── */
+  /* ── The Block ── */
   .block {
     width: var(--block-w);
     background: var(--paper);
@@ -133,11 +123,23 @@
   .block.hl { box-shadow: 0 0 0 5px rgba(92,61,30,.25); filter: brightness(0.97); }
   .block.source-hl { box-shadow: 0 0 0 6px rgba(200,150,10,.4); transform: scale(1.02); transition: all .15s; }
   .block.dim { opacity: 0.2; }
-  /* border-left removed: fwType color is now shown via full border-color */
+  .block-fw-label {
+    position: absolute; bottom: 5px; left: 10px;
+    font-size: 10px; font-weight: 600;
+    display: flex; align-items: center; gap: 4px;
+  }
+  .block-fw-label .fw-icon {
+    width: 16px; height: 16px; border-radius: 4px;
+    display: inline-flex; align-items: center; justify-content: center;
+    font-size: 9px; flex-shrink: 0;
+    border: 1px solid; opacity: 0.9;
+    font-variant-emoji: text;
+  }
+  .block-fw-label .fw-text { color: #a09080; }
 
   .block-body { padding: 12px 14px 24px; display: flex; flex-direction: column; gap: 6px; }
 
-  /* Inner area: incoming edges as reference slots */
+  /* Inner area: incoming edges */
   .block-inner {
     border: 1.5px solid #ddd4c8;
     border-radius: 10px;
@@ -168,8 +170,6 @@
   }
   .ref-chip b { font-family: monospace; font-size: 10px; margin-right: 2px; }
   .ref-chip:hover { opacity: 0.8; }
-
-  /* ref-chip border color is set dynamically to match source block's cluster color */
 
   .role-arrow {
     display: inline; font-size: 9px; line-height: 1; margin-left: 2px;
@@ -213,25 +213,12 @@
     font-size: 11px; font-weight: 700; font-family: monospace;
     color: #b0a090; letter-spacing: .08em;
   }
-  .block-fw-label {
-    position: absolute; bottom: 5px; left: 10px;
-    font-size: 10px; font-weight: 600;
-    display: flex; align-items: center; gap: 4px;
-  }
-  .block-fw-label .fw-icon {
-    width: 16px; height: 16px; border-radius: 4px;
-    display: inline-flex; align-items: center; justify-content: center;
-    font-size: 9px; flex-shrink: 0;
-    border: 1px solid; opacity: 0.9;
-    font-variant-emoji: text;
-  }
-  .block-fw-label .fw-text { color: #a09080; }
   .block-era {
     font-size: 12px; font-weight: 700; color: #2a2520;
     letter-spacing: .03em; margin-bottom: 1px;
   }
 
-  /* Outgoing refs (bottom of block) */
+  /* Outgoing refs */
   .block-out {
     display: flex; gap: 4px; flex-wrap: wrap; margin-top: 2px;
   }
@@ -242,7 +229,7 @@
   }
   .out-chip:hover { color: #6a6058; border-color: #a89a88; }
 
-  /* Absorbed events (collapsible) */
+  /* Absorbed events */
   .absorbed-toggle {
     font-size: 10px; color: var(--muted); cursor: pointer;
     padding: 3px 8px; margin-top: 2px;
@@ -270,7 +257,7 @@
   .absorbed-item-era { font-weight: 600; color: #8a8070; min-width: 40px; white-space: nowrap; }
   .absorbed-item-label { color: var(--ink); }
 
-  /* Legend — floating */
+  /* Legend */
   .legend-float {
     position: sticky; top: 0; z-index: 100;
     background: var(--paper); border: 1px solid var(--line);
@@ -285,21 +272,13 @@
   .legend-item { display: flex; align-items: center; gap: 4px; }
   .legend-sw { width: 28px; height: 3px; border-radius: 2px; }
 
-  /* Filter controls row 2 */
+  /* Controls row 2 */
   .controls-row2 {
     display: flex; gap: 6px; margin-bottom: 12px; flex-wrap: wrap; align-items: center;
   }
   .controls-row2 .sep {
     width: 1px; height: 20px; background: var(--line); margin: 0 4px;
   }
-  .domain-btn {
-    font-family: inherit; font-size: 11px; padding: 4px 10px;
-    border: 1.5px solid var(--line); border-radius: 14px;
-    background: var(--paper); color: var(--muted); cursor: pointer; transition: all .2s;
-    font-weight: 600;
-  }
-  .domain-btn:hover { background: #e8e0d8; }
-  .domain-btn.active { color: #fff; border-color: transparent; }
   .fwtype-btn {
     font-family: inherit; font-size: 11px; padding: 3px 8px;
     border: 1.5px solid var(--line); border-radius: 12px;
@@ -319,99 +298,26 @@
   }
   .lookup-dir.active { background: var(--accent); color: #fff; border-color: var(--accent); }
 
-  /* ── Pattern Reverse Lookup Panel ── */
-  .plookup-toggle {
-    font-family: inherit; font-size: 12px; padding: 5px 14px;
-    border: 2px solid var(--accent); border-radius: 18px;
-    background: var(--paper); color: var(--accent); cursor: pointer;
-    font-weight: 700; transition: all .2s; margin-left: 8px;
+  /* Source info */
+  .source-info {
+    margin-top: 24px; padding: 16px; background: var(--paper);
+    border: 1px solid var(--line); border-radius: 12px;
+    font-size: 12px; color: var(--muted); line-height: 1.7;
   }
-  .plookup-toggle:hover, .plookup-toggle.active {
-    background: var(--accent); color: #fff;
-  }
-  .plookup-panel {
-    display: none; position: fixed; top: 0; right: 0; bottom: 0;
-    width: min(480px, 90vw); z-index: 200;
-    background: var(--paper); border-left: 2px solid var(--line);
-    box-shadow: -4px 0 24px rgba(40,28,14,.12);
-    overflow-y: auto; padding: 20px;
-    font-size: 13px;
-  }
-  .plookup-panel.open { display: block; }
-  .plookup-header {
-    display: flex; align-items: center; gap: 10px; margin-bottom: 14px;
-  }
-  .plookup-header h2 { font-size: 16px; color: var(--accent); flex: 1; }
-  .plookup-close {
-    background: none; border: 1px solid var(--line); border-radius: 50%;
-    width: 28px; height: 28px; cursor: pointer; font-size: 16px;
-    color: var(--muted); display: flex; align-items: center; justify-content: center;
-  }
-  .plookup-close:hover { background: #f0e8e0; }
-  .plookup-query {
-    display: flex; gap: 6px; margin-bottom: 14px; flex-wrap: wrap; align-items: center;
-  }
-  .plookup-query label { font-size: 11px; color: var(--muted); font-weight: 600; }
-  .plookup-query select, .plookup-query input {
-    font-family: inherit; font-size: 12px; padding: 4px 8px;
-    border: 1.5px solid var(--line); border-radius: 10px;
-    background: #fff; color: var(--ink);
-  }
-  .plookup-query input { flex: 1; min-width: 120px; }
-  .plookup-dir-btns { display: flex; gap: 4px; }
-  .plookup-dir-btn {
-    font-family: inherit; font-size: 11px; padding: 3px 10px;
-    border: 1.5px solid var(--line); border-radius: 12px;
-    background: var(--paper); color: var(--muted); cursor: pointer; transition: all .2s;
-  }
-  .plookup-dir-btn.active { background: var(--accent); color: #fff; border-color: var(--accent); }
-  .plookup-results { margin-top: 10px; }
-  .plookup-group {
-    margin-bottom: 16px; padding: 10px; border: 1px solid #e8e0d8;
-    border-radius: 10px; background: #faf7f0;
-  }
-  .plookup-group-header {
-    font-size: 12px; font-weight: 700; color: var(--ink);
-    margin-bottom: 6px; line-height: 1.5;
-    display: flex; align-items: baseline; gap: 6px;
-  }
-  .plookup-count {
-    font-size: 10px; font-weight: 400; color: var(--muted);
-    background: #e8e0d8; border-radius: 8px; padding: 1px 6px;
-  }
-  .plookup-instances {
-    display: flex; flex-direction: column; gap: 4px; margin-top: 4px;
-  }
-  .plookup-inst {
-    font-size: 11px; color: var(--muted); cursor: pointer;
-    padding: 3px 8px; border-radius: 6px; transition: background .15s;
-    display: flex; gap: 6px; align-items: baseline;
-  }
-  .plookup-inst:hover { background: #ede5d8; }
-  .plookup-inst-id { font-family: monospace; font-weight: 600; color: #b0a090; min-width: 30px; }
-  .plookup-inst-label { color: var(--ink); }
-  .plookup-inst-role { font-size: 10px; color: #c8960a; }
-  .plookup-inst-arrow { color: var(--muted); font-size: 10px; }
-  .plookup-inst-target { font-size: 10px; color: var(--muted); }
-  .plookup-summary {
-    font-size: 11px; color: var(--muted); margin-bottom: 12px;
-    padding: 8px 10px; background: #f0ebe0; border-radius: 8px;
-  }
-  .plookup-empty { font-size: 12px; color: var(--muted); text-align: center; padding: 40px 0; }
+  .source-info strong { color: var(--ink); }
 
   @media (max-width: 840px) {
     :root { --block-w: 100%; }
     .block { max-width: 460px; }
   }
-
 </style>
 </head>
 <body>
 <div class="page">
   <nav id="page-nav"></nav>
   <div class="header">
-    <h1>日本史</h1>
-    <p class="sub">EnergyAbsモデル ― 磐井の乱(527)→幕藩体制確立(1615) ― 約1100年の因果フロー</p>
+    <h1>愛はファラシー</h1>
+    <p class="sub">Max Shulman "Love is a Fallacy" (1951) ― 論理教育の反転構造を因果フレームで再構成</p>
   </div>
   <div class="controls">
     <button class="active" onclick="resetView(this)">全表示</button>
@@ -419,124 +325,69 @@
     <button onclick="filterRole('triggers',this)">triggers</button>
     <button onclick="filterRole('transforms',this)">transforms</button>
     <button onclick="filterRole('sustains',this)">sustains</button>
-    <button class="plookup-toggle" id="plookup-btn" onclick="togglePatternLookup()">パターン逆引き</button>
+    <button onclick="filterRole('suppresses',this)">suppresses</button>
     <button onclick="toggleLegend()" id="legend-btn" style="margin-left:auto">凡例 ▶</button>
     <span class="ctrl-info" id="info"></span>
   </div>
   <div class="controls-row2" id="controls-row2"></div>
   <div class="legend-float collapsed" id="legend-panel">
     <div class="legend">
-      <div class="legend-item"><div class="legend-sw" style="background:#b0a898"></div>同一性リンク（点線）</div>
-      <div class="legend-item" style="margin-left: 8px; border-left: 2px solid #ddd; padding-left: 8px;">▶ 背景の作用:</div>
+      <div class="legend-item"><div class="legend-sw" style="background:#b0a898"></div>因果リンク（点線）</div>
+      <div class="legend-item" style="margin-left: 8px; border-left: 2px solid #ddd; padding-left: 8px;">エッジのrole:</div>
       <div class="legend-item"><span style="color:#c8960a; font-weight:600">▶</span> 圧を高めた</div>
       <div class="legend-item"><span style="color:#c45a3c; font-weight:600">▶</span> 引き金</div>
       <div class="legend-item"><span style="color:#3a6a9a; font-weight:600">▶</span> 構造を変えた</div>
       <div class="legend-item"><span style="color:#3a8a3a; font-weight:600">▶</span> 基盤を支えた</div>
       <div class="legend-item"><span style="color:#7a3a8a; font-weight:600">▶</span> 抑制した</div>
-      <div class="legend-item"><span style="color:#3a7a8a; font-weight:600">▶</span> 継承した</div>
     </div>
     <div class="legend">
       <div class="legend-item" style="border-left: 2px solid #ddd; padding-left: 8px;">枠色 = 抽象FW型:</div>
-      <div class="legend-item"><span style="color:#c45a3c; font-weight:600">⚔</span> 武力衝突</div>
       <div class="legend-item"><span style="color:#c8960a; font-weight:600">▲</span> 対立蓄積</div>
       <div class="legend-item"><span style="color:#8a3a3a; font-weight:600">⊘</span> 崩壊</div>
       <div class="legend-item"><span style="color:#3a6a9a; font-weight:600">■</span> 制度化</div>
       <div class="legend-item"><span style="color:#6a3a8a; font-weight:600">◆</span> 権力確立</div>
-      <div class="legend-item"><span style="color:#c47a3a; font-weight:600">⚡</span> 外生衝撃</div>
       <div class="legend-item"><span style="color:#5a8a5a; font-weight:600">〜</span> 漸進変化</div>
       <div class="legend-item"><span style="color:#3a7a8a; font-weight:600">✦</span> 改革</div>
-    </div>
-    <div class="legend">
-      <div class="legend-item" style="border-left: 2px solid #ddd; padding-left: 8px;">意味領域:</div>
-      <div class="legend-item"><span style="display:inline-block;width:10px;height:10px;border-radius:3px;background:rgba(139,119,90,.25)"></span> 地面（構造）</div>
-      <div class="legend-item"><span style="display:inline-block;width:10px;height:10px;border-radius:3px;background:rgba(196,90,60,.25)"></span> 力学（アクター）</div>
-      <div class="legend-item"><span style="display:inline-block;width:10px;height:10px;border-radius:3px;background:rgba(58,122,138,.25)"></span> 意図（改革）</div>
-      <div class="legend-item"><span style="display:inline-block;width:10px;height:10px;border-radius:3px;background:rgba(196,122,58,.25)"></span> 外部（衝撃）</div>
     </div>
   </div>
   <div class="canvas" id="canvas">
     <svg id="edge-svg"></svg>
     <div id="flow"></div>
   </div>
-</div>
 
-<!-- Pattern Reverse Lookup Panel -->
-<div class="plookup-panel" id="plookup-panel">
-  <div class="plookup-header">
-    <h2>パターン逆引き</h2>
-    <button class="plookup-close" onclick="togglePatternLookup()">&times;</button>
+  <div class="source-info">
+    <strong>出典:</strong> Max Shulman, "Love is a Fallacy," <em>The Many Loves of Dobie Gillis</em>, Harper Modern Classics, 1951.<br>
+    <strong>分析:</strong> 物語の因果構造を EnergyAbs 有向グラフとして再構成。10ノード・15エッジ。<br>
+    <strong>着眼点:</strong> 注入した道具（論理学）が注入者自身を破壊する「反転構造」。同一の背景（知的優越感 F01）が計画の発動・推進・自壊のすべてを駆動する。
   </div>
-  <div class="plookup-query">
-    <label>結果の型:</label>
-    <select id="plookup-fwtype" onchange="runPatternLookup()">
-      <option value="">全て</option>
-    </select>
-    <label>キーワード:</label>
-    <input id="plookup-keyword" placeholder="例: 争い, 権力, 崩壊…" oninput="runPatternLookup()">
-  </div>
-  <div class="plookup-query">
-    <label>方向:</label>
-    <div class="plookup-dir-btns">
-      <button class="plookup-dir-btn active" id="pdir-bg" onclick="setPatternDir('bg')">← どんな背景が?</button>
-      <button class="plookup-dir-btn" id="pdir-result" onclick="setPatternDir('result')">→ どんな結果に?</button>
-    </div>
-  </div>
-  <div class="plookup-summary" id="plookup-summary"></div>
-  <div class="plookup-results" id="plookup-results"></div>
 </div>
 
 <script src="shared.js"></script>
 <script>
-const DATA_URL = '../data/energyabs_v2.json';
-let G = null;       // graph
-let NM = {};         // node map
-let EbyTo = {};      // edges grouped by target
-let EbyFrom = {};    // edges grouped by source
-let clusters = [];   // ordered cluster list
-let PATTERN_INDEX = {}; // node_id -> [P-IDs]
+const DATA_URL = '../data/energyabs_fallacy_v1.json';
+let G = null;
+let NM = {};
+let EbyTo = {};
+let EbyFrom = {};
+let clusters = [];
 let selectedNode = null;
 
-// Semantic domains (4 groups of fwTypes)
-const SEMANTIC_DOMAINS = {
-  '地面': { types: ['drift', 'institution', 'collapse'], color: 'rgba(139,119,90,.25)', colorSolid: '#8b7750' },
-  '力学': { types: ['conflict', 'battle', 'power'], color: 'rgba(196,90,60,.25)', colorSolid: '#c45a3c' },
-  '意図': { types: ['reform'], color: 'rgba(58,122,138,.25)', colorSolid: '#3a7a8a' },
-  '外部': { types: ['shock'], color: 'rgba(196,122,58,.25)', colorSolid: '#c47a3a' },
-};
-
-// fwType → domain background tint
-const DOMAIN_BG = {};
-Object.entries(SEMANTIC_DOMAINS).forEach(([name, d]) => {
-  d.types.forEach(t => { DOMAIN_BG[t] = d.color; });
-});
-
 async function init() {
-  const [res] = await Promise.all([fetch(DATA_URL), buildPatternIds()]);
+  const res = await fetch(DATA_URL);
   G = await res.json();
   G.nodes.forEach(n => NM[n.id] = n);
   G.edges.forEach(e => {
     (EbyTo[e.to] = EbyTo[e.to] || []).push(e);
     (EbyFrom[e.from] = EbyFrom[e.from] || []).push(e);
   });
-  // Load pattern index
-  try {
-    const piRes = await fetch('../data/pattern_index.json');
-    if (piRes.ok) { const pi = await piRes.json(); PATTERN_INDEX = pi.nodeIndex || {}; }
-  } catch(e) {}
 
-  // Ordered clusters + color map
   const seen = new Set();
   G.nodes.forEach(n => {
     if (!seen.has(n.cluster)) { seen.add(n.cluster); clusters.push(n.cluster); }
   });
-  // clusterColorMap no longer needed — border color is now by fwType
 
   document.getElementById('info').textContent = `${G.nodes.length} nodes / ${G.edges.length} edges`;
-
-  // Build controls row 2: domain buttons + fwType buttons + reverse lookup
   buildControlsRow2();
-  populateFwTypeSelect();
-
   renderAll();
 }
 
@@ -544,15 +395,10 @@ function buildControlsRow2() {
   const row = document.getElementById('controls-row2');
   let html = '';
 
-  // Domain buttons
-  Object.entries(SEMANTIC_DOMAINS).forEach(([name, d]) => {
-    html += `<button class="domain-btn" onclick="filterDomain('${name}',this)" style="border-color:${d.colorSolid}">${name}</button>`;
-  });
-
-  html += '<div class="sep"></div>';
-
   // fwType buttons
+  const usedTypes = new Set(G.nodes.map(n => n.fwType));
   Object.entries(FW_TYPE_STYLES).forEach(([type, s]) => {
+    if (!usedTypes.has(type)) return;
     html += `<button class="fwtype-btn" onclick="filterFwType('${type}',this)" style="border-color:${s.color}">${s.shape} ${s.label}</button>`;
   });
 
@@ -560,7 +406,6 @@ function buildControlsRow2() {
 
   // Reverse lookup
   html += '<select class="lookup-select" id="lookup-node" onchange="applyLookup()"><option value="">逆引き…</option>';
-  // Group by cluster
   clusters.forEach(cl => {
     const clName = cl.includes('_') ? cl.split('_').slice(1).join('_') : cl;
     html += `<optgroup label="${clName}">`;
@@ -591,14 +436,11 @@ function renderAll() {
 
     html += `<div class="cluster-header">${clIdx}. ${clName}<span class="cluster-era">${eraRange}</span></div>`;
 
-    // Layout: find nodes that can be side-by-side (same depth within cluster)
-    // Simple heuristic: nodes with no internal edges between them can be parallel
+    // Layout by internal topological depth
     const internalEdges = G.edges.filter(e => {
       const f = NM[e.from], t = NM[e.to];
       return f && t && f.cluster === cl && t.cluster === cl;
     });
-
-    // Build depth by internal topological order
     const depths = {};
     const inDeg = {};
     nodes.forEach(n => { depths[n.id] = 0; inDeg[n.id] = 0; });
@@ -613,7 +455,6 @@ function renderAll() {
       });
     }
 
-    // Group by depth
     const byDepth = {};
     nodes.forEach(n => {
       const d = depths[n.id] || 0;
@@ -632,7 +473,6 @@ function renderAll() {
 
   flow.innerHTML = html;
 
-  // Attach click handlers
   document.querySelectorAll('.block').forEach(el => {
     el.addEventListener('click', (evt) => {
       if (evt.target.closest('.ref-chip') || evt.target.closest('.out-chip')) return;
@@ -643,21 +483,18 @@ function renderAll() {
   requestAnimationFrame(drawEdges);
 }
 
-// Node ID → 3-digit display number (N035 → 035)
 function fmtId(nid) {
-  return nid.replace(/^[NW]/, '');
+  return nid.replace(/^[NWFM]/, '');
 }
 
 function renderBlock(n) {
   const incoming = EbyTo[n.id] || [];
   const outgoing = EbyFrom[n.id] || [];
-  const hasPat = n.pattern ? 'has-pattern' : '';
-
-  const fwStyle = FW_TYPE_STYLES[n.fwType] || FW_TYPE_STYLES['amplifier'];
-  let html = `<div class="block ${hasPat}" data-nid="${n.id}" id="blk-${n.id}" data-fwtype="${n.fwType || ''}" style="border-color:${fwStyle.color}">`;
+  const fwStyle = FW_TYPE_STYLES[n.fwType] || FW_TYPE_STYLES['drift'];
+  let html = `<div class="block" data-nid="${n.id}" id="blk-${n.id}" data-fwtype="${n.fwType || ''}" style="border-color:${fwStyle.color}">`;
   html += `<div class="block-body">`;
 
-  // Inner area: incoming edges as reference chips (border color = source block's cluster)
+  // Incoming edges as ref chips
   if (incoming.length > 0) {
     html += `<div class="block-inner">`;
     incoming.forEach(e => {
@@ -665,23 +502,20 @@ function renderBlock(n) {
       const srcNum = fmtId(e.from);
       const shortLabel = src ? (src.label.length > 14 ? src.label.slice(0, 12) + '…' : src.label) : e.from;
       const roleLabelsShort = { triggers: '引き金', amplifies: '圧↑', transforms: '変換', sustains: '基盤', suppresses: '抑制', inherits: '継承' };
-      const srcStyle = src ? (FW_TYPE_STYLES[src.fwType] || FW_TYPE_STYLES['amplifier']) : FW_TYPE_STYLES['amplifier'];
+      const srcStyle = src ? (FW_TYPE_STYLES[src.fwType] || FW_TYPE_STYLES['drift']) : FW_TYPE_STYLES['drift'];
       const chipColor = srcStyle.color;
-      html += `<span class="ref-chip" id="chip-${e.from}-${n.id}" style="border-color:${chipColor}" data-src="${e.from}" onclick="event.stopPropagation();flashAndScroll('${e.from}')" onmouseenter="hlSource('${e.from}',true)" onmouseleave="hlSource('${e.from}',false)" title="${src?.label || e.from}\n${roleLabelsShort[e.role] || e.role}"><b>${srcNum}</b> ${shortLabel}<span class="role-arrow r-${e.role}">▶</span></span>`;
+      html += `<span class="ref-chip" id="chip-${e.from}-${n.id}" style="border-color:${chipColor}" data-src="${e.from}" onclick="event.stopPropagation();flashAndScroll('${e.from}')" onmouseenter="hlSource('${e.from}',true)" onmouseleave="hlSource('${e.from}',false)" title="${src?.label || e.from}\n${roleLabelsShort[e.role] || e.role}: ${e.note}"><b>${srcNum}</b> ${shortLabel}<span class="role-arrow r-${e.role}">▶</span></span>`;
     });
     html += `</div>`;
-
-    // Role legend is now shown as color bars under each ref-chip
   } else {
     html += `<div class="block-inner empty">（起点）</div>`;
   }
 
-  // Era + Label
   html += `<div class="block-era">${n.era || ''}</div>`;
   html += `<div class="block-label">${n.label}</div>`;
-  // Summary
   html += `<div class="block-summary">${n.summary}</div>`;
-  // Absorbed events (collapsible)
+
+  // Absorbed events
   if (n.absorbed && n.absorbed.length > 0) {
     const aid = n.id + '-abs';
     html += `<div class="absorbed-toggle" onclick="event.stopPropagation();toggleAbsorbed('${aid}')">`;
@@ -693,17 +527,17 @@ function renderBlock(n) {
     });
     html += `</div>`;
   }
-  // Abstract layer: pattern + FW type
+
+  // Pattern
   html += `<div class="block-abstract">`;
-  const bgSt = BG_TYPE_STYLES[n.bgType] || {};
-  const bgIcon = bgSt.icon ? `<span style="color:${bgSt.color}" title="背景: ${n.bgType || ''}">${bgSt.icon}</span>` : '';
-  const fwIcon = `<span style="color:${fwStyle.color}" title="解放: ${fwStyle.label}">${fwStyle.shape}</span>`;
   html += `<div class="block-pattern">${n.pattern || ''}</div>`;
   html += `</div>`;
+
   // Actors
   if (n.actors && n.actors.length > 0) {
     html += `<div class="block-actors">${n.actors.map(a => `<span class="actor" onclick="event.stopPropagation();toggleActor('${a}')">${a}</span>`).join('')}</div>`;
   }
+
   // Outgoing refs
   if (outgoing.length > 0) {
     html += `<div class="block-out">`;
@@ -717,14 +551,12 @@ function renderBlock(n) {
   }
 
   html += `</div>`; // block-body
-  const _pid = nodePatId(n);
+
   const _bgSt = BG_TYPE_STYLES[n.bgType] || {};
   const _relSt = BG_TYPE_STYLES[n.releaseType] || {};
   const _bgIc = _bgSt.icon ? `<span class="fw-icon" style="color:${_bgSt.color};border-color:${_bgSt.color};background:${_bgSt.color}18">${_bgSt.icon}</span><span style="color:#c0b8a0;margin:0 1px">→</span>` : '';
   const _relIc = _relSt.icon ? `<span class="fw-icon" style="color:${_relSt.color};border-color:${_relSt.color};background:${_relSt.color}18">${_relSt.icon}</span>` : `<span class="fw-icon" style="color:${fwStyle.color};border-color:${fwStyle.color};background:${fwStyle.color}18">${fwStyle.shape}</span>`;
-  html += `<div class="block-fw-label">${_bgIc}${_relIc}<span class="fw-text">${fwStyle.label}</span>`;
-  if (_pid) html += `<a href="demo_pattern_fwtype.html#${_pid}" style="margin-left:4px;font-family:monospace;font-size:9px;color:#b0a090;text-decoration:none;border-bottom:1px dotted #c0b8a0;" title="パターン図鑑で表示">${_pid}</a>`;
-  html += `</div>`;
+  html += `<div class="block-fw-label">${_bgIc}${_relIc}<span class="fw-text">${fwStyle.label}</span></div>`;
   html += `<div class="block-id">${fmtId(n.id)}</div>`;
   html += `</div>`;
   return html;
@@ -742,24 +574,6 @@ function drawEdges() {
   svg.style.height = canvas.scrollHeight + 'px';
   svg.setAttribute('viewBox', `0 0 ${canvas.scrollWidth} ${canvas.scrollHeight}`);
 
-  // Pre-compute: for each target block, how many edges arrive and assign index
-  // so arrival points spread across the top of the block
-  const arrivalCount = {};
-  const arrivalIdx = {};
-  G.edges.forEach(e => {
-    arrivalCount[e.to] = (arrivalCount[e.to] || 0) + 1;
-  });
-  const arrivalCur = {};
-
-  // Similarly, spread departure points across bottom of source block
-  const departCount = {};
-  G.edges.forEach(e => {
-    departCount[e.from] = (departCount[e.from] || 0) + 1;
-  });
-  const departCur = {};
-
-  // Pass 1: compute all edge endpoints (block edge → ref-chip)
-  const edgeGeom = [];
   G.edges.forEach(e => {
     const fromEl = document.getElementById('blk-' + e.from);
     const chipEl = document.getElementById('chip-' + e.from + '-' + e.to);
@@ -773,7 +587,6 @@ function drawEdges() {
     const fromCX = fr.left + fr.width / 2 - cr.left + scrollL;
     const fromCY = fr.top + fr.height / 2 - cr.top + scrollT;
 
-    // Source block edge (nearest side to chip)
     let x1, y1;
     const fromTop = fr.top - cr.top + scrollT;
     const fromBot = fr.bottom - cr.top + scrollT;
@@ -785,7 +598,6 @@ function drawEdges() {
     else if (chipCX < fromL) { x1 = fromL; y1 = fromCY; }
     else { x1 = fromR; y1 = fromCY; }
 
-    // Chip edge (nearest side to source block)
     const chTop = ch.top - cr.top + scrollT;
     const chBot = ch.bottom - cr.top + scrollT;
     const chL = ch.left - cr.left + scrollL;
@@ -797,105 +609,75 @@ function drawEdges() {
     else if (fromCX < chL) { x2 = chL; y2 = chipCY; }
     else { x2 = chR; y2 = chipCY; }
 
+    const dy = y2 - y1;
     let d;
-    if (Math.abs(y2 - y1) < 20) {
+    if (Math.abs(dy) < 20) {
       const midY = Math.min(y1, y2) - 50;
       d = `M ${x1} ${y1} C ${x1} ${midY}, ${x2} ${midY}, ${x2} ${y2}`;
     } else {
       const midY = (y1 + y2) / 2;
       d = `M ${x1} ${y1} C ${x1} ${midY}, ${x2} ${midY}, ${x2} ${y2}`;
     }
-    edgeGeom.push({ e, d, x1, y1, x2, y2 });
-  });
 
-  // Pass 2: draw lines (bottom layer)
-  edgeGeom.forEach(({ e, d }) => {
     const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
     path.setAttribute('d', d);
     path.classList.add('edge-line', 'r-' + e.role);
-    path.dataset.eid = e.id;
+    path.dataset.eid = `${e.from}-${e.to}`;
     path.dataset.from = e.from;
     path.dataset.to = e.to;
     path.dataset.role = e.role;
     svg.appendChild(path);
-  });
 
-  // Pass 3: draw halos + dots (top layer, so they visually cut passing lines)
-  edgeGeom.forEach(({ e, x1, y1, x2, y2 }) => {
-    // Start: halo (white circle to cut passing lines) + dot
-    const haloS = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
-    haloS.setAttribute('cx', x1); haloS.setAttribute('cy', y1); haloS.setAttribute('r', 5);
-    haloS.setAttribute('fill', '#fffdf8'); haloS.setAttribute('stroke', 'none');
-    haloS.classList.add('edge-halo'); haloS.dataset.eid = e.id;
-    svg.appendChild(haloS);
-
-    const dotS = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
-    dotS.setAttribute('cx', x1); dotS.setAttribute('cy', y1); dotS.setAttribute('r', 3);
-    dotS.classList.add('edge-dot', 'r-' + e.role); dotS.dataset.eid = e.id;
-    svg.appendChild(dotS);
-
-    // End: dot only (no halo — dot center is on card edge)
     const dot = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
-    dot.setAttribute('cx', x2); dot.setAttribute('cy', y2); dot.setAttribute('r', 3);
-    dot.classList.add('edge-head', 'r-' + e.role); dot.dataset.eid = e.id;
+    dot.setAttribute('cx', x2);
+    dot.setAttribute('cy', y2);
+    dot.setAttribute('r', 3.5);
+    dot.classList.add('edge-head', 'r-' + e.role);
+    dot.dataset.eid = `${e.from}-${e.to}`;
     svg.appendChild(dot);
   });
 }
 
-// ── Hover highlight for ref-chip → source block ──
+// ── Interaction ──
 function hlSource(nid, on) {
   const el = document.getElementById('blk-' + nid);
   if (!el) return;
   if (on) {
     el.classList.add('source-hl');
-    // Also highlight the connecting edge lines
     document.querySelectorAll('.edge-line').forEach(line => {
       if (line.dataset.from === nid || line.dataset.to === nid) {
-        line.style.opacity = '0.8';
-        line.style.strokeWidth = '2.5';
+        line.style.opacity = '0.8'; line.style.strokeWidth = '2.5';
       }
     });
   } else {
     el.classList.remove('source-hl');
     document.querySelectorAll('.edge-line').forEach(line => {
       if (line.dataset.from === nid || line.dataset.to === nid) {
-        line.style.opacity = '';
-        line.style.strokeWidth = '';
+        line.style.opacity = ''; line.style.strokeWidth = '';
       }
     });
   }
 }
 
-// ── Interaction ──
 function toggleSelect(nid) {
-  if (selectedNode === nid) {
-    selectedNode = null;
-    clearHighlights();
-    return;
-  }
+  if (selectedNode === nid) { selectedNode = null; clearHighlights(); return; }
   selectedNode = nid;
   highlightNode(nid);
 }
 
 function highlightNode(nid) {
-  // Find connected nodes
   const connected = new Set([nid]);
   const connEdges = new Set();
   G.edges.forEach(e => {
     if (e.from === nid || e.to === nid) {
-      connected.add(e.from);
-      connected.add(e.to);
-      connEdges.add(e.id);
+      connected.add(e.from); connected.add(e.to);
+      connEdges.add(`${e.from}-${e.to}`);
     }
   });
-
-  // Dim non-connected blocks
   document.querySelectorAll('.block').forEach(el => {
     el.classList.toggle('dim', !connected.has(el.dataset.nid));
     el.classList.toggle('hl', el.dataset.nid === nid);
   });
-
-  // Dim non-connected edges
   document.querySelectorAll('.edge-line').forEach(el => {
     el.classList.toggle('hl', connEdges.has(el.dataset.eid));
     el.classList.toggle('dim', !connEdges.has(el.dataset.eid));
@@ -903,7 +685,6 @@ function highlightNode(nid) {
   document.querySelectorAll('.edge-head').forEach(el => {
     el.classList.toggle('dim', !connEdges.has(el.dataset.eid));
   });
-
   const node = NM[nid];
   const inc = (EbyTo[nid] || []).length;
   const out = (EbyFrom[nid] || []).length;
@@ -912,7 +693,7 @@ function highlightNode(nid) {
 
 function clearHighlights() {
   document.querySelectorAll('.block').forEach(el => { el.classList.remove('dim', 'hl'); });
-  document.querySelectorAll('.edge-line, .edge-head, .edge-dot, .edge-halo').forEach(el => { el.classList.remove('hl', 'dim'); });
+  document.querySelectorAll('.edge-line, .edge-head').forEach(el => { el.classList.remove('hl', 'dim'); });
   document.getElementById('info').textContent = `${G.nodes.length} nodes / ${G.edges.length} edges`;
 }
 
@@ -924,46 +705,42 @@ function flashAndScroll(nid) {
   setTimeout(() => { if (selectedNode !== nid) el.classList.remove('hl'); }, 2000);
 }
 
-// ── Filter modes ──
+// ── Filters ──
 function filterRole(role, btn) {
   setActiveBtn(btn);
   const edgeIds = new Set();
   const nodeIds = new Set();
   G.edges.forEach(e => {
     if (e.role === role) {
-      edgeIds.add(e.id);
-      nodeIds.add(e.from);
-      nodeIds.add(e.to);
+      edgeIds.add(`${e.from}-${e.to}`);
+      nodeIds.add(e.from); nodeIds.add(e.to);
     }
   });
-
-  document.querySelectorAll('.block').forEach(el => {
-    el.classList.toggle('dim', !nodeIds.has(el.dataset.nid));
-  });
-  document.querySelectorAll('.edge-line').forEach(el => {
-    el.classList.toggle('dim', !edgeIds.has(el.dataset.eid));
-    el.classList.toggle('hl', edgeIds.has(el.dataset.eid));
-  });
-  document.querySelectorAll('.edge-head').forEach(el => {
-    el.classList.toggle('dim', !edgeIds.has(el.dataset.eid));
-  });
+  document.querySelectorAll('.block').forEach(el => { el.classList.toggle('dim', !nodeIds.has(el.dataset.nid)); });
+  applyEdgeDim(edgeIds);
   document.getElementById('info').textContent = `${role}: ${edgeIds.size} edges / ${nodeIds.size} nodes`;
 }
 
-function showPatterns(btn) {
-  setActiveBtn(btn);
-  const patNodes = new Set(G.nodes.filter(n => n.pattern).map(n => n.id));
-  document.querySelectorAll('.block').forEach(el => {
-    el.classList.toggle('dim', !patNodes.has(el.dataset.nid));
+function filterFwType(type, btn) {
+  const matchIds = new Set(G.nodes.filter(n => n.fwType === type).map(n => n.id));
+  const connEdges = new Set();
+  G.edges.forEach(e => {
+    if (matchIds.has(e.from) || matchIds.has(e.to)) connEdges.add(`${e.from}-${e.to}`);
   });
-  document.querySelectorAll('.edge-line, .edge-head, .edge-dot, .edge-halo').forEach(el => el.classList.add('dim'));
-  document.getElementById('info').textContent = `パターン付き: ${patNodes.size} nodes`;
+  document.querySelectorAll('.block').forEach(el => {
+    el.classList.toggle('dim', !matchIds.has(el.dataset.nid)); el.classList.remove('hl');
+  });
+  applyEdgeDim(connEdges);
+  const s = FW_TYPE_STYLES[type];
+  document.querySelectorAll('.fwtype-btn').forEach(b => { b.classList.remove('active'); b.style.background = ''; });
+  btn.classList.add('active'); btn.style.background = s.color;
+  document.querySelectorAll('.controls button').forEach(b => b.classList.remove('active'));
+  document.getElementById('info').textContent = `${s.shape} ${s.labelFull}: ${matchIds.size} nodes`;
 }
 
 function resetView(btn) {
-  setActiveBtn(btn);
-  selectedNode = null;
-  clearHighlights();
+  setActiveBtn(btn); selectedNode = null; clearHighlights();
+  document.querySelectorAll('.fwtype-btn').forEach(b => { b.classList.remove('active'); b.style.background = ''; });
 }
 
 function setActiveBtn(btn) {
@@ -973,55 +750,31 @@ function setActiveBtn(btn) {
 
 // ── Actor toggle ──
 let activeActor = null;
-
 function toggleActor(name) {
   if (activeActor === name) {
-    activeActor = null;
-    clearHighlights();
+    activeActor = null; clearHighlights();
     document.querySelectorAll('.actor.active').forEach(el => el.classList.remove('active'));
     return;
   }
   activeActor = name;
-
-  // Highlight actor labels
-  document.querySelectorAll('.actor').forEach(el => {
-    el.classList.toggle('active', el.textContent === name);
-  });
-
-  // Find blocks containing this actor
+  document.querySelectorAll('.actor').forEach(el => { el.classList.toggle('active', el.textContent === name); });
   const matchIds = new Set(G.nodes.filter(n => n.actors && n.actors.includes(name)).map(n => n.id));
-
-  // Find edges connecting matched blocks
   const connEdges = new Set();
-  G.edges.forEach(e => {
-    if (matchIds.has(e.from) && matchIds.has(e.to)) connEdges.add(e.id);
-  });
-
-  document.querySelectorAll('.block').forEach(el => {
-    el.classList.toggle('dim', !matchIds.has(el.dataset.nid));
-    el.classList.remove('hl');
-  });
-  document.querySelectorAll('.edge-line').forEach(el => {
-    el.classList.toggle('dim', !connEdges.has(el.dataset.eid));
-    el.classList.toggle('hl', connEdges.has(el.dataset.eid));
-  });
-  document.querySelectorAll('.edge-head').forEach(el => {
-    el.classList.toggle('dim', !connEdges.has(el.dataset.eid));
-  });
-
+  G.edges.forEach(e => { if (matchIds.has(e.from) && matchIds.has(e.to)) connEdges.add(`${e.from}-${e.to}`); });
+  document.querySelectorAll('.block').forEach(el => { el.classList.toggle('dim', !matchIds.has(el.dataset.nid)); el.classList.remove('hl'); });
+  applyEdgeDim(connEdges);
   document.getElementById('info').textContent = `${name}: ${matchIds.size} nodes`;
-  // Reset top controls
   document.querySelectorAll('.controls button').forEach(b => b.classList.remove('active'));
 }
 
-// ── Legend toggle ──
+// ── Legend ──
 function toggleLegend() {
   const panel = document.getElementById('legend-panel');
   panel.classList.toggle('collapsed');
   document.getElementById('legend-btn').textContent = panel.classList.contains('collapsed') ? '凡例 ▶' : '凡例';
 }
 
-// ── Absorbed events toggle ──
+// ── Absorbed ──
 function toggleAbsorbed(aid) {
   const list = document.getElementById('abs-' + aid);
   const arrow = document.getElementById('arr-' + aid);
@@ -1031,56 +784,6 @@ function toggleAbsorbed(aid) {
   if (arrow) arrow.textContent = list?.classList.contains('open') ? '▾' : '▸';
 }
 
-// ── Domain filter (地面/力学/意図/外部) ──
-function filterDomain(name, btn) {
-  const d = SEMANTIC_DOMAINS[name];
-  if (!d) return;
-  const types = new Set(d.types);
-  const matchIds = new Set(G.nodes.filter(n => types.has(n.fwType)).map(n => n.id));
-  const connEdges = new Set();
-  G.edges.forEach(e => {
-    if (matchIds.has(e.from) || matchIds.has(e.to)) connEdges.add(e.id);
-  });
-
-  document.querySelectorAll('.block').forEach(el => {
-    el.classList.toggle('dim', !matchIds.has(el.dataset.nid));
-    el.classList.remove('hl');
-  });
-  applyEdgeDim(connEdges);
-
-  // Toggle active state
-  document.querySelectorAll('.domain-btn').forEach(b => b.classList.remove('active'));
-  btn.classList.add('active');
-  btn.style.background = d.colorSolid;
-  document.querySelectorAll('.controls button').forEach(b => b.classList.remove('active'));
-  document.querySelectorAll('.fwtype-btn').forEach(b => { b.classList.remove('active'); b.style.background = ''; });
-  document.getElementById('info').textContent = `${name}: ${matchIds.size} nodes`;
-}
-
-// ── FW type filter ──
-function filterFwType(type, btn) {
-  const matchIds = new Set(G.nodes.filter(n => n.fwType === type).map(n => n.id));
-  const connEdges = new Set();
-  G.edges.forEach(e => {
-    if (matchIds.has(e.from) || matchIds.has(e.to)) connEdges.add(e.id);
-  });
-
-  document.querySelectorAll('.block').forEach(el => {
-    el.classList.toggle('dim', !matchIds.has(el.dataset.nid));
-    el.classList.remove('hl');
-  });
-  applyEdgeDim(connEdges);
-
-  // Toggle active state
-  const s = FW_TYPE_STYLES[type];
-  document.querySelectorAll('.fwtype-btn').forEach(b => { b.classList.remove('active'); b.style.background = ''; });
-  btn.classList.add('active');
-  btn.style.background = s.color;
-  document.querySelectorAll('.controls button').forEach(b => b.classList.remove('active'));
-  document.querySelectorAll('.domain-btn').forEach(b => { b.classList.remove('active'); b.style.background = ''; });
-  document.getElementById('info').textContent = `${s.shape} ${s.labelFull}: ${matchIds.size} nodes`;
-}
-
 // ── Reverse lookup ──
 function applyLookup() {
   const nid = document.getElementById('lookup-node').value;
@@ -1088,21 +791,17 @@ function applyLookup() {
   const connected = new Set([nid]);
   const connEdges = new Set();
   G.edges.forEach(e => {
-    if (lookupDir === 'in' && e.to === nid) { connected.add(e.from); connEdges.add(e.id); }
-    if (lookupDir === 'out' && e.from === nid) { connected.add(e.to); connEdges.add(e.id); }
+    if (lookupDir === 'in' && e.to === nid) { connected.add(e.from); connEdges.add(`${e.from}-${e.to}`); }
+    if (lookupDir === 'out' && e.from === nid) { connected.add(e.to); connEdges.add(`${e.from}-${e.to}`); }
   });
-
   document.querySelectorAll('.block').forEach(el => {
     el.classList.toggle('dim', !connected.has(el.dataset.nid));
     el.classList.toggle('hl', el.dataset.nid === nid);
   });
   applyEdgeDim(connEdges);
-
   const node = NM[nid];
   const dir = lookupDir === 'in' ? '入力元' : '出力先';
   document.getElementById('info').textContent = `${node.label} ← ${dir}: ${connected.size - 1}`;
-
-  // Scroll to selected
   const el = document.getElementById('blk-' + nid);
   if (el) el.scrollIntoView({ behavior: 'smooth', block: 'center' });
 }
@@ -1111,11 +810,9 @@ function setLookupDir(dir) {
   lookupDir = dir;
   document.getElementById('lookup-in').classList.toggle('active', dir === 'in');
   document.getElementById('lookup-out').classList.toggle('active', dir === 'out');
-  // Re-apply if a node is selected
   if (document.getElementById('lookup-node').value) applyLookup();
 }
 
-// ── Shared edge dim helper ──
 function applyEdgeDim(visibleEdgeIds) {
   document.querySelectorAll('.edge-line').forEach(el => {
     el.classList.toggle('dim', !visibleEdgeIds.has(el.dataset.eid));
@@ -1127,195 +824,6 @@ function applyEdgeDim(visibleEdgeIds) {
 }
 
 window.addEventListener('resize', () => requestAnimationFrame(drawEdges));
-
-// ══════════════════════════════════════════════
-// Pattern Reverse Lookup
-// ══════════════════════════════════════════════
-let patternDir = 'bg'; // 'bg' = what backgrounds lead to X, 'result' = what results from X
-
-function togglePatternLookup() {
-  const panel = document.getElementById('plookup-panel');
-  const btn = document.getElementById('plookup-btn');
-  const isOpen = panel.classList.toggle('open');
-  btn.classList.toggle('active', isOpen);
-  if (isOpen) {
-    runPatternLookup();
-  } else {
-    clearHighlights();
-  }
-}
-
-function populateFwTypeSelect() {
-  const sel = document.getElementById('plookup-fwtype');
-  if (sel.options.length > 1) return;
-  Object.entries(FW_TYPE_STYLES).forEach(([type, s]) => {
-    const opt = document.createElement('option');
-    opt.value = type;
-    opt.textContent = `${s.shape} ${s.label}`;
-    sel.appendChild(opt);
-  });
-}
-
-function setPatternDir(dir) {
-  patternDir = dir;
-  document.getElementById('pdir-bg').classList.toggle('active', dir === 'bg');
-  document.getElementById('pdir-result').classList.toggle('active', dir === 'result');
-  // Update labels
-  document.getElementById('plookup-fwtype').parentElement.querySelector('label').textContent =
-    dir === 'bg' ? '結果の型:' : '起点の型:';
-  runPatternLookup();
-}
-
-function runPatternLookup() {
-  if (!G) return;
-  const fwType = document.getElementById('plookup-fwtype').value;
-  const keyword = document.getElementById('plookup-keyword').value.trim().toLowerCase();
-  const resultsEl = document.getElementById('plookup-results');
-  const summaryEl = document.getElementById('plookup-summary');
-
-  // Step 1: Find target nodes matching fwType/keyword
-  let targetNodes = G.nodes.filter(n => {
-    if (fwType && n.fwType !== fwType) return false;
-    if (keyword) {
-      const hay = `${n.label} ${n.pattern || ''} ${n.summary} ${n.bgType || ''} ${n.fwType || ''}`.toLowerCase();
-      return hay.includes(keyword);
-    }
-    return true;
-  });
-
-  if (targetNodes.length === 0 && !fwType && !keyword) {
-    targetNodes = G.nodes;
-  }
-
-  if (targetNodes.length === 0) {
-    resultsEl.innerHTML = '<div class="plookup-empty">該当なし</div>';
-    summaryEl.textContent = '';
-    return;
-  }
-
-  const targetIds = new Set(targetNodes.map(n => n.id));
-
-  // Step 2: Trace edges
-  // bg mode: for each target, find amplifies/sustains/triggers inputs → group by source pattern
-  // result mode: for each target as source, find outgoing edges → group by target pattern
-  const patternGroups = {}; // pattern → { count, instances: [{src, tgt, role}] }
-
-  if (patternDir === 'bg') {
-    // What backgrounds lead to these targets?
-    G.edges.forEach(e => {
-      if (!targetIds.has(e.to)) return;
-      if (!['amplifies', 'sustains', 'triggers'].includes(e.role)) return;
-      const src = NM[e.from];
-      const tgt = NM[e.to];
-      if (!src) return;
-      const pat = src.pattern || `(パターン未定義: ${src.label})`;
-      if (!patternGroups[pat]) patternGroups[pat] = { count: 0, instances: [], bgType: src.bgType };
-      patternGroups[pat].count++;
-      patternGroups[pat].instances.push({ src, tgt, role: e.role });
-    });
-  } else {
-    // What results come from these sources?
-    G.edges.forEach(e => {
-      if (!targetIds.has(e.from)) return;
-      const src = NM[e.from];
-      const tgt = NM[e.to];
-      if (!tgt) return;
-      const pat = tgt.pattern || `(パターン未定義: ${tgt.label})`;
-      if (!patternGroups[pat]) patternGroups[pat] = { count: 0, instances: [], fwType: tgt.fwType };
-      patternGroups[pat].count++;
-      patternGroups[pat].instances.push({ src, tgt, role: e.role });
-    });
-  }
-
-  // Step 3: Sort by count desc
-  const sorted = Object.entries(patternGroups).sort((a, b) => b[1].count - a[1].count);
-
-  // Summary
-  const dirLabel = patternDir === 'bg' ? '背景パターン' : '結果パターン';
-  const filterLabel = fwType ? FW_TYPE_STYLES[fwType].label : '全て';
-  summaryEl.textContent = `${filterLabel}${keyword ? ' "' + keyword + '"' : ''} → ${sorted.length} 種の${dirLabel}（${Object.values(patternGroups).reduce((s, g) => s + g.count, 0)} エッジ）`;
-
-  // Step 4: Render
-  if (sorted.length === 0) {
-    resultsEl.innerHTML = '<div class="plookup-empty">該当するパターンがありません</div>';
-    return;
-  }
-
-  const roleLabels = { triggers: '引金', amplifies: '圧↑', transforms: '変換', sustains: '基盤', suppresses: '抑制', inherits: '継承' };
-  const roleColors = { triggers: '#c45a3c', amplifies: '#c8960a', transforms: '#3a6a9a', sustains: '#3a8a3a', suppresses: '#7a3a8a', inherits: '#3a7a8a' };
-
-  let html = '';
-  sorted.forEach(([pat, grp]) => {
-    const typeInfo = patternDir === 'bg' && grp.bgType
-      ? (() => { const s = BG_TYPE_STYLES[grp.bgType]; return s ? `<span style="color:${s.color}">${s.icon}</span> ` : ''; })()
-      : patternDir === 'result' && grp.fwType
-      ? (() => { const s = FW_TYPE_STYLES[grp.fwType]; return s ? `<span style="color:${s.color}">${s.shape}</span> ` : ''; })()
-      : '';
-
-    html += `<div class="plookup-group">`;
-    html += `<div class="plookup-group-header">${typeInfo}${escHtml(pat)} <span class="plookup-count">${grp.count}</span></div>`;
-    html += `<div class="plookup-instances">`;
-    grp.instances.forEach(inst => {
-      const srcId = fmtId(inst.src.id);
-      const tgtId = fmtId(inst.tgt.id);
-      const rc = roleColors[inst.role] || '#999';
-      html += `<div class="plookup-inst" onclick="flashAndScroll('${patternDir === 'bg' ? inst.tgt.id : inst.src.id}')">`;
-      if (patternDir === 'bg') {
-        html += `<span class="plookup-inst-id">${srcId}</span>`;
-        html += `<span class="plookup-inst-label">${escHtml(inst.src.label)}</span>`;
-        html += `<span class="plookup-inst-role" style="color:${rc}">${roleLabels[inst.role] || inst.role}</span>`;
-        html += `<span class="plookup-inst-arrow">→</span>`;
-        html += `<span class="plookup-inst-target">${tgtId} ${escHtml(inst.tgt.label)}</span>`;
-      } else {
-        html += `<span class="plookup-inst-id">${srcId}</span>`;
-        html += `<span class="plookup-inst-label">${escHtml(inst.src.label)}</span>`;
-        html += `<span class="plookup-inst-role" style="color:${rc}">${roleLabels[inst.role] || inst.role}</span>`;
-        html += `<span class="plookup-inst-arrow">→</span>`;
-        html += `<span class="plookup-inst-target">${tgtId} ${escHtml(inst.tgt.label)}</span>`;
-      }
-      html += `</div>`;
-    });
-    html += `</div></div>`;
-  });
-
-  resultsEl.innerHTML = html;
-
-  // Also highlight matched nodes on the canvas
-  highlightPatternMatches(targetIds, patternGroups);
-}
-
-function highlightPatternMatches(targetIds, patternGroups) {
-  // Collect all involved node IDs
-  const involved = new Set(targetIds);
-  Object.values(patternGroups).forEach(grp => {
-    grp.instances.forEach(inst => {
-      involved.add(inst.src.id);
-      involved.add(inst.tgt.id);
-    });
-  });
-
-  // Dim non-involved
-  document.querySelectorAll('.block').forEach(el => {
-    el.classList.toggle('dim', !involved.has(el.dataset.nid));
-    el.classList.remove('hl');
-  });
-
-  // Highlight relevant edges
-  const connEdges = new Set();
-  G.edges.forEach(e => {
-    if ((targetIds.has(e.to) || targetIds.has(e.from)) && involved.has(e.from) && involved.has(e.to)) {
-      connEdges.add(e.id);
-    }
-  });
-  applyEdgeDim(connEdges);
-}
-
-function escHtml(s) {
-  const d = document.createElement('div');
-  d.textContent = s;
-  return d.innerHTML;
-}
-
 init();
 </script>
 </body>
