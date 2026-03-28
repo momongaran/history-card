@@ -378,7 +378,11 @@ async function init() {
   // "All" tab
   const allTab = document.createElement('button');
   allTab.className = 'type-tab active';
+  allTab.dataset.color = '#5c3d1e';
   allTab.innerHTML = `<span class="tab-icon">◉</span> 全表示`;
+  allTab.style.background = '#5c3d1e';
+  allTab.style.borderColor = '#5c3d1e';
+  allTab.style.color = '#fff';
   allTab.onclick = () => filterType(null, allTab);
   tabsEl.appendChild(allTab);
 
@@ -388,6 +392,7 @@ async function init() {
     tab.className = 'type-tab';
     tab.dataset.type = type;
     tab.innerHTML = `<span class="tab-icon" style="color:${s.color}">${s.shape}</span> ${s.label} <span class="tab-count">${cnt}</span>`;
+    tab.dataset.color = s.color;
     tab.onclick = () => filterType(type, tab);
     tabsEl.appendChild(tab);
   });
@@ -440,7 +445,6 @@ async function init() {
 
       // BG info
       const bgInfo = BG[pat.bgType] || { icon: '?', color: '#999' };
-      const relInfo = pat.releaseType ? (BG[pat.releaseType] || { icon: '?', color: '#999' }) : null;
 
       html += `<div class="pcard" id="${pid}" onclick="this.classList.toggle('open')">`;
       html += `<div class="pcard-band" style="background:${fw.color}"></div>`;
@@ -451,16 +455,14 @@ async function init() {
       html += `<span class="pcard-rarity" title="${r.title}">${r.label}</span>`;
       html += `</div>`;
 
-      // Body
+      // Body — bgType → fwType（このページはfwType別分類なので右側は常にfwType）
       html += `<div class="pcard-body">`;
       html += `<div class="pcard-transition">`;
       html += `<div class="pcard-bg-icon" style="color:${bgInfo.color};border-color:${bgInfo.color};background:${bgInfo.color}18">${bgInfo.icon}</div>`;
       html += `<span class="pcard-label">${pat.bgType}</span>`;
-      if (relInfo) {
-        html += `<span class="pcard-trans-arrow">→</span>`;
-        html += `<div class="pcard-bg-icon" style="color:${relInfo.color};border-color:${relInfo.color};background:${relInfo.color}18">${relInfo.icon}</div>`;
-        html += `<span class="pcard-label">${pat.releaseType}</span>`;
-      }
+      html += `<span class="pcard-trans-arrow">→</span>`;
+      html += `<div class="pcard-bg-icon" style="color:${fw.color};border-color:${fw.color};background:${fw.color}18">${fw.shape}</div>`;
+      html += `<span class="pcard-label">${fw.label}</span>`;
       html += `</div>`;
 
       // Role distribution bar
@@ -530,8 +532,23 @@ async function init() {
 }
 
 function filterType(type, btn) {
-  document.querySelectorAll('.type-tab').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.type-tab').forEach(b => {
+    b.classList.remove('active');
+    b.style.background = '';
+    b.style.borderColor = '';
+    b.style.color = '';
+    const icon = b.querySelector('.tab-icon');
+    if (icon && b.dataset.color) icon.style.color = b.dataset.color;
+  });
   btn.classList.add('active');
+  const c = btn.dataset.color;
+  if (c) {
+    btn.style.background = c;
+    btn.style.borderColor = c;
+    btn.style.color = '#fff';
+    const icon = btn.querySelector('.tab-icon');
+    if (icon) icon.style.color = '#fff';
+  }
   document.querySelectorAll('.fw-section').forEach(s => {
     s.classList.toggle('hidden', type !== null && s.dataset.type !== type);
   });
