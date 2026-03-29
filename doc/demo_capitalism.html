@@ -267,9 +267,9 @@
 
   <div class="controls">
     <button class="active" onclick="resetView(this)">全表示</button>
-    <button onclick="filterRole('amplifies',this)">amplifies</button>
-    <button onclick="filterRole('triggers',this)">triggers</button>
-    <button onclick="filterRole('sustains',this)">sustains</button>
+    <button onclick="filterRole('amplifies',this)">増幅</button>
+    <button onclick="filterRole('triggers',this)">発火</button>
+    <button onclick="filterRole('sustains',this)">維持</button>
     <span class="ctrl-info" id="info">12ノード / 16エッジ</span>
   </div>
 
@@ -281,9 +281,9 @@
     <div class="legend-item"><div class="legend-sw" style="background:#5a3a8a"></div>power</div>
     <div class="legend-item"><div class="legend-sw" style="background:#3a6a9a"></div>reform</div>
     <span style="margin-left: 16px; border-left: 2px solid #ddd; padding-left: 12px;">エッジ:</span>
-    <div class="legend-item"><div class="legend-sw" style="background:#c8960a"></div>amplifies</div>
-    <div class="legend-item"><div class="legend-sw" style="background:#c45a3c"></div>triggers</div>
-    <div class="legend-item"><div class="legend-sw" style="background:#3a8a3a"></div>sustains</div>
+    <div class="legend-item"><div class="legend-sw" style="background:#c8960a"></div>増幅</div>
+    <div class="legend-item"><div class="legend-sw" style="background:#c45a3c"></div>発火</div>
+    <div class="legend-item"><div class="legend-sw" style="background:#3a8a3a"></div>維持</div>
   </div>
 
   <!-- ===================== DAG Canvas ===================== -->
@@ -374,15 +374,15 @@
   <table>
     <thead><tr><th>role</th><th>マージ前</th><th>マージ後</th><th>変化</th></tr></thead>
     <tbody>
-      <tr><td style="color:#c8960a;font-weight:700;">amplifies</td><td>86</td><td>96</td><td style="color:#3a8a3a;">+10</td></tr>
-      <tr><td style="color:#3a8a3a;font-weight:700;">sustains</td><td>23</td><td>24</td><td>+1</td></tr>
-      <tr><td style="color:#c45a3c;font-weight:700;">triggers</td><td>23</td><td>23</td><td>±0</td></tr>
-      <tr><td style="color:#3a6a9a;font-weight:700;">transforms</td><td>7</td><td>7</td><td>±0</td></tr>
+      <tr><td style="color:#c8960a;font-weight:700;">増幅</td><td>86</td><td>96</td><td style="color:#3a8a3a;">+10</td></tr>
+      <tr><td style="color:#3a8a3a;font-weight:700;">維持</td><td>23</td><td>24</td><td>+1</td></tr>
+      <tr><td style="color:#c45a3c;font-weight:700;">発火</td><td>23</td><td>23</td><td>±0</td></tr>
+      <tr><td style="color:#3a6a9a;font-weight:700;">変換</td><td>7</td><td>7</td><td>±0</td></tr>
     </tbody>
   </table>
   <p style="font-size:11px; color: var(--muted); margin-bottom:16px;">
-    amplifies(+10)が支配的。経済史では「圧力が徐々に蓄積して次の段階へ」という漸進的増幅が
-    最も頻出する因果パターン。triggersの不変は、新たな「引き金」関係が追加されなかったことを示す
+    増幅(+10)が支配的。経済史では「圧力が徐々に蓄積して次の段階へ」という漸進的増幅が
+    最も頻出する因果パターン。発火の不変は、新たな「引き金」関係が追加されなかったことを示す
     （既存の十字軍→貨幣経済のtriggersがそのまま活用された）。
   </p>
 
@@ -494,9 +494,9 @@
       <tr><th>role</th><th>抽象的意味</th><th>このFW内での使用</th><th>具体例</th></tr>
     </thead>
     <tbody>
-      <tr><td style="color:#c8960a; font-weight:700;">amplifies</td><td>圧を高める・増幅する</td><td>11本</td><td>S02→S03: 余剰生産物の蓄積が都市形成を持続的に増幅</td></tr>
-      <tr><td style="color:#c45a3c; font-weight:700;">triggers</td><td>直接的な引き金</td><td>3本</td><td>S04→S05: 十字軍による遠隔地貿易が貨幣経済発展の直接的契機</td></tr>
-      <tr><td style="color:#3a8a3a; font-weight:700;">sustains</td><td>基盤を持続的に支える</td><td>2本</td><td>S01→S02: 封建制の農業特化が生産力向上と余剰発生を下支え</td></tr>
+      <tr><td style="color:#c8960a; font-weight:700;">増幅</td><td>圧を高める・増幅する</td><td>11本</td><td>S02→S03: 余剰生産物の蓄積が都市形成を持続的に増幅</td></tr>
+      <tr><td style="color:#c45a3c; font-weight:700;">発火</td><td>直接的な引き金</td><td>3本</td><td>S04→S05: 十字軍による遠隔地貿易が貨幣経済発展の直接的契機</td></tr>
+      <tr><td style="color:#3a8a3a; font-weight:700;">維持</td><td>基盤を持続的に支える</td><td>2本</td><td>S01→S02: 封建制の農業特化が生産力向上と余剰発生を下支え</td></tr>
     </tbody>
   </table>
 

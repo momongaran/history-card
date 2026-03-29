@@ -3,7 +3,7 @@
 // <script src="shared.js"></script> で読み込む（グローバル変数）
 // ============================================================
 
-const APP_VERSION = { hash: 'a7dba81', date: '2026-03-30', label: 'v0.9.0' };
+const APP_VERSION = { hash: '', date: '2026-03-30', label: 'v0.9.1' };
 
 // ── データソース一覧 ──
 const ALL_SOURCES = [
@@ -239,10 +239,14 @@ if (document.readyState === 'loading') {
 // ── エッジ要素セレクタ（全ページ共通） ──
 const EDGE_SEL = '.edge-line, .edge-head, .edge-dot, .edge-halo';
 
-// ── ロール色定義 ──
+// ── ロール定義 ──
 const ROLE_COLORS = {
   amplifies: '#c8960a', triggers: '#c45a3c', transforms: '#3a6a9a',
   sustains: '#3a8a3a', suppresses: '#7a3a8a', inherits: '#3a7a8a'
+};
+const ROLE_JA = {
+  amplifies: '増幅', triggers: '発火', transforms: '変換',
+  sustains: '維持', suppresses: '抑制', inherits: '継承'
 };
 
 // ── 共通CSS注入 ──
@@ -555,6 +559,9 @@ function drawEdgesStandard(edges, blockEls, canvasEl, svgEl) {
     const chipEl = document.getElementById('chip-' + e.from + '-' + e.to);
     if (!fromEl || !chipEl) return;
 
+    // Source node fwType color (from block border)
+    const fwColor = fromEl.style.borderColor || null;
+
     const fr = fromEl.getBoundingClientRect();
     const ch = chipEl.getBoundingClientRect();
 
@@ -583,7 +590,7 @@ function drawEdgesStandard(edges, blockEls, canvasEl, svgEl) {
       ? Math.min(y1, y2) - 50
       : (y1 + y2) / 2;
     const d = `M ${x1} ${y1} C ${x1} ${midY}, ${x2} ${midY}, ${x2} ${y2}`;
-    geom.push({ e, d, x1, y1, x2, y2 });
+    geom.push({ e, d, x1, y1, x2, y2, fwColor });
   });
 
   // Pass 2: lines
@@ -599,10 +606,10 @@ function drawEdgesStandard(edges, blockEls, canvasEl, svgEl) {
   });
 
   // Pass 3: halos + dots
-  geom.forEach(({ e, x1, y1, x2, y2 }) => {
+  geom.forEach(({ e, x1, y1, x2, y2, fwColor }) => {
     const eid = e.id || `${e.from}-${e.to}`;
     const ns = 'http://www.w3.org/2000/svg';
-    // Start: halo + dot
+    // Start: halo + dot (dot color = source node fwType color)
     const h = document.createElementNS(ns, 'circle');
     h.setAttribute('cx', x1); h.setAttribute('cy', y1); h.setAttribute('r', 5);
     h.setAttribute('fill', 'var(--paper,#fffdf8)'); h.setAttribute('stroke', 'none');
@@ -613,7 +620,9 @@ function drawEdgesStandard(edges, blockEls, canvasEl, svgEl) {
 
     const ds = document.createElementNS(ns, 'circle');
     ds.setAttribute('cx', x1); ds.setAttribute('cy', y1); ds.setAttribute('r', 3);
-    ds.classList.add('edge-dot', 'r-' + e.role);
+    ds.classList.add('edge-dot');
+    if (fwColor) ds.setAttribute('fill', fwColor);
+    else ds.classList.add('r-' + e.role);
     if (e._cross) ds.classList.add('cross');
     ds.dataset.from = e.from; ds.dataset.to = e.to;
     ds.dataset.eid = eid;

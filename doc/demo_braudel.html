@@ -282,11 +282,11 @@
 
   <div class="controls">
     <button class="active" onclick="resetView(this)">全表示</button>
-    <button onclick="filterRole('amplifies',this)">amplifies</button>
-    <button onclick="filterRole('triggers',this)">triggers</button>
-    <button onclick="filterRole('sustains',this)">sustains</button>
-    <button onclick="filterRole('suppresses',this)">suppresses</button>
-    <button onclick="filterRole('transforms',this)">transforms</button>
+    <button onclick="filterRole('amplifies',this)">増幅</button>
+    <button onclick="filterRole('triggers',this)">発火</button>
+    <button onclick="filterRole('sustains',this)">維持</button>
+    <button onclick="filterRole('suppresses',this)">抑制</button>
+    <button onclick="filterRole('transforms',this)">変換</button>
     <div class="layer-filters">
       <button class="layer-btn active" data-layer="all" onclick="filterLayer('all',this)">全層</button>
       <button class="layer-btn" data-layer="geo" onclick="filterLayer('geo',this)">地理的時間</button>
@@ -306,11 +306,11 @@
     <div class="legend-item"><div class="legend-sw" style="background:#c8960a"></div>conflict</div>
     <div class="legend-item"><div class="legend-sw" style="background:#c47a3a"></div>shock</div>
     <span style="margin-left: 16px; border-left: 2px solid #ddd; padding-left: 12px;">エッジ:</span>
-    <div class="legend-item"><div class="legend-sw" style="background:#c8960a"></div>amplifies</div>
-    <div class="legend-item"><div class="legend-sw" style="background:#c45a3c"></div>triggers</div>
-    <div class="legend-item"><div class="legend-sw" style="background:#3a8a3a"></div>sustains</div>
-    <div class="legend-item"><div class="legend-sw" style="background:#7a3a8a"></div>suppresses</div>
-    <div class="legend-item"><div class="legend-sw" style="background:#3a6a9a"></div>transforms</div>
+    <div class="legend-item"><div class="legend-sw" style="background:#c8960a"></div>増幅</div>
+    <div class="legend-item"><div class="legend-sw" style="background:#c45a3c"></div>発火</div>
+    <div class="legend-item"><div class="legend-sw" style="background:#3a8a3a"></div>維持</div>
+    <div class="legend-item"><div class="legend-sw" style="background:#7a3a8a"></div>抑制</div>
+    <div class="legend-item"><div class="legend-sw" style="background:#3a6a9a"></div>変換</div>
   </div>
 
   <!-- ===================== DAG Canvas ===================== -->
@@ -441,11 +441,11 @@
   <table>
     <thead><tr><th>role</th><th>抽象的意味</th><th>本数</th><th>ブローデルにおける具体例</th></tr></thead>
     <tbody>
-      <tr><td style="color:#c8960a;font-weight:700;">amplifies</td><td>圧を高める・増幅する</td><td>14</td><td>M06→M09: 価格革命がスペイン帝国財政の脆弱性を増幅</td></tr>
-      <tr><td style="color:#3a8a3a;font-weight:700;">sustains</td><td>基盤を持続的に支える</td><td>4</td><td>M01→M08: 山岳・沿岸地形が海賊の拠点を恒常的に提供</td></tr>
-      <tr><td style="color:#c45a3c;font-weight:700;">triggers</td><td>直接的な引き金</td><td>3</td><td>M04→M07: オスマンのキプロス侵攻がレパント海戦を引き起こす</td></tr>
-      <tr><td style="color:#7a3a8a;font-weight:700;">suppresses</td><td>抑制する</td><td>1</td><td>M07→M04: レパント敗北がオスマン西方拡張に上限を画す</td></tr>
-      <tr><td style="color:#3a6a9a;font-weight:700;">transforms</td><td>質的に変容させる</td><td>1</td><td>M11→M15: ヴェネツィアの製造業転換が衰退の中での適応モデルを示す</td></tr>
+      <tr><td style="color:#c8960a;font-weight:700;">増幅</td><td>圧を高める・増幅する</td><td>14</td><td>M06→M09: 価格革命がスペイン帝国財政の脆弱性を増幅</td></tr>
+      <tr><td style="color:#3a8a3a;font-weight:700;">維持</td><td>基盤を持続的に支える</td><td>4</td><td>M01→M08: 山岳・沿岸地形が海賊の拠点を恒常的に提供</td></tr>
+      <tr><td style="color:#c45a3c;font-weight:700;">発火</td><td>直接的な引き金</td><td>3</td><td>M04→M07: オスマンのキプロス侵攻がレパント海戦を引き起こす</td></tr>
+      <tr><td style="color:#7a3a8a;font-weight:700;">抑制</td><td>抑制する</td><td>1</td><td>M07→M04: レパント敗北がオスマン西方拡張に上限を画す</td></tr>
+      <tr><td style="color:#3a6a9a;font-weight:700;">変換</td><td>質的に変容させる</td><td>1</td><td>M11→M15: ヴェネツィアの製造業転換が衰退の中での適応モデルを示す</td></tr>
     </tbody>
   </table>
   <p style="font-size:11px; color: var(--muted); margin-bottom:16px;">
