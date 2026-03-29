@@ -3,7 +3,7 @@
 // <script src="shared.js"></script> で読み込む（グローバル変数）
 // ============================================================
 
-const APP_VERSION = { hash: '', date: '2026-03-30', label: 'v0.9.1' };
+const APP_VERSION = { hash: 'b7736dd', date: '2026-03-30', label: 'v0.9.1' };
 
 // ── データソース一覧 ──
 const ALL_SOURCES = [
