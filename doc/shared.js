@@ -111,6 +111,8 @@ const TEST_PAGES = [
   { href: 'demo_braudel.html',          label: 'ブローデルの地中海' },
   { href: 'demo_pattern_catalog.html',  label: 'パターン図鑑詳細' },
   { href: 'demo_catalog_fallacy.html',  label: 'ファラシー' },
+  { href: 'demo_pattern_language.html', label: 'パターンランゲージ' },
+  { href: 'demo_foucault.html',        label: '監獄の誕生' },
 ];
 const TEST_PASSWORD = 'history2026';
 
@@ -225,6 +227,441 @@ if (document.readyState === 'loading') {
   document.addEventListener('DOMContentLoaded', renderPageNav);
 } else {
   renderPageNav();
+}
+
+// ============================================================
+// 共通ブロック・エッジ描画モジュール
+// ============================================================
+
+// ── エッジ要素セレクタ（全ページ共通） ──
+const EDGE_SEL = '.edge-line, .edge-head, .edge-dot, .edge-halo';
+
+// ── ロール色定義 ──
+const ROLE_COLORS = {
+  amplifies: '#c8960a', triggers: '#c45a3c', transforms: '#3a6a9a',
+  sustains: '#3a8a3a', suppresses: '#7a3a8a', inherits: '#3a7a8a'
+};
+
+// ── 共通CSS注入 ──
+(function injectBlockCSS() {
+  if (document.getElementById('block-css')) return;
+  const s = document.createElement('style');
+  s.id = 'block-css';
+  s.textContent = `
+    /* Canvas */
+    .canvas {
+      position:relative; background:var(--bg,#f0ebe0);
+      border:1px solid #d8cebb; border-radius:20px;
+      box-shadow:0 8px 28px rgba(40,28,14,.10);
+      padding:30px 24px; overflow-x:auto;
+    }
+    .canvas::before {
+      content:''; position:absolute; inset:0; border-radius:20px;
+      background-image:
+        linear-gradient(rgba(200,188,168,.08) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(200,188,168,.08) 1px, transparent 1px);
+      background-size:40px 40px; pointer-events:none;
+    }
+    /* SVG layer */
+    #edge-svg {
+      position:absolute; inset:0; width:100%; height:100%;
+      pointer-events:none; z-index:2;
+    }
+    .edge-line { fill:none; stroke-width:1.4; opacity:0.45; stroke-dasharray:5 4; stroke:#b0a898; }
+    .edge-dot  { stroke:none; fill:#b0a898; opacity:0.5; }
+    .edge-halo { pointer-events:none; }
+    .edge-head { stroke:none; fill:#b0a898; opacity:0.6; }
+    .edge-line.hl { opacity:0.85; stroke-width:2.5; }
+    .edge-head.hl, .edge-dot.hl { opacity:0.85; }
+    .edge-line.dim, .edge-head.dim, .edge-dot.dim, .edge-halo.dim { opacity:0.08; }
+    /* role colors */
+    .edge-line.r-amplifies  { stroke:#c8960a; }
+    .edge-line.r-triggers   { stroke:#c45a3c; }
+    .edge-line.r-transforms { stroke:#3a6a9a; }
+    .edge-line.r-sustains   { stroke:#3a8a3a; }
+    .edge-line.r-suppresses { stroke:#7a3a8a; }
+    .edge-line.r-inherits   { stroke:#3a7a8a; }
+    .edge-dot.r-amplifies   { fill:#c8960a; }
+    .edge-dot.r-triggers    { fill:#c45a3c; }
+    .edge-dot.r-transforms  { fill:#3a6a9a; }
+    .edge-dot.r-sustains    { fill:#3a8a3a; }
+    .edge-dot.r-suppresses  { fill:#7a3a8a; }
+    .edge-dot.r-inherits    { fill:#3a7a8a; }
+    .edge-head.r-amplifies  { fill:#c8960a; }
+    .edge-head.r-triggers   { fill:#c45a3c; }
+    .edge-head.r-transforms { fill:#3a6a9a; }
+    .edge-head.r-sustains   { fill:#3a8a3a; }
+    .edge-head.r-suppresses { fill:#7a3a8a; }
+    .edge-head.r-inherits   { fill:#3a7a8a; }
+    .role-arrow { display:inline; font-size:9px; line-height:1; margin-left:2px; }
+    .role-arrow.r-amplifies  { color:#c8960a; }
+    .role-arrow.r-triggers   { color:#c45a3c; }
+    .role-arrow.r-transforms { color:#3a6a9a; }
+    .role-arrow.r-sustains   { color:#3a8a3a; }
+    .role-arrow.r-suppresses { color:#7a3a8a; }
+    .role-arrow.r-inherits   { color:#3a7a8a; }
+    /* Block row */
+    .block-row {
+      position:relative; z-index:1;
+      display:flex; gap:16px; margin-bottom:12px;
+      flex-wrap:wrap; justify-content:center;
+    }
+    /* Block */
+    .block {
+      width:var(--block-w,380px); background:var(--paper,#fffdf8);
+      border:2px solid #b8a898; border-radius:var(--block-radius,14px);
+      box-shadow:var(--shadow,0 6px 20px rgba(40,28,14,.08));
+      position:relative; transition:border-color .3s, box-shadow .3s, opacity .3s;
+      cursor:pointer; flex:0 0 auto;
+    }
+    .block:hover { box-shadow:0 8px 28px rgba(40,28,14,.15); }
+    .block.hl   { box-shadow:0 0 0 5px rgba(92,61,30,.25); }
+    .block.dim  { opacity:0.2; }
+    .block.source-hl { box-shadow:0 0 0 4px rgba(92,61,30,.18); }
+    .block-body { padding:12px 14px 24px; display:flex; flex-direction:column; gap:6px; }
+    /* Inner area: incoming edges */
+    .block-inner {
+      border:1.5px solid #ddd4c8; border-radius:10px;
+      background:linear-gradient(180deg, #faf7f0, #f5f1e8);
+      padding:6px 8px; display:flex; gap:6px; flex-wrap:wrap; min-height:32px;
+    }
+    .block-inner.empty {
+      border-style:dashed; min-height:24px;
+      align-items:center; justify-content:center;
+      color:#d0c4b0; font-size:10px;
+    }
+    .ref-chip {
+      font-size:10px; padding:2px 7px; border-radius:10px;
+      border:1px solid #d0c8bc; background:transparent;
+      color:#9a9080; cursor:pointer; transition:all .15s; white-space:nowrap;
+    }
+    .ref-chip b { font-family:monospace; font-size:10px; margin-right:2px; }
+    .ref-chip:hover { opacity:0.8; }
+    /* Block content */
+    .block-era {
+      font-size:12px; font-weight:700; color:#2a2520;
+      letter-spacing:.03em; margin-bottom:1px;
+      display:flex; align-items:center; gap:8px;
+    }
+    .block-label { font-size:14px; font-weight:600; line-height:1.6; color:var(--ink,#28231e); }
+    .block-summary { font-size:11px; color:var(--muted,#6a6058); line-height:1.55; }
+    .block-abstract { margin-top:4px; padding-top:5px; border-top:1px solid #e8e0d8; }
+    .block-pattern { font-size:11px; color:#a09080; line-height:1.5; letter-spacing:.01em; }
+    .block-actors { display:flex; flex-wrap:wrap; gap:3px; margin-top:2px; }
+    .actor {
+      font-size:9px; background:transparent; border:1px solid #d0c8bc;
+      border-radius:10px; padding:1px 6px; color:#9a9080; letter-spacing:.02em;
+    }
+    /* Footer */
+    .block-id {
+      position:absolute; bottom:5px; right:10px;
+      font-size:11px; font-weight:700; font-family:monospace;
+      color:#b0a090; letter-spacing:.08em;
+    }
+    .block-fw-label {
+      position:absolute; bottom:5px; left:10px;
+      font-size:10px; font-weight:600;
+      display:flex; align-items:center; gap:4px;
+    }
+    .block-fw-label .fw-icon {
+      width:16px; height:16px; border-radius:4px;
+      display:inline-flex; align-items:center; justify-content:center;
+      font-size:9px; flex-shrink:0;
+      border:1px solid; opacity:0.9;
+      font-variant-emoji:text;
+    }
+    .block-fw-label .fw-text { color:#a09080; }
+    /* Outgoing refs */
+    .block-out { display:flex; gap:4px; flex-wrap:wrap; margin-top:3px; }
+    .out-chip {
+      font-size:9px; color:#b0a090; border:1px solid #e0d8cc;
+      border-radius:8px; padding:1px 6px; cursor:pointer; transition:all .15s;
+    }
+    .out-chip:hover { border-color:var(--accent,#5c3d1e); color:var(--accent,#5c3d1e); }
+    /* Absorbed */
+    .absorbed-toggle {
+      font-size:10px; color:var(--muted,#6a6058); cursor:pointer;
+      padding:2px 0; transition:color .2s;
+    }
+    .absorbed-toggle:hover { color:var(--accent,#5c3d1e); }
+    .absorbed-arrow { display:inline-block; transition:transform .2s; }
+    .absorbed-count {
+      font-size:9px; background:#e8e0d8; border-radius:8px;
+      padding:0 5px; margin-left:3px;
+    }
+    .absorbed-list { display:none; padding:4px 0 0 12px; }
+    .absorbed-list.open { display:block; }
+    .absorbed-item {
+      font-size:10px; color:var(--muted,#6a6058); padding:1px 0;
+      display:flex; gap:6px;
+    }
+    .absorbed-item-era { color:#b0a898; min-width:60px; flex-shrink:0; }
+    /* Controls */
+    .controls {
+      display:flex; gap:8px; margin-bottom:16px; flex-wrap:wrap; align-items:center;
+    }
+    .controls button {
+      font-family:inherit; font-size:12px; padding:5px 12px;
+      border:1.5px solid var(--line,#c9b89e); border-radius:18px;
+      background:var(--paper,#fffdf8); color:var(--muted,#6a6058);
+      cursor:pointer; transition:all .2s;
+    }
+    .controls button:hover, .controls button.active {
+      background:var(--accent,#5c3d1e); color:#fff; border-color:var(--accent,#5c3d1e);
+    }
+    .ctrl-info { font-size:11px; color:var(--muted,#6a6058); margin-left:auto; }
+    /* Legend */
+    .legend {
+      display:flex; gap:14px; flex-wrap:wrap; font-size:11px;
+      color:var(--muted,#6a6058); margin-bottom:16px;
+    }
+    .legend-item { display:flex; align-items:center; gap:4px; }
+    .legend-sw { width:28px; height:3px; border-radius:2px; }
+  `;
+  document.head.appendChild(s);
+})();
+
+// ── ブロックHTML生成 ──
+// opts: { formatId, chipMaxLen, emptyLabel, eraBadge(n), showAbsorbed, showOutgoing,
+//         showPatternLink, onChipClick, onActorClick, crossHighlight(e) }
+function renderBlockHTML(node, inEdges, outEdges, opts) {
+  opts = opts || {};
+  const fmtId = opts.formatId || (id => id);
+  const chipMax = opts.chipMaxLen || 14;
+  const emptyLabel = opts.emptyLabel || '（起点）';
+  const fwS = FW_TYPE_STYLES[node.fwType] || {};
+  const id = node.id;
+
+  let html = '';
+
+  // Incoming ref-chips
+  if (inEdges.length > 0) {
+    html += '<div class="block-inner">';
+    inEdges.forEach(e => {
+      const src = opts.nodeMap ? opts.nodeMap[e.from] : null;
+      const srcFw = FW_TYPE_STYLES[src?.fwType] || {};
+      const srcColor = srcFw.color || '#b0a898';
+      const shortLabel = src ? (src.label.length > chipMax ? src.label.slice(0, chipMax - 2) + '…' : src.label) : e.from;
+      const crossBg = (opts.crossHighlight && opts.crossHighlight(e)) ? ';background:rgba(232,160,96,.12)' : '';
+      const chipClick = opts.onChipClick
+        ? ` onclick="event.stopPropagation();${opts.onChipClick}('${e.from}')"`
+        : '';
+      const chipHover = opts.onChipHover
+        ? ` onmouseenter="hlSource('${e.from}',true)" onmouseleave="hlSource('${e.from}',false)"`
+        : '';
+      html += `<span class="ref-chip" id="chip-${e.from}-${id}" data-from="${e.from}" style="border-color:${srcColor}${crossBg}" title="${(e.note || '').replace(/"/g,'&quot;')}"${chipClick}${chipHover}>`;
+      html += `<b>${fmtId(e.from)}</b> ${shortLabel}`;
+      html += `<span class="role-arrow r-${e.role}">\u25B6</span></span>`;
+    });
+    html += '</div>';
+  } else {
+    html += `<div class="block-inner empty">${emptyLabel}</div>`;
+  }
+
+  // Era (with optional badge)
+  if (opts.eraBadge) {
+    html += `<div class="block-era">${opts.eraBadge(node)}</div>`;
+  } else {
+    html += `<div class="block-era">${node.era || ''}</div>`;
+  }
+
+  // Label + Summary
+  html += `<div class="block-label">${node.label}</div>`;
+  html += `<div class="block-summary">${node.summary}</div>`;
+
+  // Absorbed (optional)
+  if (opts.showAbsorbed && node.absorbed && node.absorbed.length > 0) {
+    const aid = id + '-abs';
+    html += `<div class="absorbed-toggle" onclick="event.stopPropagation();toggleAbsorbed('${aid}')">`;
+    html += `<span class="absorbed-arrow" id="arr-${aid}">\u25B8</span> 内包イベント <span class="absorbed-count">${node.absorbed.length}</span>`;
+    html += `</div>`;
+    html += `<div class="absorbed-list" id="abs-${aid}">`;
+    node.absorbed.forEach(a => {
+      html += `<div class="absorbed-item"><span class="absorbed-item-era">${a.era}</span><span class="absorbed-item-label">${a.label}</span></div>`;
+    });
+    html += '</div>';
+  }
+
+  // Abstract: pattern + actors
+  if (node.pattern) {
+    html += '<div class="block-abstract">';
+    html += `<div class="block-pattern">${node.pattern}</div>`;
+    html += '</div>';
+  }
+  if (node.actors && node.actors.length > 0) {
+    const actClick = opts.onActorClick ? (a => ` onclick="event.stopPropagation();${opts.onActorClick}('${a}')"`) : (() => '');
+    html += '<div class="block-actors">';
+    html += node.actors.map(a => `<span class="actor"${actClick(a)}>${a}</span>`).join('');
+    html += '</div>';
+  }
+
+  // Outgoing refs (optional)
+  if (opts.showOutgoing && outEdges.length > 0) {
+    html += '<div class="block-out">';
+    outEdges.forEach(e => {
+      const tgt = opts.nodeMap ? opts.nodeMap[e.to] : null;
+      const shortLabel = tgt ? (tgt.label.length > 12 ? tgt.label.slice(0, 10) + '…' : tgt.label) : e.to;
+      html += `<span class="out-chip" onclick="event.stopPropagation();flashAndScroll('${e.to}')" title="${(tgt?.label || e.to) + '\n' + e.role + ': ' + (e.note || '')}">→${fmtId(e.to)} ${shortLabel}</span>`;
+    });
+    html += '</div>';
+  }
+
+  return html;
+}
+
+// ── ブロックフッタHTML生成 ──
+function renderBlockFooter(node, opts) {
+  opts = opts || {};
+  const fmtId = opts.formatId || (id => id);
+  const fwS = FW_TYPE_STYLES[node.fwType] || {};
+  const bgS = BG_TYPE_STYLES[node.bgType] || {};
+  const relS = BG_TYPE_STYLES[node.releaseType] || {};
+
+  const bgIc = bgS.icon
+    ? `<span class="fw-icon" style="color:${bgS.color};border-color:${bgS.color};background:${bgS.color}18">${bgS.icon}</span><span style="color:#c0b8a0;margin:0 1px">→</span>`
+    : '';
+  const relIc = relS.icon
+    ? `<span class="fw-icon" style="color:${relS.color};border-color:${relS.color};background:${relS.color}18">${relS.icon}</span>`
+    : `<span class="fw-icon" style="color:${fwS.color};border-color:${fwS.color};background:${fwS.color}18">${fwS.shape}</span>`;
+
+  let footer = `<div class="block-fw-label">${bgIc}${relIc}<span class="fw-text">${fwS.label}</span>`;
+  if (opts.showPatternLink) {
+    const pid = nodePatId(node);
+    if (pid) {
+      footer += `<a href="demo_pattern_fwtype.html#${pid}" style="margin-left:4px;font-family:monospace;font-size:9px;color:#b0a090;text-decoration:none;border-bottom:1px dotted #c0b8a0;" title="パターン図鑑で表示">${pid}</a>`;
+    }
+  }
+  footer += '</div>';
+  footer += `<div class="block-id">${fmtId(node.id)}</div>`;
+  return footer;
+}
+
+// ── エッジ描画（3-pass ハロー+ドット） ──
+function drawEdgesStandard(edges, blockEls, canvasEl, svgEl) {
+  const cr = canvasEl.getBoundingClientRect();
+  const sL = canvasEl.scrollLeft, sT = canvasEl.scrollTop;
+  svgEl.innerHTML = '';
+  svgEl.style.width = canvasEl.scrollWidth + 'px';
+  svgEl.style.height = canvasEl.scrollHeight + 'px';
+  svgEl.setAttribute('viewBox', `0 0 ${canvasEl.scrollWidth} ${canvasEl.scrollHeight}`);
+
+  // Pass 1: compute geometry (block edge → ref-chip)
+  const geom = [];
+  edges.forEach(e => {
+    const fromEl = blockEls[e.from];
+    const chipEl = document.getElementById('chip-' + e.from + '-' + e.to);
+    if (!fromEl || !chipEl) return;
+
+    const fr = fromEl.getBoundingClientRect();
+    const ch = chipEl.getBoundingClientRect();
+
+    const chipCX = ch.left + ch.width / 2 - cr.left + sL;
+    const chipCY = ch.top + ch.height / 2 - cr.top + sT;
+    const fromCX = fr.left + fr.width / 2 - cr.left + sL;
+    const fromCY = fr.top + fr.height / 2 - cr.top + sT;
+
+    const fT = fr.top - cr.top + sT, fB = fr.bottom - cr.top + sT;
+    const fL = fr.left - cr.left + sL, fR = fr.right - cr.left + sL;
+    let x1, y1;
+    if (chipCY > fB)      { x1 = fromCX; y1 = fB; }
+    else if (chipCY < fT) { x1 = fromCX; y1 = fT; }
+    else if (chipCX < fL) { x1 = fL; y1 = fromCY; }
+    else                  { x1 = fR; y1 = fromCY; }
+
+    const cT = ch.top - cr.top + sT, cB = ch.bottom - cr.top + sT;
+    const cL = ch.left - cr.left + sL, cR = ch.right - cr.left + sL;
+    let x2, y2;
+    if (fromCY < cT)      { x2 = chipCX; y2 = cT; }
+    else if (fromCY > cB) { x2 = chipCX; y2 = cB; }
+    else if (fromCX < cL) { x2 = cL; y2 = chipCY; }
+    else                  { x2 = cR; y2 = chipCY; }
+
+    const midY = Math.abs(y2 - y1) < 20
+      ? Math.min(y1, y2) - 50
+      : (y1 + y2) / 2;
+    const d = `M ${x1} ${y1} C ${x1} ${midY}, ${x2} ${midY}, ${x2} ${y2}`;
+    geom.push({ e, d, x1, y1, x2, y2 });
+  });
+
+  // Pass 2: lines
+  geom.forEach(({ e, d }) => {
+    const eid = e.id || `${e.from}-${e.to}`;
+    const p = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+    p.setAttribute('d', d);
+    p.classList.add('edge-line', 'r-' + e.role);
+    if (e._cross) p.classList.add('cross');
+    p.dataset.from = e.from; p.dataset.to = e.to; p.dataset.role = e.role;
+    p.dataset.eid = eid;
+    svgEl.appendChild(p);
+  });
+
+  // Pass 3: halos + dots
+  geom.forEach(({ e, x1, y1, x2, y2 }) => {
+    const eid = e.id || `${e.from}-${e.to}`;
+    const ns = 'http://www.w3.org/2000/svg';
+    // Start: halo + dot
+    const h = document.createElementNS(ns, 'circle');
+    h.setAttribute('cx', x1); h.setAttribute('cy', y1); h.setAttribute('r', 5);
+    h.setAttribute('fill', 'var(--paper,#fffdf8)'); h.setAttribute('stroke', 'none');
+    h.classList.add('edge-halo');
+    h.dataset.from = e.from; h.dataset.to = e.to;
+    h.dataset.eid = eid;
+    svgEl.appendChild(h);
+
+    const ds = document.createElementNS(ns, 'circle');
+    ds.setAttribute('cx', x1); ds.setAttribute('cy', y1); ds.setAttribute('r', 3);
+    ds.classList.add('edge-dot', 'r-' + e.role);
+    if (e._cross) ds.classList.add('cross');
+    ds.dataset.from = e.from; ds.dataset.to = e.to;
+    ds.dataset.eid = eid;
+    svgEl.appendChild(ds);
+
+    // End: dot
+    const de = document.createElementNS(ns, 'circle');
+    de.setAttribute('cx', x2); de.setAttribute('cy', y2); de.setAttribute('r', 3);
+    de.classList.add('edge-head', 'r-' + e.role);
+    if (e._cross) de.classList.add('cross');
+    de.dataset.from = e.from; de.dataset.to = e.to;
+    de.dataset.eid = eid;
+    svgEl.appendChild(de);
+  });
+}
+
+// ── インタラクション共通関数 ──
+function hlSource(nid, on) {
+  const el = document.getElementById('blk-' + nid);
+  if (!el) return;
+  if (on) {
+    el.classList.add('source-hl');
+    document.querySelectorAll('.edge-line').forEach(line => {
+      if (line.dataset.from === nid || line.dataset.to === nid) {
+        line.style.opacity = '0.8'; line.style.strokeWidth = '2.5';
+      }
+    });
+  } else {
+    el.classList.remove('source-hl');
+    document.querySelectorAll('.edge-line').forEach(line => {
+      if (line.dataset.from === nid || line.dataset.to === nid) {
+        line.style.opacity = ''; line.style.strokeWidth = '';
+      }
+    });
+  }
+}
+
+function flashAndScroll(nid) {
+  const el = document.getElementById('blk-' + nid);
+  if (!el) return;
+  el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  el.classList.add('hl');
+  setTimeout(() => el.classList.remove('hl'), 2000);
+}
+
+function toggleAbsorbed(aid) {
+  const list = document.getElementById('abs-' + aid);
+  const arrow = document.getElementById('arr-' + aid);
+  if (!list) return;
+  list.classList.toggle('open');
+  if (arrow) arrow.textContent = list.classList.contains('open') ? '\u25BE' : '\u25B8';
 }
 
 async function buildPatternIds() {

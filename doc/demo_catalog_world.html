@@ -119,42 +119,11 @@
     display: flex; flex-direction: column; gap: 16px; padding: 4px 0;
   }
 
-  /* ── SVG overlay ── */
-  #edge-svg {
-    position: absolute; inset: 0; width: 100%; height: 100%;
-    pointer-events: none; z-index: 10;
-  }
-  .edge-line { fill: none; stroke-width: 1.4; opacity: 0.45; stroke-dasharray: 5 4; stroke: #8a7a68; }
+  /* ── SVG overlay (cross-region overrides) ── */
+  #edge-svg { z-index: 10; }
   .edge-line.cross { stroke: #e8a060; opacity: 0.55; stroke-width: 1.8; stroke-dasharray: 8 4; }
-  .edge-head { stroke: none; fill: #8a7a68; opacity: 0.6; }
   .edge-head.cross { fill: #e8a060; opacity: 0.6; }
-  .edge-dot { stroke: none; fill: #8a7a68; opacity: 0.5; }
-  .edge-dot.cross { fill: #e8a060; opacity: 0.6; }
-
-  /* role edge colors (non-cross edges) */
-  .edge-line.r-amplifies:not(.cross)  { stroke: #c8960a; }
-  .edge-line.r-triggers:not(.cross)   { stroke: #c45a3c; }
-  .edge-line.r-transforms:not(.cross) { stroke: #3a6a9a; }
-  .edge-line.r-sustains:not(.cross)   { stroke: #3a8a3a; }
-  .edge-line.r-suppresses:not(.cross) { stroke: #7a3a8a; }
-  .edge-line.r-inherits:not(.cross)   { stroke: #3a7a8a; }
-  .edge-dot.r-amplifies:not(.cross)  { fill: #c8960a; }
-  .edge-dot.r-triggers:not(.cross)   { fill: #c45a3c; }
-  .edge-dot.r-transforms:not(.cross) { fill: #3a6a9a; }
-  .edge-dot.r-sustains:not(.cross)   { fill: #3a8a3a; }
-  .edge-dot.r-suppresses:not(.cross) { fill: #7a3a8a; }
-  .edge-dot.r-inherits:not(.cross)   { fill: #3a7a8a; }
-  .edge-head.r-amplifies:not(.cross)  { fill: #c8960a; }
-  .edge-head.r-triggers:not(.cross)   { fill: #c45a3c; }
-  .edge-head.r-transforms:not(.cross) { fill: #3a6a9a; }
-  .edge-head.r-sustains:not(.cross)   { fill: #3a8a3a; }
-  .edge-head.r-suppresses:not(.cross) { fill: #7a3a8a; }
-  .edge-head.r-inherits:not(.cross)   { fill: #3a7a8a; }
-
-  .edge-line.hl { opacity: 0.7; stroke-width: 2; }
-  .edge-line.dim { opacity: 0.06; }
-  .edge-head.dim { opacity: 0.06; }
-  .edge-dot.dim { opacity: 0.06; }
+  .edge-dot.cross  { fill: #e8a060; opacity: 0.6; }
 
   /* Cluster header */
   .cluster-header {
@@ -164,111 +133,29 @@
     text-align: center;
   }
 
-  /* ── Block ── */
-  .block {
-    width: 100%; background: var(--paper);
-    border: 2px solid #b8a898; border-radius: var(--block-radius);
-    box-shadow: var(--shadow); position: relative;
-    transition: border-color .3s, box-shadow .3s, opacity .3s; cursor: pointer;
-  }
-  .block:hover { box-shadow: 0 8px 28px rgba(40,28,14,.15); }
-  .block.hl { box-shadow: 0 0 0 5px rgba(92,61,30,.25); filter: brightness(0.97); }
+  /* ── Block (compact overrides for lane layout) ── */
+  .block { width: 100%; }
+  .block.hl { filter: brightness(0.97); }
   .block.source-hl { box-shadow: 0 0 0 6px rgba(200,150,10,.4); transform: scale(1.02); transition: all .15s; }
   .block.dim { opacity: 0.15; }
-
-  .block-body { padding: 8px 10px 20px; display: flex; flex-direction: column; gap: 4px; }
-
-  .block-inner {
-    border: 1.5px solid #ddd4c8; border-radius: 8px;
-    background: linear-gradient(180deg, #faf7f0, #f5f1e8);
-    padding: 4px 6px; display: flex; gap: 4px; flex-wrap: wrap; min-height: 24px;
-  }
-  .block-inner.empty {
-    border-style: dashed; min-height: 20px;
-    align-items: center; justify-content: center;
-    color: #d0c4b0; font-size: 9px;
-  }
-
-  .ref-chip {
-    font-size: 9px; padding: 1px 5px; border-radius: 8px;
-    border: 1px solid #d0c8bc; background: transparent; color: #9a9080;
-    cursor: pointer; transition: all .15s;
-    white-space: nowrap; max-width: 150px; overflow: hidden; text-overflow: ellipsis;
-  }
-  .ref-chip b { font-family: monospace; font-size: 9px; margin-right: 2px; }
-  .ref-chip:hover { opacity: 0.8; }
-  .role-arrow { display: inline; font-size: 9px; line-height: 1; margin-left: 1px; }
-  .role-arrow.r-amplifies  { color: #c8960a; }
-  .role-arrow.r-triggers   { color: #c45a3c; }
-  .role-arrow.r-transforms { color: #3a6a9a; }
-  .role-arrow.r-sustains   { color: #3a8a3a; }
-  .role-arrow.r-suppresses { color: #7a3a8a; }
-  .role-arrow.r-inherits   { color: #3a7a8a; }
-
-  .block-label { font-size: 12px; font-weight: 600; line-height: 1.5; color: var(--ink); }
-  .block-summary {
-    font-size: 10px; color: var(--muted); line-height: 1.5;
-    display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
-  }
-  .block-abstract { margin-top: 2px; padding-top: 3px; border-top: 1px solid #e8e0d8; }
-  .block-pattern { font-size: 10px; color: #a09080; line-height: 1.4; }
-  .block-actors { display: flex; flex-wrap: wrap; gap: 2px; margin-top: 2px; }
-  .actor {
-    font-size: 8px; background: transparent; border: 1px solid #d0c8bc;
-    border-radius: 8px; padding: 0 5px; color: #9a9080;
-    cursor: pointer; transition: all .2s;
-  }
-  .actor:hover { color: #6a6058; border-color: #a89a88; }
+  .block-body { padding: 8px 10px 20px; gap: 4px; }
+  .block-inner { padding: 4px 6px; gap: 4px; min-height: 24px; border-radius: 8px; }
+  .block-inner.empty { min-height: 20px; font-size: 9px; }
+  .ref-chip { font-size: 9px; padding: 1px 5px; border-radius: 8px; max-width: 150px; overflow: hidden; text-overflow: ellipsis; }
+  .ref-chip b { font-size: 9px; }
+  /* Compact size overrides */
+  .block-label { font-size: 12px; line-height: 1.5; }
+  .block-summary { font-size: 10px; line-height: 1.5; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+  .block-abstract { margin-top: 2px; padding-top: 3px; }
+  .block-pattern { font-size: 10px; line-height: 1.4; }
+  .block-actors { gap: 2px; }
+  .actor { font-size: 8px; padding: 0 5px; border-radius: 8px; }
   .actor.active { background: #4a4038; color: #f5f0e8; border-color: #4a4038; }
-
-  .block-id {
-    position: absolute; bottom: 3px; right: 8px;
-    font-size: 10px; font-weight: 700; font-family: monospace; color: #b0a090;
-  }
-  .block-fw-label {
-    position: absolute; bottom: 3px; left: 8px;
-    font-size: 10px; font-weight: 600;
-    display: flex; align-items: center; gap: 4px;
-  }
-  .block-fw-label .fw-icon {
-    width: 16px; height: 16px; border-radius: 4px;
-    display: inline-flex; align-items: center; justify-content: center;
-    font-size: 9px; flex-shrink: 0;
-    border: 1px solid; opacity: 0.9;
-    font-variant-emoji: text;
-  }
-  .block-fw-label .fw-text { color: #a09080; }
-  .block-era { font-size: 10px; font-weight: 700; color: #2a2520; margin-bottom: 1px; }
-
-  .block-out { display: flex; gap: 3px; flex-wrap: wrap; margin-top: 2px; }
-  .out-chip {
-    font-size: 8px; padding: 0 5px; border-radius: 8px;
-    background: transparent; border: 1px solid #d0c8bc; color: #9a9080;
-    cursor: pointer; transition: all .2s;
-  }
-  .out-chip:hover { color: #6a6058; border-color: #a89a88; }
-
-  .absorbed-toggle {
-    font-size: 9px; color: var(--muted); cursor: pointer;
-    padding: 2px 6px; margin-top: 2px;
-    border: 1px dashed #d8d0c4; border-radius: 6px;
-    background: transparent; transition: all .2s;
-    display: flex; align-items: center; gap: 3px; user-select: none;
-  }
-  .absorbed-toggle:hover { background: #f5f0e8; }
-  .absorbed-arrow { transition: transform .2s; display: inline-block; font-size: 7px; }
-  .absorbed-toggle.open .absorbed-arrow { transform: rotate(90deg); }
-  .absorbed-count { font-size: 8px; background: #e8e0d8; border-radius: 6px; padding: 0 4px; color: #8a8070; }
-  .absorbed-list { display: none; margin-top: 3px; padding: 3px 0; border-top: 1px dotted #e0d8cc; }
-  .absorbed-list.open { display: block; }
-  .absorbed-item {
-    font-size: 9px; color: var(--muted); padding: 2px 6px;
-    border-radius: 4px; transition: background .15s;
-    display: flex; gap: 6px; align-items: baseline; line-height: 1.4;
-  }
-  .absorbed-item:hover { background: #f0ebe0; }
-  .absorbed-item-era { font-weight: 600; color: #8a8070; min-width: 36px; white-space: nowrap; font-size: 8px; }
-  .absorbed-item-label { color: var(--ink); }
+  .block-id { bottom: 3px; right: 8px; font-size: 10px; }
+  .block-fw-label { bottom: 3px; left: 8px; font-size: 10px; }
+  .block-era { font-size: 10px; margin-bottom: 1px; }
+  .block-out { gap: 3px; }
+  .out-chip { font-size: 8px; padding: 0 5px; border-radius: 8px; }
 
   .loading { text-align: center; padding: 60px; color: var(--muted); font-size: 14px; }
   .empty-lane {
@@ -447,6 +334,7 @@ async function init() {
   document.getElementById('subtitle').textContent =
     `EnergyAbsモデル ― ${regions.map(r => r.label).join('・')} ${G.nodes.length}ノード ${G.edges.length}エッジ`;
 
+  blockOpts.nodeMap = NM;
   buildControlsRow2();
   renderLanes();
 }
@@ -602,183 +490,49 @@ function renderLanesInner() {
   }
 }
 
+const blockOpts = {
+  nodeMap: null, // set after init
+  chipMaxLen: 12,
+  showAbsorbed: true,
+  showOutgoing: true,
+  showPatternLink: true,
+  onChipClick: 'flashAndScroll',
+  onChipHover: true,
+  onActorClick: 'toggleActor',
+  crossHighlight: e => e._cross,
+};
+
 function renderBlock(n) {
   const incoming = EbyTo[n.id] || [];
   const outgoing = EbyFrom[n.id] || [];
   const fwStyle = FW_TYPE_STYLES[n.fwType] || { color: '#b8a898', shape: '?', label: '?' };
 
   let html = `<div class="block" data-nid="${n.id}" id="blk-${n.id}" data-fwtype="${n.fwType || ''}" data-region="${n._region || ''}" style="border-color:${fwStyle.color}">`;
-  html += '<div class="block-body">';
-
-  // Incoming
-  if (incoming.length > 0) {
-    html += '<div class="block-inner">';
-    incoming.forEach(e => {
-      const src = NM[e.from];
-      if (!src) return;
-      const shortLabel = src.label.length > 12 ? src.label.slice(0, 10) + '…' : src.label;
-      const srcStyle = FW_TYPE_STYLES[src.fwType] || { color: '#b8a898' };
-      const crossBg = e._cross ? ';background:rgba(232,160,96,.12)' : '';
-      html += `<span class="ref-chip" id="chip-${e.from}-${n.id}" style="border-color:${srcStyle.color}${crossBg}" data-src="${e.from}" onclick="event.stopPropagation();flashAndScroll('${e.from}')" onmouseenter="hlSource('${e.from}',true)" onmouseleave="hlSource('${e.from}',false)" title="${src.label}\n${e.role}${e._cross ? ' [cross]' : ''}"><b>${e.from}</b> ${shortLabel}<span class="role-arrow r-${e.role}">▶</span></span>`;
-    });
-    html += '</div>';
-  } else {
-    html += '<div class="block-inner empty">（起点）</div>';
-  }
-
-  html += `<div class="block-era">${n.era || ''}</div>`;
-  html += `<div class="block-label">${n.label}</div>`;
-  html += `<div class="block-summary">${n.summary}</div>`;
-
-  // Absorbed
-  if (n.absorbed && n.absorbed.length > 0) {
-    const aid = n.id + '-abs';
-    html += `<div class="absorbed-toggle" onclick="event.stopPropagation();toggleAbsorbed('${aid}')"><span class="absorbed-arrow" id="arr-${aid}">▸</span> 内包 <span class="absorbed-count">${n.absorbed.length}</span></div>`;
-    html += `<div class="absorbed-list" id="abs-${aid}">`;
-    n.absorbed.forEach(a => {
-      html += `<div class="absorbed-item"><span class="absorbed-item-era">${a.era}</span><span class="absorbed-item-label">${a.label}</span></div>`;
-    });
-    html += '</div>';
-  }
-
-  // Abstract pattern
-  html += '<div class="block-abstract">';
-  const bgSt = BG_TYPE_STYLES[n.bgType] || {};
-  const bgIcon = bgSt.icon ? `<span style="color:${bgSt.color}" title="背景: ${n.bgType || ''}">${bgSt.icon}</span>` : '';
-  const fwIcon = `<span style="color:${fwStyle.color}" title="${fwStyle.label}">${fwStyle.shape}</span>`;
-  html += `<div class="block-pattern">${n.pattern || ''}</div>`;
-  html += '</div>';
-
-  // Actors
-  if (n.actors && n.actors.length > 0) {
-    html += `<div class="block-actors">${n.actors.map(a => `<span class="actor" onclick="event.stopPropagation();toggleActor('${a.replace(/'/g, "\\'")}')">${a}</span>`).join('')}</div>`;
-  }
-
-  // Outgoing
-  if (outgoing.length > 0) {
-    html += '<div class="block-out">';
-    outgoing.forEach(e => {
-      const tgt = NM[e.to];
-      if (!tgt) return;
-      const shortLabel = tgt.label.length > 10 ? tgt.label.slice(0, 8) + '…' : tgt.label;
-      html += `<span class="out-chip" onclick="event.stopPropagation();flashAndScroll('${e.to}')" title="${tgt.label}\n${e.role}">→${e.to} ${shortLabel}</span>`;
-    });
-    html += '</div>';
-  }
-
-  html += '</div>';
-  const _pid = nodePatId(n);
-  const _bgSt = BG_TYPE_STYLES[n.bgType] || {};
-  const _relSt = BG_TYPE_STYLES[n.releaseType] || {};
-  const _bgIc = _bgSt.icon ? `<span class="fw-icon" style="color:${_bgSt.color};border-color:${_bgSt.color};background:${_bgSt.color}18">${_bgSt.icon}</span><span style="color:#c0b8a0;margin:0 1px">→</span>` : '';
-  const _relIc = _relSt.icon ? `<span class="fw-icon" style="color:${_relSt.color};border-color:${_relSt.color};background:${_relSt.color}18">${_relSt.icon}</span>` : `<span class="fw-icon" style="color:${fwStyle.color};border-color:${fwStyle.color};background:${fwStyle.color}18">${fwStyle.shape}</span>`;
-  html += `<div class="block-fw-label">${_bgIc}${_relIc}<span class="fw-text">${fwStyle.label}</span>`;
-  if (_pid) html += `<a href="demo_pattern_fwtype.html#${_pid}" style="margin-left:4px;font-family:monospace;font-size:9px;color:#b0a090;text-decoration:none;border-bottom:1px dotted #c0b8a0;" title="パターン図鑑で表示">${_pid}</a>`;
-  html += `</div>`;
-  html += `<div class="block-id">${n.id}</div>`;
+  html += `<div class="block-body">${renderBlockHTML(n, incoming, outgoing, blockOpts)}</div>`;
+  html += renderBlockFooter(n, { showPatternLink: true });
   html += '</div>';
   return html;
 }
 
 // ══════════════════════════════════════════════
-// SVG Edge Drawing
+// SVG Edge Drawing (delegates to shared.js)
 // ══════════════════════════════════════════════
 function drawEdges() {
   const svg = document.getElementById('edge-svg');
   const canvas = document.getElementById('canvas');
   if (!svg || !canvas) return;
-  const cr = canvas.getBoundingClientRect();
-  const sL = canvas.scrollLeft, sT = canvas.scrollTop;
-  svg.innerHTML = '';
-  svg.style.width = canvas.scrollWidth + 'px';
-  svg.style.height = canvas.scrollHeight + 'px';
-  svg.setAttribute('viewBox', `0 0 ${canvas.scrollWidth} ${canvas.scrollHeight}`);
-
-  // Pass 1: compute edge geometry (block edge → ref-chip)
-  const edgeGeom = [];
-  G.edges.forEach(e => {
-    const fromEl = document.getElementById('blk-' + e.from);
-    const chipEl = document.getElementById('chip-' + e.from + '-' + e.to);
-    if (!fromEl || !chipEl) return;
-
-    const fr = fromEl.getBoundingClientRect();
-    const ch = chipEl.getBoundingClientRect();
-
-    const chipCX = ch.left + ch.width/2 - cr.left + sL;
-    const chipCY = ch.top + ch.height/2 - cr.top + sT;
-    const fCX = fr.left + fr.width/2 - cr.left + sL;
-    const fCY = fr.top + fr.height/2 - cr.top + sT;
-
-    const fT = fr.top - cr.top + sT, fB = fr.bottom - cr.top + sT;
-    const fL = fr.left - cr.left + sL, fR = fr.right - cr.left + sL;
-
-    // Source block edge (nearest side to chip)
-    let x1, y1;
-    if (chipCY > fB) { x1 = fCX; y1 = fB; }
-    else if (chipCY < fT) { x1 = fCX; y1 = fT; }
-    else if (chipCX < fL) { x1 = fL; y1 = fCY; }
-    else { x1 = fR; y1 = fCY; }
-
-    // Chip edge (nearest side to source block)
-    const cT = ch.top - cr.top + sT, cB = ch.bottom - cr.top + sT;
-    const cL = ch.left - cr.left + sL, cR = ch.right - cr.left + sL;
-
-    let x2, y2;
-    if (fCY < cT) { x2 = chipCX; y2 = cT; }
-    else if (fCY > cB) { x2 = chipCX; y2 = cB; }
-    else if (fCX < cL) { x2 = cL; y2 = chipCY; }
-    else { x2 = cR; y2 = chipCY; }
-
-    const midY = (y1 + y2) / 2;
-    const d = `M ${x1} ${y1} C ${x1} ${midY}, ${x2} ${midY}, ${x2} ${y2}`;
-    edgeGeom.push({ e, d, x1, y1, x2, y2 });
+  // Build blockEls map from DOM
+  const blockElMap = {};
+  G.nodes.forEach(n => {
+    const el = document.getElementById('blk-' + n.id);
+    if (el) blockElMap[n.id] = el;
   });
-
-  // Pass 2: draw lines (bottom layer)
-  edgeGeom.forEach(({ e, d }) => {
-    const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
-    path.setAttribute('d', d);
-    path.classList.add('edge-line', 'r-' + e.role);
-    if (e._cross) path.classList.add('cross');
-    path.dataset.eid = edgeKey(e);
-    path.dataset.from = e.from;
-    path.dataset.to = e.to;
-    svg.appendChild(path);
-  });
-
-  // Pass 3: draw halos + dots (top layer, visually cut passing lines)
-  edgeGeom.forEach(({ e, x1, y1, x2, y2 }) => {
-    // Start: halo (white circle to cut passing lines) + dot
-    const haloS = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
-    haloS.setAttribute('cx', x1); haloS.setAttribute('cy', y1); haloS.setAttribute('r', 5);
-    haloS.setAttribute('fill', '#fffdf8'); haloS.setAttribute('stroke', 'none');
-    svg.appendChild(haloS);
-
-    const dotS = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
-    dotS.setAttribute('cx', x1); dotS.setAttribute('cy', y1); dotS.setAttribute('r', 3);
-    dotS.classList.add('edge-dot', 'r-' + e.role);
-    if (e._cross) dotS.classList.add('cross');
-    dotS.dataset.eid = edgeKey(e);
-    svg.appendChild(dotS);
-
-    // End: dot only (no halo — dot center is on card edge)
-    const dot = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
-    dot.setAttribute('cx', x2); dot.setAttribute('cy', y2); dot.setAttribute('r', 3);
-    dot.classList.add('edge-head', 'r-' + e.role);
-    if (e._cross) dot.classList.add('cross');
-    dot.dataset.eid = edgeKey(e);
-    svg.appendChild(dot);
-  });
+  drawEdgesStandard(G.edges, blockElMap, canvas, svg);
 }
 
 // ══════════════════════════════════════════════
 // Interactions
 // ══════════════════════════════════════════════
-function hlSource(nid, on) {
-  const el = document.getElementById('blk-' + nid);
-  if (el) el.classList.toggle('source-hl', on);
-}
-
 function toggleSelect(nid) {
   if (selectedNode === nid) { selectedNode = null; clearHighlights(); return; }
   selectedNode = nid;
@@ -805,16 +559,8 @@ function highlightNode(nid) {
 
 function clearHighlights() {
   document.querySelectorAll('.block').forEach(el => { el.classList.remove('dim', 'hl'); });
-  document.querySelectorAll('.edge-line, .edge-head, .edge-dot').forEach(el => { el.classList.remove('hl', 'dim'); });
+  document.querySelectorAll(EDGE_SEL).forEach(el => { el.classList.remove('hl', 'dim'); });
   document.getElementById('info').textContent = `${G.nodes.length} nodes / ${G.edges.length} edges`;
-}
-
-function flashAndScroll(nid) {
-  const el = document.getElementById('blk-' + nid);
-  if (!el) return;
-  el.scrollIntoView({ behavior: 'smooth', block: 'center' });
-  el.classList.add('hl');
-  setTimeout(() => { if (selectedNode !== nid) el.classList.remove('hl'); }, 2000);
 }
 
 function filterRole(role, btn) {
@@ -839,15 +585,6 @@ function toggleLegend() {
   const p = document.getElementById('legend-panel');
   p.classList.toggle('collapsed');
   document.getElementById('legend-btn').textContent = p.classList.contains('collapsed') ? '凡例 ▶' : '凡例';
-}
-
-function toggleAbsorbed(aid) {
-  const list = document.getElementById('abs-' + aid);
-  const arrow = document.getElementById('arr-' + aid);
-  const toggle = arrow?.closest('.absorbed-toggle');
-  if (list) list.classList.toggle('open');
-  if (toggle) toggle.classList.toggle('open');
-  if (arrow) arrow.textContent = list?.classList.contains('open') ? '▾' : '▸';
 }
 
 function toggleRegion(region, btn) {
@@ -910,12 +647,10 @@ function toggleActor(name) {
 }
 
 function applyEdgeDim(visibleIds) {
-  document.querySelectorAll('.edge-line').forEach(el => {
-    el.classList.toggle('dim', !visibleIds.has(el.dataset.eid));
-    el.classList.toggle('hl', visibleIds.has(el.dataset.eid));
-  });
-  document.querySelectorAll('.edge-head, .edge-dot').forEach(el => {
-    el.classList.toggle('dim', !visibleIds.has(el.dataset.eid));
+  document.querySelectorAll(EDGE_SEL).forEach(el => {
+    const vis = visibleIds.has(el.dataset.eid);
+    el.classList.toggle('dim', !vis);
+    if (el.classList.contains('edge-line')) el.classList.toggle('hl', vis);
   });
 }
 

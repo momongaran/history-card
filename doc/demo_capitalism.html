@@ -725,36 +725,13 @@ LAYOUT.forEach(row => {
 
 // ===================== EDGES (SVG) =====================
 function drawEdges() {
+  drawEdgesStandard(DATA.edges, blockEls, canvas, document.getElementById('edge-svg'));
+}
+/*  ── 旧実装（drawEdgesStandardに置換済み） ──
+function _drawEdges_old() {
   const svg = document.getElementById('edge-svg');
   const cr = canvas.getBoundingClientRect();
   const sL = canvas.scrollLeft, sT = canvas.scrollTop;
-  svg.innerHTML = '';
-  svg.style.width = canvas.scrollWidth + 'px';
-  svg.style.height = canvas.scrollHeight + 'px';
-  svg.setAttribute('viewBox', `0 0 ${canvas.scrollWidth} ${canvas.scrollHeight}`);
-
-  DATA.edges.forEach(e => {
-    const fromEl = blockEls[e.from];
-    const chipEl = document.getElementById('chip-' + e.from + '-' + e.to);
-    if (!fromEl || !chipEl) return;
-
-    const fr = fromEl.getBoundingClientRect();
-    const ch = chipEl.getBoundingClientRect();
-
-    const chipCX = ch.left + ch.width/2 - cr.left + sL;
-    const chipCY = ch.top + ch.height/2 - cr.top + sT;
-    const fromCX = fr.left + fr.width/2 - cr.left + sL;
-    const fromCY = fr.top + fr.height/2 - cr.top + sT;
-
-    // Source block edge (nearest side to chip)
-    let x1, y1;
-    const fT = fr.top - cr.top + sT, fB = fr.bottom - cr.top + sT;
-    const fL = fr.left - cr.left + sL, fR = fr.right - cr.left + sL;
-
-    if (chipCY > fB) { x1 = fromCX; y1 = fB; }
-    else if (chipCY < fT) { x1 = fromCX; y1 = fT; }
-    else if (chipCX < fL) { x1 = fL; y1 = fromCY; }
-    else { x1 = fR; y1 = fromCY; }
 
     // Chip edge (nearest side to source block)
     const cT = ch.top - cr.top + sT, cB = ch.bottom - cr.top + sT;
@@ -788,6 +765,7 @@ function drawEdges() {
     svg.appendChild(dot);
   });
 }
+*/
 
 // ===================== INTERACTION =====================
 let activeFilter = null;
@@ -797,7 +775,7 @@ function resetView(btn) {
   document.querySelectorAll('.controls button').forEach(b => b.classList.remove('active'));
   if (btn) btn.classList.add('active');
   Object.values(blockEls).forEach(el => { el.classList.remove('dim', 'hl'); });
-  document.querySelectorAll('.edge-line, .edge-head').forEach(el => el.classList.remove('dim', 'hl'));
+  document.querySelectorAll(EDGE_SEL).forEach(el => el.classList.remove('dim', 'hl'));
 }
 
 function filterRole(role, btn) {
@@ -812,12 +790,9 @@ function filterRole(role, btn) {
     el.classList.toggle('dim', !involved.has(id));
     el.classList.remove('hl');
   });
-  document.querySelectorAll('.edge-line').forEach(el => {
-    el.classList.toggle('dim', el.dataset.role !== role);
-    el.classList.toggle('hl', el.dataset.role === role);
-  });
-  document.querySelectorAll('.edge-head').forEach(el => {
-    el.classList.toggle('dim', !DATA.edges.some(e => e.from === el.dataset.from && e.to === el.dataset.to && e.role === role));
+  document.querySelectorAll(EDGE_SEL).forEach(el => {
+    const hit = el.dataset.role === role;
+    el.classList.toggle('hl', hit); el.classList.toggle('dim', !hit);
   });
 }
 
@@ -837,12 +812,7 @@ canvas.addEventListener('click', (ev) => {
     el.classList.toggle('dim', !connected.has(nid));
     el.classList.toggle('hl', nid === id);
   });
-  document.querySelectorAll('.edge-line').forEach(el => {
-    const relevant = el.dataset.from === id || el.dataset.to === id;
-    el.classList.toggle('dim', !relevant);
-    el.classList.toggle('hl', relevant);
-  });
-  document.querySelectorAll('.edge-head').forEach(el => {
+  document.querySelectorAll(EDGE_SEL).forEach(el => {
     const relevant = el.dataset.from === id || el.dataset.to === id;
     el.classList.toggle('dim', !relevant);
     el.classList.toggle('hl', relevant);

@@ -28,63 +28,17 @@
   h1 { font-size: 22px; color: var(--accent); letter-spacing: .06em; }
   .sub { margin-top: 3px; font-size: 12px; color: var(--muted); }
 
-  /* Controls */
-  .controls {
-    display: flex; gap: 8px; margin-bottom: 16px; flex-wrap: wrap; align-items: center;
-  }
-  .controls button {
-    font-family: inherit; font-size: 12px; padding: 5px 12px;
-    border: 1.5px solid var(--line); border-radius: 18px;
-    background: var(--paper); color: var(--muted); cursor: pointer; transition: all .2s;
-  }
-  .controls button:hover, .controls button.active {
-    background: var(--accent); color: #fff; border-color: var(--accent);
-  }
-  .ctrl-info { font-size: 11px; color: var(--muted); margin-left: auto; }
+  /* Page-specific: source-hl with scale */
+  .block.source-hl { box-shadow: 0 0 0 6px rgba(200,150,10,.4); transform: scale(1.02); transition: all .15s; }
+  /* Page-specific: actor active state */
+  .actor { cursor: pointer; transition: all .2s; }
+  .actor:hover { color: #6a6058; border-color: #a89a88; }
+  .actor.active { background: #4a4038; color: #f5f0e8; border-color: #4a4038; }
 
-  /* Canvas */
-  .canvas {
-    position: relative;
-    background: var(--bg);
-    border: 1px solid #d8cebb;
-    border-radius: 20px;
-    box-shadow: 0 8px 28px rgba(40,28,14,.10);
-    padding: 30px 24px;
-    overflow-x: auto;
+  /* Page-specific: block-summary clamp */
+  .block-summary {
+    display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;
   }
-  .canvas::before {
-    content: ''; position: absolute; inset: 0; border-radius: 20px;
-    background-image:
-      linear-gradient(rgba(200,188,168,.08) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(200,188,168,.08) 1px, transparent 1px);
-    background-size: 40px 40px; pointer-events: none;
-  }
-
-  /* SVG layer */
-  #edge-svg {
-    position: absolute; inset: 0; width: 100%; height: 100%;
-    pointer-events: none; z-index: 2;
-  }
-  .edge-line { fill: none; stroke-width: 1.4; opacity: 0.45; stroke-dasharray: 5 4; stroke: #b0a898; }
-  .edge-head { stroke: none; fill: #b0a898; opacity: 0.6; }
-
-  /* role edge colors */
-  .edge-line.r-amplifies  { stroke: #c8960a; }
-  .edge-line.r-triggers   { stroke: #c45a3c; }
-  .edge-line.r-transforms { stroke: #3a6a9a; }
-  .edge-line.r-sustains   { stroke: #3a8a3a; }
-  .edge-line.r-suppresses { stroke: #7a3a8a; }
-  .edge-line.r-inherits   { stroke: #3a7a8a; }
-  .edge-head.r-amplifies  { fill: #c8960a; }
-  .edge-head.r-triggers   { fill: #c45a3c; }
-  .edge-head.r-transforms { fill: #3a6a9a; }
-  .edge-head.r-sustains   { fill: #3a8a3a; }
-  .edge-head.r-suppresses { fill: #7a3a8a; }
-  .edge-head.r-inherits   { fill: #3a7a8a; }
-
-  .edge-line.hl { opacity: 0.7; stroke-width: 2; }
-  .edge-line.dim { opacity: 0.08; }
-  .edge-head.dim { opacity: 0.08; }
 
   /* Cluster header */
   .cluster-header {
@@ -99,167 +53,6 @@
   .cluster-header:first-child { margin-top: 0; }
   .cluster-era { font-size: 11px; color: var(--muted); font-weight: 400; margin-left: 8px; }
 
-  /* Block row */
-  .block-row {
-    position: relative; z-index: 1;
-    display: flex; gap: 16px; margin-bottom: 12px;
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-
-  /* ── The Block (同一サイズ) ── */
-  .block {
-    width: var(--block-w);
-    background: var(--paper);
-    border: 2px solid #b8a898;
-    border-radius: var(--block-radius);
-    box-shadow: var(--shadow);
-    position: relative;
-    transition: border-color .3s, box-shadow .3s, opacity .3s;
-    cursor: pointer;
-    flex: 0 0 auto;
-  }
-  .block:hover { box-shadow: 0 8px 28px rgba(40,28,14,.15); }
-  .block.hl { box-shadow: 0 0 0 5px rgba(92,61,30,.25); filter: brightness(0.97); }
-  .block.source-hl { box-shadow: 0 0 0 6px rgba(200,150,10,.4); transform: scale(1.02); transition: all .15s; }
-  .block.dim { opacity: 0.2; }
-  /* block-fw-label: fwType classification at bottom-left */
-  .block-fw-label {
-    position: absolute; bottom: 5px; left: 10px;
-    font-size: 10px; font-weight: 600;
-    display: flex; align-items: center; gap: 4px;
-  }
-  .block-fw-label .fw-icon {
-    width: 16px; height: 16px; border-radius: 4px;
-    display: inline-flex; align-items: center; justify-content: center;
-    font-size: 9px; flex-shrink: 0;
-    border: 1px solid; opacity: 0.9;
-    font-variant-emoji: text;
-  }
-  .block-fw-label .fw-text { color: #a09080; }
-
-  .block-body { padding: 12px 14px 24px; display: flex; flex-direction: column; gap: 6px; }
-
-  /* Inner area: incoming edges as reference slots */
-  .block-inner {
-    border: 1.5px solid #ddd4c8;
-    border-radius: 10px;
-    background: linear-gradient(180deg, #faf7f0, #f5f1e8);
-    padding: 6px 8px;
-    display: flex; gap: 6px; flex-wrap: wrap;
-    min-height: 32px;
-  }
-  .block-inner.empty {
-    border-style: dashed; min-height: 24px;
-    align-items: center; justify-content: center;
-    color: #d0c4b0; font-size: 10px;
-  }
-
-  .ref-chip {
-    font-size: 10px;
-    padding: 2px 7px;
-    border-radius: 10px;
-    border: 1px solid #d0c8bc;
-    background: transparent;
-    color: #9a9080;
-    cursor: pointer;
-    transition: all .15s;
-    white-space: nowrap;
-    max-width: 180px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-  .ref-chip b { font-family: monospace; font-size: 10px; margin-right: 2px; }
-  .ref-chip:hover { opacity: 0.8; }
-
-  /* ref-chip border color is set dynamically to match source block's cluster color */
-
-  .role-arrow {
-    display: inline; font-size: 9px; line-height: 1; margin-left: 2px;
-  }
-  .role-arrow.r-amplifies  { color: #c8960a; }
-  .role-arrow.r-triggers   { color: #c45a3c; }
-  .role-arrow.r-transforms { color: #3a6a9a; }
-  .role-arrow.r-sustains   { color: #3a8a3a; }
-  .role-arrow.r-suppresses { color: #7a3a8a; }
-  .role-arrow.r-inherits   { color: #3a7a8a; }
-
-  /* Block text */
-  .block-label {
-    font-size: 14px; font-weight: 600; line-height: 1.6; color: var(--ink);
-  }
-  .block-summary {
-    font-size: 11px; color: var(--muted); line-height: 1.55;
-    display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;
-  }
-  .block-abstract {
-    margin-top: 4px; padding-top: 5px;
-    border-top: 1px solid #e8e0d8;
-  }
-  .block-pattern {
-    font-size: 11px; color: #a09080; line-height: 1.5;
-    letter-spacing: .01em;
-  }
-  .block-actors {
-    display: flex; flex-wrap: wrap; gap: 3px; margin-top: 2px;
-  }
-  .actor {
-    font-size: 9px; background: transparent; border: 1px solid #d0c8bc;
-    border-radius: 10px; padding: 1px 6px; color: #9a9080;
-    cursor: pointer; transition: all .2s; letter-spacing: .02em;
-  }
-  .actor:hover { color: #6a6058; border-color: #a89a88; }
-  .actor.active { background: #4a4038; color: #f5f0e8; border-color: #4a4038; }
-
-  .block-id {
-    position: absolute; bottom: 5px; right: 10px;
-    font-size: 11px; font-weight: 700; font-family: monospace;
-    color: #b0a090; letter-spacing: .08em;
-  }
-  .block-era {
-    font-size: 12px; font-weight: 700; color: #2a2520;
-    letter-spacing: .03em; margin-bottom: 1px;
-  }
-
-  /* Outgoing refs (bottom of block) */
-  .block-out {
-    display: flex; gap: 4px; flex-wrap: wrap; margin-top: 2px;
-  }
-  .out-chip {
-    font-size: 9px; padding: 1px 6px; border-radius: 10px;
-    background: transparent; border: 1px solid #d0c8bc; color: #9a9080;
-    cursor: pointer; transition: all .2s; letter-spacing: .02em;
-  }
-  .out-chip:hover { color: #6a6058; border-color: #a89a88; }
-
-  /* Absorbed events (collapsible) */
-  .absorbed-toggle {
-    font-size: 10px; color: var(--muted); cursor: pointer;
-    padding: 3px 8px; margin-top: 2px;
-    border: 1px dashed #d8d0c4; border-radius: 8px;
-    background: transparent; transition: all .2s;
-    display: flex; align-items: center; gap: 4px;
-    user-select: none;
-  }
-  .absorbed-toggle:hover { background: #f5f0e8; border-color: #c0b8a8; }
-  .absorbed-toggle .absorbed-arrow { transition: transform .2s; display: inline-block; font-size: 8px; }
-  .absorbed-toggle.open .absorbed-arrow { transform: rotate(90deg); }
-  .absorbed-count { font-size: 9px; background: #e8e0d8; border-radius: 8px; padding: 0 5px; color: #8a8070; }
-  .absorbed-list {
-    display: none; margin-top: 4px; padding: 4px 0;
-    border-top: 1px dotted #e0d8cc;
-  }
-  .absorbed-list.open { display: block; }
-  .absorbed-item {
-    font-size: 10px; color: var(--muted); padding: 3px 8px;
-    border-radius: 6px; transition: background .15s;
-    display: flex; gap: 8px; align-items: baseline;
-    line-height: 1.5;
-  }
-  .absorbed-item:hover { background: #f0ebe0; }
-  .absorbed-item-era { font-weight: 600; color: #8a8070; min-width: 40px; white-space: nowrap; }
-  .absorbed-item-label { color: var(--ink); }
-
   /* Legend — floating */
   .legend-float {
     position: sticky; top: 0; z-index: 100;
@@ -268,12 +61,6 @@
     box-shadow: var(--shadow); margin-bottom: 12px;
   }
   .legend-float.collapsed { display: none; }
-  .legend {
-    display: flex; gap: 14px; flex-wrap: wrap; font-size: 11px; color: var(--muted);
-  }
-  .legend + .legend { margin-top: 6px; }
-  .legend-item { display: flex; align-items: center; gap: 4px; }
-  .legend-sw { width: 28px; height: 3px; border-radius: 2px; }
 
   /* Filter controls row 2 */
   .controls-row2 {
@@ -631,224 +418,39 @@ function fmtId(nid) {
   return nid.replace(/^[NW]/, '');
 }
 
+const BLOCK_OPTS = {
+  nodeMap: NM,
+  formatId: fmtId,
+  chipMaxLen: 14,
+  emptyLabel: '（起点）',
+  showAbsorbed: true,
+  showOutgoing: true,
+  showPatternLink: true,
+  onChipClick: 'flashAndScroll',
+  onChipHover: true,
+  onActorClick: 'toggleActor',
+};
+
 function renderBlock(n) {
   const incoming = EbyTo[n.id] || [];
   const outgoing = EbyFrom[n.id] || [];
   const hasPat = n.pattern ? 'has-pattern' : '';
-
-  const fwStyle = FW_TYPE_STYLES[n.fwType] || FW_TYPE_STYLES['amplifier'];
+  const fwStyle = FW_TYPE_STYLES[n.fwType] || {};
   let html = `<div class="block ${hasPat}" data-nid="${n.id}" id="blk-${n.id}" data-fwtype="${n.fwType || ''}" style="border-color:${fwStyle.color}">`;
-  html += `<div class="block-body">`;
-
-  // Inner area: incoming edges as reference chips (border color = source block's cluster)
-  if (incoming.length > 0) {
-    html += `<div class="block-inner">`;
-    incoming.forEach(e => {
-      const src = NM[e.from];
-      const srcNum = fmtId(e.from);
-      const shortLabel = src ? (src.label.length > 14 ? src.label.slice(0, 12) + '…' : src.label) : e.from;
-      const roleLabelsShort = { triggers: '引き金', amplifies: '圧↑', transforms: '変換', sustains: '基盤', suppresses: '抑制', inherits: '継承' };
-      const srcStyle = src ? (FW_TYPE_STYLES[src.fwType] || FW_TYPE_STYLES['amplifier']) : FW_TYPE_STYLES['amplifier'];
-      const chipColor = srcStyle.color;
-      html += `<span class="ref-chip" id="chip-${e.from}-${n.id}" style="border-color:${chipColor}" data-src="${e.from}" onclick="event.stopPropagation();flashAndScroll('${e.from}')" onmouseenter="hlSource('${e.from}',true)" onmouseleave="hlSource('${e.from}',false)" title="${src?.label || e.from}\n${roleLabelsShort[e.role] || e.role}"><b>${srcNum}</b> ${shortLabel}<span class="role-arrow r-${e.role}">▶</span></span>`;
-    });
-    html += `</div>`;
-
-    // Role legend is now shown as color bars under each ref-chip
-  } else {
-    html += `<div class="block-inner empty">（起点）</div>`;
-  }
-
-  // Era + Label
-  html += `<div class="block-era">${n.era || ''}</div>`;
-  html += `<div class="block-label">${n.label}</div>`;
-  // Summary
-  html += `<div class="block-summary">${n.summary}</div>`;
-  // Absorbed events (collapsible)
-  if (n.absorbed && n.absorbed.length > 0) {
-    const aid = n.id + '-abs';
-    html += `<div class="absorbed-toggle" onclick="event.stopPropagation();toggleAbsorbed('${aid}')">`;
-    html += `<span class="absorbed-arrow" id="arr-${aid}">▸</span> 内包イベント <span class="absorbed-count">${n.absorbed.length}</span>`;
-    html += `</div>`;
-    html += `<div class="absorbed-list" id="abs-${aid}">`;
-    n.absorbed.forEach(a => {
-      html += `<div class="absorbed-item"><span class="absorbed-item-era">${a.era}</span><span class="absorbed-item-label">${a.label}</span></div>`;
-    });
-    html += `</div>`;
-  }
-  // Abstract layer: pattern + FW type
-  html += `<div class="block-abstract">`;
-  const bgSt = BG_TYPE_STYLES[n.bgType] || {};
-  const bgIcon = bgSt.icon ? `<span style="color:${bgSt.color}" title="背景: ${n.bgType || ''}">${bgSt.icon}</span>` : '';
-  const fwIcon = `<span style="color:${fwStyle.color}" title="解放: ${fwStyle.label}">${fwStyle.shape}</span>`;
-  html += `<div class="block-pattern">${n.pattern || ''}</div>`;
-  html += `</div>`;
-  // Actors
-  if (n.actors && n.actors.length > 0) {
-    html += `<div class="block-actors">${n.actors.map(a => `<span class="actor" onclick="event.stopPropagation();toggleActor('${a}')">${a}</span>`).join('')}</div>`;
-  }
-  // Outgoing refs
-  if (outgoing.length > 0) {
-    html += `<div class="block-out">`;
-    outgoing.forEach(e => {
-      const tgt = NM[e.to];
-      const tgtNum = fmtId(e.to);
-      const shortLabel = tgt ? (tgt.label.length > 12 ? tgt.label.slice(0, 10) + '…' : tgt.label) : e.to;
-      html += `<span class="out-chip" onclick="event.stopPropagation();flashAndScroll('${e.to}')" title="${tgt?.label || e.to}\n${e.role}: ${e.note}">→${tgtNum} ${shortLabel}</span>`;
-    });
-    html += `</div>`;
-  }
-
-  html += `</div>`; // block-body
-  const _pid = nodePatId(n);
-  const _bgSt = BG_TYPE_STYLES[n.bgType] || {};
-  const _relSt = BG_TYPE_STYLES[n.releaseType] || {};
-  const _bgIc = _bgSt.icon ? `<span class="fw-icon" style="color:${_bgSt.color};border-color:${_bgSt.color};background:${_bgSt.color}18">${_bgSt.icon}</span><span style="color:#c0b8a0;margin:0 1px">→</span>` : '';
-  const _relIc = _relSt.icon ? `<span class="fw-icon" style="color:${_relSt.color};border-color:${_relSt.color};background:${_relSt.color}18">${_relSt.icon}</span>` : `<span class="fw-icon" style="color:${fwStyle.color};border-color:${fwStyle.color};background:${fwStyle.color}18">${fwStyle.shape}</span>`;
-  html += `<div class="block-fw-label">${_bgIc}${_relIc}<span class="fw-text">${fwStyle.label}</span>`;
-  if (_pid) html += `<a href="demo_pattern_fwtype.html#${_pid}" style="margin-left:4px;font-family:monospace;font-size:9px;color:#b0a090;text-decoration:none;border-bottom:1px dotted #c0b8a0;" title="パターン図鑑で表示">${_pid}</a>`;
-  html += `</div>`;
-  html += `<div class="block-id">${fmtId(n.id)}</div>`;
+  html += `<div class="block-body">${renderBlockHTML(n, incoming, outgoing, BLOCK_OPTS)}</div>`;
+  html += renderBlockFooter(n, BLOCK_OPTS);
   html += `</div>`;
   return html;
 }
 
-// ── SVG Edge Drawing ──
+// ── SVG Edge Drawing (delegates to shared.js) ──
 function drawEdges() {
-  const svg = document.getElementById('edge-svg');
-  const canvas = document.getElementById('canvas');
-  const cr = canvas.getBoundingClientRect();
-  const scrollL = canvas.scrollLeft;
-  const scrollT = canvas.scrollTop;
-  svg.innerHTML = '';
-  svg.style.width = canvas.scrollWidth + 'px';
-  svg.style.height = canvas.scrollHeight + 'px';
-  svg.setAttribute('viewBox', `0 0 ${canvas.scrollWidth} ${canvas.scrollHeight}`);
-
-  // Pre-compute: for each target block, how many edges arrive and assign index
-  // so arrival points spread across the top of the block
-  const arrivalCount = {};
-  const arrivalIdx = {};
-  G.edges.forEach(e => {
-    arrivalCount[e.to] = (arrivalCount[e.to] || 0) + 1;
-  });
-  const arrivalCur = {};
-
-  // Similarly, spread departure points across bottom of source block
-  const departCount = {};
-  G.edges.forEach(e => {
-    departCount[e.from] = (departCount[e.from] || 0) + 1;
-  });
-  const departCur = {};
-
-  G.edges.forEach(e => {
-    const fromEl = document.getElementById('blk-' + e.from);
-    const toEl = document.getElementById('blk-' + e.to);
-    const chipEl = document.getElementById('chip-' + e.from + '-' + e.to);
-    if (!fromEl || !chipEl) return;
-
-    const fr = fromEl.getBoundingClientRect();
-    const ch = chipEl.getBoundingClientRect();
-
-    // Departure: edge of source block closest to chip
-    const chipCX = ch.left + ch.width / 2 - cr.left + scrollL;
-    const chipCY = ch.top + ch.height / 2 - cr.top + scrollT;
-    const fromCX = fr.left + fr.width / 2 - cr.left + scrollL;
-    const fromCY = fr.top + fr.height / 2 - cr.top + scrollT;
-
-    // Source block edge point (nearest side to chip)
-    let x1, y1;
-    const fromTop = fr.top - cr.top + scrollT;
-    const fromBot = fr.bottom - cr.top + scrollT;
-    const fromL = fr.left - cr.left + scrollL;
-    const fromR = fr.right - cr.left + scrollL;
-
-    if (chipCY > fromBot) {
-      // chip is below source block
-      x1 = fromCX; y1 = fromBot;
-    } else if (chipCY < fromTop) {
-      // chip is above source block
-      x1 = fromCX; y1 = fromTop;
-    } else if (chipCX < fromL) {
-      x1 = fromL; y1 = fromCY;
-    } else {
-      x1 = fromR; y1 = fromCY;
-    }
-
-    // Chip edge point (nearest side to source block)
-    const chTop = ch.top - cr.top + scrollT;
-    const chBot = ch.bottom - cr.top + scrollT;
-    const chL = ch.left - cr.left + scrollL;
-    const chR = ch.right - cr.left + scrollL;
-
-    let x2, y2;
-    if (fromCY < chTop) {
-      x2 = chipCX; y2 = chTop;
-    } else if (fromCY > chBot) {
-      x2 = chipCX; y2 = chBot;
-    } else if (fromCX < chL) {
-      x2 = chL; y2 = chipCY;
-    } else {
-      x2 = chR; y2 = chipCY;
-    }
-
-    const dy = y2 - y1;
-    const dx = x2 - x1;
-
-    let d;
-    if (Math.abs(dy) < 20) {
-      // Roughly same height: arc
-      const midY = Math.min(y1, y2) - 50;
-      d = `M ${x1} ${y1} C ${x1} ${midY}, ${x2} ${midY}, ${x2} ${y2}`;
-    } else {
-      // S-curve
-      const midY = (y1 + y2) / 2;
-      d = `M ${x1} ${y1} C ${x1} ${midY}, ${x2} ${midY}, ${x2} ${y2}`;
-    }
-
-    const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
-    path.setAttribute('d', d);
-    path.classList.add('edge-line', 'r-' + e.role);
-    path.dataset.eid = e.id;
-    path.dataset.from = e.from;
-    path.dataset.to = e.to;
-    path.dataset.role = e.role;
-    svg.appendChild(path);
-
-    // Small circle at chip end instead of arrowhead (identity marker)
-    const dot = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
-    dot.setAttribute('cx', x2);
-    dot.setAttribute('cy', y2);
-    dot.setAttribute('r', 3.5);
-    dot.classList.add('edge-head', 'r-' + e.role);
-    dot.dataset.eid = e.id;
-    svg.appendChild(dot);
-  });
+  const blockElMap = {};
+  G.nodes.forEach(n => { blockElMap[n.id] = document.getElementById('blk-' + n.id); });
+  drawEdgesStandard(G.edges, blockElMap, document.getElementById('canvas'), document.getElementById('edge-svg'));
 }
 
-// ── Hover highlight for ref-chip → source block ──
-function hlSource(nid, on) {
-  const el = document.getElementById('blk-' + nid);
-  if (!el) return;
-  if (on) {
-    el.classList.add('source-hl');
-    // Also highlight the connecting edge lines
-    document.querySelectorAll('.edge-line').forEach(line => {
-      if (line.dataset.from === nid || line.dataset.to === nid) {
-        line.style.opacity = '0.8';
-        line.style.strokeWidth = '2.5';
-      }
-    });
-  } else {
-    el.classList.remove('source-hl');
-    document.querySelectorAll('.edge-line').forEach(line => {
-      if (line.dataset.from === nid || line.dataset.to === nid) {
-        line.style.opacity = '';
-        line.style.strokeWidth = '';
-      }
-    });
-  }
-}
+// hlSource — provided by shared.js
 
 // ── Interaction ──
 function toggleSelect(nid) {
@@ -896,17 +498,11 @@ function highlightNode(nid) {
 
 function clearHighlights() {
   document.querySelectorAll('.block').forEach(el => { el.classList.remove('dim', 'hl'); });
-  document.querySelectorAll('.edge-line, .edge-head').forEach(el => { el.classList.remove('hl', 'dim'); });
+  document.querySelectorAll(EDGE_SEL).forEach(el => { el.classList.remove('hl', 'dim'); });
   document.getElementById('info').textContent = `${G.nodes.length} nodes / ${G.edges.length} edges`;
 }
 
-function flashAndScroll(nid) {
-  const el = document.getElementById('blk-' + nid);
-  if (!el) return;
-  el.scrollIntoView({ behavior: 'smooth', block: 'center' });
-  el.classList.add('hl');
-  setTimeout(() => { if (selectedNode !== nid) el.classList.remove('hl'); }, 2000);
-}
+// flashAndScroll — provided by shared.js
 
 // ── Filter modes ──
 function filterRole(role, btn) {
@@ -940,7 +536,7 @@ function showPatterns(btn) {
   document.querySelectorAll('.block').forEach(el => {
     el.classList.toggle('dim', !patNodes.has(el.dataset.nid));
   });
-  document.querySelectorAll('.edge-line, .edge-head').forEach(el => el.classList.add('dim'));
+  document.querySelectorAll(EDGE_SEL).forEach(el => el.classList.add('dim'));
   document.getElementById('info').textContent = `パターン付き: ${patNodes.size} nodes`;
 }
 
@@ -1005,15 +601,7 @@ function toggleLegend() {
   document.getElementById('legend-btn').textContent = panel.classList.contains('collapsed') ? '凡例 ▶' : '凡例';
 }
 
-// ── Absorbed events toggle ──
-function toggleAbsorbed(aid) {
-  const list = document.getElementById('abs-' + aid);
-  const arrow = document.getElementById('arr-' + aid);
-  const toggle = arrow?.closest('.absorbed-toggle');
-  if (list) list.classList.toggle('open');
-  if (toggle) toggle.classList.toggle('open');
-  if (arrow) arrow.textContent = list?.classList.contains('open') ? '▾' : '▸';
-}
+// toggleAbsorbed — provided by shared.js
 
 // ── Domain filter (地面/力学/意図/外部) ──
 function filterDomain(name, btn) {

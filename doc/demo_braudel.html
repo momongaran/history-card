@@ -602,6 +602,10 @@ LAYOUT.forEach(row => {
 
 // ===================== EDGES (SVG) =====================
 function drawEdges() {
+  drawEdgesStandard(DATA.edges, blockEls, canvas, document.getElementById('edge-svg'));
+}
+/*  ── 旧実装（drawEdgesStandardに置換済み） ──
+function _drawEdges_old() {
   const svg = document.getElementById('edge-svg');
   const cr = canvas.getBoundingClientRect();
   const sL = canvas.scrollLeft, sT = canvas.scrollTop;
@@ -662,6 +666,7 @@ function drawEdges() {
     svg.appendChild(dot);
   });
 }
+*/
 
 // ===================== INTERACTION =====================
 let activeFilter = null;
@@ -707,15 +712,8 @@ function applyFilters() {
     el.classList.remove('hl');
   });
 
-  document.querySelectorAll('.edge-line').forEach(el => {
+  document.querySelectorAll(EDGE_SEL).forEach(el => {
     const roleMatch = !activeFilter || el.dataset.role === activeFilter;
-    const layerMatch = layerVisible.has(el.dataset.from) && layerVisible.has(el.dataset.to);
-    el.classList.toggle('dim', !(roleMatch && layerMatch));
-    el.classList.toggle('hl', activeFilter && roleMatch && layerMatch);
-  });
-  document.querySelectorAll('.edge-head').forEach(el => {
-    const edge = DATA.edges.find(e => e.from === el.dataset.from && e.to === el.dataset.to);
-    const roleMatch = !activeFilter || (edge && edge.role === activeFilter);
     const layerMatch = layerVisible.has(el.dataset.from) && layerVisible.has(el.dataset.to);
     el.classList.toggle('dim', !(roleMatch && layerMatch));
     el.classList.toggle('hl', activeFilter && roleMatch && layerMatch);
@@ -738,12 +736,7 @@ canvas.addEventListener('click', (ev) => {
     el.classList.toggle('dim', !connected.has(nid));
     el.classList.toggle('hl', nid === id);
   });
-  document.querySelectorAll('.edge-line').forEach(el => {
-    const relevant = el.dataset.from === id || el.dataset.to === id;
-    el.classList.toggle('dim', !relevant);
-    el.classList.toggle('hl', relevant);
-  });
-  document.querySelectorAll('.edge-head').forEach(el => {
+  document.querySelectorAll(EDGE_SEL).forEach(el => {
     const relevant = el.dataset.from === id || el.dataset.to === id;
     el.classList.toggle('dim', !relevant);
     el.classList.toggle('hl', relevant);

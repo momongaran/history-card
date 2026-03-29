@@ -24,26 +24,11 @@
     min-height: 100vh;
   }
   .page { max-width: 1600px; margin: 0 auto; padding: 24px 20px 80px; }
-
   .header { margin-bottom: 12px; border-left: 4px solid var(--accent); padding-left: 16px; }
   h1 { font-size: 22px; color: var(--accent); letter-spacing: .06em; }
   .sub { margin-top: 3px; font-size: 12px; color: var(--muted); }
 
-  /* Controls */
-  .controls {
-    display: flex; gap: 8px; margin-bottom: 16px; flex-wrap: wrap; align-items: center;
-  }
-  .controls button {
-    font-family: inherit; font-size: 12px; padding: 5px 12px;
-    border: 1.5px solid var(--line); border-radius: 18px;
-    background: var(--paper); color: var(--muted); cursor: pointer; transition: all .2s;
-  }
-  .controls button:hover, .controls button.active {
-    background: var(--accent); color: #fff; border-color: var(--accent);
-  }
-  .ctrl-info { font-size: 11px; color: var(--muted); margin-left: auto; }
-
-  /* Scale filter buttons */
+  /* Page-specific: scale filter */
   .scale-filters { display: flex; gap: 6px; margin-left: 12px; padding-left: 12px; border-left: 2px solid var(--line); }
   .scale-btn {
     font-family: inherit; font-size: 11px; padding: 3px 10px;
@@ -57,146 +42,21 @@
   .scale-btn[data-scale="room"].active { background: #5c4a20; border-color: #5c4a20; }
   .scale-btn[data-scale="detail"].active { background: #5c3020; border-color: #5c3020; }
 
-  /* Canvas */
-  .canvas {
-    position: relative;
-    background: var(--bg);
-    border: 1px solid #d8cebb;
-    border-radius: 20px;
-    box-shadow: 0 8px 28px rgba(40,28,14,.10);
-    padding: 30px 24px;
-    overflow-x: auto;
+  /* Page-specific: tier labels */
+  .tier-row {
+    display: flex; align-items: center; gap: 12px;
+    margin: 16px 0 6px; padding: 0 4px;
+    position: relative; z-index: 3;
   }
-  .canvas::before {
-    content: ''; position: absolute; inset: 0; border-radius: 20px;
-    background-image:
-      linear-gradient(rgba(200,188,168,.08) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(200,188,168,.08) 1px, transparent 1px);
-    background-size: 40px 40px; pointer-events: none;
+  .tier-row:first-child { margin-top: 0; }
+  .tier-label {
+    font-size: 11px; font-weight: 700; letter-spacing: .08em;
+    padding: 3px 10px; border-radius: 10px; color: #fff;
+    white-space: nowrap; flex-shrink: 0;
   }
+  .tier-line { flex: 1; height: 1px; opacity: 0.25; }
 
-  /* SVG layer */
-  #edge-svg {
-    position: absolute; inset: 0; width: 100%; height: 100%;
-    pointer-events: none; z-index: 2;
-  }
-  .edge-line { fill: none; stroke-width: 1.4; opacity: 0.45; stroke-dasharray: 5 4; stroke: #b0a898; }
-  .edge-head { stroke: none; fill: #b0a898; opacity: 0.6; }
-  .edge-line.hl { opacity: 0.85; stroke-width: 2.5; }
-  .edge-head.hl { opacity: 0.85; }
-  .edge-line.dim { opacity: 0.08; }
-  .edge-head.dim { opacity: 0.08; }
-
-  /* Block row */
-  .block-row {
-    position: relative; z-index: 1;
-    display: flex; gap: 16px; margin-bottom: 12px;
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-
-  /* The Block */
-  .block {
-    width: var(--block-w);
-    background: var(--paper);
-    border: 2px solid #b8a898;
-    border-radius: var(--block-radius);
-    box-shadow: var(--shadow);
-    position: relative;
-    transition: border-color .3s, box-shadow .3s, opacity .3s;
-    cursor: pointer;
-    flex: 0 0 auto;
-  }
-  .block:hover { box-shadow: 0 8px 28px rgba(40,28,14,.15); }
-  .block.hl { box-shadow: 0 0 0 5px rgba(58,92,58,.25); }
-  .block.dim { opacity: 0.2; }
-
-  .block-body { padding: 12px 14px 24px; display: flex; flex-direction: column; gap: 6px; }
-
-  /* Inner area: incoming edges */
-  .block-inner {
-    border: 1.5px solid #ddd4c8;
-    border-radius: 10px;
-    background: linear-gradient(180deg, #faf7f0, #f5f1e8);
-    padding: 6px 8px;
-    display: flex; gap: 6px; flex-wrap: wrap;
-    min-height: 32px;
-  }
-  .block-inner.empty {
-    border-style: dashed; min-height: 24px;
-    align-items: center; justify-content: center;
-    color: #d0c4b0; font-size: 10px;
-  }
-  .ref-chip {
-    font-size: 10px;
-    padding: 2px 7px;
-    border-radius: 10px;
-    border: 1px solid #d0c8bc;
-    background: transparent;
-    color: #9a9080;
-    cursor: pointer;
-    transition: all .15s;
-    white-space: nowrap;
-  }
-  .ref-chip b { font-family: monospace; font-size: 10px; margin-right: 2px; }
-  .ref-chip:hover { opacity: 0.8; }
-
-  .role-arrow {
-    display: inline; font-size: 9px; line-height: 1; margin-left: 2px;
-  }
-  .role-arrow.r-amplifies  { color: #c8960a; }
-  .role-arrow.r-triggers   { color: #c45a3c; }
-  .role-arrow.r-transforms { color: #3a6a9a; }
-  .role-arrow.r-sustains   { color: #3a8a3a; }
-  .role-arrow.r-suppresses { color: #7a3a8a; }
-  .role-arrow.r-inherits   { color: #3a7a8a; }
-
-  .block-label {
-    font-size: 14px; font-weight: 600; line-height: 1.6; color: var(--ink);
-  }
-  .block-summary {
-    font-size: 11px; color: var(--muted); line-height: 1.55;
-  }
-  .block-abstract {
-    margin-top: 4px; padding-top: 5px;
-    border-top: 1px solid #e8e0d8;
-  }
-  .block-pattern {
-    font-size: 11px; color: #a09080; line-height: 1.5;
-    letter-spacing: .01em;
-  }
-  .block-actors {
-    display: flex; flex-wrap: wrap; gap: 3px; margin-top: 2px;
-  }
-  .actor {
-    font-size: 9px; background: transparent; border: 1px solid #d0c8bc;
-    border-radius: 10px; padding: 1px 6px; color: #9a9080;
-    letter-spacing: .02em;
-  }
-
-  .block-id {
-    position: absolute; bottom: 5px; right: 10px;
-    font-size: 11px; font-weight: 700; font-family: monospace;
-    color: #b0a090; letter-spacing: .08em;
-  }
-  .block-fw-label {
-    position: absolute; bottom: 5px; left: 10px;
-    font-size: 10px; font-weight: 600;
-    display: flex; align-items: center; gap: 4px;
-  }
-  .block-fw-label .fw-icon {
-    width: 16px; height: 16px; border-radius: 4px;
-    display: inline-flex; align-items: center; justify-content: center;
-    font-size: 9px; flex-shrink: 0;
-    border: 1px solid; opacity: 0.9;
-    font-variant-emoji: text;
-  }
-  .block-fw-label .fw-text { color: #a09080; }
-  .block-era {
-    font-size: 12px; font-weight: 700; color: #2a2520;
-    letter-spacing: .03em; margin-bottom: 1px;
-    display: flex; align-items: center; gap: 8px;
-  }
+  /* Page-specific: scale badge + hl color */
   .scale-badge {
     font-size: 9px; padding: 1px 6px; border-radius: 8px;
     color: #fff; font-weight: 600; letter-spacing: .05em;
@@ -205,20 +65,7 @@
   .scale-badge.building { background: #3d5a3e; }
   .scale-badge.room { background: #5c4a20; }
   .scale-badge.detail { background: #5c3020; }
-
-  /* role edge colors */
-  .edge-line.r-amplifies  { stroke: #c8960a; }
-  .edge-line.r-triggers   { stroke: #c45a3c; }
-  .edge-line.r-transforms { stroke: #3a6a9a; }
-  .edge-line.r-sustains   { stroke: #3a8a3a; }
-  .edge-line.r-suppresses { stroke: #7a3a8a; }
-  .edge-line.r-inherits   { stroke: #3a7a8a; }
-  .edge-head.r-amplifies  { fill: #c8960a; }
-  .edge-head.r-triggers   { fill: #c45a3c; }
-  .edge-head.r-transforms { fill: #3a6a9a; }
-  .edge-head.r-sustains   { fill: #3a8a3a; }
-  .edge-head.r-suppresses { fill: #7a3a8a; }
-  .edge-head.r-inherits   { fill: #3a7a8a; }
+  .block.hl { box-shadow: 0 0 0 5px rgba(58,92,58,.25); }
 
   /* Legend */
   .legend {
@@ -240,7 +87,7 @@
   <div class="header">
     <h1>パターン・ランゲージ ― 住まいの空間体験</h1>
     <p class="sub">C. アレグザンダー『パターン・ランゲージ』(1977) から住居スケールの15パターンを抽出 ― 15ノード・18エッジ</p>
-    <p class="sub">大きなパターンが小さなパターンの文脈を形成する。地域→集落→建物→部屋→ディテールのスケール遷移を因果グラフとして表現</p>
+    <p class="sub">大きなパターンが小さなパターンの文脈を形成する ― 上から下へスケールが縮小し、上流が下流の「前提条件」を作る。ノードをクリックで文脈（上流）と詳細化（下流）の関係を確認</p>
   </div>
 
   <div class="controls">
@@ -291,12 +138,13 @@ async function loadData() {
 
 // ===================== LAYOUT =====================
 const LAYOUT = [
-  ["P037", "P053", "P061"],
-  ["P079", "P104", "P106"],
-  ["P110", "P112"],
-  ["P127", "P131", "P134"],
-  ["P159", "P180"],
-  ["P201", "P252"]
+  { tier: '地域', tierColor: '#1a3a5c', ids: ["P037"] },
+  { ids: ["P061", "P079"] },
+  { tier: '建物', tierColor: '#3d5a3e', ids: ["P053", "P104", "P106"] },
+  { ids: ["P110", "P112"] },
+  { tier: '部屋', tierColor: '#5c4a20', ids: ["P127", "P131", "P134"] },
+  { tier: 'ディテール', tierColor: '#5c3020', ids: ["P159", "P180"] },
+  { ids: ["P201", "P252"] },
 ];
 
 const SCALE_MAP = {
@@ -307,33 +155,42 @@ const SCALE_MAP = {
   "P159": "room", "P180": "detail",
   "P201": "detail", "P252": "detail"
 };
-
 const SCALE_LABELS = { region: '地域', building: '建物', room: '部屋', detail: 'ディテール' };
 
-const ROLE_COLORS = {
-  amplifies: '#c8960a', triggers: '#c45a3c', transforms: '#3a6a9a',
-  sustains: '#3a8a3a', suppresses: '#7a3a8a', inherits: '#3a7a8a'
-};
-
 let nodeMap = {};
-let inEdges = {};
-let outEdges = {};
-const canvas = document.getElementById('canvas');
+let _inEdges = {};
+let _outEdges = {};
+const canvasEl = document.getElementById('canvas');
+const svgEl = document.getElementById('edge-svg');
 const blockEls = {};
+
+const blockOpts = {
+  nodeMap: null,
+  chipMaxLen: 14,
+  emptyLabel: '（起点）',
+  eraBadge: n => `<span class="scale-badge ${SCALE_MAP[n.id] || 'building'}">${SCALE_LABELS[SCALE_MAP[n.id]] || ''}</span>`,
+  onChipClick: 'flashAndScroll',
+  onChipHover: true,
+};
 
 function buildGraph() {
   nodeMap = {};
   DATA.nodes.forEach(n => nodeMap[n.id] = n);
-  inEdges = {}; outEdges = {};
-  DATA.nodes.forEach(n => { inEdges[n.id] = []; outEdges[n.id] = []; });
-  DATA.edges.forEach(e => { inEdges[e.to].push(e); outEdges[e.from].push(e); });
+  blockOpts.nodeMap = nodeMap;
+  _inEdges = {}; _outEdges = {};
+  DATA.nodes.forEach(n => { _inEdges[n.id] = []; _outEdges[n.id] = []; });
+  DATA.edges.forEach(e => { _inEdges[e.to].push(e); _outEdges[e.from].push(e); });
 
-  // Build blocks
-  LAYOUT.forEach(row => {
+  LAYOUT.forEach(rowDef => {
+    if (rowDef.tier) {
+      const tierEl = document.createElement('div');
+      tierEl.className = 'tier-row';
+      tierEl.innerHTML = `<span class="tier-label" style="background:${rowDef.tierColor}">${rowDef.tier}</span><div class="tier-line" style="background:${rowDef.tierColor}"></div>`;
+      canvasEl.appendChild(tierEl);
+    }
     const rowEl = document.createElement('div');
     rowEl.className = 'block-row';
-
-    row.forEach(id => {
+    rowDef.ids.forEach(id => {
       const n = nodeMap[id];
       if (!n) return;
       const block = document.createElement('div');
@@ -341,105 +198,19 @@ function buildGraph() {
       block.dataset.id = id;
       block.dataset.scale = SCALE_MAP[id] || 'building';
       block.id = 'blk-' + id;
-      const fwColor = (FW_TYPE_STYLES[n.fwType] || {}).color || '#b8a898';
-      block.style.borderColor = fwColor;
-
-      // Incoming edges
-      const ins = inEdges[id];
-      let innerHtml = '';
-      if (ins.length > 0) {
-        innerHtml = '<div class="block-inner">';
-        ins.forEach(e => {
-          const src = nodeMap[e.from];
-          const srcColor = (FW_TYPE_STYLES[src?.fwType] || {}).color || '#b0a898';
-          innerHtml += `<span class="ref-chip" data-from="${e.from}" style="border-color:${srcColor}" title="${e.note}">`;
-          innerHtml += `<b>${e.from}</b> ${src ? src.label.slice(0, 14) : e.from}`;
-          innerHtml += `<span class="role-arrow r-${e.role}">\u25B6</span>`;
-          innerHtml += `</span>`;
-        });
-        innerHtml += '</div>';
-      } else {
-        innerHtml = '<div class="block-inner empty">起点パターン</div>';
-      }
-
-      const fwS = FW_TYPE_STYLES[n.fwType] || {};
-      const scaleName = SCALE_LABELS[SCALE_MAP[id]] || '';
-      const scaleClass = SCALE_MAP[id] || 'building';
-
-      block.innerHTML = `
-        <div class="block-body">
-          ${innerHtml}
-          <div class="block-era"><span class="scale-badge ${scaleClass}">${scaleName}</span></div>
-          <div class="block-label">${n.label}</div>
-          <div class="block-summary">${n.summary}</div>
-          <div class="block-abstract">
-            <div class="block-pattern">${n.pattern}</div>
-            <div class="block-actors">
-              ${(n.actors || []).map(a => `<span class="actor">${a}</span>`).join('')}
-            </div>
-          </div>
-        </div>
-        <div class="block-fw-label">
-          <span class="fw-icon" style="background:${fwS.bg || '#f5f0e8'};color:${fwS.color || '#888'};border-color:${fwS.color || '#ccc'}">${fwS.icon || '\u25CB'}</span>
-          <span class="fw-text">${n.fwType}</span>
-        </div>
-        <div class="block-id">${id}</div>
-      `;
-
+      block.style.borderColor = (FW_TYPE_STYLES[n.fwType] || {}).color || '#b8a898';
+      block.innerHTML = `<div class="block-body">${renderBlockHTML(n, _inEdges[id], _outEdges[id], blockOpts)}</div>${renderBlockFooter(n)}`;
       block.addEventListener('click', () => toggleHighlight(id));
       blockEls[id] = block;
       rowEl.appendChild(block);
     });
-    canvas.appendChild(rowEl);
+    canvasEl.appendChild(rowEl);
   });
-
   requestAnimationFrame(drawEdges);
 }
 
-// ===================== EDGES =====================
 function drawEdges() {
-  const svg = document.getElementById('edge-svg');
-  const cr = canvas.getBoundingClientRect();
-  svg.setAttribute('viewBox', `0 0 ${canvas.scrollWidth} ${canvas.scrollHeight}`);
-  svg.style.width = canvas.scrollWidth + 'px';
-  svg.style.height = canvas.scrollHeight + 'px';
-  svg.innerHTML = '';
-
-  DATA.edges.forEach(e => {
-    const fromEl = blockEls[e.from];
-    const toEl = blockEls[e.to];
-    if (!fromEl || !toEl) return;
-
-    const fr = fromEl.getBoundingClientRect();
-    const tr = toEl.getBoundingClientRect();
-    const ox = canvas.scrollLeft - cr.left + canvas.clientLeft;
-    const oy = canvas.scrollTop - cr.top + canvas.clientTop;
-
-    const x1 = fr.left + fr.width / 2 + ox;
-    const y1 = fr.top + fr.height + oy;
-    const x2 = tr.left + tr.width / 2 + ox;
-    const y2 = tr.top + oy;
-
-    const mx = (x1 + x2) / 2;
-    const my = (y1 + y2) / 2;
-
-    const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
-    path.setAttribute('d', `M${x1},${y1} Q${mx},${y1} ${mx},${my} Q${mx},${y2} ${x2},${y2}`);
-    path.setAttribute('class', `edge-line r-${e.role}`);
-    path.dataset.from = e.from;
-    path.dataset.to = e.to;
-    path.dataset.role = e.role;
-    svg.appendChild(path);
-
-    // Arrowhead
-    const sz = 5;
-    const head = document.createElementNS('http://www.w3.org/2000/svg', 'polygon');
-    head.setAttribute('points', `${x2},${y2} ${x2 - sz},${y2 - sz * 1.5} ${x2 + sz},${y2 - sz * 1.5}`);
-    head.setAttribute('class', `edge-head r-${e.role}`);
-    head.dataset.from = e.from;
-    head.dataset.to = e.to;
-    svg.appendChild(head);
-  });
+  drawEdgesStandard(DATA.edges, blockEls, canvasEl, svgEl);
 }
 
 // ===================== HIGHLIGHT =====================
@@ -447,34 +218,26 @@ let hlId = null;
 function toggleHighlight(id) {
   if (hlId === id) { hlId = null; resetView(document.querySelector('.controls button')); return; }
   hlId = id;
-
-  // Find connected
   const connected = new Set([id]);
   DATA.edges.forEach(e => {
     if (e.from === id) connected.add(e.to);
     if (e.to === id) connected.add(e.from);
   });
-
   Object.entries(blockEls).forEach(([bid, el]) => {
     el.classList.toggle('hl', bid === id);
     el.classList.toggle('dim', !connected.has(bid));
   });
-
-  document.querySelectorAll('.edge-line, .edge-head').forEach(el => {
-    const from = el.dataset.from, to = el.dataset.to;
-    const hit = from === id || to === id;
-    el.classList.toggle('hl', hit);
-    el.classList.toggle('dim', !hit);
+  document.querySelectorAll(EDGE_SEL).forEach(el => {
+    const hit = el.dataset.from === id || el.dataset.to === id;
+    el.classList.toggle('hl', hit); el.classList.toggle('dim', !hit);
   });
-
-  // Deactivate buttons
   document.querySelectorAll('.controls button').forEach(b => b.classList.remove('active'));
 }
 
 function resetView(btn) {
   hlId = null;
   Object.values(blockEls).forEach(el => { el.classList.remove('hl', 'dim'); el.style.display = ''; });
-  document.querySelectorAll('.edge-line, .edge-head').forEach(el => { el.classList.remove('hl', 'dim'); });
+  document.querySelectorAll(EDGE_SEL).forEach(el => { el.classList.remove('hl', 'dim'); });
   document.querySelectorAll('.controls button').forEach(b => b.classList.remove('active'));
   document.querySelectorAll('.scale-btn').forEach(b => b.classList.remove('active'));
   document.querySelector('.scale-btn[data-scale="all"]').classList.add('active');
@@ -485,51 +248,37 @@ function filterRole(role, btn) {
   hlId = null;
   document.querySelectorAll('.controls button').forEach(b => b.classList.remove('active'));
   btn.classList.add('active');
-
   const involved = new Set();
   DATA.edges.forEach(e => { if (e.role === role) { involved.add(e.from); involved.add(e.to); } });
-
   Object.entries(blockEls).forEach(([id, el]) => {
-    el.classList.toggle('dim', !involved.has(id));
-    el.classList.remove('hl');
+    el.classList.toggle('dim', !involved.has(id)); el.classList.remove('hl');
   });
-
-  document.querySelectorAll('.edge-line, .edge-head').forEach(el => {
+  document.querySelectorAll(EDGE_SEL).forEach(el => {
     const hit = el.dataset.role === role;
-    el.classList.toggle('hl', hit);
-    el.classList.toggle('dim', !hit);
+    el.classList.toggle('hl', hit); el.classList.toggle('dim', !hit);
   });
 }
 
 function filterScale(scale, btn) {
   document.querySelectorAll('.scale-btn').forEach(b => b.classList.remove('active'));
   btn.classList.add('active');
-
   if (scale === 'all') {
     Object.values(blockEls).forEach(el => { el.classList.remove('dim'); el.style.display = ''; });
-    document.querySelectorAll('.edge-line, .edge-head').forEach(el => el.classList.remove('dim'));
+    document.querySelectorAll(EDGE_SEL).forEach(el => el.classList.remove('dim'));
     return;
   }
-
   const inScale = new Set();
   Object.entries(SCALE_MAP).forEach(([id, s]) => { if (s === scale) inScale.add(id); });
-
   Object.entries(blockEls).forEach(([id, el]) => {
-    el.classList.toggle('dim', !inScale.has(id));
-    el.classList.remove('hl');
+    el.classList.toggle('dim', !inScale.has(id)); el.classList.remove('hl');
   });
-
-  document.querySelectorAll('.edge-line, .edge-head').forEach(el => {
+  document.querySelectorAll(EDGE_SEL).forEach(el => {
     const hit = inScale.has(el.dataset.from) || inScale.has(el.dataset.to);
-    el.classList.toggle('dim', !hit);
-    el.classList.remove('hl');
+    el.classList.toggle('dim', !hit); el.classList.remove('hl');
   });
 }
 
-// ===================== RESIZE =====================
 window.addEventListener('resize', () => requestAnimationFrame(drawEdges));
-
-// ===================== BOOT =====================
 loadData();
 </script>
 </body>
