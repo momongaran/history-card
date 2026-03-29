@@ -3,6 +3,8 @@
 // <script src="shared.js"></script> で読み込む（グローバル変数）
 // ============================================================
 
+const APP_VERSION = { hash: 'a7dba81', date: '2026-03-30', label: 'v0.9.0' };
+
 // ── データソース一覧 ──
 const ALL_SOURCES = [
   '../data/energyabs_v2.json',
@@ -189,7 +191,8 @@ function renderPageNav() {
     <span class="test-menu-wrap">
       <button class="test-menu-btn" id="test-menu-toggle">${isTestPage ? '◉' : '○'} テスト</button>
       <div class="test-menu-drop" id="test-menu-drop">${testItems}</div>
-    </span>`;
+    </span>
+    <span style="margin-left:auto;font-size:10px;color:#b0a898;font-family:monospace;letter-spacing:.05em" title="${APP_VERSION.date} ${APP_VERSION.hash}">${APP_VERSION.label}</span>`;
 
   el.className = 'page-nav';
   el.innerHTML = html;
